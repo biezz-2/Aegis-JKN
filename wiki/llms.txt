@@ -1,0 +1,22 @@
+# Aegis-JKN Agent Wiki Index
+
+> Multi-channel Heterogeneous Graph Structure Learning for JKN/BPJS Fraud Intelligence
+
+## Overview
+- [Overview](overview.md): Repository overview and architecture summary
+
+## Concepts
+- [MHGSL Architecture](concepts/mhgsl-architecture.md): 5-stage pipeline and multi-channel mechanisms
+- [Multi-Channel Graphs](concepts/multi-channel-graphs.md): Topology, feature, and semantic graph representations
+- [Fraud Rings](concepts/fraud-rings.md): Collusive community detection and drilldown audit
+- [SHAP Camouflage Detection](concepts/shap-camouflage-detection.md): Explainable AI for adversarial camouflage fraud
+
+## Guides
+- [Getting Started](guides/getting-started.md): Installation and local development guide
+- [Vercel Deployment](guides/vercel-deployment.md): Deploying Aegis-JKN to Vercel
+- [Custom Data Scoring](guides/custom-data-scoring.md): In-browser scoring of custom CSV/JSON claims
+
+## Reference
+- [Data Schema](reference/data-schema.md): TypeScript models, entity interfaces, and clinical standards
+- [Component Catalog](reference/component-catalog.md): Complete list of React components and roles
+- [Mathematical Formulations](reference/mathematical-formulations.md): Formulations for GCN, Cosine, and Attention Fusion

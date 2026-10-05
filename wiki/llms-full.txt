@@ -1,0 +1,722 @@
+﻿
+
+================================================================================
+FILE: overview.md
+================================================================================
+
+---
+title: Aegis-JKN Overview
+type: overview
+tags: [overview, healthkathon, mhgsl, gnn, bpjs-kesehatan, fraud-detection]
+related:
+  - "[[concepts/mhgsl-architecture]]"
+  - "[[concepts/multi-channel-graphs]]"
+  - "[[concepts/fraud-rings]]"
+  - "[[guides/getting-started]]"
+  - "[[reference/component-catalog]]"
+sources:
+  - src/app/page.tsx
+  - src/components/mhgsl/data.ts
+---
+
+# Aegis-JKN · Sistem Intelijen Deteksi Fraud Klaim BPJS Kesehatan
+
+Aegis-JKN adalah platform analitik dan visualisasi interaktif untuk mendeteksi kecurangan klaim layanan kesehatan di ekosistem Program Jaminan Kesehatan Nasional (JKN) yang dikelola oleh BPJS Kesehatan Indonesia. Platform ini memvisualisasikan implementasi **Multi-channel Heterogeneous Graph Structure Learning (MHGSL)** yang digabungkan dengan **Graph Neural Networks (GNN)** untuk mengidentifikasi sindikat penipuan yang menyamarkan polanya (*camouflage fraud*).
+
+## Tantangan Nyata Ekosistem JKN
+
+1. **Volume Klaim Masif**: Lebih dari 2.000.000 klaim diproses setiap hari kerja dari ribuan fasilitas kesehatan (FKTP dan FKRTL) di seluruh Indonesia.
+2. **Keterbatasan Verifikator Manusia**: Tersedia sekitar 1.000 verifikator klaim manual, menghasilkan rasio beban verifikasi hingga 2.000 klaim per verifikator per hari.
+3. **Kebocoran Dana Kesehatan**: Estimasi global estimasi fraud berkisar antara 3% hingga 7% dari total realisasi klaim tahunan.
+4. **Kamuflase Canggih**: Sindikat kejahatan memanipulasi topologi klaim sehingga terlihat normal bila diaudit satu per satu dengan pendekatan rule-based tradisional atau machine learning konvensional (XGBoost, Regresi Logistik).
+
+## Arsitektur 5-Tahap Aegis-JKN
+
+1. **Ingest SATUSEHAT FHIR**: Standardisasi data transaksi klaim klinis menggunakan standar interoperabilitas Kementerian Kesehatan Republik Indonesia (FHIR R4).
+2. **Konstruksi 3 Saluran Graf Heterogen**: Memetakan entitas (Pasien, Dokter, Faskes, Prosedur, Diagnosis) ke dalam 3 saluran independen:
+   - *Saluran Topologi*: Relasi historis kunjungan dan rujukan.
+   - *Saluran Fitur*: Kemiripan atribut numerik/kategorial (Length of Stay, usia, total biaya).
+   - *Saluran Semantik*: Jalur metapath klinis (Dokter $\to$ Diagnosis $\to$ Tindakan $\to$ RS).
+3. **Channel-Specific GCN**: Ekstraksi representasi embedding dari masing-masing saluran graf secara terisolasi.
+4. **Shared-Parameter GCN**: Pertukaran bobot parameter untuk mengekstraksi representasi invarian lintas domain relasional.
+5. **Attention Fusion & SHAP Explainability**: Penimbangan adaptif saluran graf dan penjelas kontribusi fitur (*explainable AI*) yang mampu mendeteksi sindrom kamuflase (misal: saluran topologi berkontribusi negatif sementara saluran semantik bernilai ekstrim).
+
+## Modul Utama pada Aplikasi
+
+- **Multi-Channel Graph Viewer** (`src/components/mhgsl/multi-channel-graph.tsx`): Kanvas SVG graf dinamis dengan pemfilteran saluran, deteksi node berisiko, serta tracing *metapath flow*.
+- **Interactive Simulation Engine** (`src/components/mhgsl/simulation.tsx`): Demo 4 langkah audit kasus upcoding dengan akumulasi bobot fusi dan waterfall atribusi SHAP.
+- **Fraud Ring Visualizer & Drilldown Modal** (`src/components/mhgsl/fraud-ring.tsx` & `src/components/mhgsl/fraud-drilldown-modal.tsx`): Perbandingan topologi komunitas kolusif padat vs normal serta investigasi profil mendalam.
+- **Benchmark & Radar Chart** (`src/components/mhgsl/comparison.tsx`): Evaluasi AUPRC (MHGSL mencapai 0.91 vs GNN 0.81 dan XGBoost 0.74).
+- **Self-Service Claim Data Uploader** (`src/components/mhgsl/data-uploader.tsx`): Mesin inferensi lokal peramban untuk scoring dataset CSV/JSON pengguna.
+- **Mathematical Formulations Viewer** (`src/components/mhgsl/math-formulas.tsx`): Katalog persamaan matematis lengkap.
+
+## Panduan Navigasi Wiki
+
+- [[concepts/mhgsl-architecture]] - Detail arsitektur model dan mekanisme 3 saluran.
+- [[concepts/multi-channel-graphs]] - Representasi entitas, node, dan edge heterogen.
+- [[concepts/fraud-rings]] - Pola sindikat kolusi faskes-dokter-pasien dan analisis komunitas graf.
+- [[concepts/shap-camouflage-detection]] - Metodologi pembuktian kamuflase menggunakan SHAP.
+- [[guides/getting-started]] - Panduan instalasi dan menjalankan proyek secara lokal.
+- [[guides/vercel-deployment]] - Panduan deployment aplikasi ke platform Vercel.
+- [[reference/data-schema]] - Struktur tipe data, metadata node, dan format klaim FHIR.
+- [[reference/component-catalog]] - Katalog komponen React dan peruntukannya.
+
+
+================================================================================
+FILE: concepts\mhgsl-architecture.md
+================================================================================
+
+---
+title: MHGSL Architecture
+type: concept
+tags: [architecture, mhgsl, gnn, gcn, attention-fusion, pipeline]
+related:
+  - "[[overview]]"
+  - "[[concepts/multi-channel-graphs]]"
+  - "[[concepts/shap-camouflage-detection]]"
+  - "[[reference/mathematical-formulations]]"
+sources:
+  - src/components/mhgsl/architecture.tsx
+  - src/components/mhgsl/math-formulas.tsx
+  - src/components/mhgsl/data.ts
+---
+
+# Multi-channel Heterogeneous Graph Structure Learning (MHGSL)
+
+## Ringkasan Konsep
+
+MHGSL adalah metodologi mutakhir dalam pembelajaran representasi graf heterogen (*Heterogeneous Information Networks / HIN*). Model ini dirancang khusus untuk memecahkan kelemahan algoritma GNN tradisional ketika berhadapan dengan data transaksi medis yang dipalsukan (*adversarial camouflage*).
+
+Dalam kasus penipuan klaim asuransi kesehatan, sindikat penipu sering kali menyebarkan pasien fiktif ke berbagai dokter atau menggunakan rekam medis yang terlihat terisolasi secara topologis agar tidak memicu alarm sistem berbasis aturan (*rule-based*) atau analisis derajat node (*node degree*).
+
+## Arsitektur Pipeline 5 Tahap
+
+```
+[SATUSEHAT FHIR R4 Ingestion]
+             │
+             ▼
+[3-Channel Graph Construction]
+ ├── Saluran 1: Topologi (Adjacency Historis)
+ ├── Saluran 2: Fitur (Cosine Similarity Atribut)
+ └── Saluran 3: Semantik (Metapath Klinis D-Dx-S-RS)
+             │
+             ▼
+[Channel-Specific GCN Layers]
+ ├── GCN_Topo(A_topo, H_0)
+ ├── GCN_Feat(A_feat, H_0)
+ └── GCN_Sem(A_sem, H_0)
+             │
+             ▼
+[Shared-Parameter GCN (Weight Sharing)]
+ └── Cross-channel Invariant Representation
+             │
+             ▼
+[Adaptive Attention Fusion & Sigmoid Classification]
+ └── Skor Probabilitas Fraud (0.00 - 1.00) + Penjelasan SHAP
+```
+
+## Komponen Kunci
+
+### 1. Saluran Graf Topologi ($A_{\text{topo}}$)
+Mewakili interaksi langsung dalam transaksi riil: pasien terdaftar mengunjungi dokter, dokter berpraktik di faskes, prosedur ditagihkan oleh faskes. Saluran ini mencerminkan struktur operasional aktual.
+
+### 2. Saluran Graf Fitur ($A_{\text{feat}}$)
+Dibangun menggunakan matriks kedekatan kosinus (*Cosine Adjacency*) antar entitas berdasarkan vektor fitur intrinsik numerik dan kategorial:
+$$S_{ij} = \frac{x_i \cdot x_j}{\|x_i\| \|x_j\|}$$
+Edge dibentuk jika nilai kemiripan melampaui ambang batas tertentu $\epsilon$. Saluran ini menghubungkan entitas yang memiliki pola perilaku medis serupa meski tidak terhubung langsung dalam riwayat klaim.
+
+### 3. Saluran Graf Semantik ($A_{\text{sem}}$)
+Menggunakan skema metapath terpandu domain medis, seperti skema $\mathcal{M} = \text{Dokter} \xrightarrow{\text{merawat}} \text{Diagnosis} \xrightarrow{\text{memerlukan}} \text{Tindakan} \xrightarrow{\text{dilakukan di}} \text{Faskes}$. Saluran ini menangkap anomali klinis semantik seperti ketidakwajaran tindakan mahal untuk diagnosis ringan.
+
+### 4. Attention Fusion Mechanism
+Setiap saluran menghasilkan representasi node $Z_c \in \mathbb{R}^{N \times d}$. Modul atensi menghitung bobot kepentingan dinamis $\alpha_c$ untuk setiap saluran $c$:
+$$Z = \sum_{c \in \{\text{topo}, \text{feat}, \text{sem}\}} \alpha_c Z_c$$
+Hasil fusi kemudian diproyeksikan melalui MLP dengan aktivasi Sigmoid untuk menghasilkan probabilitas fraud akhir.
+
+## Kode Terkait
+
+- `src/components/mhgsl/architecture.tsx` - Komponen visualisasi 5 tahapan pipeline.
+- `src/components/mhgsl/math-formulas.tsx` - Implementasi penampil rumus matematis dan LaTeX interaktif.
+- `src/components/mhgsl/data.ts:167` - Definisi metadata pipeline dan matriks scoring.
+
+
+================================================================================
+FILE: concepts\multi-channel-graphs.md
+================================================================================
+
+---
+title: Multi-Channel Heterogeneous Graphs
+type: concept
+tags: [graph, topology, feature-graph, semantic-graph, metapaths, nodes, edges]
+related:
+  - "[[concepts/mhgsl-architecture]]"
+  - "[[concepts/fraud-rings]]"
+  - "[[reference/data-schema]]"
+sources:
+  - src/components/mhgsl/multi-channel-graph.tsx
+  - src/components/mhgsl/data.ts
+---
+
+# Multi-Channel Heterogeneous Graphs
+
+## Ringkasan Konsep
+
+Konsep dasar MHGSL dalam Aegis-JKN bertumpu pada dekomposisi data klaim ke dalam tiga representasi saluran graf heterogen. Setiap saluran menyoroti dimensi relasi yang berbeda dari ekosistem layanan kesehatan.
+
+## Tipe Entitas (Nodes)
+
+Dalam graf Aegis-JKN, terdapat 5 kelas entitas yang ditandai dengan kode warna dan ikon semantik:
+
+| Tipe Node | Label | Warna UI | Keterangan |
+| :--- | :--- | :--- | :--- |
+| **Pasien** | $P_1, P_2, \dots$ | Emerald (`oklch(0.55 0.14 165)`) | Peserta penerima manfaat JKN yang menerima pelayanan medis. |
+| **Dokter** | $D_1, D_2, \dots$ | Sky/Teal (`oklch(0.62 0.13 200)`) | Tenaga medis profesional penanggung jawab pelayanan (DPJP). |
+| **Faskes** | $RS_A, RS_B, \dots$ | Amber (`oklch(0.7 0.16 70)`) | Fasilitas Kesehatan Rujukan Tingkat Lanjutan / Puskesmas. |
+| **Prosedur** | $S_{\text{mahal}}, S_{\text{std}}$ | Rose (`oklch(0.62 0.22 20)`) | Tindakan medis berdasarkan kodifikasi ICD-9-CM. |
+| **Diagnosis** | $Dx_{\text{ringan}}, Dx_{\text{berat}}$ | Violet (`oklch(0.5 0.13 280)`) | Kodifikasi penyakit berdasarkan ICD-10. |
+
+## Tiga Saluran Graf
+
+### 1. Saluran Topologi (Topology Channel)
+- **Tujuan**: Menangkap riwayat interaksi klaim konvensional (siapa berobat ke siapa dan di mana).
+- **Garis Edge**: Garis solid teal dengan panah penunjuk.
+- **Kelemahan jika berdiri sendiri**: Rentan terhadap teknik kamuflase, di mana pelaku fraud dengan sengaja membatasi interaksi langsung antar entitas agar derajat node terlihat seperti pengguna normal.
+
+### 2. Saluran Fitur (Feature Channel)
+- **Tujuan**: Memetakan kemiripan profil atribut (Length of Stay / LOS, umur pasien, biaya klaim INA-CBG).
+- **Garis Edge**: Garis putus-putus (*dashed line*) oranye/amber dengan bobot kosinus $S_{ij}$.
+- **Kelebihan**: Mengungkap kelompok pasien yang memiliki pola rawat inap identik yang tidak wajar (misal: selalu tepat 3 hari dengan biaya mendekati batas tarif tertinggi).
+
+### 3. Saluran Semantik (Semantic Channel)
+- **Tujuan**: Menelusuri rantai korelasi klinis berbasis metapath.
+- **Garis Edge**: Garis lengkung ungu/rose (*metapath flow*) dengan anotasi simbol $\mathcal{M}$.
+- **Kelebihan**: Mendeteksi anomali klinis seperti dokter yang secara konsisten meresepkan prosedur bedah mahal ($S_{\text{mahal}}$) untuk diagnosis penyakit umum bergejala ringan ($Dx_{\text{ringan}}$).
+
+## Representasi Interaktif pada UI
+
+Komponen `multi-channel-graph.tsx` mengimplementasikan kanvas SVG interaktif yang mendukung:
+- Toggle visualisasi per saluran (Topologi, Fitur, Semantik).
+- Toggle jalur *metapath flow* dengan animasi pulsa edge (*flow dash*).
+- Pemeriksaan node saat diklik atau di-hover, menampilkan atribut klinis dan label risiko fraud.
+
+## Kode Terkait
+
+- `src/components/mhgsl/multi-channel-graph.tsx` - Komponen SVG graf multi-saluran.
+- `src/components/mhgsl/data.ts:68-135` - Definisi koordinat node, daftar edge, dan metadata risiko.
+
+
+================================================================================
+FILE: concepts\fraud-rings.md
+================================================================================
+
+---
+title: Fraud Rings & Collusion Communities
+type: concept
+tags: [fraud-ring, collusion, syndicates, community-detection, audit, drilldown]
+related:
+  - "[[concepts/mhgsl-architecture]]"
+  - "[[concepts/multi-channel-graphs]]"
+  - "[[reference/component-catalog]]"
+sources:
+  - src/components/mhgsl/fraud-ring.tsx
+  - src/components/mhgsl/fraud-drilldown-modal.tsx
+  - src/components/mhgsl/data.ts
+---
+
+# Fraud Rings & Sindikat Kolusi Layanan Kesehatan
+
+## Ringkasan Konsep
+
+Penipuan klaim layanan kesehatan skala besar jarang dilakukan oleh pelaku tunggal secara acak. Sebagian besar kerugian finansial yang dialami BPJS Kesehatan diakibatkan oleh sindikat terorganisir (*fraud ring* / sindikat kolusi) yang melibatkan koordinasi antar faskes korup, oknum dokter rujukan, dan kelompok pasien terkoordinasi (atau kartu identitas JKN yang disalahgunakan).
+
+## Karakteristik Komunitas Kolusif vs Komunitas Normal
+
+Aegis-JKN membandingkan dua topologi komunitas secara berdampingan:
+
+| Indikator | Komunitas Kolusif (Fraud Ring) | Komunitas Sehat / Normal |
+| :--- | :--- | :--- |
+| **Kepadatan Edge (Graph Density)** | Sangat tinggi (misal: 14 edge untuk 6 node). | Normal/renggang (misal: 7 edge untuk 6 node). |
+| **Pola Rujukan** | Sirkular dan tertutup (pasien selalu dirujuk bolak-balik antara dokter tertentu dan faskes yang sama). | Terbuka dan terdistribusi wajar sesuai zonasi dan kompetensi faskes. |
+| **Inkonsistensi Klinis** | Rasio peresepan obat atau tindakan mahal melebihi 85% untuk kasus ringan. | Mengikuti pedoman klinis (Clinical Pathway) dan Formularium Nasional. |
+| **Distribusi Waktu** | Lonjakan klaim dalam batch teratur (misal: akhir bulan) dengan Length of Stay identik. | Kedatangan pasien acak mengikuti distribusi Poisson alami. |
+
+## Modul Investigasi Mandiri: Fraud Drilldown
+
+Aegis-JKN menyediakan antarmuka audit investigasi mendalam melalui komponen `fraud-drilldown-modal.tsx`. Fitur ini memungkinkan auditor BPJS Kesehatan untuk membuka rekam jejak entitas yang dicurigai:
+
+1. **Profil Dokter $D_1$ (Dr. A. Wijaya)**:
+   - Skor Risiko: **0.94 (Tinggi / Sindikat)**
+   - Temuan Kunci: Upcoding repetitif pada 87% klaim, rasio rujukan sirkular ke Faskes $RS_A$ mencapai 92%.
+   - Atribusi Saluran: Fitur (+0.38), Semantik (+0.41), Topologi (-0.12).
+   
+2. **Profil Fasilitas Kesehatan $RS_A$ (RS Sentosa Medika)**:
+   - Skor Risiko: **0.89 (Tinggi)**
+   - Temuan Kunci: Rasio tagihan tindakan berbiaya tinggi ($S_{\text{mahal}}$) tidak sebanding dengan kelas rumah sakit dan populasi diagnosis masuk.
+
+3. **Profil Pasien $P_1$ (Pasien #JKN-2026-0451)**:
+   - Skor Risiko: **0.78 (Sedang-Tinggi)**
+   - Temuan Kunci: Dugaan peminjaman kartu BPJS atau *phantom billing*, di mana Length of Stay tercatat selalu 3 hari secara persis dalam 4 kunjungan berturut-turut.
+
+## Tindakan Remediasi yang Direkomendasikan
+Sistem secara otomatis mengusulkan aksi operasional:
+- Penangguhan sementara pencairan klaim (*provisional hold*).
+- Pemeriksaan rekam medis fisik (*on-site audit*).
+- Pemanggilan komite medik dan verifikator internal faskes.
+
+## Kode Terkait
+- `src/components/mhgsl/fraud-ring.tsx` - Komponen visualisasi perbandingan komunitas.
+- `src/components/mhgsl/fraud-drilldown-modal.tsx` - Dialog modal profil audit dan timeline kejadian.
+- `src/components/mhgsl/data.ts:250-320` - Profil data sintetis investigasi.
+
+
+================================================================================
+FILE: concepts\shap-camouflage-detection.md
+================================================================================
+
+---
+title: SHAP Camouflage Detection
+type: concept
+tags: [shap, camouflage, explainability, xai, attribution, simulation]
+related:
+  - "[[concepts/mhgsl-architecture]]"
+  - "[[concepts/multi-channel-graphs]]"
+  - "[[reference/mathematical-formulations]]"
+sources:
+  - src/components/mhgsl/simulation.tsx
+  - src/components/mhgsl/data.ts
+---
+
+# Deteksi Kamuflase Fraud Menggunakan Nilai SHAP
+
+## Masalah Kamuflase Adversarial (*Camouflage Fraud*)
+
+Dalam sistem deteksi berbasis kecerdasan buatan, pelaku kejahatan (*adversary*) yang cerdas sering kali mempelajari cara kerja algoritma. Salah satu teknik penyamaran yang sering digunakan pada transaksi klaim asuransi kesehatan adalah **Topological Camouflage**:
+- Oknum dokter atau fasilitas kesehatan menjaga pola kunjungan pasien agar terlihat normal dan tidak memicu deteksi anomali topologi sederhana.
+- Frekuensi pertemuan pasien dengan dokter dijaga tetap wajar.
+- Akibatnya, pada saluran graf topologi tradisional, klaim ini diberi skor anomali yang sangat rendah atau bahkan dinilai "sehat" (nilai kontribusi negatif terhadap kecurigaan).
+
+## Solusi MHGSL: Penguraian Saluran Multi-Dimensi
+
+MHGSL mengatasi penyamaran ini dengan memisahkan representasi graf ke dalam 3 saluran mandiri dan mengagregasikannya dengan mekanisme *Attention Fusion*.
+
+Ketika dievaluasi dengan SHAP (*SHapley Additive exPlanations*), tanda tangan penyamaran (*camouflage signature*) terlihat secara jelas:
+
+$$\text{Fraud Probability} = \sigma\left(\phi_0 + \sum_{i} \phi_i\right)$$
+
+Di mana $\phi_i$ adalah nilai kontribusi SHAP untuk masing-masing saluran:
+
+| Saluran / Komponen Fitur | Nilai SHAP ($\phi_i$) | Interpretasi AI |
+| :--- | :--- | :--- |
+| **Saluran Topologi** | **-0.12** | *Penyamaran Aktif*: Struktur kunjungan sengaja disamarkan agar terlihat wajar. |
+| **Saluran Fitur** | **+0.38** | *Anomali Atribut*: Length of Stay (LOS) dan keseragaman tarif mencurigakan. |
+| **Saluran Semantik** | **+0.41** | *Inkonsistensi Klinis*: Diagnosis ringan dipasangkan dengan tindakan berbiaya mahal. |
+| **Base / Bias Intercept** | **+0.27** | Bobot probabilitas dasar populasi klaim. |
+| **Skor Probabilitas Fusi Akhir** | **0.94** | **Vonis: FRAUD TINGGI (Sindikat Upcoding Terorganisir)** |
+
+## Visualisasi Waterfall SHAP pada Simulasi
+
+Komponen `simulation.tsx` menyediakan visualisasi *waterfall chart* interaktif pada langkah ke-4 simulasi:
+- Baris warna hijau/teal mengindikasikan faktor yang menekan risiko (kamuflase topologi).
+- Baris warna rose/merah mengindikasikan faktor pendorong risiko kecurangan (anomali fitur dan inkonsistensi semantik).
+- Penjelasan ini memberikan justifikasi hukum dan klinis yang transparan bagi verifikator BPJS Kesehatan sebelum membekukan klaim faskes terkait.
+
+## Kode Terkait
+
+- `src/components/mhgsl/simulation.tsx` - Komponen simulasi 4 langkah dan grafik waterfall SHAP.
+- `src/components/mhgsl/data.ts:180-240` - Data tahapan narasi kasus upcoding dan kontribusi bobot SHAP per langkah.
+
+
+================================================================================
+FILE: guides\getting-started.md
+================================================================================
+
+---
+title: Getting Started & Local Setup
+type: guide
+tags: [setup, installation, local-development, bun, npm, nextjs]
+related:
+  - "[[overview]]"
+  - "[[guides/vercel-deployment]]"
+  - "[[reference/component-catalog]]"
+sources:
+  - package.json
+  - tsconfig.json
+  - next.config.ts
+---
+
+# Panduan Instalasi & Pengembangan Lokal
+
+## Prasyarat Lingkungan
+Pastikan perangkat Anda telah terinstal salah satu dari runtime JavaScript berikut:
+- **Node.js**: Versi 20.x atau 22.x LTS (disertai `npm` atau `pnpm`).
+- **Bun**: Versi 1.1+ (opsional, direkomendasikan untuk eksekusi cepat).
+
+## Langkah Instalasi
+
+### 1. Kloning Repositori
+```bash
+git clone https://github.com/biezz-2/Aegis-JKN.git
+cd Aegis-JKN
+```
+
+### 2. Instalasi Dependensi
+Jalankan salah satu perintah berikut:
+```bash
+# Menggunakan Bun
+bun install
+
+# Atau menggunakan NPM
+npm install
+```
+
+### 3. Persiapan Database & Prisma (Opsional)
+Aplikasi menyertakan skema Prisma untuk kebutuhan penyimpanan data relasional klaim di masa mendatang:
+```bash
+npx prisma generate
+```
+
+### 4. Menjalankan Server Pengembangan
+```bash
+# Menggunakan Bun
+bun run dev
+
+# Atau menggunakan NPM
+npm run dev
+```
+
+Aplikasi akan berjalan secara lokal di [http://localhost:3000](http://localhost:3000).
+
+## Pintasan Keyboard (Keyboard Shortcuts)
+
+Saat aplikasi terbuka di browser:
+- `T` : Toggle Mode Gelap / Terang (Dark / Light Theme).
+- `P` : Ekspor / Cetak Halaman ke PDF (`window.print()`).
+- `G` : Langsung scroll ke kanvas **Multi-Channel Graph**.
+- `S` : Langsung scroll ke area **Simulasi Investigasi**.
+- `ArrowRight` : Lanjut ke langkah simulasi berikutnya.
+- `ArrowLeft` : Kembali ke langkah simulasi sebelumnya.
+
+
+================================================================================
+FILE: guides\vercel-deployment.md
+================================================================================
+
+---
+title: Vercel Deployment Guide
+type: guide
+tags: [vercel, deployment, serverless, ci-cd, production]
+related:
+  - "[[overview]]"
+  - "[[guides/getting-started]]"
+sources:
+  - vercel.json
+  - package.json
+  - next.config.ts
+---
+
+# Panduan Deployment ke Platform Vercel
+
+## Gambaran Umum
+
+Aegis-JKN dibangun menggunakan Next.js 16 App Router dengan React 19 dan Tailwind CSS v4. Aplikasi ini dioptimalkan untuk di-deploy secara instan ke Vercel tanpa perlu konfigurasi server rumit.
+
+## Persiapan Konfigurasi untuk Vercel
+
+Proyek ini telah dikonfigurasi agar ramah Vercel (*Vercel-ready*):
+1. **Skrip Build Standar**: `package.json` menggunakan `"build": "next build"` standar.
+2. **Postinstall Otomatis**: Skrip `"postinstall": "prisma generate"` memastikan Prisma Client otomatis terkompilasi selama proses build di lingkungan cloud Vercel.
+3. **Konfigurasi Output**: `next.config.ts` tidak memaksakan mode standalone, memanfaatkan arsitektur Serverless Functions bawaan Vercel secara optimal.
+4. **Vercel Manifest (`vercel.json`)**: Menyediakan konfigurasi framework Next.js yang bersih.
+
+## Langkah Deployment via Vercel Dashboard
+
+1. **Buka Vercel**: Masuk ke [vercel.com](https://vercel.com) menggunakan akun GitHub Anda.
+2. **Import Git Repository**:
+   - Klik tombol **"Add New..."** $\to$ **"Project"**.
+   - Pilih repositori `biezz-2/Aegis-JKN`.
+3. **Konfigurasi Project**:
+   - **Framework Preset**: Next.js (otomatis terdeteksi).
+   - **Root Directory**: `./` (default).
+   - **Build Command**: `next build` (default).
+   - **Output Directory**: `.next` (default).
+   - **Install Command**: `bun install` atau `npm install` (default).
+4. **Environment Variables**:
+   Jika menggunakan database terkelola (misal: PostgreSQL / Supabase di tahap lanjutan), tambahkan variabel:
+   - `DATABASE_URL` = URL koneksi database Anda.
+5. **Klik "Deploy"**:
+   Vercel akan mengklon repositori, menginstal dependensi, menjalankan `prisma generate`, memproses bundel Next.js, dan menerbitkan domain publik (contoh: `https://aegis-jkn.vercel.app`).
+
+## Deployment via Vercel CLI (Alternatif)
+
+Jika memiliki Vercel CLI di komputer lokal:
+```bash
+# Login ke Vercel
+npx vercel login
+
+# Deploy ke Preview
+npx vercel
+
+# Deploy langsung ke Production
+npx vercel --prod
+```
+
+
+================================================================================
+FILE: guides\custom-data-scoring.md
+================================================================================
+
+---
+title: Custom Data Scoring Guide
+type: guide
+tags: [uploader, csv, json, scoring, client-side, inference]
+related:
+  - "[[overview]]"
+  - "[[concepts/mhgsl-architecture]]"
+  - "[[reference/data-schema]]"
+sources:
+  - src/components/mhgsl/data-uploader.tsx
+---
+
+# Panduan Evaluasi & Scoring Data Klaim Pengguna
+
+## Gambaran Fitur Data Uploader
+
+Aegis-JKN menyertakan mesin inferensi lokal di dalam peramban (`src/components/mhgsl/data-uploader.tsx`) yang memungkinkan tim verifikator BPJS Kesehatan untuk mengunggah dataset klaim baru dalam format CSV atau JSON dan langsung memperoleh estimasi skor risiko MHGSL.
+
+## Cara Mengakses Uploader
+
+1. Pada halaman beranda, navigasi ke bagian **Komparasi Model & Metrik**.
+2. Klik tombol **"Bandingkan Data" / "Compare Data"**.
+3. Dialog modal uploader akan terbuka.
+
+## Format Data yang Didukung
+
+### Format CSV
+Kolom wajib yang harus disertakan dalam file CSV:
+```csv
+claimId,patientId,doctorId,faskesId,los,cost,age,diagnosis,procedure
+CLM-001,P01,D01,RS01,3,15000000,42,Dx-Ringan,S-Mahal
+CLM-002,P02,D01,RS01,3,14800000,39,Dx-Ringan,S-Mahal
+CLM-003,P03,D02,RS01,3,15200000,45,Dx-Ringan,S-Mahal
+CLM-004,P04,D03,RS02,1,1200000,28,Dx-Ringan,S-Standar
+```
+
+### Format JSON
+Array of objects dengan kunci yang sama:
+```json
+[
+  {
+    "claimId": "CLM-001",
+    "patientId": "P01",
+    "doctorId": "D01",
+    "faskesId": "RS01",
+    "los": 3,
+    "cost": 15000000,
+    "age": 42,
+    "diagnosis": "Dx-Ringan",
+    "procedure": "S-Mahal"
+  }
+]
+```
+
+## Algoritma Scoring di Peramban
+Mesin `scoreRows` mengevaluasi setiap baris klaim:
+1. **Skor Topologi ($S_{\text{topo}}$)**: Konsentrasi dokter dan faskes dalam dataset.
+2. **Skor Fitur ($S_{\text{feat}}$)**: Rata-rata kemiripan kosinus dari vektor terstandarisasi $[\text{LOS}, \text{usia}, \text{biaya}]$.
+3. **Skor Semantik ($S_{\text{sem}}$)**: Heuristik ketidaksesuaian diagnosis vs prosedur (misal: diagnosis ringan + tindakan mahal $= 0.9$).
+4. **Skor Fusi Akhir**:
+   $$\text{Fusion} = 0.38 \cdot S_{\text{feat}} + 0.41 \cdot S_{\text{sem}} - 0.12 \cdot S_{\text{topo}} + 0.30$$
+
+Klaim dengan skor $\ge 0.75$ diberi label **High Risk (Merah)**, $0.50 - 0.74$ **Medium Risk (Kuning)**, dan $< 0.50$ **Low Risk (Hijau)**.
+
+
+================================================================================
+FILE: reference\data-schema.md
+================================================================================
+
+---
+title: Data Schema & Entity Specifications
+type: reference
+tags: [schema, entities, prisma, typescript, fhir, nodes, edges]
+related:
+  - "[[overview]]"
+  - "[[concepts/multi-channel-graphs]]"
+sources:
+  - src/components/mhgsl/data.ts
+  - prisma/schema.prisma
+---
+
+# Spesifikasi Skema Data & Kontrak Entitas
+
+## 1. Definisi Tipe TypeScript (Client Data Model)
+
+Sumber: `src/components/mhgsl/data.ts`
+
+### Tipe Node dan Level Risiko
+```typescript
+export type NodeType = "patient" | "doctor" | "faskes" | "procedure" | "diagnosis";
+export type RiskLevel = "low" | "medium" | "high" | "fraud";
+```
+
+### Antarmuka Node Graf Heterogen
+```typescript
+export interface GraphNode {
+  id: string;              // Pengenal unik (misal: "p1", "d1", "rs_a")
+  type: NodeType;          // Kategori entitas graf
+  label: string;           // Label tampilan di kanvas (misal: "P₁", "D₁")
+  x: number;               // Koordinat X kanvas SVG (viewBox 700x460)
+  y: number;               // Koordinat Y kanvas SVG
+  risk?: RiskLevel;        // Label klasifikasi risiko
+  note?: string;           // Informasi klinis / catatan audit ringkas
+  profileId?: string;      // ID profil investigasi detail (jika tersedia)
+}
+```
+
+### Antarmuka Edge Multi-Saluran
+```typescript
+export interface GraphEdge {
+  from: string;                                    // ID node asal
+  to: string;                                      // ID node tujuan
+  kind: "topology" | "feature" | "semantic";       // Saluran graf
+  weight?: number;                                 // Bobot kemiripan atau keterkaitan
+  dashed?: boolean;                                // Gaya visual garis pada UI
+}
+```
+
+### Antarmuka Profil Investigasi Lengkap
+```typescript
+export interface FraudProfile {
+  id: string;
+  name: string;
+  role: string;
+  type: NodeType;
+  riskScore: number;           // Rentang 0.00 - 1.00
+  summary: string;
+  evidence: Array<{
+    channel: "topology" | "feature" | "semantic";
+    metric: string;
+    value: string;
+    impact: "positive" | "negative";
+  }>;
+  timeline: Array<{
+    date: string;
+    event: string;
+    flag: boolean;
+  }>;
+  metrics: Array<{
+    label: string;
+    value: string;
+    badge?: string;
+  }>;
+  recommendedAction: string;
+}
+```
+
+## 2. Pemetaan Kode Klinis Standar
+
+- **ICD-10**: Kodifikasi Diagnosis Utama dan Sekunder (Kemenkes RI).
+- **ICD-9-CM**: Kodifikasi Prosedur Medis dan Pembedahan.
+- **INA-CBG**: Indonesian Case Base Groups, sistem tarif paket layanan berbasis tarif acuan nasional.
+- **FHIR R4**: Format pertukaran data standar SATUSEHAT (Resource: `Claim`, `Encounter`, `Condition`, `Procedure`, `Practitioner`, `Organization`).
+
+
+================================================================================
+FILE: reference\component-catalog.md
+================================================================================
+
+---
+title: Component Catalog
+type: reference
+tags: [components, react, nextjs, shadcn, ui, framer-motion]
+related:
+  - "[[overview]]"
+  - "[[guides/getting-started]]"
+sources:
+  - src/components/mhgsl/
+---
+
+# Katalog Komponen Aegis-JKN
+
+Daftar komponen modular dalam arsitektur antarmuka `src/components/mhgsl/`:
+
+| Nama Komponen | File Path | Fungsi Utama |
+| :--- | :--- | :--- |
+| **Navbar** | `navbar.tsx` | Navigasi sticky glassmorphism dengan scrollspy IntersectionObserver, drawer mobile, kontrol tema, tombol bahasa, dan shortcut hints. |
+| **Hero** | `hero.tsx` | Bagian pembuka dengan animasi counter angka (*count-up*), ringkasan metrik volume klaim, dan CTA demo. |
+| **ProblemSection** | `problem-section.tsx` | Visualisasi rasio kontras 2M klaim vs 1K verifikator serta 3 kartu pilar risiko (Faskes, Peserta, Pemberi Kerja). |
+| **Architecture** | `architecture.tsx` | Diagram 5 tahapan pipeline MHGSL dari SATUSEHAT FHIR hingga Attention Fusion dan SHAP. |
+| **MultiChannelGraph** | `multi-channel-graph.tsx` | Kanvas SVG interaktif graf heterogen 3 saluran dengan animasi edge pulse dan metapath flow. |
+| **Simulation** | `simulation.tsx` | Simulasi interaktif 4 langkah deteksi upcoding dengan visualisasi penumpukan kontribusi saluran dan grafik waterfall SHAP. |
+| **MathFormulas** | `math-formulas.tsx` | Penampil tab rumus matematis (Cosine Adjacency, GCN, Weight Sharing, Attention Fusion) disertai glosarium simbol. |
+| **Comparison** | `comparison.tsx` | Evaluasi komparatif multi-tab: Bar chart AUPRC, Radar Chart 5 metrik, tabel komparasi detail, dan pemicu Data Uploader. |
+| **FraudRing** | `fraud-ring.tsx` | Kanvas visualisasi graf perbandingan komunitas kolusif padat vs komunitas normal dengan tombol buka modal profil. |
+| **FraudDrilldownModal**| `fraud-drilldown-modal.tsx`| Dialog modal rincian profil audit entitas tersangka ($D_1$, $RS_A$, $P_1$) dengan timeline dan usulan tindakan. |
+| **DataUploader** | `data-uploader.tsx` | Parser file CSV/JSON dengan mesin scoring MHGSL lokal peramban. |
+| **Roadmap** | `roadmap.tsx` | Estimasi ROI penghematan dana kesehatan (Rp 14,4 Miliar) dan 3 fase implementasi operasional. |
+| **Footer** | `footer.tsx` | Footer 4 kolom dengan tautan dokumentasi, privasi data SATUSEHAT, dan hak cipta. |
+| **ThemeToggle** | `theme-toggle.tsx` | Tombol animasi transisi mode gelap/terang (Sun/Moon rotasi Framer Motion). |
+| **LangToggle** | `lang-toggle.tsx` | Pengalih dwibahasa Bahasa Indonesia (ID) dan English (EN). |
+| **ShortcutsHint** | `shortcuts-hint.tsx` | Popover pop-up daftar pintasan keyboard global. |
+| **BackToTop** | `back-to-top.tsx` | Tombol melayang untuk kembali ke bagian atas halaman secara mulus. |
+
+
+================================================================================
+FILE: reference\mathematical-formulations.md
+================================================================================
+
+---
+title: Mathematical Formulations
+type: reference
+tags: [math, formulas, gcn, cosine, attention, sigmoid, latex]
+related:
+  - "[[overview]]"
+  - "[[concepts/mhgsl-architecture]]"
+sources:
+  - src/components/mhgsl/math-formulas.tsx
+---
+
+# Formulasi Matematis Arsitektur MHGSL
+
+## 1. Saluran Graf Fitur: Matriks Kedekatan Kosinus (*Cosine Adjacency*)
+
+Untuk pasangan entitas $i$ dan $j$ dengan vektor fitur atribut $x_i, x_j \in \mathbb{R}^d$:
+
+$$A_{ij}^{(\text{feat})} = \begin{cases} \dfrac{x_i \cdot x_j}{\|x_i\| \|x_j\|} & \text{jika } \dfrac{x_i \cdot x_j}{\|x_i\| \|x_j\|} \ge \epsilon \\ 0 & \text{lainnya} \end{cases}$$
+
+Di mana $\epsilon \in (0, 1)$ adalah ambang batas sparsity untuk mempertahankan edge berbobot signifikan saja.
+
+## 2. Channel-Specific Graph Convolutional Network (GCN)
+
+Untuk saluran $c \in \{\text{topo}, \text{feat}, \text{sem}\}$, propagasi pesan lapisan ke-$(l+1)$ dirumuskan sebagai:
+
+$$H_c^{(l+1)} = \text{ReLU}\left( \tilde{D}_c^{-\frac{1}{2}} \tilde{A}_c \tilde{D}_c^{-\frac{1}{2}} H_c^{(l)} W_c^{(l)} \right)$$
+
+Di mana:
+- $\tilde{A}_c = A_c + I_N$ adalah matriks ketetanggaan dengan *self-loop*.
+- $\tilde{D}_{c,ii} = \sum_j \tilde{A}_{c,ij}$ adalah matriks derajat diagonal.
+- $W_c^{(l)}$ adalah matriks bobot yang dapat dipelajari khusus untuk saluran $c$.
+
+## 3. Shared-Parameter GCN (Weight Sharing)
+
+Untuk mengekstraksi struktur invarian lintas saluran:
+
+$$Z_c = \text{ReLU}\left( \tilde{D}_c^{-\frac{1}{2}} \tilde{A}_c \tilde{D}_c^{-\frac{1}{2}} H_c^{(L)} W_{\text{shared}} \right)$$
+
+Di mana $W_{\text{shared}}$ digunakan bersama oleh semua saluran untuk menyelaraskan ruang embedding laten.
+
+## 4. Adaptive Attention Fusion & Klasifikasi Sigmoid
+
+Bobot atensi terbobot untuk saluran $c$:
+
+$$e_c = q^T \tanh\left( W_{\text{att}} Z_c + b_{\text{att}} \right)$$
+
+$$\alpha_c = \frac{\exp(e_c)}{\sum_{c'} \exp(e_{c'})}$$
+
+Representasi akhir hasil fusi $Z_{\text{fused}}$:
+
+$$Z_{\text{fused}} = \sum_{c} \alpha_c Z_c$$
+
+Probabilitas prediksi fraud akhir:
+
+$$\hat{y} = \sigma\left( W_{\text{out}} Z_{\text{fused}} + b_{\text{out}} \right) \in [0, 1]$$
+

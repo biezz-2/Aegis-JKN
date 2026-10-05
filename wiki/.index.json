@@ -1,0 +1,72 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-10-05T15:00:00.000Z",
+  "pages": [
+    {
+      "path": "overview.md",
+      "title": "Aegis-JKN Overview",
+      "type": "overview",
+      "tags": ["overview", "healthkathon", "mhgsl", "gnn", "bpjs-kesehatan", "fraud-detection"]
+    },
+    {
+      "path": "concepts/mhgsl-architecture.md",
+      "title": "MHGSL Architecture",
+      "type": "concept",
+      "tags": ["architecture", "mhgsl", "gnn", "gcn", "attention-fusion", "pipeline"]
+    },
+    {
+      "path": "concepts/multi-channel-graphs.md",
+      "title": "Multi-Channel Heterogeneous Graphs",
+      "type": "concept",
+      "tags": ["graph", "topology", "feature-graph", "semantic-graph", "metapaths", "nodes", "edges"]
+    },
+    {
+      "path": "concepts/fraud-rings.md",
+      "title": "Fraud Rings & Collusion Communities",
+      "type": "concept",
+      "tags": ["fraud-ring", "collusion", "syndicates", "community-detection", "audit", "drilldown"]
+    },
+    {
+      "path": "concepts/shap-camouflage-detection.md",
+      "title": "SHAP Camouflage Detection",
+      "type": "concept",
+      "tags": ["shap", "camouflage", "explainability", "xai", "attribution", "simulation"]
+    },
+    {
+      "path": "guides/getting-started.md",
+      "title": "Getting Started & Local Setup",
+      "type": "guide",
+      "tags": ["setup", "installation", "local-development", "bun", "npm", "nextjs"]
+    },
+    {
+      "path": "guides/vercel-deployment.md",
+      "title": "Vercel Deployment Guide",
+      "type": "guide",
+      "tags": ["vercel", "deployment", "serverless", "ci-cd", "production"]
+    },
+    {
+      "path": "guides/custom-data-scoring.md",
+      "title": "Custom Data Scoring Guide",
+      "type": "guide",
+      "tags": ["uploader", "csv", "json", "scoring", "client-side", "inference"]
+    },
+    {
+      "path": "reference/data-schema.md",
+      "title": "Data Schema & Entity Specifications",
+      "type": "reference",
+      "tags": ["schema", "entities", "prisma", "typescript", "fhir", "nodes", "edges"]
+    },
+    {
+      "path": "reference/component-catalog.md",
+      "title": "Component Catalog",
+      "type": "reference",
+      "tags": ["components", "react", "nextjs", "shadcn", "ui", "framer-motion"]
+    },
+    {
+      "path": "reference/mathematical-formulations.md",
+      "title": "Mathematical Formulations",
+      "type": "reference",
+      "tags": ["math", "formulas", "gcn", "cosine", "attention", "sigmoid", "latex"]
+    }
+  ]
+}

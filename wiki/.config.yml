@@ -1,0 +1,12 @@
+# Agent Wiki Configuration for Aegis-JKN
+auto_update: true
+page_granularity: concept
+
+exclude:
+  - node_modules/
+  - .git/
+  - .next/
+  - out/
+  - build/
+  - "*.min.js"
+  - "*.lock"
