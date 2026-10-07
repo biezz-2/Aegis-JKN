@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Play,
@@ -11,6 +12,7 @@ import {
   ShieldAlert,
   TrendingUp,
   Layers,
+  Sparkles,
 } from "lucide-react";
 import {
   SIM_STEPS,
@@ -413,6 +415,39 @@ export function Simulation() {
                   aria-label={`${lang === "id" ? "Pergi ke tahap" : "Go to stage"} ${i + 1}`}
                 />
               ))}
+            </div>
+
+            {/* Direct callout to full Oasis simulation dashboard */}
+            <div className="mt-6 rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-emerald-500/10 via-card to-primary/5 p-4 sm:p-5 shadow-xs">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+                      <Sparkles className="h-3.5 w-3.5" />
+                    </span>
+                    <h4 className="text-sm font-bold text-foreground">
+                      {lang === "id"
+                        ? "Hasil Eksekusi Simulasi 300 Langkah Oasis Tersedia"
+                        : "300-Step Oasis Simulation Run Results Available"}
+                    </h4>
+                    <span className="rounded bg-emerald-500 px-1.5 py-0.5 text-[10px] font-bold text-white">
+                      Protokol v2.1
+                    </span>
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed max-w-2xl">
+                    {lang === "id"
+                      ? "Jelajahi 48 postingan log Twitter & Reddit, hit-rate 100% pada 5 sindikat, dan antrean investigasi 20 klaim dengan dekomposisi 3 saluran serta deteksi kontradiksi."
+                      : "Explore 48 Twitter & Reddit logs, 100% hit-rate across 5 syndicates, and the 20-claim investigation queue with 3-channel decomposition."}
+                  </p>
+                </div>
+                <Link
+                  href="/simulasi"
+                  className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:bg-emerald-500 hover:shadow-md"
+                >
+                  <span>{lang === "id" ? "Buka Dashboard Simulasi" : "Open Simulation Dashboard"}</span>
+                  <ChevronRight className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

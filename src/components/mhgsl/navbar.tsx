@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Network,
@@ -10,6 +11,7 @@ import {
   BarChart3,
   GitMerge,
   Menu,
+  Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./theme-toggle";
@@ -119,6 +121,16 @@ export function Navbar() {
             <ShortcutsHint />
             <LangToggle />
             <ThemeToggle />
+            {/* Simulation Dashboard Link */}
+            <Link
+              href="/simulasi"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 shadow-xs transition-transform hover:scale-105 hover:bg-emerald-500/20"
+              title="Lihat hasil eksekusi 300 langkah simulasi Oasis & Late Fusion"
+            >
+              <Sparkles className="h-3.5 w-3.5 text-emerald-500" />
+              <span>Hasil Simulasi</span>
+              <span className="rounded bg-emerald-500 px-1 py-0.2 text-[9px] font-bold text-white">v2.1</span>
+            </Link>
             {/* Desktop CTA */}
             <a
               href="#simulation"
@@ -186,7 +198,18 @@ export function Navbar() {
                     );
                   })}
                 </nav>
-                <div className="px-5 py-4 border-t border-border mt-auto">
+                <div className="px-5 py-4 border-t border-border mt-auto space-y-2">
+                  <Link
+                    href="/simulasi"
+                    onClick={() => setMobileOpen(false)}
+                    className="flex items-center justify-between gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400 shadow-sm"
+                  >
+                    <span className="flex items-center gap-2">
+                      <Sparkles className="h-3.5 w-3.5 text-emerald-500" />
+                      Hasil Simulasi Oasis
+                    </span>
+                    <span className="rounded bg-emerald-500 px-1.5 py-0.5 text-[9px] font-bold text-white">v2.1</span>
+                  </Link>
                   <a
                     href="#simulation"
                     onClick={() => setMobileOpen(false)}
