@@ -171,7 +171,9 @@ function FormulaLine({ line }: { line: string }) {
     .replace(/\\mathbb\{R\}/g, "ℝ")
     .replace(/\\sigma/g, "σ")
     .replace(/\\alpha/g, "α")
+    .replace(/\\gamma/g, "γ")
     .replace(/\\theta/g, "θ")
+    .replace(/\\quad/g, " &nbsp; ")
     .replace(/\\cdot/g, "·")
     .replace(/\\text\{([^}]+)\}/g, "<span class='text-foreground/70 italic'>$1</span>")
     .replace(/\\text\{Concat\}\\!?\(?\s*/g, "<span class='text-primary'>Concat</span>(")
@@ -230,6 +232,14 @@ function symbolGlossary(id: string) {
       { s: "𝐖_cls", d: "bobot klasifikasi akhir" },
       { s: "ŷᵢ", d: "probabilitas fraud klaim i" },
       { s: "b", d: "bias lapisan linier" },
+    ];
+  }
+  if (id === "late-fusion") {
+    return [
+      { s: "p_fused", d: "skor probabilitas kecurangan terpadu (graf + teks)" },
+      { s: "p_graph", d: "probabilitas fraud keluaran model graf MHGSL" },
+      { s: "f_text", d: "sinyal sentimen teks / keluhan media sosial [0, 1]" },
+      { s: "γ (0.10)", d: "bobot pelemah sinyal teks (bounded contribution)" },
     ];
   }
   return base;

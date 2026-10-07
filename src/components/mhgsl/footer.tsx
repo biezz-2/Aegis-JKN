@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Network, ShieldCheck, Activity, Github, Heart } from "lucide-react";
 import { useLang } from "./i18n";
@@ -60,12 +61,23 @@ export function Footer() {
               <ul className="mt-3 space-y-2">
                 {col.items.map((it) => (
                   <li key={it.label}>
-                    <a
-                      href={it.href}
-                      className="text-xs text-foreground/80 hover:text-primary transition-colors"
-                    >
-                      {it.label}
-                    </a>
+                    {it.href.startsWith("/") ? (
+                      <Link
+                        href={it.href}
+                        className="text-xs text-foreground/80 hover:text-primary transition-colors"
+                      >
+                        {it.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={it.href}
+                        className="text-xs text-foreground/80 hover:text-primary transition-colors"
+                        target={it.href.startsWith("http") ? "_blank" : undefined}
+                        rel={it.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      >
+                        {it.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -87,7 +99,9 @@ export function Footer() {
             </a>
             <span className="text-muted-foreground/40">|</span>
             <a
-              href="#"
+              href="https://github.com/biezz-2/Aegis-JKN"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1 hover:text-primary transition-colors"
             >
               <Github className="h-3 w-3" /> {t.footerSource}

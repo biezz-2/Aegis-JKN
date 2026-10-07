@@ -85,27 +85,27 @@ export interface GraphEdge {
 
 // Layout: 700x460 viewBox
 export const MHGSL_NODES: GraphNode[] = [
-  // Patients
-  { id: "p1", type: "patient", label: "P₁", x: 110, y: 90, risk: "fraud", note: "LOS 3 hari · usia 42" },
-  { id: "p2", type: "patient", label: "P₂", x: 110, y: 230, risk: "fraud", note: "LOS 3 hari · usia 39" },
-  { id: "p3", type: "patient", label: "P₃", x: 110, y: 370, risk: "fraud", note: "LOS 3 hari · usia 45" },
-  { id: "p4", type: "patient", label: "P₄", x: 560, y: 100, risk: "low", note: "Klaim normal" },
-  { id: "p5", type: "patient", label: "P₅", x: 560, y: 360, risk: "low", note: "Klaim normal" },
+  // Patients (Notion-docs simulation_full.md & claims_db_parsed.json)
+  { id: "p1", type: "patient", label: "P01", x: 110, y: 90, risk: "fraud", note: "Agus Raharjo (58 th, PBPU Jakarta) · K29.7 Gastritis · LOS 3 hr · KLM001" },
+  { id: "p2", type: "patient", label: "P02", x: 110, y: 230, risk: "fraud", note: "Bunga Lestari (63 th, PBPU Jakarta) · K29.7 Gastritis · LOS 3 hr · KLM002" },
+  { id: "p3", type: "patient", label: "P03", x: 110, y: 370, risk: "fraud", note: "Candra Wijaya (55 th, PBPU Jakarta) · K29.7 Gastritis · LOS 3 hr · KLM003" },
+  { id: "p4", type: "patient", label: "P04", x: 560, y: 100, risk: "low", note: "Dewi Anggraeni (34 th, PBI Bogor) · Kontrol Rawat Jalan · Normal" },
+  { id: "p5", type: "patient", label: "P06", x: 560, y: 360, risk: "low", note: "Fajar Nugroho (71 th, PBI Surabaya) · Kontrol Rawat Jalan · Normal" },
 
-  // Doctors (syndicate)
-  { id: "d1", type: "doctor", label: "D₁", x: 270, y: 160, risk: "fraud", note: "Upcoding repetitif" },
-  { id: "d2", type: "doctor", label: "D₂", x: 270, y: 300, risk: "fraud", note: "Kolusi resep" },
-  { id: "d3", type: "doctor", label: "D₃", x: 430, y: 100, risk: "low", note: "Praktik wajar" },
+  // Doctors (syndicate SYND-01)
+  { id: "d1", type: "doctor", label: "D01", x: 270, y: 160, risk: "fraud", note: "dr. Adnan Prakoso, Sp.BTKV · RS_A · Upcoding PCI 00.66" },
+  { id: "d2", type: "doctor", label: "D02", x: 270, y: 300, risk: "fraud", note: "dr. Barli Soemarno, Sp.B · RS_A · Bedah Kolusi SYND-01" },
+  { id: "d3", type: "doctor", label: "D06", x: 430, y: 100, risk: "low", note: "dr. Fitri Handayani, Sp.A · RS_B · Praktik Wajar (Kontrol Normal)" },
 
-  // Faskes
-  { id: "rs", type: "faskes", label: "RS_A", x: 410, y: 230, risk: "high", note: "FKRTL Rujukan" },
+  // Faskes (RS_A Aegis Medika A)
+  { id: "rs", type: "faskes", label: "RS_A", x: 410, y: 230, risk: "fraud", note: "RS Aegis Medika A (Kelas B, 412 TT, Jakarta Selatan, Skor 0.95)" },
 
-  // Procedures
-  { id: "sExpensive", type: "procedure", label: "S_mahal", x: 590, y: 230, risk: "fraud", note: "Bedah kompleks · INA-CBG tinggi" },
-  { id: "sStd", type: "procedure", label: "S_standar", x: 250, y: 400, risk: "low", note: "Tindakan ringan" },
+  // Procedures (ICD-9-CM)
+  { id: "sExpensive", type: "procedure", label: "00.66", x: 590, y: 230, risk: "fraud", note: "Angioplasti Koroner PCI + Stent · INA-CBG Rp 58 jt" },
+  { id: "sStd", type: "procedure", label: "44.13", x: 250, y: 400, risk: "low", note: "Gastroskopi Standar Non-Bedah · INA-CBG Rp 3,2 jt" },
 
-  // Diagnosis
-  { id: "dxMild", type: "diagnosis", label: "Dx ringan", x: 410, y: 400, risk: "fraud", note: "ICD-10 tidak sesuai S_mahal" },
+  // Diagnosis (ICD-10)
+  { id: "dxMild", type: "diagnosis", label: "K29.7", x: 410, y: 400, risk: "fraud", note: "Gastritis Akut Tanpa Perdarahan (Ringan) · Ditagih PCI" },
 ];
 
 export const MHGSL_EDGES: GraphEdge[] = [
@@ -236,6 +236,13 @@ export const FORMULAS = [
     desc: "Concat lalu proyeksi linier dengan Sigmoid menghasilkan probabilitas fraud per klaim.",
     latex: "\\mathbf{H}^{(final)} = \\text{Concat}\\!\\left( \\mathbf{H}^{(top)}, \\mathbf{H}^{(feat)}, \\mathbf{H}^{(sem)}, \\mathbf{H}^{(shared)} \\right) \\\\ \\hat{y}_i = \\sigma\\!\\left( \\mathbf{H}^{(final)}_i \\mathbf{W}_{cls} + b \\right)",
   },
+  {
+    id: "late-fusion",
+    title: "Late Fusion (NLP & Social Media Signal)",
+    legend: "p_fused",
+    desc: "Late Fusion memadukan probabilitas graf (p_graph) dengan sinyal sentimen teks media sosial (f_text) berbobot γ = 0.10.",
+    latex: "p_{\\text{fused}} = p_{\\text{graph}} + \\gamma \\cdot f_{\\text{text}} \\cdot (1 - p_{\\text{graph}}), \\quad \\gamma = 0.10",
+  },
 ];
 
 // ----- Method comparison -----
@@ -293,49 +300,49 @@ export const METRIC_DETAIL = [
   { metric: "ROC-AUC", xgboost: 0.83, gnn: 0.88, hybrid: 0.92, mhgsl: 0.95, desc: "Area di bawah kurva ROC" },
 ];
 
-// ----- Simulation steps -----
+// ----- Simulation steps (Berdasarkan skenario SYND-01 pada simulation_full.md) -----
 export const SIM_STEPS = [
   {
     id: 0,
-    title: "Klaim masuk",
-    desc: "Tiga pasien (P₁, P₂, P₃) dirujuk ke RS_A oleh D₁ & D₂ untuk prosedur S_mahal. Diagnosis primer tercatat sebagai 'Dx ringan'.",
+    title: "Klaim masuk (KLM001–003)",
+    desc: "Tiga pasien (P01 Agus Raharjo, P02 Bunga Lestari, P03 Candra Wijaya) dirujuk ke RS Aegis Medika A oleh dr. Adnan Prakoso (D01) dan dr. Barli Soemarno (D02) untuk prosedur PCI 00.66, dengan diagnosis primer K29.7 (Gastritis).",
     channel: "topology" as const,
-    insight: "Pada graf topologi, jalur P → D → RS → S terlihat sebagai rujukan medis yang valid & wajar.",
+    insight: "Pada graf topologi, jalur P → D → RS_A → PCI tampak sebagai rujukan medis formal yang valid.",
     score: 0.32,
   },
   {
     id: 1,
-    title: "Analisis graf fitur",
-    desc: "Vektor atribut P₁, P₂, P₃ dibandingkan: Length of Stay identik (3 hari), usia berdekatan (39–45), rasio biaya berhimpitan dengan klaster upcoding historis.",
+    title: "Analisis graf fitur (A⁽ᶠᵉᵃᵗ⁾)",
+    desc: "Vektor atribut P01, P02, P03 dievaluasi: Length of Stay identik (3 hari), diagnosis K29.7 identik, rasio biaya berhimpitan Rp 58 juta dengan Cosine Similarity 0.92 melampaui ambang θ_feat = 0.85.",
     channel: "feature" as const,
-    insight: "Cosine similarity antar P₁–P₂ = 0.92, jauh di atas θ_feat. Muncul simpul padat berisiko tinggi.",
+    insight: "Cosine similarity P01–P02 = 0.92 dan P02–P03 = 0.88 mengungkap subgraf kemiripan yang mencurigakan.",
     score: 0.61,
   },
   {
     id: 2,
-    title: "Analisis graf semantik",
-    desc: "Metapath Dokter → Diagnosis → Prosedur → Faskes menunjukkan D₁ & D₂ secara konsisten memasangkan Dx ringan dengan S_mahal di RS_A untuk kelompok pasien serupa.",
+    title: "Analisis graf semantik (A⁽ˢᵉᵐ⁾)",
+    desc: "Metapath Dokter → Diagnosis → Prosedur → Faskes (D01/D02 → K29.7 → 00.66 → RS_A) menunjukkan pola upcoding sistematis: diagnosis gastritis ringan dipasangkan dengan bedah stent mahal di faskes yang sama.",
     channel: "semantic" as const,
-    insight: "Pola metapath berulang = upcoding terselubung. Kamuflase terdeteksi melalui kesamaan semantik tinggi.",
+    insight: "Pola metapath berulang berfrekuensi tinggi = upcoding terselubung. Kamuflase rujukan terbongkar.",
     score: 0.84,
   },
   {
     id: 3,
-    title: "Fusion & klasifikasi",
-    desc: "Embedding 3 saluran + shared digabung. Sigmoid menghasilkan skor akhir. SHAP mengatribusi kontribusi tiap saluran & fitur.",
+    title: "Fusion & klasifikasi akhir",
+    desc: "Embedding 3 saluran + parameter bersama digabungkan. Late Fusion formula p_fused = p_graph + 0.10 * f_text * (1 - p_graph) menghasilkan probabilitas 0.94. SHAP mengatribusi kontribusi tiap saluran.",
     channel: "fusion" as const,
-    insight: "Skor fraud 0.94. Kontribusi: feature graph +38%, semantic graph +41%, topology −12% (kamuflase).",
+    insight: "Skor fraud 0.94 (KLM001). Kontribusi: semantik +41%, fitur +38%, topologi −12% (kamuflase rujukan).",
     score: 0.94,
   },
 ];
 
 // ----- SHAP attribution -----
 export const SHAP_ATTRS = [
-  { feature: "Metapath Dx ringan → S_mahal", shap: 0.41, channel: "semantic" as const },
-  { feature: "Cosine similarity P₁–P₂ (LOS)", shap: 0.28, channel: "feature" as const },
-  { feature: "Frekuensi pasangan D₁–D₂", shap: 0.19, channel: "semantic" as const },
-  { feature: "Rasio biaya vs INA-CBG regional", shap: 0.12, channel: "feature" as const },
-  { feature: "Topology jalur rujukan (normal)", shap: -0.07, channel: "topology" as const },
+  { feature: "Metapath K29.7 (Gastritis) → 00.66 (PCI)", shap: 0.41, channel: "semantic" as const },
+  { feature: "Cosine similarity P01–P02 (LOS 3 hr, Rp 58 jt)", shap: 0.28, channel: "feature" as const },
+  { feature: "Frekuensi kolusi D01–D02 di RS_A", shap: 0.19, channel: "semantic" as const },
+  { feature: "Rasio biaya klaim vs INA-CBG gastritis standar", shap: 0.12, channel: "feature" as const },
+  { feature: "Topologi jalur rujukan RS_A (kamuflase)", shap: -0.07, channel: "topology" as const },
 ];
 
 // Progressive channel contribution per simulation step (grows toward final score)
@@ -347,27 +354,34 @@ export const CHANNEL_PROGRESS = [
   { step: 3, topology: -0.12, feature: 0.38, semantic: 0.41, fusion: 0.94 },
 ];
 
-// ----- Roadmap phases -----
+// ----- Roadmap phases v2.1 (8 Minggu / 4 Fase sesuai architecture_full.md) -----
 export const ROADMAP = [
   {
-    phase: "Fase 1",
-    period: "0–3 bulan",
-    title: "Fondasi Data & Baseline",
-    items: ["Generator DP-CTGAN (privacy-by-design)", "Baseline XGBoost + SMOTE", "Skema FHIR R4 ingestion"],
+    phase: "Fase 0",
+    period: "Minggu 1",
+    title: "Fondasi & Audit Data v2.1",
+    items: ["Dataset v2.1 (300 klaim, seed 20260707)", "Blokir kolom leakage (configs/leakage.yaml)", "Evaluasi group-aware (GroupKFold & LOGO)"],
     status: "active",
   },
   {
-    phase: "Fase 2",
-    period: "3–6 bulan",
-    title: "XAI & Integrasi",
-    items: ["Modul SHAP per-saluran", "Integrasi V-Claim middleware", "UAT dengan verifikator"],
+    phase: "Fase 1",
+    period: "Minggu 2–3",
+    title: "Baseline Tabular & ML",
+    items: ["Baseline XGBoost + SMOTE & MLP PyTorch", "Rekayasa fitur agregat 30 hari & rasio tarif", "Benchmark awal AUPRC pada prevalensi 3–7%"],
     status: "next",
   },
   {
+    phase: "Fase 2",
+    period: "Minggu 4–6",
+    title: "Graf Heterogen & MHGSL",
+    items: ["Konstruksi PyG HeteroData (3 saluran paralel)", "Dual GCN (Channel-Specific & Shared-Parameter)", "Modul XAI (SHAP per-saluran & TreeExplainer)"],
+    status: "future",
+  },
+  {
     phase: "Fase 3",
-    period: ">6 bulan",
-    title: "Pilot MHGSL & HITL",
-    items: ["Pilot project 5 FKRTL", "MHGSL + Active Learning (DPO)", "Federated learning bayangan"],
+    period: "Minggu 7–8",
+    title: "Validasi Final & Pilot 5 FKRTL",
+    items: ["Late Fusion NLP teks & sentimen (γ = 0.10)", "Uji 9 sindikat kecurangan (SYND-01 s.d. SYND-09)", "Pilot operasional 5 FKRTL rujukan JKN"],
     status: "future",
   },
 ];
@@ -380,7 +394,7 @@ export const ROI_STATS = [
   { before: "Manual", after: "XAI + HITL", label: "Mode keputusan akhir" },
 ];
 
-// ----- Fraud ring drilldown profiles -----
+// ----- Fraud ring drilldown profiles (Berdasarkan simulation_full.md) -----
 export interface FraudEntityProfile {
   id: string;
   label: string;
@@ -398,88 +412,108 @@ export interface FraudEntityProfile {
 export const FRAUD_PROFILES: FraudEntityProfile[] = [
   {
     id: "d1",
-    label: "D₁ · Dr. A. Wijaya",
+    label: "D01 · dr. Adnan Prakoso, Sp.BTKV",
     type: "doctor",
     role: "Dokter",
-    riskScore: 0.96,
+    riskScore: 0.94,
     riskLevel: "fraud",
     summary:
-      "Spesialis bedah yang terdeteksi memasangkan diagnosis primer ringan (ICD-10 J03.9) dengan prosedur bedah kompleks (ICD-9-CM 01.24) secara berulang pada 14 klaim dalam 30 hari.",
+      "Spesialis Bedah Toraks & Kardiovaskular di RS Aegis Medika A (RS_A) yang terdeteksi memasangkan diagnosis gastritis ringan (ICD-10 K29.7) dengan prosedur PCI kardiovaskular kompleks (ICD-9-CM 00.66) berulang pada klaim KLM001–002 bersama D02.",
     evidence: [
-      { source: "semantic", text: "Metapath D₁ → Dx ringan → S_mahal → RS_A berulang 14× (normal: ≤2×)", weight: 0.41 },
-      { source: "feature", text: "Vektor atribut klaim D₁ mirip 0.79 dengan D₂ (kolusi sindikat)", weight: 0.23 },
-      { source: "topology", text: "Out-degree 8 pasien → 100% dirujuk ke RS_A (konsentrasi tidak wajar)", weight: 0.18 },
-      { source: "feature", text: "Rata-rata biaya klaim 4.2× dari peer dokter bedah regional", weight: 0.14 },
+      { source: "semantic", text: "Metapath D01 → K29.7 → 00.66 (PCI) → RS_A berulang pada klaim KLM001–002 (ina-cbg Rp 58 jt vs tarif gastritis Rp 3,2 jt)", weight: 0.41 },
+      { source: "feature", text: "Vektor atribut klaim D01 berhimpitan 0.79 dengan D02 (kolusi sindikat upcoding SYND-01)", weight: 0.23 },
+      { source: "topology", text: "Semua pasien rujukan D01 dirujuk langsung ke RS_A untuk tindakan bedah mahal tanpa riwayat FKTP", weight: 0.18 },
+      { source: "feature", text: "Rata-rata tagihan tindakan 4.2× di atas peer dokter spesialis regional", weight: 0.14 },
     ],
     timeline: [
-      { date: "2026-08-12", event: "Klaim awal S_mahal + Dx ringan #1" },
-      { date: "2026-08-19", event: "Klaim serupa #3 — flag awal feature graph" },
-      { date: "2026-09-02", event: "Metapath semantic terdeteksi berulang" },
-      { date: "2026-09-15", event: "Skor fraud > 0.90 → eskalasi investigasi" },
+      { date: "2026-08-12", event: "Klaim KLM001 diajukan untuk P01 Agus Raharjo (K29.7 ditagih PCI Rp 58 jt)" },
+      { date: "2026-08-19", event: "Klaim KLM002 diajukan untuk P02 Bunga Lestari dengan pola LOS 3 hari identik" },
+      { date: "2026-09-02", event: "Metapath semantik D01–D02 terdeteksi berulang oleh MHGSL" },
+      { date: "2026-09-15", event: "Skor fraud 0.94 → eskalasi prioritas investigasi verifikator" },
     ],
     metrics: [
-      { label: "Total klaim 30 hari", value: "14", flag: true },
-      { label: "Rasio Dx ringan → S_mahal", value: "100%", flag: true },
-      { label: "Rata-rata biaya/klaim", value: "Rp 42,3 jt", flag: true },
-      { label: "Peer deviation", value: "+4.2σ", flag: true },
+      { label: "Total klaim terindikasi", value: "2 klaim (SYND-01)", flag: true },
+      { label: "Rasio K29.7 → PCI", value: "100%", flag: true },
+      { label: "Tagihan per klaim", value: "Rp 58.000.000", flag: true },
+      { label: "Deviasi peer group", value: "+4.2σ", flag: true },
     ],
     recommendedAction:
-      "Tangguhkan pre-authorization prosedur S_mahal. Audit retrospektif 14 klaim. Eskalasi ke tim investigasi BPJS P2PK.",
+      "Tangguhkan pre-authorization tindakan PCI 00.66 untuk kasus gastritis K29.7. Audit rekam medis elektronik (Composition) KLM001–002. Eskalasi ke Tim Pencegahan Kecurangan JKN (P2PK).",
   },
   {
     id: "rs",
-    label: "RS_A · RS Sentosa Medika",
+    label: "RS_A · RS Aegis Medika A",
     type: "faskes",
     role: "Faskes",
-    riskScore: 0.88,
-    riskLevel: "high",
+    riskScore: 0.95,
+    riskLevel: "fraud",
     summary:
-      "FKRTL Tingkat Lanjut dengan lonjakan 320% klaim bedah kompleks dibanding periode sebelumnya. Tiga dokter bertanggung jawab atas 78% tagihan S_mahal.",
+      "FKRTL Swasta Kelas B di Jakarta Selatan (412 Tempat Tidur) dengan 19 klaim, skor fraud tertinggi 0.95. Konsentrasi 78% tagihan bedah mahal berasal dari dokter D01 & D02 pada klaster sindikat SYND-01.",
     evidence: [
-      { source: "feature", text: "Volume klaim S_mahal 4.2× baseline historik RS_A", weight: 0.36 },
-      { source: "semantic", text: "Metapath D → Dx → S → RS_A padat di RS_A dibanding 12 FKRTL peer", weight: 0.31 },
-      { source: "topology", text: "Konsentrasi 3 dokter → 78% tagihan (normal: ≤35%)", weight: 0.21 },
+      { source: "feature", text: "Volume klaim PCI (00.66) mencapai 4.2× baseline historik faskes kelas B sejenis", weight: 0.36 },
+      { source: "semantic", text: "Metapath padat D → K29.7 → 00.66 → RS_A terkonsentrasi di RS_A dibanding 5 FKRTL peer (RS_B s.d. RS_F)", weight: 0.31 },
+      { source: "topology", text: "Konsentrasi rujukan bedah tertutup antara D01 dan D02 (78% tagihan PCI)", weight: 0.21 },
     ],
     timeline: [
-      { date: "2026-07", event: "Baseline volume S_mahal: 8/bln" },
-      { date: "2026-08", event: "Lonjakan ke 25/bln (+212%)" },
-      { date: "2026-09", event: "Eskalasi ke 34/bln (+320%)" },
+      { date: "2026-07", event: "Baseline volume PCI RS_A tercatat 8 klaim/bulan" },
+      { date: "2026-08", event: "Lonjakan klaim PCI gastritis ke 19 klaim (+137%)" },
+      { date: "2026-09", event: "Deteksi anomali kolusi D01–D02 di modul MHGSL" },
     ],
     metrics: [
-      { label: "Volume S_mahal/bln", value: "34", flag: true },
-      { label: "Konsentrasi 3 dokter", value: "78%", flag: true },
-      { label: "Rata-rata LOS", value: "3,0 hari", flag: false },
-      { label: "Peer deviation", value: "+3.1σ", flag: true },
+      { label: "Total klaim di RS_A", value: "19 klaim", flag: true },
+      { label: "Skoring fraud maks", value: "0.95 (fraud)", flag: true },
+      { label: "Tempat tidur", value: "412 TT (Kelas B)", flag: false },
+      { label: "Deviasi klaim bedah", value: "+3.8σ", flag: true },
     ],
     recommendedAction:
-      "Verifikasi lapangan terjadwal. Sample audit 30% klaim S_mahal 30 hari terakhir. Koordinasi dengan Dinas Kesehatan Provinsi.",
+      "Pemeriksaan lapangan terpadu oleh Tim Pertimbangan Klinis BPJS. Audit retrospektif 19 klaim. Uji kesesuaian log tindakan kateterisasi jantung vs resume medis pasien.",
   },
   {
     id: "p1",
-    label: "P₁ · Pasien #JKN-2026-0451",
+    label: "P01 · Agus Raharjo (58 th)",
     type: "patient",
     role: "Pasien",
-    riskScore: 0.91,
+    riskScore: 0.94,
     riskLevel: "fraud",
     summary:
-      "Pasien laki-laki 42 tahun dengan 3 episode rawat inap terpisah dalam 30 hari, semua dengan profil fitur identik (LOS, biaya, diagnosis) bersama P₂ & P₃.",
+      "Peserta PBPU Jakarta Selatan (58 tahun) dengan klaim KLM001 dirawat inap 3 hari dengan diagnosis Gastritis K29.7 namun ditagih tindakan PCI 00.66 senilai Rp 58.000.000, memiliki vektor fitur identik sempurna dengan P02 Bunga Lestari & P03 Candra Wijaya.",
     evidence: [
-      { source: "feature", text: "Cosine similarity P₁–P₂ = 0.92, P₁–P₃ = 0.85 (threshold 0.75)", weight: 0.38 },
-      { source: "semantic", text: "Pola metapath identik dengan klaster upcoding historis", weight: 0.31 },
-      { source: "topology", text: "Selalu dirujuk D₁ → RS_A → S_mahal (tidak ada rujukan tingkat primer)", weight: 0.22 },
+      { source: "feature", text: "Cosine similarity atribut (LOS=3, biaya=Rp 58 jt) dengan P02 = 0.92, dengan P03 = 0.85 (ambang batas θ_feat = 0.85)", weight: 0.38 },
+      { source: "semantic", text: "Kombinasi diagnosis K29.7 dan prosedur 00.66 identik dengan pola upcoding SYND-01", weight: 0.31 },
+      { source: "topology", text: "Ditangani dokter D01 di RS_A tanpa rujukan riwayat poli spesialis primer", weight: 0.22 },
     ],
     timeline: [
-      { date: "2026-08-15", event: "Episode #1 rawat inap 3 hari" },
-      { date: "2026-08-28", event: "Episode #2 rawat inap 3 hari" },
-      { date: "2026-09-10", event: "Episode #3 rawat inap 3 hari" },
+      { date: "2026-08-12", event: "Klaim KLM001 diajukan untuk rawat inap 3 hari di RS_A" },
+      { date: "2026-08-20", event: "Teridentifikasi kemiripan profil tinggi dengan klaim KLM002 (P02)" },
+      { date: "2026-09-10", event: "Kontradiksi narasi: resume klinis mengonfirmasi tidak ada tindakan kateterisasi" },
     ],
     metrics: [
-      { label: "Episode 30 hari", value: "3", flag: true },
-      { label: "LOS identik", value: "3,0 hari", flag: true },
-      { label: "Total tagihan", value: "Rp 126,9 jt", flag: true },
+      { label: "Nomor klaim", value: "KLM001", flag: true },
+      { label: "Tagihan INA-CBG", value: "Rp 58.000.000", flag: true },
+      { label: "Length of Stay (LOS)", value: "3 hari", flag: false },
       { label: "Cosine sim. rerata", value: "0.89", flag: true },
     ],
     recommendedAction:
-      "Verifikasi identitas biometrik. Cek riwayat rujukan primer. Wawancara pasien terkait 3 episode.",
+      "Verifikasi faktual ke peserta terkait pelaksanaan tindakan kateterisasi. Klarifikasi surat rujukan FKTP. Sinkronisasi log fingerprint dan resume medis elektronik.",
   },
 ];
+
+// ----- Official Dataset Metrics (Notion-docs & Colab Execution) -----
+export const DATASET_METRICS = {
+  claimsV2: 300,
+  claimsV1: 100,
+  patients: 40,
+  doctors: 20,
+  faskes: 10,
+  syndicates: 9,
+  groundTruthSyndicates: 5,
+  fraudClaimsV1: 14,
+  fraudClaimsV2: 36,
+  anomalyClaimsV2: 60,
+  normalClaimsV2: 240,
+  featureEdges: 4563,
+  textContradictions: 8,
+  oasisSteps: 300,
+  socialPosts: 48,
+  syndicateHitRate: 100,
+};

@@ -9,7 +9,7 @@ export interface ClaimRecord {
   pasien: string;
   dokter: string;
   faskes: string;
-  layanan: "rawat inap" | "rawat jalan" | string;
+  layanan: "rawat inap" | "rawat jalan";
   rujukan: string;
   alasanBerobat: string;
   diagnosisIcd10: string;
@@ -19,11 +19,11 @@ export interface ClaimRecord {
   biayaRp: number;
   narasiRekamMedis: string;
   umpanBalikPasien: string;
-  sentimen: SentimentType | string;
+  sentimen: SentimentType;
   skorSentimen: number;
   skorFraud: number;
-  risiko: RiskLevel | string;
-  status: ClaimStatus | string;
+  risiko: RiskLevel;
+  status: ClaimStatus;
   modus: string | null;
   sindikat: string | null;
   sinyalShap: string;
@@ -41,11 +41,10 @@ export type ResearchCategory =
   | "Ekonomi & ROI"
   | "Sumber Data & Interoperabilitas"
   | "Modus Fraud"
-  | "Konteks & Statistik"
-  | string;
+  | "Konteks & Statistik";
 
-export type RelevanceLevel = "Kritis" | "Tinggi" | "Pendukung" | string;
-export type VerificationStatus = "Terverifikasi" | "Perlu Verifikasi" | "Sebagian Terverifikasi" | string;
+export type RelevanceLevel = "Kritis" | "Tinggi" | "Pendukung";
+export type VerificationStatus = "Terverifikasi" | "Perlu Verifikasi" | "Sebagian Terverifikasi";
 
 export interface ResearchRecord {
   id: string;

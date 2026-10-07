@@ -2,18 +2,14 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
-  Filter,
   Download,
   Database,
   BookOpen,
   FileText,
   ShieldAlert,
   AlertTriangle,
-  CheckCircle2,
-  Clock,
   ArrowLeft,
   ExternalLink,
   Eye,
@@ -23,22 +19,14 @@ import {
   List,
   ChevronLeft,
   ChevronRight,
-  Info,
   Sparkles,
   Stethoscope,
   Building2,
-  User,
   DollarSign,
-  Activity,
   Network,
   X,
   FileCheck,
-  Share2,
   AlertCircle,
-  HelpCircle,
-  Check,
-  Copy,
-  Layers,
   Cpu,
   Fingerprint,
 } from "lucide-react";
@@ -77,23 +65,12 @@ import { ThemeToggle } from "@/components/mhgsl/theme-toggle";
 import { cn } from "@/lib/utils";
 
 // Helper: Format Rupiah
-function formatRupiah(amount: number): string {
+function formatRupiah(amount: number = 0): string {
   return new Intl.NumberFormat("id-ID", {
     style: "currency",
     currency: "IDR",
     maximumFractionDigits: 0,
-  }).format(amount);
-}
-
-// Helper: Format Compact Rupiah
-function formatCompactRupiah(amount: number): string {
-  if (amount >= 1_000_000_000) {
-    return `Rp ${(amount / 1_000_000_000).toFixed(2)} Miliar`;
-  }
-  if (amount >= 1_000_000) {
-    return `Rp ${(amount / 1_000_000).toFixed(1)} Juta`;
-  }
-  return formatRupiah(amount);
+  }).format(amount || 0);
 }
 
 // Helpers for badges styling
@@ -209,7 +186,6 @@ export function DatasetExplorer() {
   // Selection for Sheet Drawers
   const [selectedClaim, setSelectedClaim] = React.useState<ClaimRecord | null>(null);
   const [selectedResearch, setSelectedResearch] = React.useState<ResearchRecord | null>(null);
-  const [copiedId, setCopiedId] = React.useState<string | null>(null);
 
   // Extract distinct values
   const distinctModi = React.useMemo(() => {
@@ -438,8 +414,12 @@ export function DatasetExplorer() {
   const handleExportClaimsCSV = () => {
     const escapeCSV = (val: unknown) => {
       if (val === null || val === undefined) return '""';
-      const str = String(val).replace(/"/g, '""');
-      return `"${str}"`;
+      let str = String(val);
+      // Prevent formula injection in spreadsheet software
+      if (/^[=+\-@\t\r]/.test(str)) {
+        str = "'" + str;
+      }
+      return `"${str.replace(/"/g, '""')}"`;
     };
 
     const headers = [
@@ -513,7 +493,7 @@ export function DatasetExplorer() {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   const handleExportClaimsJSON = () => {
@@ -526,14 +506,17 @@ export function DatasetExplorer() {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   const handleExportResearchCSV = () => {
     const escapeCSV = (val: unknown) => {
       if (val === null || val === undefined) return '""';
-      const str = String(val).replace(/"/g, '""');
-      return `"${str}"`;
+      let str = String(val);
+      if (/^[=+\-@\t\r]/.test(str)) {
+        str = "'" + str;
+      }
+      return `"${str.replace(/"/g, '""')}"`;
     };
 
     const headers = [
@@ -573,7 +556,7 @@ export function DatasetExplorer() {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   const handleExportResearchJSON = () => {
@@ -586,13 +569,7 @@ export function DatasetExplorer() {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
-
-  const copyToClipboard = (text: string, id: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   return (
@@ -993,10 +970,12 @@ export function DatasetExplorer() {
                 {/* Toggle Kontradiksi Narasi */}
                 <div className="space-y-1 flex flex-col justify-end">
                   <label className="text-[11px] font-medium text-muted-foreground">Kontradiksi</label>
-                  <div
+                  <button
+                    type="button"
                     onClick={() => setContradictionOnly(!contradictionOnly)}
+                    aria-pressed={contradictionOnly}
                     className={cn(
-                      "flex h-8 items-center justify-between rounded-md border px-2.5 cursor-pointer text-xs transition-colors",
+                      "flex h-8 w-full items-center justify-between rounded-md border px-2.5 cursor-pointer text-xs transition-colors",
                       contradictionOnly
                         ? "border-amber-500/50 bg-amber-500/15 text-amber-700 dark:text-amber-400 font-semibold"
                         : "border-input bg-background/60 text-muted-foreground hover:bg-accent"
@@ -1011,7 +990,7 @@ export function DatasetExplorer() {
                       onCheckedChange={setContradictionOnly}
                       className="pointer-events-none scale-75"
                     />
-                  </div>
+                  </button>
                 </div>
               </div>
 
@@ -1221,7 +1200,7 @@ export function DatasetExplorer() {
                                       {formatModusLabel(claim.modus)}
                                     </div>
                                     {claim.sindikat && (
-                                      <Badge variant="outline" className="text-[9px] h-3.5 px-1 bg-violet-500/10 text-violet-600 border-violet-500/30">
+                                      <Badge variant="outline" className="text-[9px] h-3.5 px-1 bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/30">
                                         {claim.sindikat}
                                       </Badge>
                                     )}
@@ -1399,6 +1378,7 @@ export function DatasetExplorer() {
                     size="sm"
                     onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                     disabled={currentPage === 1}
+                    aria-label="Halaman sebelumnya"
                     className="h-8 px-2 text-xs"
                   >
                     <ChevronLeft className="h-3.5 w-3.5 mr-1" />
@@ -1416,6 +1396,7 @@ export function DatasetExplorer() {
                     size="sm"
                     onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                     disabled={currentPage === totalPages}
+                    aria-label="Halaman selanjutnya"
                     className="h-8 px-2 text-xs"
                   >
                     Selanjutnya
@@ -1996,9 +1977,9 @@ export function DatasetExplorer() {
               <SheetHeader className="p-0 space-y-1.5 border-b border-border/60 pb-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-lg font-extrabold text-foreground">
+                    <SheetTitle className="font-mono text-lg font-extrabold text-foreground">
                       {selectedClaim.id}
-                    </span>
+                    </SheetTitle>
                     <Badge
                       variant="outline"
                       className={cn(
@@ -2129,7 +2110,7 @@ export function DatasetExplorer() {
                               ? "bg-emerald-500/10 text-emerald-600 border-emerald-500/30"
                               : selectedClaim.sentimen === "negatif"
                               ? "bg-rose-500/10 text-rose-600 border-rose-500/30"
-                              : "bg-slate-500/10 text-slate-600 border-slate-500/30"
+                              : "bg-slate-500/10 text-slate-600 dark:text-slate-400 border-slate-500/30"
                           )}
                         >
                           Sentimen: {selectedClaim.sentimen} ({selectedClaim.skorSentimen})
@@ -2193,10 +2174,10 @@ export function DatasetExplorer() {
               {/* Notion Page Link Button */}
               <div className="pt-2 flex items-center justify-between text-xs">
                 <span className="text-[11px] font-mono text-muted-foreground">
-                  ID Notion: {selectedClaim.notionId.slice(0, 18)}...
+                  ID Notion: {selectedClaim.notionId ? `${selectedClaim.notionId.slice(0, 18)}...` : "-"}
                 </span>
                 <a
-                  href={`https://app.notion.com/p/${selectedClaim.notionId.replace(/-/g, "")}`}
+                  href={selectedClaim.notionId ? `https://app.notion.com/p/${selectedClaim.notionId.replace(/-/g, "")}` : "#"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-accent transition-colors"

@@ -130,7 +130,7 @@ export function Navbar() {
             >
               <Database className="h-3.5 w-3.5 text-sky-500" />
               <span>Dataset</span>
-              <span className="rounded bg-sky-500 px-1 py-0.2 text-[9px] font-bold text-white">300</span>
+              <span className="rounded bg-sky-500 px-1 py-0.5 text-[9px] font-bold text-white">300</span>
             </Link>
             {/* Simulation Dashboard Link */}
             <Link
@@ -140,7 +140,7 @@ export function Navbar() {
             >
               <Sparkles className="h-3.5 w-3.5 text-emerald-500" />
               <span>Hasil Simulasi</span>
-              <span className="rounded bg-emerald-500 px-1 py-0.2 text-[9px] font-bold text-white">v2.1</span>
+              <span className="rounded bg-emerald-500 px-1 py-0.5 text-[9px] font-bold text-white">v2.1</span>
             </Link>
             {/* Desktop CTA */}
             <a

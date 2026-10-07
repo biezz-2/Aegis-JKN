@@ -13,23 +13,23 @@ import { FraudDrilldownModal } from "./fraud-drilldown-modal";
 // Clicking a fraud node opens a detailed drilldown modal.
 
 const ringNodes = [
-  // Fraud ring (left)
-  { id: "p1", profileId: "p1", x: 110, y: 100, t: "patient", r: "fraud", label: "P₁" },
-  { id: "p2", x: 60, y: 200, t: "patient", r: "fraud", label: "P₂" },
-  { id: "p3", x: 110, y: 300, t: "patient", r: "fraud", label: "P₃" },
-  { id: "f4", profileId: "d1", x: 200, y: 160, t: "doctor", r: "fraud", label: "D₁" },
-  { id: "f5", x: 200, y: 240, t: "doctor", r: "fraud", label: "D₂" },
+  // Fraud ring SYND-01 (left)
+  { id: "p1", profileId: "p1", x: 110, y: 100, t: "patient", r: "fraud", label: "P01" },
+  { id: "p2", x: 60, y: 200, t: "patient", r: "fraud", label: "P02" },
+  { id: "p3", x: 110, y: 300, t: "patient", r: "fraud", label: "P03" },
+  { id: "f4", profileId: "d1", x: 200, y: 160, t: "doctor", r: "fraud", label: "D01" },
+  { id: "f5", x: 200, y: 240, t: "doctor", r: "fraud", label: "D02" },
   { id: "f6", profileId: "rs", x: 280, y: 200, t: "faskes", r: "fraud", label: "RS_A" },
-  { id: "f7", x: 360, y: 200, t: "procedure", r: "fraud", label: "S_mahal" },
+  { id: "f7", x: 360, y: 200, t: "procedure", r: "fraud", label: "00.66" },
   // Normal community (right)
-  { id: "n1", x: 520, y: 110, t: "patient", r: "low", label: "P₄" },
-  { id: "n2", x: 620, y: 80, t: "patient", r: "low", label: "P₅" },
-  { id: "n3", x: 620, y: 220, t: "patient", r: "low", label: "P₆" },
-  { id: "n4", x: 540, y: 320, t: "patient", r: "low", label: "P₇" },
-  { id: "n5", x: 480, y: 200, t: "doctor", r: "low", label: "D₃" },
-  { id: "n6", x: 620, y: 340, t: "doctor", r: "low", label: "D₄" },
+  { id: "n1", x: 520, y: 110, t: "patient", r: "low", label: "P04" },
+  { id: "n2", x: 620, y: 80, t: "patient", r: "low", label: "P06" },
+  { id: "n3", x: 620, y: 220, t: "patient", r: "low", label: "P07" },
+  { id: "n4", x: 540, y: 320, t: "patient", r: "low", label: "P11" },
+  { id: "n5", x: 480, y: 200, t: "doctor", r: "low", label: "D06" },
+  { id: "n6", x: 620, y: 340, t: "doctor", r: "low", label: "D10" },
   { id: "n7", x: 700, y: 200, t: "faskes", r: "low", label: "RS_B" },
-  { id: "n8", x: 700, y: 320, t: "procedure", r: "low", label: "S_std" },
+  { id: "n8", x: 700, y: 320, t: "procedure", r: "low", label: "44.13" },
 ];
 
 const ringEdges = [
@@ -112,7 +112,7 @@ export function FraudRing() {
           </p>
           <div className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-primary/5 border border-primary/20 px-3 py-1 text-[11px] text-primary">
             <MousePointerClick className="h-3 w-3" />
-            Klik simpul berisiko fraud (P₁ / D₁ / RS_A) untuk lihat detail investigasi
+            Klik simpul berisiko fraud (P01 / D01 / RS_A) untuk lihat detail investigasi klinis
           </div>
         </div>
 
@@ -412,7 +412,7 @@ export function FraudRing() {
               </div>
               <p className="mt-1 text-[11px] text-muted-foreground">
                 {showMsg
-                  ? "Sindikat D₁-D₂ di RS_A → 14 klaim upcoding ditarik ke antrean investigasi. Total penghematan estimasi Rp 1,2 M / bulan."
+                  ? "Sindikat D01–D02 di RS_A (SYND-01) → klaim KLM001–003 upcoding ditarik ke antrean investigasi. Total penghematan estimasi Rp 1,2 M / bulan (Rp 14,4 M / tahun)."
                   : "Klik untuk melihat rekomendasi yang dihasilkan sistem..."}
               </p>
             </button>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ShieldCheck, Activity, Network, ArrowDown, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -172,6 +173,17 @@ export function Hero() {
                 <Network className="h-4 w-4" />
                 {t.heroCta2}
               </a>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="gap-2 border-emerald-500/40 bg-emerald-500/10 text-emerald-700 hover:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-500/40"
+            >
+              <Link href="/simulasi">
+                <Sparkles className="h-4 w-4 text-emerald-500" />
+                {lang === "id" ? "Hasil Simulasi v2.1" : "Simulation Results v2.1"}
+              </Link>
             </Button>
           </motion.div>
 

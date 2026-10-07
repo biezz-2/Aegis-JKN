@@ -141,7 +141,8 @@ export function Roadmap() {
 
             <div className="mt-5 space-y-3">
               {t.roadmapPhases.map((phase, i) => {
-                const status = ["active", "next", "future"][i] as "active" | "next" | "future";
+                const statusOrder: ("active" | "next" | "future")[] = ["active", "next", "future", "future"];
+                const status = statusOrder[i] ?? "future";
                 const meta = statusMeta[status][lang];
                 return (
                   <motion.div
