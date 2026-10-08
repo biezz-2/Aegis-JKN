@@ -121,8 +121,8 @@ export function MathFormulas() {
 
                 {/* Formula card */}
                 <div className="mt-4 overflow-x-auto rounded-xl border border-border/60 bg-background/80 p-4">
-                  <div className="font-mono text-sm leading-relaxed text-foreground whitespace-pre">
-                    <FormulaBlock latex={formula.latex} />
+                  <div className="font-mono text-sm leading-relaxed text-foreground">
+                    <FormulaBlock id={formula.id} />
                   </div>
                 </div>
 
@@ -151,67 +151,110 @@ export function MathFormulas() {
   );
 }
 
-// Hand-rendered formula blocks (since we don't bundle KaTeX).
-function FormulaBlock({ latex }: { latex: string }) {
-  // Render multi-line by splitting \\ into <div>
-  const lines = latex.split("\\\\").map((l) => l.trim());
-  return (
-    <div className="space-y-1.5">
-      {lines.map((line, i) => (
-        <FormulaLine key={i} line={line} />
-      ))}
-    </div>
-  );
-}
+// Native semantic JSX rendering for MHGSL formulas (zero-dependency, responsive, clean math typography)
+function FormulaBlock({ id }: { id: string }) {
+  switch (id) {
+    case "feat":
+      return (
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 text-sm sm:text-base py-1">
+          <span className="font-semibold text-primary shrink-0">
+            A<sub>ij</sub><sup>(feat)</sup> =
+          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-4xl font-light text-muted-foreground select-none leading-none">
+              &#123;
+            </span>
+            <div className="space-y-2 text-xs sm:text-sm">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="inline-flex flex-col items-center leading-none">
+                  <span className="border-b border-foreground/60 px-1 pb-1 font-medium">
+                    <b className="text-primary">x</b><sub>i</sub> · <b className="text-primary">x</b><sub>j</sub>
+                  </span>
+                  <span className="pt-1 font-medium">
+                    ‖<b className="text-primary">x</b><sub>i</sub>‖ ‖<b className="text-primary">x</b><sub>j</sub>‖
+                  </span>
+                </span>
+                <span className="text-muted-foreground">
+                  , jika cos(<b className="text-primary">x</b><sub>i</sub>, <b className="text-primary">x</b><sub>j</sub>) &gt; θ<sub>feat</sub>
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <span className="text-foreground">0</span>
+                <span>, lainnya</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
 
-function FormulaLine({ line }: { line: string }) {
-  // Replace common LaTeX tokens with HTML for readability
-  let html = line
-    .replace(/\\mathbf\{([^}]+)\}/g, "<b class='text-primary'>$1</b>")
-    .replace(/\\mathbb\{R\}/g, "ℝ")
-    .replace(/\\sigma/g, "σ")
-    .replace(/\\alpha/g, "α")
-    .replace(/\\gamma/g, "γ")
-    .replace(/\\theta/g, "θ")
-    .replace(/\\quad/g, " &nbsp; ")
-    .replace(/\\cdot/g, "·")
-    .replace(/\\text\{([^}]+)\}/g, "<span class='text-foreground/70 italic'>$1</span>")
-    .replace(/\\text\{Concat\}\\!?\(?\s*/g, "<span class='text-primary'>Concat</span>(")
-    .replace(/\\text\{Sim\}\\?_\\mathcal\{M\}/g, "Sim<sub>ℳ</sub>")
-    .replace(/\\tilde\{([^}]+)\}/g, "<span class='text-primary'>$1̃</span>")
-    .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, "<span class='inline-flex flex-col text-center align-middle'><span class='text-[0.85em] border-b border-current'>$1</span><span class='text-[0.85em]'>$2</span></span>")
-    .replace(/\\sqrt\{([^}]+)\}/g, "√$1")
-    .replace(/\\sqrt\{\\?frac\{([^}]+)\}\{([^}]+)\}\}/g, "√($1/$2)")
-    .replace(/\\left\(([^)]+)\)\\right\)/g, "($1)")
-    .replace(/\\left\(/g, "(")
-    .replace(/\\right\)/g, ")")
-    .replace(/\\sqrt/g, "√")
-    .replace(/\\|/g, "‖")
-    .replace(/\\tilde\{\\?mathbf\{D\}\}/g, "<b class='text-primary'>D̃</b>")
-    .replace(/\\mathcal\{M\}/g, "ℳ")
-    .replace(/\\geq/g, "≥")
-    .replace(/\\leq/g, "≤")
-    .replace(/\\neq/g, "≠")
-    .replace(/\\hat\{([^}]+)\}/g, "<span class='text-primary'>$1̂</span>")
-    .replace(/\\bar\{([^}]+)\}/g, "$1̄")
-    .replace(/\\mathbf\{([^}]+)\}/g, "<b class='text-primary'>$1</b>")
-    .replace(/\\mathbf\{D\}/g, "<b class='text-primary'>D</b>")
-    .replace(/\\mathbf\{X\}/g, "<b class='text-primary'>X</b>")
-    .replace(/\\mathbf\{W\}/g, "<b class='text-primary'>W</b>")
-    .replace(/\\mathbf\{H\}/g, "<b class='text-primary'>H</b>")
-    .replace(/\\mathbf\{x\}/g, "<b class='text-primary'>x</b>")
-    .replace(/\\mathbf\{A\}/g, "<b class='text-primary'>A</b>")
-    .replace(/_\{?\}?/g, "")
-    .replace(/\^\{?\}?/g, "")
-    .replace(/\\!|\\,|\\;/g, " ")
-    .replace(/\\left|\\right/g, "");
+    case "gcn":
+      return (
+        <div className="flex items-center gap-2 text-sm sm:text-base flex-wrap py-1">
+          <span className="font-semibold text-primary">
+            <b>H</b><sup>(k)</sup> =
+          </span>
+          <span>σ (</span>
+          <span className="font-semibold"><b className="text-primary">D̃</b><sub>(k)</sub><sup>-½</sup></span>
+          <span className="font-semibold"><b className="text-primary">Ã</b><sup>(k)</sup></span>
+          <span className="font-semibold"><b className="text-primary">D̃</b><sub>(k)</sub><sup>-½</sup></span>
+          <span className="font-semibold"><b className="text-primary">X</b></span>
+          <span className="font-semibold"><b className="text-primary">W</b><sup>(k)</sup></span>
+          <span>)</span>
+        </div>
+      );
 
-  return (
-    <div
-      className="leading-relaxed"
-      dangerouslySetInnerHTML={{ __html: html } as Record<string, string>}
-    />
-  );
+    case "shared":
+      return (
+        <div className="flex items-center gap-2 text-sm sm:text-base flex-wrap py-1">
+          <span className="font-semibold text-primary">
+            <b>H</b><sup>(shared, k)</sup> =
+          </span>
+          <span>σ (</span>
+          <span className="font-semibold"><b className="text-primary">D̃</b><sub>(k)</sub><sup>-½</sup></span>
+          <span className="font-semibold"><b className="text-primary">Ã</b><sup>(k)</sup></span>
+          <span className="font-semibold"><b className="text-primary">D̃</b><sub>(k)</sub><sup>-½</sup></span>
+          <span className="font-semibold"><b className="text-primary">X</b></span>
+          <span className="font-semibold"><b className="text-primary">W</b><sup>(shared)</sup></span>
+          <span>)</span>
+        </div>
+      );
+
+    case "fusion":
+      return (
+        <div className="space-y-3 text-sm sm:text-base py-1">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="font-semibold text-primary">
+              <b>H</b><sup>(final)</sup> =
+            </span>
+            <span className="font-semibold text-primary">Concat</span>
+            <span>(</span>
+            <span><b className="text-primary">H</b><sup>(top)</sup>,</span>
+            <span><b className="text-primary">H</b><sup>(feat)</sup>,</span>
+            <span><b className="text-primary">H</b><sup>(sem)</sup>,</span>
+            <span><b className="text-primary">H</b><sup>(shared)</sup></span>
+            <span>)</span>
+          </div>
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="font-semibold text-primary">ŷ<sub>i</sub> =</span>
+            <span>σ ( <b className="text-primary">H</b><sub>i</sub><sup>(final)</sup> <b className="text-primary">W</b><sub>cls</sub> + b )</span>
+          </div>
+        </div>
+      );
+
+    case "late-fusion":
+      return (
+        <div className="flex items-center gap-2 text-sm sm:text-base flex-wrap py-1">
+          <span className="font-semibold text-primary">p<sub>fused</sub> =</span>
+          <span>p<sub>graph</sub> + γ · f<sub>text</sub> · (1 - p<sub>graph</sub>)</span>
+          <span className="text-muted-foreground text-xs sm:text-sm ml-2">
+            , &nbsp; γ = 0.10
+          </span>
+        </div>
+      );
+
+    default:
+      return null;
+  }
 }
 
 function symbolGlossary(id: string) {
