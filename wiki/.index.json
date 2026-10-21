@@ -98,6 +98,20 @@
       "summary": "SvelteKit routes, data flow, and safety boundaries"
     },
     {
+      "path": "concepts/static-landing-page.md",
+      "title": "Static Landing Page",
+      "type": "concept",
+      "tags": [
+        "landing",
+        "static-site",
+        "svg",
+        "charts",
+        "accessibility",
+        "no-dependencies"
+      ],
+      "summary": "Standalone no-dependency landing page with two hand-built SVG charts and their tooltip rules"
+    },
+    {
       "path": "guides/getting-started.md",
       "title": "Getting Started & Local Setup",
       "type": "guide",

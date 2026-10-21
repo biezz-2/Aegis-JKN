@@ -1,13 +1,14 @@
 ---
 title: Aegis-JKN Overview
 type: overview
-tags: [overview, healthkathon, mhgsl, gnn, bpjs-kesehatan, fraud-detection, synthetic-data, verifier-dashboard]
+tags: [overview, healthkathon, mhgsl, gnn, bpjs-kesehatan, fraud-detection, synthetic-data, verifier-dashboard, landing]
 related:
   - "[[concepts/mhgsl-architecture]]"
   - "[[concepts/multi-channel-graphs]]"
   - "[[concepts/fraud-rings]]"
   - "[[concepts/dataset-contract]]"
   - "[[concepts/verifier-dashboard]]"
+  - "[[concepts/static-landing-page]]"
   - "[[guides/getting-started]]"
   - "[[guides/dashboard-development]]"
   - "[[reference/component-catalog]]"
@@ -16,6 +17,7 @@ sources:
   - src/app/page.tsx
   - src/components/mhgsl/data.ts
   - dashboard/src/
+  - landing/
   - docs/DATA_SCHEMA.md
 ---
 
@@ -23,10 +25,11 @@ sources:
 
 Aegis-JKN adalah platform analitik dan visualisasi interaktif untuk mendeteksi kecurangan klaim layanan kesehatan di ekosistem Program Jaminan Kesehatan Nasional (JKN) yang dikelola oleh BPJS Kesehatan Indonesia. Platform ini memvisualisasikan implementasi **Multi-channel Heterogeneous Graph Structure Learning (MHGSL)** yang digabungkan dengan **Graph Neural Networks (GNN)** untuk mengidentifikasi sindikat penipuan yang menyamarkan polanya (*camouflage fraud*).
 
-Repositori ini memuat dua bagian yang saling melengkapi:
+Repositori ini memuat tiga bagian yang saling melengkapi:
 
 1. **Showcase MHGSL** (Next.js, di root) — visualisasi interaktif arsitektur 3 kanal, simulasi upcoding, dan analisis fraud ring.
 2. **Dashboard Verifikator Aegis-JKN** (SvelteKit, di `dashboard/`) — prototipe *decision support* client-side untuk menelaah dataset klaim sintetis.
+3. **Landing page statis** (HTML/CSS/JS, di `landing/`) — versi naratif tanpa dependensi dan tanpa build step, berdiri sendiri di samping kedua bagian di atas.
 
 ## Tantangan Nyata Ekosistem JKN
 
@@ -73,6 +76,7 @@ Dashboard Verifikator Aegis-JKN adalah prototipe *clinical decision support* yan
 - [[concepts/shap-camouflage-detection]] - Metodologi pembuktian kamuflase menggunakan SHAP.
 - [[concepts/dataset-contract]] - Kontrak dataset sintetis 300 klaim dan batas data.
 - [[concepts/verifier-dashboard]] - Rute, aliran data, dan batas aman dashboard verifikator.
+- [[concepts/static-landing-page]] - Landing page statis tanpa dependensi, dua graf SVG, dan aturan tooltip-nya.
 - [[guides/getting-started]] - Panduan instalasi dan menjalankan proyek secara lokal.
 - [[guides/vercel-deployment]] - Panduan deployment aplikasi ke platform Vercel.
 - [[guides/dashboard-development]] - Perintah, port 5175, deployment PM2, dan konvensi Svelte 5.

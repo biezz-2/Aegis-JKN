@@ -12,6 +12,7 @@
 - [SHAP Camouflage Detection](concepts/shap-camouflage-detection.md): Explainable AI for adversarial camouflage fraud
 - [Dataset Contract](concepts/dataset-contract.md): Canonical synthetic 300-claim source, SHA-256 baseline, and absent fields
 - [Verifier Dashboard](concepts/verifier-dashboard.md): SvelteKit routes, data flow, and safety boundaries
+- [Static Landing Page](concepts/static-landing-page.md): Standalone no-dependency landing page with two hand-built SVG charts and their tooltip rules
 
 ## Guides
 - [Getting Started & Local Setup](guides/getting-started.md): Installation and local development guide
