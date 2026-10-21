@@ -1,72 +1,224 @@
 {
   "version": "1.0.0",
-  "generated": "2026-10-05T15:00:00.000Z",
+  "generated": "2026-10-21T00:00:00.000Z",
   "pages": [
     {
       "path": "overview.md",
       "title": "Aegis-JKN Overview",
       "type": "overview",
-      "tags": ["overview", "healthkathon", "mhgsl", "gnn", "bpjs-kesehatan", "fraud-detection"]
+      "tags": [
+        "overview",
+        "healthkathon",
+        "mhgsl",
+        "gnn",
+        "bpjs-kesehatan",
+        "fraud-detection"
+      ],
+      "summary": "Repository overview and architecture summary"
     },
     {
       "path": "concepts/mhgsl-architecture.md",
       "title": "MHGSL Architecture",
       "type": "concept",
-      "tags": ["architecture", "mhgsl", "gnn", "gcn", "attention-fusion", "pipeline"]
+      "tags": [
+        "architecture",
+        "mhgsl",
+        "gnn",
+        "gcn",
+        "attention-fusion",
+        "pipeline"
+      ],
+      "summary": "5-stage pipeline and multi-channel mechanisms"
     },
     {
       "path": "concepts/multi-channel-graphs.md",
       "title": "Multi-Channel Heterogeneous Graphs",
       "type": "concept",
-      "tags": ["graph", "topology", "feature-graph", "semantic-graph", "metapaths", "nodes", "edges"]
+      "tags": [
+        "graph",
+        "topology",
+        "feature-graph",
+        "semantic-graph",
+        "metapaths",
+        "nodes",
+        "edges"
+      ],
+      "summary": "Topology, feature, and semantic graph representations"
     },
     {
       "path": "concepts/fraud-rings.md",
       "title": "Fraud Rings & Collusion Communities",
       "type": "concept",
-      "tags": ["fraud-ring", "collusion", "syndicates", "community-detection", "audit", "drilldown"]
+      "tags": [
+        "fraud-ring",
+        "collusion",
+        "syndicates",
+        "community-detection",
+        "audit",
+        "drilldown"
+      ],
+      "summary": "Collusive community detection and drilldown audit"
     },
     {
       "path": "concepts/shap-camouflage-detection.md",
       "title": "SHAP Camouflage Detection",
       "type": "concept",
-      "tags": ["shap", "camouflage", "explainability", "xai", "attribution", "simulation"]
+      "tags": [
+        "shap",
+        "camouflage",
+        "explainability",
+        "xai",
+        "attribution",
+        "simulation"
+      ],
+      "summary": "Explainable AI for adversarial camouflage fraud"
+    },
+    {
+      "path": "concepts/dataset-contract.md",
+      "title": "Dataset Contract",
+      "type": "concept",
+      "tags": [
+        "dataset",
+        "synthetic",
+        "integrity"
+      ],
+      "summary": "Canonical synthetic 300-claim source, SHA-256 baseline, and absent fields"
+    },
+    {
+      "path": "concepts/verifier-dashboard.md",
+      "title": "Verifier Dashboard",
+      "type": "concept",
+      "tags": [
+        "sveltekit",
+        "svelte",
+        "vite",
+        "hitl",
+        "dashboard"
+      ],
+      "summary": "SvelteKit routes, data flow, and safety boundaries"
+    },
+    {
+      "path": "concepts/static-landing-page.md",
+      "title": "Static Landing Page",
+      "type": "concept",
+      "tags": [
+        "landing",
+        "static-site",
+        "svg",
+        "charts",
+        "accessibility",
+        "no-dependencies"
+      ],
+      "summary": "Standalone no-dependency landing page with two hand-built SVG charts and their tooltip rules"
     },
     {
       "path": "guides/getting-started.md",
       "title": "Getting Started & Local Setup",
       "type": "guide",
-      "tags": ["setup", "installation", "local-development", "bun", "npm", "nextjs"]
+      "tags": [
+        "setup",
+        "installation",
+        "local-development",
+        "bun",
+        "npm",
+        "nextjs"
+      ],
+      "summary": "Installation and local development guide"
     },
     {
       "path": "guides/vercel-deployment.md",
       "title": "Vercel Deployment Guide",
       "type": "guide",
-      "tags": ["vercel", "deployment", "serverless", "ci-cd", "production"]
+      "tags": [
+        "vercel",
+        "deployment",
+        "serverless",
+        "ci-cd",
+        "production"
+      ],
+      "summary": "Deploying the MHGSL showcase to Vercel"
     },
     {
       "path": "guides/custom-data-scoring.md",
       "title": "Custom Data Scoring Guide",
       "type": "guide",
-      "tags": ["uploader", "csv", "json", "scoring", "client-side", "inference"]
+      "tags": [
+        "uploader",
+        "csv",
+        "json",
+        "scoring",
+        "client-side",
+        "inference"
+      ],
+      "summary": "In-browser scoring of custom CSV/JSON claims"
+    },
+    {
+      "path": "guides/dashboard-development.md",
+      "title": "Dashboard Development",
+      "type": "guide",
+      "tags": [
+        "development",
+        "verification",
+        "deployment"
+      ],
+      "summary": "Dashboard commands, port 5175, PM2 deployment, Svelte 5 conventions"
     },
     {
       "path": "reference/data-schema.md",
       "title": "Data Schema & Entity Specifications",
       "type": "reference",
-      "tags": ["schema", "entities", "prisma", "typescript", "fhir", "nodes", "edges"]
+      "tags": [
+        "schema",
+        "entities",
+        "prisma",
+        "typescript",
+        "fhir",
+        "nodes",
+        "edges"
+      ],
+      "summary": "TypeScript models, entity interfaces, and clinical standards"
     },
     {
       "path": "reference/component-catalog.md",
       "title": "Component Catalog",
       "type": "reference",
-      "tags": ["components", "react", "nextjs", "shadcn", "ui", "framer-motion"]
+      "tags": [
+        "components",
+        "react",
+        "nextjs",
+        "shadcn",
+        "ui",
+        "framer-motion"
+      ],
+      "summary": "Complete list of React components and roles"
     },
     {
       "path": "reference/mathematical-formulations.md",
       "title": "Mathematical Formulations",
       "type": "reference",
-      "tags": ["math", "formulas", "gcn", "cosine", "attention", "sigmoid", "latex"]
+      "tags": [
+        "math",
+        "formulas",
+        "gcn",
+        "cosine",
+        "attention",
+        "sigmoid",
+        "latex"
+      ],
+      "summary": "Formulations for GCN, Cosine, and Attention Fusion"
+    },
+    {
+      "path": "reference/academic-paper.md",
+      "title": "Academic Paper",
+      "type": "reference",
+      "tags": [
+        "research",
+        "mhgsl",
+        "hitl",
+        "compliance"
+      ],
+      "summary": "Paper status, evidence claims, and citation caveats"
     }
-  ]
+  ],
+  "description": "Multi-channel Heterogeneous Graph Structure Learning for JKN/BPJS Fraud Intelligence, plus the SvelteKit Dashboard Verifikator."
 }

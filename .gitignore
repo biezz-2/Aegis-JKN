@@ -12,6 +12,11 @@ out/
 build/
 dist/
 
+# SvelteKit build output
+dashboard/build/
+dashboard/.svelte-kit/
+.svelte-kit/
+
 # Turbo
 .turbo/
 
@@ -26,8 +31,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+logs/
 
 # Environment variables
+.env
+.env.*
+!.env.example
 .env*.local
 .env.local
 .env.development.local
@@ -44,3 +53,16 @@ db/*.db-journal
 Thumbs.db
 Desktop.ini
 *.tsbuildinfo
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Tooling caches
+.vite/
+.cache/
+
+# Claude Code local state
+.claude/
+
+# Sisa scaffolding React yang sudah tidak dipakai (butuh radix-ui / cva / cn)
+dashboard/@/

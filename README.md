@@ -253,6 +253,7 @@ N:\HEALTHKATHON\
 ├── next.config.ts                    # Next.js configuration (standalone output)
 ├── package.json                      # Dependency manifests and scripts
 ├── tsconfig.json                     # TypeScript compiler configuration
+├── dashboard\                        # Dashboard Verifikator Aegis-JKN (SvelteKit, port 5175)
 └── README.md                         # Project documentation entry point
 ```
 
@@ -359,6 +360,27 @@ Aegis-JKN dirancang dengan standar aksesibilitas tinggi untuk memfasilitasi alur
 - **Dukungan Bilingual (ID/EN)**: Seluruh label antarmuka, deskripsi medis, dan analisis risiko tersedia dalam Bahasa Indonesia dan Bahasa Inggris secara terpadu melalui toggle `[ID] / [EN]`.
 - **Palet Warna OKLCH Ramah Pengguna**: Kontras teks dan grafika memenuhi rasio WCAG 2.1 AA di seluruh skema warna terang dan gelap.
 - **Screen Reader Friendly**: Elemen grafis dilengkapi dengan label semantik, ARIA tags, dan visualisasi alternatif.
+
+---
+
+## Dashboard Verifikator Aegis-JKN
+
+Selain *showcase* MHGSL di atas, repositori ini memuat **Dashboard Verifikator Aegis-JKN** — aplikasi SvelteKit client-side untuk menelaah **dataset klaim sintetis** (300 klaim). Dashboard membantu verifikator memprioritaskan pembacaan bukti; ia tidak terhubung ke SATUSEHAT, V-Claim, database, maupun layanan inferensi.
+
+> **AI memberi rekomendasi, bukan keputusan. Keputusan akhir ada pada verifikator.**
+
+```bash
+cd dashboard
+npm install
+npm run dev        # http://localhost:5175
+```
+
+| Rute | Halaman |
+|---|---|
+| `/` | Landing page publik (Aegis JKN Flow). Ketiga tombol mengarah ke `/demo`. |
+| `/demo` | **Dashboard Verifikator Aegis-JKN** — antrean klaim, EMR, bukti AI, graf sindikat, tindakan HITL, dan audit lokal. |
+
+Detail lengkap ada di [`dashboard/README.md`](dashboard/README.md) dan [`docs/DASHBOARD.md`](docs/DASHBOARD.md).
 
 ---
 

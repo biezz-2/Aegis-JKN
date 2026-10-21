@@ -1,22 +1,27 @@
 # Aegis-JKN Agent Wiki Index
 
-> Multi-channel Heterogeneous Graph Structure Learning for JKN/BPJS Fraud Intelligence
+> Multi-channel Heterogeneous Graph Structure Learning for JKN/BPJS Fraud Intelligence, plus the SvelteKit Dashboard Verifikator.
 
 ## Overview
-- [Overview](overview.md): Repository overview and architecture summary
+- [Aegis-JKN Overview](overview.md): Repository overview and architecture summary
 
 ## Concepts
 - [MHGSL Architecture](concepts/mhgsl-architecture.md): 5-stage pipeline and multi-channel mechanisms
-- [Multi-Channel Graphs](concepts/multi-channel-graphs.md): Topology, feature, and semantic graph representations
-- [Fraud Rings](concepts/fraud-rings.md): Collusive community detection and drilldown audit
+- [Multi-Channel Heterogeneous Graphs](concepts/multi-channel-graphs.md): Topology, feature, and semantic graph representations
+- [Fraud Rings & Collusion Communities](concepts/fraud-rings.md): Collusive community detection and drilldown audit
 - [SHAP Camouflage Detection](concepts/shap-camouflage-detection.md): Explainable AI for adversarial camouflage fraud
+- [Dataset Contract](concepts/dataset-contract.md): Canonical synthetic 300-claim source, SHA-256 baseline, and absent fields
+- [Verifier Dashboard](concepts/verifier-dashboard.md): SvelteKit routes, data flow, and safety boundaries
+- [Static Landing Page](concepts/static-landing-page.md): Standalone no-dependency landing page with two hand-built SVG charts and their tooltip rules
 
 ## Guides
-- [Getting Started](guides/getting-started.md): Installation and local development guide
-- [Vercel Deployment](guides/vercel-deployment.md): Deploying Aegis-JKN to Vercel
-- [Custom Data Scoring](guides/custom-data-scoring.md): In-browser scoring of custom CSV/JSON claims
+- [Getting Started & Local Setup](guides/getting-started.md): Installation and local development guide
+- [Vercel Deployment Guide](guides/vercel-deployment.md): Deploying the MHGSL showcase to Vercel
+- [Custom Data Scoring Guide](guides/custom-data-scoring.md): In-browser scoring of custom CSV/JSON claims
+- [Dashboard Development](guides/dashboard-development.md): Dashboard commands, port 5175, PM2 deployment, Svelte 5 conventions
 
 ## Reference
-- [Data Schema](reference/data-schema.md): TypeScript models, entity interfaces, and clinical standards
+- [Data Schema & Entity Specifications](reference/data-schema.md): TypeScript models, entity interfaces, and clinical standards
 - [Component Catalog](reference/component-catalog.md): Complete list of React components and roles
 - [Mathematical Formulations](reference/mathematical-formulations.md): Formulations for GCN, Cosine, and Attention Fusion
+- [Academic Paper](reference/academic-paper.md): Paper status, evidence claims, and citation caveats
