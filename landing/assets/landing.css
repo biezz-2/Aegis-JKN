@@ -142,6 +142,9 @@ section:first-of-type {
 	letter-spacing: -0.02em;
 	text-decoration: none;
 	flex-shrink: 0;
+	/* Sub-judul brand boleh dipangkas lebih dulu kalau ruang nav mepet:
+	   tanpa `min-width: 0` teksnya memaksa baris header melebar. */
+	min-width: 0;
 }
 
 .brand svg {
@@ -157,26 +160,59 @@ section:first-of-type {
 
 .site-nav {
 	display: flex;
-	gap: 1.4rem;
+	gap: 1rem;
 	margin-left: auto;
 	align-items: center;
 }
 
-.site-nav a {
+/* Link nav biasa: abu-abu. Tombol di dalam nav punya fill sendiri, jadi
+   warna teksnya harus datang dari kelas tombol — bukan dari `.site-nav a`.
+   `.site-nav a` (spesifisitas 0,1,1) mengalahkan `.btn-primary` (0,1,0),
+   sehingga teks tombol pernah tampil pucat di atas fill putih. Karena itu
+   selector link nav dipersempit ke `.nav-link` saja. */
+.site-nav a.nav-link {
 	color: var(--text-secondary);
 	text-decoration: none;
 	font-size: 0.9rem;
 	white-space: nowrap;
 }
 
-.site-nav a:hover,
-.site-nav a:focus-visible {
+.site-nav a.nav-link:hover,
+.site-nav a.nav-link:focus-visible {
 	color: var(--text-primary);
 }
 
 @media (max-width: 900px) {
 	.site-nav a.nav-link {
 		display: none;
+	}
+}
+
+/* ---------- header, narrow viewport ----------
+   Header adalah flex nowrap: brand + nav tidak pernah wrap, jadi di layar
+   sempit seluruh baris melebar melebihi viewport (scrollWidth 816 pada 390px).
+   Di bawah 640px yang dipangkas: sub-judul brand, tombol "Rincian Solusi",
+   dan link nav non-CTA. Yang tersisa hanya logo+nama dan tombol dashboard. */
+@media (max-width: 640px) {
+	.site-header .wrap {
+		gap: 0.75rem;
+	}
+
+	.brand span {
+		display: none;
+	}
+
+	.site-nav {
+		gap: 0.6rem;
+	}
+
+	.site-nav .btn-ghost {
+		display: none;
+	}
+
+	.site-nav .btn-primary {
+		padding: 0.55rem 0.95rem;
+		font-size: 0.85rem;
 	}
 }
 
@@ -193,6 +229,9 @@ section:first-of-type {
 	text-decoration: none;
 	border: 1px solid transparent;
 	cursor: pointer;
+	/* Label tombol tidak boleh membungkus: "Rincian Solusi" dan "Buka Dashboard"
+	   jadi dua baris di nav sempit, dan tinggi tombol jadi tidak seragam. */
+	white-space: nowrap;
 	transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 }
 
@@ -247,7 +286,7 @@ section:first-of-type {
 
 @media (max-width: 1000px) {
 	.hero-grid {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 		gap: 2.5rem;
 	}
 }
@@ -458,7 +497,7 @@ h1 .accent {
 @media (max-width: 900px) {
 	.grid-3,
 	.grid-2 {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 	}
 }
 
@@ -598,10 +637,17 @@ h1 .accent {
 	color: var(--text-primary);
 	overflow-x: auto;
 	white-space: nowrap;
+	/* `white-space: nowrap` menjadikan min-content rumus sangat lebar. Tanpa
+	   `min-width: 0` item grid/flex memakai min-width auto, jadi elemen ikut
+	   melebar dan memaksa halaman scroll horizontal. Rumus tetap bisa digeser
+	   di dalam kotaknya sendiri lewat `overflow-x: auto`. */
+	min-width: 0;
+	max-width: 100%;
 }
 
 .formula-wrap {
 	margin-top: 0.9rem;
+	min-width: 0;
 }
 
 .formula-caption {
@@ -951,7 +997,7 @@ td strong {
 
 @media (max-width: 760px) {
 	.pipeline-row {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 		gap: 0.4rem;
 	}
 }
@@ -1067,7 +1113,7 @@ td strong {
 
 @media (max-width: 860px) {
 	.roadmap-row {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 		gap: 0.4rem;
 	}
 }
@@ -1126,7 +1172,7 @@ td strong {
 
 @media (max-width: 760px) {
 	.footer-grid {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 	}
 }
 

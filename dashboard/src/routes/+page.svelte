@@ -8,6 +8,11 @@
   import CardTitle from '$lib/components/ui/card-title.svelte';
   import { ArrowRight, Zap, Shield, Database } from 'lucide-svelte';
   import { claims, SOURCE_DATASET_HASH, SOURCE_RECORD_COUNT, formatCurrency } from '@/lib/claims';
+  import { env } from '$env/dynamic/public';
+
+  /* URL landing page statis. Dibaca saat runtime supaya perpindahan host
+     tidak menuntut rebuild dashboard. Default dipakai saat env belum diisi. */
+  const landingUrl = env.PUBLIC_LANDING_URL || 'http://127.0.0.1:5176';
 
   /* Angka di bawah dihitung dari dataset sintetis yang tertanam di repo —
      bukan angka pemasaran. Lihat claims.ts untuk sumber tunggalnya. */
@@ -114,6 +119,13 @@
             <Button href="/demo" size="lg" variant="outline" class="border-white/30 text-white hover:bg-white/10 rounded-xl">
               Lihat Antrean Klaim
             </Button>
+
+            <a
+              href={landingUrl}
+              class="text-sm text-slate-400 underline underline-offset-4 hover:text-slate-200"
+            >
+              Ringkasan proyek &amp; landing page
+            </a>
           </div>
 
           <div class="flex flex-wrap items-center gap-8 text-sm">
