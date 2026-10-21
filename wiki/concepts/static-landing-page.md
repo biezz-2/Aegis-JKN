@@ -90,6 +90,12 @@ Kedua aplikasi saling tertaut dua arah:
 
 Sisa CTA di `dashboard/src/routes/+page.svelte` tetap menuju `/demo` (route di dalam dashboard itu sendiri).
 
+## Menjalankan di mode dev
+
+Landing page tidak punya build step, jadi di mode dev ia hanya perlu server statis. `npm run dev` di root menjalankan ketiganya sekaligus lewat `scripts/dev.mjs`: landing di **5276** (produksi PM2: 5176), dashboard di **5275** (produksi: 5175), showcase Next.js di 3000 atau port bebas berikutnya.
+
+Server statisnya menerima `PORT`, `HOST`, dan `DASHBOARD_URL` dari env. Orkestrator mengisi `DASHBOARD_URL` dengan alamat LAN (`http://<ip-lan>:5275`) supaya tombol "Buka Dashboard" tetap berlaku saat landing page dibuka dari ponsel — bukan hanya dari `localhost`. Saat produksi, `ecosystem.config.cjs` mengisi `DASHBOARD_URL` dengan `http://100.87.184.112:5175` (alam Tailscale mesin ini).
+
 ## Aturan overflow horizontal
 
 Landing page wajib muat tanpa scroll horizontal. Tiga penyebab yang pernah muncul dan aturan yang menutupnya:

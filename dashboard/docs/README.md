@@ -21,6 +21,18 @@ npm run build      # vite build -> build/index.js (adapter-node)
 npm run preview    # serve the production build
 ```
 
+## Running from the repo root
+
+From the repository root, `npm install` also installs this app (the root `postinstall` runs `npm install --prefix dashboard`), and `npm run dev` starts the dashboard together with the showcase and the static landing page:
+
+```bash
+cd ..        # repo root
+npm install
+npm run dev  # dashboard on :5275, showcase on :3000, landing on :5276
+```
+
+The root dev port for the dashboard is **5275**, not 5175, so it does not collide with the PM2 production instance on 5175 (Vite runs with `strictPort: true`).
+
 ## Routes
 
 | Route | Halaman |

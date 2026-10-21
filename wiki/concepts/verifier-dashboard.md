@@ -60,3 +60,5 @@ Slot kategorikal yang dipakai di `ShapChart.svelte` dan `SyndicateNode.svelte` a
 ## Local development
 
 Run `cd dashboard && npm i && npm run dev` and open `http://localhost:5175`. See `dashboard/docs/README.md` and `dashboard/docs/DEPLOYMENT.md` for safeguards.
+
+From the repo root, `npm install` also installs `dashboard/` and `npm run dev` starts the dashboard on **5275** alongside the showcase and the landing page — see [[Dashboard Development]].

@@ -9,6 +9,7 @@ sources:
   - dashboard/package.json
   - dashboard/vite.config.ts
   - ecosystem.config.cjs
+  - scripts/dev.mjs
 ---
 
 # Dashboard Development
@@ -23,6 +24,26 @@ npm run dev
 ```
 
 The dev server is pinned to port **5175** (`strictPort`) in `vite.config.ts`.
+
+## Running everything from the repo root
+
+`npm install` at the root also installs `dashboard/` — the `postinstall` hook runs `prisma generate && npm install --prefix dashboard --no-audit --no-fund`. One command is enough for all three parts.
+
+`npm run dev` at the root runs `scripts/dev.mjs`, a dependency-free orchestrator that spawns the showcase, the dashboard, and the landing server at once and prefixes their output with `[showcase]`, `[dashboard]`, and `[landing]`.
+
+| Service | Dev port | Production port (PM2) |
+|---|---|---|
+| showcase (Next.js) | 3000, or the next free port | 3000 |
+| dashboard (SvelteKit) | 5275 | 5175 |
+| landing (static) | 5276 | 5176 |
+
+Dev ports differ from the PM2 ports on purpose: Vite runs with `strictPort: true`, so reusing 5175 would fail to start while the production instance is still online.
+
+The orchestrator checks each port before spawning and falls back to the next free one, so a port 3000 already taken by an unrelated process (e.g. a proxy for another project) does not break `npm run dev` — the startup summary prints the port that was actually used.
+
+Cross-app links use the machine's LAN IPv4, so the landing → dashboard and dashboard → landing links keep working when opened from a phone on the same network, not just from `localhost`. Override with `DEV_SHOWCASE_PORT`, `DEV_DASHBOARD_PORT`, `DEV_LANDING_PORT`, or `DEV_PUBLIC_HOST`.
+
+`Ctrl+C` terminates all three children.
 
 ## Deployment
 

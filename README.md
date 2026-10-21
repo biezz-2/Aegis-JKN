@@ -282,6 +282,8 @@ Atau menggunakan npm:
 npm install
 ```
 
+`npm install` di root juga memasang dependensi `dashboard/` (SvelteKit) karena `postinstall` menjalankan `npm install --prefix dashboard`. Jadi satu perintah sudah cukup untuk ketiga bagian repo.
+
 ### 3. Start Development Server
 ```bash
 bun dev
@@ -291,7 +293,24 @@ Atau:
 npm run dev
 ```
 
-Buka peramban web pada alamat `http://localhost:3000` untuk mengakses aplikasi Aegis-JKN.
+`npm run dev` menjalankan **ketiga bagian repo sekaligus** lewat `scripts/dev.mjs` dan mencetak ringkasan alamatnya:
+
+| Bagian | Alamat dev | Peran |
+|---|---|---|
+| Showcase MHGSL (Next.js) | `http://localhost:3000` | visualisasi 3 kanal, simulasi upcoding, fraud ring |
+| Dashboard Verifikator (SvelteKit) | `http://localhost:5275` | antrean klaim, panel bukti AI, tindakan HITL |
+| Landing page statis | `http://localhost:5276` | halaman promosi publik, tanpa dependensi |
+
+Port dev sengaja dibedakan dari port produksi PM2 (dashboard `:5175`, landing `:5176`) agar tidak bentrok dengan instance yang sedang online. Kalau `3000` sudah dipakai proses lain, showcase otomatis pindah ke port berikutnya dan ringkasannya menampilkan port yang benar. Tautan antar-aplikasi memakai alamat IP LAN, jadi tetap berlaku saat dibuka dari ponsel di jaringan yang sama.
+
+Hentikan semua dengan `Ctrl+C` — ketiganya mati bersamaan.
+
+Menjalankan satu bagian saja:
+```bash
+npm run dev:showcase    # hanya Next.js
+npm run dev:dashboard   # hanya SvelteKit
+npm run dev:landing     # hanya landing page statis
+```
 
 ### 4. Build for Production
 ```bash
@@ -368,6 +387,14 @@ Aegis-JKN dirancang dengan standar aksesibilitas tinggi untuk memfasilitasi alur
 Selain *showcase* MHGSL di atas, repositori ini memuat **Dashboard Verifikator Aegis-JKN** — aplikasi SvelteKit client-side untuk menelaah **dataset klaim sintetis** (300 klaim). Dashboard membantu verifikator memprioritaskan pembacaan bukti; ia tidak terhubung ke SATUSEHAT, V-Claim, database, maupun layanan inferensi.
 
 > **AI memberi rekomendasi, bukan keputusan. Keputusan akhir ada pada verifikator.**
+
+```bash
+# dari root repo — dashboard ikut jalan otomatis
+npm install
+npm run dev        # dashboard di http://localhost:5275
+```
+
+Atau kalau hanya mau dashboard:
 
 ```bash
 cd dashboard

@@ -448,6 +448,8 @@ Slot kategorikal yang dipakai di `ShapChart.svelte` dan `SyndicateNode.svelte` a
 
 Run `cd dashboard && npm i && npm run dev` and open `http://localhost:5175`. See `dashboard/docs/README.md` and `dashboard/docs/DEPLOYMENT.md` for safeguards.
 
+From the repo root, `npm install` also installs `dashboard/` and `npm run dev` starts the dashboard on **5275** alongside the showcase and the landing page — see [[Dashboard Development]].
+
 
 ================================================================================
 FILE: concepts/static-landing-page.md
@@ -545,6 +547,12 @@ Kedua aplikasi saling tertaut dua arah:
 
 Sisa CTA di `dashboard/src/routes/+page.svelte` tetap menuju `/demo` (route di dalam dashboard itu sendiri).
 
+## Menjalankan di mode dev
+
+Landing page tidak punya build step, jadi di mode dev ia hanya perlu server statis. `npm run dev` di root menjalankan ketiganya sekaligus lewat `scripts/dev.mjs`: landing di **5276** (produksi PM2: 5176), dashboard di **5275** (produksi: 5175), showcase Next.js di 3000 atau port bebas berikutnya.
+
+Server statisnya menerima `PORT`, `HOST`, dan `DASHBOARD_URL` dari env. Orkestrator mengisi `DASHBOARD_URL` dengan alamat LAN (`http://<ip-lan>:5275`) supaya tombol "Buka Dashboard" tetap berlaku saat landing page dibuka dari ponsel — bukan hanya dari `localhost`. Saat produksi, `ecosystem.config.cjs` mengisi `DASHBOARD_URL` dengan `http://100.87.184.112:5175` (alam Tailscale mesin ini).
+
 ## Aturan overflow horizontal
 
 Landing page wajib muat tanpa scroll horizontal. Tiga penyebab yang pernah muncul dan aturan yang menutupnya:
@@ -573,6 +581,7 @@ related:
   - "[[reference/component-catalog]]"
 sources:
   - package.json
+  - scripts/dev.mjs
   - tsconfig.json
   - next.config.ts
 ---
@@ -602,6 +611,8 @@ bun install
 npm install
 ```
 
+`npm install` di root memasang **dua** pohon dependensi sekaligus. Hook `postinstall` di `package.json` menjalankan `prisma generate` lalu `npm install --prefix dashboard --no-audit --no-fund`, sehingga `dashboard/node_modules` terisi tanpa perintah terpisah.
+
 ### 3. Persiapan Database & Prisma (Opsional)
 Aplikasi menyertakan skema Prisma untuk kebutuhan penyimpanan data relasional klaim di masa mendatang:
 ```bash
@@ -617,7 +628,29 @@ bun run dev
 npm run dev
 ```
 
-Aplikasi akan berjalan secara lokal di [http://localhost:3000](http://localhost:3000).
+`npm run dev` menjalankan **ketiga bagian repo sekaligus** lewat `scripts/dev.mjs` (orkestrator tanpa dependensi baru — hanya `node:child_process`). Ringkasan alamat dicetak setelah ketiganya siap:
+
+| Bagian | Alamat dev | Peran |
+|---|---|---|
+| Showcase MHGSL (Next.js) | `http://localhost:3000` | visualisasi 3 kanal, simulasi upcoding, fraud ring |
+| Dashboard Verifikator (SvelteKit) | `http://localhost:5275` | antrean klaim, panel bukti AI, tindakan HITL |
+| Landing page statis | `http://localhost:5276` | halaman promosi publik, tanpa dependensi |
+
+Catatan penting:
+
+- **Port dev ≠ port produksi.** Produksi PM2 memakai dashboard `:5175` dan landing `:5176`. Port dev sengaja dibedakan karena Vite memakai `strictPort: true` — kalau sama, dev gagal start saat instance produksi masih online.
+- **Port 3000 bisa fallback.** Kalau port itu sudah dipegang proses lain, orkestrator mencari port bebas berikutnya dan ringkasannya menampilkan port yang benar. Showcase Next.js dipanggil tanpa `--port` supaya ia sendiri yang memutuskan, sehingga tidak pernah bentrok.
+- **Tautan antar-aplikasi pakai IP LAN.** Dashboard menerima `PUBLIC_LANDING_URL`, landing menerima `DASHBOARD_URL`; keduanya diisi alamat `http://<ip-lan>:<port>` supaya tautannya tetap berlaku saat dibuka dari ponsel di jaringan yang sama, bukan hanya dari `localhost`.
+- **`Ctrl+C` menghentikan ketiganya** sekaligus.
+
+Menjalankan satu bagian saja:
+```bash
+npm run dev:showcase    # hanya Next.js
+npm run dev:dashboard   # hanya SvelteKit
+npm run dev:landing     # hanya landing page statis
+```
+
+Override port lewat env: `DEV_SHOWCASE_PORT`, `DEV_DASHBOARD_PORT`, `DEV_LANDING_PORT`, `DEV_PUBLIC_HOST`.
 
 ## Pintasan Keyboard (Keyboard Shortcuts)
 
@@ -778,6 +811,7 @@ sources:
   - dashboard/package.json
   - dashboard/vite.config.ts
   - ecosystem.config.cjs
+  - scripts/dev.mjs
 ---
 
 # Dashboard Development
@@ -792,6 +826,26 @@ npm run dev
 ```
 
 The dev server is pinned to port **5175** (`strictPort`) in `vite.config.ts`.
+
+## Running everything from the repo root
+
+`npm install` at the root also installs `dashboard/` — the `postinstall` hook runs `prisma generate && npm install --prefix dashboard --no-audit --no-fund`. One command is enough for all three parts.
+
+`npm run dev` at the root runs `scripts/dev.mjs`, a dependency-free orchestrator that spawns the showcase, the dashboard, and the landing server at once and prefixes their output with `[showcase]`, `[dashboard]`, and `[landing]`.
+
+| Service | Dev port | Production port (PM2) |
+|---|---|---|
+| showcase (Next.js) | 3000, or the next free port | 3000 |
+| dashboard (SvelteKit) | 5275 | 5175 |
+| landing (static) | 5276 | 5176 |
+
+Dev ports differ from the PM2 ports on purpose: Vite runs with `strictPort: true`, so reusing 5175 would fail to start while the production instance is still online.
+
+The orchestrator checks each port before spawning and falls back to the next free one, so a port 3000 already taken by an unrelated process (e.g. a proxy for another project) does not break `npm run dev` — the startup summary prints the port that was actually used.
+
+Cross-app links use the machine's LAN IPv4, so the landing → dashboard and dashboard → landing links keep working when opened from a phone on the same network, not just from `localhost`. Override with `DEV_SHOWCASE_PORT`, `DEV_DASHBOARD_PORT`, `DEV_LANDING_PORT`, or `DEV_PUBLIC_HOST`.
+
+`Ctrl+C` terminates all three children.
 
 ## Deployment
 
