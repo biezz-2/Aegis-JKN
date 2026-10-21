@@ -41,6 +41,18 @@ Nilai yang tidak berasal dari dataset tidak boleh muncul sebagai angka. Label se
 
 The dashboard never trains or executes a model, never calls SATUSEHAT/V-Claim, and never auto-approves a claim. The syndicate graph is a transparent grouping derived from the existing `Sindikat` label, not discovered graph intelligence. Audit entries are device-local demonstration data, not a production audit trail.
 
+## Diagram alur (FlowCanvas)
+
+Rantai lima tahap digambar **vertikal**, bukan horizontal. Kanvas hero berada di kolom setengah (580px), dan rantai horizontal memaksa zoom `fitView` turun ke 0,54 — label 16px lalu ter-render 8,6px, terlalu kecil untuk dibaca. Vertikal + `fitViewOptions={{ minZoom: 0.75 }}` menjaga label tetap terbaca.
+
+Tiga hal yang harus benar agar tepinya tegak lurus:
+
+1. **Handle node di atas/bawah** (`Position.Top` / `Position.Bottom`). Handle kiri/kanan pada rantai vertikal membuat garis tepi melintang diagonal.
+2. **Lebar node seragam** (190px). Posisi Svelte Flow adalah sudut kiri-atas, jadi node dengan lebar berbeda punya pusat berbeda.
+3. **Ramp ordinal, bukan trio kategorikal.** Tahap berurutan, bukan identitas: satu hue biru terang→gelap (`#9ec5f4` → `#184f95`), lolos `validate_palette.js --ordinal` pada permukaan `#020617`. Warna teks tiap langkah ditentukan kontrasnya terhadap langkah itu — langkah terang memakai tinta gelap, bukan putih.
+
+Diagram bersifat statis: `nodesDraggable={false}`, `nodesConnectable={false}`, `elementsSelectable={false}`. Pan/zoom tetap hidup. Minimap diberi warna node eksplisit — default-nya `rgb(43,43,43)` di atas latar `rgb(20,20,20)`, praktis tidak terbaca.
+
 ## Palet graf
 
 Slot kategorikal yang dipakai di `ShapChart.svelte` dan `SyndicateNode.svelte` adalah `#3987e5` (topologi), `#d95926` (fitur), `#199e70` (semantik) — set yang sama dengan `landing/assets/landing.css`. Trio lama `#3b82f6` / `#22c55e` / `#eab308` gagal uji pemisahan CVD (ΔE 4.2 pada pasangan hijau-kuning) dan tidak boleh dipakai sebagai warna seri. Jalur `landing/` adalah acuan palet yang sudah tervalidasi.

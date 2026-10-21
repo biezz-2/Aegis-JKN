@@ -51,6 +51,10 @@ Angka pada halaman depan dan panel mana pun harus berasal dari `lib/claims.ts` (
 
 Warna seri di komponen SvelteKit memakai set tervalidasi `#3987e5` / `#d95926` / `#199e70`. Set lama `#3b82f6` / `#22c55e` / `#eab308` gagal uji CVD pada `node scripts/validate_palette.js` — jangan dikembalikan tanpa diuji ulang.
 
+Tiga warna seri itu untuk **kategori** (identitas). Untuk data **berurutan** (tahap, tier, level) pakai satu hue dengan ramp ordinal — contoh alur triase di `FlowCanvas.svelte` memakai `#9ec5f4` → `#184f95`. Uji dengan `node scripts/validate_palette.js "<ramp>" --mode dark --surface "#020617" --ordinal`; lightness harus monoton, celah ΔL antar langkah ≥ 0,06, dan langkah paling gelap tetap ≥ 2:1 terhadap permukaan.
+
+Teks di atas fill berwarna punya aturan sendiri: langkah terang butuh tinta gelap, langkah gelap butuh putih. Hitung kontrasnya, jangan asal pakai `color: white`.
+
 ## Before changing the synthetic source
 
 Obtain explicit approval. Recalculate its SHA-256, audit the schema, update `docs/DATA_SCHEMA.md`, and refresh the dashboard copy only as a byte-identical transfer.
