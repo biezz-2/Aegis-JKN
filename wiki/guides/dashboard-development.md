@@ -10,6 +10,7 @@ sources:
   - dashboard/vite.config.ts
   - ecosystem.config.cjs
   - scripts/dev.mjs
+  - src/app/health/route.ts
 ---
 
 # Dashboard Development
@@ -44,6 +45,15 @@ The orchestrator checks each port before spawning and falls back to the next fre
 Cross-app links use the machine's LAN IPv4, so the landing → dashboard and dashboard → landing links keep working when opened from a phone on the same network, not just from `localhost`. Override with `DEV_SHOWCASE_PORT`, `DEV_DASHBOARD_PORT`, `DEV_LANDING_PORT`, or `DEV_PUBLIC_HOST`.
 
 `Ctrl+C` terminates all three children.
+
+## The showcase `/health` route
+
+The showcase ships `src/app/health/route.ts` so `GET /health` returns 200. The reason is a port-range collision, not a Hermes-specific integration: the dev showcase may land anywhere in 3000-3050, and Hermes allocates WhatsApp bridge ports across 3001-3999. When a Hermes profile scans that range it sends `GET /health` to whatever holds the port — which, during `npm run dev`, is the showcase.
+
+Two properties matter, so keep them if the route is ever rewritten:
+
+- **It must not impersonate the bridge.** Hermes decides ownership from the `/health` body — a bridge replies with a `session` field. A body that looks like a bridge could make Hermes adopt or stop the showcase. The reply stays `{"status":"ok"}`.
+- **A 200 here is harmless.** Hermes only signals a port holder it can prove is a node bridge (`_pid_looks_like_node_bridge` requires `node` in the process name), and the showcase's process is named `next-server`, so it is never killed.
 
 ## Deployment
 

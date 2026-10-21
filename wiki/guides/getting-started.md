@@ -9,6 +9,7 @@ related:
 sources:
   - package.json
   - scripts/dev.mjs
+  - src/app/health/route.ts
   - tsconfig.json
   - next.config.ts
 ---
@@ -69,6 +70,7 @@ Catatan penting:
 - **Port 3000 bisa fallback.** Kalau port itu sudah dipegang proses lain, orkestrator mencari port bebas berikutnya dan ringkasannya menampilkan port yang benar. Showcase Next.js dipanggil tanpa `--port` supaya ia sendiri yang memutuskan, sehingga tidak pernah bentrok.
 - **Tautan antar-aplikasi pakai IP LAN.** Dashboard menerima `PUBLIC_LANDING_URL`, landing menerima `DASHBOARD_URL`; keduanya diisi alamat `http://<ip-lan>:<port>` supaya tautannya tetap berlaku saat dibuka dari ponsel di jaringan yang sama, bukan hanya dari `localhost`.
 - **`Ctrl+C` menghentikan ketiganya** sekaligus.
+- **`GET /health` di showcase menjawab 200.** Port dev showcase berada di rentang 3000-3050, yang tumpang tindih dengan rentang alokasi port bridge WhatsApp Hermes (3001-3999). Saat Hermes memindai port itu, ia mengirim `GET /health`; tanpa route `src/app/health/route.ts` setiap probe berakhir 404 dan muncul sebagai error di log dev. Route itu sengaja tidak menyamar sebagai bridge — body-nya jujur (`{"status":"ok"}`), bukan tiruan schema bridge yang memuat `session`.
 
 Menjalankan satu bagian saja:
 ```bash
