@@ -6,6 +6,7 @@ exclude:
   - node_modules/
   - .git/
   - .next/
+  - .svelte-kit/
   - out/
   - build/
   - "*.min.js"

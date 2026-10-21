@@ -7,21 +7,32 @@ FILE: overview.md
 ---
 title: Aegis-JKN Overview
 type: overview
-tags: [overview, healthkathon, mhgsl, gnn, bpjs-kesehatan, fraud-detection]
+tags: [overview, healthkathon, mhgsl, gnn, bpjs-kesehatan, fraud-detection, synthetic-data, verifier-dashboard]
 related:
   - "[[concepts/mhgsl-architecture]]"
   - "[[concepts/multi-channel-graphs]]"
   - "[[concepts/fraud-rings]]"
+  - "[[concepts/dataset-contract]]"
+  - "[[concepts/verifier-dashboard]]"
   - "[[guides/getting-started]]"
+  - "[[guides/dashboard-development]]"
   - "[[reference/component-catalog]]"
+  - "[[reference/academic-paper]]"
 sources:
   - src/app/page.tsx
   - src/components/mhgsl/data.ts
+  - dashboard/src/
+  - docs/DATA_SCHEMA.md
 ---
 
 # Aegis-JKN · Sistem Intelijen Deteksi Fraud Klaim BPJS Kesehatan
 
 Aegis-JKN adalah platform analitik dan visualisasi interaktif untuk mendeteksi kecurangan klaim layanan kesehatan di ekosistem Program Jaminan Kesehatan Nasional (JKN) yang dikelola oleh BPJS Kesehatan Indonesia. Platform ini memvisualisasikan implementasi **Multi-channel Heterogeneous Graph Structure Learning (MHGSL)** yang digabungkan dengan **Graph Neural Networks (GNN)** untuk mengidentifikasi sindikat penipuan yang menyamarkan polanya (*camouflage fraud*).
+
+Repositori ini memuat dua bagian yang saling melengkapi:
+
+1. **Showcase MHGSL** (Next.js, di root) — visualisasi interaktif arsitektur 3 kanal, simulasi upcoding, dan analisis fraud ring.
+2. **Dashboard Verifikator Aegis-JKN** (SvelteKit, di `dashboard/`) — prototipe *decision support* client-side untuk menelaah dataset klaim sintetis.
 
 ## Tantangan Nyata Ekosistem JKN
 
@@ -35,11 +46,11 @@ Aegis-JKN adalah platform analitik dan visualisasi interaktif untuk mendeteksi k
 1. **Ingest SATUSEHAT FHIR**: Standardisasi data transaksi klaim klinis menggunakan standar interoperabilitas Kementerian Kesehatan Republik Indonesia (FHIR R4).
 2. **Konstruksi 3 Saluran Graf Heterogen**: Memetakan entitas (Pasien, Dokter, Faskes, Prosedur, Diagnosis) ke dalam 3 saluran independen:
    - *Saluran Topologi*: Relasi historis kunjungan dan rujukan.
-   - *Saluran Fitur*: Kemiripan atribut numerik/kategorial (Length of Stay, usia, total biaya).
+   - *Saluran Fitur*: Kemiripan atribut numerik/kategorikal (Length of Stay, usia, total biaya).
    - *Saluran Semantik*: Jalur metapath klinis (Dokter $\to$ Diagnosis $\to$ Tindakan $\to$ RS).
 3. **Channel-Specific GCN**: Ekstraksi representasi embedding dari masing-masing saluran graf secara terisolasi.
 4. **Shared-Parameter GCN**: Pertukaran bobot parameter untuk mengekstraksi representasi invarian lintas domain relasional.
-5. **Attention Fusion & SHAP Explainability**: Penimbangan adaptif saluran graf dan penjelas kontribusi fitur (*explainable AI*) yang mampu mendeteksi sindrom kamuflase (misal: saluran topologi berkontribusi negatif sementara saluran semantik bernilai ekstrim).
+5. **Attention Fusion & SHAP Explainability**: Penimbangan adaptif saluran graf dan penjelas kontribusi fitur (*explainable AI*) yang mampu mendeteksi sindrom kamuflase (misal: saluran topologi berkontribusi negatif sementara saluran semantik bernilai ekstrem).
 
 ## Modul Utama pada Aplikasi
 
@@ -50,20 +61,34 @@ Aegis-JKN adalah platform analitik dan visualisasi interaktif untuk mendeteksi k
 - **Self-Service Claim Data Uploader** (`src/components/mhgsl/data-uploader.tsx`): Mesin inferensi lokal peramban untuk scoring dataset CSV/JSON pengguna.
 - **Mathematical Formulations Viewer** (`src/components/mhgsl/math-formulas.tsx`): Katalog persamaan matematis lengkap.
 
+## Dashboard Verifikator
+
+Dashboard Verifikator Aegis-JKN adalah prototipe *clinical decision support* yang berjalan sepenuhnya di peramban. Ia menampilkan bukti pra-komputasi dari **dataset sintetis** dan tidak pernah otomatis menyetujui, menolak, atau menaikkan klaim — keputusan akhir tetap pada verifikator.
+
+- Rute `/` adalah landing page publik; seluruh CTA mengarah ke `/demo`.
+- Rute `/demo` adalah ruang kerja verifikator: antrean klaim dengan filter/pencarian, panel EMR, panel bukti AI, pengelompokan sindikat, dan tindakan HITL yang mewajibkan catatan.
+- Sumber kanonik dataset adalah `docs/datasets/klaim-aegis-jkn-dataset.json` (300 klaim sintetis); salinan di `dashboard/src/data/` harus byte-identik.
+- Dataset tidak memuat tarif INA-CBG pembanding, graph edge produksi, maupun nilai SHAP numerik per fitur — UI tidak boleh mengarang nilai-nilai tersebut.
+- Audit keputusan disimpan di `localStorage` browser untuk demonstrasi; itu **bukan** rekam audit produksi.
+
 ## Panduan Navigasi Wiki
 
 - [[concepts/mhgsl-architecture]] - Detail arsitektur model dan mekanisme 3 saluran.
 - [[concepts/multi-channel-graphs]] - Representasi entitas, node, dan edge heterogen.
 - [[concepts/fraud-rings]] - Pola sindikat kolusi faskes-dokter-pasien dan analisis komunitas graf.
 - [[concepts/shap-camouflage-detection]] - Metodologi pembuktian kamuflase menggunakan SHAP.
+- [[concepts/dataset-contract]] - Kontrak dataset sintetis 300 klaim dan batas data.
+- [[concepts/verifier-dashboard]] - Rute, aliran data, dan batas aman dashboard verifikator.
 - [[guides/getting-started]] - Panduan instalasi dan menjalankan proyek secara lokal.
 - [[guides/vercel-deployment]] - Panduan deployment aplikasi ke platform Vercel.
+- [[guides/dashboard-development]] - Perintah, port 5175, deployment PM2, dan konvensi Svelte 5.
 - [[reference/data-schema]] - Struktur tipe data, metadata node, dan format klaim FHIR.
 - [[reference/component-catalog]] - Katalog komponen React dan peruntukannya.
+- [[reference/academic-paper]] - Status bukti makalah dan catatan sitasi.
 
 
 ================================================================================
-FILE: concepts\mhgsl-architecture.md
+FILE: concepts/mhgsl-architecture.md
 ================================================================================
 
 ---
@@ -141,7 +166,7 @@ Hasil fusi kemudian diproyeksikan melalui MLP dengan aktivasi Sigmoid untuk meng
 
 
 ================================================================================
-FILE: concepts\multi-channel-graphs.md
+FILE: concepts/multi-channel-graphs.md
 ================================================================================
 
 ---
@@ -206,7 +231,7 @@ Komponen `multi-channel-graph.tsx` mengimplementasikan kanvas SVG interaktif yan
 
 
 ================================================================================
-FILE: concepts\fraud-rings.md
+FILE: concepts/fraud-rings.md
 ================================================================================
 
 ---
@@ -270,7 +295,7 @@ Sistem secara otomatis mengusulkan aksi operasional:
 
 
 ================================================================================
-FILE: concepts\shap-camouflage-detection.md
+FILE: concepts/shap-camouflage-detection.md
 ================================================================================
 
 ---
@@ -327,7 +352,75 @@ Komponen `simulation.tsx` menyediakan visualisasi *waterfall chart* interaktif p
 
 
 ================================================================================
-FILE: guides\getting-started.md
+FILE: concepts/dataset-contract.md
+================================================================================
+
+---
+title: Dataset Contract
+type: concept
+tags: [dataset, synthetic, integrity]
+related:
+  - "[[Aegis-JKN Overview]]"
+  - "[[Verifier Dashboard]]"
+  - "[[Academic Paper]]"
+sources:
+  - docs/datasets/klaim-aegis-jkn-dataset.json
+  - docs/DATA_SCHEMA.md
+---
+
+# Dataset Contract
+
+The canonical Aegis-JKN source is a read-only JSON array of 300 synthetic claims. The baseline SHA-256 is recorded in `docs/DATA_SCHEMA.md`. The dashboard carries a byte-identical copy for static local operation.
+
+## Important limits
+
+The records contain precomputed risk, score, channel contribution, and explanatory prose. They do not contain production IDs, INA-CBG tariff comparisons, graph edge lists, or numeric feature-level SHAP values. Components must display those boundaries rather than invent unsupported values.
+
+
+================================================================================
+FILE: concepts/verifier-dashboard.md
+================================================================================
+
+---
+title: Verifier Dashboard
+type: concept
+tags: [sveltekit, svelte, vite, hitl, dashboard]
+related:
+  - "[[Aegis-JKN Overview]]"
+  - "[[Dataset Contract]]"
+  - "[[Academic Paper]]"
+  - "[[Dashboard Development]]"
+sources:
+  - dashboard/src/
+  - dashboard/docs/ARCHITECTURE.md
+---
+
+# Verifier Dashboard
+
+The SvelteKit dashboard provides a claims queue with filter/search, an EMR evidence pane, a synthetic AI-evidence pane, conditional syndicate grouping, and note-required human decisions.
+
+## Routes
+
+| Route | Purpose |
+|---|---|
+| `/` | Public landing page (Aegis JKN Flow). CTAs link to `/demo`. |
+| `/demo` | **Dashboard Verifikator Aegis-JKN** — the verifier workspace. |
+
+## Data flow
+
+`RawClaim` preserves the actual source fields. `lib/claims.ts` normalizes only in memory, filters/sorts locally, and exposes a selected claim to UI panels. The `auditLog` store (`store/auditLog.ts`, a Svelte `writable`) appends human actions to device-local `localStorage` scoped by source hash.
+
+## Boundaries
+
+The dashboard never trains or executes a model, never calls SATUSEHAT/V-Claim, and never auto-approves a claim. The syndicate graph is a transparent grouping derived from the existing `Sindikat` label, not discovered graph intelligence. Audit entries are device-local demonstration data, not a production audit trail.
+
+## Local development
+
+Run `cd dashboard && npm i && npm run dev` and open `http://localhost:5175`. See `dashboard/docs/README.md` and `dashboard/docs/DEPLOYMENT.md` for safeguards.
+
+
+================================================================================
+FILE: guides/getting-started.md
 ================================================================================
 
 ---
@@ -398,7 +491,7 @@ Saat aplikasi terbuka di browser:
 
 
 ================================================================================
-FILE: guides\vercel-deployment.md
+FILE: guides/vercel-deployment.md
 ================================================================================
 
 ---
@@ -462,7 +555,7 @@ npx vercel --prod
 
 
 ================================================================================
-FILE: guides\custom-data-scoring.md
+FILE: guides/custom-data-scoring.md
 ================================================================================
 
 ---
@@ -531,7 +624,61 @@ Klaim dengan skor $\ge 0.75$ diberi label **High Risk (Merah)**, $0.50 - 0.74$ *
 
 
 ================================================================================
-FILE: reference\data-schema.md
+FILE: guides/dashboard-development.md
+================================================================================
+
+---
+title: Dashboard Development
+type: guide
+tags: [development, verification, deployment]
+related:
+  - "[[Verifier Dashboard]]"
+sources:
+  - dashboard/package.json
+  - dashboard/vite.config.ts
+  - ecosystem.config.cjs
+---
+
+# Dashboard Development
+
+```bash
+cd dashboard
+npm i
+npm run typecheck
+npm test
+npm run build
+npm run dev
+```
+
+The dev server is pinned to port **5175** (`strictPort`) in `vite.config.ts`.
+
+## Deployment
+
+```bash
+cd dashboard && npm run build
+cd .. && pm2 start ecosystem.config.cjs
+pm2 logs aegis-dashboard
+```
+
+`ecosystem.config.cjs` runs `dashboard/build/index.js` (adapter-node) with `PORT=5175`, `HOST=0.0.0.0`.
+
+## Path aliases
+
+`@` maps to `src/` — declared in `svelte.config.js` (SvelteKit alias) and `vite.config.ts` (Vitest alias). Both are required: Vite resolves it for the app and for tests.
+
+## Svelte 5 conventions
+
+- Components use runes (`$props()`, `$state`, `$derived`), not `export let`.
+- `class` is a reserved word in Svelte 5, so component styles accept it as a prop via `let { class: className = '' } = $props()`.
+- `@xyflow/svelte` v1 requires `nodeTypes` to map to Svelte **components**, and its `colorMode="dark"` prop is needed for dark-theme controls.
+
+## Before changing the synthetic source
+
+Obtain explicit approval. Recalculate its SHA-256, audit the schema, update `docs/DATA_SCHEMA.md`, and refresh the dashboard copy only as a byte-identical transfer.
+
+
+================================================================================
+FILE: reference/data-schema.md
 ================================================================================
 
 ---
@@ -621,7 +768,7 @@ export interface FraudProfile {
 
 
 ================================================================================
-FILE: reference\component-catalog.md
+FILE: reference/component-catalog.md
 ================================================================================
 
 ---
@@ -661,7 +808,7 @@ Daftar komponen modular dalam arsitektur antarmuka `src/components/mhgsl/`:
 
 
 ================================================================================
-FILE: reference\mathematical-formulations.md
+FILE: reference/mathematical-formulations.md
 ================================================================================
 
 ---
@@ -720,3 +867,37 @@ Probabilitas prediksi fraud akhir:
 
 $$\hat{y} = \sigma\left( W_{\text{out}} Z_{\text{fused}} + b_{\text{out}} \right) \in [0, 1]$$
 
+
+================================================================================
+FILE: reference/academic-paper.md
+================================================================================
+
+---
+title: Academic Paper
+type: reference
+tags: [research, mhgsl, hitl, compliance]
+related:
+  - "[[Aegis-JKN Overview]]"
+  - "[[Dataset Contract]]"
+  - "[[Verifier Dashboard]]"
+sources:
+  - docs/makalah/Makalah_Aegis-JKN.md
+  - docs/DATA_SCHEMA.md
+---
+
+# Academic Paper
+
+`docs/makalah/Makalah_Aegis-JKN.md` is the Indonesian academic paper for Aegis-JKN. It describes the MHGSL research architecture and the verifier-dashboard boundary.
+
+## Evidence status
+
+The paper contains 6,066 words, three-or-more LaTeX formulas, two Mermaid diagrams, and fourteen IEEE-style references. Every stated model-performance number is marked **simulasi sintetis**. The paper does not claim production validation, live inference, FHIR/V-Claim integration, or automatic claim adjudication.
+
+## Required reading
+
+- [[Dataset Contract]] defines the 300-record synthetic source and fields absent from the data.
+- [[Verifier Dashboard]] describes the implemented client-side visualizer.
+
+## Citation caveats
+
+Entries explicitly marked `[CITATION NEEDED: ...]` need primary-source confirmation before formal submission. Do not replace those markers with guessed publication metadata.
