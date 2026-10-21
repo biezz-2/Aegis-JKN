@@ -30,7 +30,7 @@ Nilai yang tidak berasal dari dataset tidak boleh muncul sebagai angka. Label se
 
 | Route | Purpose |
 |---|---|
-| `/` | Internal landing page for the verifier tool. Every number on it is computed from the bundled synthetic dataset; CTAs link to `/demo`. |
+| `/` | Internal landing page for the verifier tool. Every number on it is computed from the bundled synthetic dataset; CTAs link to `/demo`. A separate link points to the public static landing page at `PUBLIC_LANDING_URL`. |
 | `/demo` | **Dashboard Verifikator Aegis-JKN** — the verifier workspace. |
 
 ## Data flow

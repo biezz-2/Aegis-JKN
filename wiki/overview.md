@@ -29,7 +29,7 @@ Repositori ini memuat tiga bagian yang saling melengkapi:
 
 1. **Showcase MHGSL** (Next.js, di root) — visualisasi interaktif arsitektur 3 kanal, simulasi upcoding, dan analisis fraud ring.
 2. **Dashboard Verifikator Aegis-JKN** (SvelteKit, di `dashboard/`) — prototipe *decision support* client-side untuk menelaah dataset klaim sintetis, dengan halaman depan internal yang seluruh angkanya berasal dari dataset itu sendiri.
-3. **Landing page statis** (HTML/CSS/JS, di `landing/`) — versi naratif tanpa dependensi dan tanpa build step, berdiri sendiri di samping kedua bagian di atas.
+3. **Landing page statis** (HTML/CSS/JS, di `landing/`) — versi naratif tanpa dependensi dan tanpa build step, berdiri sendiri di samping kedua bagian di atas. Dilayani `landing/serve.mjs` di port **5176**, terpisah dari dashboard di port **5175**.
 
 ## Tantangan Nyata Ekosistem JKN
 

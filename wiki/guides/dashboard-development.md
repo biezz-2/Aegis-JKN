@@ -4,6 +4,7 @@ type: guide
 tags: [development, verification, deployment]
 related:
   - "[[Verifier Dashboard]]"
+  - "[[Static Landing Page]]"
 sources:
   - dashboard/package.json
   - dashboard/vite.config.ts
@@ -31,7 +32,30 @@ cd .. && pm2 start ecosystem.config.cjs
 pm2 logs aegis-dashboard
 ```
 
-`ecosystem.config.cjs` runs `dashboard/build/index.js` (adapter-node) with `PORT=5175`, `HOST=0.0.0.0`.
+`ecosystem.config.cjs` manages two apps side by side:
+
+| App | Script | Port | Type |
+|---|---|---|---|
+| `aegis-dashboard` | `dashboard/build/index.js` (adapter-node) | 5175 | internal tool |
+| `aegis-landing` | `landing/serve.mjs` (node:http, no deps) | 5176 | public static showcase |
+
+Both bind `HOST=0.0.0.0`. Separate ports, so no proxy rewrite is needed and each can be restarted independently. `aegis-landing` reads `DASHBOARD_URL`; `aegis-dashboard` reads `PUBLIC_LANDING_URL`.
+
+See [[Static Landing Page]] for the placeholder substitution and the two-way link between them.
+
+### PM2 "online" does not mean the port is listening
+
+adapter-node registers a `SIGTERM` handler that calls `httpServer.close()`. If the process does not exit afterwards, the socket is closed but the process lingers — PM2 still reports `online` while the port is dead and the site is unreachable.
+
+Check the listener directly instead of trusting the status:
+
+```bash
+ss -ltnp | grep 5175
+```
+
+If nothing is bound, `pm2 restart aegis-dashboard --update-env`.
+
+**A restart is required after every rebuild.** adapter-node keeps the old build in memory; a new `npm run build` does not affect the running process.
 
 ## Path aliases
 
