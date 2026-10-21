@@ -5,6 +5,10 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
+  // The repo root has a Next.js postcss.config.mjs; Vite would otherwise walk
+  // up and load it, breaking the @tailwindcss/vite plugin. This app has no
+  // PostCSS config of its own.
+  css: { postcss: { plugins: [] } },
   resolve: {
     alias: {
       '@': path.resolve('./src')
