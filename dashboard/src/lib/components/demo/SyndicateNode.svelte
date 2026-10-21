@@ -3,10 +3,12 @@
 
   let { data }: NodeProps & { data: { label: string; kind: string } } = $props();
 
+  /* Slot kategorikal tervalidasi (lihat landing/assets/landing.css).
+     Warna lama #22c55e/#eab308 gagal uji pemisahan CVD. */
   const COLORS: Record<string, string> = {
-    Faskes: '#3b82f6',
-    Dokter: '#22c55e',
-    Pasien: '#eab308'
+    Faskes: '#3987e5',
+    Dokter: '#d95926',
+    Pasien: '#199e70'
   };
 </script>
 

@@ -21,7 +21,7 @@ Halaman landing Aegis-JKN yang berdiri sendiri di `landing/`: HTML + CSS + JavaS
 
 | Path | Isi |
 |---|---|
-| `landing/index.html` | 1725 baris, 17 `<section>`, 26 `<a>`, 14 `<svg>` |
+| `landing/index.html` | 1725 baris, 17 `<section>`, 26 `<a>`, 12 `<svg>` (10 inline + 2 dari `landing.js`) |
 | `landing/assets/landing.css` | 1190 baris, design token (`:root` custom property) + tata letak |
 | `landing/assets/landing.js` | 554 baris, dua graf SVG yang dibangun tangan |
 
@@ -38,9 +38,13 @@ Kedua graf dibangun tanpa library. Setiap nilai yang digambar juga tersedia di t
 
 Angka pada graf dihitung dari 300 baris `dashboard/src/data/klaim-aegis-jkn-dataset.json` dan diverifikasi ulang terhadap file tersebut.
 
+**Nama kanal ditulis di setiap bar, bukan hanya di grup pertama.** Identitas bar tidak boleh bergantung pada warna saja — label kanal (Topologi / Fitur / Semantik) muncul pada semua bar. Label langsung berupa angka hanya pada nilai ekstrem (puncak 0,305); sisanya dibaca dari sumbu, tooltip, dan tabel.
+
+**Sumbu nilai pada graf horizontal adalah sumbu X.** Catatan di bawah graf menyebut "Sumbu X = …"; memakai "Sumbu Y" akan menyesatkan pembaca.
+
 ## Aturan implementasi
 
-**`text-anchor` adalah atribut SVG, bukan properti CSS.** Menuliskannya lewat `node.style.textAnchor` diabaikan tanpa error — sumbu dan label pun diam-diam tidak ikut di-center. Gunakan `setAttribute('text-anchor', ...)`.
+**`text-anchor` adalah atribut SVG, bukan properti CSS.** Menuliskannya lewat `node.style.textAnchor` diabaikan tanpa error — sumbu dan label pun diam-diam tidak ikut di-center, dan nama kanal meluber keluar dari gutter-nya. Helper `text()` memisahkan keduanya: anchor lewat `setAttribute('text-anchor', ...)`, sisanya (`fill`, `fontSize`, `fontWeight`) lewat `node.style`.
 
 **Closure per-iterasi wajib pada loop `var`.** Handler yang dibuat di dalam loop `var` menangkap variabel loop yang bersifat function-scoped, sehingga setiap target hover menampilkan data iterasi terakhir. Bungkus dengan IIFE, atau pakai `let`.
 
@@ -54,7 +58,7 @@ Landing page diuji lewat Chromium sungguhan, bukan inspeksi markup:
 
 | Cek | Hasil |
 |---|---|
-| Section / SVG / link | 17 / 14 / 26 |
+| Section / SVG / link | 17 / 12 / 26 |
 | Error konsol | `[]` |
 | Hover 12 hit target | masing-masing menampilkan grupnya sendiri |
 | Tooltip hilang saat pointer leave & blur | ya |

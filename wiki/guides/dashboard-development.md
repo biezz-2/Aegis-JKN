@@ -43,6 +43,14 @@ pm2 logs aegis-dashboard
 - `class` is a reserved word in Svelte 5, so component styles accept it as a prop via `let { class: className = '' } = $props()`.
 - `@xyflow/svelte` v1 requires `nodeTypes` to map to Svelte **components**, and its `colorMode="dark"` prop is needed for dark-theme controls.
 
+## Aturan angka di UI
+
+Angka pada halaman depan dan panel mana pun harus berasal dari `lib/claims.ts` (dataset sintetis) atau diberi label eksplisit sebagai simulasi. Jangan menulis angka sebagai filler. Kalau nilainya tidak bisa ditelusuri ke sumber di repo, jangan tampilkan.
+
+## Palet seri
+
+Warna seri di komponen SvelteKit memakai set tervalidasi `#3987e5` / `#d95926` / `#199e70`. Set lama `#3b82f6` / `#22c55e` / `#eab308` gagal uji CVD pada `node scripts/validate_palette.js` — jangan dikembalikan tanpa diuji ulang.
+
 ## Before changing the synthetic source
 
 Obtain explicit approval. Recalculate its SHA-256, audit the schema, update `docs/DATA_SCHEMA.md`, and refresh the dashboard copy only as a byte-identical transfer.

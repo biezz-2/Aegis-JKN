@@ -3,10 +3,13 @@
 
   let { claim }: { claim: Claim } = $props();
 
+  /* Slot kategorikal tervalidasi (lightness band, chroma, CVD, kontras);
+     lihat landing/assets/landing.css. Warna lama #22c55e/#eab308 gagal uji
+     pemisahan CVD (ΔE 4.2 deutan/protan). */
   const CHANNELS = [
-    { key: 'topology', label: 'Topologi', color: '#3b82f6' },
-    { key: 'feature', label: 'Fitur', color: '#22c55e' },
-    { key: 'semantic', label: 'Semantik', color: '#eab308' }
+    { key: 'topology', label: 'Topologi', color: '#3987e5' },
+    { key: 'feature', label: 'Fitur', color: '#d95926' },
+    { key: 'semantic', label: 'Semantik', color: '#199e70' }
   ] as const;
 
   const bars = $derived(

@@ -28,7 +28,7 @@ Aegis-JKN adalah platform analitik dan visualisasi interaktif untuk mendeteksi k
 Repositori ini memuat tiga bagian yang saling melengkapi:
 
 1. **Showcase MHGSL** (Next.js, di root) — visualisasi interaktif arsitektur 3 kanal, simulasi upcoding, dan analisis fraud ring.
-2. **Dashboard Verifikator Aegis-JKN** (SvelteKit, di `dashboard/`) — prototipe *decision support* client-side untuk menelaah dataset klaim sintetis.
+2. **Dashboard Verifikator Aegis-JKN** (SvelteKit, di `dashboard/`) — prototipe *decision support* client-side untuk menelaah dataset klaim sintetis, dengan halaman depan internal yang seluruh angkanya berasal dari dataset itu sendiri.
 3. **Landing page statis** (HTML/CSS/JS, di `landing/`) — versi naratif tanpa dependensi dan tanpa build step, berdiri sendiri di samping kedua bagian di atas.
 
 ## Tantangan Nyata Ekosistem JKN
@@ -62,7 +62,7 @@ Repositori ini memuat tiga bagian yang saling melengkapi:
 
 Dashboard Verifikator Aegis-JKN adalah prototipe *clinical decision support* yang berjalan sepenuhnya di peramban. Ia menampilkan bukti pra-komputasi dari **dataset sintetis** dan tidak pernah otomatis menyetujui, menolak, atau menaikkan klaim — keputusan akhir tetap pada verifikator.
 
-- Rute `/` adalah landing page publik; seluruh CTA mengarah ke `/demo`.
+- Rute `/` adalah halaman depan tool internal: seluruh angka dihitung dari dataset sintetis tertanam, tidak ada angka pemasaran tanpa sumber; seluruh CTA mengarah ke `/demo`.
 - Rute `/demo` adalah ruang kerja verifikator: antrean klaim dengan filter/pencarian, panel EMR, panel bukti AI, pengelompokan sindikat, dan tindakan HITL yang mewajibkan catatan.
 - Sumber kanonik dataset adalah `docs/datasets/klaim-aegis-jkn-dataset.json` (300 klaim sintetis); salinan di `dashboard/src/data/` harus byte-identik.
 - Dataset tidak memuat tarif INA-CBG pembanding, graph edge produksi, maupun nilai SHAP numerik per fitur — UI tidak boleh mengarang nilai-nilai tersebut.
@@ -75,7 +75,7 @@ Dashboard Verifikator Aegis-JKN adalah prototipe *clinical decision support* yan
 - [[concepts/fraud-rings]] - Pola sindikat kolusi faskes-dokter-pasien dan analisis komunitas graf.
 - [[concepts/shap-camouflage-detection]] - Metodologi pembuktian kamuflase menggunakan SHAP.
 - [[concepts/dataset-contract]] - Kontrak dataset sintetis 300 klaim dan batas data.
-- [[concepts/verifier-dashboard]] - Rute, aliran data, dan batas aman dashboard verifikator.
+- [[concepts/verifier-dashboard]] - Rute, aliran data, palet graf, dan batas aman dashboard verifikator.
 - [[concepts/static-landing-page]] - Landing page statis tanpa dependensi, dua graf SVG, dan aturan tooltip-nya.
 - [[guides/getting-started]] - Panduan instalasi dan menjalankan proyek secara lokal.
 - [[guides/vercel-deployment]] - Panduan deployment aplikasi ke platform Vercel.

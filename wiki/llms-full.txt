@@ -34,7 +34,7 @@ Aegis-JKN adalah platform analitik dan visualisasi interaktif untuk mendeteksi k
 Repositori ini memuat tiga bagian yang saling melengkapi:
 
 1. **Showcase MHGSL** (Next.js, di root) — visualisasi interaktif arsitektur 3 kanal, simulasi upcoding, dan analisis fraud ring.
-2. **Dashboard Verifikator Aegis-JKN** (SvelteKit, di `dashboard/`) — prototipe *decision support* client-side untuk menelaah dataset klaim sintetis.
+2. **Dashboard Verifikator Aegis-JKN** (SvelteKit, di `dashboard/`) — prototipe *decision support* client-side untuk menelaah dataset klaim sintetis, dengan halaman depan internal yang seluruh angkanya berasal dari dataset itu sendiri.
 3. **Landing page statis** (HTML/CSS/JS, di `landing/`) — versi naratif tanpa dependensi dan tanpa build step, berdiri sendiri di samping kedua bagian di atas.
 
 ## Tantangan Nyata Ekosistem JKN
@@ -68,7 +68,7 @@ Repositori ini memuat tiga bagian yang saling melengkapi:
 
 Dashboard Verifikator Aegis-JKN adalah prototipe *clinical decision support* yang berjalan sepenuhnya di peramban. Ia menampilkan bukti pra-komputasi dari **dataset sintetis** dan tidak pernah otomatis menyetujui, menolak, atau menaikkan klaim — keputusan akhir tetap pada verifikator.
 
-- Rute `/` adalah landing page publik; seluruh CTA mengarah ke `/demo`.
+- Rute `/` adalah halaman depan tool internal: seluruh angka dihitung dari dataset sintetis tertanam, tidak ada angka pemasaran tanpa sumber; seluruh CTA mengarah ke `/demo`.
 - Rute `/demo` adalah ruang kerja verifikator: antrean klaim dengan filter/pencarian, panel EMR, panel bukti AI, pengelompokan sindikat, dan tindakan HITL yang mewajibkan catatan.
 - Sumber kanonik dataset adalah `docs/datasets/klaim-aegis-jkn-dataset.json` (300 klaim sintetis); salinan di `dashboard/src/data/` harus byte-identik.
 - Dataset tidak memuat tarif INA-CBG pembanding, graph edge produksi, maupun nilai SHAP numerik per fitur — UI tidak boleh mengarang nilai-nilai tersebut.
@@ -81,7 +81,7 @@ Dashboard Verifikator Aegis-JKN adalah prototipe *clinical decision support* yan
 - [[concepts/fraud-rings]] - Pola sindikat kolusi faskes-dokter-pasien dan analisis komunitas graf.
 - [[concepts/shap-camouflage-detection]] - Metodologi pembuktian kamuflase menggunakan SHAP.
 - [[concepts/dataset-contract]] - Kontrak dataset sintetis 300 klaim dan batas data.
-- [[concepts/verifier-dashboard]] - Rute, aliran data, dan batas aman dashboard verifikator.
+- [[concepts/verifier-dashboard]] - Rute, aliran data, palet graf, dan batas aman dashboard verifikator.
 - [[concepts/static-landing-page]] - Landing page statis tanpa dependensi, dua graf SVG, dan aturan tooltip-nya.
 - [[guides/getting-started]] - Panduan instalasi dan menjalankan proyek secara lokal.
 - [[guides/vercel-deployment]] - Panduan deployment aplikasi ke platform Vercel.
@@ -403,11 +403,21 @@ sources:
 
 The SvelteKit dashboard provides a claims queue with filter/search, an EMR evidence pane, a synthetic AI-evidence pane, conditional syndicate grouping, and note-required human decisions.
 
+## Halaman depan internal
+
+`src/routes/+page.svelte` bukan lagi halaman pemasaran generik. Isinya sekarang berasal dari dataset sintetis yang tertanam (`lib/claims.ts`), bukan angka karangan:
+
+- Empat stat tile dihitung saat render: total klaim, jumlah antrean eskalasi, jumlah sindikat, dan nilai klaim yang tereskalasi.
+- Baris "Distribusi antrean" menampilkan auto-clear / review / escalate lengkap dengan mean skor fraud, nilai klaim, dan lebar bar proporsional.
+- Alur triase digambar oleh `FlowCanvas.svelte`: Klaim masuk → Tier-1 Aturan → Tier-2 XGBoost → Tier-3 GCN → Antrean verifikator. Node terakhir adalah penskalaan antrean, bukan persetujuan otomatis.
+
+Nilai yang tidak berasal dari dataset tidak boleh muncul sebagai angka. Label seperti "2.4K dokter aktif" atau "99.7% uptime" tidak punya sumber dan sudah dihapus.
+
 ## Routes
 
 | Route | Purpose |
 |---|---|
-| `/` | Public landing page (Aegis JKN Flow). CTAs link to `/demo`. |
+| `/` | Internal landing page for the verifier tool. Every number on it is computed from the bundled synthetic dataset; CTAs link to `/demo`. |
 | `/demo` | **Dashboard Verifikator Aegis-JKN** — the verifier workspace. |
 
 ## Data flow
@@ -417,6 +427,10 @@ The SvelteKit dashboard provides a claims queue with filter/search, an EMR evide
 ## Boundaries
 
 The dashboard never trains or executes a model, never calls SATUSEHAT/V-Claim, and never auto-approves a claim. The syndicate graph is a transparent grouping derived from the existing `Sindikat` label, not discovered graph intelligence. Audit entries are device-local demonstration data, not a production audit trail.
+
+## Palet graf
+
+Slot kategorikal yang dipakai di `ShapChart.svelte` dan `SyndicateNode.svelte` adalah `#3987e5` (topologi), `#d95926` (fitur), `#199e70` (semantik) — set yang sama dengan `landing/assets/landing.css`. Trio lama `#3b82f6` / `#22c55e` / `#eab308` gagal uji pemisahan CVD (ΔE 4.2 pada pasangan hijau-kuning) dan tidak boleh dipakai sebagai warna seri. Jalur `landing/` adalah acuan palet yang sudah tervalidasi.
 
 ## Local development
 
@@ -450,7 +464,7 @@ Halaman landing Aegis-JKN yang berdiri sendiri di `landing/`: HTML + CSS + JavaS
 
 | Path | Isi |
 |---|---|
-| `landing/index.html` | 1725 baris, 17 `<section>`, 26 `<a>`, 14 `<svg>` |
+| `landing/index.html` | 1725 baris, 17 `<section>`, 26 `<a>`, 12 `<svg>` (10 inline + 2 dari `landing.js`) |
 | `landing/assets/landing.css` | 1190 baris, design token (`:root` custom property) + tata letak |
 | `landing/assets/landing.js` | 554 baris, dua graf SVG yang dibangun tangan |
 
@@ -467,9 +481,13 @@ Kedua graf dibangun tanpa library. Setiap nilai yang digambar juga tersedia di t
 
 Angka pada graf dihitung dari 300 baris `dashboard/src/data/klaim-aegis-jkn-dataset.json` dan diverifikasi ulang terhadap file tersebut.
 
+**Nama kanal ditulis di setiap bar, bukan hanya di grup pertama.** Identitas bar tidak boleh bergantung pada warna saja — label kanal (Topologi / Fitur / Semantik) muncul pada semua bar. Label langsung berupa angka hanya pada nilai ekstrem (puncak 0,305); sisanya dibaca dari sumbu, tooltip, dan tabel.
+
+**Sumbu nilai pada graf horizontal adalah sumbu X.** Catatan di bawah graf menyebut "Sumbu X = …"; memakai "Sumbu Y" akan menyesatkan pembaca.
+
 ## Aturan implementasi
 
-**`text-anchor` adalah atribut SVG, bukan properti CSS.** Menuliskannya lewat `node.style.textAnchor` diabaikan tanpa error — sumbu dan label pun diam-diam tidak ikut di-center. Gunakan `setAttribute('text-anchor', ...)`.
+**`text-anchor` adalah atribut SVG, bukan properti CSS.** Menuliskannya lewat `node.style.textAnchor` diabaikan tanpa error — sumbu dan label pun diam-diam tidak ikut di-center, dan nama kanal meluber keluar dari gutter-nya. Helper `text()` memisahkan keduanya: anchor lewat `setAttribute('text-anchor', ...)`, sisanya (`fill`, `fontSize`, `fontWeight`) lewat `node.style`.
 
 **Closure per-iterasi wajib pada loop `var`.** Handler yang dibuat di dalam loop `var` menangkap variabel loop yang bersifat function-scoped, sehingga setiap target hover menampilkan data iterasi terakhir. Bungkus dengan IIFE, atau pakai `let`.
 
@@ -483,7 +501,7 @@ Landing page diuji lewat Chromium sungguhan, bukan inspeksi markup:
 
 | Cek | Hasil |
 |---|---|
-| Section / SVG / link | 17 / 14 / 26 |
+| Section / SVG / link | 17 / 12 / 26 |
 | Error konsol | `[]` |
 | Hover 12 hit target | masing-masing menampilkan grupnya sendiri |
 | Tooltip hilang saat pointer leave & blur | ya |
@@ -747,6 +765,14 @@ pm2 logs aegis-dashboard
 - Components use runes (`$props()`, `$state`, `$derived`), not `export let`.
 - `class` is a reserved word in Svelte 5, so component styles accept it as a prop via `let { class: className = '' } = $props()`.
 - `@xyflow/svelte` v1 requires `nodeTypes` to map to Svelte **components**, and its `colorMode="dark"` prop is needed for dark-theme controls.
+
+## Aturan angka di UI
+
+Angka pada halaman depan dan panel mana pun harus berasal dari `lib/claims.ts` (dataset sintetis) atau diberi label eksplisit sebagai simulasi. Jangan menulis angka sebagai filler. Kalau nilainya tidak bisa ditelusuri ke sumber di repo, jangan tampilkan.
+
+## Palet seri
+
+Warna seri di komponen SvelteKit memakai set tervalidasi `#3987e5` / `#d95926` / `#199e70`. Set lama `#3b82f6` / `#22c55e` / `#eab308` gagal uji CVD pada `node scripts/validate_palette.js` — jangan dikembalikan tanpa diuji ulang.
 
 ## Before changing the synthetic source
 
