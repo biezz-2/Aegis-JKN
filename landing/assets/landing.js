@@ -1,24 +1,28 @@
 /*
  * Aegis-JKN landing — charts.
  *
- * Two horizontal bar charts, hand-built SVG. No dependencies.
- * Colours are the validated categorical slots 1–3 (see landing.css --series-*);
- * the score chart uses the reserved status palette because a triage queue *is* a
- * state (good / warning / critical) and each one ships with a written label.
+ * Two horizontal bar charts, hand-built SVG, no dependencies.
  *
- * Every value shown in a chart is also present in the page's table view, so the
- * tooltip and the hover layer enhance rather than gate.
+ * Chart A (channel contribution) uses the validated categorical slots 1–3
+ * (--series-*); the legend lives in the HTML.
+ * Chart B (fraud score per queue) uses the reserved status palette, because a
+ * triage queue is a state (good / warning / critical) and each band ships with
+ * a written label — never colour alone.
+ *
+ * Every value plotted here is also present in the page's table view, so the
+ * tooltip enhances rather than gates.
  */
 (function () {
 	'use strict';
 
 	var SVG_NS = 'http://www.w3.org/2000/svg';
 
+	/* Rata-rata "Kontribusi Saluran" per antrean, dihitung dari 300 baris JSON. */
 	var CHANNEL = {
 		series: [
-			{ name: 'Topologi (A_top)', color: '#3987e5' },
-			{ name: 'Fitur (A_feat)', color: '#d95926' },
-			{ name: 'Semantik (A_sem)', color: '#199e70' }
+			{ key: 'Topologi', name: 'Topologi (A_top)', color: '#3987e5' },
+			{ key: 'Fitur', name: 'Fitur (A_feat)', color: '#d95926' },
+			{ key: 'Semantik', name: 'Semantik (A_sem)', color: '#199e70' }
 		],
 		groups: [
 			{
@@ -41,9 +45,10 @@
 			}
 		],
 		max: 0.35,
-		ticks: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35]
+		ticks: [0, 0.1, 0.2, 0.3]
 	};
 
+	/* Skor fraud per antrean: mean dan rentang yang benar-benar terobservasi. */
 	var SCORE = {
 		groups: [
 			{
@@ -78,7 +83,8 @@
 			}
 		],
 		max: 1,
-		ticks: [0, 0.2, 0.4, 0.6, 0.8, 1]
+		ticks: [0, 0.2, 0.4, 0.6, 0.8, 1],
+		thresholds: [0.35, 0.7]
 	};
 
 	/* ---------- helpers ---------- */
@@ -107,14 +113,20 @@
 		if (extra) {
 			for (var key in extra) {
 				if (Object.prototype.hasOwnProperty.call(extra, key)) {
-					node.style[key] = extra[key];
+					/* text-anchor adalah presentasi SVG, bukan properti CSS —
+					   lewat style akan diabaikan diam-diam. */
+					if (key === 'textAnchor') {
+						node.setAttribute('text-anchor', extra[key]);
+					} else {
+						node.style[key] = extra[key];
+					}
 				}
 			}
 		}
 		return node;
 	}
 
-	/* Bar anchored at the baseline on the left, 4px rounded at the data end. */
+	/* Bar tumbuh dari baseline kiri: ujung data membulat 4px, pangkal siku. */
 	function barPath(x, y, w, h, r) {
 		var len = Math.max(w, 0.6);
 		r = Math.min(r, len, h / 2);
@@ -131,7 +143,7 @@
 		);
 	}
 
-	/* Floating bar — both ends are data ends, so both are rounded. */
+	/* Bar mengambang (rentang): kedua ujung adalah ujung data, keduanya membulat. */
 	function rangePath(x, y, w, h, r) {
 		var len = Math.max(w, 0.6);
 		r = Math.min(r, len / 2, h / 2);
@@ -151,11 +163,16 @@
 	/* ---------- tooltip ---------- */
 
 	function Tooltip(holder) {
+		/* holder dipakai lagi di show(); simpan di instance, bukan free variable. */
+		this.holder = holder;
 		this.node = document.createElement('div');
 		this.node.className = 'chart-tooltip';
 		this.node.setAttribute('role', 'status');
 		this.node.setAttribute('aria-live', 'polite');
 		holder.appendChild(this.node);
+		/* hide dipasang sebagai handler lepas, jadi `this` tidak boleh
+		  bergantung pada elemen listenya — bound di sini. */
+		this.hide = this.hide.bind(this);
 	}
 
 	Tooltip.prototype.show = function (x, y, title, rows) {
@@ -172,6 +189,7 @@
 			row.className = 'tt-row';
 
 			if (rows[i].color) {
+				// line-key, bukan kotak — dan hanya lewat textContent/DOM
 				var key = document.createElement('span');
 				key.style.width = '10px';
 				key.style.height = '2px';
@@ -194,11 +212,9 @@
 
 		node.classList.add('visible');
 
-		// Keep the tooltip inside the holder.
 		var hw = this.node.offsetWidth;
 		var hh = this.node.offsetHeight;
-		var maxX = holder.clientWidth - hw - 4;
-		var left = Math.max(4, Math.min(x + 12, maxX));
+		var left = Math.max(4, Math.min(x + 12, this.holder.clientWidth - hw - 4));
 		var top = Math.max(4, y - hh - 10);
 		this.node.style.left = left + 'px';
 		this.node.style.top = top + 'px';
@@ -208,17 +224,17 @@
 		this.node.classList.remove('visible');
 	};
 
-	/* ---------- chart 1: channel contribution by triage queue ---------- */
+	/* ---------- chart A: kontribusi kanal per antrean ---------- */
 
 	function renderChannel(holder, tip) {
 		var W = holder.clientWidth;
 		if (!W) return;
 
-		var PAD = { top: 6, right: 66, bottom: 34, left: 148 };
+		var PAD = { top: 8, right: 72, bottom: 40, left: 132 };
 		var BAR = 22;
 		var GAP = 2;
-		var GROUP_GAP = 26;
-		var HEAD = 30;
+		var GROUP_GAP = 30;
+		var HEAD = 34;
 
 		var groups = CHANNEL.groups;
 		var plotW = W - PAD.left - PAD.right;
@@ -236,17 +252,16 @@
 			height: H,
 			role: 'img',
 			'aria-label':
-				'Rata-rata kontribusi kanal per antrean triase. Auto-clear 0,033 topologi, 0,030 fitur, ' +
-				'0,024 semantik. Review 0,155, 0,201, 0,163. Escalate 0,265, 0,305, 0,293. ' +
-				'Nilai lengkap tersedia pada tabel di bawah grafik.'
+				'Rata-rata kontribusi kanal per antrean triase, dari 300 klaim. Auto-clear: topologi 0,033, ' +
+				'fitur 0,030, semantik 0,024. Review: 0,155, 0,201, 0,163. Escalate: 0,265, 0,305, 0,293. ' +
+				'Angka lengkap tersedia pada tabel di bawah grafik.'
 		}, holder);
 		svg.setAttribute('class', 'chart-svg');
 
-		var x = function (v) {
+		function x(v) {
 			return PAD.left + (v / CHANNEL.max) * plotW;
-		};
+		}
 
-		// gridlines + x axis
 		for (var t = 0; t < CHANNEL.ticks.length; t++) {
 			var tv = CHANNEL.ticks[t];
 			var gx = x(tv);
@@ -254,26 +269,35 @@
 				x1: gx, y1: PAD.top, x2: gx, y2: PAD.top + bodyH,
 				class: tv === 0 ? 'axis-line' : 'grid-line'
 			}, svg);
-			text(svg, gx, PAD.top + bodyH + 18, fmt(tv, 2), 'axis-text', {
-				textAnchor: 'middle'
-			});
+			text(svg, gx, PAD.top + bodyH + 20, fmt(tv, 1), 'axis-text', { textAnchor: 'middle' });
 		}
-		text(svg, PAD.left + plotW / 2, PAD.top + bodyH + 32, 'Nilai kontribusi kanal', 'axis-title', {
+		text(svg, PAD.left + plotW / 2, PAD.top + bodyH + 35, 'Nilai kontribusi kanal', 'axis-title', {
 			textAnchor: 'middle'
 		});
+
+		/* Label langsung hanya pada nilai ekstrem — sisanya dibaca dari sumbu,
+		   tooltip, dan tabel. */
+		var peak = { g: 0, s: 0, v: -1 };
+		for (var pg = 0; pg < groups.length; pg++) {
+			for (var ps = 0; ps < CHANNEL.series.length; ps++) {
+				if (groups[pg].values[ps] > peak.v) {
+					peak = { g: pg, s: ps, v: groups[pg].values[ps] };
+				}
+			}
+		}
 
 		var y = PAD.top;
 		for (var gi = 0; gi < groups.length; gi++) {
 			var grp = groups[gi];
 
-			text(svg, 0, y + 13, grp.label, null, {
+			text(svg, 0, y + 12, grp.label, null, {
 				fill: 'var(--text-primary)',
 				fontSize: '13px',
 				fontWeight: '650'
 			});
-			text(svg, 0, y + 28, grp.n + ' klaim · ' + grp.note, null, {
+			text(svg, 0, y + 27, grp.n + ' klaim · ' + grp.note, null, {
 				fill: 'var(--text-muted)',
-				fontSize: '11.5px'
+				fontSize: '11px'
 			});
 
 			var barY = y + HEAD;
@@ -282,7 +306,9 @@
 				var v = grp.values[si];
 				var w = (v / CHANNEL.max) * plotW;
 
-				text(svg, PAD.left - 12, barY + BAR / 2 + 4, s.name.split(' ')[0], null, {
+				// nama kanal ditulis di setiap bar: legend + label langsung,
+				// sehingga identitas bar tidak bergantung pada warna saja
+				text(svg, PAD.left - 14, barY + BAR / 2 + 4, s.key, null, {
 					fill: 'var(--text-secondary)',
 					fontSize: '11.5px',
 					textAnchor: 'end'
@@ -293,14 +319,17 @@
 					fill: s.color,
 					class: 'mark'
 				}, svg);
+				bar.setAttribute('aria-hidden', 'true');
 
-				var valLabel = text(svg, PAD.left + w + 8, barY + BAR / 2 + 4, fmt(v, 3), 'value-label', {});
+				if (peak.g === gi && peak.s === si) {
+					text(svg, PAD.left + w + 8, barY + BAR / 2 + 4, fmt(v, 3), 'value-label', {});
+				}
 
-				// hit target: the whole row, wider than the painted mark
+				/* area hit lebih besar dari mark (>= 24px) */
 				var hit = el('rect', {
 					x: PAD.left,
 					y: barY - 1,
-					width: Math.max(w, 1) + 60,
+					width: Math.max(w, 1) + 64,
 					height: BAR + 2,
 					fill: 'transparent',
 					tabindex: '0',
@@ -311,27 +340,28 @@
 					grp.label + ', kanal ' + s.name + ': ' + fmt(v, 3) + ' dari ' + fmt(CHANNEL.max, 2)
 				);
 
-				var describe = function (evt) {
-					var box = svg.getBoundingClientRect();
-					var px = evt.clientX ? evt.clientX - box.left : PAD.left + w;
-					var py = evt.clientY ? evt.clientY - box.top : barY;
-					tip.show(px, py, grp.label + ' — ' + grp.n + ' klaim', CHANNEL.series.map(function (sr, idx) {
-						return {
-							color: sr.color,
-							value: fmt(grp.values[idx], 3),
-							label: sr.name
-						};
-					}));
-				};
+				/* `var` di dalam loop bersifat function-scoped: tanpa capture
+				   per-iterasi, setiap handler akan melihat grup terakhir. */
+				var describe = (function (grp, s, v, w, barY) {
+					return function (evt) {
+						var box = svg.getBoundingClientRect();
+						var px = evt.clientX ? evt.clientX - box.left : PAD.left + w;
+						var py = evt.clientY ? evt.clientY - box.top : barY;
+						tip.show(px, py, grp.label + ' — ' + grp.n + ' klaim', CHANNEL.series.map(function (sr, idx) {
+							return {
+								color: sr.color,
+								value: fmt(grp.values[idx], 3),
+								label: sr.name
+							};
+						}));
+					};
+				})(grp, s, v, w, barY);
 
-				hit.addEventListener('pointermove', describe);
 				hit.addEventListener('pointerenter', describe);
+				hit.addEventListener('pointermove', describe);
 				hit.addEventListener('focus', describe);
 				hit.addEventListener('pointerleave', tip.hide);
 				hit.addEventListener('blur', tip.hide);
-				bar.setAttribute('tabindex', '-1');
-				bar.setAttribute('aria-hidden', 'true');
-				valLabel.setAttribute('aria-hidden', 'true');
 
 				barY += BAR + GAP;
 			}
@@ -340,15 +370,15 @@
 		}
 	}
 
-	/* ---------- chart 2: fraud score per queue, mean over observed range ---------- */
+	/* ---------- chart B: skor fraud per antrean ---------- */
 
 	function renderScore(holder, tip) {
 		var W = holder.clientWidth;
 		if (!W) return;
 
-		var PAD = { top: 6, right: 104, bottom: 34, left: 148 };
+		var PAD = { top: 24, right: 108, bottom: 40, left: 132 };
 		var BAR = 22;
-		var ROW = 62;
+		var ROW = 68;
 
 		var groups = SCORE.groups;
 		var plotW = W - PAD.left - PAD.right;
@@ -361,15 +391,15 @@
 			height: H,
 			role: 'img',
 			'aria-label':
-				'Rata-rata skor fraud per antrean triase beserta rentang skor yang terobservasi. ' +
-				'Auto-clear 0,086 (0,04–0,14), Review 0,591 (0,40–0,79), Escalate 0,869 (0,80–0,95). ' +
-				'Nilai lengkap tersedia pada tabel di bawah grafik.'
+				'Rata-rata skor fraud per antrean beserta rentang skor yang terobservasi. ' +
+				'Auto-clear 0,086 dengan rentang 0,04 sampai 0,14. Review 0,591 dengan rentang 0,40 sampai 0,79. ' +
+				'Escalate 0,869 dengan rentang 0,80 sampai 0,95. Angka lengkap tersedia pada tabel di bawah grafik.'
 		}, holder);
 		svg.setAttribute('class', 'chart-svg');
 
-		var x = function (v) {
+		function x(v) {
 			return PAD.left + (v / SCORE.max) * plotW;
-		};
+		}
 
 		for (var t = 0; t < SCORE.ticks.length; t++) {
 			var tv = SCORE.ticks[t];
@@ -378,30 +408,39 @@
 				x1: gx, y1: PAD.top, x2: gx, y2: PAD.top + bodyH,
 				class: tv === 0 ? 'axis-line' : 'grid-line'
 			}, svg);
-			text(svg, gx, PAD.top + bodyH + 18, fmt(tv, 1), 'axis-text', {
+			text(svg, gx, PAD.top + bodyH + 20, fmt(tv, 1), 'axis-text', { textAnchor: 'middle' });
+		}
+		text(svg, PAD.left + plotW / 2, PAD.top + bodyH + 35, 'Skor fraud (0–1)', 'axis-title', {
+			textAnchor: 'middle'
+		});
+
+		/* garis ambang — inilah "pagar" yang disebut pada subjudul */
+		for (var th = 0; th < SCORE.thresholds.length; th++) {
+			var thx = x(SCORE.thresholds[th]);
+			el('line', {
+				x1: thx, y1: PAD.top - 8, x2: thx, y2: PAD.top + bodyH,
+				class: 'threshold'
+			}, svg);
+			text(svg, thx, PAD.top - 13, fmt(SCORE.thresholds[th], 2), 'threshold-label', {
 				textAnchor: 'middle'
 			});
 		}
-		text(svg, PAD.left + plotW / 2, PAD.top + bodyH + 32, 'Skor fraud (0–1)', 'axis-title', {
-			textAnchor: 'middle'
-		});
 
 		for (var gi = 0; gi < groups.length; gi++) {
 			var grp = groups[gi];
 			var rowY = PAD.top + gi * ROW;
 			var barY = rowY + 20;
 
-			text(svg, 0, rowY + 13, grp.label, null, {
+			text(svg, 0, rowY + 12, grp.label, null, {
 				fill: 'var(--text-primary)',
 				fontSize: '13px',
 				fontWeight: '650'
 			});
-			text(svg, 0, rowY + 28, grp.n + ' klaim · risiko ' + grp.state, null, {
+			text(svg, 0, rowY + 27, grp.n + ' klaim · risiko ' + grp.state, null, {
 				fill: 'var(--text-muted)',
-				fontSize: '11.5px'
+				fontSize: '11px'
 			});
 
-			// observed range as a floating bar
 			var rx = x(grp.min);
 			var rw = x(grp.max) - rx;
 			var range = el('path', {
@@ -411,34 +450,27 @@
 			}, svg);
 			range.setAttribute('aria-hidden', 'true');
 
-			// mean marker — a hairline crossing the range bar
+			/* penanda mean: garis rambut tegak lurus terhadap bar rentang */
 			var mx = x(grp.mean);
 			el('line', {
-				x1: mx, y1: barY - 7, x2: mx, y2: barY + BAR + 7,
+				x1: mx, y1: barY - 6, x2: mx, y2: barY + BAR + 6,
 				stroke: 'var(--text-primary)',
 				strokeWidth: '2',
 				'stroke-linecap': 'round'
 			}, svg);
 
-			text(svg, mx, barY - 12, 'rata-rata ' + fmt(grp.mean, 3), null, {
-				fill: 'var(--text-primary)',
-				fontSize: '11px',
-				fontWeight: '600',
-				textAnchor: 'middle'
-			});
-
-			// value + range in the right-hand column
-			text(svg, W - PAD.right + 12, barY + BAR / 2 + 4, fmt(grp.mean, 3), 'value-label', {});
-			text(svg, W - PAD.right + 12, barY + BAR / 2 + 20, fmt(grp.min, 2) + '–' + fmt(grp.max, 2), null, {
+			/* mean di kolom kanan, rentang di bawahnya */
+			text(svg, PAD.left + plotW + 14, barY + BAR / 2 + 1, fmt(grp.mean, 3), 'value-label', {});
+			text(svg, PAD.left + plotW + 14, barY + BAR / 2 + 16, fmt(grp.min, 2) + '–' + fmt(grp.max, 2), null, {
 				fill: 'var(--text-muted)',
 				fontSize: '10.5px'
 			});
 
 			var hit = el('rect', {
 				x: PAD.left,
-				y: barY - 8,
+				y: barY - 9,
 				width: plotW,
-				height: BAR + 16,
+				height: BAR + 18,
 				fill: 'transparent',
 				tabindex: '0',
 				role: 'img'
@@ -450,19 +482,22 @@
 				', nilai klaim ' + grp.value
 			);
 
-			var describe = function (evt) {
-				var box = svg.getBoundingClientRect();
-				var px = evt.clientX ? evt.clientX - box.left : mx;
-				var py = evt.clientY ? evt.clientY - box.top : barY;
-				tip.show(px, py, grp.label + ' — ' + grp.n + ' klaim', [
-					{ color: grp.color, value: fmt(grp.mean, 3), label: 'rata-rata skor fraud' },
-					{ value: fmt(grp.min, 2) + '–' + fmt(grp.max, 2), label: 'rentang terobservasi' },
-					{ value: grp.value, label: 'nilai klaim' }
-				]);
-			};
+			/* capture per-iterasi: tanpa ini setiap bar melihat grup terakhir. */
+			var describe = (function (grp, mx, barY) {
+				return function (evt) {
+					var box = svg.getBoundingClientRect();
+					var px = evt.clientX ? evt.clientX - box.left : mx;
+					var py = evt.clientY ? evt.clientY - box.top : barY;
+					tip.show(px, py, grp.label + ' — ' + grp.n + ' klaim', [
+						{ color: grp.color, value: fmt(grp.mean, 3), label: 'rata-rata skor fraud' },
+						{ value: fmt(grp.min, 2) + '–' + fmt(grp.max, 2), label: 'rentang terobservasi' },
+						{ value: grp.value, label: 'nilai klaim' }
+					]);
+				};
+			})(grp, mx, barY);
 
-			hit.addEventListener('pointermove', describe);
 			hit.addEventListener('pointerenter', describe);
+			hit.addEventListener('pointermove', describe);
 			hit.addEventListener('focus', describe);
 			hit.addEventListener('pointerleave', tip.hide);
 			hit.addEventListener('blur', tip.hide);
@@ -481,7 +516,6 @@
 			var kind = holder.getAttribute('data-chart');
 
 			var draw = function () {
-				// clear previous render, keep the tooltip node
 				var svgs = holder.querySelectorAll('svg');
 				Array.prototype.forEach.call(svgs, function (s) {
 					s.remove();

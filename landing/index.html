@@ -495,10 +495,12 @@
 								(A_sem)</span
 							>
 						</div>
-						<div class="chart-holder" id="channel-chart" data-chart="channel"></div>
+						<div class="chart-scroll">
+							<div class="chart-holder" id="channel-chart" data-chart="channel"></div>
+						</div>
 						<p class="chart-note">
-							Nilai kanal pada sumber tidak diasumsikan berjumlah 1 (rentang jumlah 0,04–0,94
-							terobservasi). Sumbu Y = nilai kontribusi kanal.
+							Sumbu X = nilai kontribusi kanal. Nilai kanal pada sumber tidak diasumsikan berjumlah 1
+							(rentang jumlah 0,04–0,94 terobservasi), sehingga sumbu diberi tahu secara eksplisit.
 						</p>
 						<details class="table-toggle">
 							<summary>Tampilkan data sebagai tabel</summary>
@@ -552,10 +554,14 @@
 							rentangnya tidak saling tumpang tindih, sehingga ambang triase bekerja sebagai pagar
 							bukan sebagai sekadar angka potong.
 						</p>
-						<div class="chart-holder" id="score-chart" data-chart="score"></div>
+						<div class="chart-scroll">
+							<div class="chart-holder" id="score-chart" data-chart="score"></div>
+						</div>
 						<p class="chart-note">
-							Sumbu Y = skor fraud 0–1. Ambang antrean: Hijau &lt; 0,35 · Kuning 0,35–0,70 · Merah
-							&gt; 0,70.
+							Sumbu X = skor fraud 0–1. Ambang antrean: Hijau &lt; 0,35 · Kuning 0,35–0,70 · Merah
+							&gt; 0,70. Garis putus-putus pada grafik menandai kedua ambang tersebut. Lima klaim
+							ber skor 0,71–0,79 tetap diantrekan review: anomali tinggi belum tentu fraud, sehingga
+							ambang triase adalah pagar masuk, bukan vonis.
 						</p>
 						<details class="table-toggle">
 							<summary>Tampilkan data sebagai tabel</summary>
@@ -567,6 +573,7 @@
 											<th scope="col">Antrean</th>
 											<th scope="col" class="num">Jumlah</th>
 											<th scope="col" class="num">Rata-rata skor</th>
+											<th scope="col" class="num">Rentang terobservasi</th>
 											<th scope="col" class="num">Nilai klaim</th>
 										</tr>
 									</thead>
@@ -575,18 +582,21 @@
 											<td>Auto-clear</td>
 											<td class="num">240</td>
 											<td class="num">0,086</td>
+											<td class="num">0,04–0,14</td>
 											<td class="num">Rp 2.685.550.000</td>
 										</tr>
 										<tr>
 											<td>Review</td>
 											<td class="num">24</td>
 											<td class="num">0,591</td>
+											<td class="num">0,40–0,79</td>
 											<td class="num">Rp 279.950.000</td>
 										</tr>
 										<tr>
 											<td>Escalate</td>
 											<td class="num">36</td>
 											<td class="num">0,869</td>
+											<td class="num">0,80–0,95</td>
 											<td class="num">Rp 561.150.000</td>
 										</tr>
 									</tbody>
@@ -602,7 +612,7 @@
 				<div class="wrap">
 					<div class="section-head">
 						<p class="section-kicker">04 · Camouflage</p>
-						<h2>Kamuflase topologis: 왜 sindikat terlihat seperti faskes baik</h2>
+						<h2>Kamuflase topologis: mengapa sindikat terlihat seperti faskes baik</h2>
 						<p>
 							Pelaku kecurangan terorganisir sudah membaca celah audit. Mereka merancang rantai
 							rujukan yang terlihat patuh — lewat FKTP yang sah, jadwal yang tidak melampaui kuota,
@@ -829,7 +839,7 @@
 							<h3 style="font-size: 1.15rem">Komposisi portofolio menurut antrean</h3>
 							<p style="margin-top: 0.6rem; color: var(--text-secondary); font-size: 0.93rem">
 								Mayoritas nilai portofolio ada pada klaim yang lolos otomatis. Justru itu
-								point-nya: filter harus cukup tajam untuk tidak mengganggu, cukup tajam untuk
+								poin-nya: filter harus cukup tajam untuk tidak mengganggu, cukup tajam untuk
 								tidak membocorkan.
 							</p>
 							<div class="table-scroll" style="margin-top: 1.1rem">

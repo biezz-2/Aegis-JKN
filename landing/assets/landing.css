@@ -669,10 +669,24 @@ td strong {
 /* ---------- charts ---------- */
 
 .chart-card {
+	position: relative;
 	background: var(--surface-1);
 	border: 1px solid var(--border);
 	border-radius: var(--radius-lg);
 	padding: 1.5rem;
+}
+
+/* narrow viewports scroll the chart sideways instead of squashing it */
+.chart-scroll {
+	margin-top: 1.25rem;
+	overflow-x: auto;
+	overflow-y: hidden;
+	scrollbar-width: thin;
+}
+
+.chart-scroll .chart-holder {
+	margin-top: 0;
+	min-width: 660px;
 }
 
 .chart-card h3 {
@@ -708,7 +722,6 @@ td strong {
 }
 
 .chart-holder {
-	margin-top: 1.25rem;
 	position: relative;
 }
 
@@ -835,6 +848,17 @@ td strong {
 	margin-top: 0.9rem;
 	font-size: 0.78rem;
 	color: var(--text-dim);
+}
+
+.threshold {
+	stroke: var(--text-dim);
+	stroke-width: 1;
+	stroke-dasharray: 4 3;
+}
+
+.threshold-label {
+	fill: var(--text-dim);
+	font-size: 10px;
 }
 
 /* ---------- diagram ---------- */
