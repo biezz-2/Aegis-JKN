@@ -1,0 +1,20 @@
+{
+  "kind": "allOf",
+  "predicates": [
+    {
+      "kind": "element",
+      "query": { "text": "Aegis-JKN" },
+      "state": "visible"
+    },
+    {
+      "kind": "element",
+      "query": { "text": "Setujui Klaim" },
+      "state": "visible"
+    },
+    {
+      "kind": "console",
+      "level": "error",
+      "absent": true
+    }
+  ]
+}
