@@ -1,0 +1,59 @@
+{
+ "embedded_n": 300,
+ "embedded_cols": [
+  "claim_id",
+  "tanggal",
+  "faskes_id",
+  "dokter_raw",
+  "dokter_id",
+  "pasien_raw",
+  "pasien_id",
+  "biaya_rp",
+  "los_hari",
+  "layanan",
+  "diagnosis_raw",
+  "diagnosis_code",
+  "prosedur_raw",
+  "prosedur_code",
+  "obat",
+  "rujukan",
+  "alasan_berobat",
+  "narasi_rekam_medis",
+  "umpan_balik_pasien",
+  "sentimen",
+  "skor_sentimen",
+  "kontradiksi_narasi",
+  "risiko",
+  "skor_fraud",
+  "status",
+  "sindikat",
+  "modus",
+  "sinyal_shap",
+  "kontribusi_saluran",
+  "alasan",
+  "is_fraud"
+ ],
+ "embedded_md5": "1ee357b79e87d44f2aefdf4f5dceacfb",
+ "v21_md5": "ae5d68de2888dfc490ed7b2527d1d492",
+ "emb_ids": [
+  "KLM001",
+  "KLM002",
+  "KLM003"
+ ],
+ "emb_ids_n": 300,
+ "emb_has_is_fraud": true,
+ "emb_has_sindikat": true,
+ "emb_has_skor_fraud": true,
+ "n_common": 300,
+ "diffs": {},
+ "emb_status": {
+  "escalate": 36,
+  "review": 24,
+  "auto_clear": 240
+ },
+ "emb_is_fraud": {
+  "1": 36,
+  "0": 264
+ },
+ "emb_total_biaya": 3526650000
+}

@@ -1,0 +1,34 @@
+=== phantom rows, raw fields ===
+KLM004 | Pasien: P08 (Maryam Yusuf) | Obat: '—'
+    Prosedur ICD-9-CM: '81.52 - Hemiarthroplasty panggul'
+    Narasi: 'Fraktur kolum femur; dilakukan hemiarthroplasty. Toleransi oral baik, pasien pulang dalam kondisi stabil.'
+KLM005 | Pasien: P09 (Idrus Hakim) | Obat: '—'
+    Prosedur ICD-9-CM: '81.52 - Hemiarthroplasty panggul'
+    Narasi: 'Fraktur kolum femur; dilakukan hemiarthroplasty. Toleransi oral baik, pasien pulang dalam kondisi stabil.'
+KLM006 | Pasien: P10 (Kartini Ibrahim) | Obat: '—'
+    Prosedur ICD-9-CM: '81.52 - Hemiarthroplasty panggul'
+    Narasi: 'Fraktur kolum femur; dilakukan hemiarthroplasty. Toleransi oral baik, pasien pulang dalam kondisi stabil.'
+
+identical narratives: True
+cols: ['Tanggal', 'Skor Sentimen', 'Narasi Rekam Medis', 'Biaya Rp', 'Risiko', 'LOS hari', 'Prosedur ICD-9-CM', 'Dokter', 'Sinyal SHAP', 'Modus', 'Rujukan', 'Faskes', 'Sindikat', 'Skor Fraud', 'Obat', 'Umpan Balik Pasien', 'Kontradiksi Narasi', 'Pasien', 'Alasan Berobat', 'Status', 'Alasan', 'Catatan', 'Sentimen', 'Layanan', 'Kontribusi Saluran', 'Diagnosis ICD-10', 'Name', '_notion_page_id', '_last_edited']
+
+=== identifier-ish tokens in Narasi ===
+
+=== doctor/patient/faskes samples ===
+Pasien: P21 (Rahmat Fauzi) | P28 (Anisa Fitriani) | P29 (Bambang Riyanto)
+Dokter: D13 (dr. Mulyadi Santoso, Sp.B) | D16 (dr. Prasetyo Utomo, Sp.JP)
+Faskes: RS_G | RS_J
+
+=== t-sweep conflicts ===
+  t=0.05  conflicts=58   acc=80.67%
+  t=0.1   conflicts=38   acc=87.33%
+  t=0.15  conflicts=4    acc=98.67%
+  t=0.16  conflicts=0    acc=100.00%
+  t=0.2   conflicts=0    acc=100.00%
+  t=0.25  conflicts=0    acc=100.00%
+  t=0.3   conflicts=0    acc=100.00%
+  t=0.31  conflicts=1    acc=99.67%
+  t=0.35  conflicts=14   acc=95.33%
+  t=0.4   conflicts=29   acc=90.33%
+  t=0.5   conflicts=48   acc=84.00%
+  t=0.6   conflicts=57   acc=81.00%

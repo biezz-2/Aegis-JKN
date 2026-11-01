@@ -1,0 +1,209 @@
+=== 00-EXECUTIVE-SUMMARY.md 2
+  L114  SharePoint             | 1 | Unduh Participant Guide secara manual (SharePoint 403 untuk bot) dan petakan daftar berkas wajib "Submit project akhir"; verifikasi akun portal 
+  L121  SmartClaim             | 8 | Tulis paragraf posisi terhadap sistem yang sudah berjalan: SmartClaim JKN, VPK, AAK, tim PK-JKN, dan AI 650.000 berkas per hari dengan indikasi 
+=== 01-governance.md 4
+  L46   tetapiOUN              | §7 aturan 4 / `04-evidence-matrix.md` §8 butir 5 - estimasi penghematan harus membedakan potensi koreksi, nilai diputuskan, dana menyelamatkan | L70
+  L77   ResearchGate           | §3 L19–25 + §4 (E-04, E-05) vs isi `dataset_research_live.csv` | Baris 19 (blog `allalliedhealthschools.com`, Kritis), 21 (Kontan, Kritis), 26 (Rese
+  L176  adaMinimal             | P1-1 | `Minta review klinis atas skenario dan kode diagnosis/prosedur.` | L65 | **Tidak** | Tidak adaMinimal jumlah skenario, identitas reviewer, at
+  L314  rumahTBS               Prioritas P3 (rumahTBS):
+=== 03-architecture.md 25
+  L72   featureScore           featureScore*0.38 + semanticScore*0.41
+  L72   semanticScore          featureScore*0.38 + semanticScore*0.41
+  L73   topologyScore          + topologyScore*(-0.12) + 0.3
+  L103  OasisDashboard         → OasisDashboard). src/app/page.tsx:4-15
+  L105  OasisDashboard         OasisDashboard, Glossary, ShortcutsHint
+  L105  ShortcutsHint          OasisDashboard, Glossary, ShortcutsHint
+  L109  TypeScript             **Stack as-built:** Next.js 16 App Router (`package.json:61`) + React 19 + TypeScript strict (`tsconfig.json:11`) + Tailwind v4 + shadcn/Radix + Recha
+  L131  ScoredRow              | G-15 | `camouflageDetected` pada output skor | data-contracts.md:156, 260 | **TIDAK ADA** | `src/components/mhgsl/data-uploader.tsx:44-50` (ScoredRo
+  L131  topologyScore          | G-15 | `camouflageDetected` pada output skor | data-contracts.md:156, 260 | **TIDAK ADA** | `src/components/mhgsl/data-uploader.tsx:44-50` (ScoredRo
+  L131  featureScore           | G-15 | `camouflageDetected` pada output skor | data-contracts.md:156, 260 | **TIDAK ADA** | `src/components/mhgsl/data-uploader.tsx:44-50` (ScoredRo
+  L131  semanticScore          | G-15 | `camouflageDetected` pada output skor | data-contracts.md:156, 260 | **TIDAK ADA** | `src/components/mhgsl/data-uploader.tsx:44-50` (ScoredRo
+  L131  fusionScore            | G-15 | `camouflageDetected` pada output skor | data-contracts.md:156, 260 | **TIDAK ADA** | `src/components/mhgsl/data-uploader.tsx:44-50` (ScoredRo
+  L131  riskLabel              | G-15 | `camouflageDetected` pada output skor | data-contracts.md:156, 260 | **TIDAK ADA** | `src/components/mhgsl/data-uploader.tsx:44-50` (ScoredRo
+  L141  benchmarkMHGSL         | G-25 | Metrik benchmarkMHGSL | (02 §5.4, 00:47) | **DEVIASI** | `src/components/mhgsl/data.ts:264` AUPRC 0,91; `data.ts:289` precision 0,92; `data.t
+  L145  ShortcutsHint          | G-29 | Struktur frontend sesuai doc | system-design.md:163-200 | **DEVIASI** | `src/app/page.tsx:4-15` (12 import) vs hierarki doc: tidak ada `Gloss
+  L145  GlossaryButton         | G-29 | Struktur frontend sesuai doc | system-design.md:163-200 | **DEVIASI** | `src/app/page.tsx:4-15` (12 import) vs hierarki doc: tidak ada `Gloss
+  L147  twFeed                 | G-31 | Metadata rute simulasi | (truthfulness) | **DEVIASI** | `src/app/simulasi/page.tsx:7` "Hasil simulasi 300 langkah … mistral-oasis:24b"; `src/
+  L147  rdFeed                 | G-31 | Metadata rute simulasi | (truthfulness) | **DEVIASI** | `src/app/simulasi/page.tsx:7` "Hasil simulasi 300 langkah … mistral-oasis:24b"; `src/
+  L217  syndicateHitRate       | syndicateHitRate 100% | `data.ts:518` | literal |
+  L266  menghapusProjection    Rev 1.0 menghapusProjection teknis berikut. Yang hilang = regresi potensial, karena mekanisme yang hilang justru **yang membuktikan klaim**.
+  L361  losHari                grep -n "losHari" src/types/dataset.ts                   → :18 losHari: number
+  L361  losHari                grep -n "losHari" src/types/dataset.ts                   → :18 losHari: number
+  L362  losHari                node parse 300 record → losHari==0 : 109 (rawat jalan 106 + rawat inap 3)
+  L373  profileId              grep -n "profileId" src/components/mhgsl/data.ts          → 0 (kontrak data-contracts.md:113)
+  L374  camouflageDetected     grep -n "camouflageDetected" src/components/mhgsl/data-uploader.tsx → 0 (kontrak :156, :260)
+=== 04-data-quality.md 1
+  L373  JavaScript             Contoh nilai: `undefined · RJ-2026-436 · 2026-06-03`. Ini kebocoran nilai JavaScript ke data, bukan FKTP yang tidak dikenal. Rasio lain: 161 baris "Pu
+=== 05-evidence.md 9
+  L120  ResearchGate           | 14 | researchgate.net/publication/369679967_ANALISIS_KEJADIAN_UPCODING… | Tidak (403) | Ya | Ya (2023) | PARTIAL | Kanonik: Bina Generasi Jurnal Kes
+  L134  fullTextXML            | Baris 10 (arsitektur MHGSL) | EuropePMC REST fullTextXML PMC11061682 | 3 kanal (topologi/fitur/semantik), meta-path, common path sampling, GCN spesi
+  L167  volumePlaceholder      ### 5.2 Tahun 2026 dan "volumePlaceholder"
+  L170  untukHmengisi          - Namun **dua rujukan 2026/2025 tidak dapat dilacak sama sekali**: "MHINAGSL - IEEE Access 2025, multiview heterogeneous, F1 0,92" dan "studi triase a
+  L171  volumePlaceholder      - Pola "volumePlaceholder" juga muncul pada baris 10: nama dataset paper "Medical-A/Medical-B" disebut "Medical-1/Medical-2" oleh review - indikasi re
+  L289  fullTextXML            | 3 | https://www.cell.com/heliyon/fulltext/S2405-8440(24)06076-6 | 22 Okt 2026 | 403. Full text via https://www.ebi.ac.uk/europepmc/webservices/rest/
+  L297  ahtFQsoAAAAJ           | 11 | https://acch.kpk.go.id/id/component/content/article?id=672:korupsi-dalam-pelayanan-kesehatan-di-era-jaminan-kesehatan-na | 22 Okt 2026 | **GAGA
+  L302  ylwNQM                 | 16 | https://www.liputan6.com/health/read/8270049/healthkathon-2026-digelar-bpjs-kesehatan-dorong-pemanfaatan-ai-untuk-perkualitas | 22 Okt 2026 | H
+  L312  PatuhRadar             | 26 | https://api.github.com/repos/Irham-Najib-Azimul-Qowi/PatuhRadar | 22 Okt 2026 | Repo ada, **description null** → klaim "data UMP 38 provinsi (2
+=== 06-graph-mhgsl.md 15
+  L25   FastAPI                **Implementasi**: Ada implementasi PyTorch/NumPy yang substantif di `mechine-learning-deep-learning` (notebook 22 sel + backend FastAPI dengan `torch_
+  L75   danAJAX                Nama resmi dalam `mhgsl-theory.md:3` adalah *"Multi-Channel Heterogeneous Graph Structure Learning"* dan proposal menyebut *"Multi-Hop Graph Structure
+  L117  DeepSHAP               | F12 | `ŷ = φ0 + φ_top + φ_feat + φ_sem + φ_shared + Σφ_attr` | `mhgsl-theory.md:205-207` | Additivitas SHAP hanya berlaku jika output model benar-be
+  L118  DeepSHAP               | F13 | `φ_c(x) = Σ_{S⊆C\{c}} ...` | `mhgsl-theory.md:211-213` | Rumus Shapley **benar**. Tapi implementasi **bukan Shapley**: `backend/src/models/mhg
+  L138  StandardScaler         Reproduksi persis cell 7 dengan data nyata (n=300, `X_clean` hasil StandardScaler atas 34 fitur). Angka di bawah adalah **edge berarah** (2× pasangan 
+  L169  FastAPI                | `mechine-learning-deep-learning/backend/src/api/main.py` | **REAL** (FastAPI, train/predict/oasis) | `:180` `/api/model/train`, `:245` `/api/model/p
+  L419  DeepSHAP               - **Masalah matematis mendasar** (F12): additivitas SHAP terhadap probabilitas sigmoid tidak holds. Output sigmoid non-linear → dekomposisi additif ha
+  L420  SubgraphX              - **Bisa dilakukan dengan benar**: shap `DeepExplainer` pada logit, dengan 4 "feature groups" = kanal (via masker kanal), memberi φ yang additif terha
+  L437  NilaiAtribut           | C-09 | "NilaiAtribut Mikhail SHAP" / "SHAP Attribution Decomposition Engine" | `Aegis-JKN/docs/algorithms/mhgsl-theory.md:144`; `:203-213`; `backend
+  L437  DeepSHAP               | C-09 | "NilaiAtribut Mikhail SHAP" / "SHAP Attribution Decomposition Engine" | `Aegis-JKN/docs/algorithms/mhgsl-theory.md:144`; `:203-213`; `backend
+  L443  setiapMSA              | C-15 | "Seb-saving ratusan miliar rupiah DJS setiapMSA" | `corpus/11-archive-proposal.md:30` | Ekstrapolasi dari 300 klaim sintetis tanpa basis rate
+  L448  GradientBoosting       | C-20 | "Berbasis bukti / zero data leakage terverifikasi & reproduktibilitas seed deterministik 100%" | `corpus/11-archive-proposal.md:398` | **Seed
+  L500  CamouflageSignature    | Baris dengan `φ_top` negatif | **0 / 300** (syarat CamouflageSignature) | dihitung dari data |
+  L521  FastAPI                | Implementasi | **Ada dan substansif** di `mechine-learning-deep-learning` (notebook + backend FastAPI/PyG). Repo web `Aegis-JKN` = **mock presentati
+  L524  DeepSHAP               | XAI per-saluran | **Secara teknis mungkin** (DeepSHAP pada logit, channel masking), **implementasi sekarang bukan SHAP** (L2 norm) dan additivitas t
+=== 06-methodology.md 1
+  L380  GradientBoosting       | **1. Baseline ML & DL** | 2–3 | XGBoost + SMOTE, MLP, fitur graf turunan | MLP (PyTorch) ada di notebook sel 13; `pipeline.py` punya feature enginee
+=== 07-generator.md 6
+  L71   TreeExplainer          | `Sinyal SHAP` | metode penjelasan (SHAP TreeExplainer/GradientSHAP) + ambang "sinyal dominan" | 240 dari 300 baris (semua baris `low`) berisi teks l
+  L71   GradientSHAP           | `Sinyal SHAP` | metode penjelasan (SHAP TreeExplainer/GradientSHAP) + ambang "sinyal dominan" | 240 dari 300 baris (semua baris `low`) berisi teks l
+  L79   memDnama               | `Sentimen` | ambang `Skor Sentimen` → kategori | 58 baris kategori `netral` punya skor **≠ 0** (rentang 0,05–0,15); tidak ada ambang tertulis yang m
+  L182  JavaScript             | R22 kolom Rujukan bebas artefak `undefined` | MEDIUM | 28 | KLM278, KLM276, KLM282, KLM268, KLM298, KLM297, KLM295, KLM262, … | Literal `undefined` 
+  L220  mmHg                   | Kontrol hipertensi; tekanan darah 138/84 mmHg. Terapi amlodipin dilanjutkan, edukasi garam diberikan. | 19 |
+  L235  mmHg                   1. **Templat narasi memuat angka yang tidak ada di kolom mana pun.** "tekanan darah 138/84 mmHg" dan "HbA1c 7,1 persen" muncul di 19 dan 33 baris, tap
+=== 08-frontend.md 18
+  L54   ProblemSection         | `/` | `src/app/page.tsx:1-101` | 101 | Navbar, Hero, ProblemSection, Architecture, MultiChannelGraph, Simulation, MathFormulas, Comparison, FraudRin
+  L54   MultiChannelGraph      | `/` | `src/app/page.tsx:1-101` | 101 | Navbar, Hero, ProblemSection, Architecture, MultiChannelGraph, Simulation, MathFormulas, Comparison, FraudRin
+  L54   MathFormulas           | `/` | `src/app/page.tsx:1-101` | 101 | Navbar, Hero, ProblemSection, Architecture, MultiChannelGraph, Simulation, MathFormulas, Comparison, FraudRin
+  L54   FraudRing              | `/` | `src/app/page.tsx:1-101` | 101 | Navbar, Hero, ProblemSection, Architecture, MultiChannelGraph, Simulation, MathFormulas, Comparison, FraudRin
+  L54   BackToTop              | `/` | `src/app/page.tsx:1-101` | 101 | Navbar, Hero, ProblemSection, Architecture, MultiChannelGraph, Simulation, MathFormulas, Comparison, FraudRin
+  L239  twFeed                 | **Text channel / social media 48 posting (24 Twitter + 24 Reddit)** | Ya - `10-simulation-dataset.md:104-108,172` | Ada: `oasis-data.ts` (twFeed 24,
+  L239  rdFeed                 | **Text channel / social media 48 posting (24 Twitter + 24 Reddit)** | Ya - `10-simulation-dataset.md:104-108,172` | Ada: `oasis-data.ts` (twFeed 24,
+  L372  statusOrder            const statusOrder: ("active" | "next" | "future")[] = ["active", "next", "future", "future"];
+  L373  statusOrder            const status = statusOrder[i] ?? "future";
+  L390  TreeExplainer          | | | "Modul XAI (SHAP per-saluran & TreeExplainer)" | **Tidak ada** TreeExplainer. `SHAP_ATTRS` (`data.ts:340-346`) adalah 5 konstanta. | ❌ **Fabrika
+  L390  TreeExplainer          | | | "Modul XAI (SHAP per-saluran & TreeExplainer)" | **Tidak ada** TreeExplainer. `SHAP_ATTRS` (`data.ts:340-346`) adalah 5 konstanta. | ❌ **Fabrika
+  L434  createdAt              model User { id, email, name, createdAt, updatedAt }    // :16-22
+  L434  updatedAt              model User { id, email, name, createdAt, updatedAt }    // :16-22
+  L435  authorId               model Post { id, title, content, published, authorId, createdAt } // :24-32
+  L435  createdAt              model Post { id, title, content, published, authorId, createdAt } // :24-32
+  L444  PrismaClient           | `src/lib/db.ts` | `src/lib/db.ts:7` export `db` (PrismaClient, singleton global) | **0 importer** di seluruh `src/` dan `examples/` - kode mati |
+  L492  mengPresentasikan      11. **Pisahkan yang synthetic vs real secara tegas di UI**: `/simulasi` memakai dataset v1 (100 klaim) tetapi mengPresentasikan diri "v2.1" - tambahka
+  L506  localStorage           19. **Perbaiki `navigation.md`**: hapus "uploader di Navbar" (`:12`, `:110`), "Metode C tempel" (`:114`), ubah "3 detik" → "2,2 detik" (`:78`), "8 sek
+=== 09-security.md 11
+  L20   dataPoints             Tiga temuan TINGGI lain: (1) nol header keamanan di `next.config.ts`/`vercel.json`; (2) `Caddyfile.txt` meneruskan ke port hulu yang dipilih **paramet
+  L92   NextResponse           1  import { NextResponse } from "next/server";
+  L95   NextResponse           4    return NextResponse.json({ message: "Hello, world!" });
+  L163  PostHog                | PostHog / Mixpanel / Amplitude / Hotjar / Clarity / Datadog / Segment / GA (`gtag`) | Nol | grep yang sama -&gt; 0 hit |
+  L173  tidakURITY             **Catatan risiko telemetry (belum terjadi).** Bila branch Vercel Analytics di-merge, aplikasi health-sector akan mengirim page-view ke pihak ketiga. I
+  L306  includeSubDomains      | SEC-02 | Nol header keamanan: tanpa CSP, HSTS, X-Frame-Options/frame-ancestors, X-Content-Type-Options, Referrer-Policy | `next.config.ts:3-9` (tida
+  L359  rateLimit              grep -rn "rateLimit\|rate-limit" src/
+  L361  rniE                   grep -rniE "sentry|posthog|mixpanel|datadog|amplitude|hotjar|gtag" src/ public/ package.json
+  L362  rniE                   grep -rniE "PSTV|PNK0|FKL0|nik|tanggal lahir|nomor kartu|alamat" src/ public/
+  L363  rniE                   grep -rniE "fetch\(|axios|openai|generativeai|googleapis" src/
+  L382  PostHog                2. Tidak ada telemetry pihak ketiga di HEAD (Sentry, PostHog, GA, Mixpanel, Datadog, Hotjar: nol). Commit Vercel Analytics `f13b4a3` ada di branch ter
+=== 10-competition.md 24
+  L18   SmartClaim             1. **Tidak ada pembeda dari sistem anti-fraud BPJS yang sudah ada.** Tidak ada pengakuan atas SmartClaim JKN, VPK, AAK, MedIDS, maupun AI verifikasi 6
+  L25   SmartClaim             | S1 | Nol pengakuan terhadap sistem anti-fraud BPJS yang sudah ada (SmartClaim JKN, VPK, AAK, MedIDS, AI 650k berkas/hari) | **Kritis** | Tuduhan "me
+  L53   JavaScript             - Halaman resmi `https://healthkathon.bpjs-kesehatan.go.id/` diakses 22 Okt 2026: HTTP 200, tetapi seluruh konten dirender oleh JavaScript; teks yang 
+  L56   SharePoint             - `Participant Guide` (PDF di SharePoint) **HTTP 403 untuk bot** - dicatat sebagai **artefak primer tidak terbaca**, bukan isi yang diklaim.
+  L257  SmartClaim             | K-1 | "**SmartClaim JKN sudah melakukan triase klaim berbasis AI**" | Fungsi identik dengan premis proposal; juri akan menyebut "ini fp yang sudah a
+  L257  SmartClaim             | K-1 | "**SmartClaim JKN sudah melakukan triase klaim berbasis AI**" | Fungsi identik dengan premis proposal; juri akan menyebut "ini fp yang sudah a
+  L257  SmartClaim             | K-1 | "**SmartClaim JKN sudah melakukan triase klaim berbasis AI**" | Fungsi identik dengan premis proposal; juri akan menyebut "ini fp yang sudah a
+  L257  SmartClaim             | K-1 | "**SmartClaim JKN sudah melakukan triase klaim berbasis AI**" | Fungsi identik dengan premis proposal; juri akan menyebut "ini fp yang sudah a
+  L279  SmartClaim             | **SmartClaim JKN** | "Sistem verifikasi klaim berbasis AI yang membantu verifikator mempercepat proses verifikasi klaim JKN" - *clerical check / pem
+  L311  SmartClaim             | Pemeriksaan per-klaim | SmartClaim JKN: clerical check otomatis | Rule engine Tier-1 | **Tidak ada** |
+  L319  SmartClaim             **Konsekuensi #1 (paling penting).** Saat ini cara baca juri atas proposal ini adalah: "kami membuat sistem deteksi fraud klaim JKN" - persis deskrips
+  L323  SmartClaim             > *"Aegis-JKN bukan pengganti SmartClaim JKN, VPK, atau AAK. SmartClaim JKN melakukan pemeriksaan administratif per berkas; VPK dan AAK melakukan peme
+  L323  SmartClaim             > *"Aegis-JKN bukan pengganti SmartClaim JKN, VPK, atau AAK. SmartClaim JKN melakukan pemeriksaan administratif per berkas; VPK dan AAK melakukan peme
+  L327  SmartClaim             **Konsekuensi #3 - ubah demo agar terlihat Know-how.** Alur demo wajib menampilkan: "SmartClaim sudah jalan; Aegis melihat apa yang SmartClaim tidak b
+  L327  SmartClaim             **Konsekuensi #3 - ubah demo agar terlihat Know-how.** Alur demo wajib menampilkan: "SmartClaim sudah jalan; Aegis melihat apa yang SmartClaim tidak b
+  L362  SharePoint             6. **`Participant Guide` (PDF SharePoint) HTTP 403 untuk bot** - dicatat sebagai **artefak primer tidak terbaca**. Jika tim memiliki akses manual, **w
+  L399  SmartClaim             | C8 | Paragraf posisi terhadap SmartClaim JKN / VPK / AAK | ❌ tidak ada | Tim | 27 Okt | **YA (paling kritik)** |
+  L422  SmartClaim             | A2 | **Konsep "Topological Camouflage"** | `:136-138` | Tinggi - ini *thesis* pembeda dari SmartClaim | **RESTORE** (dengan bukti, bukan klaim) |
+  L425  SmartClaim             | A5 | **Thesis "kecurangan terorganisir = masalah jaringan, bukan masalah baris data"** | `:166` | **Sangat tinggi** - ini kalimat yang membedakan da
+  L457  SharePoint             | P0-1 | **Unduh Participant Guide secara manual** (SharePoint 403 untuk bot), petakan daftar berkas wajib "Submit project akhir" | §7.1.6 | Checklist
+  L458  SmartClaim             | P0-2 | **Tulis §2.2 baru: "Posisi terhadap Sistem Verifikasi yang Sudah Berjalan"** - SmartClaim JKN, VPK, AAK, AI 650k/hari & 5%, Tim PK-JKN, Perme
+  L497  NalarAI                IDN Times "BPJS Kesehatan Gelar Healthkathon 2026" (14 Agu 2026) · RRI "BPJS Kesehatan Luncurkan Empat Inovasi Layanan Digital Berbasis AI" (3 Feb 202
+  L498  SharePoint             **Tidak terbaca / tidak ditemukan:** `Participant Guide` Healthkathon (SharePoint PDF, HTTP 403) · rubrik & bobot penilaian (tidak ada endpoint publik
+  L498  ResearchGate           **Tidak terbaca / tidak ditemukan:** `Participant Guide` Healthkathon (SharePoint PDF, HTTP 403) · rubrik & bobot penilaian (tidak ada endpoint publik
+=== 13-text-channel.md 4
+  L21   TypeScript             3. **Modul LLM yang dijanjikan tidak ada.** Tidak ada SDK Gemini di `package.json`, tidak ada `configs/text.yaml`, tidak ada `configs/leakage.yaml`, t
+  L299  mmHg                   x19  'Kontrol hipertensi; tekanan darah 138/84 mmHg...'
+  L328  JavaScript             - **28 baris** kolom `Rujukan` berisi literal `undefined` (mis. `"undefined · RJ-2026-436 · 2026-06-03"`). Ini kebocoran nilai JavaScript `undefined` 
+  L393  TypeScript             | **Offline fallback (toggle `text.yaml`)** | ⚠️ Disebut, tidak ada | `configs/text.yaml` sebagai "Toggle LLM (on/off)"; `architecture_full.md:101` | 
+=== 14-language.md 2
+  L104  exPlanations           | SHAP | SHapley Additive exPlanations | 40 | `09-draft-hub.md:113`, `10-simulation-dataset.md:110`, `14-index.md:156` (lewat nama kolom, bukan defini
+  L475  exPlanations           | SHAP | SHapley Additive exPlanations | `01-proposal.md:91` | 40 kemunculan; definisioki hanya di `12-archive-architecture.md:38` |
+=== 15-code-quality.md 27
+  L12   JavaScript             Aegis-JKN adalah **aplikasi visualisasi Next.js 16 (App Router) purely client-side** yang menampilkan data sintetis hardcoded. Ia bukan platform ML. M
+  L18   TypeScript             **Kelas B - Quality gate yang dimatikan.** `next.config.ts` menyetel `typescript.ignoreBuildErrors: true`, sehingga `npm run build` **lolos** padahal 
+  L73   devDependencies        | Jest / Vitest / Playwright / Cypress | **TIDAK** | - | **Tidak ada di devDependencies** |
+  L77   buildCommand           | `vercel.json` | Ya | `{ framework: "nextjs" }` | Minimal, tanpa buildCommand/testCommand |
+  L77   testCommand            | `vercel.json` | Ya | `{ framework: "nextjs" }` | Minimal, tanpa buildCommand/testCommand |
+  L96   CreateVM               `git ls-files tests` → hanya 3 file `.sh` tersebut. **Ketiganya adalah tes harness build milik platform z-ai, bukan tes Aegis-JKN, dan semuanya mengga
+  L123  ChildItem              Get-ChildItem -Recurse -Include *.py,requirements.txt,pyproject.toml
+  L145  mathTitle              src/components/mhgsl/i18n.tsx(386,3): error TS2561: Object literal may only specify known properties, but 'mathTitle2b' does not exist in type 'Dict'.
+  L145  mathTitle              src/components/mhgsl/i18n.tsx(386,3): error TS2561: Object literal may only specify known properties, but 'mathTitle2b' does not exist in type 'Dict'.
+  L146  mathTitle              src/components/mhgsl/i18n.tsx(734,3): error TS2561: Object literal may only specify known properties, but 'mathTitle2b' does not exist in type 'Dict'.
+  L146  mathTitle              src/components/mhgsl/i18n.tsx(734,3): error TS2561: Object literal may only specify known properties, but 'mathTitle2b' does not exist in type 'Dict'.
+  L147  roiTitle               src/components/mhgsl/roadmap.tsx(71,50): error TS2551: Property 'roiTitle3' does not exist on type 'Dict'. Did you mean 'roiTitle1'?
+  L147  roiTitle               src/components/mhgsl/roadmap.tsx(71,50): error TS2551: Property 'roiTitle3' does not exist on type 'Dict'. Did you mean 'roiTitle1'?
+  L148  roiTitle               src/components/mhgsl/roadmap.tsx(71,71): error TS2551: Property 'roiTitle4' does not exist on type 'Dict'. Did you mean 'roiTitle1'?
+  L148  roiTitle               src/components/mhgsl/roadmap.tsx(71,71): error TS2551: Property 'roiTitle4' does not exist on type 'Dict'. Did you mean 'roiTitle1'?
+  L155  lagiNeeded             - **2× TS2578** - `@ts-expect-error` yang tidak lagiNeeded karena `as React.CSSProperties` sudah menyelesaikan masalahnya. Direktif basi.
+  L172  setState               Kelima pola adalah "setState sinkron dalam effect" → menyebabkan cascading render. Bukan crash, tapi performance. Tidak ada `console` warning/error ya
+  L184  TypeScript             Finished TypeScript config validation in 683ms ...
+  L269  parseCSV               **Catatan `02-architecture.md` §3.1** ("lapisan ingest dan validasi": validasi tipe, rentang, kode, nilai wajib; tandai missing; buat identitas analit
+  L333  openGraph              | `/dataset` | Ya (`src/app/dataset/page.tsx`) | ❌ | ❌ | ❌ | ✅ lengkap: title, description, keywords (10), openGraph | `○ Static` |
+  L334  openGraph              | `/simulasi` | Ya (`src/app/simulasi/page.tsx`) | ❌ | ❌ | ❌ | ✅ lengkap: title, description, keywords (7) - **tanpa openGraph** | `○ Static` |
+  L352  kontennyaWizard        | JSON-LD structured data | ❌ Tidak ada (padahal kontennyaWizard-of-Oz indeksi-friendly, schema.org `SoftwareApplication`/`Dataset` cocok) |
+  L416  CodeMirror             - Estimasi ukuran node_modules tanpa 21 dep tersebut: penghematan signifikan - `@mdxeditor/editor` (~2 MB dengan seluruh tree CodeMirror), `@tanstack/
+  L418  devDep                 - **Duplikasi lain:** `prisma` ada di `dependencies` (bukan `devDependencies`) sekaligus `@prisma/client` - `prisma` CLI seharusnya devDep.
+  L472  noEmit                 npx tsc --noEmit          → exit 1, 8 error
+  L522  ChildItem              Get-ChildItem -Recurse -Include *.py,requirements.txt,pyproject.toml
+  L526  noEmit                 npx tsc --noEmit                             # exit 1, 8 error
+=== 16-red-team.md 6
+  L260  HybridGNN              | *Scientific Reports* 2025 - HINormer / HybridGNN / RE-GraphSAGE pada klaim medico | `10.1038/s41598-025-22910-6` · PMID `41285829` | Baseline GNN ya
+  L260  GraphSAGE              | *Scientific Reports* 2025 - HINormer / HybridGNN / RE-GraphSAGE pada klaim medico | `10.1038/s41598-025-22910-6` · PMID `41285829` | Baseline GNN ya
+  L320  HybridGNN              | 8 | *"Kalau sudah ada paper-nya, dan sudah ada GNN yang lebih kuat (F1 84%), kenapa Anda menang?"* | "Kami tidak klaim menang secara algoritmik - ka
+  L354  HybridGNN              | P2-1 | **Ganti metrik utama.** | AUPRC pada prevalensi 3-7% + kurva PR + operating point, bukan akurasi. Sertakan baseline Apples-to-apples: XGBoost
+  L413  HybridGNN              | B2 | *Fraud detection and explanation in medical claims using GNN architectures* (HINormer, HybridGNN, RE-GraphSAGE). Sci Rep 2025 | `10.1038/s41598
+  L413  GraphSAGE              | B2 | *Fraud detection and explanation in medical claims using GNN architectures* (HINormer, HybridGNN, RE-GraphSAGE). Sci Rep 2025 | `10.1038/s41598
+=== 17-roadmap.md 10
+  L72   OpenAI                 | G-13 | Kredensial API nyata tersimpan di disk pada `backend/.env` (`NOTION_TOKEN` 50 karakter, `OPENAI_API_KEY` 27 karakter, plus `DATABASE_URL` Pos
+  L83   textContradictions     | G-18 | Angka "textContradictions: 8" vs data aktual 12 klaim kontradiktif | data | `src/components/mhgsl/data.ts:515` `textContradictions: 8`; `04_a
+  L85   PrismaClient           | G-20 | Tidak ada log audit atau jejak keputusan verifikator (human-in-the-loop) | code | `src/app/api/route.ts:3` mengembalikan `{"message":"Hello, 
+  L94   instrumentSUS          | G-29 | Tidak ada uji penerimaan antarmuka terdokumentasi; klaim SUS 82,5 belum ada artefaknya | UX/governance | 00-dashboard.md:49 ("SUS 82,5" belum
+  L174  klaimAUPRC             | B-03 | G-06, G-17| Kill anti-leakage guard | code/data | P0 | Evaluasi sirkular; klaimAUPRC tidak sah | ML engineer | M | B-02 | `configs/leakage.ya
+  L186  OpenAI                 | B-15 | G-13| Rotasi kredensial API + pisahkan `.env` | code/security | P0 | Token Notion & kunci OpenAI live di disk; risiko penyalahgunaan bila per
+  L218  saatQgshow             | R-09 | Demo gagal di tempat (jaringan/offline/dependency) | Teknis | Sedang | Tinggi | Tinggi | Backup: video mp4 + PDF + repo offline; re-run demo 
+  L345  ReviewLog              ├── prisma/schema.prisma         # + ReviewLog, AuditEvent, Claim
+  L345  AuditEvent             ├── prisma/schema.prisma         # + ReviewLog, AuditEvent, Claim
+  L403  notebookUsesIt         | MS-14 | **Konsolidasikan sumber label** ke `backend/src/data/labels.py` (`build_target`) dan hapus definisi label ganda di notebook | `labels.py` + 
+=== 18-ux.md 8
+  L85   activeMethod           | `/` | Comparison | Kalimat kesimpulan radar "**{activeMethod} unggul di seluruh 5 metrik**" dipakai untuk **metode apa pun** yang dipilih - claim pa
+  L120  TabsTrigger            | `/dataset` | Halaman | **Hydration mismatch di React** - `<button>` di dalam `<button>` (TabsTrigger berisi button?) - konsol browser: "In HTML, %s 
+  L120  TabsTrigger            | `/dataset` | Halaman | **Hydration mismatch di React** - `<button>` di dalam `<button>` (TabsTrigger berisi button?) - konsol browser: "In HTML, %s 
+  L176  biayaRp                | "Alasan audit" menyebut "Rp58 jt" | Rp 58 jt | **biayaRp = 52.300.000** pada KLM001/002/003; KLM173 = 58.850.000; KLM030 = 5.800.000 | `src/data/not
+  L208  scrollY                - **Keyboard shortcut juga jalan**: `ArrowRight` → tahap 1→2, `ArrowLeft` → 2→1, `s` → scroll ke simulasi (scrollY 3709), `g` → scroll ke graf (scroll
+  L208  scrollY                - **Keyboard shortcut juga jalan**: `ArrowRight` → tahap 1→2, `ArrowLeft` → 2→1, `s` → scroll ke simulasi (scrollY 3709), `g` → scroll ke graf (scroll
+  L226  antarArtifact          | Home `Simulation` (4 tahap, skor 0.32→0.94, SHAP 5 atribut) | `SIM_STEPS`, `SHAP_ATTRS` di `src/components/mhgsl/data.ts:304-346` | **Statis** (nara
+  L389  WhatsApp               | **P3** | 21. **Ganti ikon & `openGraph.url` placeholder** (`https://z-cdn.chatglm.cn/...`, `https://chat.z.ai`) dengan aset sendiri | 20 menit | Tam
+=== 19-consistency.md 2
+  L178  TreeExplainer          | XAI | SHAP TreeExplainer + GradientSHAP, per-saluran | 166-169 / 169-172 |
+  L178  GradientSHAP           | XAI | SHAP TreeExplainer + GradientSHAP, per-saluran | 166-169 / 169-172 |
+=== 20-repo-artifact-integrity.md 3
+  L15   TypeScript             Peringatan kedua yang lebih serius untuk jadwal kompetisi: **hampir tidak ada artefak reproducibility yang ada di disk.** Tidak ada `data/`, tidak ada
+  L92   senatorsDeterministiknya | Skrip generator klaim | **Tidak ada** | Tidak ada di kedua repo | 300 baris ada sebagai CSV, tapi cara senatorsDeterministiknya belum terdokumentasi
+  L111  TypeScript             Bentuk data yang paling ephemeral ada di `src/data/notion-datasets.ts`: array TypeScript yang di-hardcode. Tidak ada pipeline yang menghasilkannya, ti
+=== 21-numbers-of-record.md 11
+  L97   NotionBV               | Baris dengan kolom LOS kosong | 0 (semua berisi angka; 109 baris bernilai 0) | S1/S2 | "109 baris LOS hari kosong" (S12 `03-dataset-registry.md:78`)
+  L113  riskScore              | Skor fraud KLM001 | S2: 0,94 | `data.ts:418` riskScore D01: 0,94 | `fraud-ring.tsx` KLM001-003: skor 0,94 | COCOK, tetapi atribusinya keliru (lihat 
+  L203  riskScore              | `data.ts:418,438` | riskScore D01 0,94; "Rasio K29.7 ke PCI 100%"; "+4,2sigma"; "4,2x peer" | Profil investigasi | TIDAK. sigma dan 4,2x tidak punya
+  L206  riskScore              | `data.ts:448,451,453,455,459,463,466` | RS_A riskScore 0,95; "19 klaim" (aktual 29); "78% tagihan PCI"; "4,2x baseline"; "+137% lonjakan"; "8 klaim/
+  L208  featureEdges           | `data.ts:502-518` (`DATASET_METRICS`) | featureEdges 4563; fraudClaimsV1 14; groundTruthSyndicates 5; socialPosts 48; syndicateHitRate 100; textCont
+  L208  fraudClaimsV           | `data.ts:502-518` (`DATASET_METRICS`) | featureEdges 4563; fraudClaimsV1 14; groundTruthSyndicates 5; socialPosts 48; syndicateHitRate 100; textCont
+  L208  groundTruthSyndicates  | `data.ts:502-518` (`DATASET_METRICS`) | featureEdges 4563; fraudClaimsV1 14; groundTruthSyndicates 5; socialPosts 48; syndicateHitRate 100; textCont
+  L208  socialPosts            | `data.ts:502-518` (`DATASET_METRICS`) | featureEdges 4563; fraudClaimsV1 14; groundTruthSyndicates 5; socialPosts 48; syndicateHitRate 100; textCont
+  L208  syndicateHitRate       | `data.ts:502-518` (`DATASET_METRICS`) | featureEdges 4563; fraudClaimsV1 14; groundTruthSyndicates 5; socialPosts 48; syndicateHitRate 100; textCont
+  L208  textContradictions     | `data.ts:502-518` (`DATASET_METRICS`) | featureEdges 4563; fraudClaimsV1 14; groundTruthSyndicates 5; socialPosts 48; syndicateHitRate 100; textCont
+  L208  syndicateHitRate       | `data.ts:502-518` (`DATASET_METRICS`) | featureEdges 4563; fraudClaimsV1 14; groundTruthSyndicates 5; socialPosts 48; syndicateHitRate 100; textCont

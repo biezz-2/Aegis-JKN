@@ -1,0 +1,215 @@
+
+==============================================================================
+1. KONTRIBUSI SALURAN: KONSTAN DI DALAM MODUS?
+==============================================================================
+modus -> jumlah nilai T/F/S berbeda dalam modus tersebut:
+   anomali_frekuensi      n_baris=12  pola_berbeda=3 -> [('0.12', '0.11', '0.09'), ('0.15', '0.22', '0.18'), ('0.18', '0.16', '0.13')]
+   biaya_markup           n_baris=1   pola_berbeda=1 -> [('0.15', '0.36', '0.30')]
+   cloning                n_baris=2   pola_berbeda=1 -> [('0.24', '0.34', '0.2')]
+   drug_diversion         n_baris=3   pola_berbeda=3 -> [('0.22', '0.33', '0.31'), ('0.22', '0.34', '0.26'), ('0.23', '0.34', '0.31')]
+   excessive_usage        n_baris=6   pola_berbeda=1 -> [('0.26', '0.30', '0.24')]
+   iur_biaya              n_baris=4   pola_berbeda=1 -> [('0.16', '0.18', '0.49')]
+   overbilling            n_baris=4   pola_berbeda=2 -> [('0.12', '0.35', '0.15'), ('0.15', '0.22', '0.18')]
+   phantom_billing        n_baris=3   pola_berbeda=1 -> [('0.32', '0.35', '0.26')]
+   prolonged_stay         n_baris=4   pola_berbeda=2 -> [('0.15', '0.22', '0.18'), ('0.2', '0.32', '0.22')]
+   readmission_berulang   n_baris=6   pola_berbeda=1 -> [('0.28', '0.32', '0.26')]
+   repeat_billing         n_baris=4   pola_berbeda=1 -> [('0.30', '0.34', '0.28')]
+   unbundling             n_baris=6   pola_berbeda=1 -> [('0.29', '0.3', '0.26')]
+   upcoding               n_baris=5   pola_berbeda=3 -> [('0.13', '0.18', '0.35'), ('0.15', '0.24', '0.29'), ('0.31', '0.32', '0.31')]
+
+low (tanpa modus): pola T/F/S unik = 71
+
+==============================================================================
+2. KONTRADIKSI: 'ALASAN' MENYEBUT LOS > 0 PADA BARIS LOS=0
+==============================================================================
+baris LOS=0 yang 'Alasan'-nya menyebut LOS>0: 0
+contoh lengkap 2 baris:
+
+baris LOS=0 dengan kata 'LOS' di Alasan: 0 / 109
+tanpa kata 'LOS': 109 ['KLM263', 'KLM294', 'KLM274', 'KLM284', 'KLM261', 'KLM273', 'KLM299', 'KLM272', 'KLM277', 'KLM289', 'KLM291', 'KLM275', 'KLM292', 'KLM288', 'KLM290']
+
+==============================================================================
+3. MEDIAN LOS DIKLAIM vs AKTUAL
+==============================================================================
+median aktual (LOS>0) per dx:
+   E11.9    n=4   median=1.0
+   I21.9    n=20  median=5.0
+   J18.9    n=37  median=5
+   K29.7    n=5   median=2
+   K35.8    n=31  median=3
+   K40.9    n=29  median=3
+   K80.2    n=29  median=4
+   N20.0    n=9   median=3
+   O80      n=9   median=2
+   S72.0    n=18  median=6.5
+   KLM015: Alasan 'median pneumonia 5 hari' | dx=J18.9 median aktual=5 | LOS baris=14 | COCOK
+   KLM127: Alasan 'median 5' | dx=I21.9 median aktual=5.0 | LOS baris=9 | COCOK
+   KLM129: Alasan 'median 7' | dx=S72.0 median aktual=6.5 | LOS baris=2 | BEDA
+   KLM123: Alasan 'tarif 8,2 jt' | dx=K40.9 median aktual=3 | LOS baris=5 | n/a
+
+==============================================================================
+4. APAKAH LABEL BISA DITURUNKAN DARI T+F+S?
+==============================================================================
+baris yang label Risiko TIDAK bisa diturunkan dari T+F+S: 14
+    ('KLM133', 0.32, 'medium', 'low', 0.44)
+    ('KLM129', 0.55, 'high', 'medium', 0.72)
+    ('KLM123', 0.55, 'high', 'medium', 0.64)
+    ('KLM124', 0.55, 'high', 'medium', 0.71)
+    ('KLM126', 0.55, 'high', 'medium', 0.62)
+    ('KLM128', 0.55, 'high', 'medium', 0.63)
+    ('KLM131', 0.32, 'medium', 'low', 0.46)
+    ('KLM127', 0.55, 'high', 'medium', 0.68)
+    ('KLM136', 0.32, 'medium', 'low', 0.45)
+    ('KLM130', 0.55, 'high', 'medium', 0.62)
+    ('KLM132', 0.32, 'medium', 'low', 0.42)
+    ('KLM125', 0.55, 'high', 'medium', 0.67)
+    ('KLM134', 0.32, 'medium', 'low', 0.48)
+    ('KLM135', 0.32, 'medium', 'low', 0.4)
+
+Ringkasan selisih Skor Fraud - (T+F+S):
+   low     n=240 min=-0.000 maks=+0.000 tanpa_koinciden=0
+   medium  n=10  min=-0.020 maks=+0.160 tanpa_koinciden=10
+   high    n=14  min=+0.000 maks=+0.170 tanpa_koinciden=9
+   fraud   n=36  min=-0.030 maks=+0.040 tanpa_koinciden=23
+
+==============================================================================
+5. 'ALASAN' PADA BARIS LOW: VARIASI
+==============================================================================
+jumlah baris low: 240 | pola template unik: 23
+   [54] NORMAL: dx KN ditindaki N — pasangan klinis standar; biaya RpN.N ≈ tarif paket (rasio N); LOS N hari dalam rentang median; obat dispensed sesuai dx; narasi rekam medis konsisten dengan penag
+   [23] NORMAL: dx KN ditangani dengan prosedur N — pasangan klinis standar; biaya RpN dalam rentang tarif paket; LOS N hari dalam rentang median; obat dispensed sesuai dx; narasi rekam medis konsis
+   [21] NORMAL: dx EN ditangani konservatif tanpa prosedur (sesuai guideline); biaya rawat jalan RpN.N dalam rentang median; terapi obat sesuai standar; narasi rekam medis konsisten dengan penagihan
+   [20] NORMAL: pneumonia (JN) diterapi medis tanpa prosedur invasif — konsisten; biaya RpN.N dalam rentang; LOS N hari = median dx; obat (antibiotik + nebulizer) sesuai; tanpa kontradiksi.
+   [11] NORMAL: dx JN ditangani konservatif tanpa prosedur (sesuai guideline); biaya rawat jalan RpN.N dalam rentang median; terapi obat sesuai standar; narasi rekam medis konsisten dengan penagihan
+   [11] NORMAL: dx NN ditangani konservatif tanpa prosedur (sesuai guideline); biaya rawat jalan RpN.N dalam rentang median; terapi obat sesuai standar; narasi rekam medis konsisten dengan penagihan
+
+==============================================================================
+6. BIAYA: POLA TEMPLATE
+==============================================================================
+kombinasi (dx,proc,biaya) unik: 162
+   [10] E11.9    —        Rp1,150,000
+   [9] E11.9    —        Rp1,100,000
+   [8] I10      —        Rp1,000,000
+   [7] I10      —        Rp950,000
+   [7] E11.9    —        Rp1,250,000
+   [6] N39.0    —        Rp1,050,000
+   [6] E11.9    —        Rp1,050,000
+   [6] K29.7    —        Rp700,000
+   [6] J45.9    —        Rp2,150,000
+   [5] J18.9    —        Rp4,100,000
+   [5] K80.2    51.23    Rp15,500,000
+   [4] J45.9    —        Rp1,000,000
+
+==============================================================================
+7. TANGGAL: DISTRIBUSI & DUPLIKASI
+==============================================================================
+tanggal paling banyak: [('2026-05-21', 5), ('2026-05-18', 5), ('2026-01-22', 5), ('2026-06-02', 4), ('2026-06-26', 4)]
+tanggal dipakai 1x: 45
+(tanggal,pasien) dengan >1 klaim: 9
+    P31 (Dedi Kurniawan) 2026-02-14 ['KLM184', 'KLM123']
+    P21 (Rahmat Fauzi) 2026-03-09 ['KLM102', 'KLM101']
+    P22 (Sri Wahyuni) 2026-03-10 ['KLM104', 'KLM103']
+    P12 (Maya Sari) 2026-04-18 ['KLM007', 'KLM008']
+    P13 (Nadia Rahmawati) 2026-04-19 ['KLM010', 'KLM009']
+    P14 (Odi Setiawan) 2026-04-20 ['KLM012', 'KLM011']
+    P23 (Tono Sugiarto) 2026-05-18 ['KLM261', 'KLM260']
+    P40 (Maya Anggraini) 2026-05-21 ['KLM265', 'KLM266']
+    P38 (Kirana Maheswari) 2026-06-20 ['KLM291', 'KLM130']
+
+==============================================================================
+8. LOS: POLA PER LAYANAN
+==============================================================================
+   rawat inap: {'4': 56, '3': 46, '2': 27, '5': 21, '6': 21, '7': 3, '8': 4, '12': 1, '9': 3, '1': 3, '0': 3, '14': 1}
+   rawat jalan: {'0': 106, '1': 5}
+
+==============================================================================
+9. RUJUKAN: POLA
+==============================================================================
+{'Puskesmas + no rujukan + tanggal': 161, 'undefined': 28, 'kunjungan langsung (tanpa rujukan)': 111}
+nomor rujukan duplikat: {'RJ-2026-401': 2, 'RJ-2026-402': 2}
+
+==============================================================================
+10. JUMLAH KLAIM PER PASIEN (P01-P40) - konsistensi dengan tabel v100
+==============================================================================
+   P01: 7
+   P02: 7
+   P03: 7
+   P04: 6
+   P05: 7
+   P06: 6
+   P07: 7
+   P08: 7
+   P09: 6
+   P10: 7
+   P11: 7
+   P12: 7
+   P13: 8
+   P14: 8
+   P15: 9
+   P16: 7
+   P17: 7
+   P18: 6
+   P19: 7
+   P20: 7
+   P21: 9
+   P22: 8
+   P23: 8
+   P24: 8
+   P25: 9
+   P26: 10
+   P27: 12
+   P28: 7
+   P29: 7
+   P30: 7
+   P31: 9
+   P32: 7
+   P33: 7
+   P34: 7
+   P35: 7
+   P36: 8
+   P37: 7
+   P38: 7
+   P39: 8
+   P40: 8
+total: 300
+
+==============================================================================
+11. KONSISTENSI SINYAL SHAP vs MODUS
+==============================================================================
+   anomali_frekuensi      varian SHAP=9
+       3 episode rajal ISK dalam 30 hari; antibiotik injeksi tiap kunjungan
+       3 episode rajal asma dalam 30 hari dengan komponen nebulizer tiap kunj
+       3 episode rajal gastritis dalam 30 hari
+   biaya_markup           varian SHAP=1
+       biaya 4x tarif paket apendektomi (Rp6,8 jt) tanpa komponen rincian pen
+   cloning                varian SHAP=1
+       dua klaim berbeda pasien dengan rekam medis identik (LOS/biaya/dx/proc
+   drug_diversion         varian SHAP=3
+       qty insulin 12 pen dalam satu episode (dosis rasional 1-2 pen/bulan); 
+       qty insulin 24 pen per episode; pola mirip pasien P16 (dokter & faskes
+       qty insulin 30 pen (dosis rasional 1-2 pen/bulan); refill mingguan di 
+   excessive_usage        varian SHAP=1
+       kunjungan mingguan terprogram 6 minggu berturut-turut dengan pemeriksa
+   iur_biaya              varian SHAP=1
+       umpan balik pasien mengindikasikan pungutan di luar JKN (iur biaya) pa
+   overbilling            varian SHAP=4
+       biaya 2,6x tarif reparasi hernia (Rp8,2 jt); menunggu rincian komponen
+       biaya 5,6x tarif rujukan apendektomi kelas 3
+       biaya rajal asma 3x median dx sama; komponen nebulizer berulang
+   phantom_billing        varian SHAP=1
+       3 klaim tanggal & biaya identik; LOS 1 hari untuk hemiarthroplasty may
+   prolonged_stay         varian SHAP=4
+       LOS 12 hari vs median pneumonia 5 hari; biaya/hari meningkat setelah h
+       LOS 14 hari (median pneumonia: 5 hari); biaya/hari meningkat setelah h
+       LOS 2 hari pasca hemiarthroplasty mayor (median 7) — pemulangan sangat
+   readmission_berulang   varian SHAP=1
+       3 episode rawat inap dx sama dalam 30 hari dengan interval presisi 7-8
+   repeat_billing         varian SHAP=1
+       dua klaim identik sempurna (tanggal, dx, prosedur, biaya) untuk pasien
+   unbundling             varian SHAP=2
+       klaim pecahan dari paket operasi (unbundling); LOS 0 padat kunjungan b
+       paket kolesistektomi dipecah menjadi 2 klaim tanggal sama; total biaya
+   upcoding               varian SHAP=3
+       O80 (persalinan spontan) ditagih 74.1 (seksio sesarea); tanpa indikasi
+       PCI tanpa indikasi kardiologis pada dx E11.9; tanpa antiplatelet (M10)
+       inkonsistensi diagnosis-prosedur (K29.7 gastritis -> 00.66 PCI); biaya

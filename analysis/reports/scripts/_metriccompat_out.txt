@@ -1,0 +1,19 @@
+=== (1) +28,6% arithmetic ===
+  0.9142/0.71 - 1 = 28.7606%  -> proposal says +28,6%
+  (0.91 - 0.71)/0.71 = 28.1690%  (using hardcoded MHGSL 0.91)
+  0.9142/0.71 = 1.287606
+
+=== (2) what TP/FP ratios equal 94.12% exactly? ===
+
+=== (3) are the three proposal metrics mutually compatible on ONE column? ===
+  P=36 N=264
+   th= 0.14 TP= 36 FP= 28 prec=56.2500% FPR= 10.61%  <-- FPR=10.6%
+   th= 0.80 TP= 36 FP=  0 prec=100.0000% FPR=  0.00%  <-- precision=100%, FPR=0%
+  (blank above = no threshold satisfies more than one of the three claims)
+
+=== (4) payload feed sizes / LLM sample count ===
+  twFeed: type=list len=24
+  rdFeed: type=list len=24
+  gtSent: len=3 sample=62
+  twSent: len=3 sample=62
+  rdSent: len=3 sample=62

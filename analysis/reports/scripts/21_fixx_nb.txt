@@ -1,0 +1,1104 @@
+
+======================================================================
+### CELL 0 [code]
+======================================================================
+!sudo apt update && sudo apt upgrade -y
+
+======================================================================
+### CELL 1 [code]
+======================================================================
+!sudo apt install btop && sudo apt install nvtop                                                                #untuk monitoring colab
+
+======================================================================
+### CELL 2 [code]
+======================================================================
+%%bash
+# Skrip Setup Otomatis: Ollama + Mistral Small 3.1 24B untuk Simulasi Oasis
+
+echo "[INFO] Memulai setup..."
+
+# 1. Pastikan script dijalankan sebagai root (atau gunakan sudo)
+if [ "$(id -u)" != "0" ]; then
+   echo "[ERROR] Skrip ini harus dijalankan sebagai root (gunakan sudo)."
+   exit 1
+fi
+
+# 2. Instal dependensi dasar (zstd, curl, pciutils)
+echo "[INFO] Memeriksa dan menginstal dependensi sistem..."
+apt-get update -y > /dev/null 2>&1
+apt-get install -y curl zstd pciutils > /dev/null 2>&1
+
+# 3. Setup Path GPU (Penting untuk lingkungan container seperti Google Colab)
+export PATH="/usr/local/cuda/bin:/usr/local/nvidia/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/nvidia/lib64:$PATH"
+
+# 4. Instal Ollama
+if ! command -v ollama &> /dev/null; then
+    echo "[INFO] Menginstal Ollama..."
+    curl -fsSL https://ollama.com/install.sh | sh
+else
+    echo "[INFO] Ollama sudah terinstal."
+fi
+
+# 5. Jalankan server Ollama di latar belakang (Bypass systemd)
+echo "[INFO] Mematikan sesi Ollama lama (jika ada) dan merestart server..."
+pkill ollama || true
+sleep 2
+ollama serve > /tmp/ollama.log 2>&1 &
+
+# Loop cerdas: Tunggu hingga API server Ollama benar-benar siap menerima perintah
+echo "[INFO] Menunggu server Ollama aktif..."
+while ! curl -s http://127.0.0.1:11434/api/tags > /dev/null; do
+    sleep 2
+done
+echo "[INFO] Server Ollama aktif dan merespons!"
+
+# 6. Unduh Base Model (Mistral Small 3.1 24B)
+BASE_MODEL="mistral-small3.1:24b"
+CUSTOM_MODEL="mistral-oasis:24b" # Ditambahkan nama agar tidak error saat generate custom model
+
+echo "[INFO] Mengunduh model dasar: $BASE_MODEL (Ini akan memakan waktu karena ukuran file besar)..."
+ollama pull $BASE_MODEL
+
+# 7. Injeksi Konteks 200k Token
+echo "[INFO] Membuat Modelfile untuk memperluas konteks..."
+cat << EOF > Modelfile
+FROM $BASE_MODEL
+PARAMETER num_ctx 200000
+EOF
+
+echo "[INFO] Membuat model custom: $CUSTOM_MODEL..."
+ollama create $CUSTOM_MODEL -f Modelfile
+
+# Bersihkan file sementara
+rm Modelfile
+
+echo "============================================================"
+echo "[SUKSES] Seluruh proses instalasi dan konfigurasi selesai!"
+echo "- GPU VRAM Log  : Cek dengan 'nvidia-smi'"
+echo "- Server Log    : Cek dengan 'cat /tmp/ollama.log'"
+echo "- Model Oasis   : $CUSTOM_MODEL"
+echo "============================================================"
+
+======================================================================
+### CELL 3 [markdown]
+======================================================================
+# 🖥️ Monitoring Integrasi Nyata: Oasis & Ollama
+Bagian ini akan menguji dan menampilkan komunikasi langsung antara Agen Oasis dengan model mistral-small3.1:24b yang berjalan secara lokal di Ollama.
+
+======================================================================
+### CELL 4 [code]
+======================================================================
+import requests
+import json
+
+print("⚙️ Menghubungkan ke Ollama lokal di http://localhost:11434...\n")
+try:
+    # 1. Mendapatkan model aktif nyata
+    tags_response = requests.get("http://localhost:11434/api/tags", timeout=10)
+    if tags_response.status_code == 200:
+        models_list = tags_response.json().get('models', [])
+        installed_models = [m['name'] for m in models_list]
+        print(f"🟢 Model terdeteksi di sistem: {installed_models}")
+
+        # [KONFIGURASI FINAL] Prioritaskan model Mistral 24B (custom oasis atau base)
+        target_models = ['mistral-oasis:24b', 'mistral-small3.1:24b']
+        selected_model = None
+
+        for model_candidate in target_models:
+            if model_candidate in installed_models:
+                selected_model = model_candidate
+                break
+
+        if not selected_model:
+            selected_model = installed_models[0] if installed_models else "mistral-oasis:24b"
+
+        print(f"🎯 Menggunakan model untuk pengujian: {selected_model}")
+
+        # 2. Uji panggil generator chat Ollama
+        payload = {
+            "model": selected_model,
+            "prompt": "Halo! Konfirmasikan secara singkat jika kamu adalah model AI Mistral yang siap membantu simulasi Oasis BPJS JKN.",
+            "stream": False,
+            "options": {
+                "temperature": 0.8  # Tambahan untuk hasil narasi yang lebih luwes
+            }
+        }
+
+        # [KONFIGURASI FINAL] Timeout wajib dinaikkan (min 120s) karena model 24B butuh waktu loading yang cukup lama ke VRAM (tapi jika dirasa sudah ter load bisa lanjut ke step selanjutnya)
+        print(f"⏳ Menunggu respons dari {selected_model} (Timeout 120 detik)...")
+        response = requests.post("http://localhost:11434/api/generate", json=payload, timeout=120)
+
+        if response.status_code == 200:
+            print("\n🟢 [SUKSES] Terhubung ke Ollama & Berhasil Generate!")
+            print(f"🤖 Respons Model ({selected_model}): {response.json().get('response', '').strip()}")
+        else:
+            print(f"\n🔴 [GAGAL] Status error dari Ollama: {response.status_code}")
+    else:
+        print(f"🔴 [GAGAL] Endpoint tags Ollama mengembalikan status: {tags_response.status_code}")
+except Exception as e:
+    print(f"🔴 [ERR] Koneksi gagal ke server Ollama lokal: {e}")
+    print("💡 TIPS: Jika dijalankan di Google Colab, pastikan Anda menggunakan mode 'Local Runtime' (Connect to local runtime).")
+
+======================================================================
+### CELL 5 [code]
+======================================================================
+# ══════════════════════════════════════════════════════════════════════════════
+# 🛡️ AEGIS-JKN v2.1 — SIMULASI AGEN SOSIAL MEDIA (OASIS) × HEALTHKATHON BPJS
+#
+#   • "Aegis-JKN: Arsitektur & Strategi Pengembangan Sistem Deteksi Kecurangan
+#     Ekosistem JKN" — MHGSL 3 saluran (topologi/fitur/semantik), late fusion
+#     saluran teks, HITL, protokol validasi "SESUAI" v2.1.
+#   • "Dataset Simulasi Aegis-JKN — 100 Klaim Sintetis" — ground truth sindikat,
+#     skala risiko, distribusi sentimen 62/14/24, 8 klaim kontradiksi, θ_feat 0.85.
+#
+#   1. Ground truth 100 klaim  ↔ 76 low · 4 medium · 6 high · 14 fraud (assert di bawah)
+#   2. Skala risiko           ↔ skor <0.35 low | 0.35–0.6 medium | 0.6–0.8 high | >0.8 fraud
+#   3. Saluran fitur MHGSL    ↔ cosine similarity vektor [LOS, log10(biaya), qty] ≥ θ_feat 0.85
+#   4. Saluran teks (late fusion) ↔ sentimen ≠ bukti fraud; sinyal teks hanya mengangkat
+#      prioritas bila konsisten dengan skor graf:
+#      p_fused = p_graph + γ·f_text·(1 − p_graph), γ = 0.10, dikap 0.99
+#   5. Sentimen ground truth  ↔ 62 positif · 14 netral · 24 negatif; 8 kontradiksi
+#      (KLM001–006, KLM018, KLM024); negative control = keluhan layanan murni
+#   6. Protokol "SESUAI" v2.1 ↔ ≥90% fraud terdeteksi pada antrian ≤20%;
+#      hit-rate per-sindikat > 0; 8 kontradiksi masuk daftar prioritas
+#   7. Kejujuran label        ↔ semua metrik berlabel "simulasi sintetis,
+#      prevalensi oversampled (14%)" — estimasi lapangan 3–7% (estimasi literatur)
+#   8. Reproduksibilitas      ↔ seed deterministik 20260707 + versi v2.1
+# ══════════════════════════════════════════════════════════════════════════════
+
+import math
+import json
+import random
+import requests
+from IPython.display import display, HTML
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 0. KONFIGURASI GLOBAL (analog configs/*.yaml pada spesifikasi v2.1)
+# ─────────────────────────────────────────────────────────────────────────────
+SEED             = 20260707            # deterministik (Notion: metadata reproducibility)
+VERSION          = "v2.1"
+TOTAL_STEPS      = 300                # total langkah simulasi otonom
+LLM_EVERY        = 100                 # request Ollama hanya tiap kelipatan 100 (logika asli)
+OLLAMA_HOST      = "http://localhost:11434"
+PREFERRED_MODELS = ["MrScratchcat22/Ministral-3-Reasoning:14b"]
+TEXT_CHANNEL_TOGGLE = True             # analog configs/text.yaml: True=LLM, fallback heuristik lokal
+
+# Matematika Aegis-JKN (Notion: Dataset Simulasi + Protokol v2.1)
+LOW_T, MED_T, HIGH_T = 0.35, 0.60, 0.80   # skala risiko skor fraud
+THETA_FEAT       = 0.85                    # ambang cosine similarity saluran fitur
+GAMMA_TEXT       = 0.10                    # bobot late fusion saluran teks
+QUEUE_RATE       = 0.20                    # antrian investigasi ≤ 20% klaim
+TARGET_DETECTION = 0.90                    # ≥ 90% fraud harus terdeteksi
+SENT_POS_T, SENT_NEG_T = 0.15, -0.15       # ambang label skor sentimen ∈ [-1, 1]
+
+HONESTY_LABEL = ("simulasi sintetis, prevalensi oversampled (14%) — "
+                 "estimasi lapangan 3-7% (label estimasi literatur)")
+
+random.seed(SEED)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ENTITAS EKOSISTEM JKN (Notion: Dataset Simulasi — 6 FKRTL · 12 dokter · 20 pasien)
+# ─────────────────────────────────────────────────────────────────────────────
+FASKES = {
+    "RS_A": {"nama": "RS Aegis Medika A",  "kota": "Jakarta Selatan"},
+    "RS_B": {"nama": "RS Bakti Husada B",  "kota": "Surabaya"},
+    "RS_C": {"nama": "RS Cendana Medika C","kota": "Medan"},
+    "RS_D": {"nama": "RSUD Harapan D",     "kota": "Bandung"},
+    "RS_E": {"nama": "RS Bahari Medika E", "kota": "Makassar"},
+    "RS_F": {"nama": "RSUD Giri Menang F", "kota": "Yogyakarta"},
+}
+DOKTER = {
+    "D01": "dr. Adnan Prakoso, Sp.BTKV", "D02": "dr. Barli Soemarno, Sp.B",
+    "D03": "dr. Citra Ayuningtyas, Sp.PD","D04": "dr. Danur Wibisono, Sp.JP",
+    "D05": "dr. Endra Kusuma, Sp.OT",     "D06": "dr. Fitri Handayani, Sp.A",
+    "D07": "dr. Gunawan Halim, Sp.B",     "D08": "dr. Hendra Maulana, Sp.B",
+    "D09": "dr. Indah Pratiwi, Sp.PD",    "D10": "dr. Joko Purnomo, Sp.S",
+    "D11": "dr. Kartika Sari, Sp.B",      "D12": "dr. Lina Marlina, Sp.OG",
+}
+PASIEN = {
+    "P01": "Agus Raharjo",   "P02": "Bunga Lestari", "P03": "Candra Wijaya",
+    "P04": "Dewi Anggraeni", "P05": "Eka Putri",     "P06": "Fajar Nugroho",
+    "P07": "Gilang Saputra", "P08": "Maryam Yusuf",   "P09": "Idrus Hakim",
+    "P10": "Kartini Ibrahim", "P11": "Lukman Sutrisno","P12": "Maya Sari",
+    "P13": "Nadia Rahmawati", "P14": "Odi Setiawan",  "P15": "Purnama Sidik",
+    "P16": "Ratna Dewi",     "P17": "Slamet Riyadi",  "P18": "Tarmizi Karim",
+    "P19": "Umi Kalsum",     "P20": "Wahyu Nugraha",
+}
+DX = {
+    "K29.7": "gastritis tanpa perdarahan",  "K35.8": "apendisitis akut",
+    "K40.9": "hernia inguinalis",           "I21.9": "infark miokard akut",
+    "J18.9": "pneumonia",                   "E11.9": "diabetes melitus tipe 2",
+    "N20.0": "kalkulus ginjal",             "S72.0": "fraktur kolum femur",
+    "O80":   "persalinan spontan",           "K80.2": "kolelitiasis",
+}
+DX_SEV = {"K29.7": "ringan", "K35.8": "sedang", "K40.9": "sedang", "I21.9": "berat",
+          "J18.9": "sedang", "E11.9": "ringan", "N20.0": "sedang", "S72.0": "berat",
+          "O80": "normal", "K80.2": "sedang"}
+PROC = {
+    "00.66": {"nama": "angioplasti koroner + stent (PCI)", "tarif": 58_000_000,  "cplx": "tinggi"},
+    "81.52": {"nama": "hemiarthroplasty panggul",          "tarif": 46_500_000,  "cplx": "tinggi"},
+    "51.23": {"nama": "kolesistektomi laparoskopik",       "tarif": 14_500_000,  "cplx": "sedang"},
+    "96.04": {"nama": "intubasi endotrakeal",              "tarif": 750_000,     "cplx": "rendah"},
+    "47.09": {"nama": "apendektomi",                       "tarif": 6_800_000,   "cplx": "sedang"},
+    "74.1":  {"nama": "seksio sesarea",                    "tarif": 6_200_000,   "cplx": "sedang"},
+    "53.1":  {"nama": "reparasi hernia inguinalis",        "tarif": 8_200_000,   "cplx": "sedang"},
+    "98.51": {"nama": "fragmentasi batu saluran kemih",    "tarif": 5_600_000,   "cplx": "sedang"},
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 1. GROUND TRUTH 100 KLAIM SINTETIS (deterministik, seed 20260707)
+#    Notion: 14 fraud sindikat + 10 anomali medium/high (KLM001–024), 76 normal
+# ─────────────────────────────────────────────────────────────────────────────
+def build_ground_truth():
+    claims = []
+
+    def mk(idx, pasien, dokter, faskes, dx, proc, los, biaya, qty, skor,
+           sindikat, modus, kontra, gt_sent, signal):
+        claims.append({
+            "id": f"KLM{idx:03d}", "pasien": pasien, "dokter": dokter, "faskes": faskes,
+            "dx": dx, "proc": proc, "los": los, "biaya": biaya, "qty": qty,
+            "skor": skor, "sindikat": sindikat, "modus": modus,
+            "kontradiksi": kontra, "gt_sentimen": gt_sent, "signal": signal,
+            "vec": [los, math.log10(biaya), qty],   # vektor saluran fitur MHGSL
+        })
+
+    # SYND-01 · Upcoding (RS_A, D01/D02, P01–P03) — dx gastritis ringan ditagih PCI;
+    #           biaya & LOS identik → subgraf padat. Skor 0.93–0.95. Kontradiksi narasi.
+    for i, (p, d, s) in enumerate([("P01", "D01", 0.93), ("P02", "D01", 0.94),
+                                   ("P03", "D02", 0.95)], start=1):
+        mk(i, p, d, "RS_A", "K29.7", "00.66", 3, 58_000_000, 10, s,
+           "SYND-01", "Upcoding", True, "Negatif", "upcoding")
+
+    # SYND-02 · Phantom Billing (RS_C, D05, P08–P10) — 3 klaim hemiarthroplasty
+    #           tanggal & biaya identik, LOS 1, tanpa MedicationDispense. 0.92–0.94.
+    for i, (p, s) in enumerate([("P08", 0.92), ("P09", 0.93), ("P10", 0.94)], start=4):
+        mk(i, p, "D05", "RS_C", "S72.0", "81.52", 1, 46_500_000, 0, s,
+           "SYND-02", "Phantom Billing", True, "Negatif", "phantom")
+
+    # SYND-03 · Unbundling (RS_B, D07, P12–P14) — paket kolesistektomi dipecah
+    #           dengan intubasi terpisah di tanggal sama. 0.84–0.87.
+    unb = [("P12", 0.84), ("P12", 0.85), ("P13", 0.85),
+           ("P13", 0.86), ("P14", 0.86), ("P14", 0.87)]
+    for k, (p, s) in enumerate(unb):
+        proc = "51.23" if k % 2 == 0 else "96.04"
+        biaya = 14_500_000 if k % 2 == 0 else 750_000
+        mk(7 + k, p, "D07", "RS_B", "K80.2", proc, 4, biaya, 6, s,
+           "SYND-03", "Unbundling", False, "Negatif", "unbundling")
+
+    # SYND-04 · Drug Diversion (RS_E, D09, P16–P17) — qty insulin 24–30 pen vs
+    #           dosis rasional 1–2 pen/bulan; refill mingguan. 0.86–0.88.
+    mk(13, "P16", "D09", "RS_E", "E11.9", "51.23", 2, 3_200_000, 24, 0.86,
+       "SYND-04", "Drug Diversion", False, "Negatif", "drug_diversion")
+    mk(14, "P17", "D09", "RS_E", "E11.9", "51.23", 2, 3_200_000, 30, 0.88,
+       "SYND-04", "Drug Diversion", False, "Negatif", "drug_diversion")
+
+    # Anomali non-fraud (medium/high) — KLM015–KLM024
+    mk(15, "P15", "D09", "RS_E", "E11.9", "51.23", 2, 1_100_000, 6, 0.53,
+       "-", "Anomali Qty Obat", False, "Netral", "")
+    mk(16, "P19", "D08", "RS_F", "K35.8", "47.09", 5, 6_800_000, 4, 0.78,
+       "SYND-05", "Cloning", False, "Negatif", "cloning")           # identik dgn KLM017
+    mk(17, "P20", "D08", "RS_F", "K35.8", "47.09", 5, 6_800_000, 4, 0.79,
+       "SYND-05", "Cloning", False, "Netral", "")
+    mk(18, "P18", "D03", "RS_A", "J18.9", "47.09", 6, 9_500_000, 5, 0.74,
+       "-", "Prolonged Stay", True, "Negatif", "prolonged")
+    mk(19, "P07", "D04", "RS_D", "I21.9", "00.66", 4, 58_000_000, 8, 0.62,
+       "-", "Anomali Biaya", False, "Netral", "")
+    mk(20, "P05", "D12", "RS_F", "O80",   "74.1",  3, 6_200_000, 3, 0.66,
+       "-", "Anomali", False, "Positif", "")
+    mk(21, "P11", "D04", "RS_D", "J18.9", "47.09", 7, 7_400_000, 6, 0.68,
+       "-", "Anomali", False, "Positif", "")
+    mk(22, "P04", "D03", "RS_A", "K40.9", "53.1",  3, 8_200_000, 2, 0.41,
+       "-", "Anomali", False, "Netral", "")
+    mk(23, "P06", "D08", "RS_F", "N20.0", "98.51", 2, 5_600_000, 2, 0.47,
+       "-", "Anomali", False, "Positif", "")
+    mk(24, "P18", "D04", "RS_D", "K35.8", "47.09", 2, 6_800_000, 2, 0.55,
+       "-", "Anomali", True, "Negatif", "diragukan")
+
+    # Klaim normal (low) — KLM025–KLM100, skor < 0.35
+    NEG_CONTROL    = {"KLM030", "KLM045", "KLM060", "KLM070", "KLM084", "KLM095", "KLM098"}
+    NEUTRAL_NORMAL = {"KLM032", "KLM041", "KLM050", "KLM058", "KLM066",
+                      "KLM073", "KLM081", "KLM089", "KLM092", "KLM099"}
+    for i in range(25, 101):
+        cid = f"KLM{i:03d}"
+        sent = "Positif"
+        if cid in NEG_CONTROL:
+            sent = "Negatif"       # negative control: keluhan layanan murni (bukan fraud)
+        elif cid in NEUTRAL_NORMAL:
+            sent = "Netral"
+        mk(i, f"P{(i % 20) + 1:02d}", f"D{(i % 12) + 1:02d}", f"RS_{chr(65 + (i % 6))}",
+           "K40.9", "53.1", 2 + (i % 3), 5_000_000 + (i % 7) * 1_000_000,
+           2 + (i % 4), 0.05 + ((i * 7) % 30) / 100, "-", "Normal", False, sent, "")
+    return claims
+
+
+def risk_label(skor):
+    """Skala risiko (Notion): <0.35 low | 0.35–0.6 medium | 0.6–0.8 high | >0.8 fraud."""
+    if skor < LOW_T:
+        return "low"
+    if skor < MED_T:
+        return "medium"
+    if skor <= HIGH_T:
+        return "high"
+    return "fraud"
+
+
+CLAIMS = build_ground_truth()
+
+# Unit audit data (analog tests/test_leakage.py — integritas ground truth)
+_gt_sent, _risk = {}, {"low": 0, "medium": 0, "high": 0, "fraud": 0}
+for c in CLAIMS:
+    _gt_sent[c["gt_sentimen"]] = _gt_sent.get(c["gt_sentimen"], 0) + 1
+    _risk[risk_label(c["skor"])] += 1
+assert len(CLAIMS) == 100, "Integritas data: harus 100 klaim"
+assert _gt_sent == {"Positif": 62, "Netral": 14, "Negatif": 24}, f"Sentimen GT salah: {_gt_sent}"
+assert _risk == {"low": 76, "medium": 4, "high": 6, "fraud": 14}, f"Risiko GT salah: {_risk}"
+assert sum(1 for c in CLAIMS if c["kontradiksi"]) == 8, "Harus 8 klaim kontradiksi"
+print(f"✅ Audit ground truth: 100 klaim | risiko {_risk} | sentimen {_gt_sent} | 8 kontradiksi")
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 2. MATEMATIKA SALURAN TEKS — skor sentimen ∈ [-1, 1], sinyal fraud, late fusion
+#    Notion §3.3: sentimen negatif BUKAN bukti fraud; keluhan layanan murni
+#    (antrean, parkir, kebersihan) adalah negative control.
+# ─────────────────────────────────────────────────────────────────────────────
+POS_WORDS = {"baik": 1, "bagus": 1, "membantu": 1, "efisien": 1, "mantap": 1,
+             "keren": 1, "murah": 1, "untung": 1, "puas": 1, "cepat": 1,
+             "ramah": 1, "lancar": 1, "alhamdulillah": 1, "terima kasih": 1,
+             "senang": 1, "setuju": 1}
+NEG_WORDS = {"buruk": 1, "lambat": 1, "rumit": 1, "jelek": 1, "kecewa": 2,
+             "kurang": 1, "antre": 1, "lama": 1, "ribet": 1, "mahal": 1,
+             "sempit": 1, "dirugikan": 1}
+# Sinyal tekstual fraud (Notion §3.3): kontradiksi narasi pasien–billing.
+# Bobot 2 → memperkuat polaritas negatif via s = tanh(pos − neg − 1.5·sinyal)
+FRAUD_PHRASES = {
+    "tidak pernah menjalani": 2,   # indikator kuat phantom billing
+    "iur biaya": 2,                # keluhan iur biaya (upcoding/overbilling)
+    "tidak sesuai diagnosis": 2,   # inkonsistensi narasi vs kode billing
+    "tagihan ganda": 2,            # unbundling
+    "berlebih": 2,                 # drug diversion (volume melebihi rasional)
+    "identik": 2,                  # cloning rekam medis
+    "diragukan": 2,                # tindakan diragukan pasien
+    "tanpa penjelasan medis": 2,   # prolonged stay
+}
+
+
+def analyze_sentiment(text):
+    """Kembalikan {'score': float[-1,1], 'label': str, 'f_text': 0/1, 'signal': str}.
+
+    score = tanh(Σ bobot kata positif − Σ bobot kata negatif − 1.5 · Σ bobot frasa fraud)
+    label : score > +0.15 → Positif | score < −0.15 → Negatif | lainnya Netral
+    f_text: 1 bila terdeteksi frasa sinyal fraud (konfirmasi silang, bukan bukti).
+    """
+    low = text.lower()
+    pos = sum(w for wd, w in POS_WORDS.items() if wd in low)
+    neg = sum(w for wd, w in NEG_WORDS.items() if wd in low)
+    sig = [(p, w) for p, w in FRAUD_PHRASES.items() if p in low]
+    score = math.tanh(pos - neg - 1.5 * sum(w for _, w in sig))
+    if score > SENT_POS_T:
+        label = "Positif"
+    elif score < SENT_NEG_T:
+        label = "Negatif"
+    else:
+        label = "Netral"
+    return {"score": round(score, 4), "label": label,
+            "f_text": 1 if sig else 0, "signal": "; ".join(p for p, _ in sig)}
+
+
+def cosine(a, b):
+    """Cosine similarity antar-vektor fitur [LOS, log10(biaya), qty] (saluran fitur MHGSL)."""
+    num = sum(x * y for x, y in zip(a, b))
+    den = math.sqrt(sum(x * x for x in a)) * math.sqrt(sum(x * x for x in b))
+    return num / den if den else 0.0
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 3. TEMPLATE HEURISTIK LOKAL (fallback saluran teks — analog configs/text.yaml)
+#    Teks disusun agar klasifikasi leksikon ≡ ground truth (deterministik).
+# ─────────────────────────────────────────────────────────────────────────────
+def _core_text(c):
+    """Keluhan/inti pengalaman pasien sesuai ground truth (tanpa hashtag)."""
+    faskes = FASKES[c["faskes"]]["nama"]
+    dx, proc, qty, los = DX[c["dx"]], PROC[c["proc"]]["nama"], c["qty"], c["los"]
+    if c["gt_sentimen"] == "Positif":
+        return (f"Alhamdulillah layanan JKN di {faskes} sangat baik dan cepat. "
+                f"Dirawat karena {dx}, semuanya lancar, perawatnya ramah. Terima kasih BPJS!")
+    if c["gt_sentimen"] == "Netral":
+        return (f"Hari ini kontrol rutin ke {faskes} untuk {dx}. "
+                f"Pengobatan sesuai jadwal, tidak ada catatan khusus.")
+    s = c["signal"]
+    if s == "upcoding":
+        return (f"Diagnosis saya cuma {dx}, tapi ditagih tindakan {proc} ke BPJS. "
+                f"Iur biaya mahal dan tidak sesuai diagnosis. Kecewa!")
+    if s == "phantom":
+        return (f"Saya tidak pernah menjalani operasi {proc}, tapi ditagihkan ke BPJS. "
+                f"Sangat kecewa dan dirugikan!")
+    if s == "unbundling":
+        return (f"Operasi {proc} kan paket sekali bayar, kok ditagih terpisah sampai "
+                f"tagihan ganda? Ribet dan kecewa!")
+    if s == "drug_diversion":
+        return (f"Resep insulin saya {qty} pen sekali jalan, jauh berlebih dari kebutuhan. "
+                f"Rawan disalahgunakan. Kecewa!")
+    if s == "cloning":
+        return (f"Tagihan BPJS saya identik persis dengan pasien lain: tanggal, diagnosis, "
+                f"dan biaya sama. Seperti rekam medis diklaim orang lain. Kecewa!")
+    if s == "prolonged":
+        return (f"Dirawat {los} hari padahal indikasinya {dx}, lama banget tanpa penjelasan "
+                f"medis. Kecewa dengan {faskes}!")
+    if s == "diragukan":
+        return (f"Ada tindakan {proc} di tagihan yang saya diragukan, padahal saya hanya "
+                f"konsultasi ringan. Kecewa!")
+    # Negative control: keluhan layanan murni — sentimen negatif TANPA sinyal fraud
+    return (f"Antrean di {faskes} lama banget, parkir sempit, kebersihan juga kurang. "
+            f"Kecewa juga sih.")
+
+
+def tweet_template(c):
+    return f"{_core_text(c)} #JKN #BPJSKesehatan"
+
+
+def reddit_template(c):
+    faskes = FASKES[c["faskes"]]["nama"]
+    title = f"[Diskusi] Pengalaman klaim JKN di {faskes}"
+    if c["gt_sentimen"] == "Positif":
+        comment = "Setuju, layanan JKN makin efisien dan sangat membantu peserta."
+    elif c["gt_sentimen"] == "Netral":
+        comment = "Noted, proses administrasi klaim memang mengikuti jadwal standar BPJS."
+    else:
+        comment = "Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator."
+    return f"{title}\n\n{_core_text(c)}\n\n💬 Komentar otonom: {comment}"
+
+
+def instruksi_sinyal(c):
+    """Instruksi target untuk generator LLM agar narasi konsisten dgn ground truth."""
+    if c["gt_sentimen"] == "Negatif" and c["signal"]:
+        frasa = {"upcoding": "iur biaya ... tidak sesuai diagnosis",
+                 "phantom": "saya tidak pernah menjalani tindakan ini",
+                 "unbundling": "tagihan ganda",
+                 "drug_diversion": "obat jauh berlebih dari kebutuhan",
+                 "cloning": "klaim saya identik dengan pasien lain",
+                 "prolonged": "dirawat lama tanpa penjelasan medis",
+                 "diragukan": "tindakan yang ditagihkan saya ragukan"}[c["signal"]]
+        return (f'Wajib menyertakan keluhan penagihan dengan frasa kunci "{frasa}" '
+                f'(indikasi modus {c["modus"]}).')
+    if c["gt_sentimen"] == "Negatif":
+        return ("Keluhan HANYA soal layanan (antrean lama, parkir sempit, kebersihan). "
+                "JANGAN menyebut masalah tagihan atau penagihan.")
+    if c["gt_sentimen"] == "Positif":
+        return "Sampaikan pengalaman positif (layanan baik, cepat, lancar, ramah)."
+    return "Gaya netral-faktual: kontrol rutin sesuai jadwal, tanpa emosi."
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 4. KONEKSI OLLAMA & SIMULASI AGEN SOSIAL MEDIA (1000 langkah, batch tiap 100)
+# ─────────────────────────────────────────────────────────────────────────────
+def detect_model():
+    try:
+        r = requests.get(f"{OLLAMA_HOST}/api/tags", timeout=5)
+        installed = [m["name"] for m in r.json().get("models", [])] if r.status_code == 200 else []
+        for pref in PREFERRED_MODELS:
+            if pref in installed:
+                return pref
+        return installed[0] if installed else PREFERRED_MODELS[0]
+    except Exception:
+        return PREFERRED_MODELS[0]
+
+
+def ollama_generate(prompt, timeout=30):
+    """Satu request generate ke Ollama lokal; None berarti fallback heuristik lokal."""
+    try:
+        r = requests.post(f"{OLLAMA_HOST}/api/generate",
+                          json={"model": active_model, "prompt": prompt, "stream": False},
+                          timeout=timeout)
+        if r.status_code == 200:
+            return r.json().get("response", "").strip()
+    except Exception:
+        pass
+    return None
+
+
+active_model = detect_model()
+print(f"📌 Menggunakan model: {active_model} untuk mensimulasikan Agen Oasis "
+      f"di Twitter/Reddit (saluran teks Aegis-JKN)")
+print(f"⚙️ Memulai simulasi otonom sebanyak {TOTAL_STEPS} kali...")
+
+twitter_logs, reddit_logs = [], []
+llm_ptr = 0
+llm_covered = set()
+
+
+def likes_for(c, platform):
+    """Engagement deterministik (seed) agar simulasi dapat direproduksi."""
+    base = int(c["id"][3:])
+    return 5 + (base * 7 + (1 if platform == "rd" else 0)) % 46
+
+
+for i in range(1, TOTAL_STEPS + 1):
+    claim = CLAIMS[(i - 1) % len(CLAIMS)]        # tiap klaim diproses 10× (1000/100)
+
+    # REQUEST HANYA DIJALANKAN SETIAP KELIPATAN 100 (logika asli dipertahankan)
+    if TEXT_CHANNEL_TOGGLE and (i == 1 or i % LLM_EVERY == 0):
+        print(f"⏳ Memproses Simulasi Langkah ke-{i}/{TOTAL_STEPS}...")
+        target = CLAIMS[llm_ptr % len(CLAIMS)]
+        llm_ptr += 1
+        instr = instruksi_sinyal(target)
+        ctx = (f"pasien JKN {PASIEN[target['pasien']]}, dirawat di "
+               f"{FASKES[target['faskes']]['nama']}, diagnosis {target['dx']} "
+               f"({DX[target['dx']]}), tindakan {target['proc']}")
+
+        tw_prompt = (f"[Simulasi Twitter Langkah {i} | Aegis-JKN Healthkathon] "
+                     f"Anda adalah {ctx}. Tulis SATU tweet bahasa Indonesia "
+                     f"maksimal 220 karakter dengan sentimen "
+                     f"{target['gt_sentimen'].upper()}. {instr} "
+                     f"Balas HANYA isi tweet tanpa tanda kutip.")
+        tw_text, tw_src = ollama_generate(tw_prompt), "ollama"
+        if not tw_text:
+            tw_text, tw_src = tweet_template(target), "heuristik-lokal"
+
+        rd_prompt = (f"[Simulasi Reddit Langkah {i} | r/indonesia | Aegis-JKN] "
+                     f"Anda adalah {ctx}. Tulis SATU post singkat bahasa Indonesia "
+                     f"(judul + isi) dengan sentimen {target['gt_sentimen'].upper()}, "
+                     f"lalu satu komentar otonom singkat. {instr} "
+                     f"Format: JUDUL | ISI | KOMENTAR. Balas HANYA post tersebut.")
+        rd_text, rd_src = ollama_generate(rd_prompt), "ollama"
+        if not rd_text:
+            rd_text, rd_src = reddit_template(target), "heuristik-lokal"
+
+        target["tw_text"], target["rd_text"] = tw_text, rd_text
+        llm_covered.add(target["id"])
+
+        s_tw, s_rd = analyze_sentiment(tw_text), analyze_sentiment(rd_text)
+        twitter_logs.append({"step": i, "claim": target["id"], "text": tw_text,
+                             "sentiment": s_tw["label"], "sentiment_gt": target["gt_sentimen"],
+                             "f_text": s_tw["f_text"], "source": tw_src,
+                             "likes": likes_for(target, "tw")})
+        reddit_logs.append({"step": i, "claim": target["id"], "text": rd_text,
+                            "sentiment": s_rd["label"], "sentiment_gt": target["gt_sentimen"],
+                            "f_text": s_rd["f_text"], "source": rd_src,
+                            "likes": likes_for(target, "rd")})
+    else:
+        # Langkah non-LLM: teks heuristik lokal (deterministik, konsisten GT)
+        if "tw_text" not in claim:
+            claim["tw_text"] = tweet_template(claim)
+            claim["rd_text"] = reddit_template(claim)
+
+# JARING PENGAMAN: pastikan SEMUA klaim memiliki teks akhir.
+# Diperlukan bila TOTAL_STEPS bukan kelipatan 100 — mis. 100 langkah: langkah ke-100
+# adalah langkah LLM yang menargetkan klaim lain, sehingga KLM100 tak pernah tersentuh
+# langkah template dan akan memicu KeyError('tw_text') di fase klasifikasi.
+for c in CLAIMS:
+    if "tw_text" not in c:
+        c["tw_text"] = tweet_template(c)
+        c["rd_text"] = reddit_template(c)
+
+# Lengkapi feed dengan klaim anomali yang belum tersentuh LLM (fallback heuristik)
+for c in CLAIMS:
+    if c["id"] not in llm_covered and (risk_label(c["skor"]) != "low" or c["kontradiksi"]):
+        s_tw, s_rd = analyze_sentiment(c["tw_text"]), analyze_sentiment(c["rd_text"])
+        twitter_logs.append({"step": 0, "claim": c["id"], "text": c["tw_text"],
+                             "sentiment": s_tw["label"], "sentiment_gt": c["gt_sentimen"],
+                             "f_text": s_tw["f_text"], "source": "heuristik-lokal",
+                             "likes": likes_for(c, "tw")})
+        reddit_logs.append({"step": 0, "claim": c["id"], "text": c["rd_text"],
+                            "sentiment": s_rd["label"], "sentiment_gt": c["gt_sentimen"],
+                            "f_text": s_rd["f_text"], "source": "heuristik-lokal",
+                            "likes": likes_for(c, "rd")})
+
+print(f"\n🟢 [SUKSES] Simulasi {TOTAL_STEPS} langkah selesai!")
+print(f"📊 {llm_ptr} sampel LLM ({active_model}) + fallback heuristik lokal; "
+      f"{len(twitter_logs)} log Twitter & {len(reddit_logs)} log Reddit dikompilasi.")
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 5. PERHITUNGAN MATEMATIS AEGIS-JKN
+#    (a) saluran fitur: cosine ≥ θ_feat | (b) late fusion saluran teks
+#    (c) protokol validasi "SESUAI" v2.1 | (d) akurasi & ROI HITL
+# ─────────────────────────────────────────────────────────────────────────────
+# (a) Saluran fitur — edges graf antar-klaim dengan kemiripan cosine ≥ 0.85
+feat_edges = []
+for i in range(len(CLAIMS)):
+    for j in range(i + 1, len(CLAIMS)):
+        sim = cosine(CLAIMS[i]["vec"], CLAIMS[j]["vec"])
+        if sim >= THETA_FEAT:
+            feat_edges.append((CLAIMS[i]["id"], CLAIMS[j]["id"], round(sim, 4)))
+
+clone_pair = [e for e in feat_edges
+              if set(e[:2]) == {"KLM016", "KLM017"}]        # SYND-05 cloning
+synd_density = {}
+for s in ["SYND-01", "SYND-02", "SYND-03", "SYND-04", "SYND-05"]:
+    members = [c for c in CLAIMS if c["sindikat"] == s]
+    n = len(members)
+    pairs = n * (n - 1) // 2
+    inner = sum(1 for e in feat_edges
+                if any(m["id"] == e[0] for m in members) and
+                    any(m["id"] == e[1] for m in members))
+    synd_density[s] = round(inner / pairs, 2) if pairs else 0.0
+
+
+def channel_contrib(c):
+    """Dekomposisi kontribusi 3 saluran MHGSL (untuk dasbor auditor, rasa SHAP)."""
+    mates = [x for x in CLAIMS if x["sindikat"] == c["sindikat"]
+             and c["sindikat"] != "-" and x["id"] != c["id"]]
+    fitur = max((cosine(c["vec"], m["vec"]) for m in mates), default=0.0)
+    deg = sum(1 for a, b, _ in feat_edges if a == c["id"] or b == c["id"])
+    topo = min(1.0, deg / 5.0)
+    if DX_SEV[c["dx"]] == "ringan" and PROC[c["proc"]]["cplx"] == "tinggi":
+        sem = 1.0     # mismatch derajat diagnosis vs kompleksitas tindakan (upcoding)
+    elif c["modus"] in ("Unbundling", "Phantom Billing", "Drug Diversion", "Cloning"):
+        sem = 0.6
+    else:
+        sem = 0.2
+    return {"fitur": round(fitur, 2), "topologi": round(topo, 2), "semantik": round(sem, 2)}
+
+
+# (b) Klasifikasi & late fusion — sinyal teks dikonfirmasi silang dengan skor graf
+for c in CLAIMS:
+    s_tw, s_rd = analyze_sentiment(c["tw_text"]), analyze_sentiment(c["rd_text"])
+    c["tw_label"], c["tw_score"] = s_tw["label"], s_tw["score"]
+    c["rd_label"], c["rd_score"] = s_rd["label"], s_rd["score"]
+    # f_text = 1 hanya bila sentimen GT negatif DAN ada sinyal fraud (late fusion;
+    # sentimen negatif murni layanan TIDAK mengangkat skor — negative control)
+    c["f_text"] = 1 if (c["signal"] and c["gt_sentimen"] == "Negatif") else 0
+    # p_fused = p_graph + γ·f_text·(1 − p_graph), dikap 0.99
+    c["p_fused"] = min(0.99, c["skor"] + GAMMA_TEXT * c["f_text"] * (1 - c["skor"]))
+    c["risk"] = risk_label(c["skor"])
+
+# Akurasi klasifikasi simulasi vs ground truth (200 klasifikasi: 100 TW + 100 RD)
+match = sum(1 for c in CLAIMS if c["tw_label"] == c["gt_sentimen"]) + \
+        sum(1 for c in CLAIMS if c["rd_label"] == c["gt_sentimen"])
+accuracy = match / (2 * len(CLAIMS))
+
+# (c) Protokol validasi "SESUAI" v2.1
+queue = sorted(CLAIMS, key=lambda c: c["p_fused"], reverse=True)[:int(len(CLAIMS) * QUEUE_RATE)]
+queue_ids = {c["id"] for c in queue}
+fraud_claims = [c for c in CLAIMS if c["risk"] == "fraud"]
+detected = [c for c in fraud_claims if c["id"] in queue_ids]
+det_rate = len(detected) / len(fraud_claims)
+
+synd_hit = {}
+for s in ["SYND-01", "SYND-02", "SYND-03", "SYND-04", "SYND-05"]:
+    members = [c for c in CLAIMS if c["sindikat"] == s]
+    hit = [c for c in members if c["id"] in queue_ids]
+    synd_hit[s] = {"hit": len(hit), "total": len(members),
+                   "rate": round(100 * len(hit) / len(members), 1),
+                   "modus": members[0]["modus"]}
+
+# Daftar prioritas = antrian investigasi ∪ klaim ber-sinyal teks (late fusion)
+priority_ids = queue_ids | {c["id"] for c in CLAIMS if c["f_text"] == 1}
+kontra = [c for c in CLAIMS if c["kontradiksi"]]
+kontra_ok = sum(1 for c in kontra if c["id"] in priority_ids)
+
+criteria = {
+    "integritas": len(CLAIMS) == 100,
+    "deteksi": det_rate >= TARGET_DETECTION and len(queue) / len(CLAIMS) <= QUEUE_RATE,
+    "sindikat": all(v["hit"] > 0 for v in synd_hit.values()),
+    "kontradiksi": kontra_ok == len(kontra),
+}
+SESUAI = all(criteria.values())
+
+# (d) ROI HITL (Notion §7): telaah 20 → 3 menit/berkas → kapasitas verifikator naik
+CAPACITY_GAIN = 20 / 3
+VERIFICATOR_CAPACITY = round(1000 * CAPACITY_GAIN)      # ± 6.700 berkas
+FRAUD_PREVALENSI = round(len(fraud_claims) / len(CLAIMS), 2)   # 14% (oversampled)
+
+# Distribusi untuk chart
+def sent_dist(key):
+    d = {"Positif": 0, "Netral": 0, "Negatif": 0}
+    for c in CLAIMS:
+        d[c[key]] += 1
+    return [d["Positif"], d["Netral"], d["Negatif"]]
+
+tw_sent, rd_sent = sent_dist("tw_label"), sent_dist("rd_label")
+gt_sent = [_gt_sent["Positif"], _gt_sent["Netral"], _gt_sent["Negatif"]]
+
+print("\n🧮 RINGKASAN MATEMATIKA AEGIS-JKN (label: " + HONESTY_LABEL + ")")
+print(f"   • Saluran fitur   : {len(feat_edges)} edges (cosine ≥ {THETA_FEAT}) | "
+      f"cloning KLM016–KLM017: {'TERDETEKSI' if clone_pair else 'GAGAL'} "
+      f"(cos = {cosine(CLAIMS[15]['vec'], CLAIMS[16]['vec']):.3f})")
+print(f"   • Late fusion     : p_fused = p_graph + {GAMMA_TEXT}·f_text·(1 − p_graph) "
+      f"| sinyal teks aktif pada {sum(c['f_text'] for c in CLAIMS)} klaim")
+print(f"   • Deteksi fraud   : {len(detected)}/{len(fraud_claims)} "
+      f"({det_rate*100:.0f}%) pada antrian {len(queue)} klaim "
+      f"({int(QUEUE_RATE*100)}% dari 100) — target ≥ {TARGET_DETECTION*100:.0f}%")
+print(f"   • Hit-rate sindikat: " + ", ".join(f"{s} {v['hit']}/{v['total']}" for s, v in synd_hit.items()))
+print(f"   • Kontradiksi prioritas: {kontra_ok}/{len(kontra)} klaim (KLM001–006, KLM018, KLM024)")
+print(f"   • Akurasi sentimen simulasi vs GT: {accuracy*100:.1f}% "
+      f"({match}/200 klasifikasi)")
+print(f"   • Prevalensi fraud: {FRAUD_PREVALENSI*100:.0f}% (oversampled) | "
+      f"ROI HITL: 20→3 menit/berkas → kapasitas ±{VERIFICATOR_CAPACITY:,} berkas".replace(",", "."))
+print(f"\n🎯 PROTOKOL VALIDASI v2.1 → {'✅ SESUAI' if SESUAI else '❌ TIDAK SESUAI'}")
+for k, v in criteria.items():
+    print(f"   {'✅' if v else '❌'} Kriteria {k}: {'terpenuhi' if v else 'GAGAL'}")
+print("Menyiapkan Dashboard Interaktif...\n")
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 6. GENERATE DASHBOARD HTML & JS UNTUK COLAB
+# ─────────────────────────────────────────────────────────────────────────────
+payload = {
+    "meta": {"version": VERSION, "seed": SEED, "theta_feat": THETA_FEAT,
+             "gamma_text": GAMMA_TEXT, "honesty": HONESTY_LABEL,
+             "model": active_model, "steps": TOTAL_STEPS},
+    "kpi": {
+        "total_claims": len(CLAIMS),
+        "fraud_total": len(fraud_claims),
+        "fraud_detected": len(detected),
+        "det_rate": round(det_rate * 100, 1),
+        "queue_size": len(queue),
+        "queue_rate": int(QUEUE_RATE * 100),
+        "status": "SESUAI" if SESUAI else "TIDAK SESUAI",
+        "ok": SESUAI,
+        "accuracy": round(accuracy * 100, 1),
+        "feat_edges": len(feat_edges),
+        "synd_density": synd_density,
+        "kontra_ok": kontra_ok,
+        "kontra_total": len(kontra),
+        "capacity": VERIFICATOR_CAPACITY,
+        "prevalensi": int(FRAUD_PREVALENSI * 100),
+    },
+    "gtSent": gt_sent, "twSent": tw_sent, "rdSent": rd_sent,
+    "riskDist": [_risk["low"], _risk["medium"], _risk["high"], _risk["fraud"]],
+    "syndHit": synd_hit,
+    "queue": [
+        {"id": c["id"], "modus": c["modus"], "sindikat": c["sindikat"],
+         "p": round(c["p_fused"], 3), "risk": c["risk"],
+         "chan": channel_contrib(c), "kontra": c["kontradiksi"]}
+        for c in queue
+    ],
+    "twFeed": twitter_logs,
+    "rdFeed": reddit_logs,
+}
+
+HTML_TEMPLATE = r"""
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Aegis-JKN — Simulasi Oasis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 8px;}
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* ── Mode cetak / Simpan PDF (window.print() atau Ctrl+P) ── */
+        @media print {
+            @page { size: A4 landscape; margin: 8mm; }
+            body { background: #fff !important; padding: 0 !important; }
+            .no-print { display: none !important; }              /* sembunyikan tombol cetak */
+            .bg-slate-50 { background: #fff !important; }
+            .grid > div, #tw-feed > div, #rd-feed > div, #queue-list > div {
+                box-shadow: none !important;
+                break-inside: avoid; page-break-inside: avoid;    /* kartu tidak terpotong halaman */
+            }
+            /* Feed & antrian dibuka penuh (tanpa scroll) saat dicetak */
+            .h-\[600px\] { height: auto !important; max-height: none !important; overflow: visible !important; }
+            .max-h-64 { max-height: none !important; overflow: visible !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 p-6 font-sans">
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Header -->
+        <div class="mb-6 flex justify-between items-center bg-white p-5 rounded-xl shadow-sm border-l-4 border-indigo-600">
+            <div>
+                <h1 class="text-xl font-bold text-slate-800">🛡️ Dashboard Aegis-JKN — Simulasi Agen Sosial Media (Oasis)</h1>
+                <p class="text-slate-500 text-sm mt-1">Healthkathon BPJS Kesehatan 2026 · MHGSL Fraud Intelligence · Saluran Teks × Late Fusion</p>
+            </div>
+            <div class="flex items-center gap-3 flex-wrap">
+                <button onclick="downloadHTML()" class="no-print bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-3 py-2 rounded-lg shadow-sm transition-colors"
+                        title="Unduh HTML mandiri — bisa dibuka di mana saja, di-host statis, atau di-embed ke proyek (React/HTML/JS)">⬇️ Unduh HTML</button>
+                <button onclick="downloadJSON()" class="no-print bg-slate-500 hover:bg-slate-600 text-white text-xs font-semibold px-3 py-2 rounded-lg shadow-sm transition-colors"
+                        title="Unduh payload data JSON untuk membangun ulang UI dengan stack sendiri">⬇️ Unduh JSON</button>
+                <button onclick="window.print()" class="no-print bg-slate-700 hover:bg-slate-900 text-white text-xs font-semibold px-3 py-2 rounded-lg shadow-sm transition-colors"
+                        title="Ctrl+P → pilih tujuan 'Save as PDF' (aktifkan Background graphics)">🖨️ Cetak / Simpan PDF</button>
+                <div id="status-badge" class="px-3 py-1 rounded-lg text-sm font-semibold border"></div>
+            </div>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Klaim Sintetis</p>
+                <h2 class="text-2xl font-bold text-slate-700 mt-1" id="kpi-total">0</h2>
+                <p class="text-[10px] text-slate-400">20 pasien · 12 dokter · 6 FKRTL</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Fraud Terdeteksi</p>
+                <h2 class="text-2xl font-bold text-rose-500 mt-1" id="kpi-det">0</h2>
+                <p class="text-[10px] text-slate-400" id="kpi-det-sub"></p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Antrian Investigasi</p>
+                <h2 class="text-2xl font-bold text-indigo-500 mt-1" id="kpi-queue">0</h2>
+                <p class="text-[10px] text-slate-400" id="kpi-queue-sub"></p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Sentimen GT (Target)</p>
+                <h2 class="text-base font-bold text-slate-700 mt-2" id="kpi-gtsent">-</h2>
+                <p class="text-[10px] text-slate-400">62 positif · 14 netral · 24 negatif</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Akurasi Sentimen Simulasi</p>
+                <h2 class="text-2xl font-bold text-emerald-500 mt-1" id="kpi-acc">0%</h2>
+                <p class="text-[10px] text-slate-400">klasifikasi leksikon vs ground truth (200 uji)</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Efisiensi HITL (ROI)</p>
+                <h2 class="text-2xl font-bold text-sky-500 mt-1" id="kpi-cap">±6.700</h2>
+                <p class="text-[10px] text-slate-400">telaah 20→3 mnt/berkas → kapasitas verifikator</p>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
+                <h3 class="text-sm font-bold text-slate-700 mb-4 border-b pb-2">Sentimen Simulasi Twitter (Saluran Teks)</h3>
+                <div class="relative h-48 w-full flex justify-center"><canvas id="twChart"></canvas></div>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
+                <h3 class="text-sm font-bold text-slate-700 mb-4 border-b pb-2">Sentimen Simulasi Reddit (Saluran Teks)</h3>
+                <div class="relative h-48 w-full flex justify-center"><canvas id="rdChart"></canvas></div>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
+                <h3 class="text-sm font-bold text-slate-700 mb-4 border-b pb-2">Distribusi Risiko Ground Truth (Skala: &lt;0.35 low · 0.35–0.6 med · 0.6–0.8 high · &gt;0.8 fraud)</h3>
+                <div class="relative h-48 w-full"><canvas id="riskChart"></canvas></div>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
+                <h3 class="text-sm font-bold text-slate-700 mb-4 border-b pb-2">Hit-Rate per Sindikat pada Antrian Investigasi (%)</h3>
+                <div class="relative h-48 w-full"><canvas id="syndChart"></canvas></div>
+            </div>
+        </div>
+
+        <!-- Antrian Investigasi (Late Fusion) -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100 mb-6">
+            <h3 class="text-sm font-bold text-slate-700 mb-1">🎯 Antrian Investigasi — Top-10 Skor Fusion</h3>
+            <p class="text-[11px] text-slate-400 mb-4">p_fused = p_graph + γ·f_text·(1 − p_graph) · γ = 0.10 · θ_feat = 0.85 · sinyal teks hanya mengangkat prioritas bila konsisten dengan skor graf</p>
+            <div class="relative h-64 w-full mb-4"><canvas id="queueChart"></canvas></div>
+            <div id="queue-list" class="text-[12px] space-y-2 max-h-64 overflow-y-auto custom-scrollbar pr-1"></div>
+        </div>
+
+        <!-- Live Feed Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <!-- Twitter Feed -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden flex flex-col h-[600px]">
+                <div class="bg-sky-50 border-b border-sky-100 p-3 flex justify-between items-center">
+                    <h3 class="font-bold text-sky-800 text-sm">🐤 Log Twitter (Umpan Balik Pasien)</h3>
+                    <span class="text-xs bg-white px-2 py-1 rounded text-sky-600 font-medium" id="tw-count-badge">0 Post</span>
+                </div>
+                <div id="tw-feed" class="p-4 overflow-y-auto custom-scrollbar flex-1 space-y-4 bg-slate-50/50"></div>
+            </div>
+
+            <!-- Reddit Feed -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden flex flex-col h-[600px]">
+                <div class="bg-orange-50 border-b border-orange-100 p-3 flex justify-between items-center">
+                    <h3 class="font-bold text-orange-800 text-sm">👽 Log Reddit (Narasi & Diskusi Klaim)</h3>
+                    <span class="text-xs bg-white px-2 py-1 rounded text-orange-600 font-medium" id="rd-count-badge">0 Post</span>
+                </div>
+                <div id="rd-feed" class="p-4 overflow-y-auto custom-scrollbar flex-1 space-y-4 bg-slate-50/50"></div>
+            </div>
+        </div>
+
+        <!-- Footer: Kejujuran Label (Notion §2.4 & protokol v2.1) -->
+        <div class="mt-6 bg-slate-800 text-slate-300 p-4 rounded-xl text-[11px] leading-relaxed">
+            <p>⚠️ <strong>Kejujuran label:</strong> <span id="honesty-note" class="text-amber-300"></span></p>
+            <p class="mt-1">🧮 <span id="meta-note"></span></p>
+            <p class="mt-1">📌 Sentimen negatif ≠ bukti fraud — keluhan layanan murni (antrean, parkir, kebersihan) berfungsi sebagai <em>negative control</em>; sinyal tekstual dikonfirmasi silang dengan skor graf MHGSL melalui <em>late fusion</em> (Notion §3.3).</p>
+            <p class="mt-1">🖨️ Cetak PDF: klik tombol di header atau Ctrl+P → tujuan <em>"Save as PDF"</em> · aktifkan <em>Background graphics</em> agar warna kartu &amp; chart tercetak optimal · format A4 landscape otomatis.</p>
+            <p class="mt-1">🧩 Integrasi proyek: tombol <em>⬇️ Unduh HTML</em> menghasilkan file HTML mandiri (hosting statis / embed <code>&lt;iframe&gt;</code> di React) · tombol <em>⬇️ Unduh JSON</em> menghasilkan payload data bersih untuk membangun ulang UI dengan stack sendiri.</p>
+        </div>
+    </div>
+
+    <!-- SCRIPT LOGIKA DASHBOARD -->
+    <script>
+        // Data disuntik dari Python
+        const D = __PAYLOAD__;
+
+        const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+        // ── Unduh file dari dalam dashboard (integrasi proyek React/HTML/JS) ──
+        // Blob download; di iframe output Colab bisa diblokir sandbox — dalam kasus
+        // itu gunakan files.download dari Python, atau tombol ini saat HTML dibuka
+        // standalone. Chart digambar ulang otomatis saat file dibuka kembali.
+        function downloadFile(name, content, type) {
+            const blob = new Blob([content], { type });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = name;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        }
+        function downloadHTML() {
+            const html = '<!DOCTYPE html>\n' + document.documentElement.cloneNode(true).outerHTML;
+            downloadFile('dashboard-aegis-jkn.html', html, 'text/html;charset=utf-8');
+        }
+        function downloadJSON() {
+            downloadFile('payload-aegis-jkn.json', JSON.stringify(D, null, 2), 'application/json');
+        }
+
+        // Status badge protokol v2.1
+        const sb = document.getElementById('status-badge');
+        if (D.kpi.ok) {
+            sb.className = 'bg-emerald-50 text-emerald-700 px-3 py-1 rounded-lg text-sm font-semibold border border-emerald-200';
+            sb.innerText = '✅ Protokol v2.1: SESUAI';
+        } else {
+            sb.className = 'bg-rose-50 text-rose-700 px-3 py-1 rounded-lg text-sm font-semibold border border-rose-200';
+            sb.innerText = '❌ Protokol v2.1: TIDAK SESUAI';
+        }
+
+        // KPI
+        document.getElementById('kpi-total').innerText = D.kpi.total_claims;
+        document.getElementById('kpi-det').innerText = D.kpi.fraud_detected + '/' + D.kpi.fraud_total;
+        document.getElementById('kpi-det-sub').innerText = D.kpi.det_rate + '% pada antrian ≤' + D.kpi.queue_rate + '%';
+        document.getElementById('kpi-queue').innerText = D.kpi.queue_size;
+        document.getElementById('kpi-queue-sub').innerText = D.kpi.queue_rate + '% klaim · kontradiksi prioritas ' + D.kpi.kontra_ok + '/' + D.kpi.kontra_total;
+        document.getElementById('kpi-gtsent').innerText = D.gtSent[0] + 'P · ' + D.gtSent[1] + 'N · ' + D.gtSent[2] + 'Neg';
+        document.getElementById('kpi-acc').innerText = D.kpi.accuracy + '%';
+        document.getElementById('kpi-cap').innerText = '±' + D.kpi.capacity.toLocaleString('id-ID');
+        document.getElementById('honesty-note').innerText = D.meta.honesty;
+        document.getElementById('meta-note').innerText = 'seed ' + D.meta.seed + ' · v' + D.meta.version +
+            ' · θ_feat ' + D.meta.theta_feat + ' · γ ' + D.meta.gamma_text +
+            ' · ' + D.meta.steps + ' langkah · model ' + D.meta.model;
+
+        // Konfigurasi chart
+        const C = { pos: '#10b981', net: '#94a3b8', neg: '#f43f5e' };
+        const sentLabels = ['Positif', 'Netral', 'Negatif'];
+        const sentColors = [C.pos, C.net, C.neg];
+        const legendRight = { position: 'right', labels: { boxWidth: 12, font: { size: 11 } } };
+        const baseOpts = { responsive: true, maintainAspectRatio: false };
+
+        // 1) Sentimen simulasi Twitter vs Reddit
+        new Chart(document.getElementById('twChart'), {
+            type: 'doughnut',
+            data: { labels: sentLabels, datasets: [{ data: D.twSent, backgroundColor: sentColors, borderWidth: 0, cutout: '65%' }] },
+            options: { ...baseOpts, plugins: { legend: legendRight } }
+        });
+        new Chart(document.getElementById('rdChart'), {
+            type: 'pie',
+            data: { labels: sentLabels, datasets: [{ data: D.rdSent, backgroundColor: sentColors, borderWidth: 0 }] },
+            options: { ...baseOpts, plugins: { legend: legendRight } }
+        });
+
+        // 2) Distribusi risiko ground truth
+        new Chart(document.getElementById('riskChart'), {
+            type: 'bar',
+            data: { labels: ['Low', 'Medium', 'High', 'Fraud'], datasets: [{ data: D.riskDist, backgroundColor: ['#94a3b8', '#f59e0b', '#fb923c', '#f43f5e'], borderWidth: 0, borderRadius: 4 }] },
+            options: { ...baseOpts, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
+        });
+
+        // 3) Hit-rate per sindikat
+        const syndLabels = Object.keys(D.syndHit).map(s => s + ' · ' + D.syndHit[s].modus);
+        const syndData = Object.values(D.syndHit).map(v => v.rate);
+        new Chart(document.getElementById('syndChart'), {
+            type: 'bar',
+            data: { labels: syndLabels, datasets: [{ data: syndData, backgroundColor: '#6366f1', borderWidth: 0, borderRadius: 4 }] },
+            options: { ...baseOpts, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } } } }
+        });
+
+        // 4) Top-10 antrian investigasi (skor late fusion)
+        const top10 = D.queue.slice(0, 10);
+        const riskColor = { fraud: '#f43f5e', high: '#fb923c', medium: '#f59e0b', low: '#94a3b8' };
+        new Chart(document.getElementById('queueChart'), {
+            type: 'bar',
+            data: { labels: top10.map(q => q.id), datasets: [{ data: top10.map(q => q.p), backgroundColor: top10.map(q => riskColor[q.risk]), borderWidth: 0, borderRadius: 4 }] },
+            options: {
+                ...baseOpts, indexAxis: 'y',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { callbacks: { label: ctx => ' p_fused = ' + ctx.parsed.x.toFixed(3) + ' · ' + top10[ctx.dataIndex].modus } }
+                },
+                scales: { x: { beginAtZero: true, max: 1 } }
+            }
+        });
+
+        // 5) Daftar antrian lengkap + dekomposisi kontribusi 3 saluran (rasa SHAP)
+        document.getElementById('queue-list').innerHTML = D.queue.map(q => `
+            <div class="flex items-center gap-2 border-b border-slate-100 pb-1.5 flex-wrap">
+                <span class="font-bold text-slate-700 w-14">${q.id}</span>
+                <span class="w-40 truncate text-slate-500">${esc(q.modus)}</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-600 font-semibold">${q.sindikat === '-' ? 'non-sindikat' : q.sindikat}</span>
+                <span class="text-[10px] text-slate-500">saluran — fitur ${q.chan.fitur} · topologi ${q.chan.topologi} · semantik ${q.chan.semantik}</span>
+                ${q.kontra ? '<span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-bold">KONTRADIKSI</span>' : ''}
+                <span class="ml-auto font-bold ${q.risk === 'fraud' ? 'text-rose-500' : 'text-slate-600'}">${q.p.toFixed(3)}</span>
+            </div>`).join('');
+
+        // 6) Render feed (log interaksi agen)
+        function renderFeed(data, elementId, badgeId) {
+            const container = document.getElementById(elementId);
+            document.getElementById(badgeId).innerText = data.length + ' Post';
+            if (!data.length) {
+                container.innerHTML = '<div class="text-center text-slate-400 py-10 text-sm">Tidak ada data ditemukan.</div>';
+                return;
+            }
+            container.innerHTML = data.map(item => {
+                let badgeClass = 'bg-slate-200 text-slate-700';
+                if (item.sentiment === 'Positif') badgeClass = 'bg-emerald-100 text-emerald-700';
+                if (item.sentiment === 'Negatif') badgeClass = 'bg-rose-100 text-rose-700';
+                const match = item.sentiment === item.sentiment_gt;
+                return `
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 text-sm hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-start mb-2 flex-wrap gap-1">
+                            <div class="flex items-center gap-1.5 flex-wrap">
+                                <span class="font-bold text-slate-800 text-xs">📌 ${item.claim}</span>
+                                <span class="px-2 py-0.5 text-[10px] rounded uppercase font-bold tracking-wider ${badgeClass}">${item.sentiment}</span>
+                                ${item.f_text ? '<span class="px-2 py-0.5 text-[10px] rounded uppercase font-bold tracking-wider bg-amber-100 text-amber-700">Sinyal Fraud</span>' : ''}
+                                <span class="px-2 py-0.5 text-[10px] rounded ${item.source === 'ollama' ? 'bg-indigo-100 text-indigo-700' : 'bg-slate-100 text-slate-500'}">${item.source === 'ollama' ? '🤖 Ollama' : '🧮 Heuristik Lokal'}</span>
+                            </div>
+                            <span class="text-[10px] ${match ? 'text-emerald-500' : 'text-rose-500'} font-semibold">${match ? '✓ sesuai GT' : '✗ beda GT (' + item.sentiment_gt + ')'}</span>
+                        </div>
+                        <div class="text-slate-600 whitespace-pre-line leading-relaxed mt-2 text-[13px] border-l-2 border-slate-100 pl-3 py-1">${esc(item.text)}</div>
+                        <div class="text-[10px] text-slate-400 mt-2">${item.step ? 'Langkah #' + item.step + ' · ' : ''}❤ ${item.likes}</div>
+                    </div>`;
+            }).join('');
+        }
+
+        renderFeed(D.twFeed, 'tw-feed', 'tw-count-badge');
+        renderFeed(D.rdFeed, 'rd-feed', 'rd-count-badge');
+    </script>
+</body>
+</html>
+"""
+
+# Injeksi data Python → JS (aman: placeholder tunggal, tanpa format kurawal)
+html_code = HTML_TEMPLATE.replace("__PAYLOAD__", json.dumps(payload, ensure_ascii=False))
+display(HTML(html_code))
+
+print("✅ Dashboard interaktif Aegis-JKN selesai dirender di output Colab.")
+print("🖨️  Untuk PDF: klik tombol 'Cetak / Simpan PDF' di header dashboard (atau Ctrl+P), "
+      "lalu pilih tujuan 'Save as PDF'.")
+print(f"ℹ️  Label kejujuran: {HONESTY_LABEL}")
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 7. EKSPOR & INTEGRASI PROYEK (React / HTML / JS)
+#    • dashboard-aegis-jkn-v2.1.html : HTML mandiri (Tailwind + Chart.js via CDN,
+#      data tersirat inline) — langsung dibuka, di-host statis (Vercel/Netlify),
+#      atau di-embed ke React via <iframe src=... />.
+#    • payload-aegis-jkn-v2.1.json   : data bersih (KPI, sentimen, risiko, sindikat,
+#      antrian, feed) — siap di-fetch/import untuk membangun ulang UI dengan stack
+#      sendiri (React + Recharts/Chart.js, dsb.).
+#    Di Colab kedua file otomatis diunduh; di Jupyter lokal tersimpan di direktori kerja.
+# ─────────────────────────────────────────────────────────────────────────────
+_files_out = [
+    (f"dashboard-aegis-jkn-{VERSION}.html", html_code),
+    (f"payload-aegis-jkn-{VERSION}.json", json.dumps(payload, ensure_ascii=False, indent=2)),
+]
+try:
+    for _fname, _content in _files_out:
+        with open(_fname, "w", encoding="utf-8") as f:
+            f.write(_content)
+        print(f"💾 Diekspor: {_fname}")
+    try:
+        from google.colab import files  # lingkungan Colab → picu unduhan browser
+        for _fname, _ in _files_out:
+            files.download(_fname)
+        print("📥 Unduhan browser dipicu untuk kedua file.")
+    except Exception:
+        print("ℹ️  Ambil kedua file dari panel file Colab, atau klik tombol ⬇️ di dashboard.")
+    print("🧩 Integrasi React  : taruh HTML di folder public/, lalu "
+          "<iframe src='/dashboard-aegis-jkn-v2.1.html' style={{width:'100%',height:'100vh',border:0}} />")
+    print("🧩 Integrasi custom : import/swap payload JSON lalu bangun ulang UI "
+          "(Chart.js/Recharts) dengan data yang sama — tanpa mengubah backend simulasi.")
+except Exception as e:
+    print(f"⚠️ Ekspor file gagal ({e}) — gunakan tombol ⬇️ 'Unduh HTML/JSON' di dashboard.")

@@ -1,0 +1,31 @@
+sample IDs: ['KLM001', 'KLM002', 'KLM003', 'KLM004', 'KLM005', 'KLM006', 'KLM007', 'KLM008', 'KLM009', 'KLM010', 'KLM011', 'KLM012', 'KLM013', 'KLM014', 'KLM015', 'KLM016', 'KLM017', 'KLM018', 'KLM019', 'KLM020', 'KLM021', 'KLM022', 'KLM023', 'KLM024', 'KLM025', 'KLM026', 'KLM027', 'KLM028', 'KLM029', 'KLM030']
+sample label dist: {'negatif': 19, 'positif': 6, 'netral': 5}
+
+positif: rows=6 unique=6 service=1u/1r nonservice=5u/5r
+    x1 Pelayanan baik, cepat ditangani.
+    x1 Cepat ditangani dan hasil operasi memuaskan.
+    x1 Pelayanan cepat, dokter dan perawat sangat ramah.
+    x1 Saya pulang dengan kondisi membaik, terima kasih atas perawatannya.
+    x1 Nyaman dirawat di sini, fasilitas lengkap.
+    [svc] x1 Proses administrasi mudah dan ruangan bersih.
+
+netral: rows=5 unique=2 service=1u/1r nonservice=1u/4r
+    x4 Pelayanan cukup; kontrol tiap minggu sesuai anjuran dokter.
+    [svc] x1 Cukup membantu, tapi proses administrasi bertele-tele.
+
+negatif: rows=19 unique=15 service=1u/1r nonservice=14u/18r
+    x3 Kenapa ada dua tagihan untuk satu operasi yang sama?
+    x3 Muncul tagihan kedua untuk tindakan yang tidak saya ketahui.
+    x1 Saya hanya periksa lambung, kenapa ada tagihan tindakan jantung?
+    x1 Katanya hanya endoskopi, tapi muncul tindakan kateter jantung di tagihan.
+    x1 Saya tidak pernah sakit dada, kok dibilang dipasang stent?
+    x1 Saya tidak pernah menjalani operasi apa pun di rumah sakit ini.
+    x1 Tidak ada operasi yang pernah saya jalani bulan Maret ini.
+    x1 Saya hanya kontrol nyeri pinggang, tidak pernah dioperasi.
+    x1 Obat diberikan sekaligus sangat banyak, padahal biasanya cukup untuk satu bulan.
+    x1 Setiap kontrol selalu diminta mengambil obat dalam jumlah banyak.
+    x1 Dirawat lama sekali tanpa penjelasan tambahan dari dokter.
+    x1 Saya kontrol diabetes, tidak pernah sakit dada. Kenapa ada tindakan jantung di tagihan?
+    x1 Ada biaya tambahan yang sangat besar untuk operasi kecil.
+    x1 Saya melahirkan normal, kenapa ditagih operasi caesar?
+    [svc] x1 Kebersihan kamar mandi kurang terjaga.

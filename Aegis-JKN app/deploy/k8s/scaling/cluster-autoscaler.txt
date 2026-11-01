@@ -1,0 +1,19 @@
+# Cluster Autoscaler Configuration for GPU/CPU Node Groups
+# Typically configured via Cloud Provider (AWS EKS / GCP GKE)
+# Here we define the suggested node group specifications for Terraform/Cloud formation.
+
+# Node Group: CPU-General
+# - Instance Type: m5.large (or equivalent)
+# - Min: 3, Max: 100
+# - Taints: None
+
+# Node Group: GPU-Inference
+# - Instance Type: g4dn.xlarge (T4 GPU) or p3.2xlarge (V100)
+# - Min: 2, Max: 20
+# - Taints: nvidia.com/gpu=true:NoSchedule
+# - Labels: accelerator=nvidia-gpu
+
+# Node Group: Batch-Spot
+# - Instance Type: c5.large (Spot)
+# - Min: 0, Max: 200
+# - Taints: spot-instance=true:PreferNoSchedule

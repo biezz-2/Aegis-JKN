@@ -1,0 +1,9 @@
+{
+ "n_features": 34,
+ "n_rows": 300,
+ "feat_edges_theta085_scaled": 2192,
+ "feat_edges_theta085_raw": 77364,
+ "feat_edges_theta05_scaled": 7526,
+ "A_sem_edges": 10318,
+ "A_homo_edges": null
+}

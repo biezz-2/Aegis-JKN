@@ -1,0 +1,46 @@
+== NOT FOUND 'perlu harmonisasi'
+
+== ac31c607e0  | Prioritas P3 (           '6. **Beri banner \\"induk tidak terkendali\\" pada `09`–`13` dan perjelas peran `14-index.md` sebagai agregat** (kriteria: setiap berkas arsip punya banner di 5 baris pertama yang menyebut naskah terkendali pengganti).\\n\\nPrioritas P3 (rumahTBS):\\n\\n17. **Perbaiki kebocoran literal Notion** `{\'type\': \'emoji\', \'emoji\': \'💡\'}` di `07` L4, `08` L5, dan berkas arsip (kriteria: 0 kemunculan pola `{\'type\': \'emoji\'` pada dokumen kendali).\\n18. **'
+
+== ac31c607e0  | P3 (                     'banner \\"induk tidak terkendali\\" pada `09`–`13` dan perjelas peran `14-index.md` sebagai agregat** (kriteria: setiap berkas arsip punya banner di 5 baris pertama yang menyebut naskah terkendali pengganti).\\n\\nPrioritas P3 (rumahTBS):\\n\\n17. **Perbaiki kebocoran literal Notion** `{\'type\': \'emoji\', \'emoji\': \'💡\'}` di `07` L4, `08` L5, dan berkas arsip (kriteria: 0 kemunculan pola `{\'type\': \'emoji\'` pada dokumen kendali).\\n18. **Tambahkan '
+
+== ac31c607e0  | kurung                   ' pernah ditulis. Ini bukan pelanggaran, melainkan celah dokumentasi yang menutupi potensi凯 contradiction.\\n\\n## 7. Rekomendasi Terurut\\n\\nPrioritas P0 (harus selesai sebelum dokumen diserahkan; Closure criteria，示意 dalam kurung):\\n\\n1. **Perbaiki baris LOS di `00-dashboard.md` L36 dan `03-dataset-registry.md` L78, dan ganti seluruh bahasa \\"kosong\\" dengan bahasa yang representatif** — menyebut bahwa 109 baris bernilai `0` dan 0 baris ko'
+
+== af743ae9fc  | kurung                   ')\\nprint(\'=== panjang nama Notion per dokter (cek pola) ===\')\\nfor d in sorted(tot):\\n    nm=list({nt[r[\'claim_id\']][\'Dokter\'] for r in v if r[\'dokter_id\']==d})[0]\\n    print(f\'  {d}: len_notion={len(nm):>2}  nama_dalam_kurung={nm.split(\\\\\\"(\\\\\\")[1].rstrip(\\\\\\")\\\\\\")!r}\')\\n\\"","description":"Analyze truncation pattern per doctor"}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":93057,"cache_creation_input_tokens'
+
+== NOT FOUND 'Closure criteria, '
+
+== NOT FOUND 'kernelDAY'
+
+== NOT FOUND 'yaituInitializer'
+
+== NOT FOUND 'SkalaSaving'
+
+== NOT FOUND 'sudahala'
+
+== NOT FOUND 'sudah SHOULD'
+
+== NOT FOUND 'tidak lagiNeeded'
+
+== NOT FOUND 'kontennyaWizard'
+
+== NOT FOUND 'sudah terisi'
+
+== a784049af2  | labels are               'upervised\\" says target ground_truth_fraud \\"Belum disahkan\\" → status \\"Belum disahkan\\" = label not sanctioned. So 08 says evaluation can only happen after ground truth is independently verified; 10\'s criteria presume labels are usable. Conflict.\\n\\nAlso 08 §3 line 22: blocklist = Skor Fraud, Risiko, Status, Sinyal SHAP + kolom yang dihitung langsung dari aturan label. It omits Kontribusi Saluran, Modus, Sindikat, Alasan — 03 §7 inclu'
+
+== aab5c3b68f  | labels are               'content":[{"type":"thinking","thinking":"This is a very important finding. The `skor_fraud` column in the 300-claim dataset perfectly separates fraud from non-fraud (AUC = 1.0, AP = 1.0). This means the \\"ground truth\\" labels are trivially derivable from a column in the dataset — the \\"model\\" is essentially reading the label. That\'s the definition of target leakage.\\n\\nBut more importantly: the claimed metrics (93.0% accuracy, 94.12% '
+
+== abef7738a0  | notebookUsesIt           'oad (G-14); `repo-map.md` memetakan repo app ↔ repo ML ↔ repo induk |\\n| M-14 | **Konsolidasikan sumber label** ke `backend/src/data/labels.py` (`build_target`) dan hapus definisi label ganda di notebook | `labels.py` + notebookUsesIt | `y_train` == `y_eval` pada 300/300 baris; 0 baris beda; `tests/test_label_consistency.py` hijau |\\n| M-15 | **Bangun `scripts/` evaluasi out-of-fold** di repo ML: `scripts/train_baseline.py`, `scripts/ev'
+
+== NOT FOUND 'senatorsDeterministik'
+
+== NOT FOUND 'menghapusProjection'
+
+== NOT FOUND 'perREADME'
+
+== a4b9f27196  | on-prem                  'membekukan saran AI jika tingkat penolakan (override) oleh verifikator melampaui 30%.\\n- 5. Kepatuhan Ketat UU PDP No. 27/2022 & Interoperabilitas: Seluruh arsitektur didesain beroperasi pada perimeter tertutup (private on-premise cloud) BPJS Kesehatan dengan enkripsi AES-256 dan salted SHA-256 pseudonymization, selaras penuh dengan standar SATUSEHAT HL7 FHIR R4 dan regulasi UU PDP No. 27/2022.\\nEvaluasi empiris terhadap portofolio 300 '
+
+== a55ad04e74  | on-prem                  'ekukan saran AI jika tingkat penolakan (override) oleh verifikator melampaui 30%.\\n29\\t- 5. Kepatuhan Ketat UU PDP No. 27/2022 & Interoperabilitas: Seluruh arsitektur didesain beroperasi pada perimeter tertutup (private on-premise cloud) BPJS Kesehatan dengan enkripsi AES-256 dan salted SHA-256 pseudonymization, selaras penuh dengan standar SATUSEHAT HL7 FHIR R4 dan regulasi UU PDP No. 27/2022.\\n30\\tEvaluasi empiris terhadap portofolio '
+
+== NOT FOUND 'dataPoints'
+

@@ -1,0 +1,48 @@
+{
+  "corpus": "N:\\HEALTHKATHON\\analysis\\corpus\\claims_v2_live.csv",
+  "n_rows": 300,
+  "prevalence": {
+    "fraud_synthetic": 0.12,
+    "anomali_synthetic": 0.2
+  },
+  "label_distribution": {
+    "low": 240,
+    "medium": 10,
+    "fraud": 36,
+    "high": 14
+  },
+  "status_distribution": {
+    "auto_clear": 240,
+    "review": 24,
+    "escalate": 36
+  },
+  "leak_sinyal_shap": {
+    "tp": 60,
+    "fp": 0,
+    "fn": 0,
+    "tn": 240,
+    "accuracy": 1.0
+  },
+  "leak_alasan_verdict_tag_rows": 239,
+  "distinct_alasan_templates_number_stripped": 55,
+  "nominal_total": 3526650000,
+  "nominal_escalate": 561150000,
+  "nominal_review": 279950000,
+  "claimed_overcharge": 507370000,
+  "overcharge_reproducible": false,
+  "overcharge_derivable_from_own_tariffs": 31350000,
+  "overcharge_ratio_claimed_over_derivable": 16.184051036682614,
+  "claims_reproducible": {
+    "Accuracy": "PARTIAL (arithmetically possible, not empirically checkable)",
+    "Precision": "NO (0 of 46 thresholds)",
+    "ROC-AUC": "NO",
+    "AUPRC": "NO",
+    "Masking robustness": "NO",
+    "False positive rate": "PARTIAL (reachable only at 0.14)",
+    "Time reduction": "NO",
+    "Throughput": "NO",
+    "SUS score": "NO",
+    "AUPRC lift vs baseline": "NO",
+    "False-negative reduction": "NO"
+  }
+}

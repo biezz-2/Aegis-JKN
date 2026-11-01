@@ -1,0 +1,20 @@
+lines 337
+1 | # 21. Angka-of-Record: Rekonsiliasi Numerik Aegis-JKN
+7 | ## 1. Metodologi dan Batasan
+9 | ### 1.1 Sumber yang diperiksa
+26 | ### 1.2 Prosedur
+34 | ### 1.3 Batasan yang harus dibaca bersama setiap angka
+43 | ## 2. TABEL UTAMA: Angka-of-Record
+106 | ## 3. Kontradiksi Antar Sumber
+131 | ## 4. Bukti Circularity: AUPRC dari Kolom Label
+133 | ### 4.1 Mekanisme
+150 | ### 4.2 Apakah AUPRC 0,9142 bisa direproduksi dari kolom label?
+160 | ### 4.3 Leakage tambahan yang terverifikasi
+172 | ### 4.4 Inkonsistensi lain yang ditemukan
+182 | ## 5. Angka Hardcode Frontend Tanpa Artefak Pendukung
+221 | ## 6. Angka pada PDF Colab (`Hasil simulasi dari 300 dataset notion.pdf`)
+265 | ## 7. Rekomendasi
+267 | ### 7.1 Boleh dipublikasikan apa adanya
+283 | ### 7.2 Harus dihapus atau diberi label tegas
+305 | ### 7.3 Syarat minimum agar metrik model bisa diklaim
+315 | ## 8. Daftar Berkas Bukti

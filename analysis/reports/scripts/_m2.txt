@@ -1,0 +1,44 @@
+=== LIVE dataset ===
+Risiko: Counter({'low': 240, 'fraud': 36, 'high': 14, 'medium': 10})
+Status: Counter({'auto_clear': 240, 'escalate': 36, 'review': 24})
+Sindikat: [('', 264), ('SYND-08', 6), ('SYND-09', 6), ('SYND-03', 6), ('SYND-06', 4), ('SYND-07', 4), ('SYND-02', 3), ('SYND-01', 3), ('SYND-05', 2), ('SYND-04', 2)]
+Skor Fraud none count: 0
+Skor Fraud min/max: 0.04 0.95
+live P(fraud)=36 N=264
+LIVE skor_fraud vs risiko==fraud: AUC=1.0000 AP=1.0000
+LIVE skor_fraud vs status==escalate: AUC=1.0000
+
+=== THRESHOLD SWEEP on nb skor_fraud (y=is_fraud, P=36) ===
+thresholds giving accuracy 93.0%: [(0.45, 0.93, 0.631578947368421, 1.0, 0.7741935483870968, 0.07954545454545454)]
+thresholds giving precision 94.12%: NONE
+
+full sweep (t, acc, prec, rec, f1, fpr) for t>=0.5:
+  t=0.5100 acc=94.67 prec=69.23 rec=100.00 fpr=6.06 fp=16
+  t=0.5300 acc=95.00 prec=70.59 rec=100.00 fpr=5.68 fp=15
+  t=0.6200 acc=95.33 prec=72.00 rec=100.00 fpr=5.30 fp=14
+  t=0.6300 acc=96.33 prec=76.60 rec=100.00 fpr=4.17 fp=11
+  t=0.6400 acc=96.67 prec=78.26 rec=100.00 fpr=3.79 fp=10
+  t=0.6600 acc=97.00 prec=80.00 rec=100.00 fpr=3.41 fp=9
+  t=0.6700 acc=97.33 prec=81.82 rec=100.00 fpr=3.03 fp=8
+  t=0.6800 acc=97.67 prec=83.72 rec=100.00 fpr=2.65 fp=7
+  t=0.7100 acc=98.33 prec=87.80 rec=100.00 fpr=1.89 fp=5
+  t=0.7200 acc=98.67 prec=90.00 rec=100.00 fpr=1.52 fp=4
+  t=0.7400 acc=99.00 prec=92.31 rec=100.00 fpr=1.14 fp=3
+  t=0.7800 acc=99.33 prec=94.74 rec=100.00 fpr=0.76 fp=2
+  t=0.7900 acc=99.67 prec=97.30 rec=100.00 fpr=0.38 fp=1
+  t=0.8000 acc=100.00 prec=100.00 rec=100.00 fpr=0.00 fp=0
+  t=0.8100 acc=99.67 prec=100.00 rec=97.22 fpr=0.00 fp=0
+  t=0.8200 acc=99.00 prec=100.00 rec=91.67 fpr=0.00 fp=0
+  t=0.8300 acc=98.00 prec=100.00 rec=83.33 fpr=0.00 fp=0
+  t=0.8400 acc=97.33 prec=100.00 rec=77.78 fpr=0.00 fp=0
+  t=0.8500 acc=96.33 prec=100.00 rec=69.44 fpr=0.00 fp=0
+  t=0.8600 acc=95.33 prec=100.00 rec=61.11 fpr=0.00 fp=0
+  t=0.8700 acc=93.67 prec=100.00 rec=47.22 fpr=0.00 fp=0
+  t=0.8800 acc=92.67 prec=100.00 rec=38.89 fpr=0.00 fp=0
+  t=0.8900 acc=91.67 prec=100.00 rec=30.56 fpr=0.00 fp=0
+  t=0.9000 acc=91.00 prec=100.00 rec=25.00 fpr=0.00 fp=0
+  t=0.9100 acc=90.67 prec=100.00 rec=22.22 fpr=0.00 fp=0
+  t=0.9200 acc=90.33 prec=100.00 rec=19.44 fpr=0.00 fp=0
+  t=0.9300 acc=89.67 prec=100.00 rec=13.89 fpr=0.00 fp=0
+  t=0.9400 acc=89.00 prec=100.00 rec=8.33 fpr=0.00 fp=0
+  t=0.9500 acc=88.33 prec=100.00 rec=2.78 fpr=0.00 fp=0

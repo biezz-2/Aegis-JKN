@@ -1,0 +1,117 @@
+=== TABLE 0 (rows=1) ===
+  R00 | [JUDUL KARYA INOVASI] DETECT-JKN: Sistem Clinical Decision Support Berbasis Hybrid Rule-Based & Contextual NLP dengan Pendekatan Human-in-the-Loop untuk Deteksi Dini Anomali dan Upcoding Klaim JKN
+
+=== TABLE 1 (rows=2) ===
+  R00 | Mengetahui,Perwakilan Tim Teknis & Logika( Tim Pengusul Kandidat 1 ) || Jakarta, Oktober 2026Perwakilan Riset & Strategi Dampak( Tim Pengusul Kandidat 1 )
+  R01 |  || 
+
+=== TABLE 2 (rows=1) ===
+  R00 | [RUMUSAN MASALAH UTAMA] « Bagaimana merancang suatu sistem Clinical Decision Support yang mampu mengidentifikasi dan memprioritaskan indikasi ketidaksesuaian antara dokumentasi klinis EMR dan kode diagnosis klaim (upcoding) secara akurat, transparan, dan efisien, dengan tetap mempertahankan verifikator manusia sebagai pemegang kendali keputusan akhir serta mematuhi regulasi pelindungan data medis? »
+
+=== TABLE 3 (rows=6) ===
+  R00 | Tingkat || Pertanyaan Kausalitas || Fakta / Kondisi Nyata Lapangan || Implikasi Sistemik
+  R01 | Why 1 || Mengapa indikasi upcoding sulit ditemukan secara cepat? || Verifikator harus menyandingkan narasi resume medis EMR dengan kode diagnosis klaim satu per satu secara manual. || Pemeriksaan manual membutuhkan waktu 10-20 menit per berkas berisiko.
+  R02 | Why 2 || Mengapa perbandingan tersebut tidak bisa diselesaikan secara otomatis dengan aturan biasa? || Dokumentasi klinis berupa narasi bebas yang variatif, menggunakan singkatan medis lokal, dan tidak terstruktur. || Rule-based regex sederhana gagal menangkap konteks klinis secara utuh.
+  R03 | Why 3 || Mengapa kesesuaian diagnosis membutuhkan pemahaman konteks klinis mendalam? || Severity level kode INA-CBG bergantung pada temuan klinis spesifik (misal: ada/tidaknya syok, gagal napas, hasil lab kritis). || Ketiadaan korelasi bukti fisik dengan kode klaim adalah indikator utama upcoding.
+  R04 | Why 4 || Mengapa verifikator tidak bisa memeriksa seluruh berkas secara mendalam? || Volume jutaan klaim per bulan berbanding tidak seimbang dengan jumlah personel verifikator. || Hanya berkas ber-flag atau sampling acak yang sempat ditinjau mendalam.
+  R05 | Why 5 || Mengapa sistem yang ada belum mampu memberikan prioritas yang tepat? || Belum ada lapisan kognitif (NLP) yang mampu mengekstrak bukti klinis dan menghitung probabilitas anomali secara transparan. || Dibutuhkan sistem cerdas pendukung keputusan (CDSS) berbasis Human-in-the-Loop.
+
+=== TABLE 4 (rows=5) ===
+  R00 | Dimensi Masalah || Komponen Akar Penyebab || Dampak pada Operasional Klaim JKN
+  R01 | 1. Faktor Manusia (Human Factor) || • Kelelahan mental verifikator (alert fatigue) akibat volume berkas.• Variasi subjektivitas dan pemahaman klinis antar-verifikator.• Tekanan target SLA penyelesaian klaim 15 hari.• Resistensi terhadap teknologi black-box yang tidak transparan. || Risiko inkonsistensi penetapan status klaim dan terlewatnya berkas anomali yang bernilai finansial besar.
+  R02 | 2. Faktor Proses (Workflow Factor) || • Alur verifikasi berbasis sampling acak yang tidak terarah.• Dispute klaim faskes memerlukan proses klarifikasi panjang.• Belum ada mekanisme triase risiko sebelum berkas masuk ke meja verifikator.• Waktu penelaahan berkas anomali sangat terbatas. || Inefisiensi waktu verifikasi dan penumpukan antrean berkas klaim pada akhir periode penagihan bulanan.
+  R03 | 3. Faktor Data & Teknologi || • 80% data klinis tersimpan dalam teks naratif tidak terstruktur.• Inkonsistensi terminologi medis dan singkatan dokter faskes.• Rule-based engine eksisting kaku dan rentan false positive/negative.• Risiko halusinasi jika menggunakan model AI generatif tanpa kontrol. || Ketiadaan jembatan cerdas antara narasi klinis EMR dengan sistem kodifikasi tarif INA-CBG.
+  R04 | 4. Faktor Skala & Volume || • Ratusan juta klaim per tahun dari ribuan fasilitas kesehatan.• Asimetri informasi yang tajam antara manajemen faskes dan BPJS.• Variabilitas pola koding antar-wilayah dan tipe rumah sakit (Kelas A, B, C, D). || Pengawasan manual menjadi mustahil mengimbangi laju pertumbuhan berkas klaim faskes.
+
+=== TABLE 5 (rows=8) ===
+  R00 | Parameter Komparasi || Pemeriksaan Manual || Sistem Rule-Based Murni || Pure AI / Black-Box ML || DETECT-JKN (Hybrid HITL)
+  R01 | Kecepatan Telaah || Sangat lambat (10-20 mnt/berkas) || Sangat cepat (<1 detik) || Cepat (1-3 detik) || Optimal (Deteksi <2 dtk, Review 2-3 mnt)
+  R02 | Cakupan Teks EMR || Tinggi (bisa baca narasi dokter) || Nol (hanya periksa field tabel) || Tinggi (membaca seluruh teks) || Tinggi (ekstraksi entitas klinis spesifik)
+  R03 | Ketepatan Konteks || Tinggi (berdasar naluri klinis) || Sangat rendah (kaku & rigid) || Sedang (rentan halusinasi/bias) || Sangat tinggi (NLP terpandu guideline resmi)
+  R04 | Transparansi / Explainability || Bergantung catatan verifikator || Jelas (aturan logika IF-THEN) || Sangat rendah (skor probabilitas gelap) || Sangat tinggi (kutipan teks asli + rujukan aturan)
+  R05 | Tingkat False Positive || Rendah (validasi langsung) || Sangat tinggi (banyak false alert) || Sedang-Tinggi (bila data bergeser) || Rendah terkontrol (filtering berlapis)
+  R06 | Otonomi Keputusan || 100% Manusia || Sistem tolak otomatis kaku || Berisiko mendikte keputusan || 100% Manusia (Decision Support Fail-Safe)
+  R07 | Kepatuhan UU PDP || Risiko kebocoran kertas berkas || Aman (skrip lokal) || Rentan jika kirim ke cloud publik || Aman (Private On-Premise & De-identifikasi)
+
+=== TABLE 6 (rows=1) ===
+  R00 | [PRINSIP RIGHT-SIZED TECHNOLOGY] « Jangan pernah menggunakan model AI generatif atau deep learning yang mahal dan rentan halusinasi untuk menyelesaikan masalah yang dapat dipecahkan secara sempurna oleh aturan logika deterministik sederhana. AI hanya diaktifkan pada titik di mana keahlian semantiknya benar-benar memberikan nilai tambah nyata. »
+
+=== TABLE 7 (rows=1) ===
+  R00 | [FORMULA SKORING RISIKO ANOMALI] Risk Score = (w1 × Bobot Diskrepansi Klinis) + (w2 × Delta Finansial Tarif INA-CBG) + (w3 × Indeks Riwayat Faskes)
+
+=== TABLE 8 (rows=6) ===
+  R00 | Prinsip UU PDP (Pasal 16) || Implementasi Konkret pada DETECT-JKN || Instrumen Verifikasi
+  R01 | Tujuan Terbatas & Spesifik || Pemrosesan data terbatas semata-mata untuk verifikasi keabsahan koding klaim JKN, tidak digunakan untuk profil komersial. || Kontrak pemrosesan data & audit kepatuhan internal.
+  R02 | Data Minimization || Hanya menyerap field klinis relevan (diagnosa, tindakan, resume klinis); data finansial pribadi dan keluarga pasien dipangkas. || Modul sanitasi payload pra-ingestion.
+  R03 | Akurasi & Integritas || Data klinis diproses dalam format kriptografis hashing (SHA-256) untuk menjamin tidak ada manipulasi data selama transit. || Digital signature berkas klaim elektronik.
+  R04 | Pembatasan Akses || Akses berbasis peran ketat (RBAC) dengan autentikasi multifaktor (MFA) bagi seluruh operator verifikator. || OIDC / SAML SSO integration BPJS.
+  R05 | Akuntabilitas & Audit Trail || Setiap akses pembacaan berkas dan tindakan keputusan verifikator dicatat dalam immutable append-only log. || WORM (Write Once Read Many) audit log.
+
+=== TABLE 9 (rows=1) ===
+  R00 | [PRINSIP FAIL-SAFE AI] « AI diperbolehkan membuat kekeliruan dalam memberikan indikasi atau rekomendasi awal, namun AI TIDAK PERNAH diizinkan menjadi pihak tunggal yang menetapkan keputusan akhir terhadap klaim faskes. »
+
+=== TABLE 10 (rows=7) ===
+  R00 | Dimensi Tugas || Fungsi Sistem (AI / Rule Engine) || Wewenang Verifikator Manusia
+  R01 | Pemrosesan Berkas || Menyaring ribuan berkas klaim secara simultan dalam hitungan detik. || Memvalidasi hasil penyaringan pada berkas prioritas tinggi.
+  R02 | Deteksi Diskrepansi || Mencari inkonsistensi antara kode klaim dengan teks EMR. || Menilai kewajaran klinis berdasarkan konteks lokal pasien.
+  R03 | Skoring & Triase || Menghitung Anomaly Risk Score dan mengurutkan antrean prioritas. || Menentukan apakah antrean prioritas perlu disesuaikan.
+  R04 | Penyajian Bukti || Menampilkan evidence span dan pasal pedoman koding terkait. || Membaca bukti dan mempertimbangkan riwayat pengobatan pasien.
+  R05 | Pengambilan Keputusan || DILARANG menetapkan status persetujuan atau penolakan klaim. || MEMILIKI HAK TUNGGAL menyetujui, mengoreksi, atau menolak klaim.
+  R06 | Klarifikasi Faskes || Menyusun draf catatan diskrepansi klinis secara otomatis. || Menghubungi koder/dokter faskes untuk mediasi klinis.
+
+=== TABLE 11 (rows=1) ===
+  R00 | [HIPOTESIS PEMBUKTIAN MVP] « Apakah kombinasi filter deterministik dan ekstraksi NLP klinis mampu menyaring berkas klaim, mengidentifikasi ketidaksesuaian severity level upcoding, dan menyajikan penjelasan bukti yang mempercepat telaah verifikator manusia? »
+
+=== TABLE 12 (rows=7) ===
+  R00 | Kategori Fitur || Termasuk dalam Scope MVP (In-Scope) || Di Luar Scope MVP (Out-of-Scope)
+  R01 | Cakupan Penyakit || Kardiologi (I20-I25, I50) & Neurologi (I60-I69). || Seluruh spesialisasi medis (Onkologi, Bedah Umum, dll).
+  R02 | Jenis Kecurangan || Indikasi Upcoding severity level diagnosis. || Phantom billing, fraud identitas peserta, resep fiktif.
+  R03 | Sumber Data || Dataset sintetis tervalidasi & open de-identified data. || Koneksi live database produksi JKN BPJS Kesehatan.
+  R04 | Integrasi Sistem || Simulasi API bridging mandiri berbasis REST JSON. || Integrasi langsung ke core banking / sistem V-Claim faskes.
+  R05 | Kapasitas Beban || Pemrosesan batch 500-1.000 berkas klaim per sesi uji. || Pemrosesan jutaan klaim simultan real-time skala nasional.
+  R06 | Otomasi Keputusan || Pemberian flag dan rekomendasi teks bukti. || Eksekusi pemotongan pembayaran atau penolakan klaim.
+
+=== TABLE 13 (rows=11) ===
+  R00 | Dimensi || Metrik Keberhasilan || Definisi & Formula Pengukuran || Target MVP
+  R01 | Technical || Precision (Ketepatan Flag) || Rasio flag anomali yang benar-benar terbukti diskrepansi setelah verifikasi manusia. (TP / (TP + FP)) || ≥ 80.0%
+  R02 | Technical || False Positive Rate (FPR) || Proporsi klaim wajar yang keliru ditandai sebagai anomali. (FP / (FP + TN)) || ≤ 15.0%
+  R03 | Technical || Recall (Sensitivitas) || Kemampuan sistem menemukan seluruh kasus upcoding yang ada di dataset. (TP / (TP + FN)) || ≥ 85.0%
+  R04 | Technical || Explainability Coverage || Persentase flag yang berhasil menyertakan kutipan teks bukti pendukung dari EMR. || 100.0%
+  R05 | Operational || Waktu Review per Berkas || Durasi rata-rata yang dihabiskan verifikator untuk menelaah berkas anomali. || Turun 30 - 50%
+  R06 | Operational || Throughput Verifikasi || Jumlah berkas klaim yang dapat diselesaikan verifikator per hari kerja. || Meningkat 1.5×
+  R07 | Economic || Penyelamatan Dana DJS || Estimasi nilai selisih tarif klaim upcoding yang berhasil diidentifikasi untuk dikoreksi. || Berdasarkan audit riil
+  R08 | Economic || Cost-to-Benefit Ratio || Perbandingan biaya komputasi sistem terhadap nilai efisiensi klaim yang diselamatkan. || Minimal 1 : 5
+  R09 | User Acceptance || System Usability Scale (SUS) || Skor kuesioner standar internasional kegunaan antarmuka oleh verifikator. || Skor ≥ 75 (Good)
+  R10 | User Acceptance || Comprehension Index || Persentase verifikator yang memahami alasan flag tanpa membuka berkas fisik lain. || ≥ 85.0%
+
+=== TABLE 14 (rows=4) ===
+  R00 | Peran Anggota || Fokus Tanggung Jawab Utama || Keluaran yang Dihasilkan
+  R01 | Lead Platform & Logic Architecture || Merancang alur pipa pemrosesan data, mengintegrasikan rule-engine dengan NLP, mengembangkan antarmuka purwarupa, dan optimasi arsitektur sistem. || Repositori kode purwarupa, API backend, dan antarmuka web MVP.
+  R02 | Research & Clinical Data Specialist || Melakukan riset guideline koding INA-CBG, merancang skenario dataset sintetis klinis kardiologi/neurologi, dan menyusun mitigasi halusinasi AI. || Dataset sintetis tervalidasi, matriks koding klinis, dan benchmark akurasi.
+  R03 | Business Case & Strategic Impact Specialist || Menyusun permodelan dampak ekonomi DJS, menganalisis kepatuhan regulasi UU PDP, menyusun metrik KPI, dan menyusun narasi presentasi kompetisi. || Dokumen proposal resmi, kalkulasi kelayakan finansial, dan materi paparan juri.
+
+=== TABLE 15 (rows=13) ===
+  R00 | No || Identifikasi Risiko || Potensi Dampak || Tingkat Risiko || Strategi Mitigasi Preventif & Kontingensi
+  R01 | 1 || AI Hallucination || Sistem salah menafsirkan teks klinis sehingga menghasilkan flag yang keliru. || Tinggi (Kritis) || Model dibatasi extractive context via RAG; temperature disetel 0; verifikator manusia pemegang keputusan final.
+  R02 | 2 || False Positive Tinggi || Banyak klaim valid ditandai sehingga menambah beban kerja verifikator. || Tinggi (Kritis) || Kalibrasi threshold risiko berbasis evaluasi empiris; filter deterministik menyaring kasus wajar.
+  R03 | 3 || False Negative || Anomali upcoding nyata lolos dari pemantauan sistem. || Sedang || Pengujian metrik Recall; evaluasi berkala terhadap sampel klaim acak; audit silang TKMKB.
+  R04 | 4 || Pelanggaran Privasi Medis || Tereksposnya riwayat penyakit pasien melanggar UU PDP No. 27/2022. || Tinggi (Kritis) || De-identifikasi data pra-ingestion; deployment 100% private on-premise cloud; larangan API publik.
+  R05 | 5 || Akses Data Terbatas || Purwarupa tidak dapat diuji pada lingkungan data riil BPJS. || Sedang || Penggunaan dataset sintetis realistis untuk MVP; pengujian data riil hanya pasca izin resmi BPJS.
+  R06 | 6 || Over-Engineering || Sistem terlalu kompleks dan boros komputasi untuk masalah sederhana. || Sedang || Penerapan prinsip Right-Sized Tech: gunakan rule-based deterministik untuk seluruh aturan statis.
+  R07 | 7 || Resistensi Verifikator || Verifikator enggan menggunakan sistem karena merasa terancam digantikan. || Sedang || Desain Human-in-the-Loop yang memposisikan sistem sebagai asisten co-pilot; edukasi & user testing.
+  R08 | 8 || Explainability Gagal || Verifikator tidak memahami alasan sistem memberikan rekomendasi flag. || Sedang || Wajib menyertakan evidence span (kutipan teks asli resume medis) dan referensi pedoman koding.
+  R09 | 9 || Biaya Komputasi Tinggi || Infrastruktur server menjadi tidak ekonomis saat diterapkan pada skala besar. || Rendah-Sedang || Arsitektur pre-filtering menyaring >60% klaim normal; penggunaan model NLP terkuantisasi.
+  R10 | 10 || Data Resume Tidak Lengkap || Narasi klinis faskes terlalu minim sehingga NLP gagal mengekstrak bukti. || Sedang || Sistem memberikan status 'Dokumen Tidak Lengkap' dan meminta berkas penunjang, bukan memvonis anomali.
+  R11 | 11 || Perubahan Regulasi Tarif || Aturan koding INA-CBG diperbarui sehingga model dan aturan menjadi usang. || Sedang || Pemisahan arsitektur antara modul aturan bisnis (business logic) dengan modul NLP; re-indexing berkala.
+  R12 | 12 || Bias Pola Faskes || Model mendiskriminasi faskes tertentu karena perbedaan gaya penulisan resume. || Rendah-Sedang || Pelatihan model menggunakan dataset variatif dari beragam kelas RS (Tipe A, B, C, D) dan wilayah.
+
+=== TABLE 16 (rows=8) ===
+  R00 | Tahap & Durasi || Aktivitas Kunci || Keluaran (Deliverables) || Kriteria Kelulusan (Gate)
+  R01 | Tahap 1 (Bulan 1)Validasi Problem || Wawancara mendalam verifikator, studi regulasi INA-CBG, dan penguncian use case kardiologi/neurologi. || Dokumen spesifikasi kebutuhan pengguna (PRD) & use case map. || Problem statement tervalidasi & scope klinis terkunci.
+  R02 | Tahap 2 (Bulan 2)Desain Data & Metode || Penyusunan dataset sintetis 500 klaim, perancangan aturan deterministik, dan seleksi arsitektur NLP. || Dataset sintetis tervalidasi & modul pembersih data teruji. || Dataset disetujui konsultan klinis & kepatuhan privasi terkonfirmasi.
+  R03 | Tahap 3 (Bulan 3)Pengembangan MVP || Pengkodean 6 modul pipeline sistem, pembuatan dashboard web verifikator, dan integrasi modul. || Aplikasi purwarupa MVP DETECT-JKN yang fungsional. || Alur End-to-End berhasil memproses berkas uji tanpa galat.
+  R04 | Tahap 4 (Bulan 4)Pengujian Teknis || Benchmarking model pada dataset uji, kalibrasi threshold risiko, dan stress testing performa. || Laporan evaluasi metrik teknis (Precision, Recall, Latency). || Precision ≥ 80%, FPR ≤ 15%, dan latensi < 2 detik/berkas.
+  R05 | Tahap 5 (Bulan 5)Validasi Pengguna || Uji coba antarmuka bersama kelompok verifikator klaim, evaluasi SUS, dan penyesuaian UI/UX. || Laporan User Acceptance Test (UAT) & skor SUS. || Skor SUS ≥ 75 dan Comprehension Index ≥ 85%.
+  R06 | Tahap 6 (Bulan 6-8)Uji Coba Pilot || Penerapan terbatas pada 1-2 Kantor Cabang percontohan BPJS Kesehatan menggunakan data sandbox resmi. || Laporan evaluasi dampak operasional pilot cabang. || Terbukti memangkas waktu review dan tidak memicu sengketa faskes.
+  R07 | Tahap 7 (Bulan 9-12)Scale-up Nasional || Integrasi penuh ke infrastruktur V-Claim nasional, ekspansi spesialisasi penyakit, dan monitoring rutin. || Sistem DETECT-JKN operasional penuh skala nasional. || Adopsi nasional dengan efisiensi anggaran DJS terukur.
+

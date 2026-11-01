@@ -1,0 +1,64 @@
+========================================================================
+## P3-heading  token='Prioritas P3'
+  [ac31c607e0] "agregat** (kriteria: setiap berkas arsip punya banner di 5 baris pertama yang menyebut naskah terkendali pengganti).\\n\\nPrioritas P3 (rumahTBS):\\n\\n17. **Perbaiki kebocoran literal Notion** `{'type': 'emoji', 'emoji': '💡'}` di `07` L4, `08` L5, dan berkas arsip (kriteria: 0 kemunculan pola `{'type': 'emoji'` pada dokumen kendali).\\n18. **Tambahkan unit dan denominator pada head"
+  [brrx968lf.] 'd14.output | instrument\nabef7738a09ac7d14.output | on-prem\nabef7738a09ac7d14.output | tetapi\nac31c607e00c90d21.output | Prioritas P3\nac31c607e00c90d21.output | determinist\nac31c607e00c90d21.output | instrument\nac31c607e00c90d21.output | tetapi\nae82349eaab80a830.output | determinist\nae82349eaab80a830.output | on-prem\nae82349eaab80a830.output | tetapi\naf0873cb18fb82878.output | d'
+
+========================================================================
+## P3-heading-alt  token='Prioritas P3 ('
+  [ac31c607e0] "aris pertama yang menyebut naskah terkendali pengganti).\\n\\nPrioritas P3 (rumahTBS):\\n\\n17. **Perbaiki kebocoran literal Notion** `{'type': 'emoji', 'emoji': '💡'}` di `07` L4, `08` L5, dan berkas arsip (kriteria: 0 kemun"
+
+========================================================================
+## volumePlaceholder  token='volumePlaceholder'
+  [af0873cb18] 'RL paling penting lewat SearXNG: apakah URL hidup? apakah judul/jurnal cocok dengan yang diklaim di Deskripsi/Catatan Riset? apakah tahun terbit benar?\\n3. Deteksi POLA SEO/LOW-QUALITY: cari pola seperti jurnal generik, tahun 2026 (tahun yang belum逝 selesai / volumePlaceholder), DOI yang tidak resolve, judul artikel yang terlalu umum, atau sumber yang柔性 hanya sebagai \\"referensi purwarupa\\". Tandai yang berisiko fabricated-claim.\\n4. Cek konsistensi silang: apakah 04-evidence-matrix.md dan register riset 33 baris s'
+
+========================================================================
+## Medical-A  token='Medical-A'
+  [af0873cb18] "insurance datasets from a city's healthcare security administration, and the detailed data information of the health insurance dataset is shown in [Table 2](#tbl0020). In this study, we treated the same departments in different hospitals in the health insurance dataset as different departments. The Medical-A dataset comprises of comprehensive records of 440 patients, which includes 708 department nodes, 2,328 medicine nodes, and 351 time nodes. There are a total of 3,239 edges connecting patients and departments, 38,956 edges connecting patients and medicines, and 13,348 nodes connecting patie"
+
+========================================================================
+## Medical-1  token='Medical-1'
+  [af0873cb18] '"call_95e6aa39e4244fdc9e0a0e54","type":"tool_result","content":[{"type":"text","text":"{\\"successful\\":true,\\"data\\":{\\"results\\":\\"\\",\\"stdout\\":\\"=== MHGSL >> an attention mechanism, which indicates how important certain patterns are towards making a prediction. The researchers again utilized the Medical-1 and Medical-2 datasets, and compared MBGNN to five similar baseline methods (including StGNN [ 20 ] but not MHAMFD [ 21 ]) using F1 score and precision. The proposed technique consistently outperformed the baseline models in all scenarios. Hong et al. [ 23 ] In this study, the researchers '
+
+========================================================================
+## survive  token='survive'
+  [a4b9f27196] "than transcribing the Markdown one to one.\\n\\n**Browser storage**: `localStorage`, `sessionStorage` and IndexedDB work, but each artifact has its own origin and what a page stores lives only in that viewer's browser. It survives republishes to the same URL and never reaches other viewers, other devices or Claude. It can come back empty, or the accessor can throw, in a private window, with cleared or blocked site data, in previews or dur"
+  [a55ad04e74] ' I have the full file content. Let me build the report.\\n\\nKey sections in archive that are gone from revision:\\n1. LEMBAR PERNYATAAN ORISINALITAS DAN INTEGRITAS (lines 10-19)\\n2. RINGKASAN EKSEKUTIF (21-31) — partially survives as Abstrak\\n3. DAFTAR ISI (32-102)\\n4. DAFTAR TABEL & DAFTAR GAMBAR (103-124)\\n5. BAB I: PENDAHULUAN (125-149) → 1.1 Latar Belakang & Urgensi Nasional (126-129), 1.2 (130-135), 1.3 Topological Camouflage (136-13'
+  [a784049af2] "than transcribing the Markdown one to one.\\n\\n**Browser storage**: `localStorage`, `sessionStorage` and IndexedDB work, but each artifact has its own origin and what a page stores lives only in that viewer's browser. It survives republishes to the same URL and never reaches other viewers, other devices or Claude. It can come back empty, or the accessor can throw, in a private window, with cleared or blocked site data, in previews or dur"
+  [a7cf2498a9] "than transcribing the Markdown one to one.\\n\\n**Browser storage**: `localStorage`, `sessionStorage` and IndexedDB work, but each artifact has its own origin and what a page stores lives only in that viewer's browser. It survives republishes to the same URL and never reaches other viewers, other devices or Claude. It can come back empty, or the accessor can throw, in a private window, with cleared or blocked site data, in previews or dur"
+
+========================================================================
+## own-administrative  token='own-administrative'
+  (not found)
+
+========================================================================
+## on-prem plan  token='on-prem plan'
+  (not found)
+
+========================================================================
+## dan-AJAX  token='danAJAX'
+  [a7cf2498a9] 'ti-Channel Heterogeneous Graph Structure Learning\\"* dan proposal menyebut *\\"Multi-Hop Graph Structure Learning\\"* (`11-archive-proposal.md:6`). Variasi \\"Sequential Learning\\" muncul di brief tugas danAJAX Anda; di korpus, `02-architecture.md:31` hanya meminta \\"sifat temporal\\" didokumentasikan untuk tiap edge, dan `02-architecture.md:52` meminta afiliasi dokter \\"konsisten secara temporal\\".\\n'
+
+========================================================================
+## senators  token='senators'
+  (not found)
+
+========================================================================
+## dataPoints  token='dataPoints'
+  (not found)
+
+========================================================================
+## labels are downstream of  token='labels are downstream'
+  (not found)
+
+========================================================================
+## Closure criteria  token='Closure criteria'
+  [ac31c607e0] 'n: Status, Tanggal, Versi, Dokumen induk. Daftar dokumen dengan metadata yang hilang/tidak konsisten.\\n4. Periksa apakah P0 item di dashboard benar-benar punya Closure criteria yang terukur, dan apakah ada item yang statusnya klaim selesai padahal bukti tidak ada.\\n5. Periksa apakah aturan \\"status Tervalidasi hanya boleh dipakai dengan bukti yang dapat diti'
+
+========================================================================
+## notebookUsesIt-ctx  token='notebookUsesIt'
+  [abef7738a0] 'p.md` memetakan repo app ↔ repo ML ↔ repo induk |\\n| M-14 | **Konsolidasikan sumber label** ke `backend/src/data/labels.py` (`build_target`) dan hapus definisi label ganda di notebook | `labels.py` + notebookUsesIt | `y_train` == `y_eval` pada 300/300 baris; 0 baris beda; `tests/test_label_consistency.py` hijau |\\n| M-15 | **Bangun `scripts/` evaluasi out-of-fold** di repo ML: `scripts/train_basel'
+
+========================================================================
+## SUS  token='lembar instrumen'
+  [abef7738a0] '00-dashboard.md:49 (\\"SUS 82,5\\" belum boleh disebut tervalidasi), :71 | Rendah (P2) | M | — | Protokol uji 5 peserta + lembar instrumentSUS tersimpan di `docs/experiments/usability/`; skor SUS dilaporkan dengan n dan tanggal, atau klaim SUS dihapus dari materi |\\n| G-25 | Release notes dan pemisahan artefak dev vs eks'
+

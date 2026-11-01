@@ -1,0 +1,125 @@
+=== VERIFIKASI ANGKA LAPORAN 04-data-quality.md ===
+
+OK   jumlah baris: got=300 exp=300
+OK   jumlah kolom CSV: got=29 exp=29
+OK   ID unik: got=300 exp=300
+OK   total biaya: got=3526650000 exp=3526650000
+OK   nominal auto_clear: got=2685550000 exp=2685550000
+OK   nominal review: got=279950000 exp=279950000
+OK   nominal escalate: got=561150000 exp=561150000
+OK   status auto_clear: got=240 exp=240
+OK   status review: got=24 exp=24
+OK   status escalate: got=36 exp=36
+OK   risiko low: got=240 exp=240
+OK   risiko medium: got=10 exp=10
+OK   risiko high: got=14 exp=14
+OK   risiko fraud: got=36 exp=36
+OK   LOS == 0: got=109 exp=109
+OK   LOS kosong: got=0 exp=0
+OK   LOS==0 rawat jalan: got=106 exp=106
+OK   LOS==0 rawat inap: got=3 exp=3
+OK   LOS==0 rawat inap IDs: got=['KLM008', 'KLM010', 'KLM012'] exp=['KLM008', 'KLM010', 'KLM012']
+OK   rawat jalan LOS=1 IDs: got=['KLM029', 'KLM044', 'KLM059', 'KLM074', 'KLM089'] exp=['KLM029', 'KLM044', 'KLM059', 'KLM074', 'KLM089']
+OK   baris LOS=0 tanpa kata LOS di Alasan: got=109 exp=109
+OK   total biaya baris LOS=0: got=153310000 exp=153310000
+OK   Alasan kosong: got=['KLM031'] exp=['KLM031']
+OK   Modus kosong: got=240 exp=240
+OK   Sindikat kosong: got=264 exp=264
+OK   baris ber-Sindikat: got=36 exp=36
+OK   fraud tanpa Sindikat: got=['KLM121', 'KLM122'] exp=['KLM121', 'KLM122']
+OK   high dengan Sindikat: got=['KLM016', 'KLM017'] exp=['KLM016', 'KLM017']
+OK   Kontradiksi True: got=['KLM001', 'KLM002', 'KLM003', 'KLM004', 'KLM005', 'KLM006', 'KLM018', 'KLM024', 'KLM105', 'KLM106', 'KLM107', 'KLM108'] exp=['KLM001', 'KLM002', 'KLM003', 'KLM004', 'KLM005', 'KLM006', 'KLM018', 'KLM024', 'KLM105', 'KLM106', 'KLM107', 'KLM108']
+OK   Kontradiksi count: got=12 exp=12
+OK   undef Rujukan: got=28 exp=28
+OK   tanpa prosedur (sentinel —): got=156 exp=156
+OK   Obat sentinel —: got=['KLM004', 'KLM005', 'KLM006'] exp=['KLM004', 'KLM005', 'KLM006']
+OK   entitas pasien unik: got=40 exp=40
+OK   entitas dokter unik: got=20 exp=20
+OK   entitas faskes unik: got=10 exp=10
+OK   dx unik: got=13 exp=13
+OK   proc unik (tanpa —): got=8 exp=8
+OK   obat M kode unik: got=10 exp=10
+OK   Sinyal SHAP unik: got=33 exp=33
+OK   Umpan Balik unik: got=36 exp=36
+OK   tanggal unik: got=138 exp=138
+OK   rentang tanggal: got=('2026-01-01', '2026-06-27') exp=('2026-01-01', '2026-06-27')
+OK   v2.1 kolom ada: got=[] exp=[]
+OK   kolom di luar kamus: got=['Alasan Berobat', 'Layanan', 'Rujukan'] exp=['Alasan Berobat', 'Layanan', 'Rujukan']
+OK   mismatch interpretasi >= (0.35/0.60/0.80): got=0 exp=0
+OK   mismatch interpretasi > (0.35/0.60/0.80): got=1 exp=1
+OK   baris skor tepat 0.35: got=[] exp=[]
+OK   baris skor tepat 0.60: got=[] exp=[]
+OK   baris skor tepat 0.80: got=[('KLM115', '0.8', 'fraud')] exp=[('KLM115', '0.8', 'fraud')]
+OK   rentang skor low: got=(0.04, 0.14) exp=(0.04, 0.14)
+OK   rentang skor medium: got=(0.4, 0.53) exp=(0.4, 0.53)
+OK   rentang skor high: got=(0.62, 0.79) exp=(0.62, 0.79)
+OK   rentang skor fraud: got=(0.8, 0.95) exp=(0.8, 0.95)
+OK   baris Skor != T+F+S: got=42 exp=42
+OK     breakdown non-koinciden: got={'low': 0, 'medium': 10, 'high': 9, 'fraud': 23} exp={'low': 0, 'medium': 10, 'high': 9, 'fraud': 23}
+OK     selisih > 0.02 (pembulatan 2 desimal): got=21 exp=21
+OK   label tidak derivable dari kanal: got=['KLM123', 'KLM124', 'KLM125', 'KLM126', 'KLM127', 'KLM128', 'KLM129', 'KLM130', 'KLM131', 'KLM132', 'KLM133', 'KLM134', 'KLM135', 'KLM136'] exp=['KLM123', 'KLM124', 'KLM125', 'KLM126', 'KLM127', 'KLM128', 'KLM129', 'KLM130', 'KLM131', 'KLM132', 'KLM133', 'KLM134', 'KLM135', 'KLM136']
+OK     breakdown derivable: got={'low': 0, 'medium': 6, 'high': 8, 'fraud': 0} exp={'low': 0, 'medium': 6, 'high': 8, 'fraud': 0}
+OK   biaya median: got=4475000.0 exp=4475000
+OK   biaya Q1: got=1150000.0 exp=1150000
+OK   biaya Q3: got=9337500.0 exp=9337500
+OK   biaya min: got=700000 exp=700000
+OK   biaya max: got=63500000 exp=63500000
+OK   outlier atas IQR: got=44 exp=44
+OK   pagar atas IQR: got=21618750.0 exp=21618750
+OK   biaya > 50jt: got=23 exp=23
+OK   biaya < 1jt: got=29 exp=29
+OK   rasio maks/min: got=91 exp=91
+OK   sentimen negatif n: got=72 exp=72
+OK   sentimen negatif rentang: got=(-0.9, -0.3) exp=(-0.9, -0.3)
+OK   sentimen netral n: got=58 exp=58
+OK   sentimen netral rentang: got=(0.05, 0.15) exp=(0.05, 0.15)
+OK   sentimen positif n: got=170 exp=170
+OK   sentimen positif rentang: got=(0.6, 0.85) exp=(0.6, 0.85)
+OK   negatif skor>0: got=0 exp=0
+OK   positif skor<0: got=0 exp=0
+OK   biaya negatif: got=0 exp=0
+OK   biaya non-integer: got=0 exp=0
+OK   grup duplikat: got=[['KLM101', 'KLM102'], ['KLM103', 'KLM104']] exp=[['KLM101', 'KLM102'], ['KLM103', 'KLM104']]
+OK   grup payload identik penuh: got=0 exp=0
+OK   KLM016 vs KLM017 kolom identik: got=20 exp=20
+OK   KLM101 vs KLM102 kolom identik: got=25 exp=25
+OK   KLM103 vs KLM104 kolom identik: got=25 exp=25
+OK   jumlah kolom data dump Notion: got=27 exp=27
+OK   v100 risiko: got={'fraud': 14, 'high': 6, 'medium': 4, 'low': 76} exp={'low': 76, 'medium': 4, 'high': 6, 'fraud': 14}
+OK   v100 sentimen: got={'negatif': 24, 'positif': 62, 'netral': 14} exp={'positif': 62, 'netral': 14, 'negatif': 24}
+OK   P11 klaim dlm v100: got=5 exp=5
+OK   median LOS J18.9: got=5 exp=5
+OK   median LOS I21.9: got=5.0 exp=5
+OK   median LOS S72.0: got=6.5 exp=6.5
+OK   pasien di sindikat: got=['P01', 'P02', 'P03', 'P08', 'P09', 'P10', 'P12', 'P13', 'P14', 'P16', 'P17', 'P19', 'P20', 'P21', 'P22', 'P23', 'P24', 'P25', 'P26', 'P27'] exp=['P01', 'P02', 'P03', 'P08', 'P09', 'P10', 'P12', 'P13', 'P14', 'P16', 'P17', 'P19', 'P20', 'P21', 'P22', 'P23', 'P24', 'P25', 'P26', 'P27']
+OK   pasien P28-P40 tanpa sindikat: got=13 exp=13
+OK   modus dengan SHAP konstan: got=['biaya_markup', 'cloning', 'excessive_usage', 'iur_biaya', 'phantom_billing', 'readmission_berulang', 'repeat_billing'] exp=['biaya_markup', 'cloning', 'excessive_usage', 'iur_biaya', 'phantom_billing', 'readmission_berulang', 'repeat_billing']
+OK   jumlah modus: got=13 exp=13
+OK   baris non-low: got=60 exp=60
+OK   Catatan terisi = non-low: got=60 exp=60
+OK   low dengan Catatan terisi: got=0 exp=0
+OK   modus non-fraud tanpa Sindikat: got=22 exp=22
+OK   prefiks FRAUD tidak cocok Modus: got=0 exp=0
+OK   rasio di Alasan cocok: got=72 exp=72
+OK   rasio di Alasan tidak cocok: got=0 exp=0
+OK   baris prosedur ber-acuan: got=144 exp=144
+OK   baris ber-acuan yang menyebut 'rasio': got=72 exp=72
+OK   fraud sentimen negatif: got=23 exp=23
+OK   low sentimen negatif: got=42 exp=42
+OK   (tanggal,pasien) >1 klaim: got=9 exp=9
+OK   P27 jumlah klaim: got=12 exp=12
+OK   JSON rows: got=300 exp=300
+OK   JSON keys == CSV header: got=True exp=True
+OK   JSON LOS null: got=0 exp=0
+OK   JSON LOS == 0: got=109 exp=109
+OK   baris skor sindikat di luar rentang dok: got=['KLM101', 'KLM102', 'KLM109', 'KLM110', 'KLM111', 'KLM112', 'KLM113', 'KLM114', 'KLM119', 'KLM120'] exp=['KLM101', 'KLM102', 'KLM109', 'KLM110', 'KLM111', 'KLM112', 'KLM113', 'KLM114', 'KLM119', 'KLM120']
+OK   dx K29.7 -> 00.66: got=3 exp=3
+OK   dx O80 -> 74.1: got=1 exp=1
+OK   dx E11.9 -> 00.66: got=1 exp=1
+OK   tanpa prosedur: got=156 exp=156
+OK   S72.0 -> 81.52: got=18 exp=18
+OK   I21.9 -> 00.66: got=20 exp=20
+OK   K80.2 -> 96.04: got=3 exp=3
+
+============================================================
+TOTAL CHECK: 120 | OK: 120 | GAGAL: 0

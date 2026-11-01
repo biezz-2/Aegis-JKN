@@ -1,0 +1,56 @@
+Q: Mengapa diadakan BPJS Kesehatan Healthkathon 2026?
+A: "\n        Teknologi Informasi di BPJS Kesehatan kini tidak lagi sekadar pendukung, melainkan telah menjadi enabler utama penyelenggaraan Program JKN. Sistem yang semakin kompleks turut menghadirkan tantangan tersendiri, salah satunya potensi kecurangan (fraud) dalam pelaksanaan pelayanan kesehatan. Sebagai respons, BPJS Kesehatan secara rutin menyelenggarakan Healthkathon untuk mengajak developer, praktisi TI, akademisi, dan masyarakat umum berkolaborasi melalui inovasi digital guna menggali solusi nyata dalam meningkatkan mutu dan integritas layanan bagi peserta Program JKN. Healthkathon 2026 merupakan bagian dari rangkaian HUT BPJS Kesehatan ke-58.\n        "
+
+Q: Apa tema kompetisi pada BPJS Kesehatan Healthkathon 2026?
+A: "\n        Berbeda dengan tahun sebelumnya yang membuka beberapa kategori, Healthkathon 2026 difokuskan pada satu tema utama, yaitu Deteksi Kecurangan (Fraud Detection) pada Pelayanan Kesehatan Program JKN. Seluruh peserta berkompetisi dalam tantangan yang sama untuk menghasilkan solusi terbaik dalam mengidentifikasi, mendeteksi, dan mencegah potensi kecurangan pada pelaksanaan pelayanan kesehatan JKN.\n        "
+
+Q: Kapan pendaftaran BPJS Kesehatan Healthkathon 2026?
+A: "",periodePendaftaran:!0
+
+Q: Bagaimana pelaksanaan BPJS Kesehatan Healthkathon 2026?
+A: "\n        Healthkathon 2026 diselenggarakan oleh Direktorat Teknologi Informasi BPJS Kesehatan dan dilaksanakan secara hybrid (kombinasi daring dan luring). Rangkaian kegiatan direncanakan berlangsung selama kurang lebih 3 (tiga) bulan, sejak Juli sampai dengan September 2026.\n        "
+
+Q: Siapa saja yang boleh mendaftar BPJS Kesehatan Healthkathon 2026?
+A: "\n        Kompetisi terbuka untuk masyarakat umum, meliputi perguruan tinggi, komunitas, dan profesional digital nasional, kecuali pegawai BPJS Kesehatan.\n        "
+
+Q: Apakah ada batasan usia untuk mendaftar?
+A: "\n        Tidak ada batasan usia untuk mengikuti kompetisi BPJS Kesehatan Healthkathon 2026. Pendaftaran terbuka untuk masyarakat umum dari segala usia (kecuali pegawai BPJS Kesehatan).\n        "
+
+Q: Berapa jumlah anggota yang dapat mengikuti kompetisi?
+A: "\n        Peserta wajib mendaftar sebagai tim. Setiap tim beranggotakan 1 sampai dengan 3 orang, dengan 1 orang di antaranya sebagai ketua tim.\n        "
+
+Q: Apakah satu tim boleh mengajukan lebih dari satu inovasi?
+A: "\n        Tidak. Setiap tim hanya diperkenankan mengajukan satu inovasi untuk tantangan yang dilombakan.\n        "
+
+Q: Apakah peserta wajib terdaftar sebagai peserta Program JKN dengan status kepesertaan aktif?
+A: "\n        Kepesertaan dalam Program JKN bersifat wajib. Namun, apabila calon peserta kompetisi belum terdaftar sebagai peserta JKN, pendaftaran tetap dapat dilakukan.\n        "
+
+Q: Bagaimana syarat dan gambaran kompetisi BPJS Kesehatan Healthkathon 2026?
+A: \n        Healthkathon 2026 mengusung satu challenge utama, yaitu Efisiensi Risiko pada Pelayanan Kesehatan Program JKN. Peserta diharapkan mengembangkan solusi yang mampu mengidentifikasi, mendeteksi, dan memitigasi potensi risiko, dengan memanfaatkan teknologi terkini termasuk kecerdasan buatan (AI) dan analitik data.
+\n        Untuk menuju penjurian final, peserta melewati tahapan berikut:<br>\n        <ul class="list-disc ml-5 mt-2">\n            <li>Registrasi melalui platform resmi.
+\n            <li>Pengajuan Proposal (Submit Proposal) inovasi sesuai tema.
+\n            <li>Seleksi Proposal oleh panitia dan dewan juri untuk menjaring peserta terbaik.
+\n            <li>Coaching/mentoring bagi peserta terbaik sebelum babak final.
+\n            <li>Demo Day/Grand Final, presentasi dan demonstrasi inovasi di hadapan dewan juri.
+\n            <li>Pengumuman Pemenang.
+\n        
+\n        
+
+Q: Bagaimana detail alur kompetisi Healthkathon 2026?
+A: "\n        Alur kompetisi terdiri dari 6 tahapan utama: (1) Registrasi; (2) Submit Proposal; (3) Seleksi Proposal; (4) Coaching dan Mentoring; (5) Demo Day/Grand Final; dan (6) Pengumuman Pemenang. Dari seluruh proposal yang masuk, akan dipilih peserta terbaik sebagai finalis untuk mengikuti tahapan lanjutan hingga Demo Day/Grand Final, dan pada puncak acara tersebut akan ditetapkan pemenang utama.\n        "
+
+Q: Bagaimana skala dan target penyelenggaraan Healthkathon 2026?
+A: "\n        Healthkathon 2026 menargetkan minimal 500 tim terdaftar dari masyarakat umum. Sebanyak 10 tim terbaik akan menjadi finalis untuk tampil pada Demo Day/Grand Final, dan akan ditetapkan 3 tim sebagai pemenang utama.\n        "
+
+Q: Apakah peserta yang sudah mendaftar boleh terlibat dalam tim lain?
+A: "\n        Tidak. Setiap peserta hanya dapat bergabung dan berkontribusi pada satu tim selama ajang BPJS Kesehatan Healthkathon 2026.\n        "
+
+Q: Apa benefit yang didapatkan jika memenangkan ajang ini?
+A: "\n        BPJS Kesehatan sangat menghargai ide, inovasi, dan rekomendasi yang diberikan. Detail hadiah akan diumumkan kemudian; silakan pantau website dan media sosial resmi kami secara berkala. Selain itu, setiap peserta akan menerima e-sertifikat sebagai bukti keikutsertaan. Peserta maupun pemenang juga berpeluang memperoleh kesempatan berkolaborasi dengan BPJS Kesehatan dalam pengembangan berbagai proyek.\n        "
+
+Q: Apakah ada kontak yang bisa dihubungi untuk informasi lebih lanjut?
+A: "\n        Untuk informasi lebih lanjut, peserta dapat mengirimkan DM ke akun Instagram @healthkathon.bpjskesehatan atau menghubungi kontak WhatsApp 081188022717. Kami juga menyediakan grup WhatsApp sebagai kanal informasi bagi peserta yang telah melakukan registrasi. Pastikan nomor ponsel yang digunakan saat registrasi terhubung dengan WhatsApp.\n        "
+
+Q: Berapa lama ajang BPJS Kesehatan Healthkathon 2026 berlangsung?
+A: "\n        Rangkaian kegiatan BPJS Kesehatan Healthkathon 2026 berlangsung selama kurang lebih 3 (tiga) bulan, diperkirakan mulai Juli hingga September 2026. Setiap tahapan, mulai dari registrasi hingga penjurian final, dilaksanakan mengikuti jadwal yang akan diinformasikan secara berkala melalui media sosial resmi Healthkathon 2026 serta grup WhatsApp peserta.\n        "
+

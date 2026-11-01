@@ -1,0 +1,16 @@
+CSV cols not mentioned in 03-dataset-registry.md: ['Rujukan', 'Alasan Berobat', 'Layanan']
+total CSV cols: 29
+== 07-dataset-v2-catalog.md
+   1 | <!-- source: notion page 4003e6031ab78179bcc7ca76a0b80fbc -->
+   2 | 
+   3 | Katalog ini mencatat file yang benar-benar diunggah, skema kolom, kamus ICD-10, dan temuan pemeriksaan awal. Baris observasi indiv
+   4 | > **{'type': 'emoji', 'emoji': '💡'}** Peringatan privasi: data kepesertaan dan layanan berisi pengidentifikasi peserta, tanggal la
+   5 | # Ringkasan ukuran data
+   6 | Tiga file Stata berisi total 6.514.039 baris. Workbook metadata menerangkan variabel untuk empat domain, tetapi unggahan hanya men
+== 08-training-protocol.md
+   1 | <!-- source: notion page 4003e603-1ab7-8197-8715-f1de059e82ef -->
+   2 | 
+   3 | Dokumen ini mengatur prosedur pelatihan, validasi, dan dokumentasi model secara reproduktif. Tujuannya membantu tim membuat protot
+   4 | Sumber Notion: [Klaim Aegis-JKN v2, 300 baris](https://app.notion.com/p/c783afb3d0d4458295456180b7b7756b), [Dataset Registry DM Ko
+   5 | > **{'type': 'emoji', 'emoji': '💡'}** Keputusan inti: dataset klaim sintetis dan dataset DM kontekstual adalah dua sumber berbeda.
+   6 | 1. Inventaris sumber dan kesiapan

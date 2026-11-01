@@ -1,0 +1,46 @@
+[0340] Keamanan Pemrosesan
+
+[0341] Enkripsi simetris end-to-end (AES-256) pada data diam (at-rest) dan TLS 1.3 pada data transit; isolasi jaringan private on-premise cloud.
+
+[0342] Penetration Testing & ISO/IEC 27001 Security Controls
+
+[0343] Pembatasan Penyimpanan
+
+[0344] Data de-identifikasi transaksi mentah hanya disimpan selama masa retensi audit aktif (5 tahun sesuai regulasi rekam medis).
+
+[0345] Automated Retention Archiving & Crypto-Shredding
+
+[0346] Akuntabilitas & Transparansi
+
+[0347] Seluruh riwayat skoring, perubahan rekomendasi, dan tindakan override verifikator dicatat dalam log audit kekal (immutable audit trail).
+
+[0348] Append-Only Cryptographic Audit Log (SHA-256 Hash Chaining)
+
+[0349] 
+
+[0350] 5.2 Strategi De-identifikasi, Salted Pseudonymization, & Hashing
+
+[0351] Aegis-JKN mengadopsi standar de-identifikasi HIPAA Safe Harbor yang diselaraskan dengan regulasi nasional. Delapan belas elemen pengenal langsung (nama pasien, NIK, alamat presisi, nomor telepon, nomor kartu BPJS) dieliminasi sebelum persistensi data. Nomor identitas unik (ID Pasien, ID Dokter, ID Faskes) dienkripsi menggunakan salted SHA-256 dengan garam dinamis (dynamic cryptographic salt) yang disimpan secara terisolasi pada Hardware Security Module (HSM) BPJS Kesehatan. Dengan mekanisme ini, proses re-identifikasi hanya dapat dilakukan oleh otoritas resmi BPJS jika ditemukan indikasi kecurangan yang memerlukan tindakan penegakan hukum.
+
+[0352] 5.3 Protokol Anti-Data Leakage v2.1 & Group Cross-Validation
+
+[0353] Salah satu kelemahan fatal pada purwarupa AI kesehatan generasi awal adalah kebocoran data (data leakage) yang menghasilkan akurasi semu. Pada Aegis-JKN Dataset v2.1, diterapkan Protokol Anti-Leakage ketat:
+
+[0354] 1. Eliminasi Score Leakage: Delapan kolom analitik hasil audit (skor_fraud, risiko, status, sinyal_shap, kontribusi_saluran, modus, sindikat, alasan) dieksklusi secara absolut dari vektor fitur masukan model training.
+
+[0355] 2. Eliminasi Entity Leakage: ID entitas (pasien_id, dokter_id, faskes_id) diisolasi hanya untuk konstruksi edge graf dan tidak dijadikan fitur prediktif langsung pada model tabular.
+
+[0356] 3. Evaluasi Kelompok Ketat: Validasi model menggunakan skema GroupKFold (5-split berbasis pasien_id) dan Leave-One-Group-Out (LOGO berbasis faskes_id) guna menjamin model mampu mendeteksi anomali pada faskes dan pasien baru yang belum pernah dilihat sebelumnya.
+
+[0357] 5.4 Arsitektur Penyimpanan & Perimeter Private Cloud BPJS Kesehatan
+
+[0358] Seluruh infrastruktur komputasi Aegis-JKN didesain beroperasi secara penuh di dalam perimeter tertutup (private on-premise cloud) data center BPJS Kesehatan. Sistem menolak tegas pengiriman payload data klaim ke penyedia API LLM publik komersial pihak ketiga (seperti OpenAI atau Anthropic public API) guna mencegah risiko kebocoran data kedaulatan kesehatan nasional. Seluruh proses inferensi graf dan NLP klinis dieksekusi secara lokal menggunakan framework open-source teruji (PyTorch Geometric, HuggingFace transformers on-premise, vLLM / Ollama).
+
+[0359] 5.5 Manajemen Akses (RBAC) & Immutable Audit Trail
+
+[0360] Akses terhadap platform dikendalikan secara ketat melalui Role-Based Access Control (RBAC) dengan pemisahan peran: (1) Verifikator Cabang (akses telaah klaim dan input keputusan); (2) Tim Investigasi Kecurangan / PK-JKN (akses investigasi sindikat dan graf lintas-wilayah); (3) Administrator TI (pemeliharaan sistem tanpa akses melihat rekam medis riil). Seluruh interaksi dicatat dalam append-only audit trail yang dilengkapi stempel waktu kriptografis.
+
+[0361] 
+
+[0362] BAB VI: KERANGKA HUMAN-IN-THE-LOOP & HUMAN AUTONOMY
+

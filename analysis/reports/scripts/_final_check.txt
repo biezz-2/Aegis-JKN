@@ -1,0 +1,68 @@
+============================================================================
+## 'konstanta UI, bukan hasil pengukuran'  (0 unique)
+
+============================================================================
+## 'menutup instance konkret'  (2 unique)
+   'di luar KLM001–KLM024 (hingga KLM122) | Dokumenاند benar untuk/definisikan, tetapi tidak ada butir P0/P1 yang menutup instance konkret; lihat H-14 |\\n| §3 L30–L35 Artefak Wajib vs repo | Wajib: `manifest.json` (L30), `label_audit.csv` (L31)'
+   'di luar KLM001–KLM024 (hingga KLM122) | Dokumenاند benar untuk/definisikan, tetapi tidak ada butir P0/P1 yang menutup instance konkret; lihat H-14 |\\n123\\t| §3 L30–L35 Artefak Wajib vs repo | Wajib: `manifest.json` (L30), `label_audit.csv` '
+
+============================================================================
+## 'experimentally'  (3 unique)
+   'eans, and percentage in the top X%. This article compares the precision of these statistics using 97 trillion experimentally simulated citation counts from 6875 sets of different parameters (although all having the same scale parameter) bas'
+   'HEALTHKATHON\\\\Aegis-JKN` (pencarian seluruh repo, termasuk `wiki/.config.yml` satu-satunya `.yaml`) | Gerbang experimentally mustahil; lihat B-5 |\\n| §4 L22 vs data aktif | `Sinyal SHAP` dan `Kontribusi Saluran` terisi pada 300/300 baris; `'
+   'HEALTHKATHON\\\\Aegis-JKN` (pencarian seluruh repo, termasuk `wiki/.config.yml` satu-satunya `.yaml`) | Gerbang experimentally mustahil; lihat B-5 |\\n124\\t| §4 L22 vs data aktif | `Sinyal SHAP` dan `Kontribusi Saluran` terisi pada 300/300 bar'
+
+============================================================================
+## 'memuat prinsip'  (0 unique)
+
+============================================================================
+## 'kewajiban hukum'  (1 unique)
+   'tu pihak atau untuk memenuhi permintaan Subjek Data Pribadi pada saat akan melakukan perjanjian; c. pemenuhan kewajiban hukum dari Pengendali Data Pribadi sesuai dengan ketentuan peraturan perundang-undangan; d. pemenuhan pelindungan kepent'
+
+============================================================================
+## 'dilarang'  (31 unique)
+   '000 pada T≥0.120, F≥0.110, S≥0.090; min-fraud > max-normal di ketiga channel). Kedua kolom **secara eksplisit dilarang** jadi fitur oleh `corpus/03-dataset-registry.md:84` (§7 Aturan Anti-Leakage) — dan keduanya justru **dikirim** di file d'
+   'al dominan\\"), `claims_v2_live.csv:281` (KLM001, fraud, \\"inkonsistensi diagnosis-prosedur...\\"). Kolom ini **dilarang** jadi fitur oleh `03-dataset-registry.md:84`. | Menghancurkan **setiap metrik yang diklaim**. 93,0% / 94,12% / 0,9825 / '
+   ' pada T>=0.120, F>=0.110, S>=0.090; min-fraud > max-normal di ketiga channel). Kedua kolom **secara eksplisit dilarang** jadi fitur oleh `corpus/03-dataset-registry.md:84` (sec.7 Aturan Anti-Leakage) - dan keduanya justru **dikirim** di fil'
+   '0, 60, 374]\\n186\\tdikirim                      [22, 61]\\n187\\tketiga                       [22, 24, 62]\\n188\\tdilarang                     [22, 61, 62]\\n189\\tdijanjikan                   [22, 65, 291]\\n190\\trepeat                       [24,'
+   '             [20, 60, 374]\\ndikirim                      [22, 61]\\nketiga                       [22, 24, 62]\\ndilarang                     [22, 61, 62]\\ndijanjikan                   [22, 65, 291]\\nrepeat                       [24, 63]\\npeng'
+
+============================================================================
+## 'Ini **bukan** bukti fabrikasi'  (1 unique)
+   '53.780.000 = KLM007 15.500.000 + KLM107 4.350.000 + KLM112 4.280.000 + KLM115 2.150.000 + KLM121 27.500.000). Ini **bukan** bukti fabrikasi; ini bukti bahwa nilai tersebut dapat dibangkitkan dari data, sehingga yang hilang adalah jejak audi'
+
+============================================================================
+## 'bukti bahwa nilai tersebut dapat dibangkitkan'  (2 unique)
+   'M107 4.350.000 + KLM112 4.280.000 + KLM115 2.150.000 + KLM121 27.500.000). Ini **bukan** bukti fabrikasi; ini bukti bahwa nilai tersebut dapat dibangkitkan dari data, sehingga yang hilang adalah jejak audit, bukan nilai.\\n- **H-13 (HIGH)** '
+   'M107 4.350.000 + KLM112 4.280.000 + KLM115 2.150.000 + KLM121 27.500.000). Ini **bukan** bukti fabrikasi; ini bukti bahwa nilai tersebut dapat dibangkitkan dari data, sehingga yang hilang adalah jejak audit, bukan nilai.\\n220\\t- **H-13 (HIG'
+
+============================================================================
+## 'Klaim financial'  (0 unique)
+
+============================================================================
+## 'auto_clear'  (777 unique)
+   't parkir sempit.,False,P21 (Rahmat Fauzi),\\"Nyeri perut kanan atas berulang, terasa setelah makan berlemak.\\",auto_clear,NORMAL: dx K80.2 ditindaki 51.23 — pasangan klinis standar; biaya Rp15.000.000 ≈ tarif paket (rasio 1.03); LOS 4 hari d'
+   'rtele-tele.\\",False,P12 (Maya Sari),Benjolan di lipatan paha yang membesar saat berdiri dan mengangkat beban.,auto_clear,NORMAL: dx K40.9 ditindaki 53.1 — pasangan klinis standar; biaya Rp7.500.000 ≈ tarif paket (rasio 0.91); LOS 3 hari dal'
+   'erjaga.,False,P29 (Bambang Riyanto),Benjolan di lipatan paha yang membesar saat berdiri dan mengangkat beban.,auto_clear,NORMAL: dx K40.9 ditindaki 53.1 — pasangan klinis standar; biaya Rp7.650.000 ≈ tarif paket (rasio 0.93); LOS 2 hari dal'
+   '00 klaim.\\r\\n## 3. Ringkasan Data Aktif\\r\\n### 3.1 Status alur kerja\\r\\n| Status | Jumlah | Persentase |\\r\\n| auto_clear | 240 | 80,0% |\\r\\n| review | 24 | 8,0% |\\r\\n| escalate | 36 | 12,0% |\\r\\n| Total | 300 | 100,0% |\\r\\n### 3.2 Label ris'
+   'edium dan high masih memerlukan telaah.\\r\\n### 3.3 Ringkasan nilai nominal\\r\\n| Status | Nominal klaim |\\r\\n| auto_clear | Rp2.685.550.000 |\\r\\n| review | Rp279.950.000 |\\r\\n| escalate | Rp561.150.000 |\\r\\n| Total | Rp3.526.650.000 |\\r\\nJum'
+
+============================================================================
+## 'klaim kuantitatif'  (14 unique)
+   'Sumber media atau blog yang sudah ada dalam database riset dapat dipakai untuk penemuan sumber, tetapi setiap klaim kuantitatif perlu dilacak ke sumber primer apabila tersedia.\\r\\n## 8. Batasan\\r\\nDokumen ini adalah sintesis riset awal. Dok'
+   '*1,000000** (trivial, by construction), jadi 0,9825 jelas dari run lain yang tidak dilepas. |_segments: semua klaim kuantitatif jadi tidak punya bukti pendukung. | Publikasi **satu** artefak reproduktibel (split, prediksi held-out, skrip me'
+   "h arsitektur GCN/shared-parameter tidak menambah apa pun. |'),\\n    # attack row 7\\n    ('| |_segments: semua klaim kuantitatif jadi tidak punya bukti pendukung. |',\\n     '| Merusak: semua klaim kuantitatif jadi tidak punya bukti pendukung"
+   " 7\\n    ('| |_segments: semua klaim kuantitatif jadi tidak punya bukti pendukung. |',\\n     '| Merusak: semua klaim kuantitatif jadi tidak punya bukti pendukung. |'),\\n    # attack row 8\\n    ('| Membongkar **circularity validasi**:(author "
+   'SSING: dan tabel per-modusnya memuat-memberi bukti forensik.** `11-archive-pr\\r\\nMISSING: | |_segments: semua klaim kuantitatif jadi tidak punya bukti pendukung","is_error":false}]},"uuid":"a616fa9b-55c4-41c2-bc9b-9700f45f3463","timestamp":'
+
+============================================================================
+## 'Ratusan miliar'  (0 unique)
+
+============================================================================
+## 'ratusan miliar'  (67 unique)
+   'al sebesar 30-50% per berkas anomali, memberikan rasio Cost-to-Impact konservatif 1 : 15, serta menyelamatkan ratusan miliar rupiah Dana Jaminan Sosial (DJS) Kesehatan setiap tahunnya.\\n11-archive-proposal.md:138:Akibatnya, jika dianalisis '
+   'al sebesar 30-50% per berkas anomali, memberikan rasio Cost-to-Impact konservatif 1 : 15, serta menyelamatkan ratusan miliar rupiah Dana Jaminan Sosial (DJS) Kesehatan setiap tahunnya.","is_error":false}]},"uuid":"bbfdb0eb-b256-4b99-8c5d-ef'
+   'al sebesar 30-50% per berkas anomali, memberikan rasio Cost-to-Impact konservatif 1 : 15, serta menyelamatkan ratusan miliar rupiah Dana Jaminan Sosial (DJS) Kesehatan setiap tahunnya.","stderr":"","interrupted":false,"isImage":false,"noOut'
+   'al sebesar 30-50% per berkas anomali, memberikan rasio Cost-to-Impact konservatif 1 : 15, serta menyelamatkan ratusan miliar rupiah Dana Jaminan Sosial (DJS) Kesehatan setiap tahunnya.\\n---14-505---\\n- 4. Fail-Safe Human Autonomy & Active L'
+   'al sebesar 30-50% per berkas anomali, memberikan rasio Cost-to-Impact konservatif 1 : 15, serta menyelamatkan ratusan miliar rupiah Dana Jaminan Sosial (DJS) Kesehatan setiap tahunnya.\\nKATA KUNCI: Kecurangan Klaim JKN, Upcoding, Phantom Bi'
+

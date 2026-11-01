@@ -1,0 +1,168 @@
+========================================================================
+## 'harmonisasi dengan arsip'  (2 unique)
+   'sumber | Bagus secara tata kelola, tetapiOUN harmonisasi dengan arsip (B-4) |\\n| §7 aturan 4 — bedak'
+   'sumber | Bagus secara tata kelola, tetapiOUN harmonisasi dengan arsip (B-4) |\\n47\\t| §7 aturan 4 — b'
+
+========================================================================
+## 'jumlah skenario'  (1 unique)
+   'sedur.` | L65 | **Tidak** | Tidak adaMinimal jumlah skenario, identitas reviewer, atau bentuk bukti '
+
+========================================================================
+## 'Closure criteria'  (8 unique)
+   'pakah P0 item di dashboard benar-benar punya Closure criteria yang terukur, dan apakah ada item yang'
+   ' P0 items: 5 items, all \\"- [ ]\\" unchecked. Closure criteria? None have explicit measurable criteri'
+   'near Rp507.370.000. No tarif acuan recorded. Closure criteria: no target value/precision.\\n5. \\"Sama'
+   'taset.md line 4 and 09-draft-hub.md line 5). Closure criteria: both banners exist. Actually done but'
+   'litas\\".\\n\\n| ID | Item (kutipan) | Lokasi | Closure criteria terukur? | Bukti kekosongan |\\n|---|--'
+   '0 (harus selesai sebelum dokumen diserahkan; Closure criteria，示意 dalam kurung):\\n\\n1. **Perbaiki bar'
+
+========================================================================
+## 'Prioritas P3'  (3 unique)
+   'ng menyebut naskah terkendali pengganti).\\n\\nPrioritas P3 (rumahTBS):\\n\\n17. **Perbaiki kebocoran li'
+   't naskah terkendali pengganti).\\n313\\t\\n314\\tPrioritas P3 (rumahTBS):\\n315\\t\\n316\\t17. **Perbaiki ke'
+   '4.output | tetapi\nac31c607e00c90d21.output | Prioritas P3\nac31c607e00c90d21.output | determinist\nac3'
+
+========================================================================
+## 'per Absolutely'  (0 unique)
+
+========================================================================
+## 'Volume placeholder'  (0 unique)
+
+========================================================================
+## 'volume placeholder'  (0 unique)
+
+========================================================================
+## 'Skala'  (102 unique)
+   'um/high); klaim normal = KLM025-KLM100.\\r\\n- Skala risiko: skor <0.35 low; 0.35-0.6 medium; 0.6-0.8 '
+   'dium, 240 low; label anomali total 60 (20%). Skala risiko tetap: skor di bawah 0.35 low; 0.35-0.6 me'
+   '] Tantangan Desain Sistem Fraud Intelligence Skala Nasional« Bagaimana merancang suatu sistem Fraud '
+   'dium/high); klaim normal = KLM025-KLM100.\\n- Skala risiko: skor <0.35 low; 0.35-0.6 medium; 0.6-0.8 '
+   ' deteksi berbasis tabular. |\\n165\\t| Volume (Skala Transaksi) | 1. Ledakan volume 270+ juta peserta '
+   'r Manusia (BPJS) |\\n273\\t| Pemrosesan Berkas Skala Besar | Menyaring jutaan berkas klaim harian seca'
+
+========================================================================
+## 'triliunan'  (30 unique)
+   ' diselamatkan mencapai ratusan miliar hingga triliunan rupiah per tahun.\\n12-archive-architecture.md'
+   ' diselamatkan mencapai ratusan miliar hingga triliunan rupiah per tahun.","is_error":false}]},"uuid"'
+   ' diselamatkan mencapai ratusan miliar hingga triliunan rupiah per tahun.","stderr":"","interrupted":'
+   ' diselamatkan mencapai ratusan miliar hingga triliunan rupiah per tahun.\\n349\\t## 8.5 User Acceptanc'
+   ' diselamatkan mencapai ratusan miliar hingga triliunan rupiah per tahun.\\n## 8.5 User Acceptance KPI'
+   ' diselamatkan mencapai ratusan miliar hingga triliunan rupiah per tahun.\\n353:Purwarupa Aegis-JKN di'
+
+========================================================================
+## 'determinist'  (341 unique)
+   'or melakukan triase klaim berdasarkan aturan deterministik, fitur tabular, serta hubungan antarentit'
+   'pertanyaan berikut.\\r\\n1. Sejauh mana aturan deterministik dan model tabular dapat mendeteksi anomal'
+   't diperluas dari 100 menjadi 300 klaim (seed deterministik 20260707, seluruh baris baru KLM101-KLM30'
+   '. Metadata Validasi:\\r\\n  - seed = 20260707 (deterministik)\\r\\n  - version = v2.1\\r\\n  - timestamp ='
+   "batim copy of the Modus description — it's a deterministic function of Modus/Risiko.\\n\\nLet me now w"
+   'verify it.\\")\\n\\nsub(\\"5c. \'Skor Fraud\' is a deterministic relabelling, not a risk score\\")\\n# Check'
+
+========================================================================
+## 'titik data'  (0 unique)
+
+========================================================================
+## 'dataPoints'  (0 unique)
+
+========================================================================
+## 'on-prem'  (22 unique)
+   ' beroperasi pada perimeter tertutup (private on-premise cloud) BPJS Kesehatan dengan enkripsi AES-25'
+   'aset simulasi. Jalur yang dirancang adalah **on-premise BPJS** dengan **SP2D/IN-CBGs** sebagai sumbe'
+   'hatan No. 17/2023 melalui arsitektur private on-premise perimeter dengan salted SHA-256 pseudonymiza'
+   '(UU PDP) | Tinggi (akses internal) | Tinggi (on-premise) | Tinggi (on-premise) | Rentan (kebocoran c'
+   'es internal) | Tinggi (on-premise) | Tinggi (on-premise) | Rentan (kebocoran cloud API) | Mutlak (Sa'
+   'ebocoran cloud API) | Mutlak (Salted SHA-256 on-premise) |\\n186\\t| Human Autonomy & Fail-Safe | Manu'
+
+========================================================================
+## 'masa transisi'  (2 unique)
+   ' Pasal.id summary: 16 bab/76 pasal, berlaku, masa transisi berakhir 17 Okt 2024, \\"Lembaga Pelindung'
+   'en; Pasal 56 transfer data. 16 bab/76 pasal, masa transisi berakhir 17 Okt 2024, \\"Lembaga Pelindung'
+
+========================================================================
+## 'transition'  (35 unique)
+   ' Moreover, policy priorities should\\ninclude transitioning from manual auditing to ML-assisted proce'
+   'Summary":"Searching SearXNG for iDRG INA-CBG transition","outputFilePath":"C:\\\\Users\\\\attab\\\\AppData'
+   'Progress: Searching SearXNG for iDRG INA-CBG transition Do NOT spawn a duplicate. You will be notifi'
+   'on\\",\\"insert\\",\\"establishing\\",\\"scene\\",\\"transition\\",\\"dissolve\\",\\"fade\\",\\"wipe\\",\\"wipe\\",\\"'
+   '  viewport={{ once: true }}\\n91\\t            transition={{ duration: 0.4 }}\\n92\\t            classNa'
+   ' viewport={{ once: true }}\\n101\\t            transition={{ duration: 0.5 }}\\n102\\t            classN'
+
+========================================================================
+## 'hilir'  (1 unique)
+   ' (XGBoost/LR/RF hanya pada §5.2.4 classifier hilir, Fig. 9, bukan tabel hasil). Catatan register sud'
+
+========================================================================
+## 'harus seharusnya'  (0 unique)
+
+========================================================================
+## 'SHOULD namun'  (0 unique)
+
+========================================================================
+## 'definisi'  (485 unique)
+   'ogen: memodelkan relasi antarentitas, dengan definisi node, edge, fitur, dan metapath yang didokumen'
+   'rip perhitungan, prediksi, ground truth, dan definisi operasional metrik.\\r\\n## 9. Keterbatasan dan '
+   'ebelumnya. Klaim dampak finansial memerlukan definisi tarif acuan, kalkulasi per klaim, dan penilaia'
+   'k dapat diulang |\\r\\n| 3. Model graf | Graf, definisi relasi, hasil ablation | Peningkatan terhadap '
+   ' nyata, label hanya boleh digunakan jika ada definisi adjudikasi yang sah dan sumber pembuktiannya d'
+   'r fraud 0,80. Pemilik dataset harus mengunci definisi final dan mencatat tanggal perubahan.\\r\\n## 5.'
+
+========================================================================
+## 'diperlukan karena'  (0 unique)
+
+========================================================================
+## 'Wizard-of-Oz'  (0 unique)
+
+========================================================================
+## 'devDep'  (1 unique)
+   '\\n    \\"zustand\\": \\"^5.0.6\\"\\r\\n  },\\r\\n  \\"devDependencies\\": {\\r\\n    \\"@tailwindcss/postcss\\": \\'
+
+========================================================================
+## 'Stretch'  (0 unique)
+
+========================================================================
+## 'instrumen'  (24 unique)
+   '      \\"The repo contains no usability study instrument, no raw \\"\\n                             \\"t'
+   'riance. The repo contains no usability study instrument, no raw timing data, no participant log.\\nTh'
+   ' (iCBT). However, whether the SUS is a valid instrument to measure usability in this context is uncl'
+   'em Usability Scale) benchmark µ₀=68, 10-item instrument, N≥10 minimum\\n- Class imbalance, PR-curve v'
+   'riance. The repo contains no usability study instrument, no raw timing data, no participant log.\\n27'
+   'em Usability Scale) benchmark µ₀=68, 10-item instrument, N≥10 minimum\\n- INA-CBG reference tariffs; '
+
+========================================================================
+## 'saat demo'  (0 unique)
+
+========================================================================
+## 'saatQg'  (2 unique)
+   'n bersih 2× | Frontend | Demo butuh internet saatQgshow |\\n| R-10 | Tim non-pengembang tidak bisa me'
+   'n bersih 2× | Frontend | Demo butuh internet saatQgshow |\\r\\n197 | R-10 | Tim non-pengembang tidak b'
+
+========================================================================
+## 'notebook yang memakainya'  (0 unique)
+
+========================================================================
+## 'kernel'  (231 unique)
+   'indow.google && google.colab && google.colab.kernel) {\\nN:\\\\HEALTHKATHON\\\\mechine-learning-deep-lear'
+   "otebook.py:1455:                google.colab.kernel.invokeFunction('run_oasis_agent_step', [payload]"
+   "=',len(cells),'code=',codes,'outputs=',out, 'kernel=',nb.get('metadata',{}).get('kernelspec',{}).get"
+   '=\',out, \'kernel=\',nb.get(\'metadata\',{}).get(\'kernelspec\',{}).get(\'name\'))\\n\\"","description":"Summar'
+   'egis-JKN.ipynb cells= 22 code= 11 outputs= 0 kernel= python3\\r\\nnotebooks/01_data_exploration.ipynb '
+   'xploration.ipynb cells= 8 code= 7 outputs= 0 kernel= python3\\r\\nnotebooks/02_model_training.ipynb ce'
+
+========================================================================
+## 'inti proposal'  (6 unique)
+   'tur.\\r\\n  Pendekatan Deteksi/Teknis: Argumen inti proposal: AI melakukan pra-penyaringan 100% klaim '
+   'aud terstruktur.,Konteks & Statistik,Argumen inti proposal: AI melakukan pra-penyaringan 100% klaim '
+   'tik\\r\\n  Pendekatan Deteksi/Teknis : Argumen inti proposal: AI melakukan pra-penyaringan 100% klaim '
+   'a celah fraud terstruktur.\\r\\n TEK : Argumen inti proposal: AI melakukan pra-penyaringan 100% klaim '
+   '& rasio 2.000:1 | Baris 24; 04 E-04; argumen inti proposal | Rilis resmi/Laporan溯航道 BPJS atau dokume'
+   "& rasio 2.000:1 | Baris 24; 04 E-04; argumen inti proposal | Rilis resmi/Lapora\\r\\n244 '想象中' | | G-1"
+
+========================================================================
+## 'sudah ada di'  (11 unique)
+   ').\\n\\nArtinya:\\n1. **Adjacency node validasi sudah ada di matriks training.** `A_top` dibangun denga'
+   'g additif terhadap logit. Channel-group SHAP sudah ada di literatur (GNNExplainer, SubgraphX). Secar'
+   'g additif terhadap logit. Channel-group SHAP sudah ada di literat\\r\\n398 | - **Yang benar-benar must'
+   'tArtinya:\\n345\\t1. **Adjacency node validasi sudah ada di matriks training.** `A_top` dibangun denga'
+   'tu. Probabilitas out-of-fold GroupKFold yang sudah ada di sel 11 **tidak dipakai**. Konsekuensinya t'
+   'tamp`) — `pasien_id`/`faskes_id`/`dokter_id` sudah ada di CSV repo ML | CSV terisi | `test_schema.py'
+

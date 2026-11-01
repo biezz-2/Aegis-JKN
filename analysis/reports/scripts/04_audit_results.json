@@ -1,0 +1,77 @@
+{
+ "n_rows": 300,
+ "n_cols": 29,
+ "id_ok": true,
+ "status": {
+  "auto_clear": 240,
+  "review": 24,
+  "escalate": 36
+ },
+ "risiko": {
+  "low": 240,
+  "medium": 10,
+  "fraud": 36,
+  "high": 14
+ },
+ "los_kosong": 0,
+ "alasan_kosong": 1,
+ "modus_kosong": 240,
+ "sindikat_kosong": 264,
+ "total_biaya": 3526650000,
+ "nominal_per_status": {
+  "auto_clear": 2685550000,
+  "review": 279950000,
+  "escalate": 561150000
+ },
+ "mismatch_threshold_ge": [],
+ "mismatch_threshold_gt": [
+  [
+   "KLM115",
+   0.8,
+   "fraud"
+  ]
+ ],
+ "edge_scores": [
+  [
+   "KLM115",
+   0.8,
+   "fraud",
+   0.8
+  ]
+ ],
+ "v21_missing": [
+  "pasien_id",
+  "faskes_id",
+  "dokter_id",
+  "seed",
+  "version",
+  "timestamp"
+ ],
+ "entitas": {
+  "pasien": 40,
+  "dokter": 20,
+  "faskes": 10,
+  "diagnosis": 13,
+  "prosedur": 9,
+  "obat": 10
+ },
+ "sentimen": {
+  "negatif": 72,
+  "netral": 58,
+  "positif": 170
+ },
+ "kontradiksi_ids": [
+  "KLM001",
+  "KLM002",
+  "KLM003",
+  "KLM004",
+  "KLM005",
+  "KLM006",
+  "KLM018",
+  "KLM024",
+  "KLM105",
+  "KLM106",
+  "KLM107",
+  "KLM108"
+ ]
+}

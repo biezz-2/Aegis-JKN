@@ -1,0 +1,96 @@
+﻿TOTAL ROWS 300
+=== MODUS x SINDIKAT ===
+   ('anomali_frekuensi', '') 12
+   ('biaya_markup', '') 1
+   ('cloning', 'SYND-05') 2
+   ('drug_diversion', '') 1
+   ('drug_diversion', 'SYND-04') 2
+   ('excessive_usage', 'SYND-09') 6
+   ('iur_biaya', 'SYND-07') 4
+   ('overbilling', '') 4
+   ('phantom_billing', 'SYND-02') 3
+   ('prolonged_stay', '') 4
+   ('readmission_berulang', 'SYND-08') 6
+   ('repeat_billing', 'SYND-06') 4
+   ('unbundling', 'SYND-03') 6
+   ('upcoding', '') 2
+   ('upcoding', 'SYND-01') 3
+rows with named Puskesmas referral: 161
+FKTP counts: {'Tlogo Sehat': 32, 'Balik Sehat': 23, 'Sanur Sehat': 10, 'Musi Sehat': 17, 'Bahari Sehat': 16, 'Sehat Sentosa': 11, 'Cibinong Medika': 10, 'Sehat Medan': 10, 'Giri Sehat': 26, 'Harapan Ibu': 6}
+=== doctor -> FKTP (collusion signal) ===
+   D01 n= 2 {'Sehat Sentosa': 2}
+   D02 n= 8 {'Sehat Sentosa': 8}
+   D03 n= 1 {'Sehat Sentosa': 1}
+   D04 n= 9 {'Cibinong Medika': 9}
+   D05 n= 10 {'Sehat Medan': 10}
+   D07 n= 6 {'Harapan Ibu': 6}
+   D08 n= 18 {'Giri Sehat': 18}
+   D09 n= 8 {'Bahari Sehat': 8}
+   D10 n= 8 {'Bahari Sehat': 8}
+   D11 n= 1 {'Cibinong Medika': 1}
+   D12 n= 8 {'Giri Sehat': 8}
+   D13 n= 24 {'Tlogo Sehat': 24}
+   D14 n= 10 {'Sanur Sehat': 10}
+   D15 n= 9 {'Musi Sehat': 9}
+   D16 n= 8 {'Tlogo Sehat': 8}
+   D18 n= 8 {'Musi Sehat': 8}
+   D19 n= 6 {'Balik Sehat': 6}
+   D20 n= 17 {'Balik Sehat': 17}
+=== faskes -> FKTP ===
+   RS_A n= 11 {'Sehat Sentosa': 11}
+   RS_B n= 6 {'Harapan Ibu': 6}
+   RS_C n= 10 {'Sehat Medan': 10}
+   RS_D n= 10 {'Cibinong Medika': 10}
+   RS_E n= 16 {'Bahari Sehat': 16}
+   RS_F n= 26 {'Giri Sehat': 26}
+   RS_G n= 32 {'Tlogo Sehat': 32}
+   RS_H n= 10 {'Sanur Sehat': 10}
+   RS_I n= 17 {'Musi Sehat': 17}
+   RS_J n= 23 {'Balik Sehat': 23}
+=== 36 fraud rows: modus/rujaman/patient ===
+   KLM109 | readmission_berulang | SYND-08 | RS_I | D15 | P25 (Wawan Setiawan) | Puskesmas Musi Sehat, Palembang � RJ-2026-405 � 2026-01-07
+   KLM111 | readmission_berulang | SYND-08 | RS_I | D15 | P25 (Wawan Setiawan) | Puskesmas Musi Sehat, Palembang � RJ-2026-407 � 2026-01-22
+   KLM112 | readmission_berulang | SYND-08 | RS_I | D15 | P26 (Yulia Ningsih) | Puskesmas Musi Sehat, Palembang � RJ-2026-408 � 2026-03-03
+   KLM114 | readmission_berulang | SYND-08 | RS_I | D15 | P26 (Yulia Ningsih) | Puskesmas Musi Sehat, Palembang � RJ-2026-410 � 2026-03-18
+   KLM115 | excessive_usage | SYND-09 | RS_J | D19 | P27 (Zainal Abidin) | kunjungan langsung (tanpa rujukan)
+   KLM118 | excessive_usage | SYND-09 | RS_J | D19 | P27 (Zainal Abidin) | kunjungan langsung (tanpa rujukan)
+   KLM110 | readmission_berulang | SYND-08 | RS_I | D15 | P25 (Wawan Setiawan) | Puskesmas Musi Sehat, Palembang � RJ-2026-406 � 2026-01-15
+   KLM102 | repeat_billing | SYND-06 | RS_G | D13 | P21 (Rahmat Fauzi) | Puskesmas Tlogo Sehat, Semarang � RJ-2026-401 � 2026-03-08
+   KLM117 | excessive_usage | SYND-09 | RS_J | D19 | P27 (Zainal Abidin) | kunjungan langsung (tanpa rujukan)
+   KLM105 | iur_biaya | SYND-07 | RS_H | D14 | P23 (Tono Sugiarto) | Puskesmas Sanur Sehat, Denpasar � RJ-2026-403 � 2026-02-19
+   KLM121 | biaya_markup |  | RS_G | D13 | P29 (Bambang Riyanto) | Puskesmas Tlogo Sehat, Semarang � RJ-2026-411 � 2026-05-17
+   KLM108 | iur_biaya | SYND-07 | RS_H | D14 | P24 (Umi Rahayu) | kunjungan langsung (tanpa rujukan)
+   KLM120 | excessive_usage | SYND-09 | RS_J | D19 | P27 (Zainal Abidin) | kunjungan langsung (tanpa rujukan)
+   KLM104 | repeat_billing | SYND-06 | RS_G | D13 | P22 (Sri Wahyuni) | Puskesmas Tlogo Sehat, Semarang � RJ-2026-402 � 2026-03-09
+   KLM119 | excessive_usage | SYND-09 | RS_J | D19 | P27 (Zainal Abidin) | kunjungan langsung (tanpa rujukan)
+   KLM106 | iur_biaya | SYND-07 | RS_H | D14 | P23 (Tono Sugiarto) | kunjungan langsung (tanpa rujukan)
+   KLM122 | drug_diversion |  | RS_H | D14 | P30 (Citra Ayu Lestari) | kunjungan langsung (tanpa rujukan)
+   KLM113 | readmission_berulang | SYND-08 | RS_I | D15 | P26 (Yulia Ningsih) | Puskesmas Musi Sehat, Palembang � RJ-2026-409 � 2026-03-11
+   KLM101 | repeat_billing | SYND-06 | RS_G | D13 | P21 (Rahmat Fauzi) | Puskesmas Tlogo Sehat, Semarang � RJ-2026-401 � 2026-03-08
+   KLM103 | repeat_billing | SYND-06 | RS_G | D13 | P22 (Sri Wahyuni) | Puskesmas Tlogo Sehat, Semarang � RJ-2026-402 � 2026-03-09
+   KLM116 | excessive_usage | SYND-09 | RS_J | D19 | P27 (Zainal Abidin) | kunjungan langsung (tanpa rujukan)
+   KLM107 | iur_biaya | SYND-07 | RS_H | D14 | P24 (Umi Rahayu) | Puskesmas Sanur Sehat, Denpasar � RJ-2026-404 � 2026-04-01
+   KLM005 | phantom_billing | SYND-02 | RS_C | D05 | P09 (Idrus Hakim) | Puskesmas Sehat Medan, Medan � RJ-2026-2205 � 2026-03-12
+   KLM002 | upcoding | SYND-01 | RS_A | D02 | P02 (Bunga Lestari) | Puskesmas Sehat Sentosa, Jakarta Selatan � RJ-2026-301 � 202
+   KLM007 | unbundling | SYND-03 | RS_B | D07 | P12 (Maya Sari) | Puskesmas Harapan Ibu, Surabaya � RJ-2026-306 � 2026-04-17
+   KLM001 | upcoding | SYND-01 | RS_A | D01 | P01 (Agus Raharjo) | Puskesmas Sehat Sentosa, Jakarta Selatan � RJ-2026-300 � 202
+   KLM014 | drug_diversion | SYND-04 | RS_E | D09 | P17 (Slamet Riyadi) | kunjungan langsung (tanpa rujukan)
+   KLM004 | phantom_billing | SYND-02 | RS_C | D05 | P08 (Maryam Yusuf) | Puskesmas Sehat Medan, Medan � RJ-2026-2204 � 2026-03-12
+   KLM008 | unbundling | SYND-03 | RS_B | D07 | P12 (Maya Sari) | Puskesmas Harapan Ibu, Surabaya � RJ-2026-307 � 2026-04-17
+   KLM012 | unbundling | SYND-03 | RS_B | D07 | P14 (Odi Setiawan) | Puskesmas Harapan Ibu, Surabaya � RJ-2026-311 � 2026-04-19
+   KLM010 | unbundling | SYND-03 | RS_B | D07 | P13 (Nadia Rahmawati) | Puskesmas Harapan Ibu, Surabaya � RJ-2026-309 � 2026-04-18
+   KLM003 | upcoding | SYND-01 | RS_A | D01 | P03 (Candra Wijaya) | Puskesmas Sehat Sentosa, Jakarta Selatan � RJ-2026-302 � 202
+   KLM013 | drug_diversion | SYND-04 | RS_E | D09 | P16 (Ratna Dewi) | kunjungan langsung (tanpa rujukan)
+   KLM011 | unbundling | SYND-03 | RS_B | D07 | P14 (Odi Setiawan) | Puskesmas Harapan Ibu, Surabaya � RJ-2026-310 � 2026-04-19
+   KLM006 | phantom_billing | SYND-02 | RS_C | D05 | P10 (Kartini Ibrahim) | Puskesmas Sehat Medan, Medan � RJ-2026-2206 � 2026-03-12
+   KLM009 | unbundling | SYND-03 | RS_B | D07 | P13 (Nadia Rahmawati) | Puskesmas Harapan Ibu, Surabaya � RJ-2026-308 � 2026-04-18
+=== syndicate member overlap: same patient or same doctor across different faskes ===
+  SYND-01: n=3 patients=3 doctors=2 faskes=1 modus={'upcoding'}
+  SYND-02: n=3 patients=3 doctors=1 faskes=1 modus={'phantom_billing'}
+  SYND-03: n=6 patients=3 doctors=1 faskes=1 modus={'unbundling'}
+  SYND-04: n=2 patients=2 doctors=1 faskes=1 modus={'drug_diversion'}
+  SYND-05: n=2 patients=2 doctors=1 faskes=1 modus={'cloning'}
+  SYND-06: n=4 patients=2 doctors=1 faskes=1 modus={'repeat_billing'}
+  SYND-07: n=4 patients=2 doctors=1 faskes=1 modus={'iur_biaya'}
+  SYND-08: n=6 patients=2 doctors=1 faskes=1 modus={'readmission_berulang'}
+  SYND-09: n=6 patients=1 doctors=1 faskes=1 modus={'excessive_usage'}

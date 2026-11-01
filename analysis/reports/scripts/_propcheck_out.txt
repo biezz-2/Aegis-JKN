@@ -1,0 +1,33 @@
+total nominal: 3,526,650,000
+is_fraud rows: 36 nominal: 561,150,000
+status breakdown:
+   auto_clear     n=240 nominal=2,685,550,000
+   escalate       n= 36 nominal=561,150,000
+   review         n= 24 nominal=279,950,000
+non-auto_clear: 60 nominal: 841,100,000
+target 507,370,000 = 60.3222% of non-auto_clear nominal
+target/60 = 8,456,167   target/36 = 14,093,611
+
+=== syndicate breakdown ===
+   SYND-01    n=  3 nominal=156,900,000
+   SYND-02    n=  3 nominal=134,250,000
+   SYND-03    n=  6 nominal=52,800,000
+   SYND-04    n=  2 nominal=17,130,000
+   SYND-05    n=  2 nominal=14,900,000
+   SYND-06    n=  4 nominal=61,600,000
+   SYND-07    n=  4 nominal=63,880,000
+   SYND-08    n=  6 nominal=25,290,000
+   SYND-09    n=  6 nominal=12,900,000
+claims with is_fraud=1 but sindikat none/none: 2
+total sindikat-covered: n=36 (100.0% of 36 fraud) nominal=539,650,000
+
+=== modus breakdown (fraud only) ===
+   upcoding               n=  3 nominal=156,900,000
+   phantom_billing        n=  3 nominal=134,250,000
+   iur_biaya              n=  4 nominal=63,880,000
+   repeat_billing         n=  4 nominal=61,600,000
+   unbundling             n=  6 nominal=52,800,000
+   biaya_markup           n=  1 nominal=27,500,000
+   drug_diversion         n=  3 nominal=26,030,000
+   readmission_berulang   n=  6 nominal=25,290,000
+   excessive_usage        n=  6 nominal=12,900,000

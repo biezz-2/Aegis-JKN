@@ -1,0 +1,39 @@
+=== 1. SELISIH > 0.02 : hitung ulang beberapa ambang ===
+   |selisih| > 0.01: 39
+   |selisih| > 0.015: 29
+   |selisih| > 0.02: 25
+   |selisih| > 0.025: 21
+   |selisih| > 0.03: 19
+   |selisih| > 0.05: 15
+   (round3 melaporkan 21 dengan ambang 0.02; periksa presisi floating point)
+
+=== 2. DUPLEKAT: urutan baris vs urutan terurut ===
+   urutan file : ['KLM102', 'KLM101']
+   terurut     : ['KLM101', 'KLM102']
+   urutan file : ['KLM104', 'KLM103']
+   terurut     : ['KLM103', 'KLM104']
+
+=== 3. RASIO: parsing benar vs parsing salah ===
+   parsing BENAR  -> cocok=72 tidak_cocok=0 []
+   parsing SALAH -> cocok=0 tidak_cocok=72  (that's the final_check bug)
+
+=== 4. SEBARAN SELISIH untuk menentukan ambang > 0.02 yang benar ===
+   total tidak koinciden: 42
+   nilai absolut di sekitar 0.02:
+      KLM104: -0.0300
+      KLM020: -0.0200
+      KLM103: -0.0200
+      KLM011: +0.0200
+      KLM012: +0.0200
+      KLM107: +0.0200
+      KLM113: +0.0200
+      KLM114: +0.0200
+      KLM117: +0.0200
+      KLM111: +0.0300
+      KLM118: +0.0300
+      KLM022: +0.0400
+      KLM119: +0.0400
+      KLM120: +0.0400
+   count |d|>0.02 : 21
+   count |d|>0.015: 29
+   count |d|>0.025: 21

@@ -1,0 +1,95 @@
+[0034] DAFTAR ISI
+[0035] LEMBAR PERNYATAAN ORISINALITAS DAN INTEGRITAS  . . . . . . . . . . . . . ii
+[0036] RINGKASAN EKSEKUTIF  . . . . . . . . . . . . . . . . . . . . . . . . . . iii
+[0037] DAFTAR ISI  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . iv
+[0038] DAFTAR TABEL & DAFTAR GAMBAR  . . . . . . . . . . . . . . . . . . . . . . v
+[0039] BAB I: PENDAHULUAN  . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+[0040] 1.1 Latar Belakang & Urgensi Nasional  . . . . . . . . . . . . . . . . 1
+[0041] 1.2 Identifikasi Permasalahan Utama (Upcoding, Unbundling, & Fraud Rings)  2
+[0042] 1.3 Fenomena Topological Camouflage pada Ekosistem JKN  . . . . . . . . 3
+[0043] 1.4 Rumusan Masalah Inovasi  . . . . . . . . . . . . . . . . . . . . . 4
+[0044] 1.5 Tujuan dan Sasaran Inovasi  . . . . . . . . . . . . . . . . . . . . 4
+[0045] 1.6 Ruang Lingkup dan Batasan Sistem  . . . . . . . . . . . . . . . . . 5
+[0046] BAB II: ANALISIS AKAR MASALAH (ROOT CAUSE ANALYSIS)  . . . . . . . . . . 6
+[0047] 2.1 Metodologi Analisis 5-Whys Kegagalan Deteksi Kolusi  . . . . . . . 6
+[0048] 2.2 Analisis Fishbone 4 Dimensi Kendala Audit Klaim JKN  . . . . . . . 7
+[0049] 2.3 Sintesis Akar Masalah: Kebutuhan Paradigma Graph Learning  . . . . 9
+[0050] BAB III: DESKRIPSI & VALUE PROPOSITION SOLUSI AEGIS-JKN  . . . . . . . . 10
+[0051] 3.1 Gambaran Umum Platform Aegis-JKN  . . . . . . . . . . . . . . . . . 10
+[0052] 3.2 Value Proposition & Diferensiasi Strategis Multi-Channel  . . . . . 11
+[0053] 3.3 Analisis Komparatif Pendekatan Solusi (Manual vs Rule vs ML vs Aegis)  12
+[0054] 3.4 Prinsip Right-Sized Hybrid Engineering & Dual-Path Processing  . . 14
+[0055] BAB IV: ARSITEKTUR & MEKANISME CARA KERJA SISTEM  . . . . . . . . . . . . 15
+[0056] 4.1 End-to-End Workflow Pipeline & Dual-Path Production Inference  . . 15
+[0057] 4.2 Modul 1: Ingestion Data, Normalisasi SATUSEHAT, & Tokenisasi Anonim  16
+[0058] 4.3 Modul 2: Tier-1 Deterministic Rule-Based Pre-Filter  . . . . . . . 17
+[0059] 4.4 Modul 3: Tier-2 Tabular Classifier & Tier-3 Tri-Channel MHGSL Engine  18
+[0060] 4.5 Modul 4: Multimodal Late Fusion & Triase Risiko Dinamis  . . . . . 20
+[0061] 4.6 Modul 5: Explainability Layer & Dekomposisi Atribusi SHAP  . . . . 21
+[0062] 4.7 Modul 6: Interactive Verifier Decision Support Interface (Next.js 16)  22
+[0063] BAB V: TATA KELOLA DATA, KEAMANAN, DAN PRIVASI  . . . . . . . . . . . . . 23
+[0064] 5.1 Kepatuhan Terhadap UU PDP No. 27/2022 & UU Kesehatan No. 17/2023  . 23
+[0065] 5.2 Strategi De-identifikasi, Salted Pseudonymization, & Hashing  . . . 24
+[0066] 5.3 Protokol Anti-Data Leakage v2.1 & Group Cross-Validation  . . . . . 25
+[0067] 5.4 Arsitektur Penyimpanan & Perimeter Private Cloud BPJS Kesehatan  . 26
+[0068] 5.5 Manajemen Akses (RBAC) & Immutable Audit Trail  . . . . . . . . . . 27
+[0069] BAB VI: KERANGKA HUMAN-IN-THE-LOOP & HUMAN AUTONOMY  . . . . . . . . . . 28
+[0070] 6.1 Filosofi Human-Centered AI dalam Pengawasan Klaim JKN  . . . . . . 28
+[0071] 6.2 Prinsip Utama: Fail-Safe AI & Hak Otonomi Verifikator  . . . . . . 29
+[0072] 6.3 Matriks Pembagian Peran Kerja AI vs Verifikator Manusia  . . . . . 30
+[0073] 6.4 Alur Interaksi Verifikator & Safe-Mode Fallback Protocol  . . . . . 31
+[0074] 6.5 Strategi Komprehensif Mitigasi Alert Fatigue & Halusinasi AI  . . . 33
+[0075] BAB VII: RENCANA MINIMUM VIABLE PRODUCT (MVP) & SIMULASI  . . . . . . . . 36
+[0076] 7.1 Sasaran Pembuktian MVP & Hipotesis Teknis  . . . . . . . . . . . . 36
+[0077] 7.2 Use Case Spesifik: 9 Pola Sindikat Fraud Ring (SYND-01 s/d SYND-09)  37
+[0078] 7.3 Integrasi Simulasi Multi-Agent OASIS (Discrete Event Simulator)  . 38
+[0079] 7.4 Spesifikasi Ruang Lingkup MVP (In-Scope vs Out-of-Scope)  . . . . . 40
+[0080] 7.5 Dataset Sintetis v2.1 Tervalidasi (300 Klaim INA-CBG/FHIR R4)  . . 41
+[0081] BAB VIII: PROYEKSI DAMPAK & KEY PERFORMANCE INDICATORS (KPI)  . . . . . . 43
+[0082] 8.1 Kerangka Evaluasi Multi-Dimensi  . . . . . . . . . . . . . . . . . 43
+[0083] 8.2 Technical KPI & Hasil Validasi Benchmark Empiris  . . . . . . . . . 44
+[0084] 8.3 Operational KPI & Efisiensi Waktu Telaah  . . . . . . . . . . . . . 45
+[0085] 8.4 Economic KPI & Analisis Portofolio Sampel Rp 3,53 Miliar  . . . . . 46
+[0086] 8.5 User Acceptance KPI & Pengujian A/B Baseline  . . . . . . . . . . . 48
+[0087] BAB IX: ANALISIS KELAYAKAN (FEASIBILITY STUDY)  . . . . . . . . . . . . . 49
+[0088] 9.1 Kelayakan Teknis (Technical Feasibility)  . . . . . . . . . . . . . 49
+[0089] 9.2 Kelayakan Data & Interoperabilitas (SATUSEHAT & V-Claim)  . . . . . 50
+[0090] 9.3 Kelayakan Operasional & Manajemen Perubahan (Change Management)  . 51
+[0091] 9.4 Kelayakan Finansial & Efisiensi Infrastruktur On-Premise  . . . . . 52
+[0092] 9.5 Struktur Organisasi & Kompetensi Tim Pengembang  . . . . . . . . . 53
+[0093] BAB X: MANAJEMEN RISIKO & STRATEGI MITIGASI  . . . . . . . . . . . . . . 55
+[0094] 10.1 Identifikasi 12 Risiko Kritis Implementasi Aegis-JKN  . . . . . . 55
+[0095] 10.2 Matriks Manajemen Risiko Komprehensif  . . . . . . . . . . . . . . 56
+[0096] 10.3 Protokol Tanggap Darurat & Continuous Model Monitoring  . . . . . 59
+[0097] BAB XI: ROADMAP PENGEMBANGAN & RENCANA IMPLEMENTASI  . . . . . . . . . . 60
+[0098] 11.1 Kerangka Kerja Stage-Gate Roadmap  . . . . . . . . . . . . . . . . 60
+[0099] 11.2 Rencana Pelaksanaan 8-12 Minggu Purwarupa & Roadmap 12 Bulan  . . 61
+[0100] 11.3 Indikator Keberhasilan Antar-Tahap (Stage-Gate Criteria)  . . . . 64
+[0101] BAB XII: KESIMPULAN & PENUTUP  . . . . . . . . . . . . . . . . . . . . . 65
+[0102] 12.1 Sintesis Nilai Strategis Solusi Aegis-JKN  . . . . . . . . . . . . 65
+[0103] 12.2 Kesiapan Implementasi & Rekomendasi Menuju Healthkathon 2026  . . 66
+[0104] DAFTAR PUSTAKA & REFERENSI REGULASI  . . . . . . . . . . . . . . . . . . 67
+[0105] 
+[0106] DAFTAR TABEL & DAFTAR GAMBAR
+[0107] Daftar Tabel
+[0108] Tabel 2.1: Matriks Analisis 5-Whys Akar Masalah Kegagalan Deteksi Fraud Sindikat  6
+[0109] Tabel 2.2: Analisis Fishbone 4 Dimensi Kendala Audit Klaim JKN Nasional  8
+[0110] Tabel 3.1: Komparasi Pendekatan Audit Klaim: Manual vs Rule vs XGBoost vs Pure AI vs Aegis-JKN  13
+[0111] Tabel 5.1: Matriks Kepatuhan Prinsip UU PDP No. 27/2022 pada Platform Aegis-JKN  24
+[0112] Tabel 6.1: Matriks Pembagian Peran Kerja AI vs Verifikator Manusia (Human-in-the-Loop)  30
+[0113] Tabel 7.1: Spesifikasi Ruang Lingkup MVP Aegis-JKN (In-Scope vs Out-of-Scope)  40
+[0114] Tabel 7.2: Katalog 9 Pola Sindikat Fraud Ring (SYND-01 s/d SYND-09) pada Dataset v2.1  42
+[0115] Tabel 8.1: Kerangka Key Performance Indicators (KPI) 4 Dimensi Aegis-JKN  44
+[0116] Tabel 8.2: Ringkasan Analisis Finansial Portofolio 300 Klaim (Dataset v2.1 senilai Rp 3,53 Miliar)  47
+[0117] Tabel 9.1: Struktur Organisasi dan Distribusi Kompetensi Tim Inovator  . 54
+[0118] Tabel 10.1: Matriks Manajemen Risiko Komprehensif (12 Risiko Kritis & Rencana Mitigasi)  56
+[0119] Tabel 11.1: Roadmap Implementasi 7 Tahap Berbasis Stage-Gate Framework (12 Bulan)  62
+[0120] Daftar Gambar
+[0121] Gambar 4.1: Arsitektur Alur Kerja End-to-End Aegis-JKN (Tri-Tier & Dual-Path Pipeline)  16
+[0122] Gambar 4.2: Konstruksi Graf Heterogen Tri-Channel (Topologi, Fitur, Semantik Metapath)  19
+[0123] Gambar 4.3: Mekanisme Fusi Atensi Multi-Channel & Deteksi Topological Camouflage  20
+[0124] Gambar 6.1: Antarmuka Keputusan Verifikator dengan Visualisasi Klaster Bipartite Dokter-Faskes  32
+[0125] Gambar 6.2: Alur Safe-Mode Fallback Protocol Pemutus Rekomendasi Otomatis (Threshold >30%)  34
+[0126] Gambar 7.1: Topologi Simulasi Multi-Agent OASIS (20 Pasien, 12 Dokter, 6 RS)  39
+[0127] Gambar 11.1: Diagram Alir Stage-Gate Progression Roadmap Aegis-JKN  . . . 61
+[0128] 

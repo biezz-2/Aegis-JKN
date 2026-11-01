@@ -1,0 +1,36 @@
+### 01-governance.md L18
+'| MEDIUM | 10 | Cakupan/pembagianّق tidak jelas, kontrol ada di kertas saja, atau data bertentangan dengan dokumen kendali |'
+
+### 01-governance.md L122
+'| §7 aturan 4 - bedakan fakta dari rencana | L8 dan L20 menyatakan deskripsi database masih menyebut 100 klaim dan ground truth KLM001–KLM024, padahal 22 dari 36 baris `fraud` berada di luar KLM001–KLM024 (hingga KLM122) | Dokumenاند benar untuk/definisikan, tetapi tidak ada butir P0/P1 yang menutup instance konkret; lihat H-14 |'
+
+### 01-governance.md L284
+'- **I-2 (INFO)** - Temuan numerik `07-dataset-v2-catalog.md` (PSTV18 kosong 133.228 pada L35; PNK02 4.939 nilai unik pada L47; rentang tanggal 2014-08-16 pada L48–L50; PNK17=PNK18 pada L63–L64) tidak dapat diverifikasi ulang secara lokal karena berkas `.dta`/`.xlsx` tidak ada di korpus. Nilai-nilai ini harus diperlakukan sebagai belum terverifikasi sampai sumber unduhan dilampirkan -ولة yang sama dengan `03` L98 ("checksum berkas") dan `08` L30 ("hash SHA-256").'
+
+### 05-evidence.md L275
+'17. **Catat eksplisit di 04 §2** bahwa label status register adalah label status sumber, bukan статус pemakaian di proposal - untuk mencegah "Terverifikasi" dibaca sebagai "siap dipublikasikan".'
+
+### 11-compliance.md L83
+'| V-11 | "Prinsip UU PDP (**Pasal 16**)" | `11-archive-proposal.md:246` | **UU 27/2022 Pasal 16** | ✅ Ya | ✅ Ya | **✓ TEPAT.** Pasal 16 ayat (2) memuat prinsip:yos terbatas dan spesifik/sah/transparan; sesuai tujuan; menjamin hak Subjek Data Pribadi; collecting data ограничен; hak subjek; akurasi; keamanan; pembaruandata; kali communicates. Sumber: `https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022` (akses 22 Okt 2026) |'
+
+### 11-compliance.md L209
+'**Catatan perubahan (terverifikasi dari halaman BPK):** UU 13/2022 **diubah dengan UU No. 1 Tahun 2026** (penyesuaian ketentuan Pasal 15 UU 12/2011). Fokus UU 12/2011–13/2022 adalah **perlakuan administratif** yang tunduk pada persetujuan - termasuk **preskripsi obat** (§"IZIN") yang **tidak boleh disobahkan** oleh apoteker. **Dampak:** aturan yang bersifat "dilarang" berlaku tanpa دون persetujuan, dan khusus untuk **per Prescription** - apa yang boleh dilakukan dengan obat. Relevan untuk claim `SYND-04 Drug Diversion` (kuantitas insulin 24–30 pen vs dosis rasional 1–2 pen/bulan) dan `SYND`OBAT-related rules.'
+
+### 20-repo-artifact-integrity.md L164
+'Implikasi terhadap audit ini: tenggat yang mengikat adalah **1 November 2026** untuk submit project akhir, bukan tanggal pendaftaran. Arti القسم 3 di atas berpindah dari "catatan teknis" menjadi "penghalang deliverable". Dashboard Notion §4 menyatakan bahwa accuracy 93,0%, precision 94,12%, ROC-AUC 0,9825, AUPRC 0,9142, ketahanan masking 89,4%, FPR 10,6%, penurunan waktu telaah 45%, throughput 3,2 kali, SUS 82,5, serta penghematan finansial belum boleh disebut hasil tervalidasi. Tidak satu pun punyabারือทถูกต้อง manifest eksperimen dan skrip hitung yang ada di disk. **Angka-angka itu tidak boleh ditampilkan sebagai hasil di Grand Final 7 November** tanpa artefak replikasi, karena itu melanggar aturan sendiri proyek pada dashboard §7 aturan 6.'
+
+### 22-proposal-docx-audit.md L168
+'**Kritis. "100% mendeteksi 9 pola sindikat" (L27) adalah artefak label.** Himpunan 36 baris ber-`sindikat` dan himpunan 36 baris `is_fraud=1` hampir identik: selisihnya hanya KLM016 dan KLM017 (ber-`sindikat` tetapi `is_fraud=0`) serta KLM121 dan KLM122 (`is_fraud=1` tanpa sindikat). Karena kanal semantik A_sem memakai ID sindikat sebagai kriteria edge (`pipeline.py:304-305`), deteksi sindikat bersifat by construction, bukan performa model. `21-colab-dashboard-provenance.md` C-3 sudah menyimpulkan hal yang sama untuk PDF Colab; dokumen ini寧gly mengulang pola yang sama tanpa label.'
+
+### 22-proposal-docx-audit.md L174
+'**Tinggi. Rasio Cost-to-Impact 1 : 15 (L27, L144, L529, L586, L709) TIDAK TERVERIFIKASI.** Angka muncul lima kali, tetapi tidak ada satu pun butir biaya atau anggaran di seluruh dokumen, sehingga penyebut rasio tidak pernah dinyatakan. Денominator hanya mungkin adalah Rp 507.370.000 yang sendiri tidak terverifikasi.'
+
+### 22-proposal-docx-audit.md L176
+'**Tinggi. "3,2x" (L524) dan "45%" (L514, L543) saling bertentangan.** L543 menyebut waktu telaah 10-20 menit menjadi 3-5 menit, yang berarti penurunan 45% dan peningkatan kapasitas 2,5 kali, bukan 3,2 kali. Sebaliknya, bila penurunan 20 ke 3 menit yang dipakai, kapasitas naik 6,667 kali seperti pada PDF Colab. Tidak ada simulasi beban kerja di repo yang支持 salah satu pun.'
+
+### 22-proposal-docx-audit.md L262
+'| Tanda kutip « » dipakai sebagai penanda prinsip | L4, L9, L137, L253, L292, L347, L383, L718 | Gunakan tanda petik二重 Indonesia, atau hapus bila hanya pemisah visual |'
+
+### 22-proposal-docx-audit.md L298
+'4. Perbaiki Tabel 7.2 dari CSV, lalu hitung ulang nominal sindikat, peringkat modus, dan平均值 overcharge. Hapus "Rp 127,68 Juta" karena tidak ada di data.'
+

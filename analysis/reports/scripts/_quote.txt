@@ -1,0 +1,6 @@
+LINE 30 len: 883
+TAIL: 'kan memangkas durasi review awal sebesar 30-50% per berkas anomali, memberikan rasio Cost-to-Impact konservatif 1 : 15, serta menyelamatkan ratusan miliar rupiah Dana Jaminan Sosial (DJS) Kesehatan setiap tahunnya.'
+
+em-dash in corpus 11: 0
+full L30:
+Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09). Pada portofolio sampel tersebut, sistem berhasil mengidentifikasi 60 klaim anomali dengan potensi penghematan/pencegahan kebocoran tarif INA-CBG riil sebesar Rp 507,37 Juta (rata-rata Rp 8,46 Juta per kasus fraud). Implementasi Aegis-JKN diproyeksikan memangkas durasi review awal sebesar 30-50% per berkas anomali, memberikan rasio Cost-to-Impact konservatif 1 : 15, serta menyelamatkan ratusan miliar rupiah Dana Jaminan Sosial (DJS) Kesehatan setiap tahunnya.

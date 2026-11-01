@@ -1,0 +1,28 @@
+rows: 300
+  K29.7    n= 17 skor_max=0.95
+  K35.8    n= 31 skor_max=0.81
+  K40.9    n= 29 skor_max=0.64
+  I21.9    n= 20 skor_max=0.84
+  J18.9    n= 38 skor_max=0.89
+  E11.9    n= 41 skor_max=0.88
+  N20.0    n=  9 skor_max=0.13
+  S72.0    n= 18 skor_max=0.94
+  O80      n=  9 skor_max=0.66
+  K80.2    n= 32 skor_max=0.92
+
+=== lines mentioning 36.13 ===
+   | 36.13 | Coronary artery bypass graft (CABG) | tinggi | Rp 78.000.000 | 0 | 0 | low |
+
+=== dokter table lines ===
+   | D01 | dr. Adnan Prakoso, Sp.BTKV | Bedah Toraks & Kardiovaskular | RS_A | 2 | 0.94 | fraud |
+   | D02 | dr. Barli Soemarno, Sp.B | Bedah Digestif | RS_A | 8 | 0.95 | fraud |
+   | D03 | dr. Citra Ayuningtyas, Sp.PD | Penyakit Dalam | RS_A | 9 | 0.74 | high |
+   | D04 | dr. Danur Wibisono, [Sp.JP](http://sp.jp/) | Kardiologi | RS_D | 9 | 0.68 | high |
+   | D05 | dr. Endra Kusuma, Sp.OT | Orthopedi & Traumatologi | RS_C | 10 | 0.94 | fraud |
+   | D06 | dr. Fitri Handayani, Sp.A | Anak | RS_B | 0 | 0 | low |
+   | D07 | dr. Gunawan Halim, Sp.B | Bedah Digestif | RS_B | 13 | 0.87 | fraud |
+   | D08 | dr. Hendra Maulana, Sp.B | Bedah Umum | RS_F | 18 | 0.79 | high |
+   | D09 | dr. Indah Pratiwi, Sp.PD | Penyakit Dalam | RS_E | 14 | 0.88 | fraud |
+   | D10 | dr. Joko Purnomo, Sp.S | Saraf | RS_E | 8 | 0.13 | low |
+   | D11 | dr. Kartika Sari, Sp.B | Bedah Umum | RS_D | 1 | 0.62 | high |
+   | D12 | dr. Lina Marlina, Sp.OG | Obstetri & Ginekologi | RS_F | 8 | 0.66 | high |

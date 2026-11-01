@@ -1,0 +1,474 @@
+{
+ "v21_n": 300,
+ "v21_id_min": "KLM001",
+ "v21_id_max": "KLM300",
+ "v21_id_contiguous": true,
+ "v21_status": {
+  "escalate": 36,
+  "review": 24,
+  "auto_clear": 240
+ },
+ "v21_risiko": {
+  "fraud": 36,
+  "high": 14,
+  "medium": 10,
+  "low": 240
+ },
+ "v21_is_fraud": {
+  "1": 36,
+  "0": 264
+ },
+ "v21_total_biaya": 3526650000,
+ "v21_total_biaya_human": "3.526.650.000",
+ "v21_biaya_by_status": {
+  "escalate": 561150000,
+  "review": 279950000,
+  "auto_clear": 2685550000
+ },
+ "v21_pct_status": {
+  "escalate": 12.0,
+  "review": 8.0,
+  "auto_clear": 80.0
+ },
+ "v21_biaya_pct_status": {
+  "escalate": 15.9117,
+  "review": 7.9381,
+  "auto_clear": 76.1502
+ },
+ "v21_biaya_by_risiko": {
+  "fraud": 561150000,
+  "high": 269100000,
+  "medium": 10850000,
+  "low": 2685550000
+ },
+ "fraud_n_is_fraud": 36,
+ "fraud_n_risiko_fraud": 36,
+ "fraud_n_sindikat": 36,
+ "fraud_sets_identical": false,
+ "fraud_ids_sorted": [
+  "KLM001",
+  "KLM002",
+  "KLM003",
+  "KLM004",
+  "KLM005",
+  "KLM006",
+  "KLM007",
+  "KLM008",
+  "KLM009",
+  "KLM010",
+  "KLM011",
+  "KLM012",
+  "KLM013",
+  "KLM014",
+  "KLM101",
+  "KLM102",
+  "KLM103",
+  "KLM104",
+  "KLM105",
+  "KLM106",
+  "KLM107",
+  "KLM108",
+  "KLM109",
+  "KLM110",
+  "KLM111",
+  "KLM112",
+  "KLM113",
+  "KLM114",
+  "KLM115",
+  "KLM116",
+  "KLM117",
+  "KLM118",
+  "KLM119",
+  "KLM120",
+  "KLM121",
+  "KLM122"
+ ],
+ "fraud_status_counts": {
+  "escalate": 36
+ },
+ "review_ids_count": 24,
+ "review_ids": [
+  "KLM015",
+  "KLM016",
+  "KLM017",
+  "KLM018",
+  "KLM019",
+  "KLM020",
+  "KLM021",
+  "KLM022",
+  "KLM023",
+  "KLM024",
+  "KLM123",
+  "KLM124",
+  "KLM125",
+  "KLM126",
+  "KLM127",
+  "KLM128",
+  "KLM129",
+  "KLM130",
+  "KLM131",
+  "KLM132",
+  "KLM133",
+  "KLM134",
+  "KLM135",
+  "KLM136"
+ ],
+ "escalate_n": 36,
+ "escalate_total": 561150000,
+ "review_total": 279950000,
+ "escalate_plus_review_n": 60,
+ "escalate_plus_review_total": 841100000,
+ "autoclear_total": 2685550000,
+ "autoclear_n": 240,
+ "sindikat_detail": {
+  "SYND-01": {
+   "claims": 3,
+   "biaya": 156900000,
+   "faskes_uniq": 1,
+   "pasien_uniq": 3,
+   "dokter_uniq": 2,
+   "status": {
+    "escalate": 3
+   },
+   "faskes": [
+    "RS_A"
+   ]
+  },
+  "SYND-02": {
+   "claims": 3,
+   "biaya": 134250000,
+   "faskes_uniq": 1,
+   "pasien_uniq": 3,
+   "dokter_uniq": 1,
+   "status": {
+    "escalate": 3
+   },
+   "faskes": [
+    "RS_C"
+   ]
+  },
+  "SYND-03": {
+   "claims": 6,
+   "biaya": 52800000,
+   "faskes_uniq": 1,
+   "pasien_uniq": 3,
+   "dokter_uniq": 1,
+   "status": {
+    "escalate": 6
+   },
+   "faskes": [
+    "RS_B"
+   ]
+  },
+  "SYND-04": {
+   "claims": 2,
+   "biaya": 17130000,
+   "faskes_uniq": 1,
+   "pasien_uniq": 2,
+   "dokter_uniq": 1,
+   "status": {
+    "escalate": 2
+   },
+   "faskes": [
+    "RS_E"
+   ]
+  },
+  "SYND-05": {
+   "claims": 2,
+   "biaya": 14900000,
+   "faskes_uniq": 1,
+   "pasien_uniq": 2,
+   "dokter_uniq": 1,
+   "status": {
+    "review": 2
+   },
+   "faskes": [
+    "RS_F"
+   ]
+  },
+  "SYND-06": {
+   "claims": 4,
+   "biaya": 61600000,
+   "faskes_uniq": 1,
+   "pasien_uniq": 2,
+   "dokter_uniq": 1,
+   "status": {
+    "escalate": 4
+   },
+   "faskes": [
+    "RS_G"
+   ]
+  },
+  "SYND-07": {
+   "claims": 4,
+   "biaya": 63880000,
+   "faskes_uniq": 1,
+   "pasien_uniq": 2,
+   "dokter_uniq": 1,
+   "status": {
+    "escalate": 4
+   },
+   "faskes": [
+    "RS_H"
+   ]
+  },
+  "SYND-08": {
+   "claims": 6,
+   "biaya": 25290000,
+   "faskes_uniq": 1,
+   "pasien_uniq": 2,
+   "dokter_uniq": 1,
+   "status": {
+    "escalate": 6
+   },
+   "faskes": [
+    "RS_I"
+   ]
+  },
+  "SYND-09": {
+   "claims": 6,
+   "biaya": 12900000,
+   "faskes_uniq": 1,
+   "pasien_uniq": 1,
+   "dokter_uniq": 1,
+   "status": {
+    "escalate": 6
+   },
+   "faskes": [
+    "RS_J"
+   ]
+  }
+ },
+ "n_syndicate": 9,
+ "sindikat_total_biaya": 539650000,
+ "skor_fraud_min_fraud": 0.8,
+ "skor_fraud_max_fraud": 0.95,
+ "skor_fraud_min_nonfraud": 0.04,
+ "skor_fraud_max_nonfraud": 0.79,
+ "skor_fraud_overlap": false,
+ "skor_fraud_mean_by_status": {
+  "auto_clear": 0.0862,
+  "review": 0.5908,
+  "escalate": 0.8689
+ },
+ "skor_fraud_range_by_status": {
+  "auto_clear": [
+   0.04,
+   0.14
+  ],
+  "review": [
+   0.4,
+   0.79
+  ],
+  "escalate": [
+   0.8,
+   0.95
+  ]
+ },
+ "skor_fraud_mean_all": 0.2205,
+ "skor_fraud_mean_fraud": 0.8689,
+ "skor_fraud_mean_nonfraud": 0.132,
+ "v21_empty_counts": {
+  "claim_id": 0,
+  "tanggal": 0,
+  "faskes_id": 0,
+  "dokter_raw": 0,
+  "dokter_id": 0,
+  "pasien_raw": 0,
+  "pasien_id": 0,
+  "biaya_rp": 0,
+  "los_hari": 0,
+  "layanan": 0,
+  "diagnosis_raw": 0,
+  "diagnosis_code": 0,
+  "prosedur_raw": 0,
+  "prosedur_code": 0,
+  "obat": 0,
+  "rujukan": 0,
+  "alasan_berobat": 0,
+  "narasi_rekam_medis": 0,
+  "umpan_balik_pasien": 0,
+  "sentimen": 0,
+  "skor_sentimen": 0,
+  "kontradiksi_narasi": 0,
+  "risiko": 0,
+  "skor_fraud": 0,
+  "status": 0,
+  "sindikat": 0,
+  "modus": 240,
+  "sinyal_shap": 0,
+  "kontribusi_saluran": 0,
+  "alasan": 1,
+  "is_fraud": 0
+ },
+ "live_empty_counts": {
+  "Tanggal": 0,
+  "Skor Sentimen": 0,
+  "Narasi Rekam Medis": 0,
+  "Biaya Rp": 0,
+  "Risiko": 0,
+  "LOS hari": 0,
+  "Prosedur ICD-9-CM": 0,
+  "Dokter": 0,
+  "Sinyal SHAP": 0,
+  "Modus": 240,
+  "Rujukan": 0,
+  "Faskes": 0,
+  "Sindikat": 264,
+  "Skor Fraud": 0,
+  "Obat": 0,
+  "Umpan Balik Pasien": 0,
+  "Kontradiksi Narasi": 0,
+  "Pasien": 0,
+  "Alasan Berobat": 0,
+  "Status": 0,
+  "Alasan": 1,
+  "Catatan": 240,
+  "Sentimen": 0,
+  "Layanan": 0,
+  "Kontribusi Saluran": 0,
+  "Diagnosis ICD-10": 0,
+  "Name": 0,
+  "_notion_page_id": 0,
+  "_last_edited": 0
+ },
+ "biaya_min": 700000,
+ "biaya_max": 63500000,
+ "los_min": 0,
+ "los_max": 14,
+ "biaya_mean": 11755500,
+ "biaya_median": 4475000.0,
+ "faskes_uniq": 10,
+ "pasien_uniq": 40,
+ "dokter_uniq": 20,
+ "faskes_counts": {
+  "RS_A": 29,
+  "RS_C": 16,
+  "RS_B": 21,
+  "RS_E": 28,
+  "RS_F": 32,
+  "RS_D": 14,
+  "RS_G": 45,
+  "RS_H": 37,
+  "RS_I": 36,
+  "RS_J": 42
+ },
+ "pasien_count_dist": {
+  "7": 22,
+  "6": 4,
+  "8": 8,
+  "9": 4,
+  "10": 1,
+  "12": 1
+ },
+ "layanan_counts": {
+  "rawat inap": 189,
+  "rawat jalan": 111
+ },
+ "sentimen_counts": {
+  "negatif": 72,
+  "positif": 170,
+  "netral": 58
+ },
+ "kontradiksi_counts": {
+  "1": 12,
+  "0": 288
+ },
+ "tanggal_min": "2026-01-01",
+ "tanggal_max": "2026-06-27",
+ "modus_all": {
+  "upcoding": 5,
+  "phantom_billing": 3,
+  "unbundling": 6,
+  "drug_diversion": 3,
+  "prolonged_stay": 4,
+  "cloning": 2,
+  "overbilling": 4,
+  "anomali_frekuensi": 12,
+  "repeat_billing": 4,
+  "iur_biaya": 4,
+  "readmission_berulang": 6,
+  "excessive_usage": 6,
+  "biaya_markup": 1
+ },
+ "escalate_biaya_sorted": [
+  980000,
+  1150000,
+  2100000,
+  2100000,
+  2100000,
+  2150000,
+  2150000,
+  2150000,
+  2150000,
+  2150000,
+  2150000,
+  4150000,
+  4150000,
+  4150000,
+  4280000,
+  4280000,
+  4280000,
+  4350000,
+  7680000,
+  8900000,
+  9450000,
+  15400000,
+  15400000,
+  15400000,
+  15400000,
+  15500000,
+  15500000,
+  15500000,
+  27500000,
+  44750000,
+  44750000,
+  44750000,
+  52300000,
+  52300000,
+  52300000,
+  57400000
+ ],
+ "escalate_modus_biaya": {
+  "biaya_markup": {
+   "n": 1,
+   "biaya": 27500000
+  },
+  "drug_diversion": {
+   "n": 3,
+   "biaya": 26030000
+  },
+  "excessive_usage": {
+   "n": 6,
+   "biaya": 12900000
+  },
+  "iur_biaya": {
+   "n": 4,
+   "biaya": 63880000
+  },
+  "phantom_billing": {
+   "n": 3,
+   "biaya": 134250000
+  },
+  "readmission_berulang": {
+   "n": 6,
+   "biaya": 25290000
+  },
+  "repeat_billing": {
+   "n": 4,
+   "biaya": 61600000
+  },
+  "unbundling": {
+   "n": 6,
+   "biaya": 52800000
+  },
+  "upcoding": {
+   "n": 3,
+   "biaya": 156900000
+  }
+ },
+ "live_total_biaya": 3526650000,
+ "live_status_same_as_v21": true,
+ "live_biaya_same_as_v21": true,
+ "live_skor_same_as_v21": true
+}

@@ -1,0 +1,69 @@
+﻿=== KEYWORD MENTIONS in Alasan / Catatan / Modus ===
+   ('Alasan', 'rujukan') 1
+   ('Sinyal SHAP', 'rujukan') 1
+
+=== Does EVERY syndicate have exactly 1 faskes and refer only to its own Puskesmas? collusion check ===
+FKTP -> number of distinct receiving faskes:
+    Bahari Sehat -> 1 ['RS_E']
+    Balik Sehat -> 1 ['RS_J']
+    Cibinong Medika -> 1 ['RS_D']
+    Giri Sehat -> 1 ['RS_F']
+    Harapan Ibu -> 1 ['RS_B']
+    Musi Sehat -> 1 ['RS_I']
+    Sanur Sehat -> 1 ['RS_H']
+    Sehat Medan -> 1 ['RS_C']
+    Sehat Sentosa -> 1 ['RS_A']
+    Tlogo Sehat -> 1 ['RS_G']
+Faskes -> number of distinct source Puskesmas:
+    RS_A -> 1 ['Sehat Sentosa']
+    RS_B -> 1 ['Harapan Ibu']
+    RS_C -> 1 ['Sehat Medan']
+    RS_D -> 1 ['Cibinong Medika']
+    RS_E -> 1 ['Bahari Sehat']
+    RS_F -> 1 ['Giri Sehat']
+    RS_G -> 1 ['Tlogo Sehat']
+    RS_H -> 1 ['Sanur Sehat']
+    RS_I -> 1 ['Musi Sehat']
+    RS_J -> 1 ['Balik Sehat']
+
+=== Financial: total nominal + per status + nominal of the 36 fraud rows ===
+TOTAL nominal Rp 3.526.650.000
+   auto_clear Rp 2.685.550.000 n= 240
+   review Rp 279.950.000 n= 24
+   escalate Rp 561.150.000 n= 36
+  36 fraud rows nominal Rp 561.150.000
+  escalate+review nominal Rp 841.100.000
+  RATIO fraud-nominal/total = 0.1591
+  claim Rp507.370.000 == ? escalate+review?  False
+
+=== Overcharge / tarif acuan: any per-claim benchmark column? ===
+COLUMNS: ['Tanggal', 'Skor Sentimen', 'Narasi Rekam Medis', 'Biaya Rp', 'Risiko', 'LOS hari', 'Prosedur ICD-9-CM', 'Dokter', 'Sinyal SHAP', 'Modus', 'Rujukan', 'Faskes', 'Sindikat', 'Skor Fraud', 'Obat', 'Umpan Balik Pasien', 'Kontradiksi Narasi', 'Pasien', 'Alasan Berobat', 'Status', 'Alasan', 'Catatan', 'Sentimen', 'Layanan', 'Kontribusi Saluran', 'Diagnosis ICD-10', 'Name', '_notion_page_id', '_last_edited']
+max claim KLM127 63500000 high prolonged_stay
+
+=== sample Alasan for each modus (one row each) ===
+   anomali_frekuensi :: ANOMALI SEDANG: 3 episode rajal asma dalam 30 hari, masing-masing menagih nebulizer meski asma tercatat stabil. Perlu verifikasi indikasi tindakan berulang.
+      -> Kunjungan rajal rapat; verifikasi indikasi
+   readmission_berulang :: FRAUD (Readmission Berulang): pasien yang sama dirawat inap 3 kali dengan diagnosis identik dalam 30 hari dengan interval presisi 7-8 hari, tanpa eskalasi terapi maupun komplikasi terdokumentasi. Pola readmisi berulang a
+      -> Episode pneumonia sama diklaim ulang 3x dalam 30 hari
+   prolonged_stay :: ANOMALI TINGGI (belum tentu fraud): pasien usia 70 tahun dipulangkan 2 hari setelah hemiarthroplasty (median 7). Bisa mencerminkan pemulangan dini yang berisiko (standard of care) atau kesalahan input LOS. Perlu telaah k
+      -> LOS 2 hari pasca bedah mayor; telaah klinis
+   excessive_usage :: FRAUD (Excessive Usage): 6 kunjungan rawat jalan dengan interval presisi 7 hari untuk asma yang tercatat stabil, setiap kunjungan menagih spirometri + rontgen dada + nebulizer (Rp2,15 jt/kunjungan, ~2x median rajal asma)
+      -> Pemeriksaan & tindakan berulang mingguan tanpa indikasi
+   overbilling :: ANOMALI TINGGI (belum tentu fraud): biaya reparasi hernia 2,6x tarif paket dengan mesh yang lebih mahal mungkin dijelaskan komplikasi/penggunaan mesh khusus, tetapi tidak terdokumentasi. Perlu verifikasi rincian komponen
+      -> Biaya 2,6x tarif; perlu telaah rincian komponen
+   repeat_billing :: FRAUD (Repeat Billing): satu episode operasi kolesistektomi ditagih dua kali dengan baris klaim identik sempurna (tanggal, dx, prosedur, biaya). Episode rawat inap paket INA-CBG hanya boleh diklaim satu kali; duplikasi i
+      -> Klaim kembar dari episode kolesistektomi yang sama
+   iur_biaya :: FRAUD (Iur Biaya): pasien melaporkan diminta membayar di luar JKN untuk layanan yang seharusnya dicakup paket, sementara faskes tetap mengajukan klaim penuh ke BPJS. Pungutan ganda ini melanggar skema paket INA-CBG (tida
+      -> Klaim PCI ditagih penuh; pasien membayar tambahan di luar JKN
+   biaya_markup :: FRAUD (Biaya Markup): apendektomi standar tanpa komplikasi ditagih Rp27,5 jt atau 4x tarif paket (Rp6,8 jt). Tidak ada komponen tambahan yang dijelaskan pada rincian, dan LOS 3 hari sesuai paket � kenaikan biaya murni ma
+      -> Markup biaya 4x tarif tanpa justifikasi komponen
+   drug_diversion :: FRAUD (Drug Diversion): satu episode rawat jalan menagih 12 pen insulin glargin, padahal kebutuhan rasional pasien DM terkontrol adalah 1-2 pen/bulan. Volume >6x kebutuhan klinis menandakan obat kemungkinan dialihkan (di
+      -> Pengambilan insulin >6x kebutuhan klinis bulanan
+   phantom_billing :: FRAUD (Phantom Billing): klaim hemiarthroplasty dengan tanggal & biaya identik untuk 3 pasien pada hari yang sama, LOS hanya 1 hari untuk bedah mayor, tanpa MedicationDispense maupun resume medis di SATUSEHAT � indikasi 
+      -> Tidak ada encounter farmasi; resume medis tidak ditemukan di SATUSEHAT
+   upcoding :: FRAUD (Upcoding): diagnosis primer gastritis ringan (K29.7) ditagih sebagai tindakan PCI dengan stent (00.66, Rp58 jt) � tidak mungkin secara klinis tanpa indikasi kardiologis, dan tidak ada satu pun obat kardiovaskular 
+      -> Dx primer gastritis namun ditagih PCI stent; tanpa obat kardio pada dispensing
+   cloning :: ANOMALI TINGGI (belum tentu fraud): klaim identik sempurna dengan pasien lain (tanggal, dx, prosedur, LOS, biaya) � indikasi cloning. Karena umur & gender pasien berbeda, perlu verifikasi rekam medis sebelum label fraud 
+      -> Rekam medis identik dengan P20
+   unbundling :: FRAUD (Unbundling): paket kolesistektomi (51.23) dipecah dengan menagih intubasi (96.04) secara terpisah pada tanggal yang sama, sehingga total tagihan melampaui nilai paket INA-CBG; pola identik pada 3 pasien menandakan
+      -> Intubasi (96.04) ditagih terpisah dari paket bedah

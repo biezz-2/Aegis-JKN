@@ -1,0 +1,612 @@
+TOTAL FLAGS: 688
+
+### ARABIC  x16
+  01-governance.md                 L18    ARABIC SHADDA  | MEDIUM | 10 | Cakupan/pembagianّق tidak jelas, kontrol ada di kertas saja, atau data bertentangan dengan dokumen kendali |
+  01-governance.md                 L122   ARABIC LETTER ALEF  | §7 aturan 4 - bedakan fakta dari rencana | L8 dan L20 menyatakan deskripsi database masih menyebut 100 klaim dan ground truth KLM001–KLM024, padahal
+  01-governance.md                 L284   ARABIC LETTER WAW  - **I-2 (INFO)** - Temuan numerik `07-dataset-v2-catalog.md` (PSTV18 kosong 133.228 pada L35; PNK02 4.939 nilai unik pada L47; rentang tanggal 2014-08
+  11-compliance.md                 L209   ARABIC LETTER DAL  **Catatan perubahan (terverifikasi dari halaman BPK):** UU 13/2022 **diubah dengan UU No. 1 Tahun 2026** (penyesuaian ketentuan Pasal 15 UU 12/2011). 
+  20-repo-artifact-integrity.md    L164   ARABIC LETTER ALEF  Implikasi terhadap audit ini: tenggat yang mengikat adalah **1 November 2026** untuk submit project akhir, bukan tanggal pendaftaran. Arti القسم 3 di 
+
+### CJK  x8
+  22-proposal-docx-audit.md        L168   CJK UNIFIED IDEOGRAPH-5BE7  **Kritis. "100% mendeteksi 9 pola sindikat" (L27) adalah artefak label.** Himpunan 36 baris ber-`sindikat` dan himpunan 36 baris `is_fraud=1` hampir i
+  22-proposal-docx-audit.md        L176   CJK UNIFIED IDEOGRAPH-652F  **Tinggi. "3,2x" (L524) dan "45%" (L514, L543) saling bertentangan.** L543 menyebut waktu telaah 10-20 menit menjadi 3-5 menit, yang berarti penurunan
+  22-proposal-docx-audit.md        L262   CJK UNIFIED IDEOGRAPH-4E8C  | Tanda kutip « » dipakai sebagai penanda prinsip | L4, L9, L137, L253, L292, L347, L383, L718 | Gunakan tanda petik二重 Indonesia, atau hapus bila hany
+  22-proposal-docx-audit.md        L298   CJK UNIFIED IDEOGRAPH-5E73  4. Perbaiki Tabel 7.2 dari CSV, lalu hitung ulang nominal sindikat, peringkat modus, dan平均值 overcharge. Hapus "Rp 127,68 Juta" karena tidak ada di dat
+
+### CYRILLIC  x18
+  05-evidence.md                   L275   CYRILLIC SMALL LETTER ES  17. **Catat eksplisit di 04 §2** bahwa label status register adalah label status sumber, bukan статус pemakaian di proposal - untuk mencegah "Terverif
+  11-compliance.md                 L83    CYRILLIC SMALL LETTER O  | V-11 | "Prinsip UU PDP (**Pasal 16**)" | `11-archive-proposal.md:246` | **UU 27/2022 Pasal 16** | ✅ Ya | ✅ Ya | **✓ TEPAT.** Pasal 16 ayat (2) memua
+  22-proposal-docx-audit.md        L174   CYRILLIC CAPITAL LETTER DE  **Tinggi. Rasio Cost-to-Impact 1 : 15 (L27, L144, L529, L586, L709) TIDAK TERVERIFIKASI.** Angka muncul lima kali, tetapi tidak ada satu pun butir bia
+
+### EMDASH  x16
+  04-data-quality.md               L45    —  | SEDANG | 6 | SYND-05 skenario tidak sesuai modus; sentinel "—" pada Prosedur (156 baris); 44 baris biaya di atas pagar IQR; SHAP konstan per modus (
+  04-data-quality.md               L63    —  | Prosedur ICD-9-CM | Ya | Rich text / sentinel `—` | Kode serta konteks tindakan ditinjau | 156 baris memakai sentinel `—`, bukan sel kosong; 8 kode 
+  04-data-quality.md               L64    —  | Obat | Ya | Rich text `M03 x 6 vial; M04 x 7 vial` | Satuan harus konsisten | Satuan terkontrol: vial/tablet/nebules/pen; 3 baris `Obat` = `—` (phan
+  04-data-quality.md               L273   —  | E11.9, I10, J18.9, J45.9, K29.7, N39.0, O80 | `—` (tanpa prosedur) | 134 | terapi medis |
+  04-data-quality.md               L331   —  | Prosedur ICD-9-CM | 8 kode + sentinel `—` | 8 kode + sentinel `—` (`prosedur_code`) | "00.66, 51.23, dll." | ✓ |
+  04-data-quality.md               L381   —  ### 7-10 (SEDANG) Sentinel `—` menggantikan sel kosong - 156 baris
+  04-data-quality.md               L382   —  `Prosedur ICD-9-CM` = `—` pada 156 baris (52%); `Obat` = `—` pada 3 baris (KLM004-006). Selain menutupi perbedaan "tidak ada prosedur" vs "prosedur ti
+  04-data-quality.md               L471   —  6. **Ganti sentinel `—` dengan sel kosong** pada `Prosedur ICD-9-CM` (156 baris) dan `Obat` (3 baris), atau tambahkan kolom status eksplisit bila `—` 
+  04-data-quality.md               L564   —  Pertanyaan yang dijawab di sini: apakah temuan §7-4 (LOS), §7-3 (Kontribusi Saluran), §7-2 (sindikat), §7-5 (Kontradiksi Narasi), §7-7 (`undefined`), 
+  04-data-quality.md               L573   —  | Sentinel `—` pada Prosedur | 156 baris | 156 baris | **Ya** (identik) | Cacat desain generator |
+  04-data-quality.md               L574   —  | Sentinel `—` pada Obat | 3 baris | 3 baris | **Ya** (identik) | Cacat desain generator |
+  07-generator.md                  L46    —  **Bukti ketidakcocokan v1:** `build_ground_truth()` menetapkan KLM004 = dx `S72.0` / proc `81.52` / biaya 46.500.000 / skor 0.92; CSV corpus KLM004 = 
+  13-text-channel.md               L39    —  | S11 | **Rendah** | `Alasan` kosong pada 1 baris; `Obat` = "—" pada 3 baris (phantom) | Missingness tidak seragam | `13_text.py` §4 |
+  13-text-channel.md               L330   —  - `Alasan` kosong pada 1 baris; `Obat` = `"—"` pada 3 baris (phantom_billing, konsisten dengan spec).
+  13-text-channel.md               L377   —  **Rekomendasi data:** untuk 3 baris phantom_billing, `Narasi Rekam Medis` harus kosong / "Resume medis tidak ditemukan di SATUSEHAT" (mengikuti `Catat
+  22-proposal-docx-audit.md        L263   —  | Satu em-dash di header dokumen | `word/header1.xml`: "HEALTHKATHON BPJS KESEHATAN 2026 — PROPOSAL INOVASI AEGIS-JKN" | Body dokumen sendiri 0 em-das
+
+### EMOJI  x5
+  01-governance.md                 L110   ELECTRIC LIGHT BULB  | Kebocoran artefak mentah Notion | L4 `> **{'type': 'emoji', 'emoji': '💡'}** Peringatan privasi: data kepesertaan ...` | Peringatan privasi yang pali
+  01-governance.md                 L162   ELECTRIC LIGHT BULB  - **M-2 (MEDIUM)** - Pola literal Notion `{'type': 'emoji', 'emoji': '💡'}` bocor ke berkas terdokumentasi pada 07 L4, 08 L5, 09, 10, 11, 12, 13, 14. D
+  01-governance.md                 L316   ELECTRIC LIGHT BULB  17. **Perbaiki kebocoran literal Notion** `{'type': 'emoji', 'emoji': '💡'}` di `07` L4, `08` L5, dan berkas arsip (kriteria: 0 kemunculan pola `{'type
+  18-ux.md                         L95    SHIELD  | `/simulasi` | Header | Badge "Protokol v2.1 **SESUAI**" + "🛡️ Dashboard Hasil Simulasi" - **tidak ada badge "SIMULASI"/"DATA SINTETIS"** di chrome. 
+  18-ux.md                         L334   SHIELD  | Badge "🛡️ Dashboard Hasil Simulasi Oasis" | `src/components/oasis/oasis-dashboard.tsx:192-195` | Judul memakai emoji perisai; "Oasis" = nama tool pi
+
+### ENDASH  x402
+  01-governance.md                 L4     –  **Ruang lingkup:** 9 dokumen terkendali (00–08) + 6 dokumen arsip/agregat (09–14) + 2 ekspor basis data (`claims_v2_live.csv`, `claims_v2_live.json`, 
+  01-governance.md                 L5     –  **Sumber kebenaran tata kelola:** `00-dashboard.md` §7 (L74–85), §9 (L90), §3 (L28–39)
+  01-governance.md                 L32    –  | §7 aturan 2 - awali dengan status, versi, tanggal, tujuan | L4–L6 hanya memuat "Status proyek", "Tanggal pembaruan", "Versi dokumentasi terkendali";
+  01-governance.md                 L33    –  | §7 aturan 10 - perubahan substansial dicatat pada changelog | L86–L88 memuat satu baris versi 1.0, sementara L92–L95 menambahkan 07 dan 08 tanpa bar
+  01-governance.md                 L35    –  | §2 - "Dokumen terkendali" harus menjadi daftar otoritatif | L12–L18 mendaftarkan 6 dokumen; L92–L95 menambahkan 07 dan 08 di bawah judul "# Dataset 
+  01-governance.md                 L42    –  | §7 aturan 6 - semua klaim eksternal memiliki sitasi spesifik; `04-evidence-matrix.md` L39+L56 | L91 `Referensi teknis XGBoost, graph neural networks
+  01-governance.md                 L45    –  | §7 aturan 10 - changelog | Tidak ada bagian changelog; L92–L93 hanya `## Catatan editorial` | Riwayat perubahan substantive tidak tercatat |
+  01-governance.md                 L53    –  | §7 aturan 10 - perubahan substansial dicatat pada changelog | L115–L116 `## 9. Catatan Revisi` berupa prosa tanpa kolom versi/tanggal/perubahan | Pe
+  01-governance.md                 L56    –  | Gerbang penerimaan MVP | L108–L114 D-01..D-06 seluruhnya "Terbuka" tanpa tenggat, tanpa kriteria closure, pemilik berupa tim | MVP tidak dapat dinya
+  01-governance.md                 L65    –  | §5 Data Dictionary - inventaris properti | L48–L72 memuat 24 properti; ekspor aktif `claims_v2_live.csv` memiliki 27 kolom data + 2 kolom metadata N
+  01-governance.md                 L66    –  | §5 - kamus data harus mendefinisikan "Sentimen: Harus sesuai dengan definisi skor" | L70; komputasi ulang: 58 dari 300 baris ber-`Sentimen` `netral`
+  01-governance.md                 L67    –  | §5 - `Kontradiksi Narasi` "Perlu aturan penetapan yang eksplisit" | L60; komputasi ulang: 12 baris bernilai true (KLM001–KLM006, KLM018, KLM024, KLM
+  01-governance.md                 L69    –  | §5 - `Sindikat` | L65 "Kosong dibolehkan bila tidak terkait"; KLM121 dan KLM122 berstatus `escalate`/`fraud` tetapi `Sindikat` kosong, padahal `09-d
+  01-governance.md                 L71    –  | §7 aturan 5 - tabel menyatakan satuan dan denominator | L32–L36 tabel nominal tidak menyebut satuan/denominator di header kolom | Renal; lihat L-1 |
+  01-governance.md                 L77    –  | §3 L19–25 + §4 (E-04, E-05) vs isi `dataset_research_live.csv` | Baris 19 (blog `allalliedhealthschools.com`, Kritis), 21 (Kontan, Kritis), 26 (Rese
+  01-governance.md                 L79    –  | §7 Format Entri Sumber yang Wajib (12 field, L57–L69) | `dataset_research_live.csv` hanya punya 10 kolom (`Status Verifikasi, Relevansi, Sumber Rise
+  01-governance.md                 L80    –  | §9 Gerbang Publikasi L79 "Setiap angka utama memiliki sumber atau artefak eksperimen" | `00-dashboard.md` L47–L51 dan `11-archive-proposal.md` L326–
+  01-governance.md                 L83    –  | Konsistensi kosakata register | L28–L39 memakai status "Perlu cek pasal spesifik", "Sebagian terverifikasi", "Belum tereproduksi pada audit ini", "B
+  01-governance.md                 L90    –  | §7 aturan 10 changelog | Tidak ada; L72–L77 `## 7. Keputusan yang Masih Perlu Dicatat` berisi 5 checkbox | Lihat H-3 |
+  01-governance.md                 L99    –  | §7 aturan 6 - sitasi spesifik | L60 hanya satu URL (SATUSEHAT); L61–L63 menyebut "Peraturan tentang Pelindungan Data Pribadi, rekam medis, dan pence
+  01-governance.md                 L111   –  | §7 aturan 5 - tabel satuan dan denominator | Tabel 2 (L17–35) dan Tabel 4 (L43–64) kolom "Kosong" hanya berisi angka tanpa denominator; denominator 
+  01-governance.md                 L112   –  | §7 aturan 3 - istilah konsisten | L6 "Tiga file Stata berisi total 6.514.039 baris" vs Tabel 1 (L9–L11) 143.496 + 6.362.523 + 8.020 = 6.514.039 | Ko
+  01-governance.md                 L118   –  | §7 aturan 1 - judul jelas | Tidak ada satu pun heading markdown di berkas ini; grep `^#{1,3} ` hanya menemukan 5 baris komentar di dalam blok Python
+  01-governance.md                 L122   –  | §7 aturan 4 - bedakan fakta dari rencana | L8 dan L20 menyatakan deskripsi database masih menyebut 100 klaim dan ground truth KLM001–KLM024, padahal
+  01-governance.md                 L123   –  | §3 L30–L35 Artefak Wajib vs repo | Wajib: `manifest.json` (L30), `label_audit.csv` (L31), `data_quality_report.md` (L32), `train.py` + `metrics.json
+  01-governance.md                 L127   –  ### 2.10 Dokumen arsip/agregat (`09`–`14`)
+  01-governance.md                 L131   –  | `00-dashboard.md` L46–L52 + `04-evidence-matrix.md` L87 | `11-archive-proposal.md` L30 `300 berkas klaim tervalidasi klinis ... membuktikan performa
+  01-governance.md                 L135   –  | `04-evidence-matrix.md` L3 | `14-index.md` L505, L795–L805, L817, L821, L823–L824 memuat ulang klaim "Tervalidasi" tanpa banner tingkat berkas; bann
+  01-governance.md                 L143   –  | `00-dashboard.md` | L4 "Purwarupa riset terapan" (bukan kosakata baku) | L6 "Versi dokumentasi terkendali: 1.0" | L5 ada | tidak ada | - | L86–L88 a
+  01-governance.md                 L145   –  | `02-architecture.md` | L4 "Rancangan teknis untuk purwarupa" (bukan kosakata baku) | tidak ada | L5 "Terakhir direvisi" | tidak ada | L6 ada | L115–
+  01-governance.md                 L146   –  | `03-dataset-registry.md` | L4 "Dokumentasi kontrol data" (bukan kosakata baku) | tidak ada | L5 ada | L6–L7 (sumber, jenis data) | tidak ada | L101–
+  01-governance.md                 L159   –  - **M-3 (MEDIUM)** - Daftar "Dokumen terkendali" pada `00-dashboard.md` L12–L18 hanya berisi 6 entri; 07 dan 08 ditambahkan di L92–L95 dengan heading 
+  01-governance.md                 L167   –  Sumber: `00-dashboard.md` L57–L73, judul bagian "Papan Kerja dan Gerbang Kualitas".
+  01-governance.md                 L173   –  | P0-3 | `Lampirkan manifest eksperimen dan skrip untuk seluruh metrik yang dipublikasikan.` | L61 | **Tidak** | Tidak ada nama file, ID eksperimen, a
+  01-governance.md                 L179   –  | P1-4 | `Lengkapi metadata bibliografi dan sitasi dekat dengan klaim.` | L68 | **Tidak** | Tidak ada daftar dokumen yang harus dilengkapi, tidak ada 
+  01-governance.md                 L187   –  - **H-5 (HIGH)** - KetIGA belas item P0/P1/P2 (L59–L73) tidak satu pun memuat angka, ambang, nama artefak, ID eksperimen, atau tenggat. Bandingkan: sa
+  01-governance.md                 L188   –  - **H-6 (HIGH)** - Rekonsiliasi label di `03-dataset-registry.md` L77 bergantung pada ambang yang tidak pernah ditulis. Komputasi ulang: `Skor Fraud` 
+  01-governance.md                 L189   –  - **M-5 (MEDIUM)** - `05-decision-scope.md` L72–L77 memuat 5 checkbox terbuka tanpa kriteria, termasuk L77 `Tetapkan definisi selesai untuk demo, pape
+  01-governance.md                 L190   –  - **M-6 (MEDIUM)** - `04-evidence-matrix.md` L28–L39 memakai lima label status yang tidak ada di kosakata `00` L90 maupun di nilai `Status Verifikasi`
+  01-governance.md                 L191   –  - **M-8 (MEDIUM)** - `02-architecture.md` L108–L114: D-01..D-06 seluruhnya "Terbuka" tanpa tanggal target dan tanpa kriteria closure; pemilik ditulis 
+  01-governance.md                 L192   –  - **I-4 (INFO)** - Tidak ada satu pun checkbox yang tercentang di seluruh korpus: `00-dashboard.md` 13, `03` 6, `04` 7, `05` 5, `06` 6, `14-index.md` 
+  01-governance.md                 L196   –  Aturan: `00-dashboard.md` L7, L46–L52, L90; `04-evidence-matrix.md` L87 ("Hindari kata 'terbukti', 'riil', 'akurat secara superior', dan 'tervalidasi'
+  01-governance.md                 L209   –  | `11-archive-proposal.md` L320–L321 | "## 7.5 Dataset Sintetis v2.1 **Tervalidasi** (300 Klaim INA-CBG/FHIR R4)"; "300 berkas klaim **tervalidasi** k
+  01-governance.md                 L210   –  | `11-archive-proposal.md` L326–L330 | "93.00% (**Tervalidasi**)"; "94.12% (**Tervalidasi**)"; "0.9825 (**Tervalidasi**)"; "89.40% (**Tervalidasi**)" 
+  01-governance.md                 L213   –  | `14-index.md` L505, L553, L795–L805, L817, L821, L823, L843, L872 | Salinan utuh klaim di atas, termasuk "93.00% (**Tervalidasi**)", "Overcharge **T
+  01-governance.md                 L218   –  - **B-3 (BLOCKER)** - `14-index.md` adalah agregat 1.940 baris yang menyalin ulang seluruh dokumen terkendali (00 mulai L1122, 01 mulai L1216, 02 mula
+  01-governance.md                 L219   –  - **B-4 (BLOCKER)** - Klaimfinancial `11-archive-proposal.md` L344–L348/Linux: 240 auto_clear "Rp 0 (Klaim Layak Bayar)"; 24 review "Rp 112.420.000 (P
+  01-governance.md                 L220   –  - **H-13 (HIGH)** - `13-archive-deep-research.md` L3: "Kasus yang di report oleh BPJS tahun 2024 melibatkan 3 rumah sakit swasta di jawa tengah dan su
+  01-governance.md                 L227   –  ### 6.1 Tabel utama `00-dashboard.md` §3 (L29–L38)
+  01-governance.md                 L232   –  | Rentang ID KLM001–KLM300 | `00` L31 | 300 ID unik, min KLM001, max KLM300, tanpa celah | ✓ |
+  01-governance.md                 L245   –  | Risiko low/medium/high/fraud = 240/10/14/36 | `01` L37; `03` L25–L28 | 240/10/14/36 | ✓ |
+  01-governance.md                 L246   –  | Nominal auto_clear / review / escalate | `01` L67–L69; `03` L33–L35: Rp2.685.550.000 / Rp279.950.000 / Rp561.150.000 | identik | ✓ |
+  01-governance.md                 L249   –  | Status verifikasi = Terverifikasi 18 / Sebagian 11 / Perlu 4 | `04` L12–L14 | 18/11/4 | ✓ |
+  01-governance.md                 L250   –  | Relevansi = Kritis 11 / Tinggi 18 / Pendukung 4 | `04` L15–L17 | 11/18/4 | ✓ |
+  01-governance.md                 L252   –  | 8 klaim kontradiksi | `09` L110; `10` L203 | **12 baris** `Kontradiksi Narasi` = true: KLM001–KLM006, KLM018, KLM024, KLM105–KLM108 | **✗** |
+  01-governance.md                 L253   –  | Ground truth anomali = KLM001–KLM024 | `10` L8; `08` L20 | 36 baris `fraud`; **22 di antaranya di luar KLM024** (KLM101–KLM122, termasuk KLM115, KLM
+  01-governance.md                 L254   –  | 100 klaim: risiko 76/4/6/14, sentimen 62/14/24 | `09` L111, L222; `10` L7 | Pada KLM001–KLM100: risiko 76/4/6/14, sentimen 62/14/24 | ✓ |
+  01-governance.md                 L256   –  | Entitas v2.1: 10 faskes / 20 dokter / 40 pasien | `09` L149–L151 | 10 faskes unik, 20 dokter unik, 40 pasien unik | ✓ |
+  01-governance.md                 L257   –  | Entitas 20P / 12D / 6RS | `09` L121–L123, L221; `10` L6; `11` L397 | 40/20/10 | **✗** |
+  01-governance.md                 L262   –  | `11` L344–L346: 76,15% / 7,94% / 15,91% | `11` L344–L346 | 2.685.550.000 / 3.526.650.000 = 76,15%; 279.950.000 = 7,94%; 561.150.000 = 15,91% | ✓ (ar
+  01-governance.md                 L272   –  - **H-7 (HIGH)** - `03-dataset-registry.md` §5 (L48–L72) mendefinisikan 24 properti, sedangkan ekspor aktif memiliki 27 kolom data. `Rujukan`, `Alasan
+  01-governance.md                 L273   –  - **H-8 (HIGH)** - 58 dari 300 baris melanggar `03` L70 ("Sentimen: Harus sesuai dengan definisi skor"): `Sentimen` = `netral` dengan `Skor Sentimen` 
+  01-governance.md                 L274   –  - **H-9 (HIGH)** - `Kontradiksi Narasi` bernilai true pada 12 baris, bukan 8 seperti tertulis di `09-draft-hub.md` L110 ("= 8 klaim") dan `10-simulati
+  01-governance.md                 L276   –  - **H-12 (HIGH)** - Konflik jumlah entitas: `09-draft-hub.md` L149–L151 (dan `src/components/mhgsl/data.ts` L363+) menyebut 10 faskes / 20 dokter / 40
+  01-governance.md                 L277   –  - **H-14 (HIGH)** - `08-training-protocol.md` L8 dan L20 menandai cacat yang benar: deskripsi basis data aktif masih menyebut 100 klaim dan "ground tr
+  01-governance.md                 L278   –  - **H-15 (HIGH)** - `11-archive-proposal.md` L344–L345 mengelompokkan `auto_clear` = "Klaim Normal (Auto-Clear)" dan `review` = "Klaim Anomali Suspici
+  01-governance.md                 L279   –  - **H-11 (HIGH)** - `dataset_research_live.csv` tidak memenuhi format entri wajib `04` L57–L69: 12 field disyaratkan (judul, penulis/organisasi, tahun
+  01-governance.md                 L281   –  - **M-1 (MEDIUM)** - Aturan em-dash `00` L83 ("Dokumen formal tidak menggunakan em-dash") tidak mengatur data. Ekspor `claims_v2_live.csv` memuat 324 
+  01-governance.md                 L282   –  - **M-9 (MEDIUM)** - `09-draft-hub.md` L135–L147 mendaftarkan 9 sindikat + 2 fraud tunggal, termasuk "Biaya Markup - KLM121 - RS_A - D03 - P04" dan "D
+  01-governance.md                 L284   –  - **I-2 (INFO)** - Temuan numerik `07-dataset-v2-catalog.md` (PSTV18 kosong 133.228 pada L35; PNK02 4.939 nilai unik pada L47; rentang tanggal 2014-08
+  01-governance.md                 L293   –  3. **Operasikan gerbang `04` §9 pada `14-index.md`: pasang banner tingkat berkas yang menyatakan agregat ini historis dan menautkan ke versi terkendal
+  01-governance.md                 L294   –  4. **Bubarkan basis data riset: turunkan status baris bersumber level C/D, lengkapi 12 field wajib `04` L57–L69, dan karbonkan 6 baris tanpa sumber** 
+  01-governance.md                 L295   –  5. **Hapus atau turunkan klaim finansial arsip `11` L344–L348 dan `14-index.md` L821–L824 menjadi "perkiraan belum dapat direproduksi"** (kriteria: ti
+  01-governance.md                 L303   –  10. **Selaraskan tabel sindikat `09` L135–L147 dengan data aktual** (Faskes/Pasien/Sindikat KLM121–KLM122) (kriteria: 36 baris fraud terpetakan ke sin
+  01-governance.md                 L304   –  11. **Tambahkan sitasi bibliografis lengkap untuk XGBoost, GNN, SHAP, dan evaluasi kelas tidak seimbang ke `01` §Referensi sesuai `04` L48–L56** (krit
+  01-governance.md                 L305   –  12. **Tetapkan unit Lookup: rekonsiliasi satu sumber angka tunggal** - pertahankan tabel `00` §3 sebagai satu-satunya sumber angka, danhilangkan angka
+  01-governance.md                 L309   –  13. **Buat `configs/leakage.yaml`, `manifest.json`, `label_audit.csv`, `data_quality_report.md`, `train.py`, `metrics.json`, `evaluation_report.md`, `
+  01-governance.md                 L311   –  15. **Lengkapi `dataset_research_live.csv` dengan kolom DATE, tahun, penulis, tingkat A–D, reviewer, tanggal verifikasi, kutipan** dan hapus angka pre
+  01-governance.md                 L312   –  16. **Beri banner "induk tidak terkendali" pada `09`–`13` dan perjelas peran `14-index.md` sebagai agregat** (kriteria: setiap berkas arsip punya bann
+  01-governance.md                 L317   –  18. **Tambahkan unit dan denominator pada header tabel `03` L32–L36 dan `07` Tabel 2/4** (kriteria: setiap tabel memuat kolom satuan/denominator).
+  01-governance.md                 L318   –  19. **Selaraskan statement entitas 20P/12D/6RS vs 40P/20D/10RS** di `09` L121–L123, `10` L6, `11` L397 (kriteria: satu angka berlaku seragam).
+  01-governance.md                 L319   –  20. **Tambahkan baris changelog `00` L87–L88 untuk penambahan 07 dan 08, dan ubah `02` L115 menjadi tabel versi** (kriteria: changelog `00` memuat ent
+  01-governance.md                 L334   –  | B-2 | BLOCKER | Register bukti menandai sumber level C/D sebagai "Terverifikasi" | `04` L19–L25, L31; CSV baris 19, 21, 26, 28, 31, 32, 34 |
+  01-governance.md                 L335   –  | B-3 | BLOCKER | `14-index.md` mucous ulang klaim "Tervalidasi"/"Terbukti" tanpa banner tingkat berkas | `14` L5/479/908/1101 vs L505, L801–L805, L81
+  01-governance.md                 L336   –  | B-4 | BLOCKER | Overcharge Rp507.370.000 tidak dapat direproduksi, tetapi arsip menyebutnya "Penyelamatan Riil" | `11` L344–L348; `00` L39; `04` E-1
+  01-governance.md                 L337   –  | B-5 | BLOCKER | Artefak wajib `08` L30–L35 / `02` L77–L86 tidak ada di repo; `configs/leakage.yaml` hanya string UI | Repo `N:\HEALTHKATHON\Aegis-JK
+  01-governance.md                 L339   –  | H-2 | HIGH | 07 dan 08 tanpa blok metadata; 08 tanpa judul | `07` L3–L4; `08` L3–L5 |
+  01-governance.md                 L342   –  | H-5 | HIGH | 13 item P0/P1/P2 tanpa closure criteria terukur | `00` L59–L73 |
+  01-governance.md                 L344   –  | H-7 | HIGH | Kamus data tidak mencakup 3 kolom data + 2 kolom metadata | `03` L48–L72 vs 29 kolom CSV |
+  01-governance.md                 L346   –  | H-9 | HIGH | Hitungan kontradiksi 8 vs data 12 | `09` L110; `10` L203; KLM105–KLM108 |
+  01-governance.md                 L348   –  | H-11 | HIGH | Register riset tidak memenuhi 12 field wajib; 6 baris tanpa sumber | `04` L57–L69; CSV 10 kolom; baris 3, 7, 15, 16, 17, 18 |
+  01-governance.md                 L349   –  | H-12 | HIGH | Konflik jumlah entitas 40/20/10 vs 20/12/6 | `09` L121–L123 vs L149–L151; `10` L6; `11` L397 |
+  01-governance.md                 L351   –  | H-14 | HIGH | Cacat ground truth KLM001–KLM024 tidak punya butir closure | `08` L20; `00` L58–L73; `02` L109 |
+  01-governance.md                 L355   –  | M-3 | MEDIUM | Daftar dokumen terkendali tidak memuat 07/08 | `00` L12–L18 vs L92–L95 |
+  01-governance.md                 L357   –  | M-5 | MEDIUM | 5 item terbuka di `05` tanpa kriteria | `05` L72–L77 |
+  01-governance.md                 L358   –  | M-6 | MEDIUM | Tiga kosakata status berbeda dalam satu sistem | `00` L90; `04` L28–L39; CSV `Status Verifikasi` |
+  01-governance.md                 L360   –  | M-8 | MEDIUM | D-01..D-06 terbuka tanpa tenggat/kriteria | `02` L108–L114 |
+  01-governance.md                 L361   –  | M-9 | MEDIUM | Tabel sindikat tidak cocok dengan data | `09` L135–L147; KLM121, KLM122 |
+  01-governance.md                 L364   –  | L-1 | LOW | Tabel tanpa satuan/denominator | `03` L32–L36; `07` Tabel 2/4 |
+  01-governance.md                 L365   –  | L-2 | LOW | Template Python `08` tidak mengikat seed/checksum | `08` L46–L80 |
+  01-governance.md                 L367   –  | L-4 | LOW | `13` tanpa metadata, gaya kalimat mentah | `13` L1–L4 |
+  01-governance.md                 L369   –  | I-2 | INFO | Temuan `07` tidak dapat diverifikasi lokal (berkas sumber tidak ada) | `07` L35, L47, L48–L50, L63–L64 |
+  03-architecture.md               L25    –  Tumpukan masalah kedua yang berulang: **ambang skor ada di empat skala yang saling bertentangan** dan **nilai dataset aktif tidak cocok dengan ambang 
+  03-architecture.md               L176   –  - 36 klaim `risiko:"fraud"`; skor Fraud **0,80–0,95**. **11 record bernilai 0,80–0,84** → di bawah ambang 0,85 kode. 1 record tepat 0,80 (batas kasus 
+  03-architecture.md               L177   –  - 14 klaim `risiko:"high"`; skor 0,62–0,79. **5 record bernilai 0,62–0,64** → di bawah ambang 0,65 kode.
+  03-architecture.md               L178   –  - 240 `low` 0,04–0,14; 10 `medium` 0,40–0,53 (semua ≥ 0,40, jadi konsisten).
+  03-architecture.md               L292   –  **P0 - sebelum demo/seleksi (hari–minggu):**
+  03-architecture.md               L350   –  fraud: 36 record, skor 0.80–0.95 → 11 record (0.80–0.84) < 0.85 ; 1 record tepat 0.80
+  03-architecture.md               L351   –  high : 14 record, skor 0.62–0.79 → 5 record (0.62–0.64) < 0.65
+  03-architecture.md               L352   –  low  : 240 record, 0.04–0.14 | medium: 10 record, 0.40–0.53
+  03-architecture.md               L381   –  - Distribusi dataset aktif: 300 ID unik KLM001–KLM300; risiko low 240 / medium 10 / high 14 / fraud 36; status auto_clear 240 / review 24 / escalate 3
+  04-data-quality.md               L57    –  | Name | Ya | String, `KLM285` | Wajib unik | 300 ID unik, pola `KLM\d{3}` semua, rentang 1–300, tanpa duplikat | **PATUH** |
+  04-data-quality.md               L61    –  | Faskes | Ya | String `RS_G` | Nama dan kode konsisten | 10 kode RS_A–RS_J, lengkap | **PATUH** |
+  04-data-quality.md               L67    –  | Narasi Rekam Medis | Ya | Rich text | Tidak dianggap catatan pasien nyata | 41 varian; 10 dari 13 dx hanya punya 1–3 template | **PATUH** |
+  04-data-quality.md               L69    –  | Skor Fraud | Ya | Float 0.04–0.95 | Wajib dokumentasikan sumber skor | 0.04–0.95; sumber skor **tidak** didokumentasi di §6/§8; 42 baris tidak = T+F
+  04-data-quality.md               L94    –  | 2 | ID KLM001 → KLM300 tanpa sela/duplikat | 03 §6, 00 §4 | 300 ID unik, angka 1–300 lengkap, 0 angka hilang, 0 duplikat | ✓ |
+  04-data-quality.md               L115   –  | 23 | Entitas v2.1: 40 pasien / 20 dokter / 10 faskes | 10-sim §Distribusi Entitas | 40 / 20 / 10 - lengkap P01–P40, D01–D20, RS_A–RS_J | ✓ |
+  04-data-quality.md               L118   –  | 26 | Distribusi label v100 (76/4/6/14) | 10-sim §Ringkasan | KLM001–KLM100: low 76 / medium 4 / high 6 / fraud 14 | ✓ |
+  04-data-quality.md               L119   –  | 27 | Distribusi sentimen v100 (62/14/24) | 10-sim §Analisis Teks | KLM001–KLM100: positif 62 / netral 14 / negatif 24 | ✓ |
+  04-data-quality.md               L123   –  **Total: 29 butir → 24 ✓ · 2 ✗ · 3 campuran.** Rincian campuran: butir 12 ✓(jumlah)/✗(semantik "kosong"), butir 21 ✓/✗ (hanya berbeda pada interpretas
+  04-data-quality.md               L133   –  | A - batas bawah **inklusif** (`s ≥ 0.35` → medium, dst.) | `<0.35 low; 0.35–0.60 medium; 0.60–0.80 high; ≥0.80 fraud` | **0 dari 300** |
+  04-data-quality.md               L157   –  Terdapat **celah data** pada 0.14–0.40 (antar low dan medium) dan 0.53–0.62 (antar medium dan high). practically, ambang 0,35 dan 0,60 tidak pernah me
+  04-data-quality.md               L185   –  | SYND-01 | 3 | fraud | upcoding | RS_A ✓ | D01, D02 ✓ | P01-P03 ✓ | 0,93–0,95 | ≥0,93 ✓ |
+  04-data-quality.md               L186   –  | SYND-02 | 3 | fraud | phantom_billing | RS_C ✓ | D05 ✓ | P08-P10 ✓ | 0,92–0,94 | ≥0,92 ✓ |
+  04-data-quality.md               L187   –  | SYND-03 | 6 | fraud | unbundling | RS_B ✓ | D07 ✓ | P12-P14 ✓ | 0,85–0,87 | 0,84–0,87 ✓ |
+  04-data-quality.md               L188   –  | SYND-04 | 2 | fraud | drug_diversion | RS_E ✓ | D09 ✓ | P16-P17 ✓ | 0,86–0,88 | 0,86–0,88 ✓ |
+  04-data-quality.md               L189   –  | SYND-05 | 2 | **high** | cloning | RS_F ✓ | D08 ✓ | P19-P20 ✓ | 0,78–0,79 | 0,78–0,79 ✓ |
+  04-data-quality.md               L190   –  | SYND-06 | 4 | fraud | repeat_billing | RS_G ✓ | D13 ✓ | **P21-P22** ✗ | **0,89–0,92** ✗ | 0,85–0,90 ✗ |
+  04-data-quality.md               L191   –  | SYND-07 | 4 | fraud | iur_biaya | RS_H ✓ | D14 ✓ | **P23-P24** ✗ | 0,82–0,85 | 0,82–0,87 ✓ |
+  04-data-quality.md               L192   –  | SYND-08 | 6 | fraud | readmission_berulang | RS_I ✓ | D15 ✓ | **P25-P26** ✗ | **0,86–0,89** ✗ | 0,75–0,80 ✗ |
+  04-data-quality.md               L193   –  | SYND-09 | 6 | fraud | excessive_usage | RS_J ✓ | **D19** ✗ | **P27** ✗ | **0,80–0,84** ✗ | 0,78–0,83 ✗ |
+  04-data-quality.md               L198   –  Empat sindikat gagal pemetaan. Polanya sistematis: mulai SYND-06 generator hanya menganggarkan **2 pasien per sindikat** (P21-P22, P23-P24, P25-P26) d
+  04-data-quality.md               L200   –  SYND-05 (KLM016, KLM017) berlabel `high`, bukan `fraud`. Konsisten dengan rentang 0,78–0,79 dan dengan tabel v100, tetapi berarti **ada sindikat pada 
+  04-data-quality.md               L241   –  Semua 14 adalah baris non-fraud (6 medium + 8 high). Justru kelas fraud (36 baris) konsisten 100% dengan labelnya. Pola kanal juga bertemu: 6 baris me
+  04-data-quality.md               L288   –  Narasi Rekam Medis: 41 varian, 10 dari 13 diagnosis hanya memiliki 1–3 template. Narasi **tidak pernah** bertentangan dengan kode pada baris normal.
+  04-data-quality.md               L292   –  Pasien P28–P40 (13 pasien) tidak pernah muncul pada baris ber-Sindikat mana pun, meski seluruhnya ada di CSV sebagai pasien dengan klaim aktif (P27 me
+  04-data-quality.md               L304   –  | `pasien_id` | **Tidak** (hanya prefiks di rich text `Pasien`) | **Ya** (P01–P40, 40 nilai unik) | GroupKFold(group=pasien_id) **sudah dijalankan** d
+  04-data-quality.md               L305   –  | `faskes_id` | **Ya** - kolom `Faskes` sudah berupa kode murni `RS_G` | **Ya** (RS_A–RS_J) | LeaveOneGroupOut(group=faskes_id) dapat berjalan di kedu
+  04-data-quality.md               L306   –  | `dokter_id` | **Tidak** (hanya prefiks di rich text `Dokter`) | **Ya** (D01–D20, 20 nilai unik) | Third grouping axis (per dokter) tersedia |
+  04-data-quality.md               L317   –  | `pasien_id` (P01–P40) | kolom `Pasien` = `P21 (Rahmat Fauzi)` - ID + nama digabung | kolom `pasien_id` = `P21` (murni) + `pasien_raw` terpisah | **v
+  04-data-quality.md               L318   –  | `dokter_id` (D01–D20) | kolom `Dokter` = `D13 (dr. Mulyadi Santoso, Sp.B)` - ID + nama + spesialisasi | `dokter_id` = `D13` + `dokter_raw` terpisah 
+  04-data-quality.md               L319   –  | `faskes_id` (RS_A–RS_J) | kolom `Faskes` = `RS_G` | `faskes_id` = `RS_G` | **sudah sesuai di keduanya** |
+  04-data-quality.md               L327   –  | Pasien | **40** (P01–P40 lengkap) | **40** (`pasien_id`) | 40 | ✓ |
+  04-data-quality.md               L328   –  | Dokter | **20** (D01–D20 lengkap) | **20** (`dokter_id`) | 20 | ✓ |
+  04-data-quality.md               L329   –  | Faskes | **10** (RS_A–RS_J lengkap) | **10** (`faskes_id`) | 10 | ✓ |
+  04-data-quality.md               L332   –  | Obat (FORNAS M01–M10) | 10 | 10 | 10 (tabel v100) | ✓ |
+  04-data-quality.md               L337   –  Semua id berurutan lengkap: P01–P40 (0 entitas hilang), D01–D20, RS_A–RS_J. Entitas=v2.1 terpenuhi **pada hitungan** di kedua sumber; yang gagal **pad
+  04-data-quality.md               L347   –  SYND-06 (KLM101, KLM102, KLM103, KLM104) - pasien P21-P22 (doc P21-P24); skor 0,89–0,92 (doc 0,85–0,90).
+  04-data-quality.md               L349   –  SYND-08 (KLM109, KLM110, KLM111, KLM112, KLM113, KLM114) - pasien P25-P26 (doc P29-P34); skor 0,86–0,89 (doc 0,75–0,80).
+  04-data-quality.md               L350   –  SYND-09 (KLM115, KLM116, KLM117, KLM118, KLM119, KLM120) - dokter D19 (doc D16); pasien P27 (doc P35-P40); skor 0,80–0,84 (doc 0,78–0,83).
+  04-data-quality.md               L376   –  Terdeteksi saat memverifikasi 38 entitas tabel v100 (Pasien/Dokter/Faskes) terhadap KLM001–KLM100: semua cocok kecuali P11.
+  04-data-quality.md               L388   –  29 baris biaya < Rp1.000.000 (Rp700.000–Rp950.000).
+  04-data-quality.md               L411   –  Distribusi: 1 teks dipakai 19×, 3 teks dipakai 3×, sisanya 1–2×. Negatif control bekerja (42 baris `low` bersentimen negatif), tetapi pengulangan temp
+  04-data-quality.md               L466   –  4. **Perbaiki pemetaan sindikat sesuai tabel v2.1.** Alokasikan 4/4/6/6 pasien untuk SYND-06/07/08/09 (P21-P24, P25-P28, P29-P34, P35-P40), gunakan D1
+  04-data-quality.md               L474   –  9. **Selaraskan `Kontradiksi Narasi` dengan data.** Update 10-sim §Analisis Teks menjadi 12 klaim (tambah KLM105–KLM108) dan perbarui kriteria protoko
+  04-data-quality.md               L498   –  | `claims_db.json` (repo ML) ≡ dump Notion? | **Ya, identik.** 300 record, `Name` (KLM001–KLM300) cocok persis; 8 properti (`Tanggal`, `Biaya Rp`, `Ri
+  04-data-quality.md               L589   –  Identik. **Ambang `≥0,80` adalah satu-satunya interpretasi yang konsisten dengan kedua sumber.** Tidak ada baris lain dengan skor tepat 0,35 atau 0,60
+  04-data-quality.md               L597   –  | `pasien_id` | 6–12 (median 7) | GroupKFold(5) - **sudah diimplementasikan** (notebook `Aegis-JKN.ipynb` sel 11) |
+  04-data-quality.md               L598   –  | `faskes_id` | 14–45 | LeaveOneGroupOut(10) - tersedia |
+  04-data-quality.md               L599   –  | `dokter_id` | 2–33 | sumbu tambahan tersedia |
+  05-evidence.md                   L19    –  4. **Dua baris bergantung pada domain yang tidak ada.** `siap-lafki.or.id` (baris 21 & 29) dan `acch.kpk.go.id` (baris 22 & 28) gagal di-resolve DNS (
+  05-evidence.md                   L20    –  5. **Label "Terverifikasi" (18 baris) tidak mencerminkan hierarki A–D.** 6 di antaranya gagal atau hanya sebagian lolos verifikasi langsung: Zenodo 21
+  05-evidence.md                   L29    –  | **Kritis** | 4 | Salah rujukan pasal & denda UU PDP; angka AUPRC tidak didukung sumber paper; domain mati untuk baris 21/29 (termasuk prevalensi 3–7
+  05-evidence.md                   L42    –  | E-01 Kewajiban pelindungan data pribadi | UU 27/2022 via pasal.id | A (resmi) | Terverifikasi per pasal (4(2), 20, 46, 51, 53, 67, 68) | Kritis | 04
+  05-evidence.md                   L46    –  | E-05 Prevalensi fraud 3–7% | siap-lafki.or.id (domain mati, DNS gagal) | D/tidak hidup | Perlu Verifikasi | Tinggi | Sumber tidak hidup. Pembanding 
+  05-evidence.md                   L117   –  | 11 | acch.kpk.go.id/id/component/content/article?id=672:korupsi-… | **DEAD** (DNS: gaierror) | - | - | TIDAK TERVERIFIKASI (URL) / substansi terkonf
+  05-evidence.md                   L118   –  | 12 | siap-lafki.or.id/bpjs-kesehatan-dan-tantangan-fraud-20-triliun… | **DEAD** (DNS: gaierror) | - | - | TIDAK TERVERIFIKASI | Domain `siap-lafki.o
+  05-evidence.md                   L119   –  | 13 | journalcenter.org/index.php/inovasi/article/download/4767/3750/**18212** | **DEAD (404)** | - | - | MISMATCH (tautan) | URL register salah. URL
+  05-evidence.md                   L120   –  | 14 | researchgate.net/publication/369679967_ANALISIS_KEJADIAN_UPCODING… | Tidak (403) | Ya | Ya (2023) | PARTIAL | Kanonik: Bina Generasi Jurnal Kes
+  05-evidence.md                   L122   –  | 16 | www.liputan6.com/health/read/8270049/healthkathon-2026… | Ya | Ya | Ya (14 Agu 2026) | PARTIAL | Konfirmasi: kriteria kompetisi "efisiensi risi
+  05-evidence.md                   L128   –  | 22 | ai.google.dev/gemini-api/docs/pricing | Ya | Ya | Ya (halaman berjalan) | PARTIAL | Gemini 1.5 **sudah tidak terdaftar** (membenarkan catatan r
+  05-evidence.md                   L205   –  | I-4 | Format entri 04 §7 tidak terpenuhi | 04 §7 mewajibkan 11 field per baris (judul, penulis, tahun, jurnal, DOI/URL, **jenis sumber + strength A–
+  05-evidence.md                   L210   –  - **Tidak ada klaim di 06 yang absen dari 04/register** - ini bagian yang sehat: 06 §1–§8 konsisten dengan kerangka 04.
+  05-evidence.md                   L223   –  - 05 §7 butir "Konfirmasi tema dan persyaratan resmi kompetisi dari sumber penyelenggara" - tema "Detect Smarter, Protect JKN" **terverifikasi** lewat
+  05-evidence.md                   L231   –  | G-1 | Prevalence fraud 3–7% JKN | Baris 29; baris 17 (skenario sensitivitas); 04 E-05 | Studi primer dengan definisi fraud + denominator (denominato
+  05-evidence.md                   L235   –  | G-5 | Khazanah modus JKN (upcoding, phantom, cloning, unbundling, prolonged stay, drug diversion, penahanan iuran) | Baris 18–19, 21–23, 25, 27–28 |
+  05-evidence.md                   L240   –  | G-10 | Biaya token LLM | Baris 11 | Kalkulator resmi Google **per tanggal** + model generasi terbaru | **Sebagian** - URL resmi ada, angkanya ($0,10
+  05-evidence.md                   L259   –  **Prioritas 2 - strengthen governance (2–3 hari kerja)**
+  05-evidence.md                   L261   –  6. **Tambahkan kolom pada register**: `Jenis Sumber & Strength (A–D)`, `Kutipan/Halaman/Tabel`, `Caveat`, `Reviewer`, `Tanggal Verifikasi`. Tanpa kolo
+  05-evidence.md                   L266   –  11. **Perbarui baris 11** dengan harga Gemini terkini dan model generasi terbaru; hapus rentang "$0,10–1,50".
+  05-evidence.md                   L272   –  14. **Hapus "kompetisi tahunan ke-6"** dari baris 32; tulis "edisi 2026 (dilorca 2019–2026)". Pertahankan tema "Detect Smarter, Protect JKN" (terverif
+  05-evidence.md                   L289   –  | 3 | https://www.cell.com/heliyon/fulltext/S2405-8440(24)06076-6 | 22 Okt 2026 | 403. Full text via https://www.ebi.ac.uk/europepmc/webservices/rest/
+  05-evidence.md                   L297   –  | 11 | https://acch.kpk.go.id/id/component/content/article?id=672:korupsi-dalam-pelayanan-kesehatan-di-era-jaminan-kesehatan-na | 22 Okt 2026 | **GAGA
+  05-evidence.md                   L299   –  | 13 | https://journalcenter.org/index.php/inovasi/article/download/4767/3750/18212 | 22 Okt 2026 | **404 DEAD**. URL benar https://journalcenter.org/
+  05-evidence.md                   L300   –  | 14 | https://www.researchgate.net/publication/369679967_ANALISIS_KEJADIAN_UPCODING_BIAYA_PELAYANAN_KESEHATAN_DI_WILAYAH_KERJA | 22 Okt 2026 | 403 (m
+  05-evidence.md                   L302   –  | 16 | https://www.liputan6.com/health/read/8270049/healthkathon-2026-digelar-bpjs-kesehatan-dorong-pemanfaatan-ai-untuk-perkualitas | 22 Okt 2026 | H
+  05-evidence.md                   L312   –  | 26 | https://api.github.com/repos/Irham-Najib-Azimul-Qowi/PatuhRadar | 22 Okt 2026 | Repo ada, **description null** → klaim "data UMP 38 provinsi (2
+  06-methodology.md                L22    –  **A. Target ground truth tidak pernah ada.** Label `Risiko` pada 300 baris adalah keluaran aturan skor (bijektif terhadap `Skor Fraud`), `Status` adal
+  06-methodology.md                L24    –  **B. Angka kunci proyek tidak dapat direproduksi.** `06-research-notes.md` baris 42–43 sudah mencatat AUPRC 0,9142 dan "peningkatan AUPRC dibanding ba
+  06-methodology.md                L26    –  **C. Ukuran sampel tidak mendukung protokol yang dirancang.** 300 baris dengan prevalensi 12% memberi 36 positif. Pada prevalensi produksi 3–7% (renta
+  06-methodology.md                L30    –  **E. Protokol 8 minggu tidak memiliki prasyarat yang terpenuhi.** 7 dari 10 artefak v2.1 yang dijanjikan 10 baris 183–195 tidak ada di disk. `configs/
+  06-methodology.md                L39    –  | **TINGGI** | 8 | I-02, I-04, I-08, I-09, I-11, I-13, I-16, §6 | KLM115 mendispute ambang 0,80; tabel sindikat meleset 5/9; normalisasi di luar fold;
+  06-methodology.md                L41    –  | **RINGAN** | 3 | I-15, §2.3, §8 | Angka 10 §108 (distribusi sentimen) usang tanpa penanda versi; 0 dari 6 artefak Tahap 0–5 (08 baris 30–35) ada di 
+  06-methodology.md                L55    –  | Split kelompok | GroupKFold (pasien) + LeaveOneGroupOut (faskes) | 10 baris 156–157; 02 baris 67–68 |
+  06-methodology.md                L58    –  | Artefak wajib | `manifest.json`, `label_audit.csv`, `data_quality_report.md`, `train.py`+`metrics.json`, `evaluation_report.md`, `review_log.csv` | 
+  06-methodology.md                L59    –  | Repro | 10 butir wajib (nama/versi, waktu ekspor, jumlah baris, checksum, kamus data, daftar kolom, definisi target+ambang, aturan pembersihan, ID a
+  06-methodology.md                L60    –  | Kriteria "SESUAI" | 7 kriteria, konsekuensi 3 tingkat (TIDAK SESUAI / DESAIN BELUM TERBUKTI UNGGUL) | 10 baris 196–206 |
+  06-methodology.md                L77    –  ### 2.3 Tahapan 0–5 (08 baris 29–35) vs artefak di disk
+  06-methodology.md                L98    –  | I-03 | Ground truth v1 | 10 baris 8: anomali = KLM001–KLM024 (14 fraud + 10 medium/high) | 10 baris 113: total anomali v2 = 60 = 36 fraud + 14 high 
+  06-methodology.md                L99    –  | I-04 | Tabel sindikat | 10 baris 134–142 (SYND-01..09: pasien, dokter, faskes, skor) | CSV: **5 dari 9** meleset pada ≥1 field | SYND-03 (skor 0,84–
+  06-methodology.md                L101   –  | I-06 | Definisi target | 02 baris 61–64: dua target terpisah `risk_triage` (4 kelas) dan `review_action` (3 kelas), "tidak boleh dipakai secara berg
+  06-methodology.md                L106   –  | I-11 | Prevalensi | 10 baris 10 & 175 & 180: "produksi 3–7%", "AUPRC pada prevalensi 3–7% (downsampling)" | 10 baris 113: 36 fraud = 12%; 03 baris 1
+  06-methodology.md                L107   –  | I-12 | Kontradiksi Narasi | 10 baris 107: 8 klaim (KLM001–006, 018, 024) | CSV: **12** baris `True` (tambah KLM105–108/SYND-07) | Kriteria 6 menguji
+  06-methodology.md                L111   –  | I-16 | Dependensi Fase 1–3 | 10 baris 163, 172, 212: XGBoost + SMOTE, Gemini API, DP-CTGAN | `backend/requirements.txt`: tidak ada `xgboost`, `imbal
+  06-methodology.md                L112   –  | I-17 | Artefak v2.1 | 10 baris 183–195: 8 file | Disk: hanya `claims_300_v2.1.csv` (7 dari 10 hilang) | `configs/leakage.yaml`, `tests/test_leakage.
+  06-methodology.md                L113   –  | I-18 | Kolom metadata v2.1 | 10 baris 122–125, 187: `seed`, `version`, `timestamp` | `claims_300_v2.1.csv`: 31 kolom, ketiga kolom tidak ada | Butir
+  06-methodology.md                L114   –  | I-19 | Kriteria sindikat | 10 baris 196–206: kriteria 4 "Setiap SYND-01-SYND-09 hit-rate > 0" | SYND-05 (KLM016–017) berlabel `high` | Target fraud 
+  06-methodology.md                L115   –  | I-20 | Rekonsiliasi 03 §6 | 03 §6 baris 73–81 (7 temuan QA) | Hitung ulang dari CSV | 6/7 cocok; 2 meleset: baris 77 (KLM115) & baris 78 (0 vs koson
+  06-methodology.md                L132   –  | **`Name` / `claim_id`** | Tidak | KLM001–KLM024 = **24/24 anomali** (P(fraud)=58,3%); 36 anomali sisanya berada di KLM101–KLM136. AUROC numerik = 0,
+  06-methodology.md                L135   –  | **`Pasien` (nama + id)** | Tidak | Nama sintetis tertanam di rich text; P01–P20 adalah ground truth v1 (10 baris 6) | Entitas bisa dihafal | **Bloki
+  06-methodology.md                L150   –  3. **`LEAKAGE_COLUMNS` di `backend/src/data/pipeline.py:37-40` didefinisikan tetapi tidak pernah dipakai** - satu kemunculan di seluruh repo (`is_frau
+  06-methodology.md                L183   –  1. **`Status` tidak dapat menjadi target.** 02 baris 61–64 justru mensyaratkan `review_action` sebagai target kedua yang sah. Karena `Status` adalah c
+  06-methodology.md                L207   –  - Rentang skor per label: low 0,04–0,14 · medium 0,40–0,53 · high 0,62–0,79 · fraud 0,80–0,95. Tidak ada tumpang tindih.
+  06-methodology.md                L221   –  - CI: bootstrap percentile, B=1200 resample, seed 20260707 (stratified pada label); AUROC memakai Hanley–McNeil; proporsi memakai Wilson score interva
+  06-methodology.md                L235   –  **Pembacaan:** pada prevalensi produksi bawah 3–7%, CI AUPRC 95% selebar ±0,20 sampai ±0,28. Ambang keputusan AUPRC yang biasa dipakai (0,50) berada *
+  06-methodology.md                L237   –  ### 6.3 AUROC - CI 95% (Hanley–McNeil, AUROC sebenarnya 0,90)
+  06-methodology.md                L246   –  **Pembacaan:** pada prevalensi 3% dan 5%, batas atas CI melewati 1,0 - estimator AUROC dengan 9–15 positif tidak informatif. Pada 12% (36 positif) CI 
+  06-methodology.md                L257   –  **Pembacaan:** target 90% memiliki CI yang **mengandung 90%** dan lebar 21–42 pp. Kriteria "≥90% terdeteksi" pada 300 baris tidak membedakan model 88%
+  06-methodology.md                L306   –  **Ambang praktis: ≥60 kasus positif** (prevalensi 20% pada 300 baris) dibutuhkan untuk membedakan ΔAUPRC 0,10. Pada prevalensi produksi 3–7%, itu bera
+  06-methodology.md                L334   –  Kriteria 10 baris 196–206, dinilai terhadap 300 baris aktual:
+  06-methodology.md                L338   –  | 1 | Integritas Data: 300 baris utuh, 0 kebocoran fitur | **GAGAL TERBUKTI** | Blokir resmi 7–9 kolom; 7+ kolom bocor di luar daftar (`Catatan` bijek
+  06-methodology.md                L340   –  | 3 | AUPRC & AUROC MHGSL ≥ baseline XGBoost/MLP | **TIDAK TERUKUR** | Benchmark in-sample (sel 13). Tanpa test set tersisih, perbedaan in-sample anta
+  06-methodology.md                L341   –  | 4 | Setiap SYND-01–09 hit-rate > 0 | **MUSTAHIL** | SYND-05 = KLM016–017 berlabel `high`, bukan `fraud` → hit-rate 0 pasti. Selain itu n ≤ 6 per sin
+  06-methodology.md                L352   –  Sepuluh butir wajib dari 03 baris 87–97, diperiksa terhadap 08 (training protocol) dan artefak aktual:
+  06-methodology.md                L356   –  | 1 | nama dan versi dataset | ✗ | 08 baris 8 menyebut "Klaim Aegis-JKN v2, 300 baris" tapi tidak pernah mengunci nama/versi; 10 baris 114–131 menyebu
+  06-methodology.md                L360   –  | 5 | kamus data | ◐ | 03 §5 (baris 47–72) memuat kamus 24 properti, tapi 08 §Tahap 2 hanya menyebut `data_quality_report.md` sebagai artefak; tidak a
+  06-methodology.md                L363   –  | 8 | aturan pembersihan | ◐ | 08 §Tahap 2 & §Preprocessing (baris 40–44) ada (kode ICD-10 sebagai teks, sentinel 999, validasi PNK02, PNK17=PNK18). T
+  06-methodology.md                L369   –  Checklist ini diperkuat 02 §5.5 (10 artefak wajib per eksperimen) dan 08 §Tahap 0–5 (6 artefak): **0 dari 6 artefak Tahap 0–5 ada.**
+  06-methodology.md                L375   –  Rencana 10 baris 207–213. Pemeriksaan prasyarat fase terhadap apa yang benar-benar ada di disk:
+  06-methodology.md                L380   –  | **1. Baseline ML & DL** | 2–3 | XGBoost + SMOTE, MLP, fitur graf turunan | MLP (PyTorch) ada di notebook sel 13; `pipeline.py` punya feature enginee
+  06-methodology.md                L381   –  | **2. Graf Heterogen & MHGSL** | 4–6 | PyG `HeteroData`, MHGSL, SHAP per-saluran | `torch-geometric` ada di requirements; model MHGSL terimplementasi
+  06-methodology.md                L382   –  | **3. Validasi Final & LLM** | 7–8 | Laporan validasi, benchmark Kaggle, DP-CTGAN, Gemini | - | `google-generativeai` ✗ di requirements, `configs/tex
+  06-methodology.md                L386   –  - **Label ground truth independen.** 08 baris 21 mensyaratkan kolom adjudikasi (`ground_truth_fraud`, `evidence_source`, `reviewer_1`, `reviewer_2`, `
+  06-methodology.md                L389   –  - **Daya statistik.** Min 60 kasus positif untuk membedakan ΔAUPRC 0,10 (§6.8) -butuh 857–2000 baris pada prevalensi produksi. Rencana tidak menyebut 
+  06-methodology.md                L397   –  1. **Tarik semua angka performa dari artefak publikasi sampai protokol ini diperbaiki.** 06 baris 42–43 sudah benar; sekarang terbukti alasannya (benc
+  06-methodology.md                L407   –  11. **Realakan kembali jadwal**: Fase 0 butuh 2–3 minggu (bukan 1) hanya untuk blokir + label + test set; sisipkan **Fase pengumpulan data** menuju ≥6
+  06-methodology.md                L408   –  12. **Buat 6 artefak Tahap 0–5 (08 baris 30–35) dan 10 artefak 02 §5.5** sebagai syarat sebelum eksperimen berikutnya dimulai. Saat ini 0 dari 6 ada.
+  06-methodology.md                L419   –  Skrip `06_stats.py` (stdlib saja) menghasilkan 12 bagian: identitas artefak + SHA-256, crosstab Risiko→Status, replikasi ambang skor, segmentasi groun
+  06-methodology.md                L430   –  | Skor fraud per label | low .04–.14 · medium .40–.53 · high .62–.79 · fraud .80–.95 |
+  06-methodology.md                L447   –  | Artefak Tahap 0–5 (08) ada | **0 / 6** |
+  07-generator.md                  L15    –  **Dataset 300 klaim ini tidak dapat direproduksi.** Skrip generator yang menghasilkan 300 baris **tidak ada di repositori mana pun** di workspace (`Ae
+  07-generator.md                  L17    –  Selain itu ditemukan **ground truth yang saling bertentangan dengan data**: narasi rekam medis pada 6 baris SYND-02 justru **mengkonfirmasi** tindakan
+  07-generator.md                  L23    –  | CRITICAL | 9 | Ground truth phantom-billing dibantah narasi (KLM004–006); episode anomali tidak ada (6 baris); seed/version/timestamp tidak ada di d
+  07-generator.md                  L39    –  | `Aegis-JKN/` (Next.js) | `src/data/notion-datasets.ts` berisi **300 objek klaim hard-coded** (9.404 baris TS, 451.132 karakter) dengan KLM001–KLM300
+  07-generator.md                  L69    –  | `Skor Fraud` | rumus komposisi skor + bobot kanal | 46 nilai unik. Syndikat punya skor **bertangga tetap**: SYND-01 = 0.93/0.94/0.95, SYND-02 = 0.92
+  07-generator.md                  L70    –  | `Kontribusi Saluran` | rumus T/F/S dan cara pembulatan | Format `T a · F b · S c`. Untuk baris low, T/F/S ≈ 0.01–0.05 dan totalnya **tidak sama** de
+  07-generator.md                  L75    –  | `Obat` |Fq sampling obat per dx + satuan + dosis | 10 kode obat M01–M10, satuan `vial`/`tablet`/`pen isi ulang`, kuantitas per episode. Tidak ada ba
+  07-generator.md                  L79    –  | `Sentimen` | ambang `Skor Sentimen` → kategori | 58 baris kategori `netral` punya skor **≠ 0** (rentang 0,05–0,15); tidak ada ambang tertulis yang m
+  07-generator.md                  L81    –  | `Biaya Rp` | tarif acuan + faktor pengali per modus | 140 nilai unik. Biaya low ≈ tarif paket (mis. 7.500.000 vs tarif 8.200.000 → rasio 0.91); bari
+  07-generator.md                  L83    –  | `Status`, `Risiko` | ambang skor → label | Konsisten 300/300: <0.35 low, 0.35–0.60 medium, 0.60–0.80 high, ≥0.80 fraud (fraud mulai tepat di 0.80) |
+  07-generator.md                  L95    –  | Kelengkapan ID KLM001–KLM300 | 300 ID lengkap, unik | 300 unik, 300/300 ada | 0 | ✓ OK |
+  07-generator.md                  L103   –  | Entitas Faskes | RS_A–RS_J (10 FKRTL) | 10 | 0 | ✓ OK |
+  07-generator.md                  L104   –  | Entitas Pasien | P01–P40 (40) | 40 | 0 | ✓ OK |
+  07-generator.md                  L105   –  | Entitas Dokter | D01–D20 (20) | 20 | 0 | ✓ OK |
+  07-generator.md                  L108   –  | Entitas Obat | M01–M10 (10) | 10 | 0 | ✓ OK |
+  07-generator.md                  L109   –  | **Kontradiksi Narasi = True** | **8 klaim** (spec §Analisis Teks & Sentimen; kriteria v2.1 §7) | **12** (KLM001–006, KLM018, KLM024 + KLM105–108) | 
+  07-generator.md                  L116   –  | Kesesuaian label Risiko vs rentang skor | low<0.35, medium 0.35–0.6, high 0.6–0.8, fraud>0.8 | 300/300 konsisten | 0 | ✓ OK (catatan: batas bawah 0.
+  07-generator.md                  L123   –  3. **Kontradiksi Narasi 12 vs 8** - 4 baris tambahan adalah KLM105–KLM108 (SYND-07 iur biaya) yang di-flag `True`; spec §7 v2.1 tetap menyebut "8 klai
+  07-generator.md                  L133   –  | SYND-01 | upcoding | KLM001–003 ✓ | RS_A ✓ | D01,D02 ✓ | P01–P03 ✓ | ≥0.93 | 0.93–0.95 ✓ | OK |
+  07-generator.md                  L134   –  | SYND-02 | phantom_billing | KLM004–006 ✓ | RS_C ✓ | D05 ✓ | P08–P10 ✓ | ≥0.92 | 0.92–0.94 ✓ | OK |
+  07-generator.md                  L135   –  | SYND-03 | unbundling | KLM007–012 ✓ | RS_B ✓ | D07 ✓ | P12–P14 ✓ | 0.84–0.87 | 0.85–0.87 ✓ | OK |
+  07-generator.md                  L136   –  | SYND-04 | drug_diversion | KLM013–014 ✓ | RS_E ✓ | D09 ✓ | P16–P17 ✓ | 0.86–0.88 | 0.86–0.88 ✓ | OK |
+  07-generator.md                  L137   –  | SYND-05 | cloning | KLM016–017 ✓ | RS_F ✓ | D08 ✓ | P19–P20 ✓ | 0.78–0.79 | 0.78–0.79 ✓ | OK |
+  07-generator.md                  L138   –  | **SYND-06** | repeat_billing | KLM101–104 ✓ | RS_G ✓ | D13 ✓ | **P21,P22 (2) ≠ P21–P24 (4)** | 0.85–0.90 | **0.89–0.92** | ✗ GAGAL |
+  07-generator.md                  L139   –  | **SYND-07** | iur_biaya | KLM105–108 ✓ | RS_H ✓ | D14 ✓ | **P23,P24 (2) ≠ P25–P28 (4)** | 0.82–0.87 | 0.82–0.85 | ✗ GAGAL |
+  07-generator.md                  L140   –  | **SYND-08** | readmission_berulang | KLM109–114 ✓ | RS_I ✓ | D15 ✓ | **P25,P26 (2) ≠ P29–P34 (6)** | 0.75–0.80 | **0.86–0.89** | ✗ GAGAL |
+  07-generator.md                  L141   –  | **SYND-09** | excessive_usage | KLM115–120 ✓ | RS_J ✓ | **D19 ≠ D16** | **P27 (1) ≠ P35–P40 (6)** | 0.78–0.83 | **0.80–0.84** | ✗ GAGAL |
+  07-generator.md                  L147   –  1. **4 dari 9 sindikat (SYND-06 s.d. SYND-09) tidak punya anggota sesuai tabel v2.1.** Entitas yang tercatat di spec (P21–P24, P25–P28, P29–P34, P35–P
+  07-generator.md                  L148   –  2. **Rentang skor 4 sindikat meleset dari spec**: SYND-06 (0.89–0.92 vs 0.85–0.90), SYND-08 (0.86–0.89 vs 0.75–0.80 - **selisih 0.08**, bahkan label `
+  07-generator.md                  L150   –  4. **Pasien P28–P40 (13 pasien) tidak pernah menjadi anggota sindikat mana pun**, padahal spec v2.1 mengalokasikan mereka ke SYND-07 (P25–P28), SYND-0
+  07-generator.md                  L157   –  Checker: `07_gen.py` (aturan R1–R40). **53 aturan, 29 lulus, 24 gagal** (9 CRITICAL / 7 HIGH / 7 MEDIUM / 1 LOW).
+  07-generator.md                  L168   –  | R13b anomali_frekuensi: ≥2 episode pada pasien sama dalam jendela yang diklaim | CRITICAL | 6 | KLM133, KLM131, KLM136, KLM132, KLM134, KLM135 | Han
+  07-generator.md                  L181   –  | R21 label Sentimen konsisten dengan tanda Skor Sentimen | MEDIUM | 58 | KLM278, KLM280, KLM273, KLM272, KLM292, KLM295, KLM288, KLM270, … | 58 baris
+  07-generator.md                  L266   –  | "Nx median" | 8 baris (KLM115–120, KLM128, KLM130) | **7 dari 8** dapat dihitung ulang dari kolom dataset (6 baris SYND-09: klaim 2x vs aktual 2,05x
+  07-generator.md                  L267   –  | "N episode dalam M hari" | 12 baris `anomali_frekuensi` | **Hanya 1 dari 12 benar** (P15/KLM020–023). 6 baris outright salah (R13), 6 baris tidak pu
+  07-generator.md                  L268   –  | "N pen insulin vs 1–2 pen/bulan" | 3 baris drug_diversion | Qty insulin **terbaca** dari kolom `Obat` (24, 30, 12 pen) → bagian ini konsisten | Seba
+  07-generator.md                  L283   –  2. **Perbaiki ground truth yang dibantah data.** (a) SYND-02 phantom: ganti narasi KLM004–006 agar tidak mengklaim hemiarthroplasty dilakukan (mis. "r
+  07-generator.md                  L284   –  3. **Selaraskan tabel sindikat v2.1 dengan data** (SYND-06 s.d. SYND-09 + KLM121/KLM122): gunakan entitas yang benar-benar muncul (P21–P29, D13/D14/D1
+  07-generator.md                  L285   –  4. **Perbaiki KLM129**: prolonged_stay dengan LOS 2 < median 6,5 dan Alasan "dipulangkan 2 hari" → ubah ke baris LOS panjang (mis. 9–12 hari) atau uba
+  08-frontend.md                   L111   –  | Problem section | `problem-section.tsx:79,88,97` | literal | **MOCK** | `±2.000.000`, `≈1.000`, `3–7%` |
+  08-frontend.md                   L196   –  | 2 | `AUPRC 0.91` (MHGSL) | `src/components/mhgsl/data.ts:264`; tabel `data.ts:253` | `/` tab AUPRC | **Tidak** (label hanya "Skor relatif (0–1)…" di
+  08-frontend.md                   L211   –  | 17 | `3–7%` estimasi potensi fraud | `src/components/mhgsl/problem-section.tsx:97` | `/` - pilar masalah | Ya, sebagian: sub-teks "dari total nilai 
+  08-frontend.md                   L387   –  | | | "Benchmark awal AUPRC pada prevalensi 3–7%" | Angka AUPRC di UI berasal dari `data.ts:258-265` - konstanta, bukan benchmark. | ❌ **Fabrikasi** |
+  10-competition.md                L36    –  ### 1.3 Skor per dimensi juri (skala 1–5)
+  10-competition.md                L68    –  | Pendaftaran 14 Agustus – **14 September 2026** (informasi publik) | IDN Times 14 Agu 2026 | 22 Okt 2026 - **SALAH, lihat §7.1** |
+  10-competition.md                L86    –  Kriteria 1–4 sudah diuraikan di §1.3 dan §3–§6. Kriteria 5 dibahas di §4.
+  10-competition.md                L120   –  | 10 faskes, 20 dokter, 40 pasien | `10-simulation-dataset.md:145-150` | CSV: RS_A–RS_J (10), D01–D20 (20), P01–P40 (40) | **TERBUKTI** |
+  10-competition.md                L360   –  4. **Coachings 19–30 Okt adalah aset, bukan admin.** Fase ini persis untuk menutup P0.1–P0.5. Manfaatkan: ajukan review metodologi, review klinis sken
+  10-competition.md                L363   –  7. **Cacat dokumentasi lintas kanal:** baris Notion `dataset_research_live.json:378-381` menyatakan "Pendaftaran 14 Agustus–14 September 2026 ... Pend
+  10-competition.md                L375   –  | Prevalensi fraud 3–7% | `04-evidence-matrix.md:32` (E-05) | "Perlu verifikasi" | Jangan tampilkan sebagai statistik faktual |
+  10-competition.md                L400   –  | C9 | Video demo 3–5 menit (voice-over, alur upcoding→drilldown→SHAP→keputusan) | ❌ tidak ada | Tim | 30 Okt | YA |
+  10-competition.md                L467   –  | P0-11 | **Buat video demo 3–5 menit + deck maks 10 slide + perbaiki URL clone di README dan URL Vercel** (repo sudah publik, tidak perlu dibuat) | §
+  10-competition.md                L476   –  | P1-3 | **Aktifkan coaching 19–30 Okt secara agresif**: ajukan review metodologi, review klinis, review kelengkapan dokumen |
+  11-compliance.md                 L108   –  - **Pasal 5–6** - tim pencegahan, teguran, dan **sanksi administrasi** (termasuk pencabutan status faskes).
+  11-compliance.md                 L114   –  - (e)–(f) **pemecahan episode pelayanan** / *services unbundling or fragmentation*;
+  11-compliance.md                 L151   –  - **Pasal 65–66** - larangan (bukan pidana).
+  11-compliance.md                 L152   –  - **Pasal 67–68** - ketentuan pidana; **Pasal 69** - pidana tambahan; **Pasal 70** - sanksi korporasi (denda s.d. 10× maksimum).
+  11-compliance.md                 L169   –  - **Pasal 14–15** memuat kewajiban PSE dalam pemrosesan Data Pribadi: pengumpulan Data Pribadi dibatasi pada tujuan yang sah; pemrosesan sesuai tujuan
+  11-compliance.md                 L209   –  **Catatan perubahan (terverifikasi dari halaman BPK):** UU 13/2022 **diubah dengan UU No. 1 Tahun 2026** (penyesuaian ketentuan Pasal 15 UU 12/2011). 
+  11-compliance.md                 L246   –  - **Pasal 16 ayat (2)** - prinsip pemrosesan berlaku atas *data pribadi*; kalau data tetap dapat diidentifikasi, seluruh rezim PDP berlaku: dasar pemr
+  11-compliance.md                 L321   –  Sumber: **Kepmenkes HK.01.07/MENKES/1199/2025**, PDF JDIH Kemenkes (akses 22 Okt 2026), terindeks pada subkelas terapi §§6–16. Lokasi: `09-draft-hub.m
+  11-compliance.md                 L411   –  ### Prioritas 1 - sebelum submit (hari ini–3)
+  11-compliance.md                 L422   –  7. **Tambahkan nomor + versi koding** pada seluruh tabel kode: "ICD-10 Versi 2010 (Permenkes 26/2021)" dan "ICD-9-CM Versi 2010 (Permenkes 26/2021)". 
+  13-text-channel.md               L5     –  **Data:** `N:\HEALTHKATHON\analysis\corpus\claims_v2_live.csv` (300 baris, KLM001–KLM300)
+  13-text-channel.md               L9     –  **Referensi spec:** `10-simulation-dataset.md` (baris 100–108, 171–172, 203), `08-training-protocol.md`, `03-dataset-registry.md`, `07-dataset-v2-cata
+  13-text-channel.md               L32    –  | S4 | **Tinggi** | 12 baris punya umpan balik bersinyal penagihan tetapi flag `Kontradiksi Narasi=False` (KLM007-012, KLM019, KLM101-104, KLM121) | R
+  13-text-channel.md               L78    –  **Bold** = 4 ID di luar spec (KLM105–KLM108, sindikat SYND-07 "Iur Biaya" yang baru ada di v2). Selisih +4 itu dijelaskan oleh 4 ID tersebut.
+  13-text-channel.md               L212   –  **Recall ground truth kontradiksi = 12 / (12 + 12) = 50%.** 11 dari 12 adalah klaim `fraud` dengan skor 0.81–0.92; sisanya KLM019 (`overbilling`, risi
+  13-text-channel.md               L303   –  **Konsensus narasi = monoton dengan `Diagnosis ICD-10`.** 13 diagnosis → 40 narasi, dan setiap diagnosis memetakan ke 1–8 narasi (E11.9 → 8, J18.9 → 6
+  13-text-channel.md               L307   –  Sampel KLM001–KLM030 (lihat output skrip §4): negatif 19 / positif 6 / netral 5. Rincian pola duplikasi di sampel ini: positif = 6 string distinct (se
+  13-text-channel.md               L392   –  | **Biaya** | ⚠️ Sebagian | `architecture_full.md:225` "Gemini 1.5 Flash $0.10–$1.50 per 1M token input" untuk batch, "Gemini 1.5 Pro $2.00 per 1M tok
+  13-text-channel.md               L455   –  | Legalitas transfer ke Google | ❌ Tidak ada | Google adalah pemroses pihak ketiga di luar negeri. UU PDP **Pasal 56** mengatur transfer data pribadi 
+  15-code-quality.md               L131   –  3. **Tidak ada pipeline ML di repo ini sama sekali.** Fase 0–4 dalam rencana 8 minggu, XGBoost/MLP baseline, MHGSL PyG, SHAP per-saluran, GroupKFold -
+  15-code-quality.md               L245   –  - Borderline check: skor 0.40 → `medium`, 0.62 → `high`, 0.80 → `fraud`; tidak ada skor di 0.15–0.39 maupun 0.81–0.79 yang membuat celah. Konsisten de
+  15-code-quality.md               L301   –  | Batas risiko dataset | `src/data/notion-datasets.ts` (300 baris) | low <0.4, medium 0.4–0.61, high 0.62–0.79, fraud ≥0.80 | Konsisten dengan `oasis-
+  15-code-quality.md               L315   –  0.04–0.14 → low     (240 baris)
+  15-code-quality.md               L316   –  0.40–0.53 → medium  (10 baris)
+  15-code-quality.md               L317   –  0.62–0.79 → high    (14 baris)
+  15-code-quality.md               L318   –  0.80–0.95 → fraud   (36 baris)
+  15-code-quality.md               L436   –  **Rekomendasi performa (arsip):** pisahkan `MultiChannelGraph`, `Simulation`, `Comparison`, `FraudRing` via `next/dynamic` + `ssr: false` (masing-masi
+  15-code-quality.md               L452   –  | 7 | **P1** | `dataset-integrity.test.ts` - bentuk data | `tests/` | 300 klaim, ID unik KLM001–KLM300, ID berurutan, tidak ada `null` di field wajib,
+  16-red-team.md                   L64    –  | 5 | **Akurasi 93,0% di bawah baseline sepele pada prevalensi lapangan yang dipakai proyek sendiri.** | **Sangat tinggi.** Satu kalimat, tanpa data t
+  16-red-team.md                   L317   –  | 5 | *"Kenapa akurasi, bukan AUPRC, kalau fraud 3–7%?"* | "Betul, dan ini koreksi yang benar. Akurasi pada kelas minoritas adalah **base-rate artifac
+  16-red-team.md                   L406   –  | #19 | Prevalensi 3–7% = GAO-24-105833 (federal AS, non-kesehatan), dan diberi label "estimasi literatur" | TERDAKAT | `12-archive-architecture.md:11
+  16-red-team.md                   L420   –  | B9 | GAO (2024). *Fraud Risk Management: 2018-2022 Data Show Federal Government Loses An Estimated $233 Billion to $521 Billion Annually to Fraud* |
+  17-roadmap.md                    L15    –  Tanggal pendaftaran dan submit proposal **sudah ditutup** (14 Agu – 11 Okt 2026). Seleksi proposal juga selesai (12 – 18 Okt). Fase yang sedang aktif 
+  17-roadmap.md                    L21    –  **Jalur Submit (22 Okt – 1 Nov 2026, 10 hari kerja) - 17 backlog item (B-01..B-17: 16 item P0 + 1 item P1), menutup 16 gap (15 gap P0 + G-15).**
+  17-roadmap.md                    L38    –  Temuan 1–3 berada di jalur bukti yang akan dibuka juri ("mana ground truth?", "itu hasil run mana?", "split-nya mana?"), dan ketiganya bisa dijawab sa
+  17-roadmap.md                    L78    –  | G-08 | Deadline kompetisi di data riset Notion salah (14 Sep) vs API resmi (submit project akhir 1 Nov) | data/governance | `src/data/notion-dataset
+  17-roadmap.md                    L87    –  | G-22 | Prevalensi 12% didiamkan sebagai "prevalensi field 3-7%" tanpa penanda yang konsisten di UI | docs/data | 10-simulation-dataset.md:178-181; `
+  17-roadmap.md                    L103   –  ## 3. Roadmap Terikat Tanggal (22 Okt – 7 Nov 2026)
+  17-roadmap.md                    L109   –  | 21–22 Okt 2026 | Baseline audit | Titik awal | - | Snapshot: `docs/experiments/baseline-2026-10-22.md` berisi 12 angka kunci + hash CSV |
+  17-roadmap.md                    L123   –  | 2–4 Nov 2026 | Seleksi project akhir | - | - | Menutupi pertanyaan juri; tidak ada commit setelah 1 Nov |
+  17-roadmap.md                    L124   –  | 5–6 Nov 2026 | Dry-run demo | - | - | Rehearsal ≥2×, tiap juri potentiil dapat mereplikasi ≤5 menit |
+  17-roadmap.md                    L147   –  ### 3.3 Roadmap harian (Hari 1–14 = 22 Okt – 4 Nov 2026)
+  17-roadmap.md                    L211   –  | R-02 | Model tidak outperform baseline XGBoost pada split group-aware yang sama | Teknis | Sedang–Tinggi | Tinggi | Tinggi | Trigger M-01 (lihat §6)
+  17-roadmap.md                    L221   –  | R-12 | Regulasi: penggunaan data DM realistis tanpa dasar izin | Kepatuhan | Rendah | Sangat tinggi | Sedang–Tinggi | Jangan pakai file DM di app; h
+  17-roadmap.md                    L430   –  | T+1..T+3 | 2–4 Nov | Seleksi project akhir, siapkan FAQ | `faq-10-pertanyaan.md` | ☐ |
+  17-roadmap.md                    L431   –  | T+4..T+5 | 5–6 Nov | Dry-run demo ×2 + backup offline | `demo-script.md`, `backup.mp4`, `backup.pdf` | ☐ |
+  18-ux.md                         L5     –  **Ringkasan Eksekutif:** Build-nya rapi dan ketiga route memang hidup, tapi **demo path yang diminta juri tidak ada utuhnya**. Jalur "36 klaim tereska
+  18-ux.md                         L13    –  | **Blocker** | 6 | Tidak ada aksi triase; dua semesta data tanpa penanda; angka hardcoded bertentangan dengan data; kontras <4.5:1 pada teks 8–12px; 
+  18-ux.md                         L78    –  | `/` | Problem | Angka "3–7%" prevalensi fraud ditampilkan sebagai fakta; sumbernya catatan internal bertanda "belum ditemukan studi publik" | `src/c
+  18-ux.md                         L89    –  | `/` | Fraud Ring | Node SVG non-keyboard-accessible; label 9–9.5px | `src/components/mhgsl/fraud-ring.tsx:208-215,241,250,259` |
+  18-ux.md                         L147   –  | 1 | Masuk ke app | `/` load 200 OK, 167 KB | 1,4–16,8 s (warm cache: 1,4 s) | ✅ |
+  18-ux.md                         L153   –  **Total waktu yang bisa dijamin: ~7 detik untuk langkah 1–4.** Yang hilang adalah **otentasi hasil** (triage action) - juri tidak pernah bisa menunjuk
+  18-ux.md                         L184   –  Diukur via pixel sampling (bg vs fg aktual) pada teks 9–12px:
+  18-ux.md                         L187   –  - `text-emerald-600` pada label 10–12px → **3.77:1** - `dataset-explorer.tsx:730`
+  18-ux.md                         L189   –  - Sub-teks 10–11px di `/simulasi` → **2.22–2.58:1**
+  18-ux.md                         L244   –  | **0:00–0:35** | Buka `/`. Tahan di hero. Jangan scroll dulu. | "Selamat pagi. Aegis-JKN mendeteksi fraud klaim JKN dengan **tiga saluran graf sekali
+  18-ux.md                         L245   –  | **0:35–1:15** | Scroll ke bagian **"Tiga Pilar Risiko"** (problem). | "BPJS memproses 2 juta klaim/hari dengan ~1.000 verifikator. Rasio 2.000:1. To
+  18-ux.md                         L246   –  | **1:15–2:15** | Klik **"Mulai Simulasi Deteksi"** (tombol hijau di hero → scroll ke `#simulation`). Tekan **→** tiga kali atau klik "Next" 3×. | "Ik
+  18-ux.md                         L247   –  | **2:15–2:50** | Di tahap 4, **tunjuk panel SHAP** (jangan klik dulu). | "Ini Atribusi SHAP: tiga sinyal utama, dengan **bobot**. Ini yang membuat ve
+  18-ux.md                         L248   –  | **2:50–3:30** | Scroll ke **Fraud Ring**. Klik **kartu "P01"** di "Akses Cepat Profil Investigasi" (klik node SVG hanya jika juri pakai mouse; kartu
+  18-ux.md                         L249   –  | **3:30–4:20** | Klik tombol **"Buka di Ruang Kerja Notion"**-equiv? **TIDAK** - sebagai gantinya tunjuk blok "Rekomendasi Tindakan (HITL)". Lalu **k
+  18-ux.md                         L250   –  | **4:20–4:55** | Klik **"Dataset"** di navbar (badge 300) → di `/dataset`, set **Status Verifikasi = Escalate (36)**, lalu klik baris pertama. | "Ini
+  18-ux.md                         L251   –  | **4:55–5:30** | Di Sheet, scroll ke **"ANALISIS AI MHGSL & Explainability"**. Tunjuk "Sinyal Dominan SHAP", "Kontribusi Saluran", "Alasan Audit Sist
+  18-ux.md                         L252   –  | **5:30–5:45** (buffer) | Kalau ada waktu: klik tab **"Antrean Late Fusion (20)"** di `/simulasi`. | "Halaman simulasi: 100 klaim, 14 fraud, deteksi 
+  18-ux.md                         L270   –  | Warna / kontras | `dataset-explorer.tsx:722,730` | rose-500 & emerald-600 pada teks 10–12px → 3.67 / 3.77 : 1 | Gagal AA | Tinggi |
+  18-ux.md                         L283   –  | Loading state | `src/app/` | **Tidak ada `loading.tsx`** untuk 3 route; dev load 1,4–16,8 s | Layar putih saat navigasi | Tinggi |
+  18-ux.md                         L307   –  | **ID/EN hardcoded** | `comparison.tsx:129,367,400-403` | Subjudul "Skor relatif (0–1)…" + "Tren AUPRC per Metode" + paragraf penjelasan hardcoded ID
+  18-ux.md                         L341   –  | Angka "2.000.000+ klaim/hari", "±1.000 verifikator", "3–7% fraud" | `src/components/mhgsl/hero.tsx:209-211`; `problem-section.tsx:75-102` | Angka na
+  18-ux.md                         L354   –  | Teks < 4.5:1 | `multi-channel-graph.tsx:168`; `dataset-explorer.tsx:722,730`; `navbar.tsx:132,142` | Kontras gagal AA di teks 9–12px | Tidak terbaca
+  18-ux.md                         L355   –  | Font 8.5–10px | `/` 155 elemen; `navbar.tsx:132,142`; `fraud-ring.tsx:241,250,259` | Di bawah 11px | Tidak terbaca | Min 11px untuk badge, 12px untu
+  18-ux.md                         L368   –  | **P0 - wajib sebelum demo (blokir)** | 1. **Tambah aksi triase** di Sheet `/dataset` + drilldown `/simulasi`: tombol "Tandai Terverifikasi" / "Kemba
+  18-ux.md                         L369   –  | **P0** | 2. **Perbaiki 6 angka hardcoded yang salah/kontradiktif**: "240 Rawat Inap · 60 Jalan" → hitung (189/111); "14 edge berlebih" → 13; "Rp 14,
+  18-ux.md                         L372   –  | **P0** | 5. **Naikkan kontras**: `--muted-foreground` (atau hapus `/80` di `multi-channel-graph.tsx:168`), `text-rose-500`/`text-emerald-600` pada t
+  18-ux.md                         L376   –  | **P1** | 9. **Naikkan SHAP di `/dataset` ke bentuk berbobot** (bar contribution) - reusi pola `fraud-drilldown-modal.tsx:162-198` | 1–2 jam | Menaik
+  18-ux.md                         L380   –  | **P2 - polish** | 13. **Rapikan i18n**: sambungkan `heroStats` ke `HERO_STATS` (atau hapus dari dict), terjemahkan `fraud-ring`/`fraud-drilldown-mod
+  19-consistency.md                L6     –  **Metode:** ekstraksi token angka per dokumen (Bagian A skrip), verifikasi silang terhadap CSV (Bagian B), deteksi duplikasi (Bagian C–D), audit tauta
+  19-consistency.md                L12    –  Korpus Aegis-JKN terbagi menjadi **9 dokumen terkendali** (00–08) dan **6 halaman arsip** (09–14). Dokumen terkendali sudah direkonsiliasi secara inte
+  19-consistency.md                L27    –  2. **Peta sindikat bentrok.** `11:296-304` menetapkan SYND-01..09 = KLM001–KLM036 dengan modus/faskes/dokter berbeda, sedangkan `10:134-142` menetapka
+  19-consistency.md                L42    –  | Rentang ID | KLM001–KLM300 | 31, 42 |
+  19-consistency.md                L123   –  | Prevalensi | 3–7% - belum layak dipakai sebagai fakta | 40 |
+  19-consistency.md                L136   –  | R01–R04 workbook | 3.411 / 1.979 / 1.030 baris; 4 sheet; 979 label | 12-15 |
+  19-consistency.md                L162   –  | Ground truth v1 | anomali = KLM001–KLM024 (14 fraud sindikat + 10 medium/high) | 8 / 11 |
+  19-consistency.md                L163   –  | Skala risiko v1 | <0.35 low; 0.35–0.6 medium; 0.6–0.8 high; >0.8 fraud | 9 / 12 |
+  19-consistency.md                L164   –  | Prevalensi | oversample 14%; lapangan 3–7% | 10 / 13 |
+  19-consistency.md                L166   –  | Tabel sindikat v1 | SYND-01..05 (KLM001–017) | 15-19 / 24-28 |
+  19-consistency.md                L170   –  | Ekspansi v2 | 100→300, seed 20260707, KLM101–KLM300 | 112 / 115 |
+  19-consistency.md                L181   –  | Rencana | 8 minggu, Fase 0–3 | 207-213 / 210-216 |
+  19-consistency.md                L192   –  | Tabel sindikat v1 | SYND-01..09 = KLM001–KLM036 | 296-304 |
+  19-consistency.md                L235   –  | Salinan dokumen terkendali 00–08 | 1122, 1216, 1308, 1423, 1533, 1619, 1695, 1767, 1857 | - |
+  19-consistency.md                L245   –  | 3 | Peta sindikat SYND-01..09 | `11:296-304` = KLM001–KLM036, modus/faskes/dokter berbeda | `10:134-142` = KLM001–KLM120 | ID sindikat sama menunjuk
+  19-consistency.md                L261   –  | 19 | Ground truth sindikat | `10:8` - anomali = KLM001–KLM024 | `11:296-304` - sindikat sampai KLM036 | Konflik langsung dengan No. 3 | **10:8** |
+  19-consistency.md                L263   –  | 21 | Ambang medium | `10:9` - 0.35–0.6; `03:25-29` - medium = 10 baris | CSV medium 0.40–0.53 | Interval 0.54–0.59 & 0.35–0.39 kosong/tidak terisi |
+  19-consistency.md                L270   –  | 28 | Angka "85% sempurna" | `12:127` - "Desain Aegis-JKN sudah 85% sempurna" | `00:7` - prinsip tanpa klaim performa tanpa bukti | Klaim kematangan 
+  19-consistency.md                L284   –  **Ya - 14-index adalah cermin penuh + arsip.** Verifikasi programatik (Bagian C skrip) mengonfirmasi **9 dokumen terkendali 00–08 tersalin utuh, ident
+  19-consistency.md                L298   –  Selain itu 14-index memuat salinan `10-simulation-dataset` (baris 51–259), salinan `11-archive-proposal` (477–905), `12-archive-architecture` (906–109
+  19-consistency.md                L300   –  Struktur navigasi 14-index sendiri **tidak** menduplikasi tata kelola - ia **mengganggu** tata kelola: sub-page "Draft" kosong (14:45), "Database Rise
+  19-consistency.md                L338   –  - Konten arsip menyimpan **konteks kandidat ide** (`14:8-43`) yang **tidak ada** di dokumen terkendali mana pun dan **tidak hilang** jika 11–13 tetap 
+  19-consistency.md                L390   –  Hasil grep `app.notion.com/p/` pada 00–08 (Bagian E skrip):
+  19-consistency.md                L409   –  | 01–06 | - | (tidak ada tautan app.notion.com) | **Wajar** - dokumen mandiri, tanpa ketergantungan arsip |
+  19-consistency.md                L415   –  **Kesimpulan bagian 6:** dokumen terkendali 01–06 **sama sekali tidak pernah** menautkan 11/12/13/14. Semua penautkan ke arsip terkumpul di `00-dashbo
+  19-consistency.md                L428   –  | 2 | ID KLM001–KLM300 unik & tak terputus | `00:31,42` | 300 unik | ✓ |
+  19-consistency.md                L446   –  | 20 | Faskes unik v2.1 = 10 (RS_A–RS_J) | `10:118` | 10 | ✓ |
+  19-consistency.md                L449   –  | 23 | Faskes unik pada 100 klaim pertama = 6 | `10:6` | 6 (RS_A–RS_F) | ✓ |
+  19-consistency.md                L464   –  | 38 | Skor high 0,62–0,79 (tidak ada 0,80) | `10:9` | 0.62–0.79 | ✓ |
+  19-consistency.md                L465   –  | 39 | Skor medium 0,40–0,53 | `10:9` | 0.40–0.53 | ✓ |
+  19-consistency.md                L466   –  | 40 | Skor low 0,04–0,14 (bukan <0,35 penuh) | `10:9` | 0.04–0.14 | ✓ |
+  19-consistency.md                L484   –  | KLM019–KLM036 di `11:301-304` seluruhnya berlabel **low** di CSV | CSV |
+  19-consistency.md                L536   –  | 1 | Tambahkan banner "ARSIP SUMBER - angka di halaman ini sudah disuperseded oleh dokumen 00–08. Jangan dikutip sebagai hasil final" di baris 1 | `1
+  22-proposal-docx-audit.md        L264   –  | 18 en-dash (U+2013) di body | L19 (50–70), L513 (30–50%), L586 (1–2), dan lainnya | Untuk range angka dalam bahasa Indonesia gunakan "sampai" atau t
+
+### GREEK  x138
+  02-proposal.md                   L273   GREEK SMALL LETTER THETA  `11-archive-proposal.md:210` memakai `theta_feat >= 0.50` untuk kanal kemiripan fitur (menghasilkan 15.202 edges). `09-draft-hub.md:15` dan `10-simula
+  02-proposal.md                   L358   GREEK SMALL LETTER THETA  | **Spesifikasi MHGSL: PathSim, ambang θ, fusion, bobot atensi, jumlah edge** | `11-archive-proposal.md:207-224` | `01-proposal.md:44` hanya menulis "
+  02-proposal.md                   L396   GREEK SMALL LETTER THETA  11. **M-04, M-05, M-08, M-09, M-10, M-11, M-12: perbaiki konvensi angka dan ambang** (skala 0,35/0,60/0,80, operator ≥ pada 0,80, batas θ 0,85, 109 ba
+  03-architecture.md               L22    GREEK CAPITAL LETTER DELTA  2. **Angka"Ilmu" yang ditampilkan adalah konstanta UI, bukan hasil pengukuran.** AUPRC 0,91, precision 0,92, ROC-AUC 0,95, Δ +0,20, kurva epoch E1→E5,
+  03-architecture.md               L32    GREEK SMALL LETTER PHI  | TINGGI | 11 | Rule engine absen; 10 artefak eksperimen absen; leak konfigurasi `ignoreBuildErrors`; 0 file Python/0 test script; fusion 3 definisi b
+  03-architecture.md               L33    GREEK SMALL LETTER THETA  | SEDANG | 10 | θ_feat 0,75 vs 0,85; `camouflageDetected` dikontrak tapi tak diimplementasi; profil drilldown tak punya versi/threshold/override; hier
+  03-architecture.md               L121   GREEK SMALL LETTER THETA  | G-05 | Hiperparameter kanal dipilih dari fold.train | 02-architecture.md:36 | **TIDAK ADA** | `src/data/oasis-data.ts:81` `theta_feat: 0.85`; `src/c
+  03-architecture.md               L132   GREEK SMALL LETTER THETA  | G-16 | Versi model & threshold di UI + 03 §4 "satu tempat, diberi versi" | 02:46, 03:46 | **DEVIASI** | `src/components/mhgsl/data-uploader.tsx:137`
+  03-architecture.md               L141   GREEK CAPITAL LETTER DELTA  | G-25 | Metrik benchmarkMHGSL | (02 §5.4, 00:47) | **DEVIASI** | `src/components/mhgsl/data.ts:264` AUPRC 0,91; `data.ts:289` precision 0,92; `data.t
+  03-architecture.md               L165   GREEK SMALL LETTER THETA  | Kontrak API | `docs/api/data-contracts.md:211-213` | `θ_feat 0.75`, `τ_high 0.65`, `τ_fraud 0.85` |
+  03-architecture.md               L166   GREEK SMALL LETTER THETA  | Teori MHGSL | `docs/algorithms/mhgsl-theory.md:74` | `θ_feat = 0.75` |
+  03-architecture.md               L167   GREEK SMALL LETTER THETA  | Dokumen sistem | `docs/architecture/system-design.md:106` | `θ_feat = 0.75` |
+  03-architecture.md               L169   GREEK SMALL LETTER THETA  | i18n (ID/EN) | `src/components/mhgsl/i18n.tsx:352,700` | `θ_feat = 0.85` |
+  03-architecture.md               L170   GREEK SMALL LETTER THETA  | Teks UI fraud | `src/components/mhgsl/data.ts:481` | `θ_feat = 0.85` |
+  03-architecture.md               L213   GREEK CAPITAL LETTER DELTA  | Δ MHGSL vs XGBoost +0,20 | `comparison.tsx:134` | literal |
+  03-architecture.md               L235   GREEK SMALL LETTER THETA  | θ_feat | 0,75 (`:74`) | 0,75 (`:211`) | 0,75 (`:106`) | kode/UI 0,85 →G-16 |
+  03-architecture.md               L238   GREEK SMALL LETTER PHI  | SHAP dekomposisi | + `φ^(shared)` (`:206`) | - | tanpa `φ^(shared)` (`:156`) | Term differen → dekomposisi tidak reproducible |
+  03-architecture.md               L239   GREEK SMALL LETTER PHI  | Base value | φ₀ = 0,20 (`:229`) | b₀ = +0,30 (`:210`) | - | 0,10 absolut pada skor akhir |
+  03-architecture.md               L240   GREEK SMALL LETTER TAU  | τ_fraud | ≥ 0,85 (`:220`) | 0,85 (`:213`) | - | 03:46 → fraud mulai 0,80 |
+  03-architecture.md               L241   GREEK SMALL LETTER PHI  | Klaim kausal | "Kehadiran φ^(top) = −0,12 **secara matematis membuktikan adanya upaya kamuflase aktif**" (`:236`) | - | "sistem memicu tanda bahaya 
+  03-architecture.md               L250   GREEK SMALL LETTER THETA  - `:106` θ_feat 0,75 vs `:94-112` Stage-2 naratif yang menyebut nilai berbeda; `:118` ReLU vs `:129-140` shared-GCN stage tanpa aktivasi konsisten.
+  03-architecture.md               L255   GREEK SMALL LETTER TAU  - `:213` "τ_fraud = batas ambang **rekomendasi penolakan**" - 05:60-61 melarang penolakan/pemotongan otomatis; kata "penolakan" di kontrak/API bertent
+  03-architecture.md               L294   GREEK SMALL LETTER TAU  2. **Kunci satu berkas ambang** `src/config/thresholds.ts` (versi, seed, τ, θ, γ) lalu impor di `data-uploader.tsx:137`, `simulation.tsx:73`, `oasis-d
+  03-architecture.md               L305   GREEK SMALL LETTER PHI  11. **Samakan tiga definisi fusi** (theory `:180-186` concat vs contracts `:217` weighted sum vs system-design `:60` attention) dan satu aktivasi (the
+  03-architecture.md               L344   GREEK SMALL LETTER THETA  sed -n '74p'  docs/algorithms/mhgsl-theory.md            → θ_feat = 0.75
+  03-architecture.md               L345   GREEK SMALL LETTER THETA  sed -n '106p' docs/architecture/system-design.md         → θ_feat = 0.75
+  03-architecture.md               L346   GREEK SMALL LETTER THETA  sed -n '211,213p' docs/api/data-contracts.md             → θ_feat 0.75 / τ_high 0.65 / τ_fraud 0.85
+  04-data-quality.md               L108   GREEK CAPITAL LETTER SIGMA  | 16 | Total nominal Rp3.526.650.000 | 03 §3.3, 00 §3 | Rp3.526.650.000 (Σ 300 `Biaya Rp`) | ✓ |
+  04-data-quality.md               L112   GREEK CAPITAL LETTER SIGMA  | 20 | Σ per-status = total | konsistensi internal | 2.685.550.000 + 279.950.000 + 561.150.000 = 3.526.650.000 | ✓ |
+  06-graph-mhgsl.md                L107   GREEK SMALL LETTER PHI  | F2 | `A_feat_ij = Sim` bila `φ(v_i)=φ(v_j)` **dan** `Sim > θ` | `mhgsl-theory.md:67-72` | **Restriksi same-type undocumented** dan tidak konsisten d
+  06-graph-mhgsl.md                L108   GREEK SMALL LETTER THETA  | F3 | `θ_feat` = **0,75** | `mhgsl-theory.md:74` | Kontradiksi dengan empat nilai lain (lihat §3.2). Tidak ada justifikasi empiris. | Pilih satu nila
+  06-graph-mhgsl.md                L112   GREEK SMALL LETTER SIGMA  | F7 | `H^(k) = σ(D̃^-1/2 Ã^(k) D̃^-1/2 X W^(k))` | `mhgsl-theory.md:152-154` | **Benar** dan cocok dengan `cell 9:12-15` (`torch.matmul(norm_adj, x)`
+  06-graph-mhgsl.md                L113   GREEK CAPITAL LETTER SIGMA  | F8 | `H^(shared) = (1/3)Σ_k H^(shared,k)` | `mhgsl-theory.md:170-172` | **Benar**, cocok `cell 9:100` dan `mhgsl.py:157`. | Pertahankan. |
+  06-graph-mhgsl.md                L116   GREEK SMALL LETTER ALPHA  | F11 | Focal Loss, `α=0,75, γ=2,0` | `mhgsl-theory.md:190-197` | Rumus **benar** dan cocok `cell 9:116-128` (alpha applied ke loss_pos, 1-alpha ke lo
+  06-graph-mhgsl.md                L117   GREEK SMALL LETTER PHI  | F12 | `ŷ = φ0 + φ_top + φ_feat + φ_sem + φ_shared + Σφ_attr` | `mhgsl-theory.md:205-207` | Additivitas SHAP hanya berlaku jika output model benar-be
+  06-graph-mhgsl.md                L118   GREEK SMALL LETTER PHI  | F13 | `φ_c(x) = Σ_{S⊆C\{c}} ...` | `mhgsl-theory.md:211-213` | Rumus Shapley **benar**. Tapi implementasi **bukan Shapley**: `backend/src/models/mhg
+  06-graph-mhgsl.md                L119   GREEK SMALL LETTER PHI  | F14 | `CamouflageSignature` ⇔ `ŷ≥0,85 ∧ φ_top<0 ∧ φ_feat>λ_feat ∧ φ_sem>λ_sem` | `mhgsl-theory.md:218-225` | **Kontradiksi antar dokumen**: `11-arch
+  06-graph-mhgsl.md                L120   GREEK SMALL LETTER PHI  | F15 | `φ_top = -0.12` "membuktikan adanya upaya kamuflase aktif" | `mhgsl-theory.md:236` | **Klaim falsifiable yang tidak diuji.** `φ_top` negatif b
+  06-graph-mhgsl.md                L140   GREEK SMALL LETTER THETA  | θ | pasangan tak berurut > θ | edge berarah | densitas terhadap n² |
+  06-graph-mhgsl.md                L148   GREEK SMALL LETTER THETA  Distribusi cosine off-diagonal: min −0,5496, maks 1,0000, mean 0,0003, median −0,0607. **Kanal fitur pada θ=0,85 hanya 2,11% padat.** Klaim "membentuk
+  06-graph-mhgsl.md                L236   GREEK SMALL LETTER THETA  | A_feat (θ=0,85) | 2.192 | 1.892 | **2,11%** | 2,44% |
+  06-graph-mhgsl.md                L273   GREEK SMALL LETTER THETA  Karena tidak ada definisi, audit ini menghitung sendiri struktur "padat" pada data nyata (A_feat θ=0,85, 1.892 edge di 300 node) untuk menguji apakah 
+  06-graph-mhgsl.md                L275   GREEK SMALL LETTER THETA  | Struktur terukur di A_feat (θ=0,85) | Nilai | Komposisi fraud |
+  06-graph-mhgsl.md                L420   GREEK SMALL LETTER PHI  - **Bisa dilakukan dengan benar**: shap `DeepExplainer` pada logit, dengan 4 "feature groups" = kanal (via masker kanal), memberi φ yang additif terha
+  06-graph-mhgsl.md                L421   GREEK SMALL LETTER PHI  - **Yang benar-benar mustahil**: `mhgsl-theory.md:236` menyimpulkan φ_top<0 "membuktikan adanya upaya kamuflase aktif". SHAP adalah atribusi terhadap 
+  06-graph-mhgsl.md                L437   GREEK SMALL LETTER PHI  | C-09 | "SHAP Attribution Decomposition Engine" / "Atribusi per-saluran" | `Aegis-JKN/docs/algorithms/mhgsl-theory.md:144`; `:203-213`; `Aegis-JKN/sr
+  06-graph-mhgsl.md                L461   GREEK SMALL LETTER THETA  | **E-01** | **Benchmark out-of-fold yang benar** | 5× repeated GroupKFold(5) by `pasien_id` (10 run, seed 0-9). Train & evaluate **hanya** pada fold.
+  06-graph-mhgsl.md                L463   GREEK CAPITAL LETTER DELTA  | **E-03** | **Ablasi per-saluran** | 4 konfigurasi: top-only, feat-only, sem-only, dan full-3-saluran (shared selalu on). Plus full tanpa-shared. **T
+  06-graph-mhgsl.md                L464   GREEK SMALL LETTER THETA  | **E-04** | **Sensitivitas θ_feat** | Sweep θ ∈ {0,50, 0,65, 0,75, 0,85, 0,92, 0,95} di dalam fold (never global). Plot AUPRC vs θ. Ambil satu θ dan 
+  06-graph-mhgsl.md                L467   GREEK CAPITAL LETTER SIGMA  | **E-07** | **SHAP per-saluran yang valid** | `DeepExplainer` pada **logit**, dengan masker channel-group. Verifikasi additivitas: `Σφ == logit − bas
+  06-graph-mhgsl.md                L484   GREEK SMALL LETTER THETA  | Densitas A_feat @θ=0,85 (off-diag) | **2,11%** (1.892 edge) | reproduksi cell 7 |
+  06-graph-mhgsl.md                L487   GREEK SMALL LETTER THETA  | Pasangan > θ=0,85 | 946 dari 44.850 (2,11%); 1.892 edge berarah | reproduksi cell 7 |
+  06-graph-mhgsl.md                L488   GREEK SMALL LETTER THETA  | Densitas A_feat pada θ=0,50 (backend) | 8,06% (3.613 pasangan = 7.226 edge berarah) | reproduksi cell 7 |
+  06-graph-mhgsl.md                L502   GREEK SMALL LETTER PHI  | Baris dengan `φ_top` negatif | **0 / 300** (syarat CamouflageSignature) | dihitung dari data |
+  06-graph-mhgsl.md                L509   GREEK SMALL LETTER THETA  | Komponen terhubung A_feat (θ=0,85) | 41 (terbesar 35 node); 20 node terisolasi | dihitung dari data |
+  06-methodology.md                L39    GREEK SMALL LETTER THETA  | **TINGGI** | 8 | I-02, I-04, I-08, I-09, I-11, I-13, I-16, §6 | KLM115 mendispute ambang 0,80; tabel sindikat meleset 5/9; normalisasi di luar fold;
+  06-methodology.md                L70    GREEK SMALL LETTER THETA  | Graf | Dibangun di **seluruh 300 baris** (sel 7: `construct_multichannel_graphs(df_claims, X_clean, θ=0.85)`), dipakai utuh di setiap fold | 58,2% e
+  06-methodology.md                L104   GREEK SMALL LETTER THETA  | I-09 | Ambang kanal fitur | 10 baris 166 & notebook sel 7: `θ_feat = 0.85` | `pipeline.py:251` & `pipeline.py:327`: `theta_feat: float = 0.5` | Back
+  06-methodology.md                L219   GREEK CAPITAL LETTER PHI  - Skor laten model: dua populasi normal, `AUROC` target 0,90, disimulasikan dengan `mu = sqrt(2)·Φ⁻¹(AUROC)`, σ=1.
+  06-methodology.md                L287   GREEK CAPITAL LETTER DELTA  | n_pos | ΔAUPRC titik | CI 95% | Signifikan? |
+  06-methodology.md                L298   GREEK CAPITAL LETTER DELTA  | n_pos | prevalensi | CI 95% ΔAUPRC | Signifikan? |
+  06-methodology.md                L306   GREEK CAPITAL LETTER DELTA  **Ambang praktis: ≥60 kasus positif** (prevalensi 20% pada 300 baris) dibutuhkan untuk membedakan ΔAUPRC 0,10. Pada prevalensi produksi 3–7%, itu bera
+  06-methodology.md                L340   GREEK CAPITAL LETTER DELTA  | 3 | AUPRC & AUROC MHGSL ≥ baseline XGBoost/MLP | **TIDAK TERUKUR** | Benchmark in-sample (sel 13). Tanpa test set tersisih, perbedaan in-sample anta
+  06-methodology.md                L381   GREEK SMALL LETTER THETA  | **2. Graf Heterogen & MHGSL** | 4–6 | PyG `HeteroData`, MHGSL, SHAP per-saluran | `torch-geometric` ada di requirements; model MHGSL terimplementasi
+  06-methodology.md                L389   GREEK CAPITAL LETTER DELTA  - **Daya statistik.** Min 60 kasus positif untuk membedakan ΔAUPRC 0,10 (§6.8) -butuh 857–2000 baris pada prevalensi produksi. Rencana tidak menyebut 
+  06-methodology.md                L406   GREEK SMALL LETTER THETA  10. **Selaraskan implementasi ke spesifikasi**: θ_feat 0,85 di `pipeline.py:251/327` (I-09); hapus edge `sindikat` dari A_sem (I-10); samakan target l
+  06-methodology.md                L443   GREEK CAPITAL LETTER DELTA  | CI 95% ΔAUPRC (0,92 vs 0,88), n=36 | [−0,045 ; +0,327] → **tidak signifikan** |
+  06-methodology.md                L444   GREEK CAPITAL LETTER DELTA  | Min `n_pos` untuk ΔAUPRC 0,10 signifikan | **60** (prevalensi 20% pada 300 baris) |
+  08-frontend.md                   L202   GREEK CAPITAL LETTER DELTA  | 8 | `Δ +0.20` MHGSL vs XGBoost | `src/components/mhgsl/comparison.tsx:134` | `/` - header graf AUPRC | **Tidak** | Diferensiasi absolut dari angka f
+  08-frontend.md                   L213   GREEK SMALL LETTER SIGMA  | 19 | `4.2×` di atas peer, `+4.2σ` deviasi peer | `src/components/mhgsl/data.ts:428` (evidence), `data.ts:439` (metrik) | `/` - modal drilldown | **T
+  08-frontend.md                   L236   GREEK SMALL LETTER GAMMA  | **Late fusion `p_fused = p_graph + γ·f_text·(1−p_graph)`** | Ya - `02-architecture.md:37-38`; `10-simulation-dataset.md:166,172` | Hanya teks LaTeX:
+  08-frontend.md                   L391   GREEK SMALL LETTER GAMMA  | **Fase 3** - Validasi Final & Pilot 5 FKRTL | "Visi jangka panjang" | "Late Fusion NLP teks & sentimen (γ = 0.10)" | γ hanya konstanta di teks LaTeX
+  13-text-channel.md               L389   GREEK SMALL LETTER THETA  | **Bagaimana fusion dengan channel lain** | ✅ Ya (rumus) | `p_fused = p_graph + 0.10 · f_text · (1 − p_graph)` dengan `θ_feat = 0.85`; `γ = 0.10`; `f
+  13-text-channel.md               L440   GREEK SMALL LETTER GAMMA  - **Jangan pernah** izinkan output LLM langsung masuk ke skor; jika nilai LLM masuk formula, cap per-claim contribution (mis. `f_text ∈ [0,1]` dan cap
+  13-text-channel.md               L502   GREEK SMALL LETTER THETA  | R15 | **Perbaiki ambigu `θ_feat`** | `θ_feat = 0.85` dipakai untuk dua hal berbeda: "cosine θ" (channel fitur) dan "feature threshold" (fusion). Gan
+  18-ux.md                         L87    GREEK CAPITAL LETTER DELTA  | `/` | Comparison | Tile "+20% lonjakan AUPRC" ditulis sebagai persen, tapi angka di atasnya "Δ MHGSL vs XGBoost +0.20" - satuan bercampur (0.20 abso
+  18-ux.md                         L248   GREEK SMALL LETTER THETA  | **2:50–3:30** | Scroll ke **Fraud Ring**. Klik **kartu "P01"** di "Akses Cepat Profil Investigasi" (klik node SVG hanya jika juri pakai mouse; kartu
+  18-ux.md                         L348   GREEK SMALL LETTER THETA  | Disclosure sintetis di `/simulasi` | `src/components/oasis/oasis-dashboard.tsx:247-274` | ✅ **Bagus** - banner "Kejujuran Label & Protokol Ilmiah" +
+  19-consistency.md                L191   GREEK SMALL LETTER THETA  | Saluran graf | A_top 10.386 edges; A_feat 15.202 (θ≥0,50); A_sem 7.880 | 209-211 |
+  21-colab-dashboard-provenance.md L42    GREEK SMALL LETTER GAMMA  10. **Kode kanal-teks "p_lead > 0.85" yang terbaca pada PDF tidak ada di sumber.** Baris HTML sumber berbunyi `p_fused = p_graph + γ·f_text·(1 − p_gra
+  21-colab-dashboard-provenance.md L367   GREEK SMALL LETTER GAMMA  Baris HTML sumber (`21_fixx_nb.txt:877`): `p_fused = p_graph + γ·f_text·(1 − p_graph) · γ = 0.10 · θ_feat = 0.85`. Rerenderan bitmap 90° menukar glyph
+  21-colab-dashboard-provenance.md L477   GREEK SMALL LETTER THETA  | " | 877 | baris `θ_feat = 0.85` (bukan "p_lead") |
+
+### MINUS  x75
+  01-governance.md                 L219   −  - **B-4 (BLOCKER)** - Klaimfinancial `11-archive-proposal.md` L344–L348/Linux: 240 auto_clear "Rp 0 (Klaim Layak Bayar)"; 24 review "Rp 112.420.000 (P
+  03-architecture.md               L132   −  | G-16 | Versi model & threshold di UI + 03 §4 "satu tempat, diberi versi" | 02:46, 03:46 | **DEVIASI** | `src/components/mhgsl/data-uploader.tsx:137`
+  03-architecture.md               L221   −  | AUPRC +20%, false negatives −42% | `dataset-explorer.tsx:1800` | literal |
+  03-architecture.md               L241   −  | Klaim kausal | "Kehadiran φ^(top) = −0,12 **secara matematis membuktikan adanya upaya kamuflase aktif**" (`:236`) | - | "sistem memicu tanda bahaya 
+  03-architecture.md               L242   −  | Contoh hitung | ŷ = 0,20 −0,12 +0,38 +0,41 +0,07 = 0,94 (`:234`) | - | - | Angka 0,07 tanpa sumber; tidak cocokkan 0,30 + … |
+  03-architecture.md               L384   −  - Polaritas `Skor Sentimen` **terdefinisi dan tidak tumpang tindih**: negatif 72 (−0,9…−0,3), netral 58 (0,05…0,15), positif 170 (0,6…0,85) - memenuhi
+  04-data-quality.md               L77    −  | Skor Sentimen | Ya | Float −0.90…0.85 | Definisikan rentang dan polaritas | Semua dalam −1…1; partisi ketat: negatif [−0,90,−0,30], netral [0,05,0,1
+  04-data-quality.md               L211   −  | medium | 10 | 10 | −0,020 | **+0,160** |
+  04-data-quality.md               L213   −  | fraud | 36 | 23 | −0,030 | +0,040 |
+  04-data-quality.md               L214   −  | **Total** | 300 | **42** | −0,030 | **+0,170** |
+  04-data-quality.md               L448   −  - `Sentimen` 100% konsisten dengan polaritas `Skor Sentimen`; semua skor dalam −1…1.
+  05-evidence.md                   L17    −  2. **Angka benchmark AUPRC tidak ada di sumber yang dikutip.** Full text paper MHGSL (Heliyon 10(9):e30045, 2024, PMC11061682) diperiksa penuh: string
+  05-evidence.md                   L49    −  | E-08 AUPRC +20% & FN −42% vs XGBoost | cell.com Heliyon (403) → full text via EuropePMC | B | Perlu Verifikasi | Tinggi | **Angka tidak ada di paper
+  05-evidence.md                   L51    −  | E-10 Waktu telaah −45% | - | - | Belum dibuktikan | Rendah/Tinggi | Tidak ada di 04-matriks klaim dan 06-research-notes; sumber tidak ada. Harus tet
+  05-evidence.md                   L211   −  - Namun **06 §5 "Matriks Bukti Awal" hanya memuat 8 dari 12 klaim 04** (E-10 "waktu −45%" dan E-11 "Rp507.370.000" tidak masuk). 06 §6 sendiri sudah m
+  05-evidence.md                   L254   −  2. **Turunkan status AUPRC.** Hapus "AUPRC +20% & FN −42%" sebagai klaim bersumber paper; pindahkan ke daftar "belum tereproduksi" dengan sumber = art
+  06-graph-mhgsl.md                L106   −  | F1 | `Sim_feat = (x_i·x_j)/(‖x_i‖‖x_j‖)` | `mhgsl-theory.md:61-63` | Cosine **hanya bermakna pada vektor non-negatif**. Vektor yang memuat `biaya_rp
+  06-graph-mhgsl.md                L121   −  | F16 | `p_fused = p_graph + 0,10·f_text·(1−p_graph)` | `11-archive-proposal.md:~230`, `math-formulas.tsx:248-251` | Gate yang masuk akal. **Tapi `f_t
+  06-graph-mhgsl.md                L148   −  Distribusi cosine off-diagonal: min −0,5496, maks 1,0000, mean 0,0003, median −0,0607. **Kanal fitur pada θ=0,85 hanya 2,11% padat.** Klaim "membentuk
+  06-graph-mhgsl.md                L152   −  **Ada, tapi hanya di satu tempat.** `notebooks` cell 5:58-59 menerapkan `StandardScaler` ke seluruh 34 fitur **sebelum** cosine. Ini membuat cosine la
+  06-graph-mhgsl.md                L430   −  | C-02 | "AUPRC +20%, false negatives −42% vs baseline" | `corpus/12-archive-architecture.md:30`; `Aegis-JKN/src/components/mhgsl/data.ts:23`; `i18n.t
+  06-graph-mhgsl.md                L436   −  | C-08 | "Nilai negatif W_top = −0,12 membuktikan saluran topologi direkayasa" | `corpus/11-archive-proposal.md:220`; `Aegis-JKN/docs/algorithms/mhgsl
+  06-graph-mhgsl.md                L437   −  | C-09 | "SHAP Attribution Decomposition Engine" / "Atribusi per-saluran" | `Aegis-JKN/docs/algorithms/mhgsl-theory.md:144`; `:203-213`; `Aegis-JKN/sr
+  06-graph-mhgsl.md                L467   −  | **E-07** | **SHAP per-saluran yang valid** | `DeepExplainer` pada **logit**, dengan masker channel-group. Verifikasi additivitas: `Σφ == logit − bas
+  06-methodology.md                L128   −  | **`Skor Sentimen`** | Tidak | AUROC(fraud vs low) = **0,909**; AUROC(anomali vs low) = 0,850. Rerata fraud = −0,374 vs low = +0,459 | Model sentimen
+  06-methodology.md                L217   −  - Distribusi binomial: `n_pos` kasus fraud, `n_neg` = 300 − `n_pos`.
+  06-methodology.md                L289   −  | 21 (prevalensi 7%) | +0,135 | [−0,155 ; +0,395] | **Tidak** |
+  06-methodology.md                L290   −  | **36 (prevalensi 12%, dataset aktual)** | +0,139 | [−0,045 ; +0,327] | **Tidak** |
+  06-methodology.md                L292   −  | 200 | −0,005 | [−0,047 ; +0,034] | Tidak |
+  06-methodology.md                L300   −  | 36 | 12% | [−0,060 ; +0,300] | Tidak |
+  06-methodology.md                L304   −  | 200 | 67% | [−0,046 ; +0,066] | Tidak |
+  06-methodology.md                L340   −  | 3 | AUPRC & AUROC MHGSL ≥ baseline XGBoost/MLP | **TIDAK TERUKUR** | Benchmark in-sample (sel 13). Tanpa test set tersisih, perbedaan in-sample anta
+  06-methodology.md                L443   −  | CI 95% ΔAUPRC (0,92 vs 0,88), n=36 | [−0,045 ; +0,327] → **tidak signifikan** |
+  07-generator.md                  L98    −  | **Jumlah modus** | **14 modus** | **13 modus** | **−1** | ✗ SELISIH |
+  07-generator.md                  L251   −  | `NORMAL` | **239** | −1 |
+  08-frontend.md                   L115   −  | SHAP | `data.ts:340-346` | 5 atribut | **MOCK** | 0.41/0.28/0.19/0.12/−0.07 |
+  08-frontend.md                   L118   −  | Delta/klaim | `comparison.tsx:134,203,207,211` | literal | **MOCK** | `+0.20`, `+20%`, `×3`, `−42%` |
+  08-frontend.md                   L204   −  | 10 | `−42% false negatives` | `src/components/mhgsl/comparison.tsx:211` | `/` - 3 chip ringkasan | **Tidak** | Klaim recall improvement; tak ada dat
+  08-frontend.md                   L236   −  | **Late fusion `p_fused = p_graph + γ·f_text·(1−p_graph)`** | Ya - `02-architecture.md:37-38`; `10-simulation-dataset.md:166,172` | Hanya teks LaTeX:
+  08-frontend.md                   L352   −  | Atribusi SHAP | `data.ts:340-346` - 5 nilai konstanta (0.41/0.28/0.19/0.12/−0.07) | Hardcode |
+  10-competition.md                L464   −  | P0-8 | **Buang semua angka yang tidak reproducible** dari deck & demo: AUPRC 0,9142, akurasi 93,0%, ROC-AUC 0,9825, masking 89,4%, FPR 10,6%, −45% w
+  13-text-channel.md               L51    −  | % positif | 62,0% | 56,7% | −5,3 pp | ⚠️ Digeser |
+  13-text-channel.md               L65    −  | KLM001 | upcoding | 0.94 | fraud | negatif | −0.75 |
+  13-text-channel.md               L66    −  | KLM002 | upcoding | 0.95 | fraud | negatif | −0.80 |
+  13-text-channel.md               L67    −  | KLM003 | upcoding | 0.93 | fraud | negatif | −0.78 |
+  13-text-channel.md               L68    −  | KLM004 | phantom_billing | 0.92 | fraud | negatif | −0.90 |
+  13-text-channel.md               L69    −  | KLM005 | phantom_billing | 0.94 | fraud | negatif | −0.85 |
+  13-text-channel.md               L70    −  | KLM006 | phantom_billing | 0.93 | fraud | negatif | −0.88 |
+  13-text-channel.md               L71    −  | KLM018 | upcoding | 0.68 | high | negatif | −0.70 |
+  13-text-channel.md               L72    −  | KLM024 | upcoding | 0.66 | high | negatif | −0.80 |
+  13-text-channel.md               L73    −  | **KLM105** | iur_biaya | 0.84 | fraud | negatif | −0.75 |
+  13-text-channel.md               L74    −  | **KLM106** | iur_biaya | 0.82 | fraud | negatif | −0.70 |
+  13-text-channel.md               L75    −  | **KLM107** | iur_biaya | 0.85 | fraud | negatif | −0.80 |
+  13-text-channel.md               L76    −  | **KLM108** | iur_biaya | 0.83 | fraud | negatif | −0.65 |
+  13-text-channel.md               L107   −  | negatif | 72 | −0.90 | −0.30 | −0.4708 |
+  13-text-channel.md               L112   −  - negatif vs netral: batas −0.30 < +0.05 → **SEPARABLE**
+  13-text-channel.md               L114   −  - negatif vs positif: batas −0.30 < +0.60 → **SEPARABLE**
+  13-text-channel.md               L116   −  **Ambang kanonik yang direkomendasikan** (netral bila `|skor| < t`, positif bila `skor > t`, negatif bila `skor < −t`):
+  13-text-channel.md               L387   −  | **Bagaimana sentimen dihitung** | ⚠️ Sebagian | `10-simulation-dataset.md:101` "modul NLP/LLM (Gemini)"; `architecture_full.md:161` "modul LLM (Gemi
+  13-text-channel.md               L389   −  | **Bagaimana fusion dengan channel lain** | ✅ Ya (rumus) | `p_fused = p_graph + 0.10 · f_text · (1 − p_graph)` dengan `θ_feat = 0.85`; `γ = 0.10`; `f
+  16-red-team.md                   L63    −  | 4 | **Rp507.370.000 = angka yang disesuaikan setelah faktanya; rincian per-modusnya memuat bukti forensik.** | **Sangat tinggi.** Tiga modus eksak c
+  16-red-team.md                   L405   −  | #18 | Throughput 3,2× dan waktu −45% tanpa load test | TERDAKAT | skrip §5; `11-archive-proposal.md:350`; `04-evidence-matrix.md:36-37` |
+  18-ux.md                         L15    −  | **Sedang** | 14 | Kontras opacity `text-foreground/80`; `text-muted-foreground/80`; tombol "Bandingkan Data" hardcoded ID; tab comparison hardcoded;
+  18-ux.md                         L86    −  | `/` | Comparison | Tile "−42% false negatives" tidak dapat direproduksi dari `COMPARISON_ROWS`/`RADAR_DATA` | `src/components/mhgsl/comparison.tsx:2
+  18-ux.md                         L177   −  | "−42% false negatives" | −42% | tidak dapat diturunkan dari `RADAR_DATA`/`COMPARISON_ROWS` | `src/components/mhgsl/comparison.tsx:210` |
+  18-ux.md                         L236   −  **Kesimpulan: aplikasi ini memakai dua strategi data yang berbeda.** `/dataset` dan `/simulasi` = payload nyata (statis, bukan live-computed) yang **k
+  18-ux.md                         L339   −  | "−42% false negatives" | `src/components/mhgsl/comparison.tsx:210` | Angka besar, tidak dapat diturunkan dari tabel mana pun di halaman | Terlihat "
+  18-ux.md                         L369   −  | **P0** | 2. **Perbaiki 6 angka hardcoded yang salah/kontradiktif**: "240 Rawat Inap · 60 Jalan" → hitung (189/111); "14 edge berlebih" → 13; "Rp 14,
+  19-consistency.md                L101   −  | E-08 | AUPRC +20%, FN −42% - perlu verifikasi | 35 |
+  19-consistency.md                L102   −  | E-09 / E-10 | telaah 20→3 menit / −45% - dua klaim terpisah | 36-37 |
+  19-consistency.md                L196   −  | Waktu telaah | −45% (10-20 → 3-5 menit) | 340 |
+  19-consistency.md                L208   −  | Kinerja adaptasi literatur | AUPRC +20%; false negatives −42% | 30, 36, 55 |
+  19-consistency.md                L313   −  | Waktu telaah −45% | belum dibuktikan (`04:37` E-10) | Ya - `14:815` |
+  21-colab-dashboard-provenance.md L42    −  10. **Kode kanal-teks "p_lead > 0.85" yang terbaca pada PDF tidak ada di sumber.** Baris HTML sumber berbunyi `p_fused = p_graph + γ·f_text·(1 − p_gra
+  21-colab-dashboard-provenance.md L367   −  Baris HTML sumber (`21_fixx_nb.txt:877`): `p_fused = p_graph + γ·f_text·(1 − p_graph) · γ = 0.10 · θ_feat = 0.85`. Rerenderan bitmap 90° menukar glyph
+
+### THAI  x10
+  20-repo-artifact-integrity.md    L164   THAI CHARACTER SARA UEE  Implikasi terhadap audit ini: tenggat yang mengikat adalah **1 November 2026** untuk submit project akhir, bukan tanggal pendaftaran. Arti القسم 3 di 

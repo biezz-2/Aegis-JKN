@@ -1,0 +1,36 @@
+[0016]<> Demikian pernyataan ini kami buat dengan penuh rasa tanggung jawab, integritas moral, dan dedikasi demi mendukung keberlanjutan Program Jaminan Kesehatan Nasional (JKN) yang berkeadilan bagi seluruh rakyat Indonesia.
+
+[0017]<> Mengetahui,Perwakilan Tim Teknis & Arsitektur( Tim Pengusul Kandidat 1 )
+
+[0018]<> Cimahi, 9 Oktober 2026Perwakilan Riset & Strategi Dampak( Tim Pengusul Kandidat 1 )
+
+[0019]<> 
+
+[0020]<> 
+
+[0021]<> 
+
+[0022]<> RINGKASAN EKSEKUTIF
+
+[0023]<> Program Jaminan Kesehatan Nasional (JKN) yang dikelola oleh BPJS Kesehatan merupakan salah satu sistem jaminan kesehatan semesta (Universal Health Coverage) terbesar dan paling kompleks di dunia, mencakup lebih dari 270 juta jiwa kepesertaan aktif dan memproses lebih dari dua juta klaim layanan kesehatan setiap harinya dari fasilitas kesehatan rujukan tingkat lanjutan (FKRTL) di seluruh Indonesia. Namun, pengelolaan skala masif ini dihadapkan pada ketimpangan rasio beban verifikasi yang sangat tajam, di mana hanya sekitar 1.000 verifikator klaim BPJS Kesehatan yang bertugas menelaah jutaan berkas tersebut (rasio beban mencapai 2.000 klaim per verifikator per hari, jauh melampaui kapasitas telaah mendalam manusia sebesar 50–70 berkas per hari). Keterbatasan kognitif dan fenomena kelelahan peringatan (alert fatigue) ini membuka celah asimetri informasi yang dimanfaatkan oleh oknum terorganisir untuk melakukan kecurangan klaim (fraud) terstruktur, khususnya upcoding severity level, phantom billing, unbundling prosedur, hingga sindikat kolusi rujukan dokter-faskes (fraud rings).
+
+[0024]<> Tantangan paling kritis dalam deteksi kecurangan modern adalah fenomena Kamuflase Topologis (Topological Camouflage). Pelaku kecurangan terorganisir sengaja merekayasa alur rujukan administratif fisik agar tampak patuh regulasi berjenjang (sehingga terlihat normal pada model statistik tabular dan aturan deterministik), namun menyembunyikan anomali klastering biaya, durasi rawat (LOS), dan prosedur tidak lazim secara terselubung. Proposal ini mengusulkan solusi inovatif terpadu: AEGIS-JKN (Detect Smarter, Protect JKN), sebuah platform Fraud Intelligence dan Clinical Decision Support System (CDSS) berbasis arsitektur Multi-Hop Graph Structure Learning (MHGSL) yang dikombinasikan dengan simulasi multi-agen multimodal (OASIS) dalam kerangka kerja Human-in-the-Loop (HITL) yang akuntabel.
+
+[0025]<> Keunggulan utama Aegis-JKN berakar pada lima pilar strategis:
+
+[0026]<ListBullet> 1. Paradigma Deteksi Tri-Channel MHGSL: Memodelkan interaksi layanan medis ke dalam graf heterogen yang didekomposisi ke dalam tiga saluran matriks ketetanggaan: (1) Saluran Topologi Fisik (A_top) untuk relasi penugasan DPJP dan rujukan faskes; (2) Saluran Kemiripan Fitur (A_feat) berbasis cosine similarity vektor atribut klinis-finansial (LOS, biaya INA-CBG, obat) guna mendeteksi anomali identik implisit; serta (3) Saluran Semantik Metapath (A_sem) yang memproyeksikan rantai rujukan klinis via PathSim untuk menyingkap ketidaksesuaian kompetensi dan rekayasa kode penagihan.
+
+[0027]<ListBullet> 2. Arsitektur Tri-Tier & Right-Sized Engineering: Mengombinasikan Tier-1 Deterministic Rule Engine (<50 ms) untuk menyaring 40-60% klaim normal/pelanggaran eksplisit Permenkes No. 16/2019, Tier-2 Tabular XGBoost untuk anomali statistik per klaim, dan Tier-3 PyTorch Geometric HeteroData GCN untuk ekstraksi sindikat multi-hop, yang disatukan via Late Fusion multimodal dengan narasi resume klinis.
+
+[0028]<ListBullet> 3. Transparansi Penalaran (Explainable AI / XAI): Setiap flag anomali disertai dekomposisi atribusi SHAP per kanal graf (phi_top, phi_feat, phi_sem) serta visualisasi SVG interaktif klaster bipartite faskes-dokter, mengeliminasi sifat kotak hitam (black-box) dan langsung memandu verifikator ke bukti inkonsistensi klinis.
+
+[0029]<ListBullet> 4. Fail-Safe Human Autonomy & Active Learning: Menerapkan prinsip anti-automated adverse decision di mana AI tidak memiliki hak veto penolakan klaim. Dilengkapi protokol darurat Safe-Mode Fallback yang otomatis membekukan saran AI jika tingkat penolakan (override) oleh verifikator melampaui 30%.
+
+[0030]<ListBullet> 5. Kepatuhan Ketat UU PDP No. 27/2022 & Interoperabilitas: Seluruh arsitektur didesain beroperasi pada perimeter tertutup (private on-premise cloud) BPJS Kesehatan dengan enkripsi AES-256 dan salted SHA-256 pseudonymization, selaras penuh dengan standar SATUSEHAT HL7 FHIR R4 dan regulasi UU PDP No. 27/2022.
+
+[0031]<> Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09). Pada portofolio sampel tersebut, sistem berhasil mengidentifikasi 60 klaim anomali dengan potensi penghematan/pencegahan kebocoran tarif INA-CBG riil sebesar Rp 507,37 Juta (rata-rata Rp 8,46 Juta per kasus fraud). Implementasi Aegis-JKN diproyeksikan memangkas durasi review awal sebesar 30-50% per berkas anomali, memberikan rasio Cost-to-Impact konservatif 1 : 15, serta menyelamatkan ratusan miliar rupiah Dana Jaminan Sosial (DJS) Kesehatan setiap tahunnya.
+
+[0032]<> KATA KUNCI: Kecurangan Klaim JKN, Upcoding, Phantom Billing, Unbundling, Fraud Rings, Multi-Hop Graph Structure Learning (MHGSL), Topological Camouflage, Human-in-the-Loop, Explainable AI (XAI), UU Pelindungan Data Pribadi No. 27/2022.
+
+[0033]<> 
+

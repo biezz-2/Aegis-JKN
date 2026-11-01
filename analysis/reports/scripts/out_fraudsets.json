@@ -1,0 +1,128 @@
+{
+ "A_eq_B": true,
+ "A_only": [],
+ "B_only": [],
+ "A_eq_C": false,
+ "A_minus_C": [
+  "KLM121",
+  "KLM122"
+ ],
+ "C_minus_A": [
+  "KLM016",
+  "KLM017"
+ ],
+ "B_eq_C": false,
+ "B_minus_C": [
+  "KLM121",
+  "KLM122"
+ ],
+ "C_minus_B": [
+  "KLM016",
+  "KLM017"
+ ],
+ "crosstab": {
+  "0|high|review|NOSYND": 12,
+  "0|high|review|SYND": 2,
+  "0|low|auto_clear|NOSYND": 240,
+  "0|medium|review|NOSYND": 10,
+  "1|fraud|escalate|NOSYND": 2,
+  "1|fraud|escalate|SYND": 34
+ },
+ "mismatch_rows": [
+  {
+   "claim_id": "KLM016",
+   "status": "review",
+   "risiko": "high",
+   "is_fraud": "0",
+   "sindikat": "SYND-05",
+   "modus": "cloning",
+   "skor_fraud": "0.78",
+   "biaya_rp": "7450000"
+  },
+  {
+   "claim_id": "KLM017",
+   "status": "review",
+   "risiko": "high",
+   "is_fraud": "0",
+   "sindikat": "SYND-05",
+   "modus": "cloning",
+   "skor_fraud": "0.79",
+   "biaya_rp": "7450000"
+  },
+  {
+   "claim_id": "KLM121",
+   "status": "escalate",
+   "risiko": "fraud",
+   "is_fraud": "1",
+   "sindikat": "none",
+   "modus": "biaya_markup",
+   "skor_fraud": "0.81",
+   "biaya_rp": "27500000"
+  },
+  {
+   "claim_id": "KLM122",
+   "status": "escalate",
+   "risiko": "fraud",
+   "is_fraud": "1",
+   "sindikat": "none",
+   "modus": "drug_diversion",
+   "skor_fraud": "0.82",
+   "biaya_rp": "8900000"
+  }
+ ],
+ "tot": 3526650000,
+ "esc_total": 561150000,
+ "rev_total": 279950000,
+ "esc_rev_total": 841100000,
+ "risiko_high_total": 269100000,
+ "risiko_fraud_high_total": 830250000,
+ "nonlow_total": 830250000,
+ "n_risiko_fraud_high": 50,
+ "n_medi_high": 24,
+ "medi_high_total": 279950000,
+ "syndikat_total": 539650000,
+ "n_syndikat": 36,
+ "esc_rev_minus": 0,
+ "target": 507370000,
+ "esc_rev_minus_target": 333730000,
+ "esc_minus_target": 53780000,
+ "nonfraud_mean_biaya": 11232954.55,
+ "fraud_mean_biaya": 15587500,
+ "fraud_sum": 561150000,
+ "fraud_minus_nonfraudmean_x36": 156763636.36363637,
+ "esc_modus_totals": {
+  "upcoding": 156900000,
+  "phantom_billing": 134250000,
+  "unbundling": 52800000,
+  "drug_diversion": 26030000,
+  "repeat_billing": 61600000,
+  "iur_biaya": 63880000,
+  "readmission_berulang": 25290000,
+  "excessive_usage": 12900000,
+  "biaya_markup": 27500000
+ },
+ "esc_modus_n": {
+  "upcoding": 3,
+  "phantom_billing": 3,
+  "unbundling": 6,
+  "drug_diversion": 3,
+  "repeat_billing": 4,
+  "iur_biaya": 4,
+  "readmission_berulang": 6,
+  "excessive_usage": 6,
+  "biaya_markup": 1
+ },
+ "modus_subset_exact_507370000": [],
+ "overcharge_median_by_layanan": 353975000.0,
+ "overcharge_median_by_layanan_floor0": 396355000.0,
+ "overcharge_vs_global_median": 400050000.0,
+ "global_median_biaya": 4475000.0,
+ "ratio_36_264": 7.333333333333333,
+ "ratio_pct_36": 12.0,
+ "507370000_div_60": 8456166.666666666,
+ "507370000_div_36": 14093611.111111112,
+ "841100000_div_60": 14018333.333333334,
+ "841100000_div_36": 23363888.888888888,
+ "esc_avg_biaya": 15587500.0,
+ "esc_rev_avg_biaya": 14018333.33
+}

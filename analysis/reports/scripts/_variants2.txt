@@ -1,0 +1,151 @@
+========================================================================
+## 'P3** ='  (0 unique)
+
+========================================================================
+## 'P2** = kualitas'  (0 unique)
+
+========================================================================
+## 'kualitas &'  (5 unique)
+   ' P28-P40 tidak pernah dipakai skenario apa pun.\\n\\n### Prioritas P1 — kualitas & semantik data\\n\\n5. **Pisahkan \\"tidak berlaku\\" dari \\"kosong\\" pada LOS.** Ga'
+   'idak pernah dipakai skenario apa pun.\\n436\\t\\n437\\t### Prioritas P1 — kualitas & semantik data\\n438\\t\\n439\\t5. **Pisahkan \\"tidak berlaku\\" dari \\"kosong\\" pada'
+   'idak pernah dipakai skenario apa pun.\\n455\\t\\n456\\t### Prioritas P1 — kualitas & semantik data\\n457\\t\\n458\\t5. **Pisahkan \\"tidak berlaku\\" dari \\"kosong\\" pada'
+   'idak pernah dipakai skenario apa pun.\\n591\\t\\n592\\t### Prioritas P1 - kualitas & semantik data\\n593\\t\\n594\\t5. **Pisahkan \\"tidak berlaku\\" dari \\"kosong\\" pada'
+   ' P28-P40 tidak pernah dipakai skenario apa pun.\\n\\n### Prioritas P1 - kualitas & semantik data\\n\\n5. **Pisahkan \\"tidak berlaku\\" dari \\"kosong\\" pada LOS.** Ga'
+
+========================================================================
+## 'Demo butuh internet'  (2 unique)
+   'mp4 + PDF + repo offline; re-run demo di mesin bersih 2× | Frontend | Demo butuh internet saatQgshow |\\n| R-10 | Tim non-pengembang tidak bisa menjalankan demo '
+   'mp4 + PDF + repo offline; re-run demo di mesin bersih 2× | Frontend | Demo butuh internet saatQgshow |\\r\\n197 | R-10 | Tim non-pengembang tidak bisa menjalankan'
+
+========================================================================
+## 'text channel labels'  (0 unique)
+
+========================================================================
+## 'label kanal teks'  (0 unique)
+
+========================================================================
+## 'hilir dari `Modus`'  (0 unique)
+
+========================================================================
+## 'leakage label'  (3 unique)
+   'ngan densest-subgraph / community | **0** | verifikasi |\\n\\n**Catatan leakage label (P0 tambahan, Dataset):** kolom `Skor Fraud` pada `claims_v2_live.csv` adala'
+   ' ML | **0 kemunculan di kode** | verifikasi \\r\\n485 | claims_ || atan leakage label (P0 tambahan, Dataset):** kolom `Skor Fraud` pada `claims_v2_live.csv` adala'
+   'graph / community | **0** | verifikasi |\\r\\n508 | \\r\\n509 | **Catatan leakage label (P0 tambahan, Dataset):** kolom `Skor Fraud` pada `claims_v2_live.csv` adala'
+
+========================================================================
+## 'tidak ada ambang tertulis'  (0 unique)
+
+========================================================================
+## 'sudah SHOULD'  (0 unique)
+
+========================================================================
+## 'SHOULD namun dilanggar'  (0 unique)
+
+========================================================================
+## 'definisi asli'  (0 unique)
+
+========================================================================
+## 'tidak lagi'  (22 unique)
+   'ualisasi klaster sindikat dan matriks diskrepansi klinis, verifikator tidak lagi perlu membaca puluhan lembar resume medis secara manual. Waktu telaah awal terp'
+   'bagi ke dalam beberapa tipologi kritis. Di lapangan, kecurangan klaim tidak lagi dilakukan secara sporadis oleh individu terisolasi, melainkan telah berevolusi '
+   ' (KLM015/16/17/18/19/20/21/22/23/24 -> high/medium,\\")\\nprint(\\"      tidak lagi dihitung ground truth v2.1). Dokumen 10 §v2.1 TIDAK menyebut penurunan ini.\\")\\'
+   'statusnya (KLM015/16/17/18/19/20/21/22/23/24 -> high/medium,\\r\\n      tidak lagi dihitung ground truth v2.1). Dokumen 10 §v2.1 TIDAK menyebut penurunan ini.\\r\\n'
+   'M015/16/17/18/19/20/21/22/23/24 -> high/medium,\\")\\n124:print(\\"      tidak lagi dihitung ground truth v2.1). Dokumen 10 §v2.1 TIDAK menyebut penurunan ini.\\")"'
+
+========================================================================
+## 'Wizard'  (0 unique)
+
+========================================================================
+## 'kontennya'  (0 unique)
+
+========================================================================
+## 'instrument'  (22 unique)
+   '\\n                             \\"The repo contains no usability study instrument, no raw \\"\\n                             \\"timing data, no participant log.\\"),'
+   'claim, N participants, variance. The repo contains no usability study instrument, no raw timing data, no participant log.\\nThroughput                   3,2x    '
+   'itive Behavioural Therapy (iCBT). However, whether the SUS is a valid instrument to measure usability in this context is unclear. The aim of this study is to as'
+   'explanations\\n- SUS (System Usability Scale) benchmark µ₀=68, 10-item instrument, N≥10 minimum\\n- Class imbalance, PR-curve vs ROC-AUC, downsampling positives 1'
+   'claim, N participants, variance. The repo contains no usability study instrument, no raw timing data, no participant log.\\n273\\tThroughput                   3,2'
+
+========================================================================
+## 'saatQg'  (2 unique)
+   'line; re-run demo di mesin bersih 2× | Frontend | Demo butuh internet saatQgshow |\\n| R-10 | Tim non-pengembang tidak bisa menjalankan demo (knowledge transfer)'
+   'line; re-run demo di mesin bersih 2× | Frontend | Demo butuh internet saatQgshow |\\r\\n197 | R-10 | Tim non-pengembang tidak bisa menjalankan demo (knowledge tra'
+
+========================================================================
+## 'Demo butuh'  (3 unique)
+   'mp4 + PDF + repo offline; re-run demo di mesin bersih 2× | Frontend | Demo butuh internet saatQgshow |\\n| R-10 | Tim non-pengembang tidak bisa menjalankan demo '
+   'mp4 + PDF + repo offline; re-run demo di mesin bersih 2× | Frontend | Demo butuh internet saatQgshow |\\r\\n197 | R-10 | Tim non-pengembang tidak bisa menjalankan'
+   'mp4 + PDF + repo offline; re-run demo di mesin bersih 2× | Frontend | Demo butuh interne\\r\\n218 | R-10 | Tim non-pengembang tidak bisa menjalankan demo (knowled'
+
+========================================================================
+## 'notebook'  (1800 unique)
+   'escription":"Replaces, inserts, or deletes a single cell in a Jupyter notebook (.ipynb file).\\n\\nUsage:\\n- You must use the Read tool on the notebook in this co'
+   'otebook (.ipynb file).\\n\\nUsage:\\n- You must use the Read tool on the notebook in this conversation before editing — this tool will fail otherwise.\\n- `notebook'
+   'this conversation before editing — this tool will fail otherwise.\\n- `notebook_path` must be an absolute path.\\n- `cell_id` is the `id` attribute shown in the R'
+   'l after the cell with the given `cell_id` (or at the beginning of the notebook if `cell_id` is omitted) — `cell_type` is required when inserting. Use `delete` t'
+   '/json-schema.org/draft/2020-12/schema","type":"object","properties":{"notebook_path":{"description":"The absolute path to the Jupyter notebook file to edit (mus'
+
+========================================================================
+## 'deterministiknya'  (0 unique)
+
+========================================================================
+## 'cara pembangkitan'  (0 unique)
+
+========================================================================
+## 'dataPoints'  (0 unique)
+
+========================================================================
+## 'titik data'  (0 unique)
+
+========================================================================
+## 'sintetis dipublikasikan'  (0 unique)
+
+========================================================================
+## 'on-prem plan'  (0 unique)
+
+========================================================================
+## 'rencana on-prem'  (0 unique)
+
+========================================================================
+## 'Mestinya'  (0 unique)
+
+========================================================================
+## 'periode transisi'  (0 unique)
+
+========================================================================
+## 'period of transition'  (0 unique)
+
+========================================================================
+## 'own-administrative'  (0 unique)
+
+========================================================================
+## 'administrasi internal'  (0 unique)
+
+========================================================================
+## 'Skala Saving'  (0 unique)
+
+========================================================================
+## 'Skala penghematan'  (0 unique)
+
+========================================================================
+## 'yaitu'  (74 unique)
+   'an dan Laba Perseroan Tahun 2022 (dalam Rupiah) ... jaminan kesehatan yaitu BPJS Kesehatan dan jaminan health insurance program, namely BPJS\xa0...\\nURL: https://i'
+   'nar-benar bisa diturunkan dari tarif resmi proyek = **Rp31.350.000**, yaitu **16,18× lebih kecil** dari klaim.\\n\\nDi atas itu, **93,0% akurasi berada DI BAWAH b'
+   'nar-benar bisa diturunkan dari tarif resmi proyek = **Rp31.350.000**, yaitu **16,18× lebih kecil** dari klaim.\\n25\\t\\n26\\tDi atas itu, **93,0% akurasi berada DI'
+   'nar-benar bisa diturunkan dari tarif resmi proyek = **Rp31.350.000**, yaitu **16,18× lebih kecil** dari klaim.\\n8\\t25 | \\n9\\t340 | | P2-1 | **Ganti metrik utama'
+   'nar-benar bisa diturunkan dari tarif resmi proyek = **Rp31.350.000**, yaitu **16,18× lebih kecil** dari klaim.\\n25 | \\n340 | | P2-1 | **Ganti metrik utama.** | '
+
+========================================================================
+## 'squarely'  (0 unique)
+
+========================================================================
+## 'kernel proposal'  (0 unique)
+
+========================================================================
+## 'kelengkapan'  (8 unique)
+   'n aturan administratif statis (rule-based deterministik) dan validasi kelengkapan berkas individual secara terisolasi. | Dibutuhkan model AI yang mampu mengeval'
+   'tibel menurut aturan yang terdokumentasi, nilai tidak masuk akal, dan kelengkapan bukti. Setiap aturan harus memiliki ID, versi, sumber kebijakan, input, kondis'
+   '* Tidak ada dataset bayangan yang berbeda. Yang berbeda hanya tingkat kelengkapan representasi.\\n\\n### 9.2 Tabel per-kolom: Notion vs v2.1\\n\\n| Kolom Notion | K'
+   '* Tidak ada dataset bayangan yang berbeda. Yang berbeda hanya tingkat kelengkapan representasi.","+","+### 9.2 Tabel per-kolom: Notion vs v2.1","+","+| Kolom No'
+   '* Tidak ada dataset bayangan yang berbeda. Yang berbeda hanya tingkat kelengkapan representasi.\\n463\\t\\n464\\t### 9.2 Tabel per-kolom: Notion vs v2.1\\n465\\t\\n466'
+

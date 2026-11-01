@@ -1,0 +1,1136 @@
+{
+  "meta": {
+    "csv": "N:\\HEALTHKATHON\\analysis\\corpus\\claims_v2_live.csv",
+    "csv_sha256": "d6fb95b9fbfb6bf47e9a99bcf57df0e38b00a13758b6d3ac14779e64a6121119",
+    "n_rows": 300,
+    "n_cols": 29,
+    "audited_at": "2026-10-22",
+    "spec_sources": [
+      "analysis/corpus/10-simulation-dataset.md",
+      "analysis/corpus/07-dataset-v2-catalog.md",
+      "analysis/corpus/03-dataset-registry.md"
+    ],
+    "column_fingerprints": {
+      "Name": "34476fdc622a92958ed07db5c1b389bdbb5e2b9a2b9d830a06394eeb4dbb679d",
+      "Biaya Rp": "b127dd60a5c2c609230fb79740d66251c62a5dfa7efda4a58e832ba1868cf799",
+      "Skor Fraud": "ea0236320257cf848966139415c4f022fc048c9b6b2fea3d2f0bdbdc50787dd9",
+      "Alasan": "ed101de1b293357ea0933ca51e6ff044e4d03f85a9baa631107e58870959ae97",
+      "Narasi Rekam Medis": "2e74ddf3bd42b972431391026b1a97e567227d4db40a598d576cfb4290ef6804",
+      "Diagnosis ICD-10": "fdc744f709bb8cf48efce13049601263b3339ac87fce894a73ede549e98bad44"
+    }
+  },
+  "reconciliation": [
+    {
+      "metric": "Jumlah baris",
+      "claimed": "300 (v2/v2.1)",
+      "actual": 300,
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "Kelengkapan ID KLM001-KLM300",
+      "claimed": "300 ID lengkap, unik",
+      "actual": "300 unik, 300/300 ada",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "Distribusi Risiko",
+      "claimed": "fraud 36 / high 14 / medium 10 / low 240",
+      "actual": "fraud 36 / high 14 / medium 10 / low 240",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "Distribusi Status",
+      "claimed": "escalate 36 / review 24 / auto_clear 240",
+      "actual": "escalate 36 / review 24 / auto_clear 240",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "Jumlah modus",
+      "claimed": "14 modus",
+      "actual": "13 modus",
+      "verdict": "SELISIH",
+      "note": "modus: anomali_frekuensi, biaya_markup, cloning, drug_diversion, excessive_usage, iur_biaya, overbilling, phantom_billing, prolonged_stay, readmission_berulang, repeat_billing, unbundling, upcoding"
+    },
+    {
+      "metric": "Jumlah sindikat",
+      "claimed": "SYND-01..SYND-09 (9)",
+      "actual": "9: SYND-01,SYND-02,SYND-03,SYND-04,SYND-05,SYND-06,SYND-07,SYND-08,SYND-09",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "Layanan",
+      "claimed": "tidak dinyatakan di spec",
+      "actual": "rawat inap 189 / rawat jalan 111",
+      "verdict": "INFO",
+      "note": ""
+    },
+    {
+      "metric": "Rentang Biaya Rp",
+      "claimed": "tidak dinyatakan di spec",
+      "actual": "min 700,000 / maks 63,500,000 / total 3,526,650,000",
+      "verdict": "INFO",
+      "note": ""
+    },
+    {
+      "metric": "Rentang LOS hari",
+      "claimed": "tidak dinyatakan di spec; registry §6 klaim 109 baris LOS kosong",
+      "actual": "min 0 / maks 14; 109 baris bernilai 0, 0 baris benar-benar kosong",
+      "verdict": "SELISIH",
+      "note": "kosong dienkode sebagai 0 (tidak ada nilai '' di kolom)"
+    },
+    {
+      "metric": "Entitas Faskes",
+      "claimed": "RS_A-RS_J (10 FKRTL)",
+      "actual": "10: RS_A,RS_B,RS_C,RS_D,RS_E,RS_F,RS_G,RS_H,RS_I,RS_J",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "Entitas Pasien",
+      "claimed": "P01-P40 (40)",
+      "actual": "40: P01..P40",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "Entitas Dokter",
+      "claimed": "D01-D20 (20)",
+      "actual": "20: D01..D20",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "Entitas Diagnosis",
+      "claimed": "10 kode v1 + I10, J45.9, N39.0 (13)",
+      "actual": "13: E11.9,I10,I21.9,J18.9,J45.9,K29.7,K35.8,K40.9,K80.2,N20.0,N39.0,O80,S72.0",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "Entitas Prosedur",
+      "claimed": "8 kode terpakai; 36.13 & 93.90 tidak terpakai di v1",
+      "actual": "8: 00.66,47.09,51.23,53.1,74.1,81.52,96.04,98.51",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "Entitas Obat",
+      "claimed": "M01-M10 (10)",
+      "actual": "10: M01,M02,M03,M04,M05,M06,M07,M08,M09,M10",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "Kontradiksi Narasi = True",
+      "claimed": "8 klaim (spec §Analisis Teks & Sentimen) / 8 (kriteria v2.1 §7)",
+      "actual": "12: KLM001,KLM002,KLM003,KLM004,KLM005,KLM006,KLM018,KLM024,KLM105,KLM106,KLM107,KLM108",
+      "verdict": "SELISIH",
+      "note": "8 v1 (KLM001-006, KLM018, KLM024) + 4 baru SYND-07 (KLM105-108)"
+    },
+    {
+      "metric": "Distribusi Sentimen",
+      "claimed": "v1: 62 positif / 14 netral / 24 negatif",
+      "actual": "v1: 62 pos / 14 net / 24 neg; total 300: 170 pos / 58 net / 72 neg",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "v1 jumlah klaim per faskes",
+      "claimed": "RS_A19 RS_B13 RS_C10 RS_D10 RS_E22 RS_F26",
+      "actual": "RS_A19 RS_B13 RS_C10 RS_D10 RS_E22 RS_F26",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "v1 jumlah klaim per pasien",
+      "claimed": "20 pasien (5/5/5/4/5/4/5/5/4/5/5/5/6/6/7/5/5/4/5/5)",
+      "actual": "P015 P025 P035 P044 P055 P064 P075 P085 P094 P105 P115 P125 P136 P146 P157 P165 P175 P184 P195 P205",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "v1 jumlah klaim per dokter",
+      "claimed": "D01 2 D02 8 D03 9 D04 9 D05 10 D06 0 D07 13 D08 18 D09 14 D10 8 D11 1 D12 8",
+      "actual": "D012 D028 D039 D049 D0510 D060 D0713 D0818 D0914 D108 D111 D128",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "v1 jumlah klaim per diagnosis",
+      "claimed": "10 kode (10/11/8/8/9/15/8/10/8/13)",
+      "actual": "E11.915 I21.98 J18.99 K29.710 K35.811 K40.98 K80.213 N20.08 O808 S72.010",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "v1 jumlah klaim per prosedur",
+      "claimed": "8 kode terpakai (12/11/8/10/1/10/3/8)",
+      "actual": "00.6612 36.130 47.0911 51.2310 53.18 74.11 81.5210 93.900 96.043 98.518",
+      "verdict": "OK",
+      "note": ""
+    },
+    {
+      "metric": "Kesesuaian label Risiko vs rentang skor",
+      "claimed": "low<0.35, medium 0.35-0.6, high 0.6-0.8, fraud>0.8",
+      "actual": "300/300 konsisten",
+      "verdict": "OK",
+      "note": "catatan: fraud di-0.80 (batas bawah 0.80 masuk fraud) berbeda redaksi spec v1"
+    }
+  ],
+  "syndicate_audit": [
+    {
+      "sindikat": "SYND-01",
+      "modus": "upcoding",
+      "spec_claims": "KLM001-003",
+      "aktual_claims": "KLM001,KLM002,KLM003",
+      "spec_faskes": "RS_A",
+      "aktual_faskes": "RS_A",
+      "spec_dokter": "D01,D02",
+      "aktual_dokter": "D01,D02",
+      "spec_pasien": "P01-P03 (3)",
+      "aktual_pasien": "P01,P02,P03 (3)",
+      "spec_skor": "0.93-0.95",
+      "aktual_skor": "0.93-0.95",
+      "verdict": "OK",
+      "problems": ""
+    },
+    {
+      "sindikat": "SYND-02",
+      "modus": "phantom_billing",
+      "spec_claims": "KLM004-006",
+      "aktual_claims": "KLM004,KLM005,KLM006",
+      "spec_faskes": "RS_C",
+      "aktual_faskes": "RS_C",
+      "spec_dokter": "D05",
+      "aktual_dokter": "D05",
+      "spec_pasien": "P08-P10 (3)",
+      "aktual_pasien": "P08,P09,P10 (3)",
+      "spec_skor": "0.92-0.94",
+      "aktual_skor": "0.92-0.94",
+      "verdict": "OK",
+      "problems": ""
+    },
+    {
+      "sindikat": "SYND-03",
+      "modus": "unbundling",
+      "spec_claims": "KLM007-012",
+      "aktual_claims": "KLM007,KLM008,KLM009,KLM010,KLM011,KLM012",
+      "spec_faskes": "RS_B",
+      "aktual_faskes": "RS_B",
+      "spec_dokter": "D07",
+      "aktual_dokter": "D07",
+      "spec_pasien": "P12-P14 (3)",
+      "aktual_pasien": "P12,P13,P14 (3)",
+      "spec_skor": "0.84-0.87",
+      "aktual_skor": "0.85-0.87",
+      "verdict": "OK",
+      "problems": ""
+    },
+    {
+      "sindikat": "SYND-04",
+      "modus": "drug_diversion",
+      "spec_claims": "KLM013-014",
+      "aktual_claims": "KLM013,KLM014",
+      "spec_faskes": "RS_E",
+      "aktual_faskes": "RS_E",
+      "spec_dokter": "D09",
+      "aktual_dokter": "D09",
+      "spec_pasien": "P16-P17 (2)",
+      "aktual_pasien": "P16,P17 (2)",
+      "spec_skor": "0.86-0.88",
+      "aktual_skor": "0.86-0.88",
+      "verdict": "OK",
+      "problems": ""
+    },
+    {
+      "sindikat": "SYND-05",
+      "modus": "cloning",
+      "spec_claims": "KLM016-017",
+      "aktual_claims": "KLM016,KLM017",
+      "spec_faskes": "RS_F",
+      "aktual_faskes": "RS_F",
+      "spec_dokter": "D08",
+      "aktual_dokter": "D08",
+      "spec_pasien": "P19-P20 (2)",
+      "aktual_pasien": "P19,P20 (2)",
+      "spec_skor": "0.78-0.79",
+      "aktual_skor": "0.78-0.79",
+      "verdict": "OK",
+      "problems": ""
+    },
+    {
+      "sindikat": "SYND-06",
+      "modus": "repeat_billing",
+      "spec_claims": "KLM101-104",
+      "aktual_claims": "KLM101,KLM102,KLM103,KLM104",
+      "spec_faskes": "RS_G",
+      "aktual_faskes": "RS_G",
+      "spec_dokter": "D13",
+      "aktual_dokter": "D13",
+      "spec_pasien": "P21-P24 (4)",
+      "aktual_pasien": "P21,P22 (2)",
+      "spec_skor": "0.85-0.9",
+      "aktual_skor": "0.89-0.92",
+      "verdict": "GAGAL",
+      "problems": "pasien P21,P22 != spec ['P21', 'P22', 'P23', 'P24']; skor 0.89-0.92 di luar rentang spec 0.85-0.9"
+    },
+    {
+      "sindikat": "SYND-07",
+      "modus": "iur_biaya",
+      "spec_claims": "KLM105-108",
+      "aktual_claims": "KLM105,KLM106,KLM107,KLM108",
+      "spec_faskes": "RS_H",
+      "aktual_faskes": "RS_H",
+      "spec_dokter": "D14",
+      "aktual_dokter": "D14",
+      "spec_pasien": "P25-P28 (4)",
+      "aktual_pasien": "P23,P24 (2)",
+      "spec_skor": "0.82-0.87",
+      "aktual_skor": "0.82-0.85",
+      "verdict": "GAGAL",
+      "problems": "pasien P23,P24 != spec ['P25', 'P26', 'P27', 'P28']"
+    },
+    {
+      "sindikat": "SYND-08",
+      "modus": "readmission_berulang",
+      "spec_claims": "KLM109-114",
+      "aktual_claims": "KLM109,KLM110,KLM111,KLM112,KLM113,KLM114",
+      "spec_faskes": "RS_I",
+      "aktual_faskes": "RS_I",
+      "spec_dokter": "D15",
+      "aktual_dokter": "D15",
+      "spec_pasien": "P29-P34 (6)",
+      "aktual_pasien": "P25,P26 (2)",
+      "spec_skor": "0.75-0.8",
+      "aktual_skor": "0.86-0.89",
+      "verdict": "GAGAL",
+      "problems": "pasien P25,P26 != spec ['P29', 'P30', 'P31', 'P32', 'P33', 'P34']; skor 0.86-0.89 di luar rentang spec 0.75-0.8"
+    },
+    {
+      "sindikat": "SYND-09",
+      "modus": "excessive_usage",
+      "spec_claims": "KLM115-120",
+      "aktual_claims": "KLM115,KLM116,KLM117,KLM118,KLM119,KLM120",
+      "spec_faskes": "RS_J",
+      "aktual_faskes": "RS_J",
+      "spec_dokter": "D16",
+      "aktual_dokter": "D19",
+      "spec_pasien": "P35-P40 (6)",
+      "aktual_pasien": "P27 (1)",
+      "spec_skor": "0.78-0.83",
+      "aktual_skor": "0.8-0.84",
+      "verdict": "GAGAL",
+      "problems": "dokter D19 != spec D16; pasien P27 != spec ['P35', 'P36', 'P37', 'P38', 'P39', 'P40']; skor 0.8-0.84 di luar rentang spec 0.78-0.83"
+    }
+  ],
+  "fraud_tunggal_audit": [
+    {
+      "claim": "KLM121",
+      "verdict": "GAGAL",
+      "problems": "faskes RS_G != spec RS_A; dokter D13 != spec D03; pasien P29 != spec P04; skor 0.81 < spec >=0.85",
+      "aktual": "RS_G/D13/P29/skor 0.81",
+      "spec": "RS_A/D03/P04/skor>=0.85"
+    },
+    {
+      "claim": "KLM122",
+      "verdict": "GAGAL",
+      "problems": "faskes RS_H != spec RS_E; dokter D14 != spec D09; pasien P30 != spec P18",
+      "aktual": "RS_H/D14/P30/skor 0.82",
+      "spec": "RS_E/D09/P18/skor>=0.8"
+    }
+  ],
+  "checker": {
+    "passed": [
+      {
+        "rule": "R1 upcoding SYND-01: dx!=prosedur & tanpa obat kardiovaskular",
+        "ok": true,
+        "detail": "3/3 baris konsisten",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R1b upcoding SYND-01: biaya seragam 52.300.000 (bukan tarif acuan 58jt)",
+        "ok": true,
+        "detail": "biaya aktual Rp52.300.000 (tarif acuan spec Rp58.000.000 -> rasio 0.90)",
+        "failed": [],
+        "severity": "LOW"
+      },
+      {
+        "rule": "R2 phantom SYND-02: kolom Obat kosong (tanpa MedicationDispense)",
+        "ok": true,
+        "detail": "3/3 baris Obat='—'",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R2b phantom SYND-02: tanggal & biaya identik lintas 3 pasien",
+        "ok": true,
+        "detail": "tanggal 2026-03-12, biaya Rp44.750.000 seragam",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R2c phantom SYND-02: LOS 1 hari",
+        "ok": true,
+        "detail": "3/3 baris LOS=1",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R3 unbundling SYND-03: tiap pasangan terpecah (51.23 + 96.04) pada tanggal sama",
+        "ok": true,
+        "detail": "3/3 pasangan (P12/P13/P14) terpecah pada tanggal sama",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R3c unbundling: biaya intubasi 2.100.000 = tarif acuan 750.000 (2,8x tanpa penjelasan)",
+        "ok": true,
+        "detail": "3/3 baris intubasi Rp2.100.000 vs tarif acuan Rp750.000",
+        "failed": [],
+        "severity": "HIGH"
+      },
+      {
+        "rule": "R4 drug diversion SYND-04: qty insulin 24-30 pen",
+        "ok": true,
+        "detail": "KLM013=30 pen, KLM014=24 pen",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R4b drug diversion SYND-04: satuan 'pen' pada M09",
+        "ok": true,
+        "detail": "2/2 baris pakai satuan pen",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R5 cloning SYND-05: klaim identik sempurna (tanggal, dx, prosedur, LOS, biaya, obat, narasi)",
+        "ok": true,
+        "detail": "KLM016 & KLM017 identik di 7/7 kolom billing",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R5b cloning SYND-05: dua patients berbeda",
+        "ok": true,
+        "detail": "P19 & P20",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R6 repeat billing SYND-06: tiap baris punya kembar identik (pasien+tanggal+dx+prosedur+biaya)",
+        "ok": true,
+        "detail": "4/4 baris punya kembar",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R7 iur biaya SYND-07: umpan balik memuat keluhan pembayaran di luar JKN",
+        "ok": true,
+        "detail": "4/4 baris memuat keluhan pungutan",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R8 readmission SYND-08: 3 episode rawat inap dx sama per pasien, span<=30h, interval 7-8h",
+        "ok": true,
+        "detail": "P25 & P26: 3 episode masing-masing, span 15h, gap 8-7h",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R9 excessive usage SYND-09: 6 kunjungan rawat jalan, interval tepat 7 hari, 1 pasien",
+        "ok": true,
+        "detail": "P27: 6 kunjungan 2026-02-02..2026-03-09 interval 7h, rawat jalan",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R9b excessive usage: biaya = ~2x median rawat jalan asma (tanpa baris sindikat)",
+        "ok": true,
+        "detail": "2.150.000 / median 1,050,000 = 2.05x",
+        "failed": [],
+        "severity": "LOW"
+      },
+      {
+        "rule": "R10 biaya markup KLM121: biaya ~4x tarif paket apendektomi",
+        "ok": true,
+        "detail": "Rp27,500,000 / tarif Rp6.800.000 = 4.04x (Alasan menulis '4x')",
+        "failed": [],
+        "severity": "LOW"
+      },
+      {
+        "rule": "R16 'rasio' di Alasan = round(Biaya/tarif acuan, 2)",
+        "ok": true,
+        "detail": "72 baris cocok persis; 0 gagal",
+        "failed": [],
+        "severity": "LOW"
+      },
+      {
+        "rule": "R19 iur_biaya: kanal Semantik (S) dominan sesuai SHAP",
+        "ok": true,
+        "detail": "4/4 baris S=0.49 dominan",
+        "failed": [],
+        "severity": "LOW"
+      },
+      {
+        "rule": "R20 baris anomali/fraud punya Sinyal SHAP yang tidak generik",
+        "ok": true,
+        "detail": "0 baris masih 'tidak ada sinyal dominan'",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R24 afiliasi dokter-faskes konsisten (1 dokter = 1 faskes)",
+        "ok": true,
+        "detail": "20 dokter, semua terikat pada 1 faskes",
+        "failed": [],
+        "severity": "LOW"
+      },
+      {
+        "rule": "R25 anggota sindikat konsisten pada 1 faskes",
+        "ok": true,
+        "detail": "9/9 sindikat 1 faskes",
+        "failed": [],
+        "severity": "LOW"
+      },
+      {
+        "rule": "R26 tidak ada pasien yang anggota 2+ sindikat",
+        "ok": true,
+        "detail": "tidak ada tumpang tindih anggota",
+        "failed": [],
+        "severity": "LOW"
+      },
+      {
+        "rule": "R27 Alasan wajib terisi untuk review/escalate",
+        "ok": true,
+        "detail": "60/60 terisi",
+        "failed": [],
+        "severity": "LOW"
+      },
+      {
+        "rule": "R29 label modus di dalam teks Alasan = kolom Modus",
+        "ok": true,
+        "detail": "0 baris beda penamaan (Unbundling vs 'Unbundling — klaim pecahan')",
+        "failed": [],
+        "severity": "LOW"
+      },
+      {
+        "rule": "R32 narasi deterministik terhadap diagnosis (1 narasi = 1 dx)",
+        "ok": true,
+        "detail": "0 konflik; 40 narasi unik untuk 13 kode dx -> narasi hanya fungsi dx",
+        "failed": [],
+        "severity": "INFO"
+      },
+      {
+        "rule": "R33 angka 'X hari' pada narasi = LOS baris",
+        "ok": true,
+        "detail": "0 baris (angka hard-coded template, bukan turunan kolom)",
+        "failed": [],
+        "severity": "LOW"
+      },
+      {
+        "rule": "R36 Name unik",
+        "ok": true,
+        "detail": "300 unik / 300 baris",
+        "failed": [],
+        "severity": "LOW"
+      },
+      {
+        "rule": "R39 generator dataset (skrip yang menghasilkan 300 baris) ada di repo",
+        "ok": true,
+        "detail": "tidak ditemukan skrip generator yang menghasilkan 300 baris; satu-satunya np.random.seed(20260707) ada di mechine-learning-deep-learning/backend/src/data/pipeline.py:103 (_generate_fallback_dataset) yang membuat 100 baris dummy, bukan 300 baris final",
+        "failed": [
+          "mechine-learning-deep-learning\\notebooks\\build_notebook.py",
+          "analysis\\reports\\scripts\\_fixx_repro.py",
+          "analysis\\reports\\scripts\\16_redteam.py",
+          "analysis\\reports\\scripts\\07_gen.py"
+        ],
+        "severity": "CRITICAL"
+      }
+    ],
+    "failed": [
+      {
+        "rule": "R2d phantom SYND-02: narasi rekam medis TIDAK mengkonfirmasi tindakan yang ditagih",
+        "ok": false,
+        "detail": "3/3 baris narasi menyatakan 'dilakukan hemiarthroplasty' -> Membantah ground truth phantom",
+        "failed": [
+          "KLM004",
+          "KLM005",
+          "KLM006"
+        ],
+        "severity": "CRITICAL"
+      },
+      {
+        "rule": "R3b unbundling SYND-03: narasi baris intubasi (96.04) menyebut intubasi",
+        "ok": false,
+        "detail": "3/3 baris pecahan 96.04 justru bernarasi 'dilakukan kolesistektomi laparoskopik'",
+        "failed": [
+          "KLM008",
+          "KLM010",
+          "KLM012"
+        ],
+        "severity": "CRITICAL"
+      },
+      {
+        "rule": "R4c drug diversion SYND-04: ada refill insulin Patienten sama berjarak ~7 hari",
+        "ok": false,
+        "detail": "tidak ada refill insulin berulang pada pasien yang sama (KLM013 P16 & KLM014 P17 = 2 pasien berbeda)",
+        "failed": [
+          "KLM013(pasien P16: insulin pada ['2026-05-04'])",
+          "KLM014(pasien P17: insulin pada ['2026-05-11'])"
+        ],
+        "severity": "HIGH"
+      },
+      {
+        "rule": "R5c cloning SYND-05: klaim 'umur & gender berbeda' dapat diverifikasi dari dataset",
+        "ok": false,
+        "detail": "tidak ada kolom umur/gender di 27 kolom CSV -> klaim tidak dapat diverifikasi",
+        "failed": [
+          "KLM016",
+          "KLM017"
+        ],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R11 prolonged_stay: LOS klaim > median LOS kelompok diagnosis+prosedur yang sama",
+        "ok": false,
+        "detail": "KLM129 LOS 2 vs median grup S72.0/81.52 = 6.5",
+        "failed": [
+          "KLM129"
+        ],
+        "severity": "CRITICAL"
+      },
+      {
+        "rule": "R11b prolonged_stay: Alasan menjelaskan perpanjangan rawat (bukan pemulangan dini)",
+        "ok": false,
+        "detail": "KLM129 modus=prolonged_stay tetapi Alasan menyebut 'dipulangkan 2 hari setelah hemiarthroplasty' (memulangan dini, bukan rawat diperpanjang)",
+        "failed": [
+          "KLM129"
+        ],
+        "severity": "CRITICAL"
+      },
+      {
+        "rule": "R12 KLM129: klaim 'pasien usia 70 tahun' dapat diverifikasi dari dataset",
+        "ok": false,
+        "detail": "tidak ada kolom umur/gender -> klaim usia tidak dapat diverifikasi",
+        "failed": [
+          "KLM129"
+        ],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R13 anomali_frekuensi: jumlah episode & rentang hari dalam Alasan cocok dengan data",
+        "ok": false,
+        "detail": "KLM133 klaim 3 ep/30h -> aktual 1 ep/span 0h (pasien P39, dx J45.9); KLM126 klaim 5 ep/34h -> aktual 2 ep/span 32h (pasien P34, dx K29.7); KLM131 klaim 4 ep/28h -> aktual 2 ep/span 138h (pasien P39, dx E11.9); KLM136 klaim 3 ep/30h -> aktual 1 ep/span 0h (pasien P31, dx K29.7); KLM132 klaim 3 ep/20h -> aktual 1 ep/span 0h (pasien P40, dx I10); KLM134 klaim 3 ep/30h -> aktual 1 ep/span 0h (pasien P40, dx N39.0)",
+        "failed": [
+          "KLM133",
+          "KLM126",
+          "KLM131",
+          "KLM136",
+          "KLM132",
+          "KLM134"
+        ],
+        "severity": "CRITICAL"
+      },
+      {
+        "rule": "R13b anomali_frekuensi: minimal 2 episode pasien sama dalam jendela waktu yang diklaim",
+        "ok": false,
+        "detail": "KLM133 (pasien P39, dx J45.9) hanya 1 episode dalam 30 hari; KLM131 (pasien P39, dx E11.9) hanya 1 episode dalam 28 hari; KLM136 (pasien P31, dx K29.7) hanya 1 episode dalam 30 hari; KLM132 (pasien P40, dx I10) hanya 1 episode dalam 20 hari; KLM134 (pasien P40, dx N39.0) hanya 1 episode dalam 30 hari; KLM135 (pasien P28, dx E11.9) hanya 1 episode dalam 30 hari",
+        "failed": [
+          "KLM133",
+          "KLM131",
+          "KLM136",
+          "KLM132",
+          "KLM134",
+          "KLM135"
+        ],
+        "severity": "CRITICAL"
+      },
+      {
+        "rule": "R14 'Nx median' dalam Alasan dapat dihitung ulang dari kolom dataset",
+        "ok": false,
+        "detail": "KLM130: tidak ada bar pembanding (dx J18.9, layanan rawat jalan, n=0)",
+        "failed": [
+          "KLM130"
+        ],
+        "severity": "CRITICAL"
+      },
+      {
+        "rule": "R15 kolom tarif acuan tersedia di dataset (untuk verifikasi 'rasio' & 'Nx tarif')",
+        "ok": false,
+        "detail": "tidak ada kolom tarif; tabel Biaya Rujukan hanya ada di dokumen Notion 10-simulation-dataset.md",
+        "failed": [],
+        "severity": "HIGH"
+      },
+      {
+        "rule": "R17 low + prosedur: Alasan memuat 'rasio' terukur (bukan klaim '≈ tarif' tanpa angka)",
+        "ok": false,
+        "detail": "46 baris low+prosedur tanpa 'rasio'; 20 di antaranya biaya > tarif acuan (tanpa angka rasio sebagai bukti)",
+        "failed": [
+          "KLM080",
+          "KLM093",
+          "KLM097",
+          "KLM086",
+          "KLM091",
+          "KLM095",
+          "KLM060",
+          "KLM071",
+          "KLM065",
+          "KLM067",
+          "KLM073",
+          "KLM075",
+          "KLM056",
+          "KLM045",
+          "KLM043",
+          "KLM047",
+          "KLM041",
+          "KLM036",
+          "KLM026",
+          "KLM030"
+        ],
+        "severity": "HIGH"
+      },
+      {
+        "rule": "R18 Kontribusi Saluran T+F+S = Skor Fraud (toleransi pembulatan 0.005)",
+        "ok": false,
+        "detail": "42/300 baris tidak konsisten; total kanal yang berulang: 0.55x8, 0.32x6, 0.8x5, 0.86x4 -> nilai kanal ditulis konstan, bukan turunan Skor Fraud",
+        "failed": [
+          "KLM133(T+F+S=0.32 vs skor 0.44, selisih +0.12)",
+          "KLM129(T+F+S=0.55 vs skor 0.72, selisih +0.17)",
+          "KLM111(T+F+S=0.86 vs skor 0.89, selisih +0.03)",
+          "KLM114(T+F+S=0.86 vs skor 0.88, selisih +0.02)",
+          "KLM123(T+F+S=0.55 vs skor 0.64, selisih +0.09)",
+          "KLM118(T+F+S=0.80 vs skor 0.83, selisih +0.03)",
+          "KLM110(T+F+S=0.86 vs skor 0.87, selisih +0.01)",
+          "KLM102(T+F+S=0.92 vs skor 0.91, selisih -0.01)",
+          "KLM117(T+F+S=0.80 vs skor 0.82, selisih +0.02)",
+          "KLM124(T+F+S=0.55 vs skor 0.71, selisih +0.16)",
+          "KLM105(T+F+S=0.83 vs skor 0.84, selisih +0.01)",
+          "KLM126(T+F+S=0.55 vs skor 0.62, selisih +0.07)",
+          "KLM128(T+F+S=0.55 vs skor 0.63, selisih +0.08)",
+          "KLM131(T+F+S=0.32 vs skor 0.46, selisih +0.14)",
+          "KLM120(T+F+S=0.80 vs skor 0.84, selisih +0.04)",
+          "KLM104(T+F+S=0.92 vs skor 0.89, selisih -0.03)",
+          "KLM127(T+F+S=0.55 vs skor 0.68, selisih +0.13)",
+          "KLM119(T+F+S=0.80 vs skor 0.84, selisih +0.04)",
+          "KLM136(T+F+S=0.32 vs skor 0.45, selisih +0.13)",
+          "KLM106(T+F+S=0.83 vs skor 0.82, selisih -0.01)",
+          "KLM113(T+F+S=0.86 vs skor 0.88, selisih +0.02)",
+          "KLM130(T+F+S=0.55 vs skor 0.62, selisih +0.07)",
+          "KLM103(T+F+S=0.92 vs skor 0.9, selisih -0.02)",
+          "KLM132(T+F+S=0.32 vs skor 0.42, selisih +0.10)",
+          "KLM125(T+F+S=0.55 vs skor 0.67, selisih +0.12)",
+          "KLM134(T+F+S=0.32 vs skor 0.48, selisih +0.16)",
+          "KLM116(T+F+S=0.80 vs skor 0.81, selisih +0.01)",
+          "KLM135(T+F+S=0.32 vs skor 0.4, selisih +0.08)",
+          "KLM107(T+F+S=0.83 vs skor 0.85, selisih +0.02)",
+          "KLM005(T+F+S=0.93 vs skor 0.94, selisih +0.01)",
+          "KLM002(T+F+S=0.94 vs skor 0.95, selisih +0.01)",
+          "KLM004(T+F+S=0.93 vs skor 0.92, selisih -0.01)",
+          "KLM012(T+F+S=0.85 vs skor 0.87, selisih +0.02)",
+          "KLM010(T+F+S=0.85 vs skor 0.86, selisih +0.01)",
+          "KLM023(T+F+S=0.47 vs skor 0.53, selisih +0.06)",
+          "KLM003(T+F+S=0.94 vs skor 0.93, selisih -0.01)",
+          "KLM021(T+F+S=0.47 vs skor 0.48, selisih +0.01)",
+          "KLM020(T+F+S=0.47 vs skor 0.45, selisih -0.02)",
+          "KLM011(T+F+S=0.85 vs skor 0.87, selisih +0.02)",
+          "KLM017(T+F+S=0.78 vs skor 0.79, selisih +0.01)",
+          "KLM009(T+F+S=0.85 vs skor 0.86, selisih +0.01)",
+          "KLM022(T+F+S=0.47 vs skor 0.51, selisih +0.04)"
+        ],
+        "severity": "HIGH"
+      },
+      {
+        "rule": "R21 label Sentimen konsisten dengan tanda Skor Sentimen (netral harus 0)",
+        "ok": false,
+        "detail": "58 baris: kategori 'netral' memiliki skor != 0 (rentang 0.05-0.15) tanpa ambang terdokumentasi",
+        "failed": [
+          "KLM278",
+          "KLM280",
+          "KLM273",
+          "KLM272",
+          "KLM292",
+          "KLM295",
+          "KLM288",
+          "KLM270",
+          "KLM296",
+          "KLM300",
+          "KLM262",
+          "KLM232",
+          "KLM223",
+          "KLM247",
+          "KLM250",
+          "KLM210",
+          "KLM204",
+          "KLM141",
+          "KLM172",
+          "KLM144",
+          "KLM177",
+          "KLM168",
+          "KLM133",
+          "KLM109",
+          "KLM111",
+          "KLM112",
+          "KLM114",
+          "KLM115",
+          "KLM118",
+          "KLM110",
+          "KLM117",
+          "KLM126",
+          "KLM131",
+          "KLM120",
+          "KLM119",
+          "KLM136",
+          "KLM122",
+          "KLM113",
+          "KLM130",
+          "KLM132",
+          "KLM125",
+          "KLM134",
+          "KLM116",
+          "KLM135",
+          "KLM084",
+          "KLM098",
+          "KLM091",
+          "KLM077",
+          "KLM070",
+          "KLM063",
+          "KLM042",
+          "KLM049",
+          "KLM028",
+          "KLM035",
+          "KLM023",
+          "KLM021",
+          "KLM020",
+          "KLM022"
+        ],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R22 kolom Rujukan bebas artefak serialisasi 'undefined'",
+        "ok": false,
+        "detail": "28 baris rawat inap memuat literal 'undefined' (kode FKTP referral hilang)",
+        "failed": [
+          "KLM278",
+          "KLM276",
+          "KLM282",
+          "KLM268",
+          "KLM298",
+          "KLM297",
+          "KLM295",
+          "KLM262",
+          "KLM283",
+          "KLM251",
+          "KLM256",
+          "KLM235",
+          "KLM255",
+          "KLM225",
+          "KLM188",
+          "KLM212",
+          "KLM213",
+          "KLM199",
+          "KLM207",
+          "KLM156",
+          "KLM173",
+          "KLM154",
+          "KLM155",
+          "KLM147",
+          "KLM170",
+          "KLM176",
+          "KLM146",
+          "KLM158"
+        ],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R23 konsistensi LOS vs jenis layanan (rajal=0, inap>0)",
+        "ok": false,
+        "detail": "8 baris melanggar",
+        "failed": [
+          "KLM089(LOS=1)",
+          "KLM059(LOS=1)",
+          "KLM074(LOS=1)",
+          "KLM029(LOS=1)",
+          "KLM044(LOS=1)",
+          "KLM008(LOS=0)",
+          "KLM012(LOS=0)",
+          "KLM010(LOS=0)"
+        ],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R28 Alasan terisi untuk semua baris",
+        "ok": false,
+        "detail": "baris kosong: ['KLM031'] (dokumentasi di 03-dataset-registry.md §6)",
+        "failed": [
+          "KLM031"
+        ],
+        "severity": "LOW"
+      },
+      {
+        "rule": "R30 prefix Alasan 3-tingkat: FRAUD 36 / ANOMALI 24 / NORMAL 240",
+        "ok": false,
+        "detail": "aktual FRAUD 36 / ANOMALI 24 / NORMAL 239 / kosong 1",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R31 narasi memuat diagnosis & prosedur yang ditagih",
+        "ok": false,
+        "detail": "5 baris: narasi tidak menyebut kode yang ditagih",
+        "failed": [
+          "KLM014(dx E11.9 tidak disebut)",
+          "KLM008(prosedur 96.04 tidak disebut)",
+          "KLM012(prosedur 96.04 tidak disebut)",
+          "KLM010(prosedur 96.04 tidak disebut)",
+          "KLM013(dx E11.9 tidak disebut)"
+        ],
+        "severity": "HIGH"
+      },
+      {
+        "rule": "R34 keragaman narasi >= 1 nilai unik per baris (100%)",
+        "ok": false,
+        "detail": "40 narasi unik untuk 300 baris (13.3%)",
+        "failed": [],
+        "severity": "HIGH"
+      },
+      {
+        "rule": "R35 Umpan Balik Pasien tidak didominasi satu template",
+        "ok": false,
+        "detail": "template paling banyak dipakai 39x ('Proses administrasi mudah dan ruangan bersih.'); total 36 nilai unik",
+        "failed": [],
+        "severity": "MEDIUM"
+      },
+      {
+        "rule": "R37 kolom seed / version / timestamp ada di dataset (spec v2.1 Metadata Validasi)",
+        "ok": false,
+        "detail": "tidak ada kolom: seed, version, timestamp - seed 20260707 & version v2.1 hanya tertulis di dokumen",
+        "failed": [
+          "seed",
+          "version",
+          "timestamp"
+        ],
+        "severity": "CRITICAL"
+      },
+      {
+        "rule": "R38 artefak wajib struktur file v2.1 tersedia di repo Aegis-JKN",
+        "ok": false,
+        "detail": "hilang 9/9: data/raw/claims_300_v2.1.csv, data/raw/edges_v2.1.json, data/raw/text_gt_v2.1.csv, data/raw/leakage_blocklist.yaml, data/processed/features_300.parquet, data/processed/graph_hetero.pt, data/processed/metadata.json, configs/leakage.yaml, tests/test_leakage.py",
+        "failed": [
+          "data/raw/claims_300_v2.1.csv",
+          "data/raw/edges_v2.1.json",
+          "data/raw/text_gt_v2.1.csv",
+          "data/raw/leakage_blocklist.yaml",
+          "data/processed/features_300.parquet",
+          "data/processed/graph_hetero.pt",
+          "data/processed/metadata.json",
+          "configs/leakage.yaml",
+          "tests/test_leakage.py"
+        ],
+        "severity": "CRITICAL"
+      },
+      {
+        "rule": "R40 metadata.json / berkas checksum untuk artefak dataset (03-registry §8)",
+        "ok": false,
+        "detail": "ditemukan: tidak ada berkas metadata/checksum",
+        "failed": [],
+        "severity": "HIGH"
+      }
+    ],
+    "severity_counts": {
+      "CRITICAL": 9,
+      "HIGH": 7,
+      "MEDIUM": 7,
+      "LOW": 1
+    },
+    "prefix_distribution": {
+      "NORMAL": 239,
+      "ANOMALI": 24,
+      "FRAUD": 36,
+      "(KOSONG)": 1
+    }
+  },
+  "narrative": {
+    "total_rows": 300,
+    "unique_narasi": 40,
+    "unique_narasi_low": 16,
+    "unique_umpan_balik": 36,
+    "unique_alasan": 211,
+    "unique_alasan_fraud": 12,
+    "unique_alasan_low": 179,
+    "unique_rujukan": 188,
+    "unique_alasan_berobat": 18,
+    "top": [
+      [
+        "Kontrol DM tipe 2; HbA1c 7,1 persen. Terapi metformin dilanjutkan, edukasi diet dan aktivitas fisik diberikan.",
+        33
+      ],
+      [
+        "Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleransi oral baik, pasien pulang dengan kontrol poliklinik.",
+        32
+      ],
+      [
+        "Apendisitis akut; dilakukan apendektomi. Toleransi oral baik, luka operasi bersih, pasien pulang stabil.",
+        29
+      ],
+      [
+        "Pneumonia komunitas; antibiotik intravena dan nebulizer. Perbaikan klinis bertahap, pulang setelah perbaikan radiologis.",
+        28
+      ],
+      [
+        "Reparasi hernia inguinalis dengan mesh. Perawatan post-operatif tanpa komplikasi.",
+        21
+      ],
+      [
+        "Kontrol hipertensi; tekanan darah 138/84 mmHg. Terapi amlodipin dilanjutkan, edukasi garam diberikan.",
+        19
+      ],
+      [
+        "Fraktur kolum femur; dilakukan hemiarthroplasty. Mobilisasi dengan fisioterapi, pulang dengan alat bantu jalan.",
+        14
+      ],
+      [
+        "Asma stabil; diberikan nebulizer dan edukasi teknik inhaler. Kontrol berkala berikutnya.",
+        13
+      ],
+      [
+        "Infeksi saluran kemih; antibiotik dan anjuran minum banyak. Perbaikan gejala dalam 3 hari.",
+        13
+      ],
+      [
+        "Gastritis tanpa perdarahan; diberikan terapi PPI. Pasien dianjurkan menghindari kopi dan makanan pedas.",
+        13
+      ]
+    ],
+    "narasi_per_dx": {
+      "E11.9": 8,
+      "I10": 3,
+      "I21.9": 2,
+      "J18.9": 6,
+      "J45.9": 4,
+      "K29.7": 3,
+      "K35.8": 2,
+      "K40.9": 2,
+      "K80.2": 1,
+      "N20.0": 1,
+      "N39.0": 2,
+      "O80": 3,
+      "S72.0": 3
+    },
+    "angka_narasi": [
+      [
+        "1",
+        58
+      ],
+      [
+        "2",
+        38
+      ],
+      [
+        "7,1",
+        33
+      ],
+      [
+        "138",
+        19
+      ],
+      [
+        "84",
+        19
+      ],
+      [
+        "3",
+        13
+      ],
+      [
+        "8",
+        9
+      ],
+      [
+        "2,5",
+        9
+      ],
+      [
+        "4",
+        8
+      ],
+      [
+        "9",
+        8
+      ],
+      [
+        "10",
+        8
+      ],
+      [
+        "3.100",
+        7
+      ],
+      [
+        "142",
+        1
+      ],
+      [
+        "86",
+        1
+      ],
+      [
+        "7,3",
+        1
+      ]
+    ],
+    "narasi_tanpa_angka_kolom": 182
+  },
+  "alasan": {
+    "prefix_distribution": {
+      "NORMAL": 239,
+      "ANOMALI SEDANG": 10,
+      "FRAUD (Readmission Berulang)": 6,
+      "ANOMALI TINGGI (belum tentu fraud)": 14,
+      "FRAUD (Excessive Usage)": 6,
+      "FRAUD (Repeat Billing)": 4,
+      "FRAUD (Iur Biaya)": 4,
+      "FRAUD (Biaya Markup)": 1,
+      "FRAUD (Drug Diversion)": 3,
+      "(KOSONG)": 1,
+      "FRAUD (Phantom Billing)": 3,
+      "FRAUD (Upcoding)": 3,
+      "FRAUD (Unbundling)": 3,
+      "FRAUD (Unbundling — klaim pecahan)": 3
+    },
+    "n_with_ratio": 72,
+    "n_ratio_verifiable": 72,
+    "n_ratio_unverifiable": 0,
+    "ratio_unverifiable_ids": [],
+    "distinct_templates": 51,
+    "top_templates": [
+      [
+        "NORMAL: dx KN ditindaki N — pasangan klinis standar; biaya RpN ≈ tarif paket (rasio N); LOS N hari dalam rentang median; obat dispensed sesuai dx; narasi rekam medis konsisten dengan penagihan; tidak ada kontradiksiN",
+        54
+      ],
+      [
+        "NORMAL: dx KN ditangani dengan prosedur N — pasangan klinis standar; biaya RpN dalam rentang tarif paket; LOS N hari dalam rentang median; obat dispensed sesuai dx; narasi rekam medis konsisten dengan penagihan; tanpa kontradiksiN",
+        23
+      ],
+      [
+        "NORMAL: dx EN ditangani konservatif tanpa prosedur (sesuai guideline); biaya rawat jalan RpN dalam rentang median; terapi obat sesuai standar; narasi rekam medis konsisten dengan penagihan; tidak ada kontradiksi narasiN",
+        21
+      ],
+      [
+        "NORMAL: pneumonia (JN) diterapi medis tanpa prosedur invasif — konsisten; biaya RpN dalam rentang; LOS N hari = median dx; obat (antibiotik + nebulizer) sesuai; tanpa kontradiksiN",
+        20
+      ],
+      [
+        "NORMAL: dx IN ditangani konservatif tanpa prosedur (sesuai guideline); biaya rawat jalan RpN dalam rentang median; terapi obat sesuai standar; narasi rekam medis konsisten dengan penagihan; tidak ada kontradiksi narasiN",
+        19
+      ]
+    ]
+  }
+}

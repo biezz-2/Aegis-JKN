@@ -1,0 +1,118 @@
+### accuracy93     2 hits
+   [0013] 2. Prinsip Anti-Overclaim & Transparansi Sains: Kami menolak klaim akurasi mutlak 100% dan tidak menyajikan angka penghematan anggaran yang spekulatif. Seluruh metrik teknis (Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, AUPRC 0.9142) serta estimasi penyelamatan overcharge tarif INA-CBG sebesar Rp 507,37 Juta dihitung berbasis metodologi empiris portofolio 300 klaim terverifikasi yang dapat direplikasi secara objekt
+   [0031] Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09).
+
+### precision9412  3 hits
+   [0013] 2. Prinsip Anti-Overclaim & Transparansi Sains: Kami menolak klaim akurasi mutlak 100% dan tidak menyajikan angka penghematan anggaran yang spekulatif. Seluruh metrik teknis (Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, AUPRC 0.9142) serta estimasi penyelamatan overcharge tarif INA-CBG sebesar Rp 507,37 Juta dihitung berbasis metodologi empiris portofolio 300 klaim terverifikasi yang dapat direplikasi secara objekt
+   [0031] Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09).
+   [0520] 94.12% (Tervalidasi)
+
+### rocauc09825    3 hits
+   [0013] 2. Prinsip Anti-Overclaim & Transparansi Sains: Kami menolak klaim akurasi mutlak 100% dan tidak menyajikan angka penghematan anggaran yang spekulatif. Seluruh metrik teknis (Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, AUPRC 0.9142) serta estimasi penyelamatan overcharge tarif INA-CBG sebesar Rp 507,37 Juta dihitung berbasis metodologi empiris portofolio 300 klaim terverifikasi yang dapat direplikasi secara objekt
+   [0031] Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09).
+   [0525] 0.9825 (Tervalidasi)
+
+### auprc09142     4 hits
+   [0013] 2. Prinsip Anti-Overclaim & Transparansi Sains: Kami menolak klaim akurasi mutlak 100% dan tidak menyajikan angka penghematan anggaran yang spekulatif. Seluruh metrik teknis (Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, AUPRC 0.9142) serta estimasi penyelamatan overcharge tarif INA-CBG sebesar Rp 507,37 Juta dihitung berbasis metodologi empiris portofolio 300 klaim terverifikasi yang dapat direplikasi secara objekt
+   [0031] Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09).
+   [0530] 0.9142 (+28.6% vs XGBoost)
+   [0568] Pengujian komparatif membuktikan keunggulan mutlak arsitektur MHGSL. Model baseline XGBoost hanya mencapai AUPRC sebesar 0.7100, sementara Aegis-JKN MHGSL mencapai AUPRC 0.9142 (peningkatan +28.6%). Pada uji ketahanan kamuflase, model mempertahankan akurasi 89.4% saat 40% alur rujukan fisik disamarkan. Separabilitas skor risiko sangat tegas: kelompok auto-clear memiliki rata-rata skor 0.086, kelompok review 0.591, da
+
+### masking894     3 hits
+   [0031] Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09).
+   [0239] Tinggi (89.4% akurasi pada 40% kamuflase)
+   [0568] Pengujian komparatif membuktikan keunggulan mutlak arsitektur MHGSL. Model baseline XGBoost hanya mencapai AUPRC sebesar 0.7100, sementara Aegis-JKN MHGSL mencapai AUPRC 0.9142 (peningkatan +28.6%). Pada uji ketahanan kamuflase, model mempertahankan akurasi 89.4% saat 40% alur rujukan fisik disamarkan. Separabilitas skor risiko sangat tegas: kelompok auto-clear memiliki rata-rata skor 0.086, kelompok review 0.591, da
+
+### fpr106         1 hits
+   [0570] Dengan fitur visualisasi klaster sindikat dan matriks diskrepansi klinis, verifikator tidak lagi perlu membaca puluhan lembar resume medis secara manual. Waktu telaah awal terpangkas 45%, dari 10-20 menit per berkas menjadi 3-5 menit. Penekanan False Positive Rate hingga 10.6% secara efektif melindungi verifikator dari kejenuhan kognitif (alert fatigue).
+
+### time45         1 hits
+   [0570] Dengan fitur visualisasi klaster sindikat dan matriks diskrepansi klinis, verifikator tidak lagi perlu membaca puluhan lembar resume medis secara manual. Waktu telaah awal terpangkas 45%, dari 10-20 menit per berkas menjadi 3-5 menit. Penekanan False Positive Rate hingga 10.6% secara efektif melindungi verifikator dari kejenuhan kognitif (alert fatigue).
+
+### throughput32   2 hits
+   [0550] 3.2x lipat kapasitas harian
+   [0601] Evaluasi antarmuka menghasilkan skor System Usability Scale (SUS) sebesar 82.5/100 (kategori 'Grade A / Excellent'). Melalui pengujian A/B testing komparatif antara metode konvensional vs berbantuan Aegis-JKN, verifikator mampu menyelesaikan telaah 3.2 kali lebih banyak berkas per jam kerja dengan tingkat kepuasan kerja yang meningkat signifikan.
+
+### sus825         2 hits
+   [0560] 82.5 / 100 (Kategori 'Excellent')
+   [0601] Evaluasi antarmuka menghasilkan skor System Usability Scale (SUS) sebesar 82.5/100 (kategori 'Grade A / Excellent'). Melalui pengujian A/B testing komparatif antara metode konvensional vs berbantuan Aegis-JKN, verifikator mampu menyelesaikan telaah 3.2 kali lebih banyak berkas per jam kerja dengan tingkat kepuasan kerja yang meningkat signifikan.
+
+### rp507          4 hits
+   [0013] 2. Prinsip Anti-Overclaim & Transparansi Sains: Kami menolak klaim akurasi mutlak 100% dan tidak menyajikan angka penghematan anggaran yang spekulatif. Seluruh metrik teknis (Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, AUPRC 0.9142) serta estimasi penyelamatan overcharge tarif INA-CBG sebesar Rp 507,37 Juta dihitung berbasis metodologi empiris portofolio 300 klaim terverifikasi yang dapat direplikasi secara objekt
+   [0031] Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09).
+   [0597] Rp 507.370.000 (Penyelamatan Riil)
+   [0599] Dari 60 klaim yang ditandai anomali (senilai Rp 841,10 Juta), sistem berhasil mendeteksi potensi kebocoran tarif (overcharge) sebesar Rp 507.370.000 (60.32% dari nominal klaim anomali, dengan rata-rata kerugian Rp 8.456.167 per kasus). Tiga modus dengan sumbangan kerugian terbesar adalah Phantom Billing (Rp 134,25 Juta), Upcoding (Rp 127,68 Juta), dan Repeat Billing (Rp 61,60 Juta). Sembilan sindikat fraud ring (SYND
+
+### rp3526         6 hits
+   [0031] Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09).
+   [0085] 8.4 Economic KPI & Analisis Portofolio Sampel Rp 3,53 Miliar  . . . . . 46
+   [0116] Tabel 8.2: Ringkasan Analisis Finansial Portofolio 300 Klaim (Dataset v2.1 senilai Rp 3,53 Miliar)  47
+   [0571] 8.4 Economic KPI & Analisis Portofolio Sampel Rp 3,53 Miliar
+   [0572] Tabel 8.2 menyajikan analisis finansial nyata yang diekstraksi dari database 300 klaim tervalidasi (Dataset v2.1) dengan total nilai portofolio Rp 3.526.650.000. Analisis ini membuktikan potensi dampak ekonomi riil tanpa overclaim spekulatif.
+   [0596] Rp 3.526.650.000
+
+### rp8456         1 hits
+   [0031] Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09).
+
+### plus286        3 hits
+   [0031] Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09).
+   [0530] 0.9142 (+28.6% vs XGBoost)
+   [0568] Pengujian komparatif membuktikan keunggulan mutlak arsitektur MHGSL. Model baseline XGBoost hanya mencapai AUPRC sebesar 0.7100, sementara Aegis-JKN MHGSL mencapai AUPRC 0.9142 (peningkatan +28.6%). Pada uji ketahanan kamuflase, model mempertahankan akurasi 89.4% saat 40% alur rujukan fisik disamarkan. Separabilitas skor risiko sangat tegas: kelompok auto-clear memiliki rata-rata skor 0.086, kelompok review 0.591, da
+
+### 60anomali      2 hits
+   [0031] Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09).
+   [0599] Dari 60 klaim yang ditandai anomali (senilai Rp 841,10 Juta), sistem berhasil mendeteksi potensi kebocoran tarif (overcharge) sebesar Rp 507.370.000 (60.32% dari nominal klaim anomali, dengan rata-rata kerugian Rp 8.456.167 per kasus). Tiga modus dengan sumbangan kerugian terbesar adalah Phantom Billing (Rp 134,25 Juta), Upcoding (Rp 127,68 Juta), dan Repeat Billing (Rp 61,60 Juta). Sembilan sindikat fraud ring (SYND
+
+### 300berkas      8 hits
+   [0013] 2. Prinsip Anti-Overclaim & Transparansi Sains: Kami menolak klaim akurasi mutlak 100% dan tidak menyajikan angka penghematan anggaran yang spekulatif. Seluruh metrik teknis (Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, AUPRC 0.9142) serta estimasi penyelamatan overcharge tarif INA-CBG sebesar Rp 507,37 Juta dihitung berbasis metodologi empiris portofolio 300 klaim terverifikasi yang dapat direplikasi secara objekt
+   [0031] Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09).
+   [0289] 1. Saluran Topologi Fisik (A_top): Memetakan relasi fisik operasional penugasan DPJP dan alur rujukan faskes. Pada dataset portofolio 300 klaim, saluran ini memetakan 10.386 edges.
+   [0501] Purwarupa diuji menggunakan Dataset Sintetis v2.1 yang mencakup 300 berkas klaim tervalidasi klinis dengan 31 fitur standar INA-CBG/FHIR R4. Dataset ini dibangkitkan menggunakan seed deterministik 20260707 guna menjamin keterulangan (reproducibility) eksperimen. Komposisi dataset terdiri atas 264 klaim normal (88%) dan 36 klaim fraud sindikat (12%) dengan rasio imbalance 1 : 7.33, merefleksikan kondisi lapangan yang 
+   [0572] Tabel 8.2 menyajikan analisis finansial nyata yang diekstraksi dari database 300 klaim tervalidasi (Dataset v2.1) dengan total nilai portofolio Rp 3.526.650.000. Analisis ini membuktikan potensi dampak ekonomi riil tanpa overclaim spekulatif.
+   [0594] 300 klaim
+   [0720] Penyusunan Dataset v2.1 (300 klaim), kalibrasi simulasi OASIS (20P, 12D, 6RS), dan anti-leakage audit.
+   [0752] Purwarupa Aegis-JKN telah diwujudkan dalam bentuk kode aplikasi fungsional yang siap didemonstrasikan: antarmuka web interaktif Next.js 16 yang responsif, backend inferensi PyTorch Geometric dan FastAPI berlatensi rendah, serta dataset pengujian 300 klaim tervalidasi klinis yang telah membuktikan kemampuan menyelamatkan lebih dari setengah miliar rupiah potensi kebocoran tarif pada sampel terbatas. Tim Inovator Kandi
+
+### ratio1_15      6 hits
+   [0031] Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09).
+   [0152] 5. Sasaran Finansial: Membuktikan kelayakan ekonomi sistem dengan target rasio Cost-to-Impact minimal 1 : 15 dalam melindungi Dana Jaminan Sosial (DJS) Kesehatan dari kebocoran pembiayaan.
+   [0555] 1 : 15 (Proyeksi Konservatif)
+   [0615] Dengan menerapkan prinsip Right-Sized Engineering, Aegis-JKN tidak memerlukan klaster GPU superkomputer yang mahal atau langganan API cloud komersial yang boros biaya token. Filter Tier-1 berjalan pada CPU standar, sementara Tier-3 MHGSL dapat dijalankan pada 1–2 unit server GPU workstation kelas menengah (misal: NVIDIA RTX 4090 / A5000) yang ditempatkan di data center lokal BPJS. Proyeksi Cost-to-Impact Ratio mencap
+   [0742] Rasio Cost-to-Impact terbukti ≥ 1 : 15 dalam perlindungan Dana DJS Kesehatan.
+   [0745] Keberhasilan antar-fase dikawal oleh tiga gerbang utama: (1) Gate-1: Model Core Readiness (AUPRC >0.85, latensi <500 ms); (2) Gate-2: User Adoption & Safety (SUS >80, override <20%, Safe-Mode Protocol teruji); serta (3) Gate-3: Financial Impact & Resilience (Cost-to-Impact > 1:15, ketahanan kamuflase >85% pada data operasional).
+
+### ratusan        2 hits
+   [0031] Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09).
+   [0599] Dari 60 klaim yang ditandai anomali (senilai Rp 841,10 Juta), sistem berhasil mendeteksi potensi kebocoran tarif (overcharge) sebesar Rp 507.370.000 (60.32% dari nominal klaim anomali, dengan rata-rata kerugian Rp 8.456.167 per kasus). Tiga modus dengan sumbangan kerugian terbesar adalah Phantom Billing (Rp 134,25 Juta), Upcoding (Rp 127,68 Juta), dan Repeat Billing (Rp 61,60 Juta). Sembilan sindikat fraud ring (SYND
+
+### rp150          1 hits
+   [0599] Dari 60 klaim yang ditandai anomali (senilai Rp 841,10 Juta), sistem berhasil mendeteksi potensi kebocoran tarif (overcharge) sebesar Rp 507.370.000 (60.32% dari nominal klaim anomali, dengan rata-rata kerugian Rp 8.456.167 per kasus). Tiga modus dengan sumbangan kerugian terbesar adalah Phantom Billing (Rp 134,25 Juta), Upcoding (Rp 127,68 Juta), dan Repeat Billing (Rp 61,60 Juta). Sembilan sindikat fraud ring (SYND
+
+### rp35miliar     0 hits
+
+### tervalidasi    16 hits
+   [0012] 1. Kepatuhan Regulasi Data Pribadi: Seluruh perancangan arsitektur data Aegis-JKN mematuhi Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP) dan Undang-Undang Nomor 17 Tahun 2023 tentang Kesehatan. Pengembangan purwarupa (MVP) sepenuhnya menggunakan dataset sintetis tervalidasi klinis dan data terbuka ter-deidentifikasi yang sah secara hukum, tanpa menggunakan data peserta JKN aktual tanpa i
+   [0013] 2. Prinsip Anti-Overclaim & Transparansi Sains: Kami menolak klaim akurasi mutlak 100% dan tidak menyajikan angka penghematan anggaran yang spekulatif. Seluruh metrik teknis (Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, AUPRC 0.9142) serta estimasi penyelamatan overcharge tarif INA-CBG sebesar Rp 507,37 Juta dihitung berbasis metodologi empiris portofolio 300 klaim terverifikasi yang dapat direplikasi secara objekt
+   [0031] Evaluasi empiris terhadap portofolio 300 berkas klaim tervalidasi klinis (Dataset v2.1 senilai Rp 3,53 Miliar) membuktikan performa superior model MHGSL: Akurasi 93.0%, Presisi 94.12%, ROC-AUC 0.9825, dan AUPRC 0.9142 (+28.6% dibanding baseline XGBoost 0.71). Model menunjukkan ketahanan kamuflase mencapai 89.4% pada tingkat masking rujukan 40%, serta 100% mendeteksi 9 pola sindikat terorganisir (SYND-01 s/d SYND-09).
+   [0080] 7.5 Dataset Sintetis v2.1 Tervalidasi (300 Klaim INA-CBG/FHIR R4)  . . 41
+   [0500] 7.5 Dataset Sintetis v2.1 Tervalidasi (300 Klaim INA-CBG/FHIR R4)
+   [0501] Purwarupa diuji menggunakan Dataset Sintetis v2.1 yang mencakup 300 berkas klaim tervalidasi klinis dengan 31 fitur standar INA-CBG/FHIR R4. Dataset ini dibangkitkan menggunakan seed deterministik 20260707 guna menjamin keterulangan (reproducibility) eksperimen. Komposisi dataset terdiri atas 264 klaim normal (88%) dan 36 klaim fraud sindikat (12%) dengan rasio imbalance 1 : 7.33, merefleksikan kondisi lapangan yang 
+   [0515] 93.00% (Tervalidasi)
+   [0520] 94.12% (Tervalidasi)
+   [0525] 0.9825 (Tervalidasi)
+   [0535] 89.40% (Tervalidasi)
+   [0548] Peningkatan jumlah berkas tervalidasi/hari
+   [0572] Tabel 8.2 menyajikan analisis finansial nyata yang diekstraksi dari database 300 klaim tervalidasi (Dataset v2.1) dengan total nilai portofolio Rp 3.526.650.000. Analisis ini membuktikan potensi dampak ekonomi riil tanpa overclaim spekulatif.
+   [0626] Dataset sintetis v2.1 tervalidasi klinis, katalog sindikat, dan modul kepatuhan SATUSEHAT.
+   [0721] Dataset v2.1 tervalidasi klinis dan modul Discrete Event Simulator OASIS.
+   [0722] Zero data leakage terverifikasi & reproduktibilitas seed deterministik 100%.
+   [0752] Purwarupa Aegis-JKN telah diwujudkan dalam bentuk kode aplikasi fungsional yang siap didemonstrasikan: antarmuka web interaktif Next.js 16 yang responsif, backend inferensi PyTorch Geometric dan FastAPI berlatensi rendah, serta dataset pengujian 300 klaim tervalidasi klinis yang telah membuktikan kemampuan menyelamatkan lebih dari setengah miliar rupiah potensi kebocoran tarif pada sampel terbatas. Tim Inovator Kandi
+
+### sintetis       3 hits
+   [0012] 1. Kepatuhan Regulasi Data Pribadi: Seluruh perancangan arsitektur data Aegis-JKN mematuhi Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP) dan Undang-Undang Nomor 17 Tahun 2023 tentang Kesehatan. Pengembangan purwarupa (MVP) sepenuhnya menggunakan dataset sintetis tervalidasi klinis dan data terbuka ter-deidentifikasi yang sah secara hukum, tanpa menggunakan data peserta JKN aktual tanpa i
+   [0213] 4. Validasi Pra-Deploy via Multi-Agent Simulation: Mengadopsi fork Discrete Event Simulator OASIS (CAMEL-AI v0.2.5) untuk memvalidasi ketahanan model terhadap 9 skenario sindikat secara sintetis sebelum diterjunkan ke data riil, menjamin kepatuhan penuh terhadap privasi data tanpa risiko etika.
+   [0626] Dataset sintetis v2.1 tervalidasi klinis, katalog sindikat, dan modul kepatuhan SATUSEHAT.
+
+### theta          1 hits
+   [0290] 2. Saluran Kemiripan Fitur (A_feat): Menghubungkan entitas berdasarkan kemiripan kosinus vektor atribut klinis dan biaya (LOS, biaya INA-CBG, usia, kuantitas obat) dengan ambang batas theta_feat >= 0.50 (menghasilkan 15.202 edges). Saluran ini mendeteksi klaster klaim yang identik secara implisit meskipun diajukan pada berkas berbeda.
+

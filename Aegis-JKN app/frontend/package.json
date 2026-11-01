@@ -1,0 +1,42 @@
+{
+	"name": "frontend-svelte",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "node scripts/dev-all.js",
+		"start": "node scripts/dev-all.js",
+		"dev:frontend": "vite dev --port 5173",
+		"dev:all": "node scripts/dev-all.js",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"verify": "node scripts/verify-workstation.js",
+		"test:unit": "node scripts/run-unit-tests.mjs"
+	},
+	"devDependencies": {
+		"@reticlehq/browser": "^3.7.0",
+		"@reticlehq/vite-plugin": "^3.7.0",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"@tailwindcss/vite": "^4.3.3",
+		"svelte": "^5.57.1",
+		"svelte-check": "^4.6.0",
+		"tailwindcss": "^4.3.3",
+		"typescript": "^6.0.3",
+		"vite": "^8.3.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
+	},
+	"dependencies": {
+		"@supabase/supabase-js": "^2.118.0",
+		"@types/three": "^0.186.0",
+		"@xyflow/svelte": "^1.7.0",
+		"three": "^0.186.1"
+	}
+}

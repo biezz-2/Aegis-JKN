@@ -1,0 +1,26 @@
+replicaCount: 5
+
+image:
+  repository: aegis-jkn/workers
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+resources:
+  limits:
+    cpu: 2
+    memory: 4Gi
+  requests:
+    cpu: 1
+    memory: 2Gi
+
+# Workers typically use KEDA or custom triggers rather than standard HPA
+keda:
+  enabled: true
+  scaledObject:
+    minReplicaCount: 0
+    maxReplicaCount: 50
+    triggers:
+      - type: rabbitmq # Example: scaling based on queue depth
+        metadata:
+          queueName: "claim-scoring-queue"
+          queueLength: "100"

@@ -1,0 +1,32 @@
+−   0x2212 x86    MINUS SIGN
+      01-governance.md                 L219   - **B-4 (BLOCKER)** - Klaimfinancial `11-archive-proposal.md` L344–L348/Linux: 240 auto_clear "Rp 0 (Klaim Lay
+      03-architecture.md               L132   | G-16 | Versi model & threshold di UI + 03 §4 "satu tempat, diberi versi" | 02:46, 03:46 | **DEVIASI** | `src
+θ   0x3b8 x56    GREEK SMALL LETTER THETA
+      02-proposal.md                   L273   `11-archive-proposal.md:210` memakai `theta_feat >= 0.50` untuk kanal kemiripan fitur (menghasilkan 15.202 edg
+      02-proposal.md                   L358   | **Spesifikasi MHGSL: PathSim, ambang θ, fusion, bobot atensi, jumlah edge** | `11-archive-proposal.md:207-22
+φ   0x3c6 x29    GREEK SMALL LETTER PHI
+      03-architecture.md               L32    | TINGGI | 11 | Rule engine absen; 10 artefak eksperimen absen; leak konfigurasi `ignoreBuildErrors`; 0 file P
+      03-architecture.md               L32    | TINGGI | 11 | Rule engine absen; 10 artefak eksperimen absen; leak konfigurasi `ignoreBuildErrors`; 0 file P
+γ   0x3b3 x14    GREEK SMALL LETTER GAMMA
+      03-architecture.md               L294   2. **Kunci satu berkas ambang** `src/config/thresholds.ts` (versi, seed, τ, θ, γ) lalu impor di `data-uploader
+      06-graph-mhgsl.md                L116   | F11 | Focal Loss, `α=0,75, γ=2,0` | `mhgsl-theory.md:190-197` | Rumus **benar** dan cocok `cell 9:116-128` (
+Δ   0x394 x13    GREEK CAPITAL LETTER DELTA
+      03-architecture.md               L22    2. **Angka"Ilmu" yang ditampilkan adalah konstanta UI, bukan hasil pengukuran.** AUPRC 0,91, precision 0,92, R
+      03-architecture.md               L141   | G-25 | Metrik benchmarkMHGSL | (02 §5.4, 00:47) | **DEVIASI** | `src/components/mhgsl/data.ts:264` AUPRC 0,9
+τ   0x3c4 x9     GREEK SMALL LETTER TAU
+      03-architecture.md               L132   | G-16 | Versi model & threshold di UI + 03 §4 "satu tempat, diberi versi" | 02:46, 03:46 | **DEVIASI** | `src
+      03-architecture.md               L165   | Kontrak API | `docs/api/data-contracts.md:211-213` | `θ_feat 0.75`, `τ_high 0.65`, `τ_fraud 0.85` |
+Σ   0x3a3 x6     GREEK CAPITAL LETTER SIGMA
+      04-data-quality.md               L108   | 16 | Total nominal Rp3.526.650.000 | 03 §3.3, 00 §3 | Rp3.526.650.000 (Σ 300 `Biaya Rp`) | ✓ |
+      04-data-quality.md               L112   | 20 | Σ per-status = total | konsistensi internal | 2.685.550.000 + 279.950.000 + 561.150.000 = 3.526.650.000
+λ   0x3bb x5     GREEK SMALL LETTER LAMDA
+      06-graph-mhgsl.md                L119   | F14 | `CamouflageSignature` ⇔ `ŷ≥0,85 ∧ φ_top<0 ∧ φ_feat>λ_feat ∧ φ_sem>λ_sem` | `mhgsl-theory.md:218-225` |
+      06-graph-mhgsl.md                L119   | F14 | `CamouflageSignature` ⇔ `ŷ≥0,85 ∧ φ_top<0 ∧ φ_feat>λ_feat ∧ φ_sem>λ_sem` | `mhgsl-theory.md:218-225` |
+σ   0x3c3 x3     GREEK SMALL LETTER SIGMA
+      06-graph-mhgsl.md                L112   | F7 | `H^(k) = σ(D̃^-1/2 Ã^(k) D̃^-1/2 X W^(k))` | `mhgsl-theory.md:152-154` | **Benar** dan cocok dengan `ce
+      06-methodology.md                L219   - Skor laten model: dua populasi normal, `AUROC` target 0,90, disimulasikan dengan `mu = sqrt(2)·Φ⁻¹(AUROC)`, 
+α   0x3b1 x2     GREEK SMALL LETTER ALPHA
+      06-graph-mhgsl.md                L116   | F11 | Focal Loss, `α=0,75, γ=2,0` | `mhgsl-theory.md:190-197` | Rumus **benar** dan cocok `cell 9:116-128` (
+      06-graph-mhgsl.md                L116   | F11 | Focal Loss, `α=0,75, γ=2,0` | `mhgsl-theory.md:190-197` | Rumus **benar** dan cocok `cell 9:116-128` (
+Φ   0x3a6 x1     GREEK CAPITAL LETTER PHI
+      06-methodology.md                L219   - Skor laten model: dua populasi normal, `AUROC` target 0,90, disimulasikan dengan `mu = sqrt(2)·Φ⁻¹(AUROC)`, 

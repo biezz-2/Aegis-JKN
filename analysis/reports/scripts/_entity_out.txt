@@ -1,0 +1,120 @@
+GT audit: {'low': 76, 'medium': 4, 'high': 6, 'fraud': 14} {'Negatif': 24, 'Netral': 14, 'Positif': 62}
+feat_edges=4563 clone_pair=[('KLM016', 'KLM017', 1.0)] cos(KLM016,KLM017)=1.000
+
+*** AKURASI SENTIMEN (leksikon vs GT) = 93.0%  (186/200)
+*** DETEKSI FRAUD = 14/14 (100%) pada antrian 20 klaim
+    fraud skor min/max = 0.84 / 0.95
+    non-fraud skor max = 0.79
+    p_fused fraud min = 0.856; non-fraud max = 0.802
+*** HIT-RATE SINDIKAT: {'SYND-01': '3/3=100.0%', 'SYND-02': '3/3=100.0%', 'SYND-03': '6/6=100.0%', 'SYND-04': '2/2=100.0%', 'SYND-05': '2/2=100.0%'}
+*** Kontradiksi prioritas: 8/8 | Kriteria: {'integritas': True, 'deteksi': True, 'sindikat': True, 'kontradiksi': True} | SESUAI=True
+*** ROI: 20/3 = 6.667x -> kapasitas 6,667 berkas | prevalensi 14%
+*** f_text aktif pada 17 klaim
+
+*** QUEUE (all 20):
+    KLM003 p_fused=0.955 risk=fraud  modus=Upcoding           synd=SYND-01   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 1.0} KONTRA=True
+    KLM002 p_fused=0.946 risk=fraud  modus=Upcoding           synd=SYND-01   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 1.0} KONTRA=True
+    KLM006 p_fused=0.946 risk=fraud  modus=Phantom Billing    synd=SYND-02   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=True
+    KLM001 p_fused=0.937 risk=fraud  modus=Upcoding           synd=SYND-01   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 1.0} KONTRA=True
+    KLM005 p_fused=0.937 risk=fraud  modus=Phantom Billing    synd=SYND-02   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=True
+    KLM004 p_fused=0.928 risk=fraud  modus=Phantom Billing    synd=SYND-02   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=True
+    KLM014 p_fused=0.892 risk=fraud  modus=Drug Diversion     synd=SYND-04   chan={'fitur': 1.0, 'topologi': 0.8, 'semantik': 0.6} KONTRA=False
+    KLM012 p_fused=0.883 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM010 p_fused=0.874 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM011 p_fused=0.874 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM013 p_fused=0.874 risk=fraud  modus=Drug Diversion     synd=SYND-04   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM008 p_fused=0.865 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM009 p_fused=0.865 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM007 p_fused=0.856 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM016 p_fused=0.802 risk=high   modus=Cloning            synd=SYND-05   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM017 p_fused=0.790 risk=high   modus=Cloning            synd=SYND-05   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM018 p_fused=0.766 risk=high   modus=Prolonged Stay     synd=-         chan={'fitur': 0.0, 'topologi': 1.0, 'semantik': 0.2} KONTRA=True
+    KLM021 p_fused=0.680 risk=high   modus=Anomali            synd=-         chan={'fitur': 0.0, 'topologi': 1.0, 'semantik': 0.2} KONTRA=False
+    KLM020 p_fused=0.660 risk=high   modus=Anomali            synd=-         chan={'fitur': 0.0, 'topologi': 1.0, 'semantik': 0.2} KONTRA=False
+    KLM019 p_fused=0.620 risk=high   modus=Anomali Biaya      synd=-         chan={'fitur': 0.0, 'topologi': 1.0, 'semantik': 0.2} KONTRA=False
+
+*** Top-10 by p_fused (dashboard chart 'Top-10 Skor Fusion'):
+    KLM003 0.955 Upcoding
+    KLM002 0.946 Upcoding
+    KLM006 0.946 Phantom Billing
+    KLM001 0.937 Upcoding
+    KLM005 0.937 Phantom Billing
+    KLM004 0.928 Phantom Billing
+    KLM014 0.892 Drug Diversion
+    KLM012 0.883 Unbundling
+    KLM010 0.874 Unbundling
+    KLM011 0.874 Unbundling
+
+*** LEAKAGE CHECKS
+    risk=fraud  n= 14 skor min=0.84 max=0.95
+    risk=medium n=  4 skor min=0.41 max=0.55
+    risk=high   n=  6 skor min=0.62 max=0.79
+    risk=low    n= 76 skor min=0.05 max=0.33999999999999997
+    sentiment texts are templates keyed on c['gt_sentimen'] -> lexicon label == gt by construction
+    risk_label(skor) == 'fraud' iff skor > 0.8 ; fraud set is a hardcoded skor cut
+    p_fused derives from c['skor'] (hardcoded) + 0.10*f_text; no learned model is involved
+    AUC of p_fused vs fraud label = 1.0 (fraud = top 14 by hardcoded skor)
+    p_lead > 0.85 rule: fraud above = 14/14; non-fraud above = 0
+=== ENTITY TABLE CHECK: 10-simulation-dataset.md vs FIXX ground truth ===
+
+FASKES   doc(n,skor,risk)  actual(n,skor_max,risk)
+  RS_A: doc(19, 0.95, fraud)  actual(17, 0.95, ['low', 'medium', 'high', 'fraud'])  <== N MISMATCH
+  RS_B: doc(13, 0.87, fraud)  actual(19, 0.87, ['low', 'fraud'])  <== N MISMATCH
+  RS_C: doc(10, 0.94, fraud)  actual(16, 0.94, ['low', 'fraud'])  <== N MISMATCH
+  RS_D: doc(10, 0.68, high)  actual(16, 0.68, ['low', 'medium', 'high'])  <== N MISMATCH
+  RS_E: doc(22, 0.88, fraud)  actual(16, 0.88, ['low', 'medium', 'fraud'])  <== N MISMATCH
+  RS_F: doc(26, 0.79, high)  actual(16, 0.79, ['low', 'medium', 'high'])  <== N MISMATCH
+
+DIAGNOSIS  doc(n,skor,risk)  actual(n,skor_max,risk)
+  K29.7: doc(10, 0.95, fraud)  actual(3, 0.95, ['fraud'])  <== N MISMATCH
+  K35.8: doc(11, 0.79, high)  actual(3, 0.79, ['medium', 'high'])  <== N MISMATCH
+  K40.9: doc(8, 0.13, low)  actual(77, 0.41, ['low', 'medium'])  <== N MISMATCH  <== SKOR MISMATCH (doc 0.13)
+  I21.9: doc(8, 0.13, low)  actual(1, 0.62, ['high'])  <== N MISMATCH  <== SKOR MISMATCH (doc 0.13)
+  J18.9: doc(9, 0.74, high)  actual(2, 0.74, ['high'])  <== N MISMATCH
+  E11.9: doc(15, 0.88, fraud)  actual(3, 0.88, ['medium', 'fraud'])  <== N MISMATCH
+  N20.0: doc(8, 0.13, low)  actual(1, 0.47, ['medium'])  <== N MISMATCH  <== SKOR MISMATCH (doc 0.13)
+  S72.0: doc(10, 0.94, fraud)  actual(3, 0.94, ['fraud'])  <== N MISMATCH
+  O80: doc(8, 0.66, high)  actual(1, 0.66, ['high'])  <== N MISMATCH
+  K80.2: doc(13, 0.87, fraud)  actual(6, 0.87, ['fraud'])  <== N MISMATCH
+
+PROSEDUR (doc excerpt only)
+  00.66: doc(12, 0.95, fraud)  actual n=4
+  36.13: doc(0, 0, low)  actual n=0  <== PROCEDURE NOT IN NOTEBOOK PROC TABLE
+  47.09: doc(11, 0.79, high)  actual n=5
+
+PROSEDUR full from notebook:
+  00.66 (PCI): n=4 skor_max=0.95 tarif=?
+  47.09 (apendektomi): n=5 skor_max=0.79 tarif=?
+  51.23 (kolesistektomi): n=6 skor_max=0.88 tarif=?
+  53.1 (hernia): n=77 skor_max=0.41 tarif=?
+  74.1 (seksio sesarea): n=1 skor_max=0.66 tarif=?
+  81.52 (hemiarthroplasty): n=3 skor_max=0.94 tarif=?
+  96.04 (intubasi): n=3 skor_max=0.87 tarif=?
+  98.51 (fragmentasi batu): n=1 skor_max=0.47 tarif=?
+
+PASIEN  doc(n,skor,risk)  actual(n,skor_max,risk)
+  P01: doc(5, 0.94, fraud)  actual(5, 0.93, ['low', 'fraud'])  <== SKOR MISMATCH (doc 0.94)
+  P02: doc(5, 0.95, fraud)  actual(4, 0.94, ['low', 'fraud'])  <== N MISMATCH  <== SKOR MISMATCH (doc 0.95)
+  P03: doc(5, 0.93, fraud)  actual(4, 0.95, ['low', 'fraud'])  <== N MISMATCH  <== SKOR MISMATCH (doc 0.93)
+  P04: doc(4, 0.11, low)  actual(4, 0.41, ['low', 'medium'])  <== SKOR MISMATCH (doc 0.11)
+  P05: doc(5, 0.66, high)  actual(4, 0.66, ['low', 'high'])  <== N MISMATCH
+  P06: doc(4, 0.13, low)  actual(5, 0.47, ['low', 'medium'])  <== N MISMATCH  <== SKOR MISMATCH (doc 0.13)
+  P07: doc(5, 0.62, high)  actual(5, 0.62, ['low', 'high'])
+  P08: doc(5, 0.92, fraud)  actual(5, 0.92, ['low', 'fraud'])
+  P09: doc(5, 0.94, fraud)  actual(5, 0.93, ['low', 'fraud'])  <== SKOR MISMATCH (doc 0.94)
+  P10: doc(5, 0.93, fraud)  actual(5, 0.94, ['low', 'fraud'])  <== SKOR MISMATCH (doc 0.93)
+  P11: doc(5, 0.68, high)  actual(5, 0.68, ['low', 'high'])
+  P12: doc(5, 0.85, fraud)  actual(6, 0.85, ['low', 'fraud'])  <== N MISMATCH
+  P13: doc(6, 0.86, fraud)  actual(6, 0.86, ['low', 'fraud'])
+  P14: doc(6, 0.87, fraud)  actual(6, 0.87, ['low', 'fraud'])
+  P15: doc(5, 0.53, medium)  actual(5, 0.53, ['low', 'medium'])
+  P16: doc(5, 0.88, fraud)  actual(5, 0.86, ['low', 'fraud'])  <== SKOR MISMATCH (doc 0.88)
+  P17: doc(5, 0.86, fraud)  actual(5, 0.88, ['low', 'fraud'])  <== SKOR MISMATCH (doc 0.86)
+  P18: doc(4, 0.74, high)  actual(6, 0.74, ['low', 'medium', 'high'])  <== N MISMATCH
+  P19: doc(4, 0.78, high)  actual(5, 0.78, ['low', 'high'])  <== N MISMATCH
+  P20: doc(5, 0.79, high)  actual(5, 0.79, ['low', 'high'])
+
+DOKTER actual counts: {'D01': 8, 'D02': 8, 'D03': 9, 'D04': 10, 'D05': 10, 'D06': 6, 'D07': 12, 'D08': 9, 'D09': 9, 'D10': 6, 'D11': 6, 'D12': 7}
+
+300-dataset non-auto_clear: n=60 nominal=841,100,000 mean=14,018,333
+target/60 = 8,456,167  (proposal 'rata-rata Rp8,46 Juta per kasus fraud')

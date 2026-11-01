@@ -1,0 +1,2 @@
+triple: ['IEEE']
+odd: ['Benchmark', 'Healthkathon', 'aegisjkn', 'ambangnya', 'benchmark', 'bootstrap', 'bpjs', 'construction', 'dbdd', 'eksplisit', 'healthkathon', 'html', 'https', 'instruksi', 'python', 'rekonstruksi', 'substring', 'syndHit', 'synthesis', 'terstruktur', 'workspace']

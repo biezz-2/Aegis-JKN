@@ -1,0 +1,72 @@
+{
+ "RS_A_claims": 29,
+ "KLM001": {
+  "claim_id": "KLM001",
+  "biaya_rp": "52300000",
+  "los_hari": "2",
+  "pasien_id": "P01",
+  "dokter_id": "D01",
+  "faskes_id": "RS_A",
+  "skor_fraud": "0.94",
+  "status": "escalate",
+  "sindikat": "SYND-01",
+  "modus": "upcoding"
+ },
+ "SYND-01_ids": [
+  "KLM001",
+  "KLM002",
+  "KLM003"
+ ],
+ "SYND-01_biaya": [
+  52300000,
+  52300000,
+  52300000
+ ],
+ "SYND-01_dokters": [
+  "D01",
+  "D02"
+ ],
+ "SYND-01_pasiens": [
+  "P01",
+  "P02",
+  "P03"
+ ],
+ "kontradiksi_1_count": 12,
+ "D01_claims": 5,
+ "D01_biaya_sum": 273700000,
+ "RS_A_escalate": 3,
+ "RS_A_max_skor": 0.95,
+ "max_skor_all": 0.95,
+ "max_skor_claim": [
+  "KLM002"
+ ],
+ "n_prosedur_0066": 24,
+ "n_0066_diag_K297": 3,
+ "n_0066_escalate": 4,
+ "biaya_0066": [
+  49700000,
+  52200000,
+  52250000,
+  52300000,
+  52750000,
+  52900000,
+  53100000,
+  54900000,
+  56650000,
+  57400000,
+  57550000,
+  58000000,
+  58850000,
+  59350000,
+  59900000,
+  61100000,
+  61150000,
+  61300000,
+  61400000,
+  62000000,
+  63500000
+ ],
+ "A_top_edges_notebook_alg": 7140,
+ "A_top_edges_pipeline_alg": 10386,
+ "prevalensi_fraud": 12.0
+}

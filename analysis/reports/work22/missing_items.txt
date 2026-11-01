@@ -1,0 +1,37 @@
+### cover letter/surat pengantar -> 0 hits
+
+### pernyataan / sworn -> 3 hits
+   [0007] LEMBAR PERNYATAAN ORISINALITAS DAN INTEGRITAS
+   [0016] Demikian pernyataan ini kami buat dengan penuh rasa tanggung jawab, integritas moral, dan dedikasi demi mendukung keberlanjutan Program Jaminan Kesehatan Nasional (JKN) yang berkeadilan bagi seluruh r
+   [0035] LEMBAR PERNYATAAN ORISINALITAS DAN INTEGRITAS  . . . . . . . . . . . . . ii
+
+### keanggotaan tim -> 1 hits
+   [0618] Peran Anggota Tim
+
+### NIB/kemenkumham -> 0 hits
+
+### nomor HP/kontak -> 1 hits
+   [0351] Aegis-JKN mengadopsi standar de-identifikasi HIPAA Safe Harbor yang diselaraskan dengan regulasi nasional. Delapan belas elemen pengenal langsung (nama pasien, NIK, alamat presisi, nomor telepon, nomo
+
+### alamat -> 1 hits
+   [0351] Aegis-JKN mengadopsi standar de-identifikasi HIPAA Safe Harbor yang diselaraskan dengan regulasi nasional. Delapan belas elemen pengenal langsung (nama pasien, NIK, alamat presisi, nomor telepon, nomo
+
+### email -> 0 hits
+
+### nama lengkap -> 0 hits
+
+### NIK -> 4 hits
+   [0136] a. Upcoding Severity Level: Praktik manipulasi penetapan kode diagnosis utama atau penambahan kode diagnosis sekunder (komorbiditas/komplikasi) ke tingkat yang lebih parah (Severity Level I dinaikkan 
+   [0268] Untuk menjamin skalabilitas komputasi pada volume transaksi BPJS Kesehatan (>2.000.000 klaim/hari), Aegis-JKN menerapkan arsitektur Dual-Path Processing: (1) Jalur Streaming Real-Time (<500 ms) yang m
+   [0277] Sesuai mandat UU PDP No. 27/2022, seluruh data identitas langsung (PII) seperti NIK, Nomor Kartu JKN, Nama Peserta, dan Nomor Rekam Medis langsung ditokenisasi in-memory menggunakan algoritma salted S
+   [0351] Aegis-JKN mengadopsi standar de-identifikasi HIPAA Safe Harbor yang diselaraskan dengan regulasi nasional. Delapan belas elemen pengenal langsung (nama pasien, NIK, alamat presisi, nomor telepon, nomo
+
+### lampiran -> 0 hits
+
+### abstrak/keyword -> 1 hits
+   [0032] KATA KUNCI: Kecurangan Klaim JKN, Upcoding, Phantom Billing, Unbundling, Fraud Rings, Multi-Hop Graph Structure Learning (MHGSL), Topological Camouflage, Human-in-the-Loop, Explainable AI (XAI), UU Pe
+
+### pendaftaran -> 0 hits
+
+### link demo/prototype -> 0 hits
+

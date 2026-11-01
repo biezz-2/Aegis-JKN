@@ -1,0 +1,16 @@
+============ src/components/mhgsl/i18n.tsx
+   443 | "Sindikat D01–D02 di RS_A (SYND-01) → klaim KLM001–003 upcoding ditarik ke antrean investigasi. Total penghematan estimasi Rp 1,2 M / bulan (Rp 14,4 M / tahun).",
+   791 | "Syndicate D01–D02 at RS_A (SYND-01) → claims KLM001–003 upcoding pulled into investigation queue. Total estimated savings Rp 1.2 B / month (Rp 14.4 B / year).",
+   352 | desc: "Vektor atribut P01, P02, P03 dievaluasi: Length of Stay identik (3 hari), diagnosis K29.7 identik, biaya berhimpitan Rp 58 juta dengan Cosine Similarity 0.92 melampaui ambang θ_feat = 0.85.",
+============ src/components/mhgsl/data.ts
+   391 | { before: "20 mnt", after: "3 mnt", label: "Telaah per berkas klaim" },
+   392 | { before: "1.000", after: "~6.700", label: "Kapasitas verifikator (efektif)" },
+   437 | { label: "Tagihan per klaim", value: "Rp 58.000.000", flag: true },
+   451 | "FKRTL Swasta Kelas B di Jakarta Selatan (412 Tempat Tidur) dengan 19 klaim, skor fraud tertinggi 0.95. Konsentrasi 78% tagihan bedah mahal berasal dari dokter D01 & D02 pada klaster sindikat SYND-01.",
+   463 | { label: "Total klaim di RS_A", value: "19 klaim", flag: true },
+   464 | { label: "Skoring fraud maks", value: "0.95 (fraud)", flag: true },
+   503 | claimsV2: 300,
+   507 | faskes: 10,
+   418 | riskScore: 0.94,
+============ src/components/mhgsl/data-uploader.tsx
+   137 | fusionScore >= 0.85 ? "fraud" : fusionScore >= 0.65 ? "high" : fusionScore >= 0.4 ? "medium" : "low";

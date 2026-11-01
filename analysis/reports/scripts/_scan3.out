@@ -1,0 +1,50 @@
+L8: **Kodebases (read-only):** `N:\HEALTHKATHON\Aegis-JKN\`, `N:\HEALTHKATHON\Notion-docs\architecture_full.md`
+L31: | S3 | **Kritis** | `08-training-protocol.md` (protikel training) tidak memuat text channel sama sekali | Tidak ada prosedur evaluasi, ambang, error handling, atau accountable review untuk 1 dari 3 channel | `grep -c` = 0 pada 08 |
+L78: **Bold** = 4 ID di luar spec (KLM105–KLM108, sindikat SYND-07 "Iur Biaya" yang baru ada di v2). Diesekslusi yang explains delta +4.
+L95: Dashboard menampilkan label literal "62 positif · 14 netral · 24 negatif" (`oasis-dashboard.tsx`) di bawah angka `gtSent` — hardcode ganda, ganda salahnya.
+L136: **Verdict: ✅ KONSISTEN.** Ini satu-satunya bagian text channel yang lolos audit. Namun konsistensi ini **trivially achieved** — bukan bukti kualitas, karena label sendiri diturunkan secara deterministik dari string umpan balik (lihat §4: 36 string unik → 36 label deterministik, 0 string dengan >1 label). Konsistensi ini berasal dari **generasi deterministik**, bukan dari klasifikasi yang benar.
+L138: **Implikasi untuk Leakage:** `Skor Sentimen` adalah label turunan, bukan fitur. `03-dataset-registry.md:70` sudah mensyaratkan "Harus sesuai dengan definisi skor" — terpenuhi. Namun `Skor Sentimen` tidak boleh masuk sebagai fitur (termasuk `08-training-protocol.md:25` sudah mengecualikan "label turunan"). Perlu ditegaskan karena kolom ini 100% berkorelasi sempurna dengan `Sentimen`.
+L211: **Recall ground truth kontradiksi = 12 / (12 + 11) = 52,2%.** 7 dari 11 adalah klaim `fraud` dengan skor 0.85–0.92 — termasuk KLM101-104 (repeat_billing, sindikat SYND-06) yang justru punya umpan balik paling eksplisit ("muncul dua kali dengan nilai sama").
+L221: **Label sentimen diturunkan dari `Modus`, bukan dari analisis sentimen.** 11 dari 13 modus bersifat monoton (seluruh baris satu modus → satu label). Varian hanya ada di baris normal.
+L246: **13 dari 36 klaim `fraud` (36%) tidak punya sinyal teks negatif sama sekali** (label netral atau positif): KLM109–KLM122 seluruhnya. Itu blok `readmission_berulang` + `excessive_usage` + `drug_diversion` —BBB secara klinis legitimate, dan memang tidak bisa dideteksi lewat umpan balik. Ini **expected**, tetapi berarti text channel hanya bisa/newsaya contributes pada ~52% klaim fraud.
+L258: | **Alasan Berobat** | 300 | **18** | **6,0%** | **282 baris** | 73 | 32 |
+L265: | Alasan Berobat | 300 | 18 | 6,0% | — | — | — |
+L268: - 12 string menutupi 293 baris (97,7%) — seluruhnya kalimat template tanpa variasi
+L269: - 17 string menutupi 48 baris (16%) — sisanya
+L303: **Konsensus narasi = monoton dengan `Diagnosis ICD-10`.** 13 diagnosis → 40 narasi, dan setiap diagnosis memetakan ke 1–3 narasi. Narasi **tidak pernah** menyimpang dari dx kecuali pada kasus yang memang harus menyimpang (KLM001-003, KLM018, KLM024 — 5 baris, semuanya sudah di-flag).
+L311: - **Positif (5 template, 168 baris):** robotic. Kalimat pendek, netral, tanpa detail personal, tanpa nama faskes, tanpa temporal ("hariorea-service"). Tidak ada yang menyebut misalnya Waiting time spesifik, nama wf, atau konteks. Terasa seperti hasil generator template, bukan kutipan survei.
+L312: - **Netral (4 template, 34 baris):** robotic, tapi paling natural — "Cukup membantu, tapi proses administrasi bertele-tele." dan "Lumayan, walaupun antrean cukup panjang." punya struktur kontras yang realistis.
+L313: - **Negatif layanan (3 template, 42 baris):** robotic tapi berbeda flavor — "Antrean sangat lama dan tempat parkir sempit."
+L314: - **Negatif fraud (17 string, 48 baris):** **natural.** Ini yang paling meyakinkan:
+L315:  - "Kenapa ada dua tagihan untuk satu operasi yang sama?" — pertanyaan retoris natural, capturesbundling
+L316:  - "Muncul tagihan kedua untuk tindakan yang tidak saya ketahui." — natural, captures unbundling +ignoranbilling
+L317:  - "Saya bingung, tagihan operasi saya muncul dua kali dengan nilai sama." — natural, captures repeat_billing
+L318:  - "Saya tidak pernah menjalani operasi apa pun di rumah sakit ini." — natural, captures phantom billing
+L319:  - "Dokter dan perawat baik, tetapi saya diminta membayar Rp3 juta tambahan di luar BPJS." — natural, captures iur biaya + mixed sentiment
+L320:  - "Saya melahirkan normal, kenapa ditagih operasi caesar?" — natural, captures upcoding
+L321: - **Verdict:** 36 string yang paling realistis (khususnya 17 string negatif-fraud) **dipakai ulang di seluruh dataset**. Teksnya natural, tapi **distribusinya tidak natural** — patient feedback di dunia nyata punya variasi leksikal jauh lebih tinggi.
+L323: **"Alasan Berobat" (18 unik):** natural dan klinis realistis. Contoh bagus: "Terjatuh di kamar mandi, tidak dapat berdiri, nyeri hebat pada panggul." — klinis credible. Variasinya rendah (18 untuk 300) tetapi karena hanya 13 diagnosis.
+L374: 1. **Modul deteksi "konsistensi narasi vs kode billing" (sinyal #1 di `architecture_full.md:174`) tidak mungkin detecting phantom billing.** Justru narasi yang paling "konsisten" adalah yang paling mencurigakan.
+L375: 2. **Rancangan protokol §3.3 "empat sumber narasi" efektif hanya 1 sumber** untuk phantom, 2 sumber untuk upcoding/iur. Yang tersisa (Alasan Berobat, Rujukan) tidak pernah memuat sinyal billing.
+L394: | **Data privacy / PII egress** | ⚠️ Satu baris peringatan | `07-dataset-v2-catalog.md:4` "jangan memasukkan baris mentah ke prompt AI eksternal" (untuk file DM) | ❌ Tidak ada klasifikasi data pada kolom teks, tidak ada scrubbing PII, tidak ada DPA vendor, tidak ada retensi, tidak ada policies untuk dataRyder BPJS, tidak ada UU PDP mapping khusus untuk Gemini (untuk data DM saja). `architecture_full.md` §4.1 menyebut UU PDP & DPO secara umum tapi **tidak ada satu pun** penyebutan Gemini/Google sebagai penerima data |
+L429: 4. **Kanal Twitter/Reddit di app adalah input publik non-tepercaya** — `oasis-data.ts` feed `twFeed`/`rdFeed` berisi teks publik dengan `f_text: 1` dan masuk ke formula yang sama. Ini surface injeksi yang paling jelas: siapa pun bisa mem-postweet dengan konten yangWallet.
+L434: - Narasi RME contains*"Pasien menolak MRI. Billing tetap klaim MRI."* → LLM mungkinNtissue considers "MRI" sebagai prosedur performed → **memperkuat** klaim yang justru kontradiktif (membuat upvotes kompromis lebih sulit).
+L440: - **Jangan pernah** izinkan output LLM langsung;=optional pustaka yang di-backup; jika nilai LLM masuk formula, cap per-claim contribution (mis. `f_text ∈ [0,1]` dan cap kontribusinya, sesuai `γ=0.10` yang sudah ada).
+L447: - **Belum ada Implementasi Gemini sama sekali** — 48/48 entri feed ber-`heuristik-lokal`, tidak ada SDK Gemini di `package.json`. Jadi **saat ini nol data keluar ke Google.**
+L448: - `architecture_full.md` §4.2 meng.Justify DP-CTGAN + §4.3 Federated Learning sebagai strategy privasi.
+L455: | Legalitas transfer ke Google | ❌ Tidak ada | Google adalah pemroses pihak ketiga di luar negeri. UU PDP Pasal 56 cross-border transfer + Pasal 25 (proses data di luar negeri) + prasyarat consent terpisah. **Tidak ada DPA dengan Google Workspace/Cloud.** Tidak ada Data Processing Addendum, tidak ada audit vendor, tidak ada komitmen data residency |
+L462: **Rekomendasi:**
+L465: 2. **DPA dengan Google** (Vertex AI Data Processing Addendum atau contractual equivalent) **wajib** sebelum pilot: lokasi pemrosesan, retensi, sub-processor, hak audit,notifikasi insiden, klausul penghapusan, transfer data.
+L466: 3. **Alternative yang lebih aman untuk pilot: text channel offline penuh.** Menghilangkan seluruh permukaan egress + surface injeksi. Pada 300 klaim, biaya LLM ~Rp0 — tidak ada alasan untuk membawa PII ke pihak ketiga demi_phase awal.
+L467: 4. Kalau LLM wajib: Vertex AI dengan **no-training / zero-retention** + region Indonesia/asia-southeast Asia + project-scoped VPC + Data Privacy Addendum + pet.).
+L468: 5. Healthkathon 2026: **gunakan data sintetis 100%** untuk demo. Kalau pilot data nyata → Izin Moeh, +persetujuanPasien + DPA + redaksi PII.
+L490: | R8 | **Pisahkan label text dari `Modus`** | Karena `Sentimen` 100% diturunkan dari `Modus`, buat label teks **independen**: label manual oleh 2 reviewer + adjudikasi (field `evidence_source`, `reviewer_1`, `reviewer_2`, `label_confidence` — sudah diminta `08-training-protocol.md:19`) |
+L497: | R10 | **Tambahkan bab "Text Channel" ke `08-training-protocol.md`** | Isi minimal: (a) definisi prompt + skema output JSON; (b) leksikon & aturan kontradiksi; (c) **ambang labeling sentimen `0.16 ≤ t ≤ 0.30`** (terverifikasi akurasi 100%); (d) **metrik evaluasi: macro-F1 3-kelas + per-kelas P/R, confusion matrix, serta recall kontradiksi** (bukan Accuracy saja — `08:44` sudah melarang); (e) negative control test (42 baris keluhan layanan harus recall 0 pada flag kontradiksi); (f) error handling + fallback; (g) biaya |
+L504: ### Prioritas 4 — governance & risiko
+L511: | R19 | **Hilangkan `Modus` dari fitur text-channel** | Karena `Sentimen` diturunkan dari `Modus`, memasukkan `Modus` ke prompt atau fitur = label leakage. `08:25` sudah mensyaratkan ini; jadikan eksplisit untuk text channel |
+L528: false_flag           0
+L538: label text deterministik dari modus  11 dari 13 modus monoton
+L541: ## Lampiran B — Reproduksi
+L543: ```bash
+L546: # ringkasan JSON: N:\HEALTHKATHON\analysis\reports\13_text_summary.json
+L549: Skrip hanya memakai stdlib (`csv`, `json`, `os`, `re`, `statistics`, `sys`, `unicodedata`, `collections`) — pandas tidak tersedia maupun dipakai. Path input/output dihitung relatif terhadap lokasi skrip, sehingga dapat dijalankan dari direktori mana pun.

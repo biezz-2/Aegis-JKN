@@ -1,0 +1,42 @@
+======================================================================
+20-repo-artifact-integrity.md | token 'senatorsDeterministik' | owners: ['a784049af2', 'a7cf2498a9', 'aab5c3b68f']
+
+======================================================================
+03-architecture.md | token 'menghapusProjection' | owners: ['a7cf2498a9', 'aab5c3b68f', 'abef7738a0']
+
+======================================================================
+10-competition.md | token 'Kelayakan implementasi' | owners: ['a7cf2498a9', 'aab5c3b68f', 'abef7738a0']
+
+======================================================================
+15-code-quality.md | token '&-have' | owners: ['a7cf2498a9', 'aab5c3b68f', 'abef7738a0']
+
+======================================================================
+14-language.md | token 'sudah SHOULD' | owners: ['a784049af2', 'a7cf2498a9', 'aab5c3b68f']
+
+======================================================================
+15-code-quality.md | token 'lagiNeeded' | owners: ['a7cf2498a9', 'aab5c3b68f', 'abef7738a0']
+
+======================================================================
+09-security.md | token 'tidakURITY' | owners: ['a4b9f27196', 'a7cf2498a9', 'aab5c3b68f']
+
+======================================================================
+13-text-channel.md | token 'labels are downstream' | owners: ['a4b9f27196', 'a784049af2', 'a7cf2498a9']
+
+======================================================================
+11-compliance.md | token 'own-administrative' | owners: ['a7cf2498a9']
+
+======================================================================
+07-generator.md | token 'memDnama' | owners: ['a784049af2', 'a7cf2498a9', 'aab5c3b68f']
+
+======================================================================
+08-frontend.md | token 'mengPresentasikan' | owners: ['a784049af2', 'a7cf2498a9', 'aab5c3b68f']
+
+======================================================================
+21-numbers-of-record.md | token 'NotionBV' | owners: ['a7cf2498a9']
+
+======================================================================
+00-EXECUTIVE-SUMMARY.md | token 'Where laporan' | owners: ['a7cf2498a9', 'aab5c3b68f', 'af743ae9fc']
+
+======================================================================
+17-roadmap.md | token 'instrumentSUS' | owners: ['a4b9f27196', 'a784049af2', 'a7cf2498a9']
+

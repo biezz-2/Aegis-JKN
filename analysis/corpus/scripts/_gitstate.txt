@@ -1,0 +1,138 @@
+﻿=== status porcelain ===
+ D .env.example
+ D .gitignore
+ D Caddyfile.txt
+ D README.md
+ D bun.lock
+ D components.json
+ D docs/algorithms/mhgsl-theory.md
+ D docs/api/data-contracts.md
+ D docs/architecture/system-design.md
+ D docs/deployment/vercel.md
+ D docs/user-guide/navigation.md
+ D download/README.md
+ D eslint.config.mjs
+ D examples/websocket/frontend.tsx
+ D examples/websocket/server.ts
+ D next.config.ts
+ D package.json
+ D postcss.config.mjs
+ D prisma/schema.prisma
+ D public/logo.svg
+ D public/robots.txt
+ D src/app/api/route.ts
+ D src/app/globals.css
+ D src/app/layout.tsx
+ D src/app/page.tsx
+ D src/components/mhgsl/architecture.tsx
+ D src/components/mhgsl/back-to-top.tsx
+ D src/components/mhgsl/comparison.tsx
+ D src/components/mhgsl/data-uploader.tsx
+ D src/components/mhgsl/data.ts
+ D src/components/mhgsl/footer.tsx
+ D src/components/mhgsl/fraud-drilldown-modal.tsx
+ D src/components/mhgsl/fraud-ring.tsx
+ D src/components/mhgsl/glossary.tsx
+ D src/components/mhgsl/hero.tsx
+ D src/components/mhgsl/i18n.tsx
+ D src/components/mhgsl/lang-toggle.tsx
+ D src/components/mhgsl/math-formulas.tsx
+ D src/components/mhgsl/multi-channel-graph.tsx
+ D src/components/mhgsl/navbar.tsx
+ D src/components/mhgsl/problem-section.tsx
+ D src/components/mhgsl/roadmap.tsx
+ D src/components/mhgsl/shortcuts-hint.tsx
+ D src/components/mhgsl/simulation.tsx
+ D src/components/mhgsl/theme-toggle.tsx
+ D src/components/mhgsl/use-count-up.ts
+ D src/components/mhgsl/use-keyboard-shortcuts.ts
+ D src/components/theme-provider.tsx
+ D src/components/ui/accordion.tsx
+ D src/components/ui/alert-dialog.tsx
+ D src/components/ui/alert.tsx
+ D src/components/ui/aspect-ratio.tsx
+ D src/components/ui/avatar.tsx
+ D src/components/ui/badge.tsx
+ D src/components/ui/breadcrumb.tsx
+ D src/components/ui/button.tsx
+ D src/components/ui/calendar.tsx
+ D src/components/ui/card.tsx
+ D src/components/ui/carousel.tsx
+ D src/components/ui/chart.tsx
+ D src/components/ui/checkbox.tsx
+ D src/components/ui/collapsible.tsx
+ D src/components/ui/command.tsx
+ D src/components/ui/context-menu.tsx
+ D src/components/ui/dialog.tsx
+ D src/components/ui/drawer.tsx
+ D src/components/ui/dropdown-menu.tsx
+ D src/components/ui/form.tsx
+ D src/components/ui/hover-card.tsx
+ D src/components/ui/input-otp.tsx
+ D src/components/ui/input.tsx
+ D src/components/ui/label.tsx
+ D src/components/ui/menubar.tsx
+ D src/components/ui/navigation-menu.tsx
+ D src/components/ui/pagination.tsx
+ D src/components/ui/popover.tsx
+ D src/components/ui/progress.tsx
+ D src/components/ui/radio-group.tsx
+ D src/components/ui/resizable.tsx
+ D src/components/ui/scroll-area.tsx
+ D src/components/ui/select.tsx
+ D src/components/ui/separator.tsx
+ D src/components/ui/sheet.tsx
+ D src/components/ui/sidebar.tsx
+ D src/components/ui/skeleton.tsx
+ D src/components/ui/slider.tsx
+ D src/components/ui/sonner.tsx
+ D src/components/ui/switch.tsx
+ D src/components/ui/table.tsx
+ D src/components/ui/tabs.tsx
+ D src/components/ui/textarea.tsx
+ D src/components/ui/toast.tsx
+ D src/components/ui/toaster.tsx
+ D src/components/ui/toggle-group.tsx
+ D src/components/ui/toggle.tsx
+ D src/components/ui/tooltip.tsx
+ D src/hooks/use-mobile.ts
+ D src/hooks/use-toast.ts
+ D src/lib/db.ts
+ D src/lib/utils.ts
+ D tailwind.config.ts
+ D tests/database-runtime-build.sh
+ D tests/python-runtime-build.sh
+ D tests/python-runtime-container.sh
+ D tsconfig.json
+ D vercel.json
+ D wiki/.config.yml
+ D wiki/.index.json
+ D wiki/concepts/fraud-rings.md
+ D wiki/concepts/mhgsl-architecture.md
+ D wiki/concepts/multi-channel-graphs.md
+ D wiki/concepts/shap-camouflage-detection.md
+ D wiki/guides/custom-data-scoring.md
+ D wiki/guides/getting-started.md
+ D wiki/guides/vercel-deployment.md
+ D wiki/llms-full.txt
+ D wiki/llms.txt
+ D wiki/overview.md
+ D wiki/reference/component-catalog.md
+ D wiki/reference/data-schema.md
+ D wiki/reference/mathematical-formulations.md
+ D worklog.md
+?? Aegis-JKN/
+?? CLAUDE.md
+?? COLAB_SSH_SETUP.md
+?? Notion-docs/
+?? analysis/
+?? colab/
+?? commit_message.txt
+?? dokumen/
+?? mechine-learning-deep-learning/
+?? oasis/
+=== Test-Path src ===
+False
+=== Test-Path package.json ===
+False
+=== dir Aegis-JKN app ===

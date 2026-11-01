@@ -1,0 +1,181 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: weekly-model-retraining-pipeline
+  namespace: aegis-jkn
+  labels:
+    app: aegis-jkn
+    pipeline: model-retraining
+    schedule: weekly
+spec:
+  entrypoint: main
+  serviceAccountName: argo-workflow-sa
+  volumes:
+    - name: model-storage
+      persistentVolumeClaim:
+        claimName: aegis-jkn-model-pvc
+    - name: data-storage
+      persistentVolumeClaim:
+        claimName: aegis-jkn-data-pvc
+  templates:
+    - name: main
+      dag:
+        tasks:
+          - name: data-gathering
+            template: data-gathering
+
+          - name: data-preprocessing
+            template: data-preprocessing
+            dependencies: ["data-gathering"]
+            arguments:
+              artifacts:
+                - name: training-set
+                  from: "{{tasks.data-gathering.outputs.artifacts.training-set}}"
+
+          - name: model-training
+            template: model-training
+            dependencies: ["data-preprocessing"]
+            arguments:
+              artifacts:
+                - name: processed-data
+                  from: "{{tasks.data-preprocessing.outputs.artifacts.processed-data}}"
+
+          - name: model-validation
+            template: model-validation
+            dependencies: ["model-training"]
+            arguments:
+              artifacts:
+                - name: new_model
+                  from: "{{tasks.model-training.outputs.artifacts.model}}"
+
+          - name: model-promotion
+            template: model-promotion
+            dependencies: ["model-validation"]
+            arguments:
+              artifacts:
+                - name: validated_model
+                  from: "{{tasks.model-validation.outputs.artifacts.validated_model}}"
+            arguments:
+              parameters:
+                - name: promotion_status
+                  value: "success"
+
+    - name: data-gathering
+      outputs:
+        artifacts:
+          - name: training-set
+            path: /workspace/training_set
+            archive: {none: {}}
+      container:
+        image: aegis-jkn/data-pipeline:latest
+        command: [python, -m, src.pipelines.data_gathering]
+        args: ["--window", "7d", "--output", "/workspace/training_set"]
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "2000m"
+          limits:
+            memory: "8Gi"
+            cpu: "4000m"
+        volumeMounts:
+          - name: data-storage
+            mountPath: /data
+
+    - name: data-preprocessing
+      inputs:
+        artifacts:
+          - name: training-set
+            path: /workspace/training-set
+      outputs:
+        artifacts:
+          - name: processed-data
+            path: /workspace/processed_data
+            archive: {none: {}}
+      container:
+        image: aegis-jkn/data-pipeline:latest
+        command: [python, -m, src.pipelines.preprocessing]
+        args: ["--input", "/workspace/training-set", "--output", "/workspace/processed_data"]
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "2000m"
+          limits:
+            memory: "8Gi"
+            cpu: "4000m"
+        volumeMounts:
+          - name: data-storage
+            mountPath: /data
+
+    - name: model-training
+      inputs:
+        artifacts:
+          - name: processed-data
+            path: /workspace/processed_data
+      outputs:
+        artifacts:
+          - name: model
+            path: /workspace/model.pt
+            archive: {none: {}}
+      container:
+        image: aegis-jkn/ml-training:latest
+        command: [python, -m, src.ml.training.trainer]
+        args: ["--data", "/workspace/processed_data", "--output", "/workspace/model.pt"]
+        resources:
+          requests:
+            memory: "8Gi"
+            cpu: "4000m"
+            nvidia.com/gpu: "1"
+          limits:
+            memory: "16Gi"
+            cpu: "8000m"
+            nvidia.com/gpu: "1"
+        volumeMounts:
+          - name: model-storage
+            mountPath: /models
+
+    - name: model-validation
+      inputs:
+        artifacts:
+          - name: new_model
+            path: /workspace/model.pt
+      outputs:
+        artifacts:
+          - name: validated_model
+            path: /workspace/model.pt
+            archive: {none: {}}
+      container:
+        image: aegis-jkn/ml-validation:latest
+        command: [python, -m, src.ml.training.validator]
+        args: ["--model", "/workspace/model.pt", "--test-set", "/data/test_set.parquet"]
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "2000m"
+          limits:
+            memory: "8Gi"
+            cpu: "4000m"
+        volumeMounts:
+          - name: model-storage
+            mountPath: /models
+          - name: data-storage
+            mountPath: /data
+
+    - name: model-promotion
+      inputs:
+        artifacts:
+          - name: validated_model
+            path: /workspace/model.pt
+      container:
+        image: aegis-jkn/model-registry:latest
+        command: [python, -m, src.pipelines.model_promotion]
+        args: ["--model", "/workspace/model.pt", "--version", "latest"]
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        volumeMounts:
+          - name: model-storage
+            mountPath: /models

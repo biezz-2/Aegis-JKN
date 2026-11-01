@@ -1,0 +1,60 @@
+=== row 1 item: SHAP / Explainable AI (XAI)
+   Status Verifikasi        Terverifikasi
+   Relevansi                Kritis
+   Sumber Riset             https://link.springer.com/article/10.1007/s10462-026-11516-7
+   Deskripsi                SHapley Additive exPlanations menghitung kontribusi marjinal tiap fitur terhadap prediksi — dasbor auditor menampilkan alasan di balik skor fraud (contoh: probabilitas 92% didorong durasi rawat +35% dan implan mahal +40%).
+   Kategori                 Teknologi AI
+   Pendekatan Deteksi/Teknis Merendam alert fatigue: tim fraud dapat menghabiskan ±70% waktu untuk alarm palsu; XAI memungkinkan penalaran audit & keputusan yang dapat dipertanggungjawabkan.
+   Catatan Riset            SLR Springer (Artificial Intelligence Review, 2026) tentang tantangan metodologis XAI fraud detection; studi triase auditor berbasis SHAP+RAG (MDPI 2025) relevan sebagai referensi purwarupa.
+   Item                     SHAP / Explainable AI (XAI)
+
+=== row 5 item: Metrik ML: AUPRC sebagai metrik utama
+   Status Verifikasi        Terverifikasi
+   Relevansi                Tinggi
+   Sumber Riset             https://zenodo.org/records/21717009
+   Deskripsi                Pada dataset fraud sangat tidak seimbang, AUPRC (area precision-recall) lebih informatif daripada akurasi; metrik pendamping: F1, AUROC, dan presisi pada tingkat false-positive rendah.
+   Kategori                 Metrik & Validasi
+   Pendekatan Deteksi/Teknis Benchmark MHGSL vs XGBoost vs GNN vs hibrida dengan AUPRC sebagai metrik utama — selaras dengan praktik literatur fraud detection.
+   Catatan Riset            Peer review Zenodo menekankan AUROC/AUPRC/F1 sebagai metrik primer fraud detection karena akurasi misleading pada kelas tak seimbang.
+   Item                     Metrik ML: AUPRC sebagai metrik utama
+
+=== row 7 item: XGBoost sebagai baseline tabular
+   Status Verifikasi        Terverifikasi
+   Relevansi                Kritis
+   Sumber Riset             https://link.springer.com/article/10.1186/s40537-025-01295-3
+   Deskripsi                Extreme Gradient Boosting — standar industri untuk klasifikasi klaim tabular: ansambel pohon sekuensial, cepat, tahan missing values, menangkap pola non-linier.
+   Kategori                 Teknologi AI
+   Pendekatan Deteksi/Teknis Baseline pembanding MHGSL pada dataset sintetis; fitur per-baris klaim (tarif, LOS, demografi, kode diagnosis).
+   Catatan Riset            Review Journal of Big Data (2025) tentang ML classifier untuk fraud kesehatan mengonfirmasi XGBoost/RF/LR sebagai pembanding standar; paper MHGSL juga memakai ketiganya sebagai classifier pembanding.
+   Item                     XGBoost sebagai baseline tabular
+
+=== row 9 item: SMOTE untuk data kelas tidak seimbang
+   Status Verifikasi        Terverifikasi
+   Relevansi                Pendukung
+   Sumber Riset             https://zenodo.org/records/21717009
+   Deskripsi                Synthetic Minority Over-sampling Technique untuk menyeimbangkan kelas fraud (minoritas ekstrem) pada data pelatihan.
+   Kategori                 Teknologi AI
+   Pendekatan Deteksi/Teknis Kombinasi XGBoost + SMOTE pada baseline Fase 1, sebelum pipeline graf penuh.
+   Catatan Riset            Teknik sampling standar (RUS/ROS/SMOTE) di studi fraud Medicare; paper MHGSL juga menyoroti imbalanced distribution pada dataset Medical-B yang memengaruhi classifier.
+   Item                     SMOTE untuk data kelas tidak seimbang
+
+=== row 10 item: MHGSL — Multi-Channel Heterogeneous Graph Structure Learning
+   Status Verifikasi        Terverifikasi
+   Relevansi                Kritis
+   Sumber Riset             https://www.cell.com/heliyon/fulltext/S2405-8440(24)06076-6
+   Deskripsi                Hong et al., Heliyon 2024 (DOI 10.1016/j.heliyon.2024.e30045): ekosistem asuransi direpresentasikan 3 saluran graf — topologi (relasi entitas), fitur (KNN + cosine similarity), semantik (meta-path klinis) — diproses GCN spesifik-saluran + GCN parameter-bersama, lalu difusi & klasifikasi.
+   Kategori                 Teknologi AI
+   Pendekatan Deteksi/Teknis Arsitektur inti Aegis-JKN: pasien, dokter, faskes, obat, departemen = simpul; rujukan/resep/diagnosis = sisi; subgraf padat anomali = komunitas sindikat (collusive communities).
+   Catatan Riset            Struktur 3 saluran & klaim outperform (F1/AUC/accuracy vs StGNN, MHAMFD dll.) terverifikasi via review Journal of Big Data. Varian terbaru: MHINAGSL (IEEE Access 2025, multiview heterogeneous, F1 0,92) layak disitasi tambahan.
+   Item                     MHGSL — Multi-Channel Heterogeneous Graph Structure Learning
+
+=== row 29 item: Estimasi fraud 3–7% dari total nilai klaim
+   Status Verifikasi        Perlu Verifikasi
+   Relevansi                Tinggi
+   Sumber Riset             https://siap-lafki.or.id/bpjs-kesehatan-dan-tantangan-fraud-20-triliun-perspektif-ilmu-administrasi-dalam-pengelolaan-jaminan-sosial
+   Deskripsi                Rentang estimasi laju fraud terhadap total belanja klaim kesehatan yang lazim dikutip dalam literatur JKN.
+   Kategori                 Konteks & Statistik
+   Pendekatan Deteksi/Teknis Basis asumsi kuantifikasi dampak & ROI (skenario 3% fraud pada tagihan operasi bedah).
+   Catatan Riset            Rentang 3–7% dikutip dokumen sumber; pembanding internasional: review Journal of Big Data menyebut fraud kesehatan ±USD 300 miliar/tahun di AS. Angka spesifik untuk JKN perlu dirujuk ke studi primer (kajian KPK ACCH) sebelum dipakai di proposal.
+   Item                     Estimasi fraud 3–7% dari total nilai klaim
+

@@ -1,0 +1,133 @@
+=== EM DASH / DASH AUDIT ===
+em-dash U+2014: 0
+en-dash U+2013: 18
+horiz-bar U+2015: 0
+minus U+2212: 0
+
+--- em-dash per BAB ---
+BAB I          em-dash=0  paras=34
+BAB II         em-dash=0  paras=53
+BAB III        em-dash=0  paras=70
+BAB IV         em-dash=0  paras=63
+BAB V          em-dash=0  paras=43
+BAB VI         em-dash=0  paras=46
+BAB VII        em-dash=0  paras=107
+BAB VIII       em-dash=0  paras=106
+BAB IX         em-dash=0  paras=35
+BAB X          em-dash=0  paras=78
+BAB XI         em-dash=0  paras=45
+BAB XII        em-dash=0  paras=57
+
+=== PLACEHOLDERS ===
+PATTERN <[^>]{2,30}> -> 1 hits
+   [0303] Camouflage Signature <=> (Risk Score >= 0.80) AND (phi_top < 0) AND (phi_feat > 0.30) AND (phi_sem > 0.35)
+
+=== SIGATURE / DATE / TEAM ===
+[0005] CIMAHI2026
+[0008] Yang bertanda tangan di bawah ini, kami selaku Tim Inovator Kandidat 1 peserta kompetisi BPJS Kesehatan Healthkathon 2026, dengan ini menyatakan bahwa proposal inovasi dengan judul:
+[0012] 1. Kepatuhan Regulasi Data Pribadi: Seluruh perancangan arsitektur data Aegis-JKN mematuhi Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP) dan Undang-Undang Nomor 17 Tahun 2023 tentang Kesehatan. Pengembangan purwarupa (MVP) sepenuhnya menggunakan dataset sintetis tervali
+[0017] Mengetahui,Perwakilan Tim Teknis & Arsitektur( Tim Pengusul Kandidat 1 )
+[0018] Cimahi, 9 Oktober 2026Perwakilan Riset & Strategi Dampak( Tim Pengusul Kandidat 1 )
+[0135] Berdasarkan Peraturan Menteri Kesehatan Republik Indonesia Nomor 16 Tahun 2019 tentang Pencegahan dan Penanganan Kecurangan (Fraud) serta Pengendalian Gratifikasi dalam Penyelenggaraan JKN, potensi inefisiensi pembiayaan terbagi ke dalam beberapa tipologi kritis. Di lapangan, kecurangan klaim tidak 
+[0136] a. Upcoding Severity Level: Praktik manipulasi penetapan kode diagnosis utama atau penambahan kode diagnosis sekunder (komorbiditas/komplikasi) ke tingkat yang lebih parah (Severity Level I dinaikkan menjadi Level II atau III) tanpa didukung oleh rekam medis faktual, indikasi klinis, atau bukti peme
+[0137] b. Phantom Billing: Penagihan klaim fiktif murni atas layanan medis atau tindakan bedah yang secara faktual tidak pernah diberikan kepada pasien. Modus ini sering disertai manipulasi durasi rawat inap (Length of Stay / LOS) yang dipersingkat secara ekstrem (misalnya tindakan bedah penggantian sendi 
+[0268] Untuk menjamin skalabilitas komputasi pada volume transaksi BPJS Kesehatan (>2.000.000 klaim/hari), Aegis-JKN menerapkan arsitektur Dual-Path Processing: (1) Jalur Streaming Real-Time (<500 ms) yang mengevaluasi klaim individual menggunakan Redis feature-cache saat diunggah oleh faskes, serta (2) Ja
+[0276] Modul Ingestion bertugas menyadap dan menyelaraskan berkas klaim digital yang masuk melalui API V-Claim BPJS Kesehatan dan ekosistem SATUSEHAT Kemenkes RI. Setiap berkas dinormalisasi ke dalam standar format HL7 FHIR R4 yang mencakup resource: (1) Claim (total biaya penagihan, kode INA-CBG); (2) Enc
+[0277] Sesuai mandat UU PDP No. 27/2022, seluruh data identitas langsung (PII) seperti NIK, Nomor Kartu JKN, Nama Peserta, dan Nomor Rekam Medis langsung ditokenisasi in-memory menggunakan algoritma salted SHA-256 sebelum data disimpan ke dalam basis data analitik. Nomor identitas entitas (Pasien, Dokter, 
+[0281] b. Duplikasi Klaim Mutlak: Pendeteksian klaim ganda atas pasien, diagnosis, dan tanggal pelayanan yang identik pada faskes yang sama atau faskes berbeda.
+[0327] Data rekam medis dan riwayat penagihan klaim pasien diklasifikasikan secara tegas sebagai Data Pribadi Spesifik berdasarkan Pasal 4 ayat (3) Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP). Pelanggaran terhadap kerahasiaan data medis membawa konsekuensi sanksi pidana dan 
+[0351] Aegis-JKN mengadopsi standar de-identifikasi HIPAA Safe Harbor yang diselaraskan dengan regulasi nasional. Delapan belas elemen pengenal langsung (nama pasien, NIK, alamat presisi, nomor telepon, nomor kartu BPJS) dieliminasi sebelum persistensi data. Nomor identitas unik (ID Pasien, ID Dokter, ID F
+[0443] Duplikasi identik resume klinis, tanggal masuk, dan rincian tindakan pada tiga pasien berbeda.
+[0758] [1] BPJS Kesehatan. (2024). Laporan Pengelolaan Program JKN dan Kinerja Keuangan BPJS Kesehatan Tahun 2023. Jakarta: BPJS Kesehatan.
+[0759] [2] Kementerian Kesehatan RI. (2019). Peraturan Menteri Kesehatan Republik Indonesia Nomor 16 Tahun 2019 tentang Pencegahan dan Penanganan Kecurangan (Fraud) serta Pengendalian Gratifikasi dalam Penyelenggaraan Program Jaminan Kesehatan. Jakarta: Kemenkes RI.
+[0760] [3] Kementerian Kesehatan RI. (2021). Peraturan Menteri Kesehatan Republik Indonesia Nomor 26 Tahun 2021 tentang Pedoman Pencegahan dan Penanganan Kecurangan (Fraud) dalam Penyelenggaraan Program Jaminan Kesehatan. Jakarta: Kemenkes RI.
+[0761] [4] Kementerian Kesehatan RI. (2022). Peraturan Menteri Kesehatan Republik Indonesia Nomor 24 Tahun 2022 tentang Rekam Medis. Jakarta: Kemenkes RI.
+[0762] [5] Kementerian Kesehatan RI. (2023). Peraturan Menteri Kesehatan Republik Indonesia Nomor 3 Tahun 2023 tentang Standar Tarif Pelayanan Kesehatan dalam Penyelenggaraan Program Jaminan Kesehatan. Jakarta: Kemenkes RI.
+[0763] [6] Republik Indonesia. (2022). Undang-Undang Republik Indonesia Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi. Lembaran Negara Republik Indonesia Tahun 2022 Nomor 196. Jakarta: Sekretariat Negara.
+[0764] [7] Republik Indonesia. (2023). Undang-Undang Republik Indonesia Nomor 17 Tahun 2023 tentang Kesehatan. Lembaran Negara Republik Indonesia Tahun 2023 Nomor 105. Jakarta: Sekretariat Negara.
+
+=== PROTOTYPE / PURWARUPA MENTIONS ===
+[0012] 1. Kepatuhan Regulasi Data Pribadi: Seluruh perancangan arsitektur data Aegis-JKN mematuhi Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP) dan Undang-Undang Nomor 17 Tahun 2023 tentang Kesehatan. Pengembangan purwarupa (MVP) sepenuh
+[0099] 11.2 Rencana Pelaksanaan 8-12 Minggu Purwarupa & Roadmap 12 Bulan  . . 61
+[0353] Salah satu kelemahan fatal pada purwarupa AI kesehatan generasi awal adalah kebocoran data (data leakage) yang menghasilkan akurasi semu. Pada Aegis-JKN Dataset v2.1, diterapkan Protokol Anti-Leakage ketat:
+[0408] Berbeda dari pendekatan audit konvensional yang hanya berfokus pada anomali individual, purwarupa MVP Aegis-JKN dirancang untuk menangani sembilan modus sindikat kecurangan (fraud rings) terorganisir yang paling sering menjadi temuan audit di lingkungan FKRTL,
+[0501] Purwarupa diuji menggunakan Dataset Sintetis v2.1 yang mencakup 300 berkas klaim tervalidasi klinis dengan 31 fitur standar INA-CBG/FHIR R4. Dataset ini dibangkitkan menggunakan seed deterministik 20260707 guna menjamin keterulangan (reproducibility) eksperime
+[0605] Purwarupa Aegis-JKN dibangun di atas tumpukan teknologi modern berstandar enterprise yang telah teruji kompatibilitasnya:
+[0623] Arsitektur sistem, repositori kode purwarupa, API backend, dan engine MHGSL.
+[0709] 11.2 Rencana Pelaksanaan 8-12 Minggu Purwarupa & Roadmap 12 Bulan
+[0710] Roadmap implementasi terbagi ke dalam Rencana Sprint 8-12 Minggu untuk penyempurnaan purwarupa kompetisi Healthkathon, serta Roadmap Nasional 12 Bulan (Tiga Fase Utama), sebagaimana dirinci pada Tabel 11.1:
+[0752] Purwarupa Aegis-JKN telah diwujudkan dalam bentuk kode aplikasi fungsional yang siap didemonstrasikan: antarmuka web interaktif Next.js 16 yang responsif, backend inferensi PyTorch Geometric dan FastAPI berlatensi rendah, serta dataset pengujian 300 klaim terv
+
+=== SINTETIS MENTIONS ===
+[0012] 1. Kepatuhan Regulasi Data Pribadi: Seluruh perancangan arsitektur data Aegis-JKN mematuhi Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP) dan Undang-Undang Nomor 17 Tahun 2023 tentang Kesehatan. Pengembangan purwarupa (MVP) sepenuh
+[0080] 7.5 Dataset Sintetis v2.1 Tervalidasi (300 Klaim INA-CBG/FHIR R4)  . . 41
+[0213] 4. Validasi Pra-Deploy via Multi-Agent Simulation: Mengadopsi fork Discrete Event Simulator OASIS (CAMEL-AI v0.2.5) untuk memvalidasi ketahanan model terhadap 9 skenario sindikat secara sintetis sebelum diterjunkan ke data riil, menjamin kepatuhan penuh terhad
+[0500] 7.5 Dataset Sintetis v2.1 Tervalidasi (300 Klaim INA-CBG/FHIR R4)
+[0501] Purwarupa diuji menggunakan Dataset Sintetis v2.1 yang mencakup 300 berkas klaim tervalidasi klinis dengan 31 fitur standar INA-CBG/FHIR R4. Dataset ini dibangkitkan menggunakan seed deterministik 20260707 guna menjamin keterulangan (reproducibility) eksperime
+[0626] Dataset sintetis v2.1 tervalidasi klinis, katalog sindikat, dan modul kepatuhan SATUSEHAT.
+
+=== FIGURE CAPTION REFERENCES IN BODY (Gambar X.Y) ===
+[0121] Gambar 4.1 :: Gambar 4.1: Arsitektur Alur Kerja End-to-End Aegis-JKN (Tri-Tier & Dual-Path Pipeline)  16
+[0122] Gambar 4.2 :: Gambar 4.2: Konstruksi Graf Heterogen Tri-Channel (Topologi, Fitur, Semantik Metapath)  19
+[0123] Gambar 4.3 :: Gambar 4.3: Mekanisme Fusi Atensi Multi-Channel & Deteksi Topological Camouflage  20
+[0124] Gambar 6.1 :: Gambar 6.1: Antarmuka Keputusan Verifikator dengan Visualisasi Klaster Bipartite Dokter-Faskes  32
+[0125] Gambar 6.2 :: Gambar 6.2: Alur Safe-Mode Fallback Protocol Pemutus Rekomendasi Otomatis (Threshold >30%)  34
+[0126] Gambar 7.1 :: Gambar 7.1: Topologi Simulasi Multi-Agent OASIS (20 Pasien, 12 Dokter, 6 RS)  39
+[0127] Gambar 11.1 :: Gambar 11.1: Diagram Alir Stage-Gate Progression Roadmap Aegis-JKN  . . . 61
+
+=== TABLE CAPTION REFERENCES IN BODY ===
+[0108] Tabel 2.1 :: Tabel 2.1: Matriks Analisis 5-Whys Akar Masalah Kegagalan Deteksi Fraud Sindikat  6
+[0109] Tabel 2.2 :: Tabel 2.2: Analisis Fishbone 4 Dimensi Kendala Audit Klaim JKN Nasional  8
+[0110] Tabel 3.1 :: Tabel 3.1: Komparasi Pendekatan Audit Klaim: Manual vs Rule vs XGBoost vs Pure AI vs Aegis-JKN  13
+[0111] Tabel 5.1 :: Tabel 5.1: Matriks Kepatuhan Prinsip UU PDP No. 27/2022 pada Platform Aegis-JKN  24
+[0112] Tabel 6.1 :: Tabel 6.1: Matriks Pembagian Peran Kerja AI vs Verifikator Manusia (Human-in-the-Loop)  30
+[0113] Tabel 7.1 :: Tabel 7.1: Spesifikasi Ruang Lingkup MVP Aegis-JKN (In-Scope vs Out-of-Scope)  40
+[0114] Tabel 7.2 :: Tabel 7.2: Katalog 9 Pola Sindikat Fraud Ring (SYND-01 s/d SYND-09) pada Dataset v2.1  42
+[0115] Tabel 8.1 :: Tabel 8.1: Kerangka Key Performance Indicators (KPI) 4 Dimensi Aegis-JKN  44
+[0116] Tabel 8.2 :: Tabel 8.2: Ringkasan Analisis Finansial Portofolio 300 Klaim (Dataset v2.1 senilai Rp 3,53 Miliar)  47
+[0117] Tabel 9.1 :: Tabel 9.1: Struktur Organisasi dan Distribusi Kompetensi Tim Inovator  . 54
+[0118] Tabel 10.1 :: Tabel 10.1: Matriks Manajemen Risiko Komprehensif (12 Risiko Kritis & Rencana Mitigasi)  56
+[0119] Tabel 11.1 :: Tabel 11.1: Roadmap Implementasi 7 Tahap Berbasis Stage-Gate Framework (12 Bulan)  62
+[0158] Tabel 2.1 :: Guna mengidentifikasi akar penyebab mengapa praktik kecurangan klaim dan sindikat rujukan terorganisir sulit dideteksi o
+[0185] Tabel 2.2 :: Analisis akar masalah diperluas menggunakan kerangka diagram Fishbone (Ishikawa) 4 Dimensi (Man, Process, Technology/Dat
+[0215] Tabel 3.1 :: Tabel 3.1 menyajikan perbandingan komprehensif antara metode telaah manual, sistem rule-based murni, model Machine Learn
+[0327] Tabel 5.1 :: Data rekam medis dan riwayat penagihan klaim pasien diklasifikasikan secara tegas sebagai Data Pribadi Spesifik berdasar
+[0370] Tabel 6.1 :: Tabel 6.1 merinci pembagian tanggung jawab fungsional antara sistem Aegis-JKN dan verifikator manusia di lingkungan BPJS
+[0408] Tabel 7.2 :: Berbeda dari pendekatan audit konvensional yang hanya berfokus pada anomali individual, purwarupa MVP Aegis-JKN dirancan
+[0477] Tabel 7.1 :: Tabel 7.1 menegaskan batasan ruang lingkup pengembangan Minimum Viable Product (MVP) guna memastikan fokus eksekusi yang
+[0505] Tabel 8.1 :: Evaluasi keberhasilan platform Aegis-JKN diukur secara objektif melalui kerangka Key Performance Indicators (KPI) empat 
+[0572] Tabel 8.2 :: Tabel 8.2 menyajikan analisis finansial nyata yang diekstraksi dari database 300 klaim tervalidasi (Dataset v2.1) dengan
+[0617] Tabel 9.1 :: Tabel 9.1 memetakan komposisi keahlian Tim Inovator Kandidat 1 yang memiliki keahlian lintas-disiplin dalam arsitektur A
+[0636] Tabel 10.1 :: Tabel 10.1 merangkum matriks manajemen risiko komprehensif beserta tingkat keparahan dan strategi mitigasi preventif ser
+[0710] Tabel 11.1 :: Roadmap implementasi terbagi ke dalam Rencana Sprint 8-12 Minggu untuk penyempurnaan purwarupa kompetisi Healthkathon, s
+
+=== ACRONYM FIRST OCCURRENCE ===
+MHGSL      total=29   first=[0002] AEGIS-JKN: SISTEM FRAUD INTELLIGENCE & CLINICAL DECISION SUPPORT BERBASIS MULTI-HOP GRAPH STRUCTURE LEARNING (MHGSL) DAN MULTIMODAL SIMULATION UNTUK D
+CDSS       total=9    first=[0014] 3. Prinsip Human Autonomy & Fail-Safe AI: Sistem dirancang murni sebagai pendukung keputusan klinis (Clinical Decision Support System / CDSS). Kecerda
+CDS        total=9    first=[0014] 3. Prinsip Human Autonomy & Fail-Safe AI: Sistem dirancang murni sebagai pendukung keputusan klinis (Clinical Decision Support System / CDSS). Kecerda
+XAI        total=10   first=[0028] 3. Transparansi Penalaran (Explainable AI / XAI): Setiap flag anomali disertai dekomposisi atribusi SHAP per kanal graf (phi_top, phi_feat, phi_sem) s
+SHAP       total=15   first=[0028] 3. Transparansi Penalaran (Explainable AI / XAI): Setiap flag anomali disertai dekomposisi atribusi SHAP per kanal graf (phi_top, phi_feat, phi_sem) s
+FPR        total=2    first=[0542] False Positive Rate (FPR)
+AUPRC      total=6    first=[0013] 2. Prinsip Anti-Overclaim & Transparansi Sains: Kami menolak klaim akurasi mutlak 100% dan tidak menyajikan angka penghematan anggaran yang spekulatif
+ROC-AUC    total=4    first=[0013] 2. Prinsip Anti-Overclaim & Transparansi Sains: Kami menolak klaim akurasi mutlak 100% dan tidak menyajikan angka penghematan anggaran yang spekulatif
+SUS        total=5    first=[0557] System Usability Scale (SUS)
+OASIS      total=14   first=[0015] 4. Teknologi Tepat Guna (Right-Sized Hybrid Engineering): Pemilihan komponen teknologi (Tri-Tier Pipeline: Rule-Based, Tabular XGBoost, Tri-Channel MH
+SATUSEHAT  total=13   first=[0030] 5. Kepatuhan Ketat UU PDP No. 27/2022 & Interoperabilitas: Seluruh arsitektur didesain beroperasi pada perimeter tertutup (private on-premise cloud) B
+FHIR       total=13   first=[0030] 5. Kepatuhan Ketat UU PDP No. 27/2022 & Interoperabilitas: Seluruh arsitektur didesain beroperasi pada perimeter tertutup (private on-premise cloud) B
+DPJP       total=5    first=[0026] 1. Paradigma Deteksi Tri-Channel MHGSL: Memodelkan interaksi layanan medis ke dalam graf heterogen yang didekomposisi ke dalam tiga saluran matriks ke
+FKRTL      total=7    first=[0023] Program Jaminan Kesehatan Nasional (JKN) yang dikelola oleh BPJS Kesehatan merupakan salah satu sistem jaminan kesehatan semesta (Universal Health Cov
+DJS        total=13   first=[0009] AEGIS-JKN: Sistem Fraud Intelligence & Clinical Decision Support Berbasis Multi-Hop Graph Structure Learning (MHGSL) dan Multimodal Simulation untuk D
+INA-CBG    total=19   first=[0013] 2. Prinsip Anti-Overclaim & Transparansi Sains: Kami menolak klaim akurasi mutlak 100% dan tidak menyajikan angka penghematan anggaran yang spekulatif
+RBAC       total=3    first=[0068] 5.5 Manajemen Akses (RBAC) & Immutable Audit Trail  . . . . . . . . . . 27
+HSM        total=1    first=[0351] Aegis-JKN mengadopsi standar de-identifikasi HIPAA Safe Harbor yang diselaraskan dengan regulasi nasional. Delapan belas elemen pengenal langsung (nam
+PWA        total=1    first=[0686] Aplikasi Next.js 16 dioptimalkan dengan caching offline-first (PWA) dan kompresi payload respons graf SVG.
+LOGO       total=2    first=[0356] 3. Evaluasi Kelompok Ketat: Validasi model menggunakan skema GroupKFold (5-split berbasis pasien_id) dan Leave-One-Group-Out (LOGO berbasis faskes_id)
+TKMKB      total=3    first=[0385] Memiliki hak tunggal mengeksekusi keputusan: Konfirmasi, Dismiss (Override), atau Eskalasi TKMKB.
+PK-JKN     total=3    first=[0014] 3. Prinsip Human Autonomy & Fail-Safe AI: Sistem dirancang murni sebagai pendukung keputusan klinis (Clinical Decision Support System / CDSS). Kecerda
+FIS        NOT FOUND
+ICDP-10    NOT FOUND
+ICD-9      total=6    first=[0276] Modul Ingestion bertugas menyadap dan menyelaraskan berkas klaim digital yang masuk melalui API V-Claim BPJS Kesehatan dan ekosistem SATUSEHAT Kemenke
+
+=== TITLE CONSISTENCY: Aegis-JKN vs DETECT-JKN ===
+
+===STDERR===

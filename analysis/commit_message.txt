@@ -1,0 +1,19 @@
+Initial commit: Aegis-JKN ML/DL Connector
+
+Complete backend implementation for:
+- Data pipeline from Notion API
+- MHGSL (Multi-Channel Heterogeneous Graph Structure Learning) model
+- OASIS integration with OpenAI API
+- FastAPI backend with WebSocket support
+- Redis + PostgreSQL configuration
+- Comprehensive documentation
+
+Features:
+- Real-time fraud detection with SHAP explainability
+- Agent-based fraud pattern simulation
+- WebSocket for real-time monitoring
+- Ready for integration with Aegis-JKN Vercel dashboard
+
+Generated with [Devin](https://devin.ai)
+
+Co-Authored-By: claude-biezz-2 <noreply@anthropic.com>

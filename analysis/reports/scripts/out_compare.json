@@ -1,0 +1,411 @@
+{
+ "live_ncols": 29,
+ "live_nrows": 300,
+ "v21_ncols": 31,
+ "v21_nrows": 300,
+ "live_cols": [
+  "Tanggal",
+  "Skor Sentimen",
+  "Narasi Rekam Medis",
+  "Biaya Rp",
+  "Risiko",
+  "LOS hari",
+  "Prosedur ICD-9-CM",
+  "Dokter",
+  "Sinyal SHAP",
+  "Modus",
+  "Rujukan",
+  "Faskes",
+  "Sindikat",
+  "Skor Fraud",
+  "Obat",
+  "Umpan Balik Pasien",
+  "Kontradiksi Narasi",
+  "Pasien",
+  "Alasan Berobat",
+  "Status",
+  "Alasan",
+  "Catatan",
+  "Sentimen",
+  "Layanan",
+  "Kontribusi Saluran",
+  "Diagnosis ICD-10",
+  "Name",
+  "_notion_page_id",
+  "_last_edited"
+ ],
+ "v21_cols": [
+  "claim_id",
+  "tanggal",
+  "faskes_id",
+  "dokter_raw",
+  "dokter_id",
+  "pasien_raw",
+  "pasien_id",
+  "biaya_rp",
+  "los_hari",
+  "layanan",
+  "diagnosis_raw",
+  "diagnosis_code",
+  "prosedur_raw",
+  "prosedur_code",
+  "obat",
+  "rujukan",
+  "alasan_berobat",
+  "narasi_rekam_medis",
+  "umpan_balik_pasien",
+  "sentimen",
+  "skor_sentimen",
+  "kontradiksi_narasi",
+  "risiko",
+  "skor_fraud",
+  "status",
+  "sindikat",
+  "modus",
+  "sinyal_shap",
+  "kontribusi_saluran",
+  "alasan",
+  "is_fraud"
+ ],
+ "live_ids_dupes": 0,
+ "v21_ids_dupes": 0,
+ "ids_only_live": [],
+ "ids_only_v21": [],
+ "live_ids_malformed": [],
+ "live_order_first10": [
+  "KLM285",
+  "KLM278",
+  "KLM264",
+  "KLM280",
+  "KLM263",
+  "KLM281",
+  "KLM271",
+  "KLM276",
+  "KLM294",
+  "KLM267"
+ ],
+ "live_sorted_by_id": false,
+ "field_diffs": {
+  "tanggal": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "biaya_rp": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "risiko": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "los_hari": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "status": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "sindikat": {
+   "ndiff": 264,
+   "examples": [
+    [
+     "KLM015",
+     "sindikat",
+     "none",
+     ""
+    ],
+    [
+     "KLM018",
+     "sindikat",
+     "none",
+     ""
+    ],
+    [
+     "KLM019",
+     "sindikat",
+     "none",
+     ""
+    ],
+    [
+     "KLM020",
+     "sindikat",
+     "none",
+     ""
+    ]
+   ]
+  },
+  "skor_fraud": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "modus": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "faskes_id": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "pasien_raw": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "dokter_raw": {
+   "ndiff": 32,
+   "examples": [
+    [
+     "KLM018",
+     "dokter_raw",
+     "D04 (dr. Danur Wibisono,",
+     "D04 (dr. Danur Wibisono, Sp.JP)"
+    ],
+    [
+     "KLM027",
+     "dokter_raw",
+     "D04 (dr. Danur Wibisono,",
+     "D04 (dr. Danur Wibisono, Sp.JP)"
+    ],
+    [
+     "KLM037",
+     "dokter_raw",
+     "D04 (dr. Danur Wibisono,",
+     "D04 (dr. Danur Wibisono, Sp.JP)"
+    ],
+    [
+     "KLM047",
+     "dokter_raw",
+     "D04 (dr. Danur Wibisono,",
+     "D04 (dr. Danur Wibisono, Sp.JP)"
+    ]
+   ]
+  },
+  "sentimen": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "skor_sentimen": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "layanan": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "rujukan": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "obat": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "sinyal_shap": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "kontribusi_saluran": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "alasan": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "narasi_rekam_medis": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "umpan_balik_pasien": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "kontradiksi_narasi": {
+   "ndiff": 300,
+   "examples": [
+    [
+     "KLM001",
+     "kontradiksi_narasi",
+     "1",
+     "True"
+    ],
+    [
+     "KLM002",
+     "kontradiksi_narasi",
+     "1",
+     "True"
+    ],
+    [
+     "KLM003",
+     "kontradiksi_narasi",
+     "1",
+     "True"
+    ],
+    [
+     "KLM004",
+     "kontradiksi_narasi",
+     "1",
+     "True"
+    ]
+   ]
+  },
+  "alasan_berobat": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "diagnosis_raw": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "prosedur_raw": {
+   "ndiff": 0,
+   "examples": []
+  }
+ },
+ "numeric_diffs": {
+  "biaya_rp": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "los_hari": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "skor_fraud": {
+   "ndiff": 0,
+   "examples": []
+  },
+  "skor_sentimen": {
+   "ndiff": 0,
+   "examples": []
+  }
+ },
+ "live_status_counts": {
+  "auto_clear": 240,
+  "review": 24,
+  "escalate": 36
+ },
+ "live_risiko_counts": {
+  "low": 240,
+  "medium": 10,
+  "fraud": 36,
+  "high": 14
+ },
+ "live_sindikat_counts": {
+  "": 264,
+  "SYND-08": 6,
+  "SYND-09": 6,
+  "SYND-06": 4,
+  "SYND-07": 4,
+  "SYND-02": 3,
+  "SYND-01": 3,
+  "SYND-05": 2,
+  "SYND-03": 6,
+  "SYND-04": 2
+ },
+ "v21_status_counts": {
+  "escalate": 36,
+  "review": 24,
+  "auto_clear": 240
+ },
+ "v21_risiko_counts": {
+  "fraud": 36,
+  "high": 14,
+  "medium": 10,
+  "low": 240
+ },
+ "v21_is_fraud_counts": {
+  "1": 36,
+  "0": 264
+ },
+ "v21_sindikat_counts": {
+  "SYND-01": 3,
+  "SYND-02": 3,
+  "SYND-03": 6,
+  "SYND-04": 2,
+  "none": 264,
+  "SYND-05": 2,
+  "SYND-06": 4,
+  "SYND-07": 4,
+  "SYND-08": 6,
+  "SYND-09": 6
+ },
+ "live_modus_counts": {
+  "": 240,
+  "anomali_frekuensi": 12,
+  "readmission_berulang": 6,
+  "prolonged_stay": 4,
+  "excessive_usage": 6,
+  "overbilling": 4,
+  "repeat_billing": 4,
+  "iur_biaya": 4,
+  "biaya_markup": 1,
+  "drug_diversion": 3,
+  "phantom_billing": 3,
+  "upcoding": 5,
+  "cloning": 2,
+  "unbundling": 6
+ },
+ "v21_modus_counts": {
+  "upcoding": 5,
+  "phantom_billing": 3,
+  "unbundling": 6,
+  "drug_diversion": 3,
+  "prolonged_stay": 4,
+  "cloning": 2,
+  "overbilling": 4,
+  "anomali_frekuensi": 12,
+  "": 240,
+  "repeat_billing": 4,
+  "iur_biaya": 4,
+  "readmission_berulang": 6,
+  "excessive_usage": 6,
+  "biaya_markup": 1
+ },
+ "v21_modus_by_status": {
+  "auto_clear": {
+   "": 240
+  },
+  "review": {
+   "prolonged_stay": 4,
+   "cloning": 2,
+   "upcoding": 2,
+   "overbilling": 4,
+   "anomali_frekuensi": 12
+  },
+  "escalate": {
+   "upcoding": 3,
+   "phantom_billing": 3,
+   "unbundling": 6,
+   "drug_diversion": 3,
+   "repeat_billing": 4,
+   "iur_biaya": 4,
+   "readmission_berulang": 6,
+   "excessive_usage": 6,
+   "biaya_markup": 1
+  }
+ },
+ "live_modus_by_status": {
+  "auto_clear": {
+   "": 240
+  },
+  "review": {
+   "anomali_frekuensi": 12,
+   "prolonged_stay": 4,
+   "overbilling": 4,
+   "cloning": 2,
+   "upcoding": 2
+  },
+  "escalate": {
+   "readmission_berulang": 6,
+   "excessive_usage": 6,
+   "repeat_billing": 4,
+   "iur_biaya": 4,
+   "biaya_markup": 1,
+   "drug_diversion": 3,
+   "phantom_billing": 3,
+   "upcoding": 3,
+   "unbundling": 6
+  }
+ }
+}

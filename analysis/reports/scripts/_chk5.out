@@ -1,0 +1,13 @@
+sec7 table rows: 11
+  Bagaimana sentimen dihitung                -> ⚠️ Sebagian
+  Bagaimana kontradiksi dideteksi            -> ⚠️ Sebagian
+  Bagaimana fusion dengan channel lain       -> ✅ Ya (rumus)
+  Bagaimana di-evaluate                      -> ❌ **Tidak ada**
+  Error handling                             -> ❌ **Tidak ada**
+  Biaya                                      -> ⚠️ Sebagian
+  Offline fallback (toggle `text.yaml`)      -> ⚠️ Disebut, tidak ada
+  Data privacy / PII egress                  -> ⚠️ Satu baris peringatan
+  Prompt injection / input trust             -> ❌ **Tidak ada**
+  Label provenance                           -> ⚠️ Sebagian
+  Regenerasi / versioning                    -> ⚠️ Sebagian
+full=1 partial=7 none=3 total=11

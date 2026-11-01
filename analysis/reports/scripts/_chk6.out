@@ -1,0 +1,51 @@
+=== 36 strings: label + count ===
+  39  {'positif': 39}  Proses administrasi mudah dan ruangan bersih.
+  37  {'positif': 37}  Pelayanan cepat, dokter dan perawat sangat ramah.
+  37  {'positif': 37}  Saya pulang dengan kondisi membaik, terima kasih atas perawatannya.
+  29  {'positif': 29}  Pelayanan baik, penjelasan dokter jelas dan mudah dipahami.
+  26  {'positif': 26}  Nyaman dirawat di sini, fasilitas lengkap.
+  22  {'netral': 22}  Cukup membantu, tapi proses administrasi bertele-tele.
+  20  {'negatif': 20}  Antrean sangat lama dan tempat parkir sempit.
+  20  {'netral': 20}  Pelayanan standar, tidak ada keluhan berarti.
+  13  {'negatif': 13}  Kebersihan kamar mandi kurang terjaga.
+   9  {'negatif': 9}  Antrean poli sangat panjang, menunggu hampir dua jam.
+   7  {'netral': 7}  Lumayan, walaupun antrean cukup panjang.
+   5  {'netral': 5}  Pelayanan standar, antrean cukup panjang.
+   4  {'negatif': 4}  Saya bingung, tagihan operasi saya muncul dua kali dengan nilai sama.
+   4  {'netral': 4}  Pelayanan cukup; kontrol tiap minggu sesuai anjuran dokter.
+   3  {'negatif': 3}  Makanan RS kurang variatif dan sering datang dingin.
+   3  {'negatif': 3}  Kenapa ada dua tagihan untuk satu operasi yang sama?
+   3  {'negatif': 3}  Muncul tagihan kedua untuk tindakan yang tidak saya ketahui.
+   1  {'negatif': 1}  Dokter dan perawat baik, tetapi saya diminta membayar Rp3 juta tambahan di luar BPJS.
+   1  {'negatif': 1}  Tagihan operasi terasa sangat besar, saya minta rincian tidak diberikan.
+   1  {'negatif': 1}  Saya bayar tambahan untuk cek lab, kata petugas biaya tidak masuk klaim.
+   1  {'negatif': 1}  Diminta membayar obat yang katanya tidak dicakup, padahal klaim BPJS tetap diajukan.
+   1  {'negatif': 1}  Saya dipungut biaya kasa dan perawatan tambahan di luar JKN.
+   1  {'negatif': 1}  Tidak ada operasi yang pernah saya jalani bulan Maret ini.
+   1  {'negatif': 1}  Katanya hanya endoskopi, tapi muncul tindakan kateter jantung di tagihan.
+   1  {'positif': 1}  Pelayanan baik, cepat ditangani.
+   1  {'negatif': 1}  Saya hanya periksa lambung, kenapa ada tagihan tindakan jantung?
+   1  {'negatif': 1}  Setiap kontrol selalu diminta mengambil obat dalam jumlah banyak.
+   1  {'negatif': 1}  Saya tidak pernah menjalani operasi apa pun di rumah sakit ini.
+   1  {'negatif': 1}  Saya tidak pernah sakit dada, kok dibilang dipasang stent?
+   1  {'negatif': 1}  Obat diberikan sekaligus sangat banyak, padahal biasanya cukup untuk satu bulan.
+   1  {'negatif': 1}  Saya melahirkan normal, kenapa ditagih operasi caesar?
+   1  {'negatif': 1}  Dirawat lama sekali tanpa penjelasan tambahan dari dokter.
+   1  {'negatif': 1}  Saya kontrol diabetes, tidak pernah sakit dada. Kenapa ada tindakan jantung di tagihan?
+   1  {'negatif': 1}  Ada biaya tambahan yang sangat besar untuk operasi kecil.
+   1  {'positif': 1}  Cepat ditangani dan hasil operasi memuaskan.
+   1  {'negatif': 1}  Saya hanya kontrol nyeri pinggang, tidak pernah dioperasi.
+
+=== per label: service vs non-service ===
+positif: unique=7 rows=170 | svc 1u/39r | nonsvc 6u/131r
+    [svc]  39 Proses administrasi mudah dan ruangan bersih.
+netral: unique=5 rows=58 | svc 4u/54r | nonsvc 1u/4r
+    [svc]  22 Cukup membantu, tapi proses administrasi bertele-tele.
+    [svc]  20 Pelayanan standar, tidak ada keluhan berarti.
+    [svc]   7 Lumayan, walaupun antrean cukup panjang.
+    [svc]   5 Pelayanan standar, antrean cukup panjang.
+negatif: unique=24 rows=72 | svc 4u/45r | nonsvc 20u/27r
+    [svc]  20 Antrean sangat lama dan tempat parkir sempit.
+    [svc]  13 Kebersihan kamar mandi kurang terjaga.
+    [svc]   9 Antrean poli sangat panjang, menunggu hampir dua jam.
+    [svc]   3 Makanan RS kurang variatif dan sering datang dingin.

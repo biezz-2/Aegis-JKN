@@ -1,0 +1,47 @@
+population: P(fraud)=36 N(non-fraud)=264 total=300
+
+threshold | flagged | TP | FP | FN | TN | precision | FPR | recall
+   0.10   |    148 |  36 | 112 |   0 | 152 |  24.3243% | 42.42% | 100.00%
+   0.14   |     64 |  36 |  28 |   0 | 236 |  56.2500% | 10.61% | 100.00%
+   0.20   |     60 |  36 |  24 |   0 | 240 |  60.0000% |  9.09% | 100.00%
+   0.35   |     60 |  36 |  24 |   0 | 240 |  60.0000% |  9.09% | 100.00%
+   0.40   |     60 |  36 |  24 |   0 | 240 |  60.0000% |  9.09% | 100.00%
+   0.45   |     57 |  36 |  21 |   0 | 243 |  63.1579% |  7.95% | 100.00%
+   0.50   |     52 |  36 |  16 |   0 | 248 |  69.2308% |  6.06% | 100.00%
+   0.62   |     50 |  36 |  14 |   0 | 250 |  72.0000% |  5.30% | 100.00%
+   0.65   |     45 |  36 |   9 |   0 | 255 |  80.0000% |  3.41% | 100.00%
+   0.70   |     41 |  36 |   5 |   0 | 259 |  87.8049% |  1.89% | 100.00%
+   0.80   |     36 |  36 |   0 |   0 | 264 | 100.0000% |  0.00% | 100.00%
+   0.85   |     25 |  25 |   0 |  11 | 264 | 100.0000% |  0.00% |  69.44%
+   0.90   |      9 |   9 |   0 |  27 | 264 | 100.0000% |  0.00% |  25.00%
+
+=== score distribution by true label ===
+  non-fraud n=264 min=0.04 max=0.79
+  fraud     n=36 min=0.80 max=0.95
+  separation gap: non-fraud max 0.79 < fraud min 0.80 -> PERFECT
+
+=== status vs is_fraud ===
+   ('auto_clear', 'low', '0') 240
+   ('escalate', 'fraud', '1') 36
+   ('review', 'high', '0') 14
+   ('review', 'medium', '0') 10
+
+=== is_fraud vs risiko ===
+   ('fraud', '1') 36
+   ('high', '0') 14
+   ('low', '0') 240
+   ('medium', '0') 10
+
+=== proposal claims ===
+  precision 94.12% / ROC-AUC 0.9825 / AUPRC 0.9142 / FPR 10.6% / masking 89.4%
+  FPR 10.6% as a count of 264 negatives -> 27.98 FP
+    threshold  0.10 -> FP = 112  (FPR 42.42%)
+    threshold  0.14 -> FP = 28  (FPR 10.61%)
+    threshold  0.20 -> FP = 24  (FPR 9.09%)
+    threshold  0.35 -> FP = 24  (FPR 9.09%)
+    threshold  0.40 -> FP = 24  (FPR 9.09%)
+    threshold  0.45 -> FP = 21  (FPR 7.95%)
+    threshold  0.62 -> FP = 14  (FPR 5.30%)
+    threshold  0.65 -> FP = 9  (FPR 3.41%)
+    threshold  0.80 -> FP = 0  (FPR 0.00%)
+    threshold  0.85 -> FP = 0  (FPR 0.00%)

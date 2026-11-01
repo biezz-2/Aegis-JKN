@@ -1,0 +1,50 @@
+
+########## 300-claim claims_300_v2.1.csv (notebook payload)  (n=300) ##########
+total nominal: 3,526,650,000
+fraud n: 36 nominal: 561,150,000
+syndicate members: n=36 nominal=539,650,000
+   SYND-01      n=  3 nominal=156,900,000  (Rp 156.90 Juta)
+   SYND-02      n=  3 nominal=134,250,000  (Rp 134.25 Juta)
+   SYND-03      n=  6 nominal=52,800,000  (Rp 52.80 Juta)
+   SYND-04      n=  2 nominal=17,130,000  (Rp 17.13 Juta)
+   SYND-05      n=  2 nominal=14,900,000  (Rp 14.90 Juta)
+   SYND-06      n=  4 nominal=61,600,000  (Rp 61.60 Juta)
+   SYND-07      n=  4 nominal=63,880,000  (Rp 63.88 Juta)
+   SYND-08      n=  6 nominal=25,290,000  (Rp 25.29 Juta)
+   SYND-09      n=  6 nominal=12,900,000  (Rp 12.90 Juta)
+  modus (fraud only):
+   upcoding               n=  3 nominal=156,900,000  (Rp 156.90 Juta)
+   phantom_billing        n=  3 nominal=134,250,000  (Rp 134.25 Juta)
+   iur_biaya              n=  4 nominal=63,880,000  (Rp 63.88 Juta)
+   repeat_billing         n=  4 nominal=61,600,000  (Rp 61.60 Juta)
+   unbundling             n=  6 nominal=52,800,000  (Rp 52.80 Juta)
+   biaya_markup           n=  1 nominal=27,500,000  (Rp 27.50 Juta)
+   drug_diversion         n=  3 nominal=26,030,000  (Rp 26.03 Juta)
+   readmission_berulang   n=  6 nominal=25,290,000  (Rp 25.29 Juta)
+   excessive_usage        n=  6 nominal=12,900,000  (Rp 12.90 Juta)
+  proposal: Phantom Rp134,25 | Upcoding Rp127,68 | Repeat Rp61,60 Juta; SYND-01..09 = 36 klaim, 60% kasus fraud, Rp542,56 Juta
+
+########## corpus claims_v2_live.csv  (n=300) ##########
+total nominal: 3,526,650,000
+fraud n: 36 nominal: 561,150,000
+syndicate members: n=36 nominal=539,650,000
+   SYND-01      n=  3 nominal=156,900,000  (Rp 156.90 Juta)
+   SYND-02      n=  3 nominal=134,250,000  (Rp 134.25 Juta)
+   SYND-03      n=  6 nominal=52,800,000  (Rp 52.80 Juta)
+   SYND-04      n=  2 nominal=17,130,000  (Rp 17.13 Juta)
+   SYND-05      n=  2 nominal=14,900,000  (Rp 14.90 Juta)
+   SYND-06      n=  4 nominal=61,600,000  (Rp 61.60 Juta)
+   SYND-07      n=  4 nominal=63,880,000  (Rp 63.88 Juta)
+   SYND-08      n=  6 nominal=25,290,000  (Rp 25.29 Juta)
+   SYND-09      n=  6 nominal=12,900,000  (Rp 12.90 Juta)
+  modus (fraud only):
+   upcoding               n=  3 nominal=156,900,000  (Rp 156.90 Juta)
+   phantom_billing        n=  3 nominal=134,250,000  (Rp 134.25 Juta)
+   iur_biaya              n=  4 nominal=63,880,000  (Rp 63.88 Juta)
+   repeat_billing         n=  4 nominal=61,600,000  (Rp 61.60 Juta)
+   unbundling             n=  6 nominal=52,800,000  (Rp 52.80 Juta)
+   biaya_markup           n=  1 nominal=27,500,000  (Rp 27.50 Juta)
+   drug_diversion         n=  3 nominal=26,030,000  (Rp 26.03 Juta)
+   readmission_berulang   n=  6 nominal=25,290,000  (Rp 25.29 Juta)
+   excessive_usage        n=  6 nominal=12,900,000  (Rp 12.90 Juta)
+  proposal: Phantom Rp134,25 | Upcoding Rp127,68 | Repeat Rp61,60 Juta; SYND-01..09 = 36 klaim, 60% kasus fraud, Rp542,56 Juta

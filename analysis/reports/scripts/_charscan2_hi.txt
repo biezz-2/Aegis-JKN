@@ -1,0 +1,52 @@
+01-governance.md                 L18    ARABIC    ARABIC SHADDA                      | MEDIUM | 10 | Cakupan/pembagian[ّ]ق tidak jelas, kontrol ada di kertas saja, a
+01-governance.md                 L18    ARABIC    ARABIC LETTER QAF                  | MEDIUM | 10 | Cakupan/pembagianّ[ق] tidak jelas, kontrol ada di kertas saja, at
+01-governance.md                 L122   ARABIC    ARABIC LETTER ALEF                  luar KLM001–KLM024 (hingga KLM122) | Dokumen[ا]ند benar untuk/definisikan, tetapi tidak ada
+01-governance.md                 L122   ARABIC    ARABIC LETTER NOON                 luar KLM001–KLM024 (hingga KLM122) | Dokumenا[ن]د benar untuk/definisikan, tetapi tidak ada 
+01-governance.md                 L122   ARABIC    ARABIC LETTER DAL                  uar KLM001–KLM024 (hingga KLM122) | Dokumenان[د] benar untuk/definisikan, tetapi tidak ada b
+01-governance.md                 L284   ARABIC    ARABIC LETTER WAW                  erifikasi sampai sumber unduhan dilampirkan -[و]لة yang sama dengan `03` L98 ("checksum berk
+01-governance.md                 L284   ARABIC    ARABIC LETTER LAM                  rifikasi sampai sumber unduhan dilampirkan -و[ل]ة yang sama dengan `03` L98 ("checksum berka
+01-governance.md                 L284   ARABIC    ARABIC LETTER TEH MARBUTA          ifikasi sampai sumber unduhan dilampirkan -ول[ة] yang sama dengan `03` L98 ("checksum berkas
+05-evidence.md                   L275   CYRILLIC  CYRILLIC SMALL LETTER ES           s register adalah label status sumber, bukan [с]татус pemakaian di proposal - untuk mencegah
+05-evidence.md                   L275   CYRILLIC  CYRILLIC SMALL LETTER TE            register adalah label status sumber, bukan с[т]атус pemakaian di proposal - untuk mencegah 
+05-evidence.md                   L275   CYRILLIC  CYRILLIC SMALL LETTER A            register adalah label status sumber, bukan ст[а]тус pemakaian di proposal - untuk mencegah "
+05-evidence.md                   L275   CYRILLIC  CYRILLIC SMALL LETTER TE           egister adalah label status sumber, bukan ста[т]ус pemakaian di proposal - untuk mencegah "T
+05-evidence.md                   L275   CYRILLIC  CYRILLIC SMALL LETTER U            gister adalah label status sumber, bukan стат[у]с pemakaian di proposal - untuk mencegah "Te
+05-evidence.md                   L275   CYRILLIC  CYRILLIC SMALL LETTER ES           ister adalah label status sumber, bukan стату[с] pemakaian di proposal - untuk mencegah "Ter
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER O            min hak Subjek Data Pribadi; collecting data [о]граничен; hak subjek; akurasi; keamanan; pem
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER GHE          in hak Subjek Data Pribadi; collecting data о[г]раничен; hak subjek; akurasi; keamanan; pemb
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER ER           n hak Subjek Data Pribadi; collecting data ог[р]аничен; hak subjek; akurasi; keamanan; pemba
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER A             hak Subjek Data Pribadi; collecting data огр[а]ничен; hak subjek; akurasi; keamanan; pembar
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER EN           hak Subjek Data Pribadi; collecting data огра[н]ичен; hak subjek; akurasi; keamanan; pembaru
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER I            ak Subjek Data Pribadi; collecting data огран[и]чен; hak subjek; akurasi; keamanan; pembarua
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER CHE          k Subjek Data Pribadi; collecting data ограни[ч]ен; hak subjek; akurasi; keamanan; pembaruan
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER IE            Subjek Data Pribadi; collecting data огранич[е]н; hak subjek; akurasi; keamanan; pembaruand
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER EN           Subjek Data Pribadi; collecting data ограниче[н]; hak subjek; akurasi; keamanan; pembaruanda
+11-compliance.md                 L209   ARABIC    ARABIC LETTER DAL                  turan yang bersifat "dilarang" berlaku tanpa [د]ون persetujuan, dan khusus untuk **per Presc
+11-compliance.md                 L209   ARABIC    ARABIC LETTER WAW                  uran yang bersifat "dilarang" berlaku tanpa د[و]ن persetujuan, dan khusus untuk **per Prescr
+11-compliance.md                 L209   ARABIC    ARABIC LETTER NOON                 ran yang bersifat "dilarang" berlaku tanpa دو[ن] persetujuan, dan khusus untuk **per Prescri
+20-repo-artifact-integrity.md    L164   ARABIC    ARABIC LETTER ALEF                 oject akhir, bukan tanggal pendaftaran. Arti [ا]لقسم 3 di atas berpindah dari "catatan tekni
+20-repo-artifact-integrity.md    L164   ARABIC    ARABIC LETTER LAM                  ject akhir, bukan tanggal pendaftaran. Arti ا[ل]قسم 3 di atas berpindah dari "catatan teknis
+20-repo-artifact-integrity.md    L164   ARABIC    ARABIC LETTER QAF                  ect akhir, bukan tanggal pendaftaran. Arti ال[ق]سم 3 di atas berpindah dari "catatan teknis"
+20-repo-artifact-integrity.md    L164   ARABIC    ARABIC LETTER SEEN                 ct akhir, bukan tanggal pendaftaran. Arti الق[س]م 3 di atas berpindah dari "catatan teknis" 
+20-repo-artifact-integrity.md    L164   ARABIC    ARABIC LETTER MEEM                 t akhir, bukan tanggal pendaftaran. Arti القس[م] 3 di atas berpindah dari "catatan teknis" m
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER SARA UEE            ut hasil tervalidasi. Tidak satu pun punyabার[ื]อทถูกต้อง manifest eksperimen dan skrip hitu
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER O ANG               t hasil tervalidasi. Tidak satu pun punyabারื[อ]ทถูกต้อง manifest eksperimen dan skrip hitun
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER THO THAHAN           hasil tervalidasi. Tidak satu pun punyabারือ[ท]ถูกต้อง manifest eksperimen dan skrip hitung
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER THO THUNG           hasil tervalidasi. Tidak satu pun punyabারือท[ถ]ูกต้อง manifest eksperimen dan skrip hitung 
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER SARA UU             asil tervalidasi. Tidak satu pun punyabারือทถ[ู]กต้อง manifest eksperimen dan skrip hitung y
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER KO KAI              sil tervalidasi. Tidak satu pun punyabারือทถู[ก]ต้อง manifest eksperimen dan skrip hitung ya
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER TO TAO              il tervalidasi. Tidak satu pun punyabারือทถูก[ต]้อง manifest eksperimen dan skrip hitung yan
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER MAI THO             l tervalidasi. Tidak satu pun punyabারือทถูกต[้]อง manifest eksperimen dan skrip hitung yang
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER O ANG                tervalidasi. Tidak satu pun punyabারือทถูกต้[อ]ง manifest eksperimen dan skrip hitung yang 
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER NGO NGU             tervalidasi. Tidak satu pun punyabারือทถูกต้อ[ง] manifest eksperimen dan skrip hitung yang a
+22-proposal-docx-audit.md        L168   CJK       CJK UNIFIED IDEOGRAPH-5BE7         an hal yang sama untuk PDF Colab; dokumen ini[寧]gly mengulang pola yang sama tanpa label.
+22-proposal-docx-audit.md        L174   CYRILLIC  CYRILLIC CAPITAL LETTER DE         ngga penyebut rasio tidak pernah dinyatakan. [Д]енominator hanya mungkin adalah Rp 507.370.0
+22-proposal-docx-audit.md        L174   CYRILLIC  CYRILLIC SMALL LETTER IE           gga penyebut rasio tidak pernah dinyatakan. Д[е]нominator hanya mungkin adalah Rp 507.370.00
+22-proposal-docx-audit.md        L174   CYRILLIC  CYRILLIC SMALL LETTER EN           ga penyebut rasio tidak pernah dinyatakan. Де[н]ominator hanya mungkin adalah Rp 507.370.000
+22-proposal-docx-audit.md        L176   CJK       CJK UNIFIED IDEOGRAPH-652F         . Tidak ada simulasi beban kerja di repo yang[支]持 salah satu pun.
+22-proposal-docx-audit.md        L176   CJK       CJK UNIFIED IDEOGRAPH-6301          Tidak ada simulasi beban kerja di repo yang支[持] salah satu pun.
+22-proposal-docx-audit.md        L262   CJK       CJK UNIFIED IDEOGRAPH-4E8C          L292, L347, L383, L718 | Gunakan tanda petik[二]重 Indonesia, atau hapus bila hanya pemisah v
+22-proposal-docx-audit.md        L262   CJK       CJK UNIFIED IDEOGRAPH-91CD         L292, L347, L383, L718 | Gunakan tanda petik二[重] Indonesia, atau hapus bila hanya pemisah vi
+22-proposal-docx-audit.md        L298   CJK       CJK UNIFIED IDEOGRAPH-5E73          ulang nominal sindikat, peringkat modus, dan[平]均值 overcharge. Hapus "Rp 127,68 Juta" karena
+22-proposal-docx-audit.md        L298   CJK       CJK UNIFIED IDEOGRAPH-5747         ulang nominal sindikat, peringkat modus, dan平[均]值 overcharge. Hapus "Rp 127,68 Juta" karena 
+22-proposal-docx-audit.md        L298   CJK       CJK UNIFIED IDEOGRAPH-503C         lang nominal sindikat, peringkat modus, dan平均[值] overcharge. Hapus "Rp 127,68 Juta" karena t

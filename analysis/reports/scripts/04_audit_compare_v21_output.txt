@@ -1,0 +1,244 @@
+
+==============================================================================
+0. JEJAK SUMBER
+==============================================================================
+   claims_v2_live.csv
+      sha256 = d6fb95b9fbfb6bf47e9a99bcf57df0e38b00a13758b6d3ac14779e64a6121119
+      bytes  = 264290
+   claims_300_v2.1.csv
+      sha256 = 37cf22369ebf7a3c616219cb49b9c4406f00d75286b38cbf6c08b844e27fd4e8
+      bytes  = 248154
+
+==============================================================================
+1. HEADER & BARIS
+==============================================================================
+   Notion : 300 baris, 29 kolom
+   v2.1   : 300 baris, 31 kolom
+   header v2.1:
+      - claim_id
+      - tanggal
+      - faskes_id
+      - dokter_raw
+      - dokter_id
+      - pasien_raw
+      - pasien_id
+      - biaya_rp
+      - los_hari
+      - layanan
+      - diagnosis_raw
+      - diagnosis_code
+      - prosedur_raw
+      - prosedur_code
+      - obat
+      - rujukan
+      - alasan_berobat
+      - narasi_rekam_medis
+      - umpan_balik_pasien
+      - sentimen
+      - skor_sentimen
+      - kontradiksi_narasi
+      - risiko
+      - skor_fraud
+      - status
+      - sindikat
+      - modus
+      - sinyal_shap
+      - kontribusi_saluran
+      - alasan
+      - is_fraud
+
+==============================================================================
+2. KUNCI BARIS
+==============================================================================
+   Notion Name unik: 300 | v2.1 claim_id unik: 300
+   claim_id v2.1 contoh: ['KLM001', 'KLM002', 'KLM003'] ... ['KLM298', 'KLM299', 'KLM300']
+   pola claim_id: KLM###
+   urutan claim_id terurut menaik: True
+   himpunan claim_id == himpunan Name: True
+   hanya di v2.1: [] hanya di Notion: []
+
+==============================================================================
+3. PETA KOLOM NOTION -> KOLOM v2.1
+==============================================================================
+
+==============================================================================
+4. PERBANDINGAN PER KOLOM (300 baris)
+==============================================================================
+   kolom Notion             kolom v2.1              sama  beda  contoh
+   Name                     claim_id                 300     0  OK 
+   Tanggal                  tanggal                  300     0  OK 
+   Pasien                   pasien_raw               300     0  OK 
+   Dokter                   dokter_raw               268    32  BEDA KLM018: notion='D04 (dr. Danur Wibisono, Sp.JP)' v21='D04 (dr. Danur Wibisono,' (+31 lain)
+   Faskes                   faskes_id                300     0  OK 
+   Diagnosis ICD-10         diagnosis_raw            300     0  OK 
+   Prosedur ICD-9-CM        prosedur_raw             300     0  OK 
+   Obat                     obat                     300     0  OK 
+   LOS hari                 los_hari                 300     0  OK 
+   Biaya Rp                 biaya_rp                 300     0  OK 
+   Narasi Rekam Medis       narasi_rekam_medis       300     0  OK 
+   Kontradiksi Narasi       kontradiksi_narasi         0   300  BEDA KLM001: notion='True' v21='1' (+299 lain)
+   Skor Fraud               skor_fraud               300     0  OK 
+   Risiko                   risiko                   300     0  OK 
+   Status                   status                   300     0  OK 
+   Modus                    modus                    300     0  OK 
+   Sindikat                 sindikat                  36   264  BEDA KLM015: notion='' v21='none' (+263 lain)
+   Alasan                   alasan                   300     0  OK 
+   Sinyal SHAP              sinyal_shap              300     0  OK 
+   Kontribusi Saluran       kontribusi_saluran       300     0  OK 
+   Skor Sentimen            skor_sentimen            300     0  OK 
+   Sentimen                 sentimen                 300     0  OK 
+   Umpan Balik Pasien       umpan_balik_pasien       300     0  OK 
+   Alasan Berobat           alasan_berobat           300     0  OK 
+   Layanan                  layanan                  300     0  OK 
+   Rujukan                  rujukan                  300     0  OK 
+
+==============================================================================
+5. KOLOM HANYA DI v2.1
+==============================================================================
+    ['dokter_id', 'pasien_id', 'diagnosis_code', 'prosedur_code', 'is_fraud']
+   dokter_id: 20 nilai unik; contoh [('D01', 5), ('D02', 10), ('D05', 16), ('D07', 19), ('D09', 19)]
+   pasien_id: 40 nilai unik; contoh [('P01', 7), ('P02', 7), ('P03', 7), ('P08', 7), ('P09', 6)]
+   diagnosis_code: 13 nilai unik; contoh [('K29.7', 17), ('S72.0', 18), ('K80.2', 32), ('E11.9', 41), ('J18.9', 38)]
+   prosedur_code: 9 nilai unik; contoh [('00.66', 24), ('81.52', 18), ('51.23', 29), ('96.04', 3), ('—', 156)]
+   is_fraud: 2 nilai unik; contoh [('1', 36), ('0', 264)]
+
+==============================================================================
+6. SKOR 0,80 / KLM115 (kasus pembeda ambang)
+==============================================================================
+   Notion: skor=0.8 risiko=fraud status=escalate sindikat=SYND-09 modus=excessive_usage
+   v2.1  : skor=0.8 risiko=fraud status=escalate is_fraud=1 sindikat=SYND-09 modus=excessive_usage
+   skor di Notion dalam [0.30,0.85]: ['0.4', '0.42', '0.44', '0.45', '0.46', '0.48', '0.51', '0.53', '0.62', '0.63', '0.64', '0.66', '0.67', '0.68', '0.71', '0.72', '0.74', '0.78', '0.79', '0.8', '0.81', '0.82', '0.83', '0.84', '0.85']
+   baris tepat di setiap ambang (Notion):
+      0.35: Notion [] | v2.1 []
+      0.6: Notion [] | v2.1 []
+      0.8: Notion ['KLM115'] | v2.1 ['KLM115']
+
+==============================================================================
+7. ATURAN LOS
+==============================================================================
+   Notion: kosong=0 | '0'=109 | >0=191 | unik=12
+   v2.1: kosong=0 | '0'=109 | >0=191 | unik=12
+   baris los_hari berbeda Notion vs v2.1: 0 []
+   Notion: LOS=0 per layanan -> {'rawat jalan': 106, 'rawat inap': 3}
+      rawat inap dengan LOS=0: ['KLM008', 'KLM010', 'KLM012']
+   v2.1: LOS=0 per layanan -> {'rawat inap': 3, 'rawat jalan': 106}
+      rawat inap dengan LOS=0: ['KLM008', 'KLM010', 'KLM012']
+
+==============================================================================
+8. IS_FRAUD vs RISIKO==fraud
+==============================================================================
+   v2.1 nilai is_fraud: Counter({'0': 264, '1': 36})
+   baris is_fraud != (risiko==fraud) di Notion: 0 []
+   baris is_fraud != (risiko==fraud) di v2.1 internal: 0 []
+
+==============================================================================
+9. KONTRIBUSI SALURAN: Skor vs T+F+S
+==============================================================================
+   Notion: tidak koinciden 42 baris; selisih min=-0.030 maks=+0.170
+      >0.02 (abs): 21
+   v2.1: tidak koinciden 42 baris; selisih min=-0.030 maks=+0.170
+      >0.02 (abs): 21
+
+==============================================================================
+10. SINDIKAT & MODUS
+==============================================================================
+   Notion: sindikat kosong=264 terisi=36 modus kosong=240 terisi=60
+      sindikat distinct: [('SYND-01', 3), ('SYND-02', 3), ('SYND-03', 6), ('SYND-04', 2), ('SYND-05', 2), ('SYND-06', 4), ('SYND-07', 4), ('SYND-08', 6), ('SYND-09', 6)]
+   v2.1: sindikat kosong=0 terisi=300 modus kosong=240 terisi=60
+      sindikat distinct: [('SYND-01', 3), ('SYND-02', 3), ('SYND-03', 6), ('SYND-04', 2), ('SYND-05', 2), ('SYND-06', 4), ('SYND-07', 4), ('SYND-08', 6), ('SYND-09', 6), ('none', 264)]
+   sindikat berbeda: 264 ['KLM015', 'KLM018', 'KLM019', 'KLM020', 'KLM021', 'KLM022', 'KLM023', 'KLM024', 'KLM025', 'KLM026']
+   modus berbeda: 0 []
+   Notion fraud tanpa sindikat: ['KLM121', 'KLM122']
+   v2.1  fraud tanpa sindikat: []
+
+   Entitas per sindikat di v2.1 (dari *_id, bukan rich text):
+      SYND-01: faskes=['RS_A'] dokter=['D01', 'D02'] pasien=['P01', 'P02', 'P03'] skor=0.93-0.95 n=3
+      SYND-02: faskes=['RS_C'] dokter=['D05'] pasien=['P08', 'P09', 'P10'] skor=0.92-0.94 n=3
+      SYND-03: faskes=['RS_B'] dokter=['D07'] pasien=['P12', 'P13', 'P14'] skor=0.85-0.87 n=6
+      SYND-04: faskes=['RS_E'] dokter=['D09'] pasien=['P16', 'P17'] skor=0.86-0.88 n=2
+      SYND-05: faskes=['RS_F'] dokter=['D08'] pasien=['P19', 'P20'] skor=0.78-0.79 n=2
+      SYND-06: faskes=['RS_G'] dokter=['D13'] pasien=['P21', 'P22'] skor=0.89-0.92 n=4
+      SYND-07: faskes=['RS_H'] dokter=['D14'] pasien=['P23', 'P24'] skor=0.82-0.85 n=4
+      SYND-08: faskes=['RS_I'] dokter=['D15'] pasien=['P25', 'P26'] skor=0.86-0.89 n=6
+      SYND-09: faskes=['RS_J'] dokter=['D19'] pasien=['P27'] skor=0.80-0.84 n=6
+      none: faskes=['RS_A', 'RS_B', 'RS_C', 'RS_D', 'RS_E', 'RS_F', 'RS_G', 'RS_H', 'RS_I', 'RS_J'] dokter=['D01', 'D02', 'D03', 'D04', 'D05', 'D06', 'D07', 'D08', 'D09', 'D10', 'D11', 'D12', 'D13', 'D14', 'D15', 'D16', 'D17', 'D18', 'D19', 'D20'] pasien=['P01', 'P02', 'P03', 'P04', 'P05', 'P06', 'P07', 'P08', 'P09', 'P10', 'P11', 'P12', 'P13', 'P14', 'P15', 'P16', 'P17', 'P18', 'P19', 'P20', 'P21', 'P22', 'P23', 'P24', 'P25', 'P26', 'P27', 'P28', 'P29', 'P30', 'P31', 'P32', 'P33', 'P34', 'P35', 'P36', 'P37', 'P38', 'P39', 'P40'] skor=0.04-0.82 n=264
+   v2.1 baris tanpa sindikat tapi risiko fraud:
+
+==============================================================================
+11. KONTRADIKSI NARASI / RUJUKAN 'undefined' / SENTINEL '—' / SHAP KONSTAN
+==============================================================================
+   Notion:
+      Kontradiksi True = 12
+      Rujukan berisi 'undefined' = 28
+      Prosedur sentinel '—' = 156
+      Obat sentinel '—' = 3
+      modus dengan SHAP konstan = 7/13
+   v2.1:
+      Kontradiksi True = 12
+      Rujukan berisi 'undefined' = 28
+      Prosedur sentinel '—' = 156
+      Obat sentinel '—' = 3
+      modus dengan SHAP konstan = 7/13
+
+==============================================================================
+12. NILAI TAMBAHAN v2.1: *_id vs prefiks rich text Notion
+==============================================================================
+   pasien_id (v2.1) vs prefiks Pasien (Notion): beda 0 []
+   dokter_id (v2.1) vs prefiks Dokter (Notion): beda 0 []
+   faskes_id (v2.1) vs Faskes (Notion): beda 0 []
+   entitas unik di v2.1: pasien 40 | dokter 20 | faskes 10
+   diagnosis_code vs prefiks diagnosis Notion: beda 0 []
+   prosedur_code vs prefiks prosedur Notion: beda 0 []
+
+==============================================================================
+13. RINGKASAN TABEL PERBANDINGAN
+==============================================================================
+   kolom v2.1 yang tidak ada di dump Notion: ['dokter_id', 'pasien_id', 'diagnosis_code', 'prosedur_code', 'is_fraud']
+   baris yang TIDAK identik di seluruh kolom terpetakan:
+      total sel berbeda: 596
+
+==============================================================================
+14. KONSISTENSI SEMANTIK (per_baris, bukan per_kolom)
+==============================================================================
+   14a. Kontradiksi Narasi semantik beda: 0 []
+       True di Notion: 12 | '1' di v2.1: 12
+   14b. sindikat 'none' di v2.1: 264 | Sindikat kosong di Notion: 264 | himpunan sama: True
+       fraud tanpa sindikat di v2.1 (memakai 'none'): ['KLM121', 'KLM122']
+       entitas sindikat 'none' per klaim fraud:
+          KLM121: faskes=RS_G dokter=D13 pasien=P29 modus=biaya_markup skor=0.81
+          KLM122: faskes=RS_H dokter=D14 pasien=P30 modus=drug_diversion skor=0.82
+   14c. apakah baris bermasalah SAMA di kedua sumber?
+      LOS=0                    v2.1=109 notion=109 himpunan_sama=True
+      Rujukan 'undefined'      v2.1= 28 notion= 28 himpunan_sama=True
+      Prosedur sentinel —      v2.1=156 notion=156 himpunan_sama=True
+      Obat sentinel —          v2.1=  3 notion=  3 himpunan_sama=True
+      Skor!=T+F+S              v2.1= 42 notion= 42 himpunan_sama=True
+      Alasan kosong            v2.1=  1 notion=  1 himpunan_sama=True
+      Modus kosong             v2.1=240 notion=240 himpunan_sama=True
+
+==============================================================================
+15. TRUNCASI dokter_raw
+==============================================================================
+   baris terpotong: 32
+   panjang nilai terpotong: [24]
+   prefiks nama yang terpotong: ['D04', 'D16']
+      KLM018: 'D04 (dr. Danur Wibisono,' (len=24) vs Notion 'D04 (dr. Danur Wibisono, Sp.JP)'
+      KLM027: 'D04 (dr. Danur Wibisono,' (len=24) vs Notion 'D04 (dr. Danur Wibisono, Sp.JP)'
+      KLM037: 'D04 (dr. Danur Wibisono,' (len=24) vs Notion 'D04 (dr. Danur Wibisono, Sp.JP)'
+   cek kolom rich text lain: apakah ada nilai v2.1 yang merupakan prefix dari Notion?
+      claims_db.json: berisi 'Danur Wibisono, ' = 22 kemunculan; 'Danur Wibisono, Sp.JP' = 0
+      dataset_db.json: berisi 'Danur Wibisono, ' = 0 kemunculan; 'Danur Wibisono, Sp.JP' = 0
+
+==============================================================================
+16. STRUKTUR v2.1 UNTUK EVALUASI GRUP
+==============================================================================
+   claim_id urut menaik & unik: True
+   sumbu grup yang tersedia: pasien_id (40), faskes_id (10), dokter_id (20)
+   klaim per pasien_id: min=6 maks=12 median=7
+   klaim per faskes_id : min=14 maks=45
+   klaim per dokter_id : min=2 maks=33
+  _overlap pasien_id x faskes_id (apakah pasien selalu di 1 faskes?):
+      pasien di >1 faskes: 16
+      dokter di >1 faskes: 0
+   is_fraud deterministik dari risiko: True
+   kolom v2.1 yang memuat label: ['risiko', 'skor_fraud', 'status', 'sindikat', 'modus', 'sinyal_shap', 'kontribusi_saluran', 'alasan', 'is_fraud']

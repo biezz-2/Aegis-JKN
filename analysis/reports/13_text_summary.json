@@ -1,0 +1,223 @@
+{
+  "n_rows": 300,
+  "sentimen_aktual": {
+    "negatif": 72,
+    "netral": 58,
+    "positif": 170
+  },
+  "sentimen_spec": {
+    "positif": 62,
+    "netral": 14,
+    "negatif": 24
+  },
+  "kontradiksi_aktual": 12,
+  "kontradiksi_ids": [
+    "KLM001",
+    "KLM002",
+    "KLM003",
+    "KLM004",
+    "KLM005",
+    "KLM006",
+    "KLM018",
+    "KLM024",
+    "KLM105",
+    "KLM106",
+    "KLM107",
+    "KLM108"
+  ],
+  "ambang_optimal_t": 0.16,
+  "ambang_akurasi": 1.0,
+  "baris_menyimpang_skor_label": 0,
+  "skor_0_non_netral": 0,
+  "false_flag_count": 0,
+  "false_flag_ids": [],
+  "missed_count": 12,
+  "missed_ids": [
+    "KLM007",
+    "KLM008",
+    "KLM009",
+    "KLM010",
+    "KLM011",
+    "KLM012",
+    "KLM019",
+    "KLM101",
+    "KLM102",
+    "KLM103",
+    "KLM104",
+    "KLM121"
+  ],
+  "flag_equals_modus_lookup": "upcoding|phantom_billing|iur_biaya",
+  "unique_text_cols": {
+    "Umpan Balik Pasien": 36,
+    "Narasi Rekam Medis": 40,
+    "Alasan Berobat": 18,
+    "Rujukan": 188,
+    "Catatan": 36,
+    "Alasan": 210,
+    "Sinyal SHAP": 33,
+    "Kontribusi Saluran": 90
+  },
+  "text_col_stats": {
+    "Tanggal": {
+      "non_kosong": 300,
+      "unique": 138,
+      "unik_pct": 46.0
+    },
+    "Skor Sentimen": {
+      "non_kosong": 300,
+      "unique": 60,
+      "unik_pct": 20.0
+    },
+    "Narasi Rekam Medis": {
+      "non_kosong": 300,
+      "unique": 40,
+      "unik_pct": 13.3
+    },
+    "Biaya Rp": {
+      "non_kosong": 300,
+      "unique": 140,
+      "unik_pct": 46.7
+    },
+    "Risiko": {
+      "non_kosong": 300,
+      "unique": 4,
+      "unik_pct": 1.3
+    },
+    "LOS hari": {
+      "non_kosong": 300,
+      "unique": 12,
+      "unik_pct": 4.0
+    },
+    "Prosedur ICD-9-CM": {
+      "non_kosong": 300,
+      "unique": 9,
+      "unik_pct": 3.0
+    },
+    "Dokter": {
+      "non_kosong": 300,
+      "unique": 20,
+      "unik_pct": 6.7
+    },
+    "Sinyal SHAP": {
+      "non_kosong": 300,
+      "unique": 33,
+      "unik_pct": 11.0
+    },
+    "Modus": {
+      "non_kosong": 60,
+      "unique": 13,
+      "unik_pct": 21.7
+    },
+    "Rujukan": {
+      "non_kosong": 300,
+      "unique": 188,
+      "unik_pct": 62.7
+    },
+    "Faskes": {
+      "non_kosong": 300,
+      "unique": 10,
+      "unik_pct": 3.3
+    },
+    "Sindikat": {
+      "non_kosong": 36,
+      "unique": 9,
+      "unik_pct": 25.0
+    },
+    "Skor Fraud": {
+      "non_kosong": 300,
+      "unique": 46,
+      "unik_pct": 15.3
+    },
+    "Obat": {
+      "non_kosong": 300,
+      "unique": 28,
+      "unik_pct": 9.3
+    },
+    "Umpan Balik Pasien": {
+      "non_kosong": 300,
+      "unique": 36,
+      "unik_pct": 12.0
+    },
+    "Kontradiksi Narasi": {
+      "non_kosong": 300,
+      "unique": 2,
+      "unik_pct": 0.7
+    },
+    "Pasien": {
+      "non_kosong": 300,
+      "unique": 40,
+      "unik_pct": 13.3
+    },
+    "Alasan Berobat": {
+      "non_kosong": 300,
+      "unique": 18,
+      "unik_pct": 6.0
+    },
+    "Status": {
+      "non_kosong": 300,
+      "unique": 3,
+      "unik_pct": 1.0
+    },
+    "Alasan": {
+      "non_kosong": 299,
+      "unique": 210,
+      "unik_pct": 70.2
+    },
+    "Catatan": {
+      "non_kosong": 60,
+      "unique": 36,
+      "unik_pct": 60.0
+    },
+    "Sentimen": {
+      "non_kosong": 300,
+      "unique": 3,
+      "unik_pct": 1.0
+    },
+    "Layanan": {
+      "non_kosong": 300,
+      "unique": 2,
+      "unik_pct": 0.7
+    },
+    "Kontribusi Saluran": {
+      "non_kosong": 300,
+      "unique": 90,
+      "unik_pct": 30.0
+    },
+    "Diagnosis ICD-10": {
+      "non_kosong": 300,
+      "unique": 13,
+      "unik_pct": 4.3
+    },
+    "Name": {
+      "non_kosong": 300,
+      "unique": 300,
+      "unik_pct": 100.0
+    },
+    "_notion_page_id": {
+      "non_kosong": 300,
+      "unique": 300,
+      "unik_pct": 100.0
+    },
+    "_last_edited": {
+      "non_kosong": 300,
+      "unique": 4,
+      "unik_pct": 1.3
+    }
+  },
+  "phantom_rows": 3,
+  "app_hardcoded": {
+    "kpi_total_claims": 100,
+    "kontra_ok": 8,
+    "kontra_total": 8,
+    "gtSent": [
+      62,
+      14,
+      24
+    ],
+    "csv_actual": [
+      170,
+      58,
+      72
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+ "n": 300,
+ "P": 36,
+ "N": 264,
+ "prevalence": 0.12,
+ "auprc_trap_skor_fraud": 1.0,
+ "auprc_sklearn_ap_skor_fraud": 1.0,
+ "min_score_fraud": 0.8,
+ "max_score_nonfraud": 0.79,
+ "separable": true,
+ "thresh_0.5": {
+  "acc": 0.946667,
+  "precision": 0.692308,
+  "recall": 1.0,
+  "fpr": 0.060606
+ },
+ "thresh_0.6": {
+  "acc": 0.953333,
+  "precision": 0.72,
+  "recall": 1.0,
+  "fpr": 0.05303
+ },
+ "thresh_0.7": {
+  "acc": 0.983333,
+  "precision": 0.878049,
+  "recall": 1.0,
+  "fpr": 0.018939
+ },
+ "thresh_0.8": {
+  "acc": 1.0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "fpr": 0.0
+ },
+ "roc_auc_skor_fraud": 1.0,
+ "P_y2": 38,
+ "prevalence_y2": 0.12666666666666668,
+ "auprc_trap_y2": 1.055556,
+ "roc_auc_y2": 1.05545,
+ "baseline_auprc_prevalence": 0.12,
+ "auprc_perfect": 1.0,
+ "auprc_status_escalate": 1.0,
+ "best_f1_threshold": [
+  0.791,
+  1.0,
+  1.0,
+  1.0,
+  0
+ ]
+}

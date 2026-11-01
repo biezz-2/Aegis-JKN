@@ -1,0 +1,35 @@
+anomali_frekuensi        netral 12/12  -> MONOTON
+biaya_markup             negatif 1/1  -> MONOTON
+cloning                  positif 2/2  -> MONOTON
+drug_diversion           negatif 2/3, netral 1/3  -> MULTI
+excessive_usage          netral 6/6  -> MONOTON
+iur_biaya                negatif 4/4  -> MONOTON
+overbilling              negatif 3/4, netral 1/4  -> MULTI
+phantom_billing          negatif 3/3  -> MONOTON
+prolonged_stay           negatif 2/4, positif 2/4  -> MULTI
+readmission_berulang     netral 6/6  -> MONOTON
+repeat_billing           negatif 4/4  -> MONOTON
+unbundling               negatif 6/6  -> MONOTON
+upcoding                 negatif 5/5  -> MONOTON
+
+--- normal rows by label ---
+Counter({'positif': 166, 'negatif': 42, 'netral': 32}) total 240
+
+--- skor sentimen unique/singleton ---
+unique values: 60
+rows sharing a repeated value: 290
+singleton values: 10
+min/max: -0.9 0.85
+nilai 0: 0
+
+--- label range ---
+negatif   n=  72 min=-0.90 max=-0.30 mean=-0.4708
+netral    n=  58 min=+0.05 max=+0.15 mean=+0.0938
+positif   n= 170 min=+0.60 max=+0.85 mean=+0.7391
+
+--- positive-labelled high risk ---
+['KLM129', 'KLM127', 'KLM016', 'KLM017']
+--- sentimen x risiko ---
+positif {'low': 166, 'medium': 0, 'high': 4, 'fraud': 0}
+netral {'low': 32, 'medium': 10, 'high': 3, 'fraud': 13}
+negatif {'low': 42, 'medium': 0, 'high': 7, 'fraud': 23}

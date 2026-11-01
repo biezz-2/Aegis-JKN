@@ -1,0 +1,31 @@
+total nominal all 300 = 3,526,650,000
+is_fraud=1  n= 36 nominal=561,150,000
+escalate    n= 36 nominal=561,150,000
+review      n= 24 nominal=279,950,000
+
+target overcharge = 507,370,000
+   nominal fraud            n= 36 = 561,150,000  diff = 53,780,000
+   nominal escalate         n= 36 = 561,150,000  diff = 53,780,000
+   nominal review           n= 24 = 279,950,000  diff = -227,420,000
+   nominal review+escalate  n= 60 = 841,100,000  diff = 333,730,000
+   nominal risiko!=low      n= 60 = 841,100,000  diff = 333,730,000
+   nominal auto_clear       n=240 = 2,685,550,000  diff = 2,178,180,000
+
+fraud nominal mean = 15,587,500   (proposal claims Rp8,46M per case)
+60 x 8.46M = 507,600,000   target/60 = 8,456,167   target/36 = 14,093,611   target/24 = 21,140,417
+
+modus of is_fraud=1 claims:
+   unbundling             n= 6 nominal=52,800,000
+   readmission_berulang   n= 6 nominal=25,290,000
+   excessive_usage        n= 6 nominal=12,900,000
+   repeat_billing         n= 4 nominal=61,600,000
+   iur_biaya              n= 4 nominal=63,880,000
+   upcoding               n= 3 nominal=156,900,000
+   phantom_billing        n= 3 nominal=134,250,000
+   drug_diversion         n= 3 nominal=26,030,000
+   biaya_markup           n= 1 nominal=27,500,000
+
+max single claim = 63,500,000; min #claims to reach target (greedy) = 9
+proposal claims 60 klaim anomali -> Rp507,37M; dataset has 36 fraud + 24 review = 60 non-auto_clear claims
+
+=== provenance search (text files only) ===

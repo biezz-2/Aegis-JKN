@@ -1,0 +1,60 @@
+sha256 nb-embedded: 37cf22369ebf7a3c616219cb49b9c4406f00d75286b38cbf6c08b844e27fd4e8
+sha256 N:/HEALTHKATHON/analysis/corpus/claims_v2_live.csv d6fb95b9fbfb6bf47e9a99bcf57df0e38b00a13758b6d3ac14779e64a6121119 264290 bytes
+sha256 N:/HEALTHKATHON/mechine-learning-deep-learning/datasets/claims_300_v2.1.csv 37cf22369ebf7a3c616219cb49b9c4406f00d75286b38cbf6c08b844e27fd4e8 248154 bytes
+
+-- is_fraud (2 distinct)
+   '0': 264
+   '1': 36
+
+-- status (3 distinct)
+   'auto_clear': 240
+   'escalate': 36
+   'review': 24
+
+-- risiko (4 distinct)
+   'low': 240
+   'fraud': 36
+   'high': 14
+   'medium': 10
+
+-- sindikat (10 distinct)
+   'none': 264
+   'SYND-03': 6
+   'SYND-08': 6
+   'SYND-09': 6
+   'SYND-06': 4
+   'SYND-07': 4
+   'SYND-01': 3
+   'SYND-02': 3
+   'SYND-04': 2
+   'SYND-05': 2
+
+-- modus (14 distinct)
+   '': 240
+   'anomali_frekuensi': 12
+   'unbundling': 6
+   'readmission_berulang': 6
+   'excessive_usage': 6
+   'upcoding': 5
+   'prolonged_stay': 4
+   'overbilling': 4
+   'repeat_billing': 4
+   'iur_biaya': 4
+   'phantom_billing': 3
+   'drug_diversion': 3
+   'cloning': 2
+   'biaya_markup': 1
+Traceback (most recent call last):
+  File "N:\HEALTHKATHON\analysis\reports\scripts\_stats300b.py", line 19, in <module>
+    vc(col)
+  File "N:\HEALTHKATHON\analysis\reports\scripts\_stats300b.py", line 15, in vc
+    c = collections.Counter(r[col] for r in rows)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\attab\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\collections\__init__.py", line 599, in __init__
+    self.update(iterable, **kwds)
+  File "C:\Users\attab\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\collections\__init__.py", line 690, in update
+    _count_elements(self, iterable)
+  File "N:\HEALTHKATHON\analysis\reports\scripts\_stats300b.py", line 15, in <genexpr>
+    c = collections.Counter(r[col] for r in rows)
+                            ~^^^^^
+KeyError: 'sentiment'

@@ -1,0 +1,200 @@
+peserta/submission/upload
+peserta/submission/final/upload
+,function(){const r=t.CHM(e).$implicit;return t.oxw().removeSubKategori(r.kode)}),t._uU(1),t._UZ(2,
+,e.deskripsi||
+,e.selectedKategoriName,
+,e.selectedSubKategoriList)}}function R(o,a){1&o&&(t.TgZ(0,
+,e.fileName,
+,this.SubmitIdeSimpan={},this.listKategori=[],this.listSubKategori=[],this.selectedSubKategoriList=[],this.selectedKategoriName=
+,this.isFraudCategory=!1,this.fileToUpload=null,this.fileName=
+))}ngOnInit(){this.SubmitIdeForm=this._formBuilder.group({namainovasi:[
+,s.kI.required],latarbelakang:[
+,s.kI.required],tujuan:[
+,s.kI.required],deskripsi:[
+,s.kI.required],dampak:[
+kodesubkategorilombas
+kodesubkategorilombas
+kodesubkategorilombas
+kodesubkategorilombas
+kodekategorilomba
+kodesubkategorilombas
+))&&(r=!0),this.isFraudCategory=r}SubmitIde(){this.SubmitIdeForm.invalid?this.SubmitIdeForm.markAllAsTouched():this.fileToUpload?this.notif.notifAsk(
+File Proposal wajib diupload
+].some(l=>i.name.toLowerCase().endsWith(l))?i.size<=10485760?(this.fileToUpload=i,this.fileName=this.fileToUpload.name):(this.notif.notifErrorString(
+File terlalu besar. Maksimum 10MB
+):n.files&&n.files.length>0&&(this.notif.notifErrorString(
+Format harus .pdf
+)}simpanIde(e){this.submitServices.simpanIde(e,this.fileToUpload).then(n=>{1==n.metadata.code?(this.notif.notifSuccess(
+proposal-form-wrapper
+Masukkan nama proposal
+namainovasi
+Pilih kategori lomba
+kodekategorilomba
+Pilih sub kategori (bisa lebih dari 1)
+kodesubkategorilombas
+latarbelakang
+Jelaskan latar belakang permasalahan...
+tujuan
+Uraikan tujuan dari proposal ini...
+deskripsi
+Deskripsikan proposal secara detail...
+dampak
+Jelaskan dampak yang diharapkan dari proposal ini...
+upload-area
+upload-icon-wrap
+upload-title
+upload-hint
+upload-file-name
+fileInput1
+upload-hint
+upload-file-name
+,function(l){return n.onKategoriChange(l)}),t.YNc(47,z,2,2,
+,function(l){return n.onSubKategoriChange(l)}),t.TgZ(56,
+,function(l){return n.onFileSelected(l)}),t.qZA(),t.qZA(),t.qZA(),t.TgZ(133,
+,n.listKategori),t.xp6(1),t.Q6J(
+,n.selectedSubKategoriList),t.xp6(1),t.Q6J(
+,n.listSubKategori),t.xp6(1),t.Q6J(
+,n.selectedSubKategoriList.length>0),t.xp6(13),t.Q6J(
+latarbelakang
+tujuan
+deskripsi
+dampak
+,!!n.fileName),t.xp6(2),t.Q6J(
+,n.fileName?
+heroicons_outline:cloud-upload
+,n.fileName?
+Klik untuk upload file .pdf
+,!n.fileName),t.xp6(1),t.Q6J(
+,n.fileName),t.xp6(7),t.Q6J(
+Upload File
+].some(l=>i.name.toLowerCase().endsWith(l))){const l=n.files[0];l.size<=10485760?(this.fileToUpload=l,this.fileName=this.fileToUpload.name):(this.notif.notifErrorString(
+File terlalu besar. Maksimum 10MB
+Format harus pdf/ppt
+}onFileSelected2(e){const n=e.target,i=n.files[0];n.files&&n.files.length>0&&[
+].some(l=>i.name.toLowerCase().endsWith(l))?(this.fileToUpload2=n.files[0],this.fileName2=this.fileToUpload2.name):(this.notif.notifErrorString(
+File harus berformat .zip/rar/7z
+)}formatFileSize(e){if(0===e)return
+,this.fileToUpload),i.append(
+,this.userData.email),null!=this.fileName&&this.notif.notifLoading(),this.submitServices.hitUpload(i).then(r=>{1===r.metadata.code?(this.notif.notifSuccess(
+Terjadi kesalahan saat meng-upload file.
+Form tidak valid atau file belum dipilih.
+app-form-upload-file
+heroicons_outline:upload
+.ppt,.pptx,.pdf
+fileInput1
+Harap upload source code ke layanan cloud/drive (seperti Google Drive). Pastikan hak akses file diatur menjadi 'Anyone with the link' agar panitia dapat mengaksesnya.
+Harap upload video Anda melalui YouTube dan atur visibilitasnya menjadi `Private`. Setelah video diunggah, kirimkan link video tersebut pada field berikut
+,function(l){return n.onFileSelected(l)}),t.qZA(),t.BQk(),t.TgZ(20,
+,n.fileName),t.xp6(9),t.Q6J(
+Upload Source Code
+,function(){return t.CHM(e),t.oxw().downloadFile(
+,e.data.prototype_file,
+,function(){return t.CHM(e),t.oxw(2).downloadFile(
+,e.namaFile(e.data.final_file),
+,n.data.final_file)(
+}ngOnInit(){}closeDialog(){this.dialogRef.close()}namaFile(e){return e&&e.substring(e.lastIndexOf(
+)+1)}downloadFile(e){let n;if(
+===e?n=this.data.prototype_file:
+);c.href=l,c.download=this.namaFile(n),c.click(),window.URL.revokeObjectURL(l),this.notif.notifSuccess(
+Error during file download
+File or email not found
+noFinalFile
+Proposal
+Detail Proposal
+,n.data.latarbelakang,
+,n.data.tujuan,
+,n.data.deskripsi,
+,n.data.dampak,
+,n.data.prototype_file),t.xp6(1),t.Q6J(
+heroicons_outline:cloud-upload
+,45),t._uU(1),t.qZA()),2&o){const e=t.oxw(2);t.xp6(1),t.Oqu(e.fileSizeText)}}function kt(o,a){if(1&o){const e=t.EpF();t.ynx(0),t.TgZ(1,
+,function(i){return t.CHM(e),t.oxw().removeFile(i)}),t._UZ(9,
+,e.fileName),t.xp6(1),t.Oqu(e.fileName),t.xp6(1),t.Q6J(
+,e.fileSizeText),t.xp6(2),t.Q6J(
+,function(){return t.CHM(e),t.oxw().downloadDraftFile()}),t._UZ(12,
+,e.namaDraftFile),t.xp6(1),t.Oqu(e.namaDraftFile),t.xp6(2),t.Q6J(
+),t.qZA())}let Tt=(()=>{class o{constructor(e,n,i,r,l){this.fb=e,this.notif=n,this.submitServices=i,this.dialogRef=r,this.data=l,this.selectedFile=null,this.fileName=
+,this.fileSizeText=
+,this.draftFileName=
+,this.isUploading=!1,this.userData=JSON.parse(localStorage.getItem(
+}get namaDraftFile(){return this.draftFileName?this.draftFileName.substring(this.draftFileName.lastIndexOf(
+Ukuran maksimal file PDF adalah 20 MB.
+Hanya berkas berformat PDF yang diperbolehkan.
+,this.fileSizeText=
+}downloadDraftFile(){var e,n;if(!this.draftFileName||!(null===(e=this.userData)||void 0===e?void 0:e.email))return void this.notif.notifErrorString(
+File draft atau email tidak ditemukan.
+);c.href=l,c.download=this.namaDraftFile,c.click(),window.URL.revokeObjectURL(l),this.notif.notifSuccess(
+Berhasil mengunduh file draft.
+Gagal mengunduh file draft.
+Pastikan dokumen PDF dan tautan video sudah benar sebelum dikirim.
+Mohon unggah berkas Dokumen Project Final (PDF).
+,f=new FormData;this.selectedFile&&f.append(
+,this.selectedFile),f.append(
+,this.selectedFile?this.selectedFile.name:this.draftFileName||
+),this.submitServices.hitUploadFinal(f).then(C=>{var I;this.isUploading=!1,C&&C.metadata&&1===C.metadata.code?(this.notif.notifSuccess(
+,this.fileSizeText=
+)}).catch(C=>{this.isUploading=!1,this.notif.notifErrorString(
+upload-dropzone
+fileInput
+draft-file-section
+selected-file-card
+file-icon-pdf
+file-details
+file-name
+file-size
+Hapus file
+btn-remove-file
+file-size
+draft-file-section
+draft-file-header
+draft-file-label
+draft-file-card
+draft-file-info
+draft-file-name
+Unduh File Draft
+,function(l){return n.onFileDrop(l)})(
+,function(l){return n.onFileChange(l)}),t.qZA(),t.YNc(19,xt,10,1,
+has-file
+,!n.fileName),t.xp6(1),t.Q6J(
+,n.fileName),t.xp6(1),t.Q6J(
+,n.draftFileName),t.xp6(3),t.Q6J(
+,n.isUploading),t.xp6(3),t.Q6J(
+,n.isUploading),t.xp6(2),t.Q6J(
+,n.isUploading),t.xp6(1),t.hij(
+,n.isUploading?
+,!e.adaProposalDisetujui),t.xp6(1),t.Q6J(
+,e.adaProposalDisetujui),t.xp6(2),t.Q6J(
+,e.namainovasi),t.xp6(1),t.Oqu(e.namainovasi)}}function yt(o,a){1&o&&(t.TgZ(0,
+,e.latarbelakang),t.xp6(1),t.Oqu(e.latarbelakang)}}function Dt(o,a){1&o&&(t.TgZ(0,
+,e.tujuan),t.xp6(1),t.Oqu(e.tujuan)}}function Nt(o,a){1&o&&(t.TgZ(0,
+,e.deskripsi),t.xp6(1),t.Oqu(e.deskripsi)}}function zt(o,a){1&o&&(t.TgZ(0,
+,e.dampak),t.xp6(1),t.Oqu(e.dampak)}}function Yt(o,a){1&o&&(t.TgZ(0,
+Final project belum diupload
+,n.namaFile(e.prototype_file),
+,e.prototype_file)}}function ie(o,a){if(1&o&&(t.ynx(0),t.TgZ(1,
+,1===e.proposalLolos.statusFinal)}}function ae(o,a){if(1&o){const e=t.EpF();t.TgZ(0,
+,!e.SubmitProposalPeriode),t.xp6(1),t.Q6J(
+heroicons_outline:upload
+,e.tampilKirimProposal),t.xp6(1),t.Q6J(
+,e.tampilUploadFinal)}}const se=function(){return[5,10,20]},pe=[{path:
+namainovasi
+latarbelakang
+tujuan
+deskripsiproposal
+dampak
+kategori
+Mohon Submit Proposal minimal 1
+Tidak ditemukan proposal yang berstatus disetujui.
+proposals-table
+namainovasi
+latarbelakang
+tujuan
+deskripsiproposal
+dampak
+btn-add-proposal
+cell-proposal-name
+Hapus Proposal
+btn-upload-final
+btn-upload-final
+,!n.FinalProjectBerakhir&&n.proposalLolos),t.xp6(1),t.Q6J(
+,n.tampilKirimProposal||n.tampilUploadFinal))},directives:[v.S,u.O5,P.Hw,p.BZ,p.w1,p.fO,p.Dz,p.as,p.nj,F.NW,M.lW,p.ge,p.ev,w.gM,u.mk,p.XQ,p.Gk],styles:[

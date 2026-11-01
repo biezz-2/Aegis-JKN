@@ -1,0 +1,56 @@
+=== 00-EXECUTIVE-SUMMARY.md 1
+  L151  DeepExplainer            | E-07 | SHAP per-saluran yang valid | DeepExplainer pada logit dengan masker channel-group, verifikasi additivitas sum phi sama dengan logit dikurangi baseline dengan to
+=== 03-architecture.md 2
+  L131  ScoredRow                | G-15 | `camouflageDetected` pada output skor | data-contracts.md:156, 260 | **TIDAK ADA** | `src/components/mhgsl/data-uploader.tsx:44-50` (ScoredRow: topologyScore/fea
+  L141  benchmarkMHGSL           | G-25 | Metrik benchmarkMHGSL | (02 §5.4, 00:47) | **DEVIASI** | `src/components/mhgsl/data.ts:264` AUPRC 0,91; `data.ts:289` precision 0,92; `data.ts:300` ROC-AUC 0,95;
+=== 06-graph-mhgsl.md 1
+  L502  CamouflageSignature      | Baris dengan `φ_top` negatif | **0 / 300** (syarat CamouflageSignature) | dihitung dari data |
+=== 07-generator.md 2
+  L220  mmHg                     | Kontrol hipertensi; tekanan darah 138/84 mmHg. Terapi amlodipin dilanjutkan, edukasi garam diberikan. | 19 |
+  L235  mmHg                     1. **Templat narasi memuat angka yang tidak ada di kolom mana pun.** "tekanan darah 138/84 mmHg" dan "HbA1c 7,1 persen" muncul di 19 dan 33 baris, tapi **tidak ada kolom 
+=== 09-security.md 4
+  L359  rateLimit                grep -rn "rateLimit\|rate-limit" src/
+  L361  rniE                     grep -rniE "sentry|posthog|mixpanel|datadog|amplitude|hotjar|gtag" src/ public/ package.json
+  L362  rniE                     grep -rniE "PSTV|PNK0|FKL0|nik|tanggal lahir|nomor kartu|alamat" src/ public/
+  L363  rniE                     grep -rniE "fetch\(|axios|openai|generativeai|googleapis" src/
+=== 13-text-channel.md 1
+  L299  mmHg                     x19  'Kontrol hipertensi; tekanan darah 138/84 mmHg...'
+=== 14-language.md 2
+  L104  exPlanations             | SHAP | SHapley Additive exPlanations | 40 | `09-draft-hub.md:113`, `10-simulation-dataset.md:110`, `14-index.md:156` (lewat nama kolom, bukan definisi) | 8: `01`, `02`,
+  L475  exPlanations             | SHAP | SHapley Additive exPlanations | `01-proposal.md:91` | 40 kemunculan; definisi asli hanya di `12-archive-architecture.md:38` |
+=== 15-code-quality.md 14
+  L73   devDependencies          | Jest / Vitest / Playwright / Cypress | **TIDAK** | - | **Tidak ada di devDependencies** |
+  L77   buildCommand             | `vercel.json` | Ya | `{ framework: "nextjs" }` | Minimal, tanpa buildCommand/testCommand |
+  L77   testCommand              | `vercel.json` | Ya | `{ framework: "nextjs" }` | Minimal, tanpa buildCommand/testCommand |
+  L123  ChildItem                Get-ChildItem -Recurse -Include *.py,requirements.txt,pyproject.toml
+  L145  mathTitle                src/components/mhgsl/i18n.tsx(386,3): error TS2561: Object literal may only specify known properties, but 'mathTitle2b' does not exist in type 'Dict'. Did you mean to wri
+  L145  mathTitle                src/components/mhgsl/i18n.tsx(386,3): error TS2561: Object literal may only specify known properties, but 'mathTitle2b' does not exist in type 'Dict'. Did you mean to wri
+  L146  mathTitle                src/components/mhgsl/i18n.tsx(734,3): error TS2561: Object literal may only specify known properties, but 'mathTitle2b' does not exist in type 'Dict'. Did you mean to wri
+  L146  mathTitle                src/components/mhgsl/i18n.tsx(734,3): error TS2561: Object literal may only specify known properties, but 'mathTitle2b' does not exist in type 'Dict'. Did you mean to wri
+  L147  roiTitle                 src/components/mhgsl/roadmap.tsx(71,50): error TS2551: Property 'roiTitle3' does not exist on type 'Dict'. Did you mean 'roiTitle1'?
+  L147  roiTitle                 src/components/mhgsl/roadmap.tsx(71,50): error TS2551: Property 'roiTitle3' does not exist on type 'Dict'. Did you mean 'roiTitle1'?
+  L148  roiTitle                 src/components/mhgsl/roadmap.tsx(71,71): error TS2551: Property 'roiTitle4' does not exist on type 'Dict'. Did you mean 'roiTitle1'?
+  L148  roiTitle                 src/components/mhgsl/roadmap.tsx(71,71): error TS2551: Property 'roiTitle4' does not exist on type 'Dict'. Did you mean 'roiTitle1'?
+  L418  devDependency            - **Duplikasi lain:** `prisma` ada di `dependencies` (bukan `devDependencies`) sekaligus `@prisma/client` - `prisma` CLI seharusnya devDependency.
+  L522  ChildItem                Get-ChildItem -Recurse -Include *.py,requirements.txt,pyproject.toml
+=== 17-roadmap.md 2
+  L345  ReviewLog                ├── prisma/schema.prisma         # + ReviewLog, AuditEvent, Claim
+  L345  AuditEvent               ├── prisma/schema.prisma         # + ReviewLog, AuditEvent, Claim
+=== 18-ux.md 7
+  L85   activeMethod             | `/` | Comparison | Kalimat kesimpulan radar "**{activeMethod} unggul di seluruh 5 metrik**" dipakai untuk **metode apa pun** yang dipilih - claim palsu bila user pilih 
+  L120  TabsTrigger              | `/dataset` | Halaman | **Hydration mismatch di React** - `<button>` di dalam `<button>` (TabsTrigger berisi button?) - konsol browser: "In HTML, %s cannot be a descenda
+  L120  TabsTrigger              | `/dataset` | Halaman | **Hydration mismatch di React** - `<button>` di dalam `<button>` (TabsTrigger berisi button?) - konsol browser: "In HTML, %s cannot be a descenda
+  L176  biayaRp                  | "Alasan audit" menyebut "Rp58 jt" | Rp 58 jt | **biayaRp = 52.300.000** pada KLM001/002/003; KLM173 = 58.850.000; KLM030 = 5.800.000 | `src/data/notion-datasets.ts` (6 
+  L208  scrollY                  - **Keyboard shortcut juga jalan**: `ArrowRight` → tahap 1→2, `ArrowLeft` → 2→1, `s` → scroll ke simulasi (scrollY 3709), `g` → scroll ke graf (scrollY 2692). Diterverifi
+  L208  scrollY                  - **Keyboard shortcut juga jalan**: `ArrowRight` → tahap 1→2, `ArrowLeft` → 2→1, `s` → scroll ke simulasi (scrollY 3709), `g` → scroll ke graf (scrollY 2692). Diterverifi
+  L226  antarArtifact            | Home `Simulation` (4 tahap, skor 0.32→0.94, SHAP 5 atribut) | `SIM_STEPS`, `SHAP_ATTRS` di `src/components/mhgsl/data.ts:304-346` | **Statis** (narasi skenario, konsist
+=== 21-colab-dashboard-provenance.md 5
+  L50   rdSent                   | CRITICAL | 8 | (1) 93,0% = akurasi sentimen, dipakai sebagai akurasi fraud di corpus; (2) 93,0% deterministik dari bug substring; (3) teks disusun agar leksikon cocok d
+  L184  rdSent                   ### C-4 - Klasifikasi Reddit tidak pernah menghasilkan "Netral": rdSent = [62, 0, 38]
+  L189  gtSent                   "gtSent": [62, 14, 24], "twSent": [62, 14, 24], "rdSent": [62, 0, 38]
+  L189  twSent                   "gtSent": [62, 14, 24], "twSent": [62, 14, 24], "rdSent": [62, 0, 38]
+  L189  rdSent                   "gtSent": [62, 14, 24], "twSent": [62, 14, 24], "rdSent": [62, 0, 38]
+=== 22-proposal-docx-audit.md 3
+  L69   CharactersWithSpaces     | Properti kata tidak sinkron | `docProps/app.xml`: Pages 44, Words 11.962, Characters 68.190, Paragraphs 159, CharactersWithSpaces 79.993, TotalTime 16. Cadangan: Pages 
+  L69   TotalTime                | Properti kata tidak sinkron | `docProps/app.xml`: Pages 44, Words 11.962, Characters 68.190, Paragraphs 159, CharactersWithSpaces 79.993, TotalTime 16. Cadangan: Pages 
+  L313  PostgreSQL               | K15 | Basis data persistensi | L579 "PostgreSQL / Prisma ORM" vs `Aegis-JKN/prisma/schema.prisma:12` provider "sqlite" | Klaim stack overstated |

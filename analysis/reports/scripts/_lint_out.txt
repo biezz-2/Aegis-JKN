@@ -1,0 +1,3 @@
+lines: 227 words: 5898
+F-items: 38
+key-number rows: 47

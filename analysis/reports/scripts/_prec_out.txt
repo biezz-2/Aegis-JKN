@@ -1,0 +1,79 @@
+P=36 N=264; target precision = 94.1200% = 94/100? 47/50
+
+thresholds giving precision EXACTLY 94.12%: 0
+
+thresholds giving precision 100%: 16
+   threshold 0.80: TP=36 FP=0 recall=100.00%
+   threshold 0.81: TP=35 FP=0 recall=97.22%
+   threshold 0.82: TP=33 FP=0 recall=91.67%
+   threshold 0.83: TP=30 FP=0 recall=83.33%
+   threshold 0.84: TP=28 FP=0 recall=77.78%
+   threshold 0.85: TP=25 FP=0 recall=69.44%
+   threshold 0.86: TP=22 FP=0 recall=61.11%
+   threshold 0.87: TP=17 FP=0 recall=47.22%
+   threshold 0.88: TP=14 FP=0 recall=38.89%
+   threshold 0.89: TP=11 FP=0 recall=30.56%
+   threshold 0.90: TP=9 FP=0 recall=25.00%
+   threshold 0.91: TP=8 FP=0 recall=22.22%
+   threshold 0.92: TP=7 FP=0 recall=19.44%
+   threshold 0.93: TP=5 FP=0 recall=13.89%
+   threshold 0.94: TP=3 FP=0 recall=8.33%
+   threshold 0.95: TP=1 FP=0 recall=2.78%
+
+=== all thresholds: precision curve ===
+   th= 0.04 TP= 36 FP=264 precision=12.0000% FPR=100.00% recall=100.00%
+   th= 0.05 TP= 36 FP=256 precision=12.3288% FPR= 96.97% recall=100.00%
+   th= 0.06 TP= 36 FP=243 precision=12.9032% FPR= 92.05% recall=100.00%
+   th= 0.07 TP= 36 FP=218 precision=14.1732% FPR= 82.58% recall=100.00%
+   th= 0.08 TP= 36 FP=180 precision=16.6667% FPR= 68.18% recall=100.00%
+   th= 0.09 TP= 36 FP=141 precision=20.3390% FPR= 53.41% recall=100.00%
+   th= 0.10 TP= 36 FP=112 precision=24.3243% FPR= 42.42% recall=100.00%
+   th= 0.11 TP= 36 FP= 80 precision=31.0345% FPR= 30.30% recall=100.00%
+   th= 0.12 TP= 36 FP= 52 precision=40.9091% FPR= 19.70% recall=100.00%
+   th= 0.13 TP= 36 FP= 38 precision=48.6486% FPR= 14.39% recall=100.00%
+   th= 0.14 TP= 36 FP= 28 precision=56.2500% FPR= 10.61% recall=100.00%
+   th= 0.40 TP= 36 FP= 24 precision=60.0000% FPR=  9.09% recall=100.00%
+   th= 0.42 TP= 36 FP= 23 precision=61.0169% FPR=  8.71% recall=100.00%
+   th= 0.44 TP= 36 FP= 22 precision=62.0690% FPR=  8.33% recall=100.00%
+   th= 0.45 TP= 36 FP= 21 precision=63.1579% FPR=  7.95% recall=100.00%
+   th= 0.46 TP= 36 FP= 19 precision=65.4545% FPR=  7.20% recall=100.00%
+   th= 0.48 TP= 36 FP= 18 precision=66.6667% FPR=  6.82% recall=100.00%
+   th= 0.51 TP= 36 FP= 16 precision=69.2308% FPR=  6.06% recall=100.00%
+   th= 0.53 TP= 36 FP= 15 precision=70.5882% FPR=  5.68% recall=100.00%
+   th= 0.62 TP= 36 FP= 14 precision=72.0000% FPR=  5.30% recall=100.00%
+   th= 0.63 TP= 36 FP= 11 precision=76.5957% FPR=  4.17% recall=100.00%
+   th= 0.64 TP= 36 FP= 10 precision=78.2609% FPR=  3.79% recall=100.00%
+   th= 0.66 TP= 36 FP=  9 precision=80.0000% FPR=  3.41% recall=100.00%
+   th= 0.67 TP= 36 FP=  8 precision=81.8182% FPR=  3.03% recall=100.00%
+   th= 0.68 TP= 36 FP=  7 precision=83.7209% FPR=  2.65% recall=100.00%
+   th= 0.71 TP= 36 FP=  5 precision=87.8049% FPR=  1.89% recall=100.00%
+   th= 0.72 TP= 36 FP=  4 precision=90.0000% FPR=  1.52% recall=100.00%
+   th= 0.74 TP= 36 FP=  3 precision=92.3077% FPR=  1.14% recall=100.00%
+   th= 0.78 TP= 36 FP=  2 precision=94.7368% FPR=  0.76% recall=100.00%
+   th= 0.79 TP= 36 FP=  1 precision=97.2973% FPR=  0.38% recall=100.00%
+   th= 0.80 TP= 36 FP=  0 precision=100.0000% FPR=  0.00% recall=100.00%
+   th= 0.81 TP= 35 FP=  0 precision=100.0000% FPR=  0.00% recall= 97.22%
+   th= 0.82 TP= 33 FP=  0 precision=100.0000% FPR=  0.00% recall= 91.67%
+   th= 0.83 TP= 30 FP=  0 precision=100.0000% FPR=  0.00% recall= 83.33%
+   th= 0.84 TP= 28 FP=  0 precision=100.0000% FPR=  0.00% recall= 77.78%
+   th= 0.85 TP= 25 FP=  0 precision=100.0000% FPR=  0.00% recall= 69.44%
+   th= 0.86 TP= 22 FP=  0 precision=100.0000% FPR=  0.00% recall= 61.11%
+   th= 0.87 TP= 17 FP=  0 precision=100.0000% FPR=  0.00% recall= 47.22%
+   th= 0.88 TP= 14 FP=  0 precision=100.0000% FPR=  0.00% recall= 38.89%
+   th= 0.89 TP= 11 FP=  0 precision=100.0000% FPR=  0.00% recall= 30.56%
+   th= 0.90 TP=  9 FP=  0 precision=100.0000% FPR=  0.00% recall= 25.00%
+   th= 0.91 TP=  8 FP=  0 precision=100.0000% FPR=  0.00% recall= 22.22%
+   th= 0.92 TP=  7 FP=  0 precision=100.0000% FPR=  0.00% recall= 19.44%
+   th= 0.93 TP=  5 FP=  0 precision=100.0000% FPR=  0.00% recall= 13.89%
+   th= 0.94 TP=  3 FP=  0 precision=100.0000% FPR=  0.00% recall=  8.33%
+   th= 0.95 TP=  1 FP=  0 precision=100.0000% FPR=  0.00% recall=  2.78%
+
+=== nearest reachable precisions to 94.12% ===
+   precision 94.736842% (TP=36, FP=2)  |diff|=0.006168
+   precision 92.307692% (TP=36, FP=3)  |diff|=0.018123
+   precision 97.297297% (TP=36, FP=1)  |diff|=0.031773
+   precision 90.000000% (TP=36, FP=4)  |diff|=0.041200
+   precision 100.000000% (TP=36, FP=0)  |diff|=0.058800
+   precision 87.804878% (TP=36, FP=5)  |diff|=0.063151
+   precision 83.720930% (TP=36, FP=7)  |diff|=0.103991
+   precision 81.818182% (TP=36, FP=8)  |diff|=0.123018

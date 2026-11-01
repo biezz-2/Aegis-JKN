@@ -1,0 +1,28 @@
+KLM004 | Dokter: D05 (dr. Endra Kusuma, Sp.OT) | Faskes: RS_C | Sindikat: SYND-02
+   Catatan: 'Tidak ada encounter farmasi; resume medis tidak ditemukan di SATUSEHAT'
+   Alasan: 'FRAUD (Phantom Billing): klaim hemiarthroplasty dengan tanggal & biaya identik untuk 3 pasien pada hari yang sama, LOS hanya 1 hari untuk bedah mayor, tanpa MedicationDispense maupun resume medis di S'
+   Umpan: 'Saya tidak pernah menjalani operasi apa pun di rumah sakit ini.'
+   dx: S72.0 - Fraktur kolum femur, tertutup |LOS: 1
+KLM005 | Dokter: D05 (dr. Endra Kusuma, Sp.OT) | Faskes: RS_C | Sindikat: SYND-02
+   Catatan: 'Tidak ada encounter farmasi; resume medis tidak ditemukan di SATUSEHAT'
+   Alasan: 'FRAUD (Phantom Billing): klaim hemiarthroplasty dengan tanggal & biaya identik untuk 3 pasien pada hari yang sama, LOS hanya 1 hari untuk bedah mayor, tanpa MedicationDispense maupun resume medis di S'
+   Umpan: 'Tidak ada operasi yang pernah saya jalani bulan Maret ini.'
+   dx: S72.0 - Fraktur kolum femur, tertutup |LOS: 1
+KLM006 | Dokter: D05 (dr. Endra Kusuma, Sp.OT) | Faskes: RS_C | Sindikat: SYND-02
+   Catatan: 'Tidak ada encounter farmasi; resume medis tidak ditemukan di SATUSEHAT'
+   Alasan: 'FRAUD (Phantom Billing): klaim hemiarthroplasty dengan tanggal & biaya identik untuk 3 pasien pada hari yang sama, LOS hanya 1 hari untuk bedah mayor, tanpa MedicationDispense maupun resume medis di S'
+   Umpan: 'Saya hanya kontrol nyeri pinggang, tidak pernah dioperasi.'
+   dx: S72.0 - Fraktur kolum femur, tertutup |LOS: 1
+
+=== grep late fusion quote in architecture_full.md ===
+  L179: Penting ditegaskan bahwa sentimen negatif bukan bukti fraud. Keluhan murni layanan (antrean panjang, sikap staf) berfungsi sebagai negative control: sistem harus mampu membedakan keluhan layanan dari keluhan penagihan. Skor tekstual tidak berdiri sendiri, mela
+
+=== lines 179-186 ===
+  L179: Penting ditegaskan bahwa sentimen negatif bukan bukti fraud. Keluhan murni layanan (antrean panjang, sikap staf) berfungsi sebagai negative control: sistem harus mampu membedakan keluhan layanan dari keluhan penagihan. Skor tekstual tidak berdiri sendiri, melainkan dikonfirmasi silang dengan skor gr
+  L180: 
+  L181: Untuk validasi dini modul ini sebelum data nyata tersedia, dataset simulasi 100 klaim sintetis telah disiapkan dengan ground truth tekstual: distribusi sentimen 62 positif, 14 netral, 24 negatif, dengan 8 klaim bertanda kontradiksi narasi pasien-billing sebagai kasus uji prioritas investigasi.
+  L182: 
+  L183: ---
+  L184: 
+  L185: 
+  L186: ## 4. Analisis Kepatuhan Privasi Data, Etika, dan Keamanan Sistem (UU PDP)

@@ -1,0 +1,322 @@
+
+==============================================================================
+1. RASIO BIAYA DI 'ALASAN' vs TARIF ACUAN (parsing desimal ID diperbaiki)
+==============================================================================
+rasio terverifikasi: 72 | cocok: 72 | tidak cocok: 0
+
+==============================================================================
+2. VERIFIKASI TABEL DOKUMEN v100 vs SUB-SET KLM001-KLM100
+==============================================================================
+entitas   doc_n  akt_n  doc_maks  akt_maks  status
+P01           5      5      0.94      0.94  OK
+P02           5      5      0.95      0.95  OK
+P03           5      5      0.93      0.93  OK
+P04           4      4      0.11      0.11  OK
+P05           5      5      0.66      0.66  OK
+P06           4      4      0.13      0.13  OK
+P07           5      5      0.62      0.62  OK
+P08           5      5      0.92      0.92  OK
+P09           4      4      0.94      0.94  OK
+P10           5      5      0.93      0.93  OK
+P11           4      5      0.68      0.68  BEDA
+P12           5      5      0.85      0.85  OK
+P13           6      6      0.86      0.86  OK
+P14           6      6      0.87      0.87  OK
+P15           7      7      0.53      0.53  OK
+P16           5      5      0.88      0.88  OK
+P17           5      5      0.86      0.86  OK
+P18           4      4      0.74      0.74  OK
+P19           5      5      0.78      0.78  OK
+P20           5      5      0.79      0.79  OK
+D01           2      2      0.94      0.94  OK
+D02           8      8      0.95      0.95  OK
+D03           9      9      0.74      0.74  OK
+D04           9      9      0.68      0.68  OK
+D05          10     10      0.94      0.94  OK
+D06           0      0      0.00      0.00  OK
+D07          13     13      0.87      0.87  OK
+D08          18     18      0.79      0.79  OK
+D09          14     14      0.88      0.88  OK
+D10           8      8      0.13      0.13  OK
+D11           1      1      0.62      0.62  OK
+D12           8      8      0.66      0.66  OK
+RS_A         19     19      0.95      0.95  OK
+RS_B         13     13      0.87      0.87  OK
+RS_C         10     10      0.94      0.94  OK
+RS_D         10     10      0.68      0.68  OK
+RS_E         22     22      0.88      0.88  OK
+RS_F         26     26      0.79      0.79  OK
+
+==============================================================================
+3. BIAYA: TIPE & KELAS
+==============================================================================
+non-integer: []
+negatif: 0 | nol: 0
+nilai < 1.000.000: 29 [700000, 700000, 700000, 700000, 700000, 700000, 750000, 750000, 750000, 750000, 800000, 800000]
+nilai > 50.000.000: 23
+
+==============================================================================
+4. BIAYA vs TARIF PAKET ACUAN
+==============================================================================
+baris dengan prosedur ber-acuan: 144; rasio median=1.0 min=0.86 max=5.59
+rasio > 1.5 (indikasi overcharge, label low):
+   KLM019 47.09 Rp38,000,000 rasio=5.59 risiko=high layanan=rawat inap
+   KLM121 47.09 Rp27,500,000 rasio=4.04 risiko=fraud layanan=rawat inap
+   KLM008 96.04 Rp2,100,000 rasio=2.8 risiko=fraud layanan=rawat inap
+   KLM012 96.04 Rp2,100,000 rasio=2.8 risiko=fraud layanan=rawat inap
+   KLM010 96.04 Rp2,100,000 rasio=2.8 risiko=fraud layanan=rawat inap
+   KLM123 53.1 Rp21,000,000 rasio=2.56 risiko=high layanan=rawat inap
+rasio < 0.5 (biaya jauh di bawah tarif):
+
+==============================================================================
+5. NARASI vs KODE (deteksi narasi generik yang tidak cocok)
+==============================================================================
+   E11.9: 8 varian narasi
+       [33] Kontrol DM tipe 2; HbA1c 7,1 persen. Terapi metformin dilanj
+       [2] Kontrol DM; diberikan insulin glargin dalam jumlah besar kar
+       [1] Kontrol DM tipe 2; HbA1c 7,3 persen. Terapi metformin dilanj
+   I10: 3 varian narasi
+       [19] Kontrol hipertensi; tekanan darah 138/84 mmHg. Terapi amlodi
+       [1] Kontrol hipertensi; tekanan darah 142/86 mmHg. Terapi amlodi
+       [1] Kontrol hipertensi; tekanan darah 140/88 mmHg. Terapi amlodi
+   I21.9: 1 varian narasi
+       [20] Infark miokard; dilakukan PCI dengan 1 stent DES. Pasien pul
+   J18.9: 3 varian narasi
+       [36] Pneumonia komunitas; antibiotik intravena dan nebulizer. Per
+       [1] Pneumonia ringan; antibiotik oral dan nebulizer di ruang obs
+       [1] Pneumonia membaik klinis sejak hari ke-5; perawatan lanjutan
+   J45.9: 3 varian narasi
+       [14] Asma stabil; diberikan nebulizer dan edukasi teknik inhaler.
+       [6] Asma stabil; diberikan nebulizer, pemeriksaan spirometri dan
+       [1] Asma eksaserbasi ringan; diberikan nebulizer berulang dan ed
+   K29.7: 2 varian narasi
+       [14] Gastritis tanpa perdarahan; diberikan terapi PPI. Pasien dia
+       [3] Pasien nyeri epigastrium; hasil endoskopi gastritis superfis
+   K35.8: 1 varian narasi
+       [31] Apendisitis akut; dilakukan apendektomi. Toleransi oral baik
+   K40.9: 1 varian narasi
+       [29] Reparasi hernia inguinalis dengan mesh. Perawatan post-opera
+   K80.2: 1 varian narasi
+       [32] Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleran
+   N20.0: 1 varian narasi
+       [9] Kolik renal karena kalkulus 8 mm; dilakukan ESWL. Pasien dia
+   N39.0: 2 varian narasi
+       [13] Infeksi saluran kemih; antibiotik dan anjuran minum banyak. 
+       [1] Infeksi saluran kemih; antibiotik injeksi dan anjuran minum 
+   O80: 3 varian narasi
+       [7] Persalinan spontan pervaginam; bayi lahir cukup bulan 3.100 
+       [1] Persalinan tunggal spontan pervaginam tanpa komplikasi. Ibu 
+       [1] Persalinan spontan pervaginam berjalan normal; bayi lahir cu
+   S72.0: 2 varian narasi
+       [15] Fraktur kolum femur; dilakukan hemiarthroplasty. Mobilisasi 
+       [3] Fraktur kolum femur; dilakukan hemiarthroplasty. Toleransi o
+
+==============================================================================
+6. URUTAN BARIS CSV
+==============================================================================
+10 ID pertama: ['KLM285', 'KLM278', 'KLM264', 'KLM280', 'KLM263', 'KLM281', 'KLM271', 'KLM276', 'KLM294', 'KLM267', 'KLM274', 'KLM282', 'KLM284', 'KLM261', 'KLM265', 'KLM273', 'KLM268', 'KLM279', 'KLM299', 'KLM272', 'KLM298', 'KLM277', 'KLM289', 'KLM286', 'KLM291', 'KLM275', 'KLM297', 'KLM292', 'KLM295', 'KLM288', 'KLM270', 'KLM296', 'KLM290', 'KLM287', 'KLM300', 'KLM269', 'KLM262', 'KLM266', 'KLM293', 'KLM283', 'KLM221', 'KLM222', 'KLM236', 'KLM243', 'KLM260', 'KLM229', 'KLM232', 'KLM223', 'KLM253', 'KLM231', 'KLM247', 'KLM237', 'KLM251', 'KLM256', 'KLM238', 'KLM235', 'KLM228', 'KLM233', 'KLM257', 'KLM226', 'KLM234', 'KLM240', 'KLM245', 'KLM241', 'KLM255', 'KLM244', 'KLM239', 'KLM242', 'KLM230', 'KLM250', 'KLM258', 'KLM224', 'KLM246', 'KLM259', 'KLM227', 'KLM248', 'KLM254', 'KLM249', 'KLM252', 'KLM225', 'KLM201', 'KLM194', 'KLM188', 'KLM211', 'KLM193', 'KLM197', 'KLM196', 'KLM210', 'KLM183', 'KLM216', 'KLM198', 'KLM200', 'KLM218', 'KLM185', 'KLM187', 'KLM212', 'KLM203', 'KLM204', 'KLM181', 'KLM215', 'KLM217', 'KLM208', 'KLM219', 'KLM213', 'KLM195', 'KLM205', 'KLM199', 'KLM202', 'KLM207', 'KLM191', 'KLM182', 'KLM209', 'KLM206', 'KLM190', 'KLM220', 'KLM214', 'KLM184', 'KLM189', 'KLM186', 'KLM192', 'KLM156', 'KLM173', 'KLM143', 'KLM171', 'KLM154', 'KLM166', 'KLM160', 'KLM163', 'KLM141', 'KLM175', 'KLM153', 'KLM150', 'KLM172', 'KLM165', 'KLM144', 'KLM151', 'KLM167', 'KLM145', 'KLM157', 'KLM155', 'KLM148', 'KLM177', 'KLM159', 'KLM142', 'KLM164', 'KLM179', 'KLM161', 'KLM147', 'KLM174', 'KLM178', 'KLM170', 'KLM162', 'KLM176', 'KLM149', 'KLM146', 'KLM169', 'KLM168', 'KLM180', 'KLM158', 'KLM152', 'KLM133', 'KLM109', 'KLM140', 'KLM129', 'KLM111', 'KLM112', 'KLM114', 'KLM115', 'KLM123', 'KLM118', 'KLM110', 'KLM102', 'KLM117', 'KLM124', 'KLM137', 'KLM105', 'KLM121', 'KLM126', 'KLM108', 'KLM128', 'KLM131', 'KLM120', 'KLM104', 'KLM127', 'KLM119', 'KLM136', 'KLM106', 'KLM122', 'KLM113', 'KLM130', 'KLM101', 'KLM103', 'KLM132', 'KLM138', 'KLM125', 'KLM139', 'KLM134', 'KLM116', 'KLM135', 'KLM107', 'KLM080', 'KLM079', 'KLM078', 'KLM093', 'KLM097', 'KLM099', 'KLM094', 'KLM084', 'KLM081', 'KLM086', 'KLM085', 'KLM096', 'KLM089', 'KLM100', 'KLM090', 'KLM083', 'KLM082', 'KLM092', 'KLM098', 'KLM076', 'KLM091', 'KLM095', 'KLM087', 'KLM077', 'KLM088', 'KLM059', 'KLM066', 'KLM058', 'KLM051', 'KLM060', 'KLM052', 'KLM071', 'KLM070', 'KLM061', 'KLM065', 'KLM067', 'KLM072', 'KLM064', 'KLM054', 'KLM057', 'KLM074', 'KLM068', 'KLM073', 'KLM075', 'KLM063', 'KLM056', 'KLM062', 'KLM053', 'KLM069', 'KLM055', 'KLM045', 'KLM043', 'KLM029', 'KLM042', 'KLM044', 'KLM047', 'KLM027', 'KLM041', 'KLM032', 'KLM036', 'KLM034', 'KLM049', 'KLM026', 'KLM038', 'KLM048', 'KLM031', 'KLM037', 'KLM040', 'KLM033', 'KLM030', 'KLM046', 'KLM028', 'KLM050', 'KLM039', 'KLM035', 'KLM005', 'KLM002', 'KLM016', 'KLM007', 'KLM001', 'KLM014', 'KLM004', 'KLM008', 'KLM012', 'KLM010', 'KLM023', 'KLM003', 'KLM013', 'KLM021', 'KLM024', 'KLM015', 'KLM020', 'KLM025', 'KLM018', 'KLM019', 'KLM011', 'KLM017', 'KLM006', 'KLM009', 'KLM022']
+10 ID terakhir: ['KLM015', 'KLM020', 'KLM025', 'KLM018', 'KLM019', 'KLM011', 'KLM017', 'KLM006', 'KLM009', 'KLM022']
+_notion_page_id terurut menaik? False
+Name terurut menaik? False
+Tanggal terurut menaik? False
+
+==============================================================================
+7. POLA SKOR FRAUD / KONTRIBUSI SALURAN
+==============================================================================
+Pola (Risiko, T/F/S) -> himpunan skor:
+   fraud   ('0.15', '0.36', '0.30') -> [0.81]
+   fraud   ('0.16', '0.18', '0.49') -> [0.82, 0.83, 0.84, 0.85]
+   fraud   ('0.22', '0.33', '0.31') -> [0.86]
+   fraud   ('0.22', '0.34', '0.26') -> [0.82]
+   fraud   ('0.23', '0.34', '0.31') -> [0.88]
+   fraud   ('0.26', '0.30', '0.24') -> [0.8, 0.81, 0.82, 0.83, 0.84]
+   fraud   ('0.28', '0.32', '0.26') -> [0.86, 0.87, 0.88, 0.89]
+   fraud   ('0.29', '0.3', '0.26') -> [0.85, 0.86, 0.87]
+   fraud   ('0.30', '0.34', '0.28') -> [0.89, 0.9, 0.91, 0.92]
+   fraud   ('0.31', '0.32', '0.31') -> [0.93, 0.94, 0.95]
+   fraud   ('0.32', '0.35', '0.26') -> [0.92, 0.93, 0.94]
+   high    ('0.12', '0.35', '0.15') -> [0.62]
+   high    ('0.13', '0.18', '0.35') -> [0.66]
+   high    ('0.15', '0.22', '0.18') -> [0.62, 0.63, 0.64, 0.67, 0.68, 0.71, 0.72]
+   high    ('0.15', '0.24', '0.29') -> [0.68]
+   high    ('0.2', '0.32', '0.22') -> [0.74]
+   high    ('0.24', '0.34', '0.2') -> [0.78, 0.79]
+   low     ('0.01', '0.02', '0.02') -> [0.05]
+   low     ('0.01', '0.02', '0.03') -> [0.06]
+   low     ('0.01', '0.02', '0.04') -> [0.07]
+   low     ('0.01', '0.03', '0.01') -> [0.05]
+   low     ('0.01', '0.03', '0.02') -> [0.06]
+   low     ('0.01', '0.03', '0.04') -> [0.08]
+   low     ('0.01', '0.04', '0.01') -> [0.06]
+   low     ('0.01', '0.04', '0.02') -> [0.07]
+   low     ('0.01', '0.04', '0.03') -> [0.08]
+   low     ('0.02', '0.01', '0.01') -> [0.04]
+   low     ('0.02', '0.01', '0.02') -> [0.05]
+   low     ('0.02', '0.01', '0.03') -> [0.06]
+   low     ('0.02', '0.01', '0.04') -> [0.07]
+   low     ('0.02', '0.02', '0.01') -> [0.05]
+   low     ('0.02', '0.02', '0.02') -> [0.06]
+   low     ('0.02', '0.02', '0.03') -> [0.07]
+   low     ('0.02', '0.02', '0.04') -> [0.08]
+   low     ('0.02', '0.03', '0.02') -> [0.07]
+   low     ('0.02', '0.03', '0.03') -> [0.08]
+   low     ('0.02', '0.03', '0.04') -> [0.09]
+   low     ('0.02', '0.04', '0.01') -> [0.07]
+   low     ('0.02', '0.04', '0.02') -> [0.08]
+   low     ('0.02', '0.04', '0.03') -> [0.09]
+   low     ('0.02', '0.04', '0.04') -> [0.1]
+   low     ('0.02', '0.05', '0.01') -> [0.08]
+   low     ('0.02', '0.05', '0.04') -> [0.11]
+   low     ('0.03', '0.01', '0.01') -> [0.05]
+   low     ('0.03', '0.01', '0.02') -> [0.06]
+   low     ('0.03', '0.01', '0.03') -> [0.07]
+   low     ('0.03', '0.02', '0.02') -> [0.07]
+   low     ('0.03', '0.02', '0.03') -> [0.08]
+   low     ('0.03', '0.02', '0.04') -> [0.09]
+   low     ('0.03', '0.03', '0.01') -> [0.07]
+   low     ('0.03', '0.03', '0.02') -> [0.08]
+   low     ('0.03', '0.03', '0.03') -> [0.09]
+   low     ('0.03', '0.03', '0.04') -> [0.1]
+   low     ('0.03', '0.04', '0.01') -> [0.08]
+   low     ('0.03', '0.04', '0.02') -> [0.09]
+   low     ('0.03', '0.04', '0.03') -> [0.1]
+   low     ('0.03', '0.04', '0.04') -> [0.11]
+   low     ('0.03', '0.05', '0.01') -> [0.09]
+   low     ('0.03', '0.05', '0.03') -> [0.11]
+   low     ('0.04', '0.01', '0.01') -> [0.06]
+   low     ('0.04', '0.01', '0.02') -> [0.07]
+   low     ('0.04', '0.01', '0.03') -> [0.08]
+   low     ('0.04', '0.02', '0.01') -> [0.07]
+   low     ('0.04', '0.02', '0.02') -> [0.08]
+   low     ('0.04', '0.02', '0.03') -> [0.09]
+   low     ('0.04', '0.02', '0.04') -> [0.1]
+   low     ('0.04', '0.03', '0.01') -> [0.08]
+   low     ('0.04', '0.03', '0.02') -> [0.09]
+   low     ('0.04', '0.03', '0.03') -> [0.1]
+   low     ('0.04', '0.04', '0.01') -> [0.09]
+   low     ('0.04', '0.04', '0.02') -> [0.1]
+   low     ('0.04', '0.04', '0.03') -> [0.11]
+   low     ('0.04', '0.05', '0.01') -> [0.1]
+   low     ('0.04', '0.05', '0.03') -> [0.12]
+   low     ('0.05', '0.01', '0.01') -> [0.07]
+   low     ('0.05', '0.01', '0.02') -> [0.08]
+   low     ('0.05', '0.02', '0.01') -> [0.08]
+   low     ('0.05', '0.02', '0.02') -> [0.09]
+   low     ('0.05', '0.02', '0.03') -> [0.1]
+   low     ('0.05', '0.03', '0.02') -> [0.1]
+   low     ('0.05', '0.03', '0.03') -> [0.11]
+   low     ('0.05', '0.03', '0.04') -> [0.12]
+   low     ('0.05', '0.04', '0.02') -> [0.11]
+   low     ('0.05', '0.04', '0.03') -> [0.12]
+   low     ('0.05', '0.04', '0.04') -> [0.13]
+   low     ('0.05', '0.05', '0.02') -> [0.12]
+   low     ('0.05', '0.05', '0.03') -> [0.13]
+   low     ('0.06', '0.05', '0.03') -> [0.14]
+   medium  ('0.12', '0.11', '0.09') -> [0.4, 0.42, 0.44, 0.45, 0.46, 0.48]
+   medium  ('0.18', '0.16', '0.13') -> [0.45, 0.48, 0.51, 0.53]
+
+Jumlah (Risiko, T/F/S) unik: 90
+
+==============================================================================
+8. APAKAH SKOR FRAUD = T+F+S?
+==============================================================================
+tepat: 258 | tidak tepat: 42
+contoh tidak tepat: [('KLM133', 0.31999999999999995, 0.44, 0.12), ('KLM129', 0.55, 0.72, 0.17), ('KLM111', 0.8600000000000001, 0.89, 0.03), ('KLM114', 0.8600000000000001, 0.88, 0.02), ('KLM123', 0.55, 0.64, 0.09), ('KLM118', 0.8, 0.83, 0.03), ('KLM110', 0.8600000000000001, 0.87, 0.01), ('KLM102', 0.92, 0.91, -0.01), ('KLM117', 0.8, 0.82, 0.02), ('KLM124', 0.55, 0.71, 0.16), ('KLM105', 0.83, 0.84, 0.01), ('KLM126', 0.55, 0.62, 0.07)]
+Toleransi 0.01: 13
+Selisih >0.02: 21
+Selisih per label:
+   medium: n=10 min=-0.020 maks=0.160
+   high: n=9 min=0.010 maks=0.170
+   fraud: n=23 min=-0.030 maks=0.040
+
+==============================================================================
+9. BARIS BIAYA TERTINGGI: KONTEKS
+==============================================================================
+
+KLM127: biaya=63500000 risiko=high status=review dx=I21.9 - Infark miokard akut, tidak spesifik proc=00.66 - Angioplasti koroner + stent (PCI) LOS=9
+   SHAP: LOS 9 hari pasca-PCI (median 5); perlu indikasi perpanjangan rawat
+   Alasan: ANOMALI TINGGI (belum tentu fraud): LOS 9 hari pasca-PCI tanpa komplikasi terdokumentasi (median 5). Perlu konfirmasi indikasi perpanjangan rawat sebelum menyimpulkan upcoding LOS.
+
+KLM047: biaya=62000000 risiko=low status=auto_clear dx=I21.9 - Infark miokard akut, tidak spesifik proc=00.66 - Angioplasti koroner + stent (PCI) LOS=6
+   SHAP: tidak ada sinyal dominan
+   Alasan: NORMAL: dx I21.9 ditangani dengan prosedur 00.66 — pasangan klinis standar; biaya Rp62000000 dalam rentang tarif paket; LOS 6 hari dalam rentang median; obat dispensed sesuai dx; narasi rekam medis konsisten dengan penagihan; tanpa kontradiksi.
+
+KLM019: biaya=38000000 risiko=high status=review dx=K35.8 - Apendisitis akut proc=47.09 - Apendektomi LOS=3
+   SHAP: biaya 5,6x tarif rujukan apendektomi kelas 3
+   Alasan: ANOMALI TINGGI (belum tentu fraud): biaya 5,6x tarif rujukan apendektomi kelas 3 tanpa komponen tambahan terdokumentasi — bisa jadi outlier kelas layanan atau markup; perlu rincian komponen sebelum label fraud.
+
+KLM123: biaya=21000000 risiko=high status=review dx=K40.9 - Hernia inguinalis, tanpa obstruksi proc=53.1 - Reparasi hernia inguinalis LOS=5
+   SHAP: biaya 2,6x tarif reparasi hernia (Rp8,2 jt); menunggu rincian komponen
+   Alasan: ANOMALI TINGGI (belum tentu fraud): biaya reparasi hernia 2,6x tarif paket dengan mesh yang lebih mahal mungkin dijelaskan komplikasi/penggunaan mesh khusus, tetapi tidak terdokumentasi. Perlu verifikasi rincian komponen sebelum menyimpulkan fraud.
+
+==============================================================================
+10. MODUS DI DALAM TEKS ALASAN vs KOLOM MODUS
+==============================================================================
+Prefiks FRAUD (...) yang tidak cocok dengan kolom Modus:
+total: 0
+
+Baris modus non-fraud (anomali/overbilling/prolonged_stay) dengan kolom Sindikat kosong: 22
+Baris modus non-fraud yang TIDAK punya 'Catatan': []
+Catatan kosong pada baris fraud: []
+
+==============================================================================
+11. UMPAN BALIK PASIEN vs LABEL
+==============================================================================
+jumlah umpan balik unik: 36
+paling sering: [('Proses administrasi mudah dan ruangan bersih.', 39), ('Pelayanan cepat, dokter dan perawat sangat ramah.', 37), ('Saya pulang dengan kondisi membaik, terima kasih atas perawatannya.', 37), ('Pelayanan baik, penjelasan dokter jelas dan mudah dipahami.', 29), ('Nyaman dirawat di sini, fasilitas lengkap.', 26), ('Cukup membantu, tapi proses administrasi bertele-tele.', 22)]
+baris fraud dengan sentimen negatif: 23/36
+baris low dengan sentimen negatif   : 42/240 (negative control per 10-simulation-dataset.md)
+
+==============================================================================
+12. RINGKASAN AKHIR
+==============================================================================
+{
+ "rasio_ok": 72,
+ "rasio_bad": 0,
+ "biaya_negatif": 0,
+ "biaya_nol": 0,
+ "skor_beda_kanal": [
+  "KLM002",
+  "KLM003",
+  "KLM004",
+  "KLM005",
+  "KLM009",
+  "KLM010",
+  "KLM011",
+  "KLM012",
+  "KLM017",
+  "KLM020",
+  "KLM021",
+  "KLM022",
+  "KLM023",
+  "KLM102",
+  "KLM103",
+  "KLM104",
+  "KLM105",
+  "KLM106",
+  "KLM107",
+  "KLM110",
+  "KLM111",
+  "KLM113",
+  "KLM114",
+  "KLM116",
+  "KLM117",
+  "KLM118",
+  "KLM119",
+  "KLM120",
+  "KLM123",
+  "KLM124",
+  "KLM125",
+  "KLM126",
+  "KLM127",
+  "KLM128",
+  "KLM129",
+  "KLM130",
+  "KLM131",
+  "KLM132",
+  "KLM133",
+  "KLM134",
+  "KLM135",
+  "KLM136"
+ ]
+}

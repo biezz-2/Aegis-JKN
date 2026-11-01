@@ -1,0 +1,146 @@
+{
+ "n_features_cell5": 34,
+ "cols": [
+  "biaya_rp",
+  "los_hari",
+  "biaya_per_hari",
+  "skor_sentimen",
+  "bulan",
+  "hari_dalam_minggu",
+  "hari_dalam_bulan",
+  "is_weekend",
+  "is_rawat_inap",
+  "panjang_narasi",
+  "jumlah_kata_narasi",
+  "panjang_feedback",
+  "jumlah_obat",
+  "diagnosis_code_freq",
+  "prosedur_code_freq",
+  "dx_E11.9",
+  "dx_J18.9",
+  "dx_K80.2",
+  "dx_K35.8",
+  "dx_K40.9",
+  "dx_I10",
+  "dx_J45.9",
+  "dx_I21.9",
+  "dx_S72.0",
+  "dx_K29.7",
+  "proc_—",
+  "proc_47.09",
+  "proc_51.23",
+  "proc_53.1",
+  "proc_00.66",
+  "proc_81.52",
+  "proc_98.51",
+  "proc_96.04",
+  "proc_74.1"
+ ],
+ "n_pos": 36,
+ "rule_modus_fraud": {
+  "tp": 36,
+  "fp": 2,
+  "fn": 0,
+  "acc": 1.1133
+ },
+ "best_threshold_biaya_rp": [
+  0.3226,
+  15050000.0,
+  15,
+  42,
+  21
+ ],
+ "best_threshold_los_hari": [
+  0.1938,
+  0.0,
+  22,
+  169,
+  14
+ ],
+ "best_threshold_skor_sentimen": [
+  0.209,
+  -0.9,
+  35,
+  264,
+  1
+ ],
+ "best_threshold_jumlah_obat": [
+  0.1982,
+  0.0,
+  33,
+  264,
+  3
+ ],
+ "best_threshold_panjang_narasi": [
+  0.3333,
+  111.0,
+  21,
+  69,
+  15
+ ],
+ "best_threshold_biaya_per_hari": [
+  0.3448,
+  4950000.0,
+  15,
+  36,
+  21
+ ],
+ "modus_fraud_crosstab": {
+  "": {
+   "n": 240,
+   "fraud": 0
+  },
+  "anomali_frekuensi": {
+   "n": 12,
+   "fraud": 0
+  },
+  "biaya_markup": {
+   "n": 1,
+   "fraud": 1
+  },
+  "cloning": {
+   "n": 2,
+   "fraud": 0
+  },
+  "drug_diversion": {
+   "n": 3,
+   "fraud": 3
+  },
+  "excessive_usage": {
+   "n": 6,
+   "fraud": 6
+  },
+  "iur_biaya": {
+   "n": 4,
+   "fraud": 4
+  },
+  "overbilling": {
+   "n": 4,
+   "fraud": 0
+  },
+  "phantom_billing": {
+   "n": 3,
+   "fraud": 3
+  },
+  "prolonged_stay": {
+   "n": 4,
+   "fraud": 0
+  },
+  "readmission_berulang": {
+   "n": 6,
+   "fraud": 6
+  },
+  "repeat_billing": {
+   "n": 4,
+   "fraud": 4
+  },
+  "unbundling": {
+   "n": 6,
+   "fraud": 6
+  },
+  "upcoding": {
+   "n": 5,
+   "fraud": 3
+  }
+ }
+}

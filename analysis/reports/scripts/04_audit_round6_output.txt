@@ -1,0 +1,152 @@
+
+==============================================================================
+1. PEMETAAN SINDIKAT doc vs AKTUAL (id, faskes, dokter, pasien)
+==============================================================================
+
+SYND-01: ID
+   ID    doc=KLM001-003   akt=['KLM001', 'KLM002', 'KLM003']
+   faskes doc=RS_A   akt=['RS_A']
+   dokter doc=['D01', 'D02'] akt=['D01', 'D02']
+   pasien doc=['P01', 'P02', 'P03'] akt=['P01', 'P02', 'P03']
+   modus  doc=upcoding             akt=['upcoding']
+   skor   doc=[0.93, 1.0] akt=0.93-0.95
+
+SYND-02: ID
+   ID    doc=KLM004-006   akt=['KLM004', 'KLM005', 'KLM006']
+   faskes doc=RS_C   akt=['RS_C']
+   dokter doc=['D05'] akt=['D05']
+   pasien doc=['P08', 'P09', 'P10'] akt=['P08', 'P09', 'P10']
+   modus  doc=phantom_billing      akt=['phantom_billing']
+   skor   doc=[0.92, 1.0] akt=0.92-0.94
+
+SYND-03: ID
+   ID    doc=KLM007-012   akt=['KLM007', 'KLM008', 'KLM009', 'KLM010', 'KLM011', 'KLM012']
+   faskes doc=RS_B   akt=['RS_B']
+   dokter doc=['D07'] akt=['D07']
+   pasien doc=['P12', 'P13', 'P14'] akt=['P12', 'P13', 'P14']
+   modus  doc=unbundling           akt=['unbundling']
+   skor   doc=[0.84, 0.87] akt=0.85-0.87
+
+SYND-04: ID
+   ID    doc=KLM013-014   akt=['KLM013', 'KLM014']
+   faskes doc=RS_E   akt=['RS_E']
+   dokter doc=['D09'] akt=['D09']
+   pasien doc=['P16', 'P17'] akt=['P16', 'P17']
+   modus  doc=drug_diversion       akt=['drug_diversion']
+   skor   doc=[0.86, 0.88] akt=0.86-0.88
+
+SYND-05: ID
+   ID    doc=KLM016-017   akt=['KLM016', 'KLM017']
+   faskes doc=RS_F   akt=['RS_F']
+   dokter doc=['D08'] akt=['D08']
+   pasien doc=['P19', 'P20'] akt=['P19', 'P20']
+   modus  doc=cloning              akt=['cloning']
+   skor   doc=[0.78, 0.79] akt=0.78-0.79
+
+SYND-06: ID, pasien, skor
+   ID    doc=KLM101-104   akt=['KLM101', 'KLM102', 'KLM103', 'KLM104']
+   faskes doc=RS_G   akt=['RS_G']
+   dokter doc=['D13'] akt=['D13']
+   pasien doc=['P21', 'P22', 'P23', 'P24'] akt=['P21', 'P22']
+   modus  doc=repeat_billing       akt=['repeat_billing']
+   skor   doc=[0.85, 0.9] akt=0.89-0.92
+
+SYND-07: ID, pasien
+   ID    doc=KLM105-108   akt=['KLM105', 'KLM106', 'KLM107', 'KLM108']
+   faskes doc=RS_H   akt=['RS_H']
+   dokter doc=['D14'] akt=['D14']
+   pasien doc=['P25', 'P26', 'P27', 'P28'] akt=['P23', 'P24']
+   modus  doc=iur_biaya            akt=['iur_biaya']
+   skor   doc=[0.82, 0.87] akt=0.82-0.85
+
+SYND-08: ID, pasien, skor
+   ID    doc=KLM109-114   akt=['KLM109', 'KLM110', 'KLM111', 'KLM112', 'KLM113', 'KLM114']
+   faskes doc=RS_I   akt=['RS_I']
+   dokter doc=['D15'] akt=['D15']
+   pasien doc=['P29', 'P30', 'P31', 'P32', 'P33', 'P34'] akt=['P25', 'P26']
+   modus  doc=readmission_berulang akt=['readmission_berulang']
+   skor   doc=[0.75, 0.8] akt=0.86-0.89
+
+SYND-09: ID, dokter, pasien, skor
+   ID    doc=KLM115-120   akt=['KLM115', 'KLM116', 'KLM117', 'KLM118', 'KLM119', 'KLM120']
+   faskes doc=RS_J   akt=['RS_J']
+   dokter doc=['D16'] akt=['D19']
+   pasien doc=['P35', 'P36', 'P37', 'P38', 'P39', 'P40'] akt=['P27']
+   modus  doc=excessive_usage      akt=['excessive_usage']
+   skor   doc=[0.78, 0.83] akt=0.80-0.84
+
+SINDIKAT DENGAN PEMETAAN TIDAK COCOK: 9
+    SYND-01 gagal: ['ID']
+    SYND-02 gagal: ['ID']
+    SYND-03 gagal: ['ID']
+    SYND-04 gagal: ['ID']
+    SYND-05 gagal: ['ID']
+    SYND-06 gagal: ['ID', 'pasien', 'skor']
+    SYND-07 gagal: ['ID', 'pasien']
+    SYND-08 gagal: ['ID', 'pasien', 'skor']
+    SYND-09 gagal: ['ID', 'dokter', 'pasien', 'skor']
+
+==============================================================================
+2. KLAIM TUNGGAL (doc: '-' sindikat)
+==============================================================================
+   KLM121 doc: Biaya Markup / RS_A / D03 / P04
+          akt: biaya_markup / RS_G / D13 (dr. Mulyadi Santoso, Sp.B) / P29 (Bambang Riyanto) skor=0.81
+   KLM122 doc: Drug Diversion / RS_E / D09 / P18
+          akt: drug_diversion / RS_H / D14 (dr. Nurul Aini, Sp.PD) / P30 (Citra Ayu Lestari) skor=0.82
+
+==============================================================================
+3. SENTIMEN: GAP ANTAR KELAS
+==============================================================================
+negatif: n=72 rentang [-0.9, -0.3] unik=26
+netral : n=58 rentang [0.05, 0.15] unik=9
+positif: n=170 rentang [0.6, 0.85] unik=25
+gap negatif->netral: 0.35 ; netral->positif: 0.45
+baris netral di luar [0,0.2]: 0
+baris negatif > 0: 0 | positif < 0: 0
+rentang terdokumentasi 10-sim: -1 s.d. 1 -> semua dalam rentang: True
+
+==============================================================================
+4. BARIS TANPA POLA OBAT 'Mxx x N satuan'
+==============================================================================
+   KLM004: Obat='—' | SHAP=3 klaim tanggal & biaya identik; LOS 1 hari untuk hemiarthroplasty mayor; tanpa Medication
+   KLM005: Obat='—' | SHAP=3 klaim tanggal & biaya identik; LOS 1 hari untuk hemiarthroplasty mayor; tanpa Medication
+   KLM006: Obat='—' | SHAP=3 klaim tanggal & biaya identik; LOS 1 hari untuk hemiarthroplasty mayor; tanpa Medication
+   -> konsisten dengan Phantom Billing 'tanpa MedicationDispense' (doc 10-sim)
+
+==============================================================================
+5. NILAI KOSONG vs SENTINEL
+==============================================================================
+   Prosedur ICD-9-CM    string kosong=0    sentinel/tanda=156  nilai unik=9
+   Modus                string kosong=240  sentinel/tanda=0  nilai unik=14
+   Sindikat             string kosong=264  sentinel/tanda=0  nilai unik=10
+   Alasan               string kosong=1    sentinel/tanda=0  nilai unik=211
+   Catatan              string kosong=240  sentinel/tanda=0  nilai unik=37
+   LOS hari             string kosong=0    sentinel/tanda=0  nilai unik=12
+
+==============================================================================
+6. RUJUKAN: NOMOR DUPLIKAT
+==============================================================================
+   RJ-2026-401: [('KLM102', '2026-03-09', 'P21 (Rahmat Fauzi)'), ('KLM101', '2026-03-09', 'P21 (Rahmat Fauzi)')]
+   RJ-2026-402: [('KLM104', '2026-03-10', 'P22 (Sri Wahyuni)'), ('KLM103', '2026-03-10', 'P22 (Sri Wahyuni)')]
+
+==============================================================================
+7. CATATAN: KOLOM KOSONG PADA BARIS LOW?
+==============================================================================
+low dengan Catatan kosong : 240
+low dengan Catatan terisi : 0
+non-low dengan Catatan kosong: []
+
+==============================================================================
+8. BIAYA PER HARI PADA BARIS LOS=0
+==============================================================================
+baris LOS=0: 109; total biaya pada baris itu: Rp153,310,000
+contoh: [('KLM263', '1000000', 'rawat jalan', 'low'), ('KLM294', '1100000', 'rawat jalan', 'low'), ('KLM274', '950000', 'rawat jalan', 'low')]
+-> biaya/hari tak terdefinisi; SHAP KLM008/010/012 justru memakai 'LOS 0' sebagai sinyal
+
+==============================================================================
+9. DUPLEKAT DESKRIPSI (SYND-06 repeat billing)
+==============================================================================
+   ('KLM101', 'KLM102'): SAMA=25 -> ['Tanggal', 'Skor Sentimen', 'Narasi Rekam Medis', 'Biaya Rp', 'Risiko', 'LOS hari', 'Prosedur ICD-9-CM', 'Dokter', 'Sinyal SHAP', 'Modus', 'Rujukan', 'Faskes', 'Sindikat', 'Obat', 'Umpan Balik Pasien', 'Kontradiksi Narasi', 'Pasien', 'Alasan Berobat', 'Status', 'Alasan', 'Catatan', 'Sentimen', 'Layanan', 'Kontribusi Saluran', 'Diagnosis ICD-10']
+          BEDA=['Skor Fraud']
+   ('KLM103', 'KLM104'): SAMA=25 -> ['Tanggal', 'Skor Sentimen', 'Narasi Rekam Medis', 'Biaya Rp', 'Risiko', 'LOS hari', 'Prosedur ICD-9-CM', 'Dokter', 'Sinyal SHAP', 'Modus', 'Rujukan', 'Faskes', 'Sindikat', 'Obat', 'Umpan Balik Pasien', 'Kontradiksi Narasi', 'Pasien', 'Alasan Berobat', 'Status', 'Alasan', 'Catatan', 'Sentimen', 'Layanan', 'Kontribusi Saluran', 'Diagnosis ICD-10']
+          BEDA=['Skor Fraud']

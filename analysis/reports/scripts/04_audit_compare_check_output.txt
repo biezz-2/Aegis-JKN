@@ -1,0 +1,182 @@
+=== ASERSI PERBANDINGAN DUMP NOTION vs claims_300_v2.1.csv ===
+
+-- A. identitas sumber --
+OK   baris Notion: got=300 exp=300
+OK   baris v2.1: got=300 exp=300
+OK   kolom Notion: got=29 exp=29
+OK   kolom v2.1: got=31 exp=31
+OK   claim_id == Name (himpunan): got=True exp=True
+OK   claim_id urut menaik: got=True exp=True
+
+-- B. kolom v2.1 yang tidak ada di dump Notion --
+OK   kolom eksklusif v2.1: got=['diagnosis_code', 'dokter_id', 'is_fraud', 'pasien_id', 'prosedur_code'] exp=['diagnosis_code', 'dokter_id', 'is_fraud', 'pasien_id', 'prosedur_code']
+
+-- C. kolom yang identik pada 300 baris --
+OK   kolom identik: Tanggal: got=0 exp=0
+OK   kolom identik: Pasien: got=0 exp=0
+OK   kolom identik: Faskes: got=0 exp=0
+OK   kolom identik: Diagnosis ICD-10: got=0 exp=0
+OK   kolom identik: Prosedur ICD-9-CM: got=0 exp=0
+OK   kolom identik: Obat: got=0 exp=0
+OK   kolom identik: LOS hari: got=0 exp=0
+OK   kolom identik: Biaya Rp: got=0 exp=0
+OK   kolom identik: Narasi Rekam Medis: got=0 exp=0
+OK   kolom identik: Skor Fraud: got=0 exp=0
+OK   kolom identik: Risiko: got=0 exp=0
+OK   kolom identik: Status: got=0 exp=0
+OK   kolom identik: Modus: got=0 exp=0
+OK   kolom identik: Alasan: got=0 exp=0
+OK   kolom identik: Sinyal SHAP: got=0 exp=0
+OK   kolom identik: Kontribusi Saluran: got=0 exp=0
+OK   kolom identik: Skor Sentimen: got=0 exp=0
+OK   kolom identik: Sentimen: got=0 exp=0
+OK   kolom identik: Umpan Balik Pasien: got=0 exp=0
+OK   kolom identik: Alasan Berobat: got=0 exp=0
+OK   kolom identik: Layanan: got=0 exp=0
+OK   kolom identik: Rujukan: got=0 exp=0
+
+-- D. kolom dengan perbedaan(format) --
+OK   Dokter: baris beda (truncasi): got=32 exp=32
+OK   Kontradiksi Narasi: baris beda (format): got=300 exp=300
+OK   Sindikat: baris beda (format): got=264 exp=264
+OK   total sel berbeda: got=596 exp=596
+OK   jumlah kolom dump Notion berpasangan dengan v2.1: got=26 exp=26
+OK   Name == claim_id (kunci baris): got=0 exp=0
+OK   jumlah kolom berpasangan yang identik 300 baris: got=23 exp=23
+OK   jumlah kolom beda format: got=2 exp=2
+OK   jumlah kolom beda isi (truncasi): got=1 exp=1
+OK   Catatan ada di dump Notion tapi tidak di v2.1: got=(True, False) exp=(True, False)
+
+-- E. kesetaraan semantik --
+OK   Kontradiksi Narasi semantik beda: got=0 exp=0
+OK   Kontradiksi True di kedua sumber: got=(12, 12) exp=(12, 12)
+OK   sindikat 'none' v2.1 == Sindikat kosong Notion: got=True exp=True
+OK   jumlah sindikat kosong: got=264 exp=264
+OK   Sindikat: 36 terisi identik: got=36 exp=36
+
+-- F. is_fraud --
+OK   nilai is_fraud: got={'1': 36, '0': 264} exp={'0': 264, '1': 36}
+OK   is_fraud != (risiko==fraud) vs Notion: got=0 exp=0
+OK   is_fraud != (risiko==fraud) internal v2.1: got=0 exp=0
+
+-- G. KLM115 (kasus pembeda ambang 0,80) --
+OK   KLM115 skor Notion: got=0.8 exp=0.8
+OK   KLM115 skor v2.1: got=0.8 exp=0.8
+OK   KLM115 risiko Notion: got=fraud exp=fraud
+OK   KLM115 risiko v2.1: got=fraud exp=fraud
+OK   KLM115 is_fraud v2.1: got=1 exp=1
+OK   KLM115 sindikat: got=('SYND-09', 'SYND-09') exp=('SYND-09', 'SYND-09')
+OK   baris skor tepat 0.80 di Notion: got=['KLM115'] exp=['KLM115']
+OK   baris skor tepat 0.80 di v2.1: got=['KLM115'] exp=['KLM115']
+OK   baris skor tepat 0.35: got=[] exp=[]
+OK   baris skor tepat 0.60: got=[] exp=[]
+
+-- H. aturan LOS (identik di kedua sumber) --
+OK   Notion: LOS kosong: got=0 exp=0
+OK   Notion: LOS == '0': got=109 exp=109
+OK   v2.1: LOS kosong: got=0 exp=0
+OK   v2.1: LOS == '0': got=109 exp=109
+OK   baris los_hari berbeda: got=0 exp=0
+OK   v2.1 LOS=0 rawat inap: got=['KLM008', 'KLM010', 'KLM012'] exp=['KLM008', 'KLM010', 'KLM012']
+
+-- I. pola bermasalah identik di kedua sumber --
+OK   LOS=0: jumlah Notion: got=109 exp=109
+OK   LOS=0: jumlah v2.1: got=109 exp=109
+OK   LOS=0: himpunan ID sama: got=True exp=True
+OK   Rujukan 'undefined': jumlah Notion: got=28 exp=28
+OK   Rujukan 'undefined': jumlah v2.1: got=28 exp=28
+OK   Rujukan 'undefined': himpunan ID sama: got=True exp=True
+OK   Prosedur sentinel —: jumlah Notion: got=156 exp=156
+OK   Prosedur sentinel —: jumlah v2.1: got=156 exp=156
+OK   Prosedur sentinel —: himpunan ID sama: got=True exp=True
+OK   Obat sentinel —: jumlah Notion: got=3 exp=3
+OK   Obat sentinel —: jumlah v2.1: got=3 exp=3
+OK   Obat sentinel —: himpunan ID sama: got=True exp=True
+OK   Skor != T+F+S: jumlah Notion: got=42 exp=42
+OK   Skor != T+F+S: jumlah v2.1: got=42 exp=42
+OK   Skor != T+F+S: himpunan ID sama: got=True exp=True
+OK   Alasan kosong: jumlah Notion: got=1 exp=1
+OK   Alasan kosong: jumlah v2.1: got=1 exp=1
+OK   Alasan kosong: himpunan ID sama: got=True exp=True
+OK   Modus kosong: jumlah Notion: got=240 exp=240
+OK   Modus kosong: jumlah v2.1: got=240 exp=240
+OK   Modus kosong: himpunan ID sama: got=True exp=True
+
+-- J. sindikat: pemetaan entitas --
+OK   SYND-01 faskes: got={'RS_A'} exp={'RS_A'}
+OK   SYND-01 dokter: got={'D02', 'D01'} exp={'D02', 'D01'}
+OK   SYND-01 pasien: got={'P03', 'P02', 'P01'} exp={'P03', 'P02', 'P01'}
+OK   SYND-02 faskes: got={'RS_C'} exp={'RS_C'}
+OK   SYND-02 dokter: got={'D05'} exp={'D05'}
+OK   SYND-02 pasien: got={'P08', 'P10', 'P09'} exp={'P08', 'P10', 'P09'}
+OK   SYND-03 faskes: got={'RS_B'} exp={'RS_B'}
+OK   SYND-03 dokter: got={'D07'} exp={'D07'}
+OK   SYND-03 pasien: got={'P12', 'P13', 'P14'} exp={'P12', 'P13', 'P14'}
+OK   SYND-04 faskes: got={'RS_E'} exp={'RS_E'}
+OK   SYND-04 dokter: got={'D09'} exp={'D09'}
+OK   SYND-04 pasien: got={'P17', 'P16'} exp={'P17', 'P16'}
+OK   SYND-05 faskes: got={'RS_F'} exp={'RS_F'}
+OK   SYND-05 dokter: got={'D08'} exp={'D08'}
+OK   SYND-05 pasien: got={'P20', 'P19'} exp={'P20', 'P19'}
+OK   SYND-06 faskes: got={'RS_G'} exp={'RS_G'}
+OK   SYND-06 dokter: got={'D13'} exp={'D13'}
+OK   SYND-06 pasien: got={'P21', 'P22'} exp={'P21', 'P22'}
+OK   SYND-07 faskes: got={'RS_H'} exp={'RS_H'}
+OK   SYND-07 dokter: got={'D14'} exp={'D14'}
+OK   SYND-07 pasien: got={'P24', 'P23'} exp={'P24', 'P23'}
+OK   SYND-08 faskes: got={'RS_I'} exp={'RS_I'}
+OK   SYND-08 dokter: got={'D15'} exp={'D15'}
+OK   SYND-08 pasien: got={'P26', 'P25'} exp={'P26', 'P25'}
+OK   SYND-09 faskes: got={'RS_J'} exp={'RS_J'}
+OK   SYND-09 dokter: got={'D19'} exp={'D19'}
+OK   SYND-09 pasien: got={'P27'} exp={'P27'}
+OK   KLM121 entitas (v2.1): got=('RS_G', 'D13', 'P29', 'biaya_markup') exp=('RS_G', 'D13', 'P29', 'biaya_markup')
+OK   KLM122 entitas (v2.1): got=('RS_H', 'D14', 'P30', 'drug_diversion') exp=('RS_H', 'D14', 'P30', 'drug_diversion')
+OK   fraud tanpa sindikat di v2.1 ('none'): got=['KLM121', 'KLM122'] exp=['KLM121', 'KLM122']
+
+-- K. entitas unik --
+OK   pasien unik v2.1: got=40 exp=40
+OK   dokter unik v2.1: got=20 exp=20
+OK   faskes unik v2.1: got=10 exp=10
+OK   pasien_id == prefiks Pasien Notion: got=0 exp=0
+OK   dokter_id == prefiks Dokter Notion: got=0 exp=0
+OK   diagnosis_code == prefiks dx Notion: got=0 exp=0
+OK   prosedur_code == prefiks proc Notion: got=0 exp=0
+
+-- L. truncasi dokter_raw --
+OK   jumlah baris terpotong: got=32 exp=32
+OK   baris terpotong == baris D04+D16: got=True exp=True
+OK   panjang nilai terpotong: got=[24] exp=[24]
+OK   nilai terpotong hanya D04/D16: got=['D04', 'D16'] exp=['D04', 'D16']
+OK   suffix Sp.JP hilang (tanpa strip): got=['D04 (dr. Danur Wibisono, ', 'D16 (dr. Prasetyo Utomo, '] exp=['D04 (dr. Danur Wibisono, ', 'D16 (dr. Prasetyo Utomo, ']
+OK   panjang nilai terpotong (tanpa strip): got=[25] exp=[25]
+OK   distribusi jumlah segmen rich_text kolom Dokter: got={1: 268, 3: 32} exp={1: 268, 3: 32}
+OK   baris dengan >1 segmen = baris terpotong: got=32 exp=32
+OK   properti multi-segmen di claims_db.json: got={'Dokter': 32} exp={'Dokter': 32}
+OK   varian parser cocok pada 32 baris multi-segmen: rich_text[0] saja: got=32 exp=32
+OK   varian parser cocok pada 32 baris multi-segmen: " ".join(text.content) [notion_client.py:60]: got=0 exp=0
+OK   varian parser cocok pada 32 baris multi-segmen: "".join(plain_text) [fetch_corpus.py:43-50]: got=0 exp=0
+OK   varian parser cocok pada 32 baris multi-segmen: markdown-link + href: got=0 exp=0
+
+-- M. sumbu evaluasi grup --
+OK   pasien: min klaim: got=6 exp=6
+OK   pasien: max klaim: got=12 exp=12
+OK   faskes: min klaim: got=14 exp=14
+OK   faskes: max klaim: got=45 exp=45
+OK   dokter: min klaim: got=2 exp=2
+OK   dokter: max klaim: got=33 exp=33
+OK   pasien di >1 faskes: got=16 exp=16
+OK   dokter di >1 faskes: got=0 exp=0
+
+-- N. headline numbers tetap berlaku di v2.1 --
+OK   v2.1 total biaya: got=3526650000 exp=3526650000
+OK   v2.1 status auto_clear: got=240 exp=240
+OK   v2.1 status review: got=24 exp=24
+OK   v2.1 status escalate: got=36 exp=36
+OK   v2.1 risiko low/medium/high/fraud: got=(240, 10, 14, 36) exp=(240, 10, 14, 36)
+OK   v2.1 nominal auto_clear: got=2685550000 exp=2685550000
+OK   v2.1 nominal review: got=279950000 exp=279950000
+OK   v2.1 nominal escalate: got=561150000 exp=561150000
+
+============================================================
+TOTAL CHECK: 150 | OK: 150 | GAGAL: 0

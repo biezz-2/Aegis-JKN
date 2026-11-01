@@ -1,0 +1,19 @@
+unique narasi: 40
+  x33  Kontrol DM tipe 2; HbA1c 7,1 persen. Terapi metformin dilanjutkan, edukasi diet dan aktivitas f
+  x32  Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleransi oral baik, pasien pulang dengan 
+  x29  Apendisitis akut; dilakukan apendektomi. Toleransi oral baik, luka operasi bersih, pasien pulan
+  x28  Pneumonia komunitas; antibiotik intravena dan nebulizer. Perbaikan klinis bertahap, pulang sete
+  x21  Reparasi hernia inguinalis dengan mesh. Perawatan post-operatif tanpa komplikasi.
+  x19  Kontrol hipertensi; tekanan darah 138/84 mmHg. Terapi amlodipin dilanjutkan, edukasi garam dibe
+  x14  Fraktur kolum femur; dilakukan hemiarthroplasty. Mobilisasi dengan fisioterapi, pulang dengan a
+  x13  Asma stabil; diberikan nebulizer dan edukasi teknik inhaler. Kontrol berkala berikutnya.
+
+--- Rujukan sample with undefined ---
+   KLM278 'undefined · RJ-2026-436 · 2026-06-03'
+   KLM276 'undefined · RJ-2026-430 · 2026-06-01'
+   KLM282 'undefined · RJ-2026-428 · 2026-06-09'
+
+--- feedback max/min len check ---
+min 32 max 87
+narasi min 60 max 147
+alasan berobat min 32 max 73

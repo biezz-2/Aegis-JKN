@@ -1,0 +1,101 @@
+﻿=== data.ts head (60 lines) ===
+// Centralized data for the MHGSL/GNN fraud-detection visualization demo.
+// All data here is illustrative/synthetic for educational visualization.
+
+export type NodeType = "patient" | "doctor" | "faskes" | "procedure" | "diagnosis";
+export type RiskLevel = "low" | "medium" | "high" | "fraud";
+
+export const NODE_TYPE_META: Record<
+  NodeType,
+  { label: string; color: string; ring: string; icon: string }
+> = {
+  patient: { label: "Pasien", color: "oklch(0.55 0.14 165)", ring: "oklch(0.55 0.14 165 / 0.25)", icon: "User" },
+  doctor: { label: "Dokter", color: "oklch(0.62 0.13 200)", ring: "oklch(0.62 0.13 200 / 0.25)", icon: "Stethoscope" },
+  faskes: { label: "Faskes", color: "oklch(0.7 0.16 70)", ring: "oklch(0.7 0.16 70 / 0.25)", icon: "Hospital" },
+  procedure: { label: "Prosedur", color: "oklch(0.62 0.22 20)", ring: "oklch(0.62 0.22 20 / 0.25)", icon: "Syringe" },
+  diagnosis: { label: "Diagnosis", color: "oklch(0.5 0.13 280)", ring: "oklch(0.5 0.13 280 / 0.25)", icon: "ClipboardList" },
+};
+
+// ----- Hero stats -----
+export const HERO_STATS = [
+  { value: "2.000.000+", numericValue: 2000000, prefix: "", suffix: "+", label: "Klaim harian diproses sistem BPJS", accent: "primary" },
+  { value: "Â±1.000", numericValue: 1000, prefix: "Â±", suffix: "", label: "Verifikator manual yang tersedia", accent: "rose" },
+  { value: "3", numericValue: 3, prefix: "", suffix: "", label: "Saluran graf heterogen MHGSL", accent: "amber" },
+  { value: "+20%", numericValue: 20, prefix: "+", suffix: "%", label: "Lonjakan AUPRC pada arsitektur hibrida", accent: "teal" },
+];
+
+// ----- Risk taxonomy -----
+export const RISK_PILLARS = [
+  {
+    id: "faskes",
+    title: "Risiko Fasilitas Kesehatan",
+    subtitle: "Area dengan potensi kebocoran finansial terbesar",
+    icon: "Hospital",
+    accent: "rose",
+    modus: ["Phantom Billing", "Upcoding", "Unbundling", "Prolonged Stay", "Cloning Rekam Medis"],
+    approach:
+      "Analisis anomali frekuensi kunjungan pasien, deteksi inkonsistensi diagnosis (ICD-10) vs tindakan (ICD-9-CM), serta pemodelan jaringan dokterâ€“pasien.",
+    focus: true,
+  },
+  {
+    id: "peserta",
+    title: "Risiko Peserta JKN",
+    subtitle: "Manipulasi identitas & penyalahgunaan hak layanan",
+    icon: "User",
+    accent: "amber",
+    modus: [
+      "Peminjaman kartu kepesertaan",
+      "Kolusi surat keterangan sakit fiktif",
+      "Drug diversion (penumpukan obat)",
+    ],
+    approach:
+      "Autentikasi biometrik, analisis pola pergerakan geografis klaim, dan clustering pengambilan obat kronis yang melebihi dosis rasional.",
+    focus: false,
+  },
+  {
+    id: "pemberi-kerja",
+    title: "Risiko Pemberi Kerja",
+    subtitle: "Manipulasi administratif korporasi",
+    icon: "Building2",
+    accent: "teal",
+    modus: ["Under-reporting upah", "Penahanan setoran iuran", "Misklasifikasi hubungan kerja"],
+=== data.ts line count ===
+489
+=== routes in src/app ===
+src\app\globals.css
+src\app\layout.tsx
+src\app\page.tsx
+src\app\api\route.ts
+src\app\simulasi\page.tsx
+src\app\dataset\page.tsx
+=== grep for AUPRC/accuracy in src ===
+oasis-data.ts:553: text: "Hari ini kontrol rutin ke RS Bahari Medika E untuk diabetes melitus tipe 2. Pengobatan sesuai jadwal, tidak ada catatan khusus. #JKN #BPJSKesehatan",
+oasis-data.ts:573: text: "Hari ini kontrol rutin ke RSUD Giri Menang F untuk apendisitis akut. Pengobatan sesuai jadwal, tidak ada catatan khusus. #JKN #BPJSKesehatan",
+oasis-data.ts:593: text: "Hari ini kontrol rutin ke RSUD Harapan D untuk infark miokard akut. Pengobatan sesuai jadwal, tidak ada catatan khusus. #JKN #BPJSKesehatan",
+oasis-data.ts:623: text: "Hari ini kontrol rutin ke RS Aegis Medika A untuk hernia inguinalis. Pengobatan sesuai jadwal, tidak ada catatan khusus. #JKN #BPJSKesehatan",
+oasis-data.ts:655: text: "[Diskusi] Pengalaman klaim JKN di RS Aegis Medika A\n\nDiagnosis saya cuma gastritis tanpa perdarahan, tapi ditagih tindakan angioplasti koroner + stent (PCI) ke BPJS. Iur biaya mahal dan tidak sesuai diagnosis. Kecewa!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:665: text: "[Diskusi] Pengalaman klaim JKN di RS Aegis Medika A\n\nDiagnosis saya cuma gastritis tanpa perdarahan, tapi ditagih tindakan angioplasti koroner + stent (PCI) ke BPJS. Iur biaya mahal dan tidak sesuai diagnosis. Kecewa!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:675: text: "[Diskusi] Pengalaman klaim JKN di RS Aegis Medika A\n\nDiagnosis saya cuma gastritis tanpa perdarahan, tapi ditagih tindakan angioplasti koroner + stent (PCI) ke BPJS. Iur biaya mahal dan tidak sesuai diagnosis. Kecewa!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:685: text: "[Diskusi] Pengalaman klaim JKN di RS Cendana Medika C\n\nSaya tidak pernah menjalani operasi hemiarthroplasty panggul, tapi ditagihkan ke BPJS. Sangat kecewa dan dirugikan!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:695: text: "[Diskusi] Pengalaman klaim JKN di RS Cendana Medika C\n\nSaya tidak pernah menjalani operasi hemiarthroplasty panggul, tapi ditagihkan ke BPJS. Sangat kecewa dan dirugikan!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:705: text: "[Diskusi] Pengalaman klaim JKN di RS Cendana Medika C\n\nSaya tidak pernah menjalani operasi hemiarthroplasty panggul, tapi ditagihkan ke BPJS. Sangat kecewa dan dirugikan!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:715: text: "[Diskusi] Pengalaman klaim JKN di RS Bakti Husada B\n\nOperasi kolesistektomi laparoskopik kan paket sekali bayar, kok ditagih terpisah sampai tagihan ganda? Ribet dan kecewa!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:725: text: "[Diskusi] Pengalaman klaim JKN di RS Bakti Husada B\n\nOperasi intubasi endotrakeal kan paket sekali bayar, kok ditagih terpisah sampai tagihan ganda? Ribet dan kecewa!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:735: text: "[Diskusi] Pengalaman klaim JKN di RS Bakti Husada B\n\nOperasi kolesistektomi laparoskopik kan paket sekali bayar, kok ditagih terpisah sampai tagihan ganda? Ribet dan kecewa!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:745: text: "[Diskusi] Pengalaman klaim JKN di RS Bakti Husada B\n\nOperasi intubasi endotrakeal kan paket sekali bayar, kok ditagih terpisah sampai tagihan ganda? Ribet dan kecewa!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:755: text: "[Diskusi] Pengalaman klaim JKN di RS Bakti Husada B\n\nOperasi kolesistektomi laparoskopik kan paket sekali bayar, kok ditagih terpisah sampai tagihan ganda? Ribet dan kecewa!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:765: text: "[Diskusi] Pengalaman klaim JKN di RS Bakti Husada B\n\nOperasi intubasi endotrakeal kan paket sekali bayar, kok ditagih terpisah sampai tagihan ganda? Ribet dan kecewa!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:775: text: "[Diskusi] Pengalaman klaim JKN di RS Bahari Medika E\n\nResep insulin saya 24 pen sekali jalan, jauh berlebih dari kebutuhan. Rawan disalahgunakan. Kecewa!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:785: text: "[Diskusi] Pengalaman klaim JKN di RS Bahari Medika E\n\nResep insulin saya 30 pen sekali jalan, jauh berlebih dari kebutuhan. Rawan disalahgunakan. Kecewa!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:795: text: "[Diskusi] Pengalaman klaim JKN di RS Bahari Medika E\n\nHari ini kontrol rutin ke RS Bahari Medika E untuk diabetes melitus tipe 2. Pengobatan sesuai jadwal, tidak ada catatan khusus.\n\n💬 Komentar otonom: Noted, proses administrasi klaim memang mengikuti jadwal standar BPJS.",
+oasis-data.ts:805: text: "[Diskusi] Pengalaman klaim JKN di RSUD Giri Menang F\n\nTagihan BPJS saya identik persis dengan pasien lain: tanggal, diagnosis, dan biaya sama. Seperti rekam medis diklaim orang lain. Kecewa!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:815: text: "[Diskusi] Pengalaman klaim JKN di RSUD Giri Menang F\n\nHari ini kontrol rutin ke RSUD Giri Menang F untuk apendisitis akut. Pengobatan sesuai jadwal, tidak ada catatan khusus.\n\n💬 Komentar otonom: Noted, proses administrasi klaim memang mengikuti jadwal standar BPJS.",
+oasis-data.ts:825: text: "[Diskusi] Pengalaman klaim JKN di RS Aegis Medika A\n\nDirawat 6 hari padahal indikasinya pneumonia, lama banget tanpa penjelasan medis. Kecewa dengan RS Aegis Medika A!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+oasis-data.ts:835: text: "[Diskusi] Pengalaman klaim JKN di RSUD Harapan D\n\nHari ini kontrol rutin ke RSUD Harapan D untuk infark miokard akut. Pengobatan sesuai jadwal, tidak ada catatan khusus.\n\n💬 Komentar otonom: Noted, proses administrasi klaim memang mengikuti jadwal standar BPJS.",
+oasis-data.ts:865: text: "[Diskusi] Pengalaman klaim JKN di RS Aegis Medika A\n\nHari ini kontrol rutin ke RS Aegis Medika A untuk hernia inguinalis. Pengobatan sesuai jadwal, tidak ada catatan khusus.\n\n💬 Komentar otonom: Noted, proses administrasi klaim memang mengikuti jadwal standar BPJS.",
+oasis-data.ts:885: text: "[Diskusi] Pengalaman klaim JKN di RSUD Harapan D\n\nAda tindakan apendektomi di tagihan yang saya diragukan, padahal saya hanya konsultasi ringan. Kecewa!\n\n💬 Komentar otonom: Sudah lapor ke BPJS? Kasus begini harus masuk antrean investigasi verifikator.",
+notion-datasets.ts:192: "pendekatanTeknis": "Active Learning memilih kasus ambigu untuk dilabeli; DPO (Direct Preference Optimization) diklaim menurunkan tingkat alarm palsu seiring waktu operasional.",
+notion-datasets.ts:226: "sumberRiset": "https://sustain.id/2024/10/04/fraud-dalam-pelayanan-kesehatan-di-indonesia-dan-strategi-pencegahannya/",
+notion-datasets.ts:229: "catatanRiset": "Literatur strategi pencegahan fraud kesehatan Indonesia (sustain.id) membahas penyalahgunaan resep; dokumen sumber mengusulkan clustering pengambilan obat kronis.",
+notion-datasets.ts:277: "catatanRiset": "Modus tercantum di dokumen sumber & kajian fraud layanan BPJS; deteksi kemiripan dokumen tekniknya mapan, namun kasus cloning di JKN masih perlu sitasi studi primer.",
+notion-datasets.ts:395: "deskripsi": "Purwarupa web interaktif Aegis-JKN: visualisasi multi-channel graph, simulasi kasus upcoding terselubung FKRTL, akumulasi kontribusi tiap saluran terhadap skor fraud, benchmark AUPRC, formulasi matematis MHGSL.",

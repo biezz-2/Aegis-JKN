@@ -1,0 +1,164 @@
+{
+ "modus_anom60": {
+  "anomali_frekuensi": {
+   "n": 12,
+   "biaya": 15800000
+  },
+  "biaya_markup": {
+   "n": 1,
+   "biaya": 27500000
+  },
+  "cloning": {
+   "n": 2,
+   "biaya": 14900000
+  },
+  "drug_diversion": {
+   "n": 3,
+   "biaya": 26030000
+  },
+  "excessive_usage": {
+   "n": 6,
+   "biaya": 12900000
+  },
+  "iur_biaya": {
+   "n": 4,
+   "biaya": 63880000
+  },
+  "overbilling": {
+   "n": 4,
+   "biaya": 65950000
+  },
+  "phantom_billing": {
+   "n": 3,
+   "biaya": 134250000
+  },
+  "prolonged_stay": {
+   "n": 4,
+   "biaya": 127400000
+  },
+  "readmission_berulang": {
+   "n": 6,
+   "biaya": 25290000
+  },
+  "repeat_billing": {
+   "n": 4,
+   "biaya": 61600000
+  },
+  "unbundling": {
+   "n": 6,
+   "biaya": 52800000
+  },
+  "upcoding": {
+   "n": 5,
+   "biaya": 212800000
+  }
+ },
+ "overcharge_median_layanan_escalate": 353975000.0,
+ "overcharge_median_layanan_floor0_escalate": 396355000.0,
+ "overcharge_globalmedian_escalate": 400050000.0,
+ "frac70_escalate": 392805000.0,
+ "frac7032_escalate": 394600680.0,
+ "total_escalate": 561150000,
+ "target_escalate": 394950000,
+ "ratio_escalate": 0.703823,
+ "overcharge_median_layanan_review": 188750000.0,
+ "overcharge_median_layanan_floor0_review": 191350000.0,
+ "overcharge_globalmedian_review": 172550000.0,
+ "frac70_review": 195965000.0,
+ "frac7032_review": 196860840.0,
+ "total_review": 279950000,
+ "target_review": 112420000,
+ "ratio_review": 0.401572,
+ "esc_subset_394950000": [
+  [
+   "KLM001",
+   52300000
+  ],
+  [
+   "KLM002",
+   52300000
+  ],
+  [
+   "KLM003",
+   52300000
+  ],
+  [
+   "KLM004",
+   44750000
+  ],
+  [
+   "KLM005",
+   44750000
+  ],
+  [
+   "KLM006",
+   44750000
+  ],
+  [
+   "KLM007",
+   15500000
+  ],
+  [
+   "KLM009",
+   15500000
+  ],
+  [
+   "KLM101",
+   15400000
+  ],
+  [
+   "KLM105",
+   57400000
+  ]
+ ],
+ "rev_subset_112420000": null,
+ "upcoding_all_anom": 212800000,
+ "upcoding_all_ids": [
+  "KLM001",
+  "KLM002",
+  "KLM003",
+  "KLM018",
+  "KLM024"
+ ],
+ "upcoding_all_biaya_list": [
+  [
+   "KLM001",
+   "escalate",
+   52300000
+  ],
+  [
+   "KLM002",
+   "escalate",
+   52300000
+  ],
+  [
+   "KLM003",
+   "escalate",
+   52300000
+  ],
+  [
+   "KLM018",
+   "review",
+   49700000
+  ],
+  [
+   "KLM024",
+   "review",
+   6200000
+  ]
+ ],
+ "phantom_all": 134250000,
+ "repeat_all": 61600000,
+ "syndikat_totals": {
+  "SYND-01": 156900000,
+  "SYND-02": 134250000,
+  "SYND-03": 52800000,
+  "SYND-04": 17130000,
+  "SYND-05": 14900000,
+  "SYND-06": 61600000,
+  "SYND-07": 63880000,
+  "SYND-08": 25290000,
+  "SYND-09": 12900000
+ },
+ "syndikat_sum": 539650000
+}

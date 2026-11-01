@@ -1,0 +1,136 @@
+==========================================================================
+## 'Cakupan/pembagian'  (2 unique)
+   '| Melanggar Standar Dokumen §7 atau gerbang publikasi `04-evidence-matrix.md` §9 |\\n| MEDIUM | 10 | Cakupan/pembagianّق tidak jelas, kontrol ada di kertas saja, atau data bertentangan dengan dokumen kendali |\\n| LOW | 4 '
+   'langgar Standar Dokumen §7 atau gerbang publikasi `04-evidence-matrix.md` §9 |\\n18\\t| MEDIUM | 10 | Cakupan/pembagianّق tidak jelas, kontrol ada di kertas saja, atau data bertentangan dengan dokumen kendali |\\n19\\t| LOW '
+
+==========================================================================
+## 'Dokumen'  (733 unique)
+   '.\\r\\n- Peraturan Menteri Kesehatan Republik Indonesia Nomor 24 Tahun 2022 tentang Rekam Medis.\\r\\n- Dokumentasi SATUSEHAT terkait interoperabilitas klaim BPJS: [https://satusehat.kemkes.go.id/platform/docs/id/interoperab'
+   ' bibliografi lengkap dan hubungan yang jelas dengan klaim yang didukung.\\r\\n## Catatan editorial\\r\\nDokumen ini merupakan revisi struktur dan metodologi. Ini bukan pengesahan klinis, hukum, atau statistik terhadap hasil '
+   'ce: notion page 4003e603-1ab7-8174-9a55-d4ee8fff3fd2 -->\\r\\n\\r\\n## Aegis-JKN, Revisi 1.0\\r\\nStatus: Dokumentasi kontrol data  \\r\\nTanggal: 21 Oktober 2026  \\r\\nSumber aktif: Database Klaim Aegis-JKN v2, 300 baris  \\r\\nJe'
+   't 100 klaim serta distribusi label yang sesuai dengan contoh awal. Database aktif memuat 300 baris. Dokumentasi harus menjelaskan bahwa versi 100 klaim adalah versi awal dan tidak boleh digunakan untuk mengklaim hasil da'
+   'al audit: 21 Oktober 2026  \\r\\nDatabase sumber: Dataset Riset, Deteksi Fraud JKN\\r\\n## 1. Tujuan\\r\\nDokumen ini mengatur hubungan antara setiap klaim dalam proposal dan sumber yang mendukungnya. Label verifikasi di datab'
+   'ah yang tepat | Jelaskan keterbatasan atribusi dan jangan klaim kausalitas |\\r\\n## 5. Peraturan dan Dokumentasi Resmi\\r\\nSumber awal yang harus dipertahankan sebagai referensi utama:\\r\\n1. Undang-Undang Republik Indonesi'
+   'r\\n1. Peraturan Menteri Kesehatan Republik Indonesia Nomor 24 Tahun 2022 tentang Rekam Medis.\\r\\n1. Dokumentasi SATUSEHAT tentang interoperabilitas klaim BPJS: [https://satusehat.kemkes.go.id/platform/docs/id/interoperab'
+   'Daftar berikut merupakan sumber awal untuk diperiksa lebih lanjut, bukan daftar pustaka final:\\r\\n- Dokumentasi SATUSEHAT tentang interoperabilitas klaim BPJS: [https://satusehat.kemkes.go.id/platform/docs/id/interoperab'
+
+==========================================================================
+## 'yang sama dengan `03` L98'  (2 unique)
+   'lai-nilai ini harus diperlakukan sebagai belum terverifikasi sampai sumber unduhan dilampirkan —ولة yang sama dengan `03` L98 (\\"checksum berkas\\") dan `08` L30 (\\"hash SHA-256\\").\\n- **I-3 (INFO)** — Hasil hitung ulang '
+   'lai-nilai ini harus diperlakukan sebagai belum terverifikasi sampai sumber unduhan dilampirkan —ولة yang sama dengan `03` L98 (\\"checksum berkas\\") dan `08` L30 (\\"hash SHA-256\\").\\n285\\t- **I-3 (INFO)** — Hasil hitung u'
+
+==========================================================================
+## 'label status sumber, bukan'  (1 unique)
+   'sesuai §6 dokumen itu sendiri.\\n17. **Catat eksplisit di 04 §2** bahwa label status register adalah label status sumber, bukan статус pemakaian di proposal — untuk mencegah \\"Terverifikasi\\" dibaca sebagai \\"siap dipubli'
+
+==========================================================================
+## 'Prinsip UU PDP (Pasal 16)'  (3 unique)
+   'berat. Tabel 5.1 merangkum kepatuhan platform Aegis-JKN terhadap enam prinsip utama UU PDP.\\n246\\t| Prinsip UU PDP (Pasal 16) | Implementasi Konkret pada Platform Aegis-JKN | Instrumen Verifikasi Teknis |\\n247\\t| Tujuan '
+   'atif berat. Tabel 5.1 merangkum kepatuhan platform Aegis-JKN terhadap enam prinsip utama UU PDP.\\n| Prinsip UU PDP (Pasal 16) | Implementasi Konkret pada Platform Aegis-JKN | Instrumen Verifikasi Teknis |\\n| Tujuan Terba'
+   'ph.tsx: Visualisasi graf dinamis berbasis SVG yang memungkinkan verifikator berpindah layer\\n246: | Prinsip UU PDP (Pasal 16) | Implementasi Konkret pada Platform Aegis-JKN | Instrumen Verifikasi Teknis |\\n257: - 1. Elim'
+
+==========================================================================
+## 'berlaku tanpa'  (0 unique)
+
+==========================================================================
+## 'Section 3'  (16 unique)
+   'M001-014 remain fraud), high grew 6→14, medium 4→10. So no anomaly \\"lost\\" its status. My script\'s Section 3 conclusion is a misreading. Let me verify: are KLM001-014 still fraud in v2.1? Yes, KLM001-024 counter shows 1'
+   ' from `Risiko` — i.e. the very thing 08 forbids. That\'s the real incoherence. Let me fix the script Section 3 to be accurate.\\n\\nLet me look at the script\'s section 3 code.","signature":""}],"stop_reason":"tool_use","sto'
+   "= 60. fraud total = 14 (v1) + 22 (new) = 36 ✓. high = 6+8=14 ✓. medium=4+6=10 ✓.\\n\\nSo the script's Section 3 conclusion is wrong — v2 IS a superset of v1, and the arithmetic reconciles exactly. I need to fix that. This "
+   'e script so all numbers in the report are reproducible. Then write the report.\\n\\nKey additions:\\n- Section 3b: syndicate metadata mismatch between 10 §v2.1 table and CSV.\\n- Section 5b: code-level (diagnosis/procedure) '
+   " And the 8c criterion-2 numbers.\\n\\nLet me add these as new sections in the script. I'll insert:\\n- Section 3b: syndicate ground truth table vs CSV (faskes/dokter/pasien/skor)\\n- Section 5b: kode klinis deterministik lea"
+   '8: \\"yang di 300 node berarti klasterBNSE terbesar ~14 node\\" — corrupted text \\"klasterBNSE\\".\\n3. Section 3.3 table (lines 140-146): the \\"densitas off-diag (dari 44.850)\\" column. Let me check: 7.226/44.850 = 16.10% ✓'
+   'corpus\\\\00-dashboard.md` (read this session, 95 lines)\\n     - Aegis-JKN project control dashboard. Section 3 \\"Fakta Dataset yang Telah Direkonsiliasi\\" table: 300 active rows, KLM001–KLM300, auto_clear 240, review 24, '
+   ' repositori\\" claim → replace.\\n\\nSection 1.4 numbers: gaps 32 (13 P0, 15 P1, 4 P2), backlog 29.\\n\\nSection 3.1 milestone: adjust day mapping to new gaps (e.g., add 25 Okt row for label consistency). Section 3.2 critical'
+
+==========================================================================
+## 'pola yang sama tanpa label'  (0 unique)
+
+==========================================================================
+## 'Cost-to-Impact 1 : 15 (L27'  (0 unique)
+
+==========================================================================
+## 'kapasitas naik 6,667 kali'  (0 unique)
+
+==========================================================================
+## 'penanda prinsip'  (0 unique)
+
+==========================================================================
+## 'overcharge. Hapus'  (0 unique)
+
+==========================================================================
+## 'Angka'  (464 unique)
+   'wal tanpa mengurangi hak fasilitas kesehatan dan peserta untuk memperoleh pemeriksaan yang adil.\\r\\nAngka nasional terkait volume klaim, jumlah verifikator, nilai kerugian, dan prevalensi fraud harus didukung rujukan pri'
+   ' kode, konfigurasi model, random seed, skema split, daftar fitur, threshold, serta berkas prediksi. Angka yang ditulis dalam proposal harus dapat dihitung ulang dari artefak tersebut.\\r\\n## 6. Arsitektur Sistem\\r\\nArsite'
+   ',9142, ketahanan masking 89,4%, false positive rate 10,6%, dan estimasi penyelamatan Rp507.370.000. Angka tersebut belum dinyatakan sebagai hasil tervalidasi dalam edisi ini karena artefak yang diperlukan untuk reproduks'
+   '. Klaim yang belum diverifikasi diberi tanda internal dan tidak dipublikasikan sebagai fakta.\\r\\n1. Angka hasil eksperimen internal harus merujuk pada ID eksperimen, bukan pada artikel eksternal.\\r\\n1. Statistik nasional'
+   'l di Notion memuat beberapa angka nasional, termasuk dugaan kerugian dan estimasi prevalensi fraud. Angka semacam itu hanya boleh dimasukkan ke paper setelah sumber primer, tanggal, definisi, dan metode penghitungannya d'
+   ' penyelamatan finansial yang dihitung dari dataset.\\n- Integrasi produksi dengan sistem eksternal.\\nAngka di atas pernah disebut di draf terdahulu. Sebelum dipakai sebagai hasil final, masing-masing perlu dihubungkan den'
+   'pangan yang dipakai proyek sendiri: pada p=3%, model yang **tidak menandai apa pun** sudah得分 97,0%. Angka 93,0% hanya 5,0 poin di atas \\"flag nothing\\" pada p=12% — dan itu pada data yang sama.\\n\\n### Tabel severity\\n\\n|'
+   'isah sempurna fraud vs normal, per channel.** T, F, dan S masing-masing cukup. | **Sangat tinggi.** Angka yang bisa dihitung dari CSV dalam satu baris Python. | Skrip §3b: fraud mean T=0,2647 / F=0,3050 / S=0,2925; norma'
+
+==========================================================================
+## 'Gerbang'  (28 unique)
+   ' boleh dibandingkan jika split, target, preprocessing, threshold, dan sumber label setara.\\r\\n## 9. Gerbang Publikasi\\r\\nSebelum dokumen diserahkan atau dipublikasikan, lakukan pemeriksaan berikut:\\r\\n- [ ] Setiap angka '
+   ' dan klaim penghematan nasional yang diturunkan langsung dari data sintetis.\\n## 6. Papan Kerja dan Gerbang Kualitas\\n### Prioritas P0\\n- [ ] Tetapkan definisi label fraud-scenario, anomali, dan normal.\\n- [ ] Tandai dok'
+   'oleh dibandingkan jika split, target, preprocessing, threshold, dan sumber label setara.\\n77\\t## 9. Gerbang Publikasi\\n78\\tSebelum dokumen diserahkan atau dipublikasikan, lakukan pemeriksaan berikut:\\n79\\t- [ ] Setiap an'
+   'ya boleh dibandingkan jika split, target, preprocessing, threshold, dan sumber label setara.\\n## 9. Gerbang Publikasi\\nSebelum dokumen diserahkan atau dipublikasikan, lakukan pemeriksaan berikut:\\n- [ ] Setiap angka utam'
+   ' klaim penghematan nasional yang diturunkan langsung dari data sintetis.\\n57\\t## 6. Papan Kerja dan Gerbang Kualitas\\n58\\t### Prioritas P0\\n59\\t- [ ] Tetapkan definisi label fraud-scenario, anomali, dan normal.\\n60\\t- [ '
+   'keterbatasan atribusi dan jangan klaim kausalitas |\\n=== 00 dashboard §6 ===\\n## 6. Papan Kerja dan Gerbang Kualitas\\n### Prioritas P0\\n- [ ] Tetapkan definisi label fraud-scenario, anomali, dan normal.\\n- [ ] Tandai dok'
+   'ure criteria. Comparing with 03-dataset-registry §10/§11 (tindak lanjut) and 04-evidence-matrix §9 (Gerbang Publikasi) which DO have measurable checkboxes. So: dashboard P0/P1/P2 have zero closure criteria, zero owner, z'
+   'iasi\\r\\n1159 ## 4. Status Bukti\\r\\n1172 ## 5. Keputusan Ruang Lingkup\\r\\n1176 ## 6. Papan Kerja dan Gerbang Kualitas\\r\\n1193 ## 7. Standar Dokumen\\r\\n1205 ## 8. Riwayat Revisi\\r\\n1208 ## 9. Aturan Pembaruan\\r\\n1215 ## [S'
+
+==========================================================================
+## 'Klaim'  (1198 unique)
+   'er 2026  \\r\\nJenis naskah: Proposal riset terapan dan spesifikasi purwarupa  \\r\\nPrinsip pelaporan: Klaim yang belum memiliki bukti eksperimen yang dapat direproduksi tidak dinyatakan sebagai hasil tervalidasi.\\r\\n## Abs'
+   'angun, pengulangan pola, kebocoran kelompok, atau fitur yang secara langsung mencerminkan label.\\r\\nKlaim performa operasional memerlukan pengujian bersama pengguna dan protokol pengukuran yang ditetapkan sebelumnya. Kla'
+   'erasional memerlukan pengujian bersama pengguna dan protokol pengukuran yang ditetapkan sebelumnya. Klaim dampak finansial memerlukan definisi tarif acuan, kalkulasi per klaim, dan penilaian independen.\\r\\n## 10. Rencana'
+   'i 1.0\\r\\nStatus: Dokumentasi kontrol data  \\r\\nTanggal: 21 Oktober 2026  \\r\\nSumber aktif: Database Klaim Aegis-JKN v2, 300 baris  \\r\\nJenis data: Sintetis untuk demonstrasi dan pengujian purwarupa\\r\\n## 1. Tujuan\\r\\nHal'
+   's memiliki changelog dan checksum |\\r\\nHalaman dokumentasi berjudul Dataset Simulasi Aegis-JKN, 100 Klaim menyebut 100 klaim serta distribusi label yang sesuai dengan contoh awal. Database aktif memuat 300 baris. Dokumen'
+   'ntasikan dataset sintetis 100 klaim sebagai versi demo awal. Dataset aktif saat ini adalah database Klaim Aegis-JKN v2 dengan 300 baris. Gunakan [Dataset Registry dan Data Dictionary](https://app.notion.com/p/03-Dataset-'
+   'ath diagnosis ke prosedur.\\r\\n## Sindikat Ground Truth\\r\\n| ID | Modus | Faskes | Dokter | Pasien | Klaim | Skenario & Sinyal Deteksi | Skor |\\r\\n| SYND-01 | Upcoding | RS_A | D01, D02 | P01-P03 | KLM001-003 | Dx gastrit'
+   '0.78-0.79 (high) |\\r\\n## Faskes\\r\\n| ID | Nama | Kota | Kepemilikan | Kelas | Tempat Tidur | Jumlah Klaim | Skor Maks | Risiko |\\r\\n| RS_A | RS Aegis Medika A | Jakarta Selatan | Swasta | B | 412 | 19 | 0.95 | fraud |\\r\\'
+
+==========================================================================
+## 'benchmark'  (926 unique)
+   'itungan per klaim bila mengklaim overcharge.\\r\\n- [ ] Lampirkan checksum dan seed pada setiap hasil benchmark.","is_error":false}]},"uuid":"ff94b66a-2eb6-4f54-b70a-5a4bcc36acc5","timestamp":"2026-10-22T09:43:28.826Z","to'
+   'itungan per klaim bila mengklaim overcharge.\\r\\n- [ ] Lampirkan checksum dan seed pada setiap hasil benchmark.","stderr":"","interrupted":false,"isImage":false,"noOutputExpected":false},"sourceToolAssistantUUID":"b9d4588'
+   'Data, MHGSL, SHAP per-saluran |\\r\\n| Fase 3 | Validasi Final & LLM | Minggu 7-8 | Laporan validasi, benchmark Kaggle, DP-CTGAN |\\r\\nTarget: Platform SESUAI siap untuk Healthkathon 2026 dan pilot 5 FKRTL.","is_error":fals'
+   'Data, MHGSL, SHAP per-saluran |\\r\\n| Fase 3 | Validasi Final & LLM | Minggu 7-8 | Laporan validasi, benchmark Kaggle, DP-CTGAN |\\r\\nTarget: Platform SESUAI siap untuk Healthkathon 2026 dan pilot 5 FKRTL.","stderr":"","in'
+   ', nilai yang diputuskan setelah audit, dan dana yang benar-benar berhasil diselamatkan.\\r\\n1. Klaim benchmark antar-model hanya boleh dibandingkan jika split, target, preprocessing, threshold, dan sumber label setara.\\r\\'
+   'EM USABILITY / SUS and time-reduction claims: what is a credible SUS (System Usability Scale) score benchmark for professional dashboard tools (SUS mean ~68)? And is there any public evidence for \\"45% time reduction in '
+   's a load test: requests/sec before vs after, on stated \\"\\n                          \\"hardware. No benchmark script, no perf artefact.\\"),\\n    \\"SUS score\\": (\\"NO\\", \\"Requires >=10 participants answering the 10-item '
+   '                      -> Requires a load test: requests/sec before vs after, on stated hardware. No benchmark script, no perf artefact.\\nSUS score                    82,5       NO\\n                                       '
+
+==========================================================================
+## 'pada baris'  (58 unique)
+   'kaan (\\"durasi rawat +35% pada skor fraud 92%\\") yang tidak berasal dari paper — pola yang berulang pada baris 23 (\\"Contoh atribusi SHAP di dokumen sumber: durasi rawat +35% pada skor fraud 92%\\"). Angka presentasi sepe'
+   'un, penulis, tingkat A–D, reviewer, tanggal verifikasi, kutipan** dan hapus angka presentasi rekaan pada baris 2 dan 23 (kriteria: 33 baris lengkap per `04` L57–L69).\\n16. **Beri banner \\"induk tidak terkendali\\" pada `0'
+   'un, penulis, tingkat A–D, reviewer, tanggal verifikasi, kutipan** dan hapus angka presentasi rekaan pada baris 2 dan 23 (kriteria: 33 baris lengkap per `04` L57–L69).\\n312\\t16. **Beri banner \\"induk tidak terkendali\\" pa'
+   'ama **6 tahun** dan/atau denda paling banyak **Rp6.000.000.000** — bukan Rp5 miliar). Catatan Riset pada baris yang sama juga salah (\\"Pasal 66 \'pidana paling lama 6 tahun\' & denda Rp5 M\\") dan **bertentangan dengan Desk'
+   'nodo 21717009 ternyata **PREreview atas sebuah preprint** (bukan artikel ilmiah); URL journalcenter pada baris 23 **404**; researchgate (baris 25) **403**; subdomain `web.bpjs-kesehatan.go.id` (baris 26) **403**; baris 1'
+   'dak boleh menjadi satu-satunya dasar klaim berisiko tinggi).\\n\\nSecara umum register **sangat jujur pada baris 2, 8, 11, 29** (status \\"Perlu Verifikasi\\", catatan mengakui angka belum ditemukan) — ini justru bukti kuali'
+   'status baris 20 bertentangan dengan 04 E-03; atribusi angka Rp20 T; pencampuran skala 2026 dan 2022 pada baris 31 plus sumber tanpa URL; status sandbox SATUSEHAT tidak dicatat; baris 5 & 9 berbagi satu URL; 6 baris tanpa'
+   '**hapus dari register** sampai ada DOI/DOI-terverifikasi.\\n- Pola \\"volumePlaceholder\\" juga muncul pada baris 10: nama dataset paper \\"Medical-A/Medical-B\\" disebut \\"Medical-1/Medical-2\\" oleh review — indikasi代理人 revi'
+
+==========================================================================
+## 'pengcollectoran'  (1 unique)
+   'h bersumber domain mati). Artinya register mengutamakan jalur yang secara resmi ditolak; implikasi: pengcollectoran sumber untuk kedua baris itu wasted effort dan statusnya jangan dipakai untuk justifikasi.\\n- 05 §5 \\"Ou'
+
+==========================================================================
+## 'wasted effort'  (1 unique)
+   'ngutamakan jalur yang secara resmi ditolak; implikasi: pengcollectoran sumber untuk kedua baris itu wasted effort dan statusnya jangan dipakai untuk justifikasi.\\n- 05 §5 \\"Out-of-scope\\" melarang klaim penghematan nasio'
+
+==========================================================================
+## 'looked-but-not-verified'  (4 unique)
+   'imer prevalence dari 1 konstanta |\\n| B-05 | Rekonsiliasi angka operasional | data/docs | P0 | Data looked-but-not-verified | Tim data | S | — | `check_consistency.py` hijau di 12 angka; `dataset-explorer.tsx:708` & `:76'
+   'fatal #1) | Frontend + PM | \\r\\n160 | B-05 | Rekonsiliasi angka operasional | data/docs | P0 | Data looked-but-not-verified | Tim data | S | — | `check_cons\\r\\n161 | B-06 | Koreksi deadline kompetisi di data riset | data'
+   'revalence dari 1 konstanta |\\r\\n160 | B-05 | Rekonsiliasi angka operasional | data/docs | P0 | Data looked-but-not-verified | Tim data | S | — | `check_consistency.py` hijau di 12 angka; `dataset-explorer.tsx:708` & `:76'
+   'onents/mhgsl/data.ts`; `frau\\r\\n175 | B-05 | Rekonsiliasi angka operasional | data/docs | P0 | Data looked-but-not-verified | Tim data | S | — | `check_consistency.py` hijau di 12 angka; `dataset-explorer.tsx:708` & `:76'
+
+==========================================================================
+## 'dataPoints'  (0 unique)
+
+==========================================================================
+## 'data looked'  (0 unique)
+

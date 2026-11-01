@@ -1,0 +1,192 @@
+01-governance.md                 L18    ARABIC    ARABIC SHADDA                      | MEDIUM | 10 | Cakupan/pembagian[ّ]ق tidak jelas, kontrol ada di kertas saja, a
+01-governance.md                 L18    ARABIC    ARABIC LETTER QAF                  | MEDIUM | 10 | Cakupan/pembagianّ[ق] tidak jelas, kontrol ada di kertas saja, at
+01-governance.md                 L122   ARABIC    ARABIC LETTER ALEF                  luar KLM001–KLM024 (hingga KLM122) | Dokumen[ا]ند benar untuk/definisikan, tetapi tidak ada
+01-governance.md                 L122   ARABIC    ARABIC LETTER NOON                 luar KLM001–KLM024 (hingga KLM122) | Dokumenا[ن]د benar untuk/definisikan, tetapi tidak ada 
+01-governance.md                 L122   ARABIC    ARABIC LETTER DAL                  uar KLM001–KLM024 (hingga KLM122) | Dokumenان[د] benar untuk/definisikan, tetapi tidak ada b
+01-governance.md                 L284   ARABIC    ARABIC LETTER WAW                  erifikasi sampai sumber unduhan dilampirkan -[و]لة yang sama dengan `03` L98 ("checksum berk
+01-governance.md                 L284   ARABIC    ARABIC LETTER LAM                  rifikasi sampai sumber unduhan dilampirkan -و[ل]ة yang sama dengan `03` L98 ("checksum berka
+01-governance.md                 L284   ARABIC    ARABIC LETTER TEH MARBUTA          ifikasi sampai sumber unduhan dilampirkan -ول[ة] yang sama dengan `03` L98 ("checksum berkas
+02-proposal.md                   L273   GREEK     GREEK SMALL LETTER THETA           ation-dataset.md:166` menulis "Fitur (cosine [θ]=0.85)". Dua nilai untuk parameter yang sama
+02-proposal.md                   L358   GREEK     GREEK SMALL LETTER THETA           | **Spesifikasi MHGSL: PathSim, ambang [θ], fusion, bobot atensi, jumlah edge** | `11-
+02-proposal.md                   L396   GREEK     GREEK SMALL LETTER THETA            0,35/0,60/0,80, operator ≥ pada 0,80, batas [θ] 0,85, 109 baris LOS sebagai nol bukan koson
+03-architecture.md               L22    GREEK     GREEK CAPITAL LETTER DELTA         ** AUPRC 0,91, precision 0,92, ROC-AUC 0,95, [Δ] +0,20, kurva epoch E1→E5, akurasi 93%, dete
+03-architecture.md               L32    GREEK     GREEK SMALL LETTER PHI             on 3 definisi berbeda; 3. ReLU vs LeakyReLU; [φ]₀ 0,20 vs b₀ 0,30; klaim kausal φ^(top) mela
+03-architecture.md               L32    GREEK     GREEK SMALL LETTER PHI              LeakyReLU; φ₀ 0,20 vs b₀ 0,30; klaim kausal [φ]^(top) melanggar 02 §3.5; metric mismatch 0,
+03-architecture.md               L33    GREEK     GREEK SMALL LETTER THETA           | SEDANG | 10 | [θ]_feat 0,75 vs 0,85; `camouflageDetected` dik
+03-architecture.md               L121   GREEK     GREEK SMALL LETTER THETA           `; `src/components/mhgsl/i18n.tsx:352,700` | [θ]_feat dipilih konstan di UI, tidak pernah di
+03-architecture.md               L132   GREEK     GREEK SMALL LETTER THETA           contracts.md:207-213` (0,38/0,41/−0,12/0,30; [θ] 0,75; τ 0,65/0,85); `10-simulation-dataset.
+03-architecture.md               L132   GREEK     GREEK SMALL LETTER TAU             s.md:207-213` (0,38/0,41/−0,12/0,30; θ 0,75; [τ] 0,65/0,85); `10-simulation-dataset.md:9,113
+03-architecture.md               L141   GREEK     GREEK CAPITAL LETTER DELTA         el 0,71/0,78/0,85/0,91; `comparison.tsx:134` [Δ] +0,20; `comparison.tsx:373-377` kurva epoch
+03-architecture.md               L165   GREEK     GREEK SMALL LETTER THETA           PI | `docs/api/data-contracts.md:211-213` | `[θ]_feat 0.75`, `τ_high 0.65`, `τ_fraud 0.85` |
+03-architecture.md               L165   GREEK     GREEK SMALL LETTER TAU             data-contracts.md:211-213` | `θ_feat 0.75`, `[τ]_high 0.65`, `τ_fraud 0.85` |
+03-architecture.md               L165   GREEK     GREEK SMALL LETTER TAU             md:211-213` | `θ_feat 0.75`, `τ_high 0.65`, `[τ]_fraud 0.85` |
+03-architecture.md               L166   GREEK     GREEK SMALL LETTER THETA           SL | `docs/algorithms/mhgsl-theory.md:74` | `[θ]_feat = 0.75` |
+03-architecture.md               L167   GREEK     GREEK SMALL LETTER THETA            `docs/architecture/system-design.md:106` | `[θ]_feat = 0.75` |
+03-architecture.md               L169   GREEK     GREEK SMALL LETTER THETA           | `src/components/mhgsl/i18n.tsx:352,700` | `[θ]_feat = 0.85` |
+03-architecture.md               L170   GREEK     GREEK SMALL LETTER THETA           raud | `src/components/mhgsl/data.ts:481` | `[θ]_feat = 0.85` |
+03-architecture.md               L213   GREEK     GREEK CAPITAL LETTER DELTA         | [Δ] MHGSL vs XGBoost +0,20 | `comparison.tsx:13
+03-architecture.md               L235   GREEK     GREEK SMALL LETTER THETA           | [θ]_feat | 0,75 (`:74`) | 0,75 (`:211`) | 0,75 
+03-architecture.md               L238   GREEK     GREEK SMALL LETTER PHI             | SHAP dekomposisi | + `[φ]^(shared)` (`:206`) | - | tanpa `φ^(shared)`
+03-architecture.md               L238   GREEK     GREEK SMALL LETTER PHI             osisi | + `φ^(shared)` (`:206`) | - | tanpa `[φ]^(shared)` (`:156`) | Term differen → dekomp
+03-architecture.md               L239   GREEK     GREEK SMALL LETTER PHI             | Base value | [φ]₀ = 0,20 (`:229`) | b₀ = +0,30 (`:210`) | - 
+03-architecture.md               L240   GREEK     GREEK SMALL LETTER TAU             | [τ]_fraud | ≥ 0,85 (`:220`) | 0,85 (`:213`) | -
+03-architecture.md               L241   GREEK     GREEK SMALL LETTER PHI             | Klaim kausal | "Kehadiran [φ]^(top) = −0,12 **secara matematis membuktika
+03-architecture.md               L250   GREEK     GREEK SMALL LETTER THETA           - `:106` [θ]_feat 0,75 vs `:94-112` Stage-2 naratif yang
+03-architecture.md               L255   GREEK     GREEK SMALL LETTER TAU             - `:213` "[τ]_fraud = batas ambang **rekomendasi penolaka
+03-architecture.md               L294   GREEK     GREEK SMALL LETTER TAU             g** `src/config/thresholds.ts` (versi, seed, [τ], θ, γ) lalu impor di `data-uploader.tsx:137
+03-architecture.md               L294   GREEK     GREEK SMALL LETTER THETA            `src/config/thresholds.ts` (versi, seed, τ, [θ], γ) lalu impor di `data-uploader.tsx:137`, 
+03-architecture.md               L294   GREEK     GREEK SMALL LETTER GAMMA           rc/config/thresholds.ts` (versi, seed, τ, θ, [γ]) lalu impor di `data-uploader.tsx:137`, `si
+03-architecture.md               L305   GREEK     GREEK SMALL LETTER PHI             LU vs system-design `:118` ReLU); selaraskan [φ]₀ (`:229` 0,20) vs b₀ (`:210` 0,30) dan term
+03-architecture.md               L305   GREEK     GREEK SMALL LETTER PHI              (`:229` 0,20) vs b₀ (`:210` 0,30) dan term `[φ]^(shared)` (`:206` vs `:156`). → §5.1
+03-architecture.md               L344   GREEK     GREEK SMALL LETTER THETA           docs/algorithms/mhgsl-theory.md            → [θ]_feat = 0.75
+03-architecture.md               L345   GREEK     GREEK SMALL LETTER THETA           docs/architecture/system-design.md         → [θ]_feat = 0.75
+03-architecture.md               L346   GREEK     GREEK SMALL LETTER THETA           3p' docs/api/data-contracts.md             → [θ]_feat 0.75 / τ_high 0.65 / τ_fraud 0.85
+03-architecture.md               L346   GREEK     GREEK SMALL LETTER TAU             ata-contracts.md             → θ_feat 0.75 / [τ]_high 0.65 / τ_fraud 0.85
+03-architecture.md               L346   GREEK     GREEK SMALL LETTER TAU             md             → θ_feat 0.75 / τ_high 0.65 / [τ]_fraud 0.85
+04-data-quality.md               L108   GREEK     GREEK CAPITAL LETTER SIGMA         .650.000 | 03 §3.3, 00 §3 | Rp3.526.650.000 ([Σ] 300 `Biaya Rp`) | ✓ |
+04-data-quality.md               L112   GREEK     GREEK CAPITAL LETTER SIGMA         | 20 | [Σ] per-status = total | konsistensi internal |
+05-evidence.md                   L275   CYRILLIC  CYRILLIC SMALL LETTER ES           s register adalah label status sumber, bukan [с]татус pemakaian di proposal - untuk mencegah
+05-evidence.md                   L275   CYRILLIC  CYRILLIC SMALL LETTER TE            register adalah label status sumber, bukan с[т]атус pemakaian di proposal - untuk mencegah 
+05-evidence.md                   L275   CYRILLIC  CYRILLIC SMALL LETTER A            register adalah label status sumber, bukan ст[а]тус pemakaian di proposal - untuk mencegah "
+05-evidence.md                   L275   CYRILLIC  CYRILLIC SMALL LETTER TE           egister adalah label status sumber, bukan ста[т]ус pemakaian di proposal - untuk mencegah "T
+05-evidence.md                   L275   CYRILLIC  CYRILLIC SMALL LETTER U            gister adalah label status sumber, bukan стат[у]с pemakaian di proposal - untuk mencegah "Te
+05-evidence.md                   L275   CYRILLIC  CYRILLIC SMALL LETTER ES           ister adalah label status sumber, bukan стату[с] pemakaian di proposal - untuk mencegah "Ter
+06-graph-mhgsl.md                L107   GREEK     GREEK SMALL LETTER PHI             | F2 | `A_feat_ij = Sim` bila `[φ](v_i)=φ(v_j)` **dan** `Sim > θ` | `mhgsl-the
+06-graph-mhgsl.md                L107   GREEK     GREEK SMALL LETTER PHI             | F2 | `A_feat_ij = Sim` bila `φ(v_i)=[φ](v_j)` **dan** `Sim > θ` | `mhgsl-theory.md:
+06-graph-mhgsl.md                L107   GREEK     GREEK SMALL LETTER THETA           j = Sim` bila `φ(v_i)=φ(v_j)` **dan** `Sim > [θ]` | `mhgsl-theory.md:67-72` | **Restriksi sa
+06-graph-mhgsl.md                L108   GREEK     GREEK SMALL LETTER THETA           | F3 | `[θ]_feat` = **0,75** | `mhgsl-theory.md:74` | K
+06-graph-mhgsl.md                L108   GREEK     GREEK SMALL LETTER THETA            sweep in-fold** dan laporkan kurva AUPRC vs [θ]. |
+06-graph-mhgsl.md                L112   GREEK     GREEK SMALL LETTER SIGMA           | F7 | `H^(k) = [σ](D̃^-1/2 Ã^(k) D̃^-1/2 X W^(k))` | `mhgsl-th
+06-graph-mhgsl.md                L113   GREEK     GREEK CAPITAL LETTER SIGMA         | F8 | `H^(shared) = (1/3)[Σ]_k H^(shared,k)` | `mhgsl-theory.md:170-172`
+06-graph-mhgsl.md                L116   GREEK     GREEK SMALL LETTER ALPHA           | F11 | Focal Loss, `[α]=0,75, γ=2,0` | `mhgsl-theory.md:190-197` | 
+06-graph-mhgsl.md                L116   GREEK     GREEK SMALL LETTER GAMMA           | F11 | Focal Loss, `α=0,75, [γ]=2,0` | `mhgsl-theory.md:190-197` | Rumus **
+06-graph-mhgsl.md                L116   GREEK     GREEK SMALL LETTER ALPHA           md:425`). **Bagus.** | Pertahankan. Catatan: [α]=0,75 mengasumsikan prevansi minoritas; data
+06-graph-mhgsl.md                L117   GREEK     GREEK SMALL LETTER PHI             | F12 | `ŷ = [φ]0 + φ_top + φ_feat + φ_sem + φ_shared + Σφ_a
+06-graph-mhgsl.md                L117   GREEK     GREEK SMALL LETTER PHI             | F12 | `ŷ = φ0 + [φ]_top + φ_feat + φ_sem + φ_shared + Σφ_attr` 
+06-graph-mhgsl.md                L117   GREEK     GREEK SMALL LETTER PHI             | F12 | `ŷ = φ0 + φ_top + [φ]_feat + φ_sem + φ_shared + Σφ_attr` | `mhgsl
+06-graph-mhgsl.md                L117   GREEK     GREEK SMALL LETTER PHI             | F12 | `ŷ = φ0 + φ_top + φ_feat + [φ]_sem + φ_shared + Σφ_attr` | `mhgsl-theory.m
+06-graph-mhgsl.md                L117   GREEK     GREEK SMALL LETTER PHI             | F12 | `ŷ = φ0 + φ_top + φ_feat + φ_sem + [φ]_shared + Σφ_attr` | `mhgsl-theory.md:205-20
+06-graph-mhgsl.md                L117   GREEK     GREEK CAPITAL LETTER SIGMA         ŷ = φ0 + φ_top + φ_feat + φ_sem + φ_shared + [Σ]φ_attr` | `mhgsl-theory.md:205-207` | Additi
+06-graph-mhgsl.md                L117   GREEK     GREEK SMALL LETTER PHI              = φ0 + φ_top + φ_feat + φ_sem + φ_shared + Σ[φ]_attr` | `mhgsl-theory.md:205-207` | Additiv
+06-graph-mhgsl.md                L118   GREEK     GREEK SMALL LETTER PHI             | F13 | `[φ]_c(x) = Σ_{S⊆C\{c}} ...` | `mhgsl-theory.md:
+06-graph-mhgsl.md                L118   GREEK     GREEK CAPITAL LETTER SIGMA         | F13 | `φ_c(x) = [Σ]_{S⊆C\{c}} ...` | `mhgsl-theory.md:211-213` 
+06-graph-mhgsl.md                L119   GREEK     GREEK SMALL LETTER PHI             | F14 | `CamouflageSignature` ⇔ `ŷ≥0,85 ∧ [φ]_top<0 ∧ φ_feat>λ_feat ∧ φ_sem>λ_sem` | `mhg
+06-graph-mhgsl.md                L119   GREEK     GREEK SMALL LETTER PHI              `CamouflageSignature` ⇔ `ŷ≥0,85 ∧ φ_top<0 ∧ [φ]_feat>λ_feat ∧ φ_sem>λ_sem` | `mhgsl-theory.
+06-graph-mhgsl.md                L119   GREEK     GREEK SMALL LETTER LAMDA           flageSignature` ⇔ `ŷ≥0,85 ∧ φ_top<0 ∧ φ_feat>[λ]_feat ∧ φ_sem>λ_sem` | `mhgsl-theory.md:218-
+06-graph-mhgsl.md                L119   GREEK     GREEK SMALL LETTER PHI             ature` ⇔ `ŷ≥0,85 ∧ φ_top<0 ∧ φ_feat>λ_feat ∧ [φ]_sem>λ_sem` | `mhgsl-theory.md:218-225` | **
+06-graph-mhgsl.md                L119   GREEK     GREEK SMALL LETTER LAMDA            ⇔ `ŷ≥0,85 ∧ φ_top<0 ∧ φ_feat>λ_feat ∧ φ_sem>[λ]_sem` | `mhgsl-theory.md:218-225` | **Kontra
+06-graph-mhgsl.md                L119   GREEK     GREEK SMALL LETTER PHI             sal.md:223` memakai `Risk Score ≥ 0.80` dan `[φ]_feat>0.30, φ_sem>0.35`; `mhgsl-theory.md:22
+06-graph-mhgsl.md                L119   GREEK     GREEK SMALL LETTER PHI             emakai `Risk Score ≥ 0.80` dan `φ_feat>0.30, [φ]_sem>0.35`; `mhgsl-theory.md:220` memakai `≥
+06-graph-mhgsl.md                L119   GREEK     GREEK SMALL LETTER LAMDA           mhgsl-theory.md:220` memakai `≥0.85` dengan `[λ]` tanpa nilai. Selain itu `λ_feat`/`λ_sem` *
+06-graph-mhgsl.md                L119   GREEK     GREEK SMALL LETTER LAMDA            `≥0.85` dengan `λ` tanpa nilai. Selain itu `[λ]_feat`/`λ_sem` **tidak pernah didefinisikan*
+06-graph-mhgsl.md                L119   GREEK     GREEK SMALL LETTER LAMDA           dengan `λ` tanpa nilai. Selain itu `λ_feat`/`[λ]_sem` **tidak pernah didefinisikan** di doku
+06-graph-mhgsl.md                L120   GREEK     GREEK SMALL LETTER PHI             | F15 | `[φ]_top = -0.12` "membuktikan adanya upaya kamu
+06-graph-mhgsl.md                L120   GREEK     GREEK SMALL LETTER PHI             ` | **Klaim falsifiable yang tidak diuji.** `[φ]_top` negatif bisa muncul dari model apa pun
+06-graph-mhgsl.md                L140   GREEK     GREEK SMALL LETTER THETA           | [θ] | pasangan tak berurut > θ | edge berarah |
+06-graph-mhgsl.md                L140   GREEK     GREEK SMALL LETTER THETA           | θ | pasangan tak berurut > [θ] | edge berarah | densitas terhadap n² |
+06-graph-mhgsl.md                L148   GREEK     GREEK SMALL LETTER THETA           n 0,0003, median −0,0607. **Kanal fitur pada [θ]=0,85 hanya 2,11% padat.** Klaim "membentuk 
+06-graph-mhgsl.md                L236   GREEK     GREEK SMALL LETTER THETA           | A_feat ([θ]=0,85) | 2.192 | 1.892 | **2,11%** | 2,44% |
+06-graph-mhgsl.md                L273   GREEK     GREEK SMALL LETTER THETA           iri struktur "padat" pada data nyata (A_feat [θ]=0,85, 1.892 edge di 300 node) untuk menguji
+06-graph-mhgsl.md                L275   GREEK     GREEK SMALL LETTER THETA           | Struktur terukur di A_feat ([θ]=0,85) | Nilai | Komposisi fraud |
+06-graph-mhgsl.md                L420   GREEK     GREEK SMALL LETTER PHI              groups" = kanal (via masker kanal), memberi [φ] yang additif terhadap logit. Channel-group 
+06-graph-mhgsl.md                L421   GREEK     GREEK SMALL LETTER PHI             stahil**: `mhgsl-theory.md:236` menyimpulkan [φ]_top<0 "membuktikan adanya upaya kamuflase a
+06-graph-mhgsl.md                L437   GREEK     GREEK SMALL LETTER PHI             n channel masking, validasi additivitas (sum [φ] == logit − baseline) | **P1** |
+06-graph-mhgsl.md                L461   GREEK     GREEK SMALL LETTER THETA           in & evaluate **hanya** pada fold. Z-score & [θ] di-fit pada train saja. Hitung AUPRC/AUROC/
+06-graph-mhgsl.md                L463   GREEK     GREEK CAPITAL LETTER DELTA         gganti ablation.** | `ablation_results.csv` ([Δ]AUPRC per kanal) | Kontribusi kanal, `02-arc
+06-graph-mhgsl.md                L464   GREEK     GREEK SMALL LETTER THETA           | **E-04** | **Sensitivitas [θ]_feat** | Sweep θ ∈ {0,50, 0,65, 0,75, 0,85,
+06-graph-mhgsl.md                L464   GREEK     GREEK SMALL LETTER THETA           | **E-04** | **Sensitivitas θ_feat** | Sweep [θ] ∈ {0,50, 0,65, 0,75, 0,85, 0,92, 0,95} di d
+06-graph-mhgsl.md                L464   GREEK     GREEK SMALL LETTER THETA            di dalam fold (never global). Plot AUPRC vs [θ]. Ambil satu θ dan **laporkan kurvanya**. | 
+06-graph-mhgsl.md                L464   GREEK     GREEK SMALL LETTER THETA            (never global). Plot AUPRC vs θ. Ambil satu [θ] dan **laporkan kurvanya**. | `theta_sensiti
+06-graph-mhgsl.md                L467   GREEK     GREEK CAPITAL LETTER SIGMA         sker channel-group. Verifikasi additivitas: `[Σ]φ == logit − baseline` (toleransi 1e-4). Gan
+06-graph-mhgsl.md                L467   GREEK     GREEK SMALL LETTER PHI             ker channel-group. Verifikasi additivitas: `Σ[φ] == logit − baseline` (toleransi 1e-4). Gant
+06-graph-mhgsl.md                L484   GREEK     GREEK SMALL LETTER THETA           | Densitas A_feat @[θ]=0,85 (off-diag) | **2,11%** (1.892 edge) | 
+06-graph-mhgsl.md                L487   GREEK     GREEK SMALL LETTER THETA           | Pasangan > [θ]=0,85 | 946 dari 44.850 (2,11%); 1.892 edge 
+06-graph-mhgsl.md                L488   GREEK     GREEK SMALL LETTER THETA           | Densitas A_feat pada [θ]=0,50 (backend) | 8,06% (3.613 pasangan = 7.
+06-graph-mhgsl.md                L502   GREEK     GREEK SMALL LETTER PHI             | Baris dengan `[φ]_top` negatif | **0 / 300** (syarat Camoufla
+06-graph-mhgsl.md                L509   GREEK     GREEK SMALL LETTER THETA           | Komponen terhubung A_feat ([θ]=0,85) | 41 (terbesar 35 node); 20 node teri
+06-methodology.md                L39    GREEK     GREEK SMALL LETTER THETA           dikat meleset 5/9; normalisasi di luar fold; [θ]_feat 0,85 vs 0,5; prevalensi 12% vs 3–7% ta
+06-methodology.md                L70    GREEK     GREEK SMALL LETTER THETA           ruct_multichannel_graphs(df_claims, X_clean, [θ]=0.85)`), dipakai utuh di setiap fold | 58,2
+06-methodology.md                L104   GREEK     GREEK SMALL LETTER THETA           anal fitur | 10 baris 166 & notebook sel 7: `[θ]_feat = 0.85` | `pipeline.py:251` & `pipelin
+06-methodology.md                L219   GREEK     GREEK CAPITAL LETTER PHI           get 0,90, disimulasikan dengan `mu = sqrt(2)·[Φ]⁻¹(AUROC)`, σ=1.
+06-methodology.md                L219   GREEK     GREEK SMALL LETTER SIGMA           imulasikan dengan `mu = sqrt(2)·Φ⁻¹(AUROC)`, [σ]=1.
+06-methodology.md                L287   GREEK     GREEK CAPITAL LETTER DELTA         | n_pos | [Δ]AUPRC titik | CI 95% | Signifikan? |
+06-methodology.md                L298   GREEK     GREEK CAPITAL LETTER DELTA         | n_pos | prevalensi | CI 95% [Δ]AUPRC | Signifikan? |
+06-methodology.md                L306   GREEK     GREEK CAPITAL LETTER DELTA          pada 300 baris) dibutuhkan untuk membedakan [Δ]AUPRC 0,10. Pada prevalensi produksi 3–7%, i
+06-methodology.md                L340   GREEK     GREEK CAPITAL LETTER DELTA         g sama tidak punya cakupan statistik. n=36 → [Δ]AUPRC CI [−0,045 ; +0,327] = tidak signifika
+06-methodology.md                L381   GREEK     GREEK SMALL LETTER THETA           memiliki satu baris kode pun. Ditambah I-09 ([θ] 0,85 vs 0,5) dan I-10 (edge semantik dari `
+06-methodology.md                L389   GREEK     GREEK CAPITAL LETTER DELTA         tik.** Min 60 kasus positif untuk membedakan [Δ]AUPRC 0,10 (§6.8) -butuh 857–2000 baris pada
+06-methodology.md                L406   GREEK     GREEK SMALL LETTER THETA            **Selaraskan implementasi ke spesifikasi**: [θ]_feat 0,85 di `pipeline.py:251/327` (I-09); 
+06-methodology.md                L443   GREEK     GREEK CAPITAL LETTER DELTA         | CI 95% [Δ]AUPRC (0,92 vs 0,88), n=36 | [−0,045 ; +0,32
+06-methodology.md                L444   GREEK     GREEK CAPITAL LETTER DELTA         | Min `n_pos` untuk [Δ]AUPRC 0,10 signifikan | **60** (prevalensi 2
+08-frontend.md                   L202   GREEK     GREEK CAPITAL LETTER DELTA         | 8 | `[Δ] +0.20` MHGSL vs XGBoost | `src/components/m
+08-frontend.md                   L213   GREEK     GREEK SMALL LETTER SIGMA           | 19 | `4.2×` di atas peer, `+4.2[σ]` deviasi peer | `src/components/mhgsl/data.
+08-frontend.md                   L236   GREEK     GREEK SMALL LETTER GAMMA           | **Late fusion `p_fused = p_graph + [γ]·f_text·(1−p_graph)`** | Ya - `02-architectu
+08-frontend.md                   L236   GREEK     GREEK SMALL LETTER GAMMA           as.tsx:244-253`; **tidak ada implementasi** ([γ]=0,10 hanya konstanta di `data.ts:384`/i18n)
+08-frontend.md                   L391   GREEK     GREEK SMALL LETTER GAMMA           panjang" | "Late Fusion NLP teks & sentimen ([γ] = 0.10)" | γ hanya konstanta di teks LaTeX 
+08-frontend.md                   L391   GREEK     GREEK SMALL LETTER GAMMA           ate Fusion NLP teks & sentimen (γ = 0.10)" | [γ] hanya konstanta di teks LaTeX (`math-formul
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER O            min hak Subjek Data Pribadi; collecting data [о]граничен; hak subjek; akurasi; keamanan; pem
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER GHE          in hak Subjek Data Pribadi; collecting data о[г]раничен; hak subjek; akurasi; keamanan; pemb
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER ER           n hak Subjek Data Pribadi; collecting data ог[р]аничен; hak subjek; akurasi; keamanan; pemba
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER A             hak Subjek Data Pribadi; collecting data огр[а]ничен; hak subjek; akurasi; keamanan; pembar
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER EN           hak Subjek Data Pribadi; collecting data огра[н]ичен; hak subjek; akurasi; keamanan; pembaru
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER I            ak Subjek Data Pribadi; collecting data огран[и]чен; hak subjek; akurasi; keamanan; pembarua
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER CHE          k Subjek Data Pribadi; collecting data ограни[ч]ен; hak subjek; akurasi; keamanan; pembaruan
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER IE            Subjek Data Pribadi; collecting data огранич[е]н; hak subjek; akurasi; keamanan; pembaruand
+11-compliance.md                 L83    CYRILLIC  CYRILLIC SMALL LETTER EN           Subjek Data Pribadi; collecting data ограниче[н]; hak subjek; akurasi; keamanan; pembaruanda
+11-compliance.md                 L209   ARABIC    ARABIC LETTER DAL                  turan yang bersifat "dilarang" berlaku tanpa [د]ون persetujuan, dan khusus untuk **per Presc
+11-compliance.md                 L209   ARABIC    ARABIC LETTER WAW                  uran yang bersifat "dilarang" berlaku tanpa د[و]ن persetujuan, dan khusus untuk **per Prescr
+11-compliance.md                 L209   ARABIC    ARABIC LETTER NOON                 ran yang bersifat "dilarang" berlaku tanpa دو[ن] persetujuan, dan khusus untuk **per Prescri
+13-text-channel.md               L389   GREEK     GREEK SMALL LETTER THETA           aph + 0.10 · f_text · (1 − p_graph)` dengan `[θ]_feat = 0.85`; `γ = 0.10`; `f_text ∈ [0,1]` 
+13-text-channel.md               L389   GREEK     GREEK SMALL LETTER GAMMA           xt · (1 − p_graph)` dengan `θ_feat = 0.85`; `[γ] = 0.10`; `f_text ∈ [0,1]` "sinyal sentimen 
+13-text-channel.md               L389   GREEK     GREEK SMALL LETTER GAMMA           dence interval, tidak ada cara mengkalibrasi [γ], tidak ada ablation study. `θ_feat` didefin
+13-text-channel.md               L389   GREEK     GREEK SMALL LETTER THETA            mengkalibrasi γ, tidak ada ablation study. `[θ]_feat` didefinisikan sebagai "cosine θ=0.85"
+13-text-channel.md               L389   GREEK     GREEK SMALL LETTER THETA           tudy. `θ_feat` didefinisikan sebagai "cosine [θ]=0.85" (fitur channel) - **nama simbol bentr
+13-text-channel.md               L389   GREEK     GREEK SMALL LETTER THETA           r channel) - **nama simbol bentrok** dengan `[θ]_feat = 0.85` di fusion, ambigu |
+13-text-channel.md               L440   GREEK     GREEK SMALL LETTER GAMMA           text ∈ [0,1]` dan cap kontribusinya, sesuai `[γ]=0.10` yang sudah ada).
+13-text-channel.md               L502   GREEK     GREEK SMALL LETTER THETA           | R15 | **Perbaiki ambigu `[θ]_feat`** | `θ_feat = 0.85` dipakai untuk dua
+13-text-channel.md               L502   GREEK     GREEK SMALL LETTER THETA           | R15 | **Perbaiki ambigu `θ_feat`** | `[θ]_feat = 0.85` dipakai untuk dua hal berbeda:
+13-text-channel.md               L502   GREEK     GREEK SMALL LETTER THETA           0.85` dipakai untuk dua hal berbeda: "cosine [θ]" (channel fitur) dan "feature threshold" (f
+13-text-channel.md               L502   GREEK     GREEK SMALL LETTER THETA           threshold" (fusion). Ganti nama menjadi `cos_[θ]` dan `τ_feat` |
+13-text-channel.md               L502   GREEK     GREEK SMALL LETTER TAU             d" (fusion). Ganti nama menjadi `cos_θ` dan `[τ]_feat` |
+18-ux.md                         L87    GREEK     GREEK CAPITAL LETTER DELTA         tulis sebagai persen, tapi angka di atasnya "[Δ] MHGSL vs XGBoost +0.20" - satuan bercampur 
+18-ux.md                         L248   GREEK     GREEK SMALL LETTER THETA           milaritas fitur 0,92 dan 0,85 di atas ambang [θ]=0,85, pola diagnosis-prosedur identik, dan 
+18-ux.md                         L348   GREEK     GREEK SMALL LETTER THETA           bel & Protokol Ilmiah" + mono bar seed/versi/[θ]_feat/γ/langkah/model. Ini aset kepercayaan 
+18-ux.md                         L348   GREEK     GREEK SMALL LETTER GAMMA           rotokol Ilmiah" + mono bar seed/versi/θ_feat/[γ]/langkah/model. Ini aset kepercayaan terbaik
+19-consistency.md                L191   GREEK     GREEK SMALL LETTER THETA           an graf | A_top 10.386 edges; A_feat 15.202 ([θ]≥0,50); A_sem 7.880 | 209-211 |
+20-repo-artifact-integrity.md    L164   ARABIC    ARABIC LETTER ALEF                 oject akhir, bukan tanggal pendaftaran. Arti [ا]لقسم 3 di atas berpindah dari "catatan tekni
+20-repo-artifact-integrity.md    L164   ARABIC    ARABIC LETTER LAM                  ject akhir, bukan tanggal pendaftaran. Arti ا[ل]قسم 3 di atas berpindah dari "catatan teknis
+20-repo-artifact-integrity.md    L164   ARABIC    ARABIC LETTER QAF                  ect akhir, bukan tanggal pendaftaran. Arti ال[ق]سم 3 di atas berpindah dari "catatan teknis"
+20-repo-artifact-integrity.md    L164   ARABIC    ARABIC LETTER SEEN                 ct akhir, bukan tanggal pendaftaran. Arti الق[س]م 3 di atas berpindah dari "catatan teknis" 
+20-repo-artifact-integrity.md    L164   ARABIC    ARABIC LETTER MEEM                 t akhir, bukan tanggal pendaftaran. Arti القس[م] 3 di atas berpindah dari "catatan teknis" m
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER SARA UEE            ut hasil tervalidasi. Tidak satu pun punyabার[ื]อทถูกต้อง manifest eksperimen dan skrip hitu
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER O ANG               t hasil tervalidasi. Tidak satu pun punyabারื[อ]ทถูกต้อง manifest eksperimen dan skrip hitun
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER THO THAHAN           hasil tervalidasi. Tidak satu pun punyabারือ[ท]ถูกต้อง manifest eksperimen dan skrip hitung
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER THO THUNG           hasil tervalidasi. Tidak satu pun punyabারือท[ถ]ูกต้อง manifest eksperimen dan skrip hitung 
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER SARA UU             asil tervalidasi. Tidak satu pun punyabারือทถ[ู]กต้อง manifest eksperimen dan skrip hitung y
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER KO KAI              sil tervalidasi. Tidak satu pun punyabারือทถู[ก]ต้อง manifest eksperimen dan skrip hitung ya
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER TO TAO              il tervalidasi. Tidak satu pun punyabারือทถูก[ต]้อง manifest eksperimen dan skrip hitung yan
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER MAI THO             l tervalidasi. Tidak satu pun punyabারือทถูกต[้]อง manifest eksperimen dan skrip hitung yang
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER O ANG                tervalidasi. Tidak satu pun punyabারือทถูกต้[อ]ง manifest eksperimen dan skrip hitung yang 
+20-repo-artifact-integrity.md    L164   THAI      THAI CHARACTER NGO NGU             tervalidasi. Tidak satu pun punyabারือทถูกต้อ[ง] manifest eksperimen dan skrip hitung yang a
+21-colab-dashboard-provenance.md L42    GREEK     GREEK SMALL LETTER GAMMA           is HTML sumber berbunyi `p_fused = p_graph + [γ]·f_text·(1 − p_graph) · γ = 0.10 · θ_feat = 
+21-colab-dashboard-provenance.md L42    GREEK     GREEK SMALL LETTER GAMMA           p_fused = p_graph + γ·f_text·(1 − p_graph) · [γ] = 0.10 · θ_feat = 0.85`. Rerenderan bitmap 
+21-colab-dashboard-provenance.md L42    GREEK     GREEK SMALL LETTER THETA           _graph + γ·f_text·(1 − p_graph) · γ = 0.10 · [θ]_feat = 0.85`. Rerenderan bitmap 90° membuat
+21-colab-dashboard-provenance.md L42    GREEK     GREEK SMALL LETTER THETA           feat = 0.85`. Rerenderan bitmap 90° membuat `[θ]_feat` terbaca sebagai `p_lead`.
+21-colab-dashboard-provenance.md L367   GREEK     GREEK SMALL LETTER GAMMA           (`21_fixx_nb.txt:877`): `p_fused = p_graph + [γ]·f_text·(1 − p_graph) · γ = 0.10 · θ_feat = 
+21-colab-dashboard-provenance.md L367   GREEK     GREEK SMALL LETTER GAMMA           p_fused = p_graph + γ·f_text·(1 − p_graph) · [γ] = 0.10 · θ_feat = 0.85`. Rerenderan bitmap 
+21-colab-dashboard-provenance.md L367   GREEK     GREEK SMALL LETTER THETA           _graph + γ·f_text·(1 − p_graph) · γ = 0.10 · [θ]_feat = 0.85`. Rerenderan bitmap 90° menukar
+21-colab-dashboard-provenance.md L367   GREEK     GREEK SMALL LETTER THETA           0.85`. Rerenderan bitmap 90° menukar glyph **[θ]_feat** menjadi **p_lead**. Pencarian `p_lea
+21-colab-dashboard-provenance.md L477   GREEK     GREEK SMALL LETTER THETA           | " | 877 | baris `[θ]_feat = 0.85` (bukan "p_lead") |
+22-proposal-docx-audit.md        L168   CJK       CJK UNIFIED IDEOGRAPH-5BE7         an hal yang sama untuk PDF Colab; dokumen ini[寧]gly mengulang pola yang sama tanpa label.
+22-proposal-docx-audit.md        L174   CYRILLIC  CYRILLIC CAPITAL LETTER DE         ngga penyebut rasio tidak pernah dinyatakan. [Д]енominator hanya mungkin adalah Rp 507.370.0
+22-proposal-docx-audit.md        L174   CYRILLIC  CYRILLIC SMALL LETTER IE           gga penyebut rasio tidak pernah dinyatakan. Д[е]нominator hanya mungkin adalah Rp 507.370.00
+22-proposal-docx-audit.md        L174   CYRILLIC  CYRILLIC SMALL LETTER EN           ga penyebut rasio tidak pernah dinyatakan. Де[н]ominator hanya mungkin adalah Rp 507.370.000
+22-proposal-docx-audit.md        L176   CJK       CJK UNIFIED IDEOGRAPH-652F         . Tidak ada simulasi beban kerja di repo yang[支]持 salah satu pun.
+22-proposal-docx-audit.md        L176   CJK       CJK UNIFIED IDEOGRAPH-6301          Tidak ada simulasi beban kerja di repo yang支[持] salah satu pun.
+22-proposal-docx-audit.md        L262   CJK       CJK UNIFIED IDEOGRAPH-4E8C          L292, L347, L383, L718 | Gunakan tanda petik[二]重 Indonesia, atau hapus bila hanya pemisah v
+22-proposal-docx-audit.md        L262   CJK       CJK UNIFIED IDEOGRAPH-91CD         L292, L347, L383, L718 | Gunakan tanda petik二[重] Indonesia, atau hapus bila hanya pemisah vi
+22-proposal-docx-audit.md        L298   CJK       CJK UNIFIED IDEOGRAPH-5E73          ulang nominal sindikat, peringkat modus, dan[平]均值 overcharge. Hapus "Rp 127,68 Juta" karena
+22-proposal-docx-audit.md        L298   CJK       CJK UNIFIED IDEOGRAPH-5747         ulang nominal sindikat, peringkat modus, dan平[均]值 overcharge. Hapus "Rp 127,68 Juta" karena 
+22-proposal-docx-audit.md        L298   CJK       CJK UNIFIED IDEOGRAPH-503C         lang nominal sindikat, peringkat modus, dan平均[值] overcharge. Hapus "Rp 127,68 Juta" karena t
+
+TOTAL: 190

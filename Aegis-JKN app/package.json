@@ -1,0 +1,46 @@
+{
+  "name": "aegis-jkn",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node frontend/scripts/dev-all.js",
+    "start": "node frontend/scripts/dev-all.js",
+    "dev:all": "node frontend/scripts/dev-all.js",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:visual": "playwright test tests/e2e/visual",
+    "test:a11y": "playwright test tests/e2e/a11y",
+    "test:perf": "playwright test tests/e2e/performance"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.5.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.545.0",
+    "next": "^16.4.2",
+    "next-intl": "^4.14.9",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-force-graph-2d": "^1.29.2",
+    "recharts": "^3.10.1",
+    "tailwind-merge": "^3.7.0",
+    "zod": "^4.6.7",
+    "zustand": "^5.0.16"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.3.1",
+    "@types/react-dom": "^19.3.1",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.23",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,20 @@
+corpus rows 300 cols 29
+syndicates spanning >1 faskes: 0 []
+  SYND-01 ['RS_A'] fraud= 3 heldout_fraud= 3
+  SYND-02 ['RS_C'] fraud= 3 heldout_fraud= 3
+  SYND-03 ['RS_B'] fraud= 6 heldout_fraud= 6
+  SYND-04 ['RS_E'] fraud= 2 heldout_fraud= 2
+  SYND-05 ['RS_F'] fraud= 0 heldout_fraud= 0
+  SYND-06 ['RS_G'] fraud= 4 heldout_fraud= 4
+  SYND-07 ['RS_H'] fraud= 4 heldout_fraud= 4
+  SYND-08 ['RS_I'] fraud= 6 heldout_fraud= 6
+  SYND-09 ['RS_J'] fraud= 6 heldout_fraud= 6
+fraud in fully-held-out syndicates: 34 of 34
+Skor Fraud == T+F+S within 0.011: 0 mismatch: 0
+ml rows 300
+  DIFF None | ml= D01 (dr. Adnan Prakoso, Sp.BTKV) | notion= 
+  DIFF None | ml= D02 (dr. Barli Soemarno, Sp.B) | notion= 
+  DIFF None | ml= D01 (dr. Adnan Prakoso, Sp.BTKV) | notion= 
+dokter_raw differing rows: 300
+Kontradiksi Narasi True count: 12
+  105 108 106 107 005 002 001 004 003 024 018 006

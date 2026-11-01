@@ -1,0 +1,25 @@
+{
+  "nav": {
+    "dashboard": "Dasbor",
+    "graph": "Grafik",
+    "simulation": "Simulasi",
+    "audit": "Audit",
+    "settings": "Pengaturan"
+  },
+  "common": {
+    "claim": "Klaim",
+    "health_facility": "Fasilitas Kesehatan",
+    "fraud_detection": "Deteksi Kecurangan",
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
+    "no_data": "Tidak ada data ditemukan"
+  },
+  "dashboard": {
+    "title": "Ikhtisar Intelijen Kecurangan",
+    "subtitle": "Pemantauan real-time anomali klaim JKN",
+    "trend": "Tren Kecurangan",
+    "recent_alerts": "Peringatan Terbaru",
+    "no_alerts": "Tidak ada peringatan terbaru.",
+    "chart_placeholder": "Implementasi grafik segera hadir (via dataviz skill)"
+  }
+}

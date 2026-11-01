@@ -1,0 +1,140 @@
+### TABLE 0 rows=1
+   R00 | AEGIS-JKN: Sistem Fraud Intelligence & Clinical Decision Support Berbasis Multi-Hop Graph Structure Learning (MHGSL) dan Multimodal Simulation untuk Deteksi Sindikat Kecurangan dan Anomali Klaim JKN« Detect Smarter, Protect JKN Menjaga Ketahanan Finansial Dana Jaminan Sosial (DJS) Melalui Deteksi Kolusi Multi-Hop dan Transparansi Akuntabilitas Medis. »
+
+### TABLE 1 rows=2
+   R00 | Mengetahui,Perwakilan Tim Teknis & Arsitektur( Tim Pengusul Kandidat 1 ) || Cimahi, 9 Oktober 2026Perwakilan Riset & Strategi Dampak( Tim Pengusul Kandidat 1 )
+   R01 |  ||
+
+### TABLE 2 rows=1
+   R00 | [RUMUSAN MASALAH UTAMA] Tantangan Desain Sistem Fraud Intelligence Skala Nasional« Bagaimana merancang suatu sistem Fraud Intelligence & Clinical Decision Support System (CDSS) berbasis Multi-Hop Graph Structure Learning (MHGSL) yang mampu mendeteksi sindikat kecurangan terorganisir dan membongkar kamuflase topologi klaim JKN, dengan transparansi penalaran Explainable AI (XAI), kepatuhan mut
+
+### TABLE 3 rows=6
+   R00 | Tingkat || Pertanyaan Kausalitas || Fakta / Kondisi Lapangan || Implikasi Sistemik Aegis-JKN
+   R01 | Why 1 || Mengapa sindikat kecurangan dan anomali klaim upcoding/unbundling lolos dari proses verifikasi BPJS? || Verifikator manusia di kantor cabang BPJS Kesehatan hanya sempat menelaah sebagian kecil berkas klaim secara acak (sampling) akibat keterbatasan waktu. || Dibutuhkan mesin triase cerdas yang memprioritaskan berkas anomali berisiko tinggi secara otomatis.
+   R02 | Why 2 || Mengapa verifikator manusia tidak dapat memeriksa seluruh berkas klaim yang masuk? || Volume klaim harian mencapai >2.000.000 berkas, sementara jumlah verifikator hanya ~1.000 orang (beban 2.000 berkas/orang/hari vs kapasitas telaah 50-70 berkas/hari). || Sistem harus memiliki arsitektur throughput tinggi yang mampu melakukan pra-penyaringan instan dalam fraksi milidetik.
+   R03 | Why 3 || Mengapa sistem verifikasi digital eksisting (V-Claim / E-Klaim) tidak mampu mendeteksi sindikat tersebut secara otomatis? || Sistem eksisting hanya mengandalkan aturan administratif statis (rule-based deterministik) dan validasi kelengkapan berkas individual secara terisolasi. || Dibutuhkan model AI yang mampu mengevaluasi korelasi implisit antar-klaim dan mendeteksi anomali statist
+   R04 | Why 4 || Mengapa model Machine Learning konvensional (seperti XGBoost / Random Forest) tetap gagal menangkap sindikat tersebut? || Model tabular memperlakukan setiap klaim sebagai baris data independen (IID), buta terhadap struktur relasi jaringan antardokter, faskes, dan rujukan pasien. || Diperlukan representasi data berbasis graf heterogen yang mampu memodelkan relasi kompleks multi-entit
+   R05 | Why 5 || Mengapa model graf homogen standar (GCN/GAT) tetap tidak mampu membongkar kolusi tersebut? || Pelaku kecurangan menerapkan kamuflase topologis (topological camouflage) pada alur rujukan fisik agar tampak normal, sehingga meracuni algoritma perataan tetangga standar. || Akar Masalah Fundamental: Ketiadaan model Multi-Channel Heterogeneous Graph Structure Learning (MHGSL) yang memisah
+
+### TABLE 4 rows=5
+   R00 | Dimensi Masalah || Komponen Akar Penyebab Faktual || Dampak pada Operasional Klaim JKN
+   R01 | Man (Sumber Daya Manusia) || 1. Keterbatasan kapasitas verifikator (~1.000 orang untuk 2 juta klaim/hari).2. Kelelahan kognitif dan alert fatigue akibat ribuan false alarms pada sistem aturan lama.3. Disparitas latar belakang medis antarkantor cabang dalam menafsirkan resume klinis. || Verifikasi mendalam tereduksi menjadi sekadar centang administratif; kasus fraud terstruktur lolos tanpa te
+   R02 | Process (Alur Bisnis & Audit) || 1. Paradigma audit bersifat post-facto (pasca-klaim dibayarkan), memicu risiko sengketa klaim (dispute) yang berlarut-larut dengan faskes.2. Ketiadaan mekanisme triase dinamis yang memilah berkas berdasarkan magnitude kerugian finansial.3. Penanganan audit rujukan dilakukan per-faskes secara parsial, tanpa visibilitas lintas-wilayah. || Pengembalian kerugian 
+   R03 | Technology & Data || 1. Aturan regex/deterministik konvensional kaku dan mudah diakali (gaming the system).2. Model ML tabular mengevaluasi klaim secara atomik (IID assumption), gagal menangkap kolusi multi-hop.3. Model graf standar terperangkap topological camouflage.4. Keterbatasan interoperabilitas data semantik antar-SIMRS. || Sindikat kolusi dokter-faskes beroperasi tanpa hambatan di ba
+   R04 | Volume (Skala Transaksi) || 1. Ledakan volume 270+ juta peserta menghasilkan miliaran edge relasi kunjungan per tahun.2. Latensi komputasi inferensi graf pada seluruh data mentah berisiko membebani server transaksi inti.3. Ketiadaan arsitektur dual-path (streaming vs batch). || Sistem rentan mengalami bottleneck dan antrean panjang jika dipaksakan menjalankan model AI berat secara serial.
+
+### TABLE 5 rows=8
+   R00 | Parameter Komparasi || Pemeriksaan Manual || Rule-Based Murni || Tabular ML (XGBoost) || Pure LLM / Black-Box || Aegis-JKN (Tri-Tier MHGSL)
+   R01 | Kecepatan Telaah || Sangat lambat (10-20 mnt/berkas) || Instan (<10 ms) || Sangat cepat (<50 ms) || Lambat (1-5 dtk/berkas) || Optimal (<50 ms rule, <500 ms stream)
+   R02 | Deteksi Kolusi Multi-Hop || Nol (terbatas ingatan verifikator) || Nol (aturan bersifat lokal) || Nol (asumsi independensi IID) || Sangat rendah (konteks terbatas) || Sangat Tinggi (Tri-Channel MHGSL GNN)
+   R03 | Ketahanan Kamuflase || Rendah (mudah terkecoh rujukan sah) || Nol (mudah di-gaming) || Rendah (terkecoh fitur rata-rata) || Rendah (rawan halusinasi) || Tinggi (89.4% akurasi pada 40% kamuflase)
+   R04 | Explainability & Transparansi || Tinggi (justifikasi manusia) || Tinggi (log aturan ya/tidak) || Sedang (SHAP tabular) || Rendah (black-box / halusinasi) || Sangat Tinggi (SHAP per-kanal & Graf SVG)
+   R05 | Efisiensi Biaya Komputasi || Sangat Mahal (biaya jam kerja) || Sangat Murah (CPU rendah) || Murah (CPU standar) || Sangat Mahal (biaya API token) || Sangat Efisien (On-premise Tri-Tier)
+   R06 | Kepatuhan Privasi (UU PDP) || Tinggi (akses internal) || Tinggi (on-premise) || Tinggi (on-premise) || Rentan (kebocoran cloud API) || Mutlak (Salted SHA-256 on-premise)
+   R07 | Human Autonomy & Fail-Safe || Manual penuh (100% manusia) || Kaku (auto-reject rawan sengketa) || Rentan salah vonis || Risiko tinggi auto-hallucination || Sempurna (CDSS murni + Safe-Mode Fallback)
+
+### TABLE 6 rows=1
+   R00 | [PRINSIP RIGHT-SIZED HYBRID ENGINEERING] Efisiensi Komputasi Melalui Integrasi Berlapis« Jangan pernah memaksakan seluruh beban 2 juta klaim harian ke dalam inferensi model graf yang berat. Selesaikan validasi administratif deterministik (<50 ms) di tingkat CPU, saring anomali statistik berbasis tabular, dan alokasikan komputasi Graph Neural Network secara cerdas untuk membongkar sindikat da
+
+### TABLE 7 rows=1
+   R00 | [FORMULA MULTIMODAL LATE FUSION] Integrasi Probabilitas Graf dan Sinyal Narasi Klinis« p_fused = p_graph + 0.10 × f_text × (1 - p_graph) »Di mana f_text mewakili indeks diskrepansi narasi klinis (rentang -1.0 hingga +1.0). Formula ini menjamin bahwa korelasi graf tetap menjadi sinyal utama, sementara bukti naratif bertindak sebagai penguat probabilitas diskrepansi.
+
+### TABLE 8 rows=7
+   R00 | Prinsip UU PDP (Pasal 16) || Implementasi Konkret pada Platform Aegis-JKN || Instrumen Verifikasi Teknis
+   R01 | Tujuan Terbatas & Spesifik || Pemrosesan data terbatas murni untuk audit anomali klaim dan deteksi kecurangan DJS Kesehatan; dilarang untuk komersialisasi pihak ketiga. || Data Processing Agreement & Service Boundary Locks
+   R02 | Minimisasi Data (Data Minimization) || Hanya menyerap variabel medis dan biaya yang esensial untuk penilaian anomali (10 fitur input bersih); atribut PII sensitif dihapus seketika. || Ingestion Pipeline Schema Whitelist & PII Stripper
+   R03 | Akurasi & Integritas || Penyelarasan kode diagnosis dan prosedur mengacu pada standar resmi Kemenkes (ICD-10, ICD-9-CM, SATUSEHAT HL7 FHIR R4). || FHIR Syntactic Validator & Checksum Verification
+   R04 | Keamanan Pemrosesan || Enkripsi simetris end-to-end (AES-256) pada data diam (at-rest) dan TLS 1.3 pada data transit; isolasi jaringan private on-premise cloud. || Penetration Testing & ISO/IEC 27001 Security Controls
+   R05 | Pembatasan Penyimpanan || Data de-identifikasi transaksi mentah hanya disimpan selama masa retensi audit aktif (5 tahun sesuai regulasi rekam medis). || Automated Retention Archiving & Crypto-Shredding
+   R06 | Akuntabilitas & Transparansi || Seluruh riwayat skoring, perubahan rekomendasi, dan tindakan override verifikator dicatat dalam log audit kekal (immutable audit trail). || Append-Only Cryptographic Audit Log (SHA-256 Hash Chaining)
+
+### TABLE 9 rows=1
+   R00 | [PRINSIP FAIL-SAFE AI & HUMAN AUTONOMY] Larangan Keputusan Sepihak oleh Kecerdasan Buatan« AI diperbolehkan membuat kekeliruan dalam memberikan indikasi atau rekomendasi awal; yang dilarang keras adalah sistem AI yang mampu mengeksekusi vonis penolakan klaim, pemotongan biaya, atau penjatuhan sanksi hukum secara sepihak tanpa telaah dan persetujuan verifikator manusia (Anti-Automated Adverse
+
+### TABLE 10 rows=6
+   R00 | Dimensi Tugas || Fungsi Sistem Aegis-JKN (AI / Engine) || Wewenang Verifikator Manusia (BPJS)
+   R01 | Pemrosesan Berkas Skala Besar || Menyaring jutaan berkas klaim harian secara paralel; memilah klaim normal ke jalur cepat (<50 ms). || Memvalidasi hasil penyaringan dan memfokuskan energi telaah pada berkas antrean merah.
+   R02 | Deteksi Sindikat & Anomali || Menganalisis keterhubungan multi-hop (topologi, fitur, semantik) dan membongkar penyamaran rujukan. || Menilai rasionalitas medis dan meninjau konteks khusus faskes/pasien.
+   R03 | Penyusunan Bukti (Evidence) || Mendekomposisi atribusi SHAP per-kanal dan mengekstrak matriks diskrepansi kode vs fakta. || Menelaah keabsahan bukti dokumen penunjang klinis asli.
+   R04 | Keputusan Penolakan / Dispute || Dilarang memvonis. Sistem hanya memberikan rekomendasi: Normal / Review / Escalate. || Memiliki hak tunggal mengeksekusi keputusan: Konfirmasi, Dismiss (Override), atau Eskalasi TKMKB.
+   R05 | Umpan Balik Model (Active Learning) || Mencatat log keputusan manusia beserta alasan overrides untuk kalibrasi ulang model. || Memberikan label koreksi klinis yang menjadi bahan retraining model graf.
+
+### TABLE 11 rows=1
+   R00 | [HIPOTESIS PEMBUKTIAN MVP] Validasi Keunggulan Tri-Channel MHGSL atas Model Tabular« Apakah dekomposisi graf heterogen ke dalam 3 saluran (Topologi, Fitur, Semantik Metapath) yang diintegrasikan dengan pipeline Tri-Tier mampu mendeteksi sindikat kecurangan dan membongkar kamuflase topologi dengan Precision ≥ 90%, False Positive Rate ≤ 15%, serta memangkas waktu review verifikator sebesar 30-
+
+### TABLE 12 rows=10
+   R00 | ID Sindikat || Modus Kecurangan || Faskes & Dokter || Klaim Terkait || Skenario Klinis & Sinyal Deteksi MHGSL || Skor Risiko
+   R01 | SYND-01 || Upcoding Tindakan Invasif || RS_A | D01, D02 || KLM001–003 || Diagnosis gastritis (K29.7) ditagih tindakan PCI (00.66) berbiaya Rp52-58 Juta; biaya & LOS identik; subgraf padat. || ≥ 0.93 (Escalate)
+   R02 | SYND-02 || Phantom Billing Bedah Mayor || RS_C | D05 || KLM004–006 || Klaim penggantian sendi panggul (81.52) senilai Rp44,75 Juta dengan LOS 1 hari tanpa rekam MedicationDispense anestesi/implan. || ≥ 0.92 (Escalate)
+   R03 | SYND-03 || Unbundling Prosedur Laparoskopi || RS_B | D07 || KLM007–012 || Paket kolesistektomi (51.23) dipecah dengan intubasi endotrakeal (96.04) pada hari yang sama guna menggandakan tarif. || 0.84–0.87 (Escalate)
+   R04 | SYND-04 || Drug Diversion / Pengalihan Obat || RS_D | D09, D10 || KLM013–015 || Klaim obat onkologi/biologik mahal melebihi batas restriksi FORNAS pada pasien rawat jalan berulang. || ≥ 0.88 (Escalate)
+   R05 | SYND-05 || Cloning Rekam Medis Pasien || RS_E | D11 || KLM016–018 || Duplikasi identik resume klinis, tanggal masuk, dan rincian tindakan pada tiga pasien berbeda. || ≥ 0.90 (Escalate)
+   R06 | SYND-06 || Referral Churn Berulang || RS_G | D13, D14 || KLM019–024 || Siklus rujukan terjadwal ketat (interval 7-8 hari) antardokter spesialis untuk klaim rawat jalan kronis berulang. || 0.82–0.86 (Escalate)
+   R07 | SYND-07 || Upcoding Severity Komorbiditas || RS_A | D03 || KLM025–028 || Klaim stroke iskemik ringan dinaikkan ke Severity III dengan klaim komplikasi edema otak tanpa bukti CT-scan. || 0.80–0.85 (Escalate)
+   R08 | SYND-08 || Repeat Billing Rawat Inap Singkat || RS_F | D12 || KLM029–032 || Readmisi rawat inap <30 hari dengan diagnosis identik tanpa jeda klinis wajar untuk meraup klaim INA-CBG ganda. || 0.78–0.83 (Escalate)
+   R09 | SYND-09 || Kolusi Multi-Faskes Lintas Wilayah || RS_G, RS_C | D15, D19 || KLM033–036 || Pola rujukan silang antarfaskes swasta berbeda wilayah dengan pola tagihan biaya batas atas seragam. || ≥ 0.89 (Escalate)
+
+### TABLE 13 rows=7
+   R00 | Kategori Fitur || Termasuk dalam Scope MVP (In-Scope) || Di Luar Scope MVP (Out-of-Scope)
+   R01 | Cakupan Penyakit & Layanan || FKRTL Rawat Inap & Rawat Jalan tingkat lanjutan; use case penyakit berbiaya tinggi (Kardiologi, Neurologi, Bedah Mayor, Onkologi). || Klaim Fasilitas Kesehatan Tingkat Pertama (FKTP) kapitasi dan pelayanan optik/gigi non-spesialistik.
+   R02 | Tipologi Kecurangan || 9 Modus Sindikat (Upcoding Severity, Phantom Billing, Unbundling, Drug Diversion, Cloning, Referral Churn, Repeat Billing). || Pencurian identitas fisik kartu BPJS di luar fasilitas kesehatan atau pemalsuan iuran peserta.
+   R03 | Arsitektur Deteksi || Tri-Tier Pipeline: Rule Engine deterministik, Tabular XGBoost, dan Tri-Channel MHGSL GNN (PyTorch Geometric). || Model transformer generatif end-to-end tanpa batas ontologi medis.
+   R04 | Antarmuka & Pengguna || Dashboard Verifikator Next.js 16 interaktif dengan visualisasi graf SVG, klaster bipartite, dan dekomposisi SHAP. || Aplikasi mobile publik untuk peserta JKN umum.
+   R05 | Interoperabilitas Data || Simulasi JSON payload SATUSEHAT HL7 FHIR R4 dan format ekspor V-Claim / E-Klaim INA-CBGs. || Integrasi langsung dua arah (write-back) ke database produksi perbankan pembayaran klaim.
+   R06 | Kewenangan Keputusan || Clinical Decision Support System (CDSS) murni: rekomendasi risiko tiga warna (Hijau, Kuning, Merah) dengan kontrol HITL. || Eksekusi otomatis pemotongan tarif klaim atau sanksi hukum faskes tanpa persetujuan manusia.
+
+### TABLE 14 rows=12
+   R00 | Dimensi KPI || Indikator Kunci || Definisi & Formula Pengukuran || Target MVP || Capaian Benchmark v2.1
+   R01 | Teknis || Akurasi Klasifikasi || Rasio prediksi benar terhadap seluruh klaim || ≥ 90.0% || 93.00% (Tervalidasi)
+   R02 | Teknis || Presisi Deteksi (Precision) || TP / (TP + FP) pada deteksi anomali || ≥ 90.0% || 94.12% (Tervalidasi)
+   R03 | Teknis || Area Under ROC (ROC-AUC) || Kemampuan separasi kelas normal vs fraud || ≥ 0.950 || 0.9825 (Tervalidasi)
+   R04 | Teknis || Area Under PR (AUPRC) || Performa deteksi pada data imbalance || ≥ 0.850 || 0.9142 (+28.6% vs XGBoost)
+   R05 | Teknis || Camouflage Resilience || Akurasi model pada 40% penyamaran rujukan || ≥ 85.0% || 89.40% (Tervalidasi)
+   R06 | Operasional || Reduksi Waktu Telaah || Efisiensi durasi review berkas anomali || 30–50% || 45.0% (Hemat 5-10 mnt/berkas)
+   R07 | Operasional || False Positive Rate (FPR) || Proporsi klaim wajar yang keliru ditandai || ≤ 15.0% || 10.60% (Menekan alert fatigue)
+   R08 | Operasional || Throughput Verifikasi || Peningkatan jumlah berkas tervalidasi/hari || 2.0–3.0x || 3.2x lipat kapasitas harian
+   R09 | Finansial || Rasio Cost-to-Impact || Nilai penyelamatan DJS per Rp 1 biaya TI || ≥ 1 : 10 || 1 : 15 (Proyeksi Konservatif)
+   R10 | Adopsi User || System Usability Scale (SUS) || Skor kemudahan antarmuka bagi verifikator || ≥ 75 / 100 || 82.5 / 100 (Kategori 'Excellent')
+   R11 | Adopsi User || Verifier Override Rate || Frekuensi verifikator membatalkan saran AI || ≤ 20.0% || 12.4% (Tingkat adopsi tinggi)
+
+### TABLE 15 rows=5
+   R00 | Kategori Portofolio Klaim || Jumlah Berkas || Persentase Berkas || Total Nominal Klaim || Estimasi Overcharge INA-CBG
+   R01 | Klaim Normal (Auto-Clear) || 240 klaim || 80.00% || Rp 2.685.550.000 (76.15%) || Rp 0 (Klaim Layak Bayar)
+   R02 | Klaim Anomali Suspicious (Audit Review) || 24 klaim || 8.00% || Rp 279.950.000 (7.94%) || Rp 112.420.000 (Potensi Koreksi)
+   R03 | Klaim Anomali High-Risk (Escalate) || 36 klaim || 12.00% || Rp 561.150.000 (15.91%) || Rp 394.950.000 (Overcharge Terbukti)
+   R04 | Total Portofolio Sampel || 300 klaim || 100.00% || Rp 3.526.650.000 || Rp 507.370.000 (Penyelamatan Riil)
+
+### TABLE 16 rows=4
+   R00 | Peran Anggota Tim || Fokus Tanggung Jawab Utama || Keluaran yang Dihasilkan
+   R01 | Lead Platform & Logic Architecture || Merancang arsitektur Tri-Tier, implementasi PyTorch Geometric MHGSL, pipeline FastAPI, dan integrasi Next.js 16. || Arsitektur sistem, repositori kode purwarupa, API backend, dan engine MHGSL.
+   R02 | Research & Clinical Data Specialist || Validasi aturan koding INA-CBG, penyusunan ontologi medis ICD-10/ICD-9, dan kalibrasi skenario 9 sindikat. || Dataset sintetis v2.1 tervalidasi klinis, katalog sindikat, dan modul kepatuhan SATUSEHAT.
+   R03 | Business Case & Strategic Impact Specialist || Analisis kelayakan ekonomi, kepatuhan regulasi UU PDP, perancangan kerangka HITL, dan penyusunan proposal. || Studi kelayakan finansial, analisis dampak DJS, dokumen kepatuhan hukum, dan roadmap implementasi.
+
+### TABLE 17 rows=13
+   R00 | No || Identifikasi Risiko || Potensi Dampak || Tingkat || Strategi Mitigasi Preventif & Kontingensi
+   R01 | 1 || Topological Camouflage (Sindikat menyamarkan rujukan fisik) || Sindikat lolos dari sistem graf homogen atau model tabular. || Tinggi (Kritis) || Dekomposisi Tri-Channel MHGSL (A_top, A_feat, A_sem) dengan bobot atensi negatif pada topologi dan deteksi anomali fitur.
+   R02 | 2 || Model Drift akibat perubahan tarif / pedoman klinis baru || Penurunan akurasi deteksi pasca-revisi regulasi PMK Kemenkes. || Tinggi (Kritis) || Continuous monitoring data drift, evaluasi LOGO periodik, dan re-indexing otomatis ontologi tarif INA-CBG.
+   R03 | 3 || Bottleneck Throughput pada volume 2 juta klaim/hari || Antrean pemrosesan menumpuk, memperlambat proses pencairan klaim. || Tinggi (Kritis) || Arsitektur Dual-Path: caching Redis streaming <500 ms untuk klaim individual dan batch graph convolution harian.
+   R04 | 4 || Resistensi Faskes & Asosiasi Profesi (PERSI / IDI) || Protes klinisi yang merasa dicurigai integritas praktiknya. || Tinggi (Kritis) || Menegaskan status sistem sebagai CDSS (bukan vonis), transparansi bukti diskrepansi klinis, dan pelibatan TKMKB.
+   R05 | 5 || False Accusations (Tuduhan kecurangan keliru) || Sengketa klaim (dispute) yang berlarut-larut dengan faskes. || Tinggi (Kritis) || Prinsip Fail-Safe Human Autonomy: 100% keputusan di tangan manusia; AI hanya memberikan rekomendasi berbobot bukti.
+   R06 | 6 || Kebocoran Data Medis Pasien (Pelanggaran UU PDP) || Sanksi hukum pidana dan hilangnya reputasi publik BPJS. || Tinggi (Kritis) || Isolasi perimeter private on-premise cloud, salted SHA-256 tokenization, enkripsi AES-256, zero external cloud LLM API.
+   R07 | 7 || Kegagalan Bridging API (Downtime V-Claim / SIMRS) || Data klaim gagal terkirim ke modul analitik. || Sedang || Asynchronous message queue (RabbitMQ) dengan mekanisme retry otomatis dan circuit breaker lokal.
+   R08 | 8 || Variasi Format EMR (Data teks tidak terstruktur / scan PDF) || Modul NLP gagal mengekstrak bukti pendukung klinis. || Sedang || Normalisasi format SATUSEHAT HL7 FHIR R4 dan integrasi modul OCR lokal cerdas untuk berkas pindaian faskes.
+   R09 | 9 || Keterbatasan Akses Internet di Kantor Cabang Daerah 3T || Verifikator cabang perintis terhambat mengakses dashboard. || Sedang || Aplikasi Next.js 16 dioptimalkan dengan caching offline-first (PWA) dan kompresi payload respons graf SVG.
+   R10 | 10 || AI Hallucination pada komponen analisis teks klinis || Rekomendasi alasan anomali tidak sesuai fakta medis rekam medis. || Sedang || Menolak teks generatif bebas; ekstraksi strictly grounded pada kode ICD-10/ICD-9 dan fakta numerik rekam medis.
+   R11 | 11 || Vendor Lock-in pada teknologi komputasi proprietary || Ketergantungan biaya lisensi perangkat lunak yang membengkak. || Rendah || 100% stack berbasis open-source enterprise (PyTorch Geometric, Next.js, FastAPI, Redis, PostgreSQL).
+   R12 | 12 || Rendahnya Tingkat Adopsi Verifikator Lapangan || Sistem diabaikan karena verifikator merasa terbebani sistem baru. || Sedang || Program pelatihan modular 6 jam, antarmuka intuitif dengan skor SUS >80, dan penyederhanaan alur kerja one-click audit.
+
+### TABLE 18 rows=8
+   R00 | Tahap & Durasi || Aktivitas Kunci || Keluaran Utama (Deliverables) || Kriteria Kelulusan (Gate Criteria)
+   R01 | Tahap 1 (Bln 1)Validasi Masalah || Wawancara verifikator BPJS, pemetaan 9 modus sindikat, dan formalisasi skema HL7 FHIR R4. || Dokumen spesifikasi kebutuhan sistem (SRS) dan pemetaan ontologi INA-CBG. || Persetujuan tim klinis BPJS & keselarasan regulasi PMK 16/2019.
+   R02 | Tahap 2 (Bln 2)Sintesis & Simulasi || Penyusunan Dataset v2.1 (300 klaim), kalibrasi simulasi OASIS (20P, 12D, 6RS), dan anti-leakage audit. || Dataset v2.1 tervalidasi klinis dan modul Discrete Event Simulator OASIS. || Zero data leakage terverifikasi & reproduktibilitas seed deterministik 100%.
+   R03 | Tahap 3 (Bln 3-4)Pengembangan Core || Implementasi PyTorch Geometric HeteroData MHGSL, Rule Engine Tier-1, dan API FastAPI. || Checkpoint model mhgsl_model.pth, backend serving, dan cache streaming Redis. || Akurasi ≥ 90%, Presisi ≥ 90%, ROC-AUC ≥ 0.95, latensi stream <500 ms.
+   R04 | Tahap 4 (Bln 5)Frontend & XAI || Pengembangan antarmuka Next.js 16, visualisasi graf SVG 3-saluran, modal SHAP, dan klaster faskes. || Dashboard verifikator interaktif terintegrasi API FastAPI. || Skor System Usability Scale (SUS) ≥ 80 / 100.
+   R05 | Tahap 5 (Bln 6-8)Pilot RS Rujukan || Uji coba terbatas pada 1-2 Kantor Cabang percontohan menggunakan data sandbox resmi BPJS. || Laporan evaluasi pilot, matriks penyesuaian faskes, dan log feedback verifikator. || Reduksi durasi telaah berkas anomali ≥ 30%, FPR ≤ 15%, override rate ≤ 20%.
+   R06 | Tahap 6 (Bln 9-10)Integrasi Produksi || Penyambungan bridging V-Claim skala penuh, optimasi GraphSAINT batch, dan audit keamanan ISO 27001. || Sistem Aegis-JKN ter-deploy di private on-premise cloud data center BPJS. || Lolos uji penetrasi siber & throughput mampu memproses 2 juta klaim/hari.
+   R07 | Tahap 7 (Bln 11-12)Rollout Nasional || Peluncuran bertahap ke seluruh Kantor Cabang se-Indonesia, pelatihan nasional, dan monitoring drift. || Platform beroperasi penuh skala nasional terhubung sistem pembayaran klaim. || Rasio Cost-to-Impact terbukti ≥ 1 : 15 dalam perlindungan Dana DJS Kesehatan.
+
+### TABLE 19 rows=1
+   R00 | [KOMITMEN INOVASI] Detect Smarter, Protect JKN« Bersama Aegis-JKN, kita wujudkan perlindungan Dana Jaminan Sosial Kesehatan yang lebih cerdas, melindungi hak setiap peserta, dan mengawal keberlangsungan Universal Health Coverage Indonesia untuk generasi masa depan. »
+

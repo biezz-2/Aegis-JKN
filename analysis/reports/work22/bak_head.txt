@@ -1,0 +1,82 @@
+TOTAL PARAS: 665
+[0004]<> Kategori: Sistem Pengawasan Fasilitas Kesehatan (Pencegahan Upcoding & Unbundling)
+[0008]<> Diajukan Oleh:
+[0011]<> JAKARTA2026
+[0013]<> LEMBAR PERNYATAAN ORISINALITAS DAN INTEGRITAS
+[0035]<> DAFTAR ISI
+[0036]<> LEMBAR PERNYATAAN ORISINALITAS DAN INTEGRITAS ...................................... ii
+[0038]<> DAFTAR ISI ......................................................................... iv
+[0039]<> DAFTAR TABEL & DAFTAR GAMBAR ........................................................ v
+[0040]<> BAB I: PENDAHULUAN .................................................................. 1
+[0046]<> BAB II: ANALISIS AKAR MASALAH (ROOT CAUSE ANALYSIS) ................................. 6
+[0050]<> BAB III: DESKRIPSI & VALUE PROPOSITION SOLUSI DETECT-JKN ........................... 10
+[0055]<> BAB IV: ARSITEKTUR & MEKANISME CARA KERJA SISTEM ................................... 15
+[0063]<> BAB V: TATA KELOLA DATA, KEAMANAN, DAN PRIVASI ..................................... 23
+[0069]<> BAB VI: KERANGKA HUMAN-IN-THE-LOOP & HUMAN AUTONOMY ................................ 28
+[0075]<> BAB VII: RENCANA MINIMUM VIABLE PRODUCT (MVP) & PROTOTYPE .......................... 36
+[0081]<> BAB VIII: PROYEKSI DAMPAK & KEY PERFORMANCE INDICATORS (KPI) ....................... 43
+[0088]<> BAB IX: ANALISIS KELAYAKAN (FEASIBILITY STUDY) ..................................... 49
+[0094]<> BAB X: MANAJEMEN RISIKO & STRATEGI MITIGASI ........................................ 55
+[0098]<> BAB XI: ROADMAP PENGEMBANGAN & RENCANA IMPLEMENTASI ................................ 60
+[0102]<> BAB XII: KESIMPULAN & PENUTUP ...................................................... 65
+[0105]<> DAFTAR PUSTAKA & REFERENSI REGULASI ................................................ 67
+[0107]<> DAFTAR TABEL & DAFTAR GAMBAR
+[0127]<> BAB I: PENDAHULUAN
+[0155]<> BAB II: ANALISIS AKAR MASALAH (ROOT CAUSE ANALYSIS)
+[0207]<> BAB III: DESKRIPSI & VALUE PROPOSITION SOLUSI DETECT-JKN
+[0267]<> BAB IV: ARSITEKTUR & MEKANISME CARA KERJA SISTEM
+[0310]<> BAB V: TATA KELOLA DATA, KEAMANAN, DAN PRIVASI
+[0353]<> BAB VI: KERANGKA HUMAN-IN-THE-LOOP & HUMAN AUTONOMY
+[0401]<> BAB VII: RENCANA MINIMUM VIABLE PRODUCT (MVP) & PROTOTYPE
+[0418]<> Kategori Fitur
+[0446]<> BAB VIII: PROYEKSI DAMPAK & KEY PERFORMANCE INDICATORS (KPI)
+[0503]<> BAB IX: ANALISIS KELAYAKAN (FEASIBILITY STUDY)
+[0532]<> BAB X: MANAJEMEN RISIKO & STRATEGI MITIGASI
+[0605]<> BAB XI: ROADMAP PENGEMBANGAN & RENCANA IMPLEMENTASI
+[0643]<> BAB XII: KESIMPULAN & PENUTUP
+[0653]<> DAFTAR PUSTAKA & REFERENSI REGULASI
+
+--- EM DASH COUNT ---
+em-dash: 11
+
+--- first 40 paras ---
+[0000]<> 
+[0001]<> 
+[0002]<> PROPOSAL INOVASI TEKNOLOGI KESEHATAN
+[0003]<> BPJS KESEHATAN HEALTHKATHON 2026
+[0004]<> Kategori: Sistem Pengawasan Fasilitas Kesehatan (Pencegahan Upcoding & Unbundling)
+[0005]<> _______________________________________________________________________________
+[0006]<> DETECT-JKN: SISTEM CLINICAL DECISION SUPPORT BERBASIS HYBRID RULE-BASED & CONTEXTUAL NLP DENGAN PENDEKATAN HUMAN-IN-THE-LOOP UNTUK DETEKSI DINI ANOMALI DAN UPCODING KLAIM JKN
+[0007]<> « Detect Anomalies. Support Better Decisions. »
+[0008]<> Diajukan Oleh:
+[0009]<> TIM INOVATOR KANDIDAT 1 — DETECT-JKN
+[0010]<> 1. Lead Platform & Logic Architecture2. Research & Clinical Data Specialist3. Business Case & Strategic Impact Specialist
+[0011]<> JAKARTA2026
+[0012]<> 
+[0013]<> LEMBAR PERNYATAAN ORISINALITAS DAN INTEGRITAS
+[0014]<> Yang bertanda tangan di bawah ini, kami selaku Tim Inovator Kandidat 1 peserta kompetisi BPJS Kesehatan Healthkathon 2026, dengan ini menyatakan bahwa proposal inovasi dengan judul:
+[0015]<> [JUDUL KARYA INOVASI] DETECT-JKN: Sistem Clinical Decision Support Berbasis Hybrid Rule-Based & Contextual NLP dengan Pendekatan Human-in-the-Loop untuk Deteksi Dini Anomali dan Upcoding Klaim JKN
+[0016]<> 
+[0017]<> Adalah benar-benar hasil karya orisinal tim kami, belum pernah dipublikasikan secara komersial, dan tidak mengandung unsur plagiarisme atau pelanggaran hak kekayaan intelektual pihak mana pun. Bersama ini kami juga menyatakan komitmen integritas pera
+[0018]<ListBullet> 1. Kepatuhan Terhadap Regulasi Data Pribadi: Seluruh perancangan arsitektur data DETECT-JKN mematuhi Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP) dan Undang-Undang Nomor 17 Tahun 2023 tentang Kesehatan. Pengembangan pur
+[0019]<ListBullet> 2. Prinsip Anti-Overclaim & Transparansi Sains: Kami tidak mengklaim akurasi mutlak 100% dan tidak mengklaim klaim penghematan anggaran yang spekulatif. Seluruh metrik teknis, operasional, dan ekonomi dihitung berbasis metodologi ilmiah yang teruji, 
+[0020]<ListBullet> 3. Prinsip Human Autonomy & Fail-Safe AI: Sistem dirancang murni sebagai pendukung keputusan klinis (Clinical Decision Support System). Kecerdasan Buatan (AI) tidak diberikan kewenangan untuk mengambil keputusan vonis fraud, penolakan klaim, ataupun 
+[0021]<ListBullet> 4. Teknologi Tepat Guna (Right-Sized Engineering): Pemilihan komponen teknologi (Rule-Based, Clinical NLP, RAG) didasarkan pada kebutuhan fungsional nyata dari workflow verifikasi klaim, bukan demi mengejar tren komputasi yang berlebihan atau menamba
+[0022]<> Demikian pernyataan ini kami buat dengan penuh rasa tanggung jawab, integritas moral, dan dedikasi demi mendukung keberlanjutan Program Jaminan Kesehatan Nasional (JKN) yang berkeadilan bagi seluruh rakyat Indonesia.
+[0023]<> Mengetahui,Perwakilan Tim Teknis & Logika( Tim Pengusul Kandidat 1 )
+[0024]<> Jakarta, Oktober 2026Perwakilan Riset & Strategi Dampak( Tim Pengusul Kandidat 1 )
+[0025]<> 
+[0026]<> 
+[0027]<> 
+[0028]<> RINGKASAN EKSEKUTIF
+[0029]<> Program Jaminan Kesehatan Nasional (JKN) yang dikelola oleh BPJS Kesehatan merupakan salah satu sistem jaminan kesehatan semesta (Universal Health Coverage) terbesar di dunia, dengan cakupan kepesertaan lebih dari 270 juta jiwa dan pemrosesan ratusan
+[0030]<> Proposal ini mengusulkan solusi inovatif DETECT-JKN (Detect Anomalies. Support Better Decisions), sebuah platform Clinical Decision Support System (CDSS) berbasis arsitektur hybrid yang mengombinasikan deterministic rule-based filtering dengan contex
+[0031]<> Keunggulan utama DETECT-JKN berakar pada lima pilar strategis: (1) Prinsip Right-Sized Technology, di mana validasi administratif deterministik ditangani secara instan oleh rule engine, sedangkan model NLP medis hanya diaktifkan untuk menganalisis na
+[0032]<> Rencana Minimum Viable Product (MVP) difokuskan secara mendalam pada use case berisiko tinggi di domain penyakit katastropik Kardiologi (misal: dugaan upcoding Infark Miokard Akut tanpa bukti hemodinamik/enzim jantung) dan Neurologi (misal: Stroke Is
+[0033]<> KATA KUNCI: Kata Kunci: Upcoding, Unbundling, Deteksi Anomali Klaim JKN, Clinical Decision Support System, Human-in-the-Loop, Clinical NLP, Explainable AI, UU Pelindungan Data Pribadi.
+[0034]<> 
+[0035]<> DAFTAR ISI
+[0036]<> LEMBAR PERNYATAAN ORISINALITAS DAN INTEGRITAS ...................................... ii
+[0037]<> RINGKASAN EKSEKUTIF ............................................................... iii
+[0038]<> DAFTAR ISI ......................................................................... iv
+[0039]<> DAFTAR TABEL & DAFTAR GAMBAR ........................................................ v

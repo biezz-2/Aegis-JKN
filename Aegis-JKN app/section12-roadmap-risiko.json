@@ -1,0 +1,516 @@
+[
+  {
+    "object": "block",
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "12. Roadmap Implementasi & Risiko"
+          },
+          "annotations": { "bold": true }
+        }
+      ]
+    }
+  },
+  {
+    "object": "block",
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "12.1 Phased Implementation Roadmap (18 Months)"
+          },
+          "annotations": { "bold": true }
+        }
+      ]
+    }
+  },
+  {
+    "object": "block",
+    "type": "table",
+    "table": {
+      "table_width": 4,
+      "has_column_header": true,
+      "has_row_header": false,
+      "children": [
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Phase" }, "annotations": { "bold": true } }],
+              [{ "type": "text", "text": { "content": "Timeline" }, "annotations": { "bold": true } }],
+              [{ "type": "text", "text": { "content": "Theme" }, "annotations": { "bold": true } }],
+              [{ "type": "text", "text": { "content": "Key Deliverables" }, "annotations": { "bold": true } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Phase 0" } }],
+              [{ "type": "text", "text": { "content": "Bulan 1–3" } }],
+              [{ "type": "text", "text": { "content": "MVP Hardening" } }],
+              [{ "type": "text", "text": { "content": "• TypeScript strict mode, test coverage >80%\n• CI/CD: GitHub Actions → ArgoCD GitOps\n• Observability: OpenTelemetry, Grafana dashboards\n• Security: Secrets management, vulnerability scanning\n• Documentation: OpenAPI spec, Architecture Decision Records (ADRs)" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Phase 1" } }],
+              [{ "type": "text", "text": { "content": "Bulan 4–6" } }],
+              [{ "type": "text", "text": { "content": "Single Region Pilot" } }],
+              [{ "type": "text", "text": { "content": "• Deploy to staging K8s (EKS/GKE)\n• Shadow mode: inference parallel to manual review\n• A/B testing framework for model versions\n• Load testing: 10K claims/day baseline\n• Compliance audit: UU PDP, SATUSEHAT integration test\n• Go/No-Go: Precision >90%, Latency p99 <500ms, Zero critical vulns" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Phase 2" } }],
+              [{ "type": "text", "text": { "content": "Bulan 7–12" } }],
+              [{ "type": "text", "text": { "content": "Multi-Region Production" } }],
+              [{ "type": "text", "text": { "content": "• Multi-region active-active (Jakarta + Singapore DR)\n• Feature Store (Feast) for training-serving consistency\n• Automated retraining pipeline (monthly + drift detection)\n• Graph DB cluster (FalkorDB HA) for fraud ring queries\n• Advanced explainability: Counterfactual explanations\n• Integration: BPJS V-Claim API, SATUSEHAT Terminology Server\n• Target: 100K claims/day, 99.9% availability" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Phase 3" } }],
+              [{ "type": "text", "text": { "content": "Bulan 13–18" } }],
+              [{ "type": "text", "text": { "content": "AI-Native Platform" } }],
+              [{ "type": "text", "text": { "content": "• LLM integration: Clinical narrative summarization (fine-tuned IndoBERT)\n• Active learning loop: Human feedback → model improvement\n• Federated learning: Cross-provider training without data sharing\n• Real-time streaming: Kafka/Flink for sub-second detection\n• Expansion: Pharmacy fraud, Provider network anomaly\n• Open platform: Plugin architecture for 3rd party models" } }]
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "object": "block",
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "12.2 Risk Register (Top 10 Risks)"
+          },
+          "annotations": { "bold": true }
+        }
+      ]
+    }
+  },
+  {
+    "object": "block",
+    "type": "table",
+    "table": {
+      "table_width": 6,
+      "has_column_header": true,
+      "has_row_header": false,
+      "children": [
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "ID" }, "annotations": { "bold": true } }],
+              [{ "type": "text", "text": { "content": "Risk" }, "annotations": { "bold": true } }],
+              [{ "type": "text", "text": { "content": "Likelihood" }, "annotations": { "bold": true } }],
+              [{ "type": "text", "text": { "content": "Impact" }, "annotations": { "bold": true } }],
+              [{ "type": "text", "text": { "content": "Score" }, "annotations": { "bold": true } }],
+              [{ "type": "text", "text": { "content": "Mitigation Strategy" }, "annotations": { "bold": true } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "R1" } }],
+              [{ "type": "text", "text": { "content": "Data Leakage in Production" } }],
+              [{ "type": "text", "text": { "content": "Medium" } }],
+              [{ "type": "text", "text": { "content": "Critical" } }],
+              [{ "type": "text", "text": { "content": "High" } }],
+              [{ "type": "text", "text": { "content": "Automated leakage tests in CI pipeline, SHAP audit pre-deploy, feature isolation boundaries" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "R2" } }],
+              [{ "type": "text", "text": { "content": "Model Drift (Concept/Data)" } }],
+              [{ "type": "text", "text": { "content": "High" } }],
+              [{ "type": "text", "text": { "content": "High" } }],
+              [{ "type": "text", "text": { "content": "High" } }],
+              [{ "type": "text", "text": { "content": "Drift detectors (KS-test, PSI, Jensen-Shannon), monthly retrain trigger, automated alerting on distribution shift" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "R3" } }],
+              [{ "type": "text", "text": { "content": "SATUSEHAT API Changes" } }],
+              [{ "type": "text", "text": { "content": "Medium" } }],
+              [{ "type": "text", "text": { "content": "High" } }],
+              [{ "type": "text", "text": { "content": "Medium" } }],
+              [{ "type": "text", "text": { "content": "Adapter pattern with version pinning, contract testing in CI, fallback to cached terminology" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "R4" } }],
+              [{ "type": "text", "text": { "content": "Regulatory Change (UU PDP)" } }],
+              [{ "type": "text", "text": { "content": "Low" } }],
+              [{ "type": "text", "text": { "content": "Critical" } }],
+              [{ "type": "text", "text": { "content": "Medium" } }],
+              [{ "type": "text", "text": { "content": "Dedicated compliance team, quarterly DPIA updates, legal review cycle, privacy-by-design architecture" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "R5" } }],
+              [{ "type": "text", "text": { "content": "GPU Cost Overrun" } }],
+              [{ "type": "text", "text": { "content": "High" } }],
+              [{ "type": "text", "text": { "content": "Medium" } }],
+              [{ "type": "text", "text": { "content": "Medium" } }],
+              [{ "type": "text", "text": { "content": "Spot instances with MIG, right-sizing automation, cost alerts & budgets, model quantization (INT8/INT4)" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "R6" } }],
+              [{ "type": "text", "text": { "content": "Talent Retention (ML/Rust)" } }],
+              [{ "type": "text", "text": { "content": "Medium" } }],
+              [{ "type": "text", "text": { "content": "High" } }],
+              [{ "type": "text", "text": { "content": "Medium" } }],
+              [{ "type": "text", "text": { "content": "Cross-training program, comprehensive documentation, competitive compensation, knowledge-sharing culture" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "R7" } }],
+              [{ "type": "text", "text": { "content": "Graph DB Scalability" } }],
+              [{ "type": "text", "text": { "content": "Medium" } }],
+              [{ "type": "text", "text": { "content": "High" } }],
+              [{ "type": "text", "text": { "content": "Medium" } }],
+              [{ "type": "text", "text": { "content": "Partitioning strategy (by provider/region), read replicas, query optimization, connection pooling" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "R8" } }],
+              [{ "type": "text", "text": { "content": "False Positive Impact on Providers" } }],
+              [{ "type": "text", "text": { "content": "Medium" } }],
+              [{ "type": "text", "text": { "content": "High" } }],
+              [{ "type": "text", "text": { "content": "Medium" } }],
+              [{ "type": "text", "text": { "content": "Human-in-the-loop mandatory, formal appeal process with SLA, precision threshold gating, provider communication portal" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "R9" } }],
+              [{ "type": "text", "text": { "content": "Synthetic-to-Real Gap" } }],
+              [{ "type": "text", "text": { "content": "High" } }],
+              [{ "type": "text", "content": "Critical" }],
+              [{ "type": "text", "text": { "content": "High" } }],
+              [{ "type": "text", "text": { "content": "Progressive real data onboarding, domain adaptation layers, continual evaluation on holdout real data, synthetic data quality gates" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "R10" } }],
+              [{ "type": "text", "text": { "content": "Vendor Lock-in (Cloud/Vendor)" } }],
+              [{ "type": "text", "text": { "content": "Low" } }],
+              [{ "type": "text", "text": { "content": "High" } }],
+              [{ "type": "text", "text": { "content": "Medium" } }],
+              [{ "type": "text", "text": { "content": "Multi-cloud Terraform modules, CNCF standards (K8s, OpenTelemetry, Prometheus), open data formats (Parquet, Arrow), abstracted provider interfaces" } }]
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "object": "block",
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "12.3 Success Metrics (KPIs)"
+          },
+          "annotations": { "bold": true }
+        }
+      ]
+    }
+  },
+  {
+    "object": "block",
+    "type": "table",
+    "table": {
+      "table_width": 3,
+      "has_column_header": true,
+      "has_row_header": false,
+      "children": [
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Category" }, "annotations": { "bold": true } }],
+              [{ "type": "text", "text": { "content": "Metric" }, "annotations": { "bold": true } }],
+              [{ "type": "text", "text": { "content": "Target" }, "annotations": { "bold": true } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Technical" } }],
+              [{ "type": "text", "text": { "content": "AUPRC (Area Under Precision-Recall Curve)" } }],
+              [{ "type": "text", "text": { "content": ">0.90" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Technical" } }],
+              [{ "type": "text", "text": { "content": "Latency p99 (inference end-to-end)" } }],
+              [{ "type": "text", "text": { "content": "<500ms" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Technical" } }],
+              [{ "type": "text", "text": { "content": "System Uptime" } }],
+              [{ "type": "text", "text": { "content": "99.9%" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Business" } }],
+              [{ "type": "text", "text": { "content": "Fraud Detection Rate Increase" } }],
+              [{ "type": "text", "text": { "content": "↑30% vs baseline" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Business" } }],
+              [{ "type": "text", "text": { "content": "Investigation Time Reduction" } }],
+              [{ "type": "text", "text": { "content": "↓50% avg case time" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Business" } }],
+              [{ "type": "text", "text": { "content": "Overcharge Recovery" } }],
+              [{ "type": "text", "text": { "content": ">Rp100B/year" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Compliance" } }],
+              [{ "type": "text", "text": { "content": "Data Breaches" } }],
+              [{ "type": "text", "text": { "content": "Zero" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Compliance" } }],
+              [{ "type": "text", "text": { "content": "Audit Trail Completeness" } }],
+              [{ "type": "text", "text": { "content": "100%" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Compliance" } }],
+              [{ "type": "text", "text": { "content": "DPIA Currency" } }],
+              [{ "type": "text", "text": { "content": "Current (quarterly review)" } }]
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "object": "block",
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "12.4 Budget Estimation (Indicative, 18-Month)"
+          },
+          "annotations": { "bold": true }
+        }
+      ]
+    }
+  },
+  {
+    "object": "block",
+    "type": "table",
+    "table": {
+      "table_width": 3,
+      "has_column_header": true,
+      "has_row_header": false,
+      "children": [
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Category" }, "annotations": { "bold": true } }],
+              [{ "type": "text", "text": { "content": "Allocation" }, "annotations": { "bold": true } }],
+              [{ "type": "text", "text": { "content": "Key Components" }, "annotations": { "bold": true } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Infrastructure" } }],
+              [{ "type": "text", "text": { "content": "40%" } }],
+              [{ "type": "text", "text": { "content": "Kubernetes (EKS/GKE), GPU compute, databases (PostgreSQL, FalkorDB, Redis), networking, CDN, monitoring stack" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "ML Platform" } }],
+              [{ "type": "text", "text": { "content": "25%" } }],
+              [{ "type": "text", "text": { "content": "MLflow tracking, Feast feature store, data labeling (Label Studio), training compute, model registry, experiment tracking" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Engineering Team" } }],
+              [{ "type": "text", "text": { "content": "25%" } }],
+              [{ "type": "text", "text": { "content": "2 ML Engineers, 3 Backend, 1 Frontend, 1 DevOps/SRE, 1 Security Engineer (incl. hiring, onboarding, training)" } }]
+            ]
+          }
+        },
+        {
+          "object": "block",
+          "type": "table_row",
+          "table_row": {
+            "cells": [
+              [{ "type": "text", "text": { "content": "Compliance & Legal" } }],
+              [{ "type": "text", "text": { "content": "10%" } }],
+              [{ "type": "text", "text": { "content": "External audits, DPO retainer, ISO 27001/SOC2 certifications, legal counsel, DPIA assessments, penetration testing" } }]
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "object": "block",
+    "type": "callout",
+    "callout": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "Note: Budget percentages are indicative for planning purposes. Actual allocation will vary by phase — Phase 0–1 weighted toward Engineering & Infrastructure, Phase 2–3 toward ML Platform & Compliance. All figures in IDR; cloud spend assumes reserved instances + spot optimization."
+          }
+        }
+      ],
+      "icon": { "type": "emoji", "emoji": "💡" },
+      "color": "gray_background"
+    }
+  }
+]

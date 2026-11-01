@@ -1,0 +1,31 @@
+replicaCount: 3
+
+image:
+  repository: aegis-jkn/api
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 8000
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 20
+  targetCPUUtilizationPercentage: 70
+  targetLatencyP99: 500ms
+
+env:
+  DATABASE_URL: "postgresql://user:pass@postgres:5432/aegis"
+  GRAPHDB_URL: "bolt://falkordb:7687"
+  VECTORDB_URL: "http://qdrant:6333"
+  REDIS_URL: "redis://redis:6379"

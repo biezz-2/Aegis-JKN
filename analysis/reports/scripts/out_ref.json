@@ -1,0 +1,57 @@
+{
+ "escalate": {
+  "target": 394950000,
+  "best": [],
+  "global_median": 400050000.0,
+  "global_mean": 156763636.36,
+  "global_median_floor0": 429630000.0,
+  "haircut30": 168345000.0,
+  "haircut40": 224460000.0,
+  "haircut396": 222215400.0,
+  "haircut4016": 225357840.0,
+  "total": 561150000,
+  "n": 36,
+  "implied_ratio": 0.703823
+ },
+ "review": {
+  "target": 112420000,
+  "best": [
+   [
+    "layanan_los_mean",
+    false,
+    109444271.07,
+    2975728.9338210076
+   ],
+   [
+    "layanan_los_mean",
+    true,
+    123173611.31,
+    10753611.308677122
+   ],
+   [
+    "layanan_los_median",
+    false,
+    141150000.0,
+    28730000.0
+   ],
+   [
+    "layanan_los_median",
+    true,
+    143300000.0,
+    30880000.0
+   ]
+  ],
+  "global_median": 172550000.0,
+  "global_mean": 10359090.91,
+  "global_median_floor0": 212450000.0,
+  "haircut30": 83985000.0,
+  "haircut40": 111980000.0,
+  "haircut396": 110860200.0,
+  "haircut4016": 112427920.0,
+  "total": 279950000,
+  "n": 24,
+  "implied_ratio": 0.401572
+ },
+ "global_median_nonfraud": 4475000.0,
+ "global_mean_nonfraud": 11232954.55
+}

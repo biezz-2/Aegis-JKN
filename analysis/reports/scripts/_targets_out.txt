@@ -1,0 +1,22 @@
+n=300 P=36 N=264
+candidate score columns: ['los_hari', 'prosedur_code', 'skor_sentimen', 'kontradiksi_narasi', 'skor_fraud', 'is_fraud']
+
+### acc93: 1 hit(s)
+    ('skor_fraud', 0.45, 0.93, 0.631579)
+
+### prec9412: 0 hit(s)
+
+### auc9825: 0 hit(s)
+
+### auprc9142: 0 hit(s)
+
+### fpr106: 1 hit(s)
+    ('skor_fraud', 0.14, 0.106061, 0.906667)
+
+### AUC/AP of each candidate column (max achievable by a score column):
+   los_hari                 AUC=0.5923 AP=0.4891
+   prosedur_code            AUC=0.5164 AP=0.5622
+   skor_sentimen            AUC=0.8944 AP=0.6610
+   kontradiksi_narasi       AUC=0.6351 AP=0.9375
+   skor_fraud               AUC=1.0000 AP=1.0000
+   is_fraud                 AUC=1.0000 AP=1.0000

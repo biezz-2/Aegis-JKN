@@ -1,0 +1,14 @@
+19 | **Tiga risiko terbesar.** Pertama, kebocoran label: `Sinyal SHAP`, `Kontribusi Saluran`, `Alasan`, `Status`, `Skor Fraud`, dan `Kontradiksi Narasi` ikut terbawa ke frontend dan ke berkas JSON publik, 
+34 | | F-04 | Ground truth dipublikasikan ke peramban: `Aegis-JKN/public/payload-aegis-jkn.json` identik byte-per-byte dengan payload Colab (md5 `31cc9fe8...`) dan memuat `gtSent`, `sentiment_gt`, `syndHit
+55 | | F-25 | Empat ilustrasi klinis upcoding/phantom/unbundling, konsep "Topological Camouflage", analisis 5-Whys, matriks PDP Pasal 16, matriks AI-vs-verifikator, dan 4 aturan Tier-1 hilang saat revisi |
+64 | | F-34 | Kualitas build: `npm run build` lolos hanya karena `typescript.ignoreBuildErrors: true`; `npx tsc --noEmit` keluar kode 1 dengan 8 error; `npm test` tidak ada; tidak ada CI di `.github/` | `1
+80 | | 3 | Metodologi ML dan validasi eksperimen | 2 | Protokol tertulis rapi di arsip (GroupKFold pada pasien, LOGO pada faskes, bootstrap dan Hanley-McNeil). Tapi nol implementasi: tidak ada rule engine,
+99 | | B. Submit setelah perbaikan P0 minimum dalam 2 hari | Skenario A ditambah: satu pipeline evaluasi minimal yang benar-benar jalan di atas 300 baris (split GroupKFold pada pasien dan LOGO pada faskes,
+102 | Catatan: skenario B dan C memakai hasil yang sama, yaitu manifest dan pipeline. Yang membedakan adalah kedalaman baseline, ledger overcharge, dan studi usability. Bila harus memilih satu, pilih B, dan
+110 | | 1 | Unduh Participant Guide secara manual (SharePoint 403 untuk bot) dan petakan daftar berkas wajib "Submit project akhir"; verifikasi akun portal Healthkathon termasuk 2FA | Tim | `10-competition.
+112 | | 3 | Hapus ground truth dari bundle: buang `gtSent`, `sentiment_gt`, `syndHit` dari `public/payload-aegis-jkn.json`, hapus `innerHTML` tanpa escaping seragam di `dashboard-aegis-jkn.html`, dan blokir
+114 | | 5 | Bangun pipeline evaluasi minimal: split GroupKFold pada `Pasien` plus LOGO pada `Faskes`, seed 20260707, satu file prediksi held-out, satu skrip metrik, dan `experiments/manifest.json` per metri
+117 | | 8 | Tulis paragraf posisi terhadap sistem yang sudah berjalan: SmartClaim JKN, VPK, AAK, tim PK-JKN, dan AI 650.000 berkas per hari dengan indikasi 5 persen, plus 1 kalimat diferensiasi; koreksi Rp2
+119 | | 10 | Rotasi token Notion di Integrations, ganti literal di lima file skrip dengan pembacaan environment variable, tambahkan `Notion-docs/` dan `analysis/` ke `.gitignore`, dan matikan `typescript.ig
+148 | | 20 | Hit-rate sindikat | 100 persen (5 dari 5) | PDF Colab p03, `payload syndHit` | TERBUKTI sebagai label by construction: seluruh 16 klaim sindikat sengaja masuk antrean 20 | Sama seperti nomor 19
+150 | | 22 | Distribusi sentimen | 62 positif / 14 netral / 24 negatif | PDF Colab p01, `payload gtSent` | SALAH untuk dataset 300: 170 positif / 58 netral / 72 negatif. Angka PDF berlaku untuk 100 klaim ge

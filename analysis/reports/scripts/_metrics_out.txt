@@ -1,0 +1,13 @@
+=== rows nb vs live: 300 300
+live cols: ['Tanggal', 'Skor Sentimen', 'Narasi Rekam Medis', 'Biaya Rp', 'Risiko', 'LOS hari', 'Prosedur ICD-9-CM', 'Dokter', 'Sinyal SHAP', 'Modus', 'Rujukan', 'Faskes', 'Sindikat', 'Skor Fraud', 'Obat', 'Umpan Balik Pasien', 'Kontradiksi Narasi', 'Pasien', 'Alasan Berobat', 'Status', 'Alasan', 'Catatan', 'Sentimen', 'Layanan', 'Kontribusi Saluran', 'Diagnosis ICD-10', 'Name', '_notion_page_id', '_last_edited']
+live sha: d6fb95b9fbfb6bf47e9a99bcf57df0e38b00a13758b6d3ac14779e64a6121119
+
+===== nb (300): n=300 P=36 (12.00%)
+  skor_fraud: AUC=1.0000 AP=1.0000 bestF1thr=0.8000 acc=100.00% prec=100.00% rec=100.00% f1=1.0000 (tp36,fp0,fn0,tn264)
+  skor_sentimen: AUC=0.1056 AP=0.0684 bestF1thr=-0.9000 acc=12.00% prec=12.00% rec=100.00% f1=0.2143 (tp36,fp264,fn0,tn0)
+    thr=0.5: acc=94.67% prec=69.23% rec=100.00% fpr=6.06%
+    thr=0.6: acc=95.33% prec=72.00% rec=100.00% fpr=5.30%
+    thr=0.7: acc=98.33% prec=87.80% rec=100.00% fpr=1.89%
+    thr=0.8: acc=100.00% prec=100.00% rec=100.00% fpr=0.00%
+    thr=0.85: acc=100.00% prec=100.00% rec=69.44% fpr=0.00%
+    thr=0.9: acc=100.00% prec=100.00% rec=25.00% fpr=0.00%

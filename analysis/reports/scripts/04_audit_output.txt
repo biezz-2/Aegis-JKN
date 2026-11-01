@@ -1,0 +1,525 @@
+
+==============================================================================
+0. MEMUAT DATA
+==============================================================================
+CSV rows=300 cols=29
+JSON rows=300
+CSV columns: ['Tanggal', 'Skor Sentimen', 'Narasi Rekam Medis', 'Biaya Rp', 'Risiko', 'LOS hari', 'Prosedur ICD-9-CM', 'Dokter', 'Sinyal SHAP', 'Modus', 'Rujukan', 'Faskes', 'Sindikat', 'Skor Fraud', 'Obat', 'Umpan Balik Pasien', 'Kontradiksi Narasi', 'Pasien', 'Alasan Berobat', 'Status', 'Alasan', 'Catatan', 'Sentimen', 'Layanan', 'Kontribusi Saluran', 'Diagnosis ICD-10', 'Name', '_notion_page_id', '_last_edited']
+JSON keys == CSV header (set): True
+JSON-only keys: []
+CSV-only keys: []
+
+==============================================================================
+7. VERIFIKASI ID KLM001-KLM300
+==============================================================================
+total=300 unik=300 duplikat=[]
+pola KLM\d{3} melanggar: []
+min=1 max=300 jumlah=300; angka hilang: []
+huruf kecil: [] | panjang != 6: []
+page_id unik: 300
+KLAIM 'ID tidak terputus KLM001-KLM300' -> BENAR
+
+==============================================================================
+2. VERIFIKASI ANGKA KLAIM (03 §3/§6, 00 §3)
+==============================================================================
+Status: {'auto_clear': 240, 'review': 24, 'escalate': 36}
+Risiko: {'low': 240, 'medium': 10, 'fraud': 36, 'high': 14}
+LOS kosong = 0  -> []
+Alasan kosong = 1 -> ['KLM031']
+Modus kosong = 240
+Sindikat kosong = 264
+Total nominal = Rp3.526.650.000
+  nominal auto_clear = Rp2.685.550.000
+  nominal escalate = Rp561.150.000
+  nominal review = Rp279.950.000
+  jumlah per-status = 3526650000 == total: True
+
+==============================================================================
+3. KONSISTENSI LABEL RISIKO vs SKOR FRAUD
+==============================================================================
+Mismatch dengan interpretasi '>= batas bawah' (0.35/0.60/0.80 masuk kelas atas): 0
+Mismatch dengan interpretasi '> batas bawah' (0.35/0.60/0.80 masuk kelas bawah): 1
+    ('KLM115', 0.8, 'fraud')
+
+Baris dengan skor PERSIS pada batas (0,35 / 0,60 / 0,80):
+    ('KLM115', 0.8, 'fraud', 0.8)
+Jumlah baris tepat di batas: 1
+max skor kelas high = 0.79 ; min skor kelas fraud = 0.8
+Baris high dengan skor >= 0.80: []
+Baris fraud dengan skor < 0.80: []
+
+Ambang implisit (min skor tiap label, maks skor tiap label):
+   low: min=0.04 maks=0.14 n=240
+   medium: min=0.4 maks=0.53 n=10
+   high: min=0.62 maks=0.79 n=14
+   fraud: min=0.8 maks=0.95 n=36
+
+==============================================================================
+4. KONSISTENSI LINTAS KOLOM
+==============================================================================
+Status x Risiko:
+   auto_clear  low     240
+   escalate    fraud   36
+   review      high    14
+   review      medium  10
+auto_clear dengan Risiko != low: 0 []
+escalate dengan Risiko != fraud: 0 []
+review dengan Risiko = fraud: 0 []
+
+Sindikat x Modus:
+   (kosong)     | (kosong)               240
+   (kosong)     | anomali_frekuensi      12
+   (kosong)     | biaya_markup           1
+   (kosong)     | drug_diversion         1
+   (kosong)     | overbilling            4
+   (kosong)     | prolonged_stay         4
+   (kosong)     | upcoding               2
+   SYND-01      | upcoding               3
+   SYND-02      | phantom_billing        3
+   SYND-03      | unbundling             6
+   SYND-04      | drug_diversion         2
+   SYND-05      | cloning                2
+   SYND-06      | repeat_billing         4
+   SYND-07      | iur_biaya              4
+   SYND-08      | readmission_berulang   6
+   SYND-09      | excessive_usage        6
+Sindikat terisi tanpa Modus: []
+Modus terisi tanpa Sindikat (per modus): {'anomali_frekuensi': 12, 'prolonged_stay': 4, 'overbilling': 4, 'biaya_markup': 1, 'drug_diversion': 1, 'upcoding': 2}
+
+Cek rentang skor per sindikat vs tabel 10-simulation-dataset.md:
+    ('KLM109', 'SYND-08', 0.86, 'di luar rentang dok [0.75, 0.8]')
+    ('KLM111', 'SYND-08', 0.89, 'di luar rentang dok [0.75, 0.8]')
+    ('KLM112', 'SYND-08', 0.86, 'di luar rentang dok [0.75, 0.8]')
+    ('KLM114', 'SYND-08', 0.88, 'di luar rentang dok [0.75, 0.8]')
+    ('KLM110', 'SYND-08', 0.87, 'di luar rentang dok [0.75, 0.8]')
+    ('KLM102', 'SYND-06', 0.91, 'di luar rentang dok [0.85, 0.9]')
+    ('KLM120', 'SYND-09', 0.84, 'di luar rentang dok [0.78, 0.83]')
+    ('KLM119', 'SYND-09', 0.84, 'di luar rentang dok [0.78, 0.83]')
+    ('KLM113', 'SYND-08', 0.88, 'di luar rentang dok [0.75, 0.8]')
+    ('KLM101', 'SYND-06', 0.92, 'di luar rentang dok [0.85, 0.9]')
+Total pelanggaran sindikat: 10
+
+Cek prefiks 'Alasan' vs label Risiko:
+   low: {'NORMAL': 239, '(KOSONG)': 1}
+   medium: {'ANOMALI SEDANG': 10}
+   high: {'ANOMALI TINGGI (belum tentu fraud)': 14}
+   fraud: {'FRAUD (Readmission Berulang)': 6, 'FRAUD (Excessive Usage)': 6, 'FRAUD (Repeat Billing)': 4, 'FRAUD (Iur Biaya)': 4, 'FRAUD (Biaya Markup)': 1, 'FRAUD (Drug Diversion)': 3, 'FRAUD (Phantom Billing)': 3, 'FRAUD (Upcoding)': 3, 'FRAUD (Unbundling)': 3, 'FRAUD (Unbundling — klaim pecahan)': 3}
+Baris review/escalate dengan Alasan kosong: []
+
+Baris dengan Kontribusi Saluran tidak lengkap (T/F/S): [] total 0
+Jumlah kanal (T+F+S) dikurangi Skor Fraud -> nilai unik: [-0.17, -0.16, -0.14, -0.13, -0.12, -0.1, -0.09, -0.08, -0.07, -0.06, -0.04, -0.03, -0.02, -0.01, 0.0, 0.01, 0.02, 0.03]
+  Contoh: [('KLM285', 0.0), ('KLM278', 0.0), ('KLM264', 0.0), ('KLM280', 0.0), ('KLM263', 0.0)]
+
+==============================================================================
+4b. PAIRWISE KLINIS (dx -> prosedur) DAN OBAT
+==============================================================================
+   E11.9    -> 00.66    n=1
+   E11.9    -> —        n=40
+   I10      -> —        n=21
+   I21.9    -> 00.66    n=20
+   J18.9    -> —        n=38
+   J45.9    -> —        n=21
+   K29.7    -> 00.66    n=3
+   K29.7    -> —        n=14
+   K35.8    -> 47.09    n=31
+   K40.9    -> 53.1     n=29
+   K80.2    -> 51.23    n=29
+   K80.2    -> 96.04    n=3
+   N20.0    -> 98.51    n=9
+   N39.0    -> —        n=14
+   O80      -> 74.1     n=1
+   O80      -> —        n=8
+   S72.0    -> 81.52    n=18
+Diagnosis tanpa prosedur: []
+Baris prosedur kosong/tanda hubung: ['KLM280', 'KLM263', 'KLM281', 'KLM294', 'KLM274', 'KLM284', 'KLM261', 'KLM265', 'KLM273', 'KLM279', 'KLM299', 'KLM272', 'KLM277', 'KLM289', 'KLM291', 'KLM275', 'KLM292', 'KLM288', 'KLM296', 'KLM290', 'KLM287', 'KLM300', 'KLM269', 'KLM266', 'KLM293', 'KLM236', 'KLM260', 'KLM229', 'KLM232', 'KLM253', 'KLM231', 'KLM247', 'KLM237', 'KLM238', 'KLM233', 'KLM257', 'KLM226', 'KLM234', 'KLM240', 'KLM245', 'KLM241', 'KLM239', 'KLM242', 'KLM230', 'KLM259', 'KLM227', 'KLM254', 'KLM249', 'KLM194', 'KLM188', 'KLM211', 'KLM193', 'KLM197', 'KLM183', 'KLM216', 'KLM200', 'KLM185', 'KLM203', 'KLM181', 'KLM208', 'KLM199', 'KLM202', 'KLM207', 'KLM182', 'KLM220', 'KLM214', 'KLM184', 'KLM189', 'KLM156', 'KLM143', 'KLM171', 'KLM160', 'KLM163', 'KLM153', 'KLM150', 'KLM144', 'KLM145', 'KLM148', 'KLM177', 'KLM142', 'KLM164', 'KLM179', 'KLM174', 'KLM176', 'KLM149', 'KLM169', 'KLM168', 'KLM180', 'KLM152', 'KLM133', 'KLM109', 'KLM140', 'KLM111', 'KLM112', 'KLM114', 'KLM115', 'KLM118', 'KLM110', 'KLM117', 'KLM124', 'KLM126', 'KLM108', 'KLM128', 'KLM131', 'KLM120', 'KLM119', 'KLM136', 'KLM106', 'KLM122', 'KLM113', 'KLM130', 'KLM132', 'KLM138', 'KLM125', 'KLM139', 'KLM134', 'KLM116', 'KLM135', 'KLM107', 'KLM079', 'KLM078', 'KLM099', 'KLM094', 'KLM084', 'KLM089', 'KLM082', 'KLM092', 'KLM098', 'KLM088', 'KLM059', 'KLM058', 'KLM052', 'KLM072', 'KLM064', 'KLM054', 'KLM074', 'KLM068', 'KLM062', 'KLM069', 'KLM029', 'KLM042', 'KLM044', 'KLM032', 'KLM034', 'KLM049', 'KLM038', 'KLM048', 'KLM028', 'KLM039', 'KLM014', 'KLM023', 'KLM013', 'KLM021', 'KLM015', 'KLM020', 'KLM022']
+
+Baris dengan dx/proc yang bertentangan dengan modus skenario:
+    KLM016 cloning cloning proc=47.09
+    KLM024 upcoding upcoding dx=O80 proc=74.1
+    KLM018 upcoding upcoding dx=E11.9 proc=00.66
+    KLM017 cloning cloning proc=47.09
+
+Satuan obat yang dipakai:
+    {'vial': 211, 'tablet': 291, 'nebules': 59, 'pen': 4}
+Obat dengan qty ekstrem (>=12):
+    KLM271 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM276 M03 x 12 vial | M03 x 12 vial; M08 x 20 tablet
+    KLM276 M08 x 20 tablet | M03 x 12 vial; M08 x 20 tablet
+    KLM294 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM294 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM267 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM274 M02 x 30 tablet | M02 x 30 tablet
+    KLM284 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM284 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM273 M02 x 30 tablet | M02 x 30 tablet
+    KLM272 M02 x 30 tablet | M02 x 30 tablet
+    KLM298 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM289 M02 x 30 tablet | M02 x 30 tablet
+    KLM286 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM291 M02 x 30 tablet | M02 x 30 tablet
+    KLM292 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM292 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM290 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM290 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM262 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM262 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM293 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM293 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM236 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM236 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM229 M02 x 30 tablet | M02 x 30 tablet
+    KLM232 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM232 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM223 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM247 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM247 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM251 M03 x 12 vial | M03 x 12 vial; M08 x 20 tablet
+    KLM251 M08 x 20 tablet | M03 x 12 vial; M08 x 20 tablet
+    KLM238 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM238 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM228 M03 x 12 vial | M03 x 12 vial; M08 x 20 tablet
+    KLM228 M08 x 20 tablet | M03 x 12 vial; M08 x 20 tablet
+    KLM233 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM233 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM257 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM257 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM255 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM244 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM244 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM242 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM242 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM230 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM230 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM250 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM224 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM246 M03 x 12 vial | M03 x 12 vial; M08 x 20 tablet
+    KLM246 M08 x 20 tablet | M03 x 12 vial; M08 x 20 tablet
+    KLM227 M02 x 30 tablet | M02 x 30 tablet
+    KLM248 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM254 M02 x 30 tablet | M02 x 30 tablet
+    KLM249 M02 x 30 tablet | M02 x 30 tablet
+    KLM252 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM225 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM211 M02 x 30 tablet | M02 x 30 tablet
+    KLM198 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM200 M02 x 30 tablet | M02 x 30 tablet
+    KLM218 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM212 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM217 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM217 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM213 M03 x 12 vial | M03 x 12 vial; M08 x 20 tablet
+    KLM213 M08 x 20 tablet | M03 x 12 vial; M08 x 20 tablet
+    KLM195 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM195 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM182 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM182 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM209 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM190 M03 x 12 vial | M03 x 12 vial; M08 x 20 tablet
+    KLM190 M08 x 20 tablet | M03 x 12 vial; M08 x 20 tablet
+    KLM184 M02 x 30 tablet | M02 x 30 tablet
+    KLM189 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM189 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM173 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM173 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM154 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM154 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM160 M02 x 30 tablet | M02 x 30 tablet
+    KLM163 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM163 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM141 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM141 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM153 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM153 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM150 M02 x 30 tablet | M02 x 30 tablet
+    KLM172 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM165 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM151 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM157 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM157 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM155 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM164 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM164 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM179 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM179 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM161 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM161 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM174 M02 x 30 tablet | M02 x 30 tablet
+    KLM162 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM162 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM176 M08 x 12 tablet | M08 x 12 tablet
+    KLM149 M02 x 30 tablet | M02 x 30 tablet
+    KLM146 M03 x 12 vial | M03 x 12 vial; M08 x 20 tablet
+    KLM146 M08 x 20 tablet | M03 x 12 vial; M08 x 20 tablet
+    KLM169 M02 x 30 tablet | M02 x 30 tablet
+    KLM180 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM180 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM158 M08 x 12 tablet | M08 x 12 tablet; M04 x 5 vial
+    KLM140 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM140 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM129 M03 x 12 vial | M03 x 12 vial; M08 x 20 tablet
+    KLM129 M08 x 20 tablet | M03 x 12 vial; M08 x 20 tablet
+    KLM124 M03 x 16 vial | M03 x 16 vial; M05 x 12 nebules
+    KLM124 M05 x 12 nebules | M03 x 16 vial; M05 x 12 nebules
+    KLM105 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM105 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM121 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM108 M02 x 30 tablet | M02 x 30 tablet
+    KLM128 M05 x 12 nebules | M05 x 12 nebules; M08 x 14 tablet
+    KLM128 M08 x 14 tablet | M05 x 12 nebules; M08 x 14 tablet
+    KLM131 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM131 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM127 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM127 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet
+    KLM106 M01 x 60 tablet | M01 x 60 tablet
+    KLM122 M09 x 12 pen | M09 x 12 pen; M01 x 120 tablet
+    KLM122 M01 x 120 tablet | M09 x 12 pen; M01 x 120 tablet
+    KLM132 M02 x 30 tablet | M02 x 30 tablet
+    KLM138 M02 x 30 tablet | M02 x 30 tablet
+    KLM125 M01 x 60 tablet | M09 x 6 pen; M01 x 60 tablet
+    KLM139 M02 x 30 tablet | M02 x 30 tablet
+    KLM135 M01 x 60 tablet | M01 x 60 tablet
+    KLM080 M08 x 12 tablet | M08 x 12 tablet; M04 x 5 vial
+    KLM079 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM079 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM097 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM097 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM099 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM099 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM094 M04 x 14 vial | M04 x 14 vial; M08 x 10 tablet
+    KLM084 M04 x 14 vial | M04 x 14 vial; M08 x 10 tablet
+    KLM081 M03 x 12 vial | M03 x 12 vial; M08 x 20 tablet
+    KLM081 M08 x 20 tablet | M03 x 12 vial; M08 x 20 tablet
+    KLM085 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM089 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM089 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM100 M08 x 12 tablet | M08 x 12 tablet; M04 x 5 vial
+    KLM090 M08 x 12 tablet | M08 x 12 tablet; M04 x 5 vial
+    KLM082 M08 x 12 tablet | M08 x 12 tablet
+    KLM092 M08 x 12 tablet | M08 x 12 tablet
+    KLM091 M03 x 12 vial | M03 x 12 vial; M08 x 20 tablet
+    KLM091 M08 x 20 tablet | M03 x 12 vial; M08 x 20 tablet
+    KLM095 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM087 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM087 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM077 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM077 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM059 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM059 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM051 M03 x 12 vial | M03 x 12 vial; M08 x 20 tablet
+    KLM051 M08 x 20 tablet | M03 x 12 vial; M08 x 20 tablet
+    KLM060 M08 x 12 tablet | M08 x 12 tablet; M04 x 5 vial
+    KLM052 M08 x 12 tablet | M08 x 12 tablet
+    KLM071 M03 x 12 vial | M03 x 12 vial; M08 x 20 tablet
+    KLM071 M08 x 20 tablet | M03 x 12 vial; M08 x 20 tablet
+    KLM070 M08 x 12 tablet | M08 x 12 tablet; M04 x 5 vial
+    KLM061 M03 x 12 vial | M03 x 12 vial; M08 x 20 tablet
+    KLM061 M08 x 20 tablet | M03 x 12 vial; M08 x 20 tablet
+    KLM065 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM067 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM067 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM072 M08 x 12 tablet | M08 x 12 tablet
+    KLM064 M04 x 14 vial | M04 x 14 vial; M08 x 10 tablet
+    KLM054 M04 x 14 vial | M04 x 14 vial; M08 x 10 tablet
+    KLM057 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM057 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM074 M04 x 14 vial | M04 x 14 vial; M08 x 10 tablet
+    KLM075 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM062 M08 x 12 tablet | M08 x 12 tablet
+    KLM069 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM069 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM055 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM045 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM029 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM029 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM042 M08 x 12 tablet | M08 x 12 tablet
+    KLM044 M04 x 14 vial | M04 x 14 vial; M08 x 10 tablet
+    KLM047 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM047 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM027 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM027 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM041 M03 x 12 vial | M03 x 12 vial; M08 x 20 tablet
+    KLM041 M08 x 20 tablet | M03 x 12 vial; M08 x 20 tablet
+    KLM032 M08 x 12 tablet | M08 x 12 tablet
+    KLM034 M04 x 14 vial | M04 x 14 vial; M08 x 10 tablet
+    KLM049 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM049 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM031 M03 x 12 vial | M03 x 12 vial; M08 x 20 tablet
+    KLM031 M08 x 20 tablet | M03 x 12 vial; M08 x 20 tablet
+    KLM037 M10 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM037 M06 x 14 tablet | M10 x 14 tablet; M06 x 14 tablet; M07 x 10 tablet
+    KLM040 M08 x 12 tablet | M08 x 12 tablet; M04 x 5 vial
+    KLM030 M08 x 12 tablet | M08 x 12 tablet; M04 x 5 vial
+    KLM050 M08 x 12 tablet | M08 x 12 tablet; M04 x 5 vial
+    KLM039 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM039 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM035 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM016 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM014 M09 x 24 pen | M09 x 24 pen; M01 x 90 tablet
+    KLM014 M01 x 90 tablet | M09 x 24 pen; M01 x 90 tablet
+    KLM023 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM023 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM013 M09 x 30 pen | M09 x 30 pen; M01 x 120 tablet
+    KLM013 M01 x 120 tablet | M09 x 30 pen; M01 x 120 tablet
+    KLM021 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM021 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM024 M08 x 12 tablet | M08 x 12 tablet
+    KLM015 M03 x 18 vial | M03 x 18 vial; M05 x 14 nebules
+    KLM015 M05 x 14 nebules | M03 x 18 vial; M05 x 14 nebules
+    KLM020 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM020 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM025 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM018 M01 x 60 tablet | M01 x 60 tablet
+    KLM019 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM017 M08 x 12 tablet | M03 x 6 vial; M08 x 12 tablet
+    KLM022 M01 x 60 tablet | M01 x 60 tablet; M02 x 14 tablet
+    KLM022 M02 x 14 tablet | M01 x 60 tablet; M02 x 14 tablet
+Baris tanpa pola Mxx x N satuan: ['KLM005', 'KLM004', 'KLM006']
+
+==============================================================================
+5. SKEMA v2.1 vs AKTUAL
+==============================================================================
+Kolom v2.1 diklaim ada di CSV: []
+Kolom v2.1 diklaim ada tapi TIDAK ada di CSV: ['pasien_id', 'faskes_id', 'dokter_id', 'seed', 'version', 'timestamp']
+Kolom ekstra di CSV yang tidak ada di kamus §5: ['Tanggal', 'Skor Sentimen', 'Narasi Rekam Medis', 'Biaya Rp', 'Risiko', 'LOS hari', 'Prosedur ICD-9-CM', 'Dokter', 'Sinyal SHAP', 'Modus', 'Rujukan', 'Faskes', 'Sindikat', 'Skor Fraud', 'Obat', 'Umpan Balik Pasien', 'Kontradiksi Narasi', 'Pasien', 'Alasan Berobat', 'Status', 'Alasan', 'Catatan', 'Sentimen', 'Layanan', 'Kontribusi Saluran', 'Diagnosis ICD-10', 'Name']
+
+Entitas unik aktual vs klaim v2.1:
+   pasien     aktual=40   klaim=40
+   dokter     aktual=20   klaim=20
+   faskes     aktual=10   klaim=10
+   diagnosis  aktual=13   klaim=tidak diklaim
+   prosedur   aktual=9    klaim=tidak diklaim
+   obat       aktual=10   klaim=tidak diklaim
+   Pasien: ['P01', 'P02', 'P03', 'P04', 'P05', 'P06', 'P07', 'P08', 'P09', 'P10', 'P11', 'P12', 'P13', 'P14', 'P15', 'P16', 'P17', 'P18', 'P19', 'P20', 'P21', 'P22', 'P23', 'P24', 'P25', 'P26', 'P27', 'P28', 'P29', 'P30', 'P31', 'P32', 'P33', 'P34', 'P35', 'P36', 'P37', 'P38', 'P39', 'P40']
+   Dokter: ['D01', 'D02', 'D03', 'D04', 'D05', 'D06', 'D07', 'D08', 'D09', 'D10', 'D11', 'D12', 'D13', 'D14', 'D15', 'D16', 'D17', 'D18', 'D19', 'D20']
+   Faskes: ['RS_A', 'RS_B', 'RS_C', 'RS_D', 'RS_E', 'RS_F', 'RS_G', 'RS_H', 'RS_I', 'RS_J']
+   Obat: ['M01', 'M02', 'M03', 'M04', 'M05', 'M06', 'M07', 'M08', 'M09', 'M10']
+Pasien P01-P40 tidak ada: []
+Dokter D01-D20 tidak ada: []
+Faskes RS_A-RS_J tidak ada: []
+
+==============================================================================
+6. MASALAH DATA NYATA
+==============================================================================
+6a. Grup duplikat (tanggal+pasien+dx+proc+LOS+biaya identik): 2
+    ['KLM102', 'KLM101'] ('2026-03-09', 'P21 (Rahmat Fauzi)', 'K80.2 - Kolelitiasis, tanpa kolesistitis', '51.23 - Kolesistektomi laparoskopik', '3', '15400000')
+    ['KLM104', 'KLM103'] ('2026-03-10', 'P22 (Sri Wahyuni)', 'K80.2 - Kolelitiasis, tanpa kolesistitis', '51.23 - Kolesistektomi laparoskopik', '3', '15400000')
+
+6b. Grup dengan SELURUH payload identik (kecuali ID): 0
+
+6c. Format tanggal tidak valid: []
+   rentang: 2026-01-01 .. 2026-06-27
+   jumlah unik tanggal: 138
+   '_last_edited' unik: 4 -> ['2026-10-07T00:24:00.000Z', '2026-10-07T04:41:00.000Z', '2026-10-07T04:50:00.000Z']
+
+6d. Biaya: min=700,000 median=4,475,000 Q1=1,150,000 Q3=9,337,500 max=63,500,000
+   IQR fence: [-11,131,250, 21,618,750]  -> outlier atas: 44
+   MAD=3,425,000 -> robust z>3.5: 44
+   Baris biaya di atas pagar IQR:
+      ('KLM127', 63500000, 'high', 'review')
+      ('KLM047', 62000000, 'low', 'auto_clear')
+      ('KLM195', 61400000, 'low', 'auto_clear')
+      ('KLM157', 61300000, 'low', 'auto_clear')
+      ('KLM141', 61150000, 'low', 'auto_clear')
+      ('KLM097', 61100000, 'low', 'auto_clear')
+      ('KLM217', 59900000, 'low', 'auto_clear')
+      ('KLM067', 59350000, 'low', 'auto_clear')
+      ('KLM173', 58850000, 'low', 'auto_clear')
+      ('KLM262', 58000000, 'low', 'auto_clear')
+      ('KLM037', 57550000, 'low', 'auto_clear')
+      ('KLM105', 57400000, 'fraud', 'escalate')
+      ('KLM087', 56650000, 'low', 'auto_clear')
+      ('KLM057', 54900000, 'low', 'auto_clear')
+      ('KLM027', 53100000, 'low', 'auto_clear')
+      ('KLM161', 52900000, 'low', 'auto_clear')
+      ('KLM162', 52750000, 'low', 'auto_clear')
+      ('KLM244', 52300000, 'low', 'auto_clear')
+      ('KLM002', 52300000, 'fraud', 'escalate')
+      ('KLM001', 52300000, 'fraud', 'escalate')
+      ('KLM003', 52300000, 'fraud', 'escalate')
+      ('KLM154', 52250000, 'low', 'auto_clear')
+      ('KLM077', 52200000, 'low', 'auto_clear')
+      ('KLM018', 49700000, 'high', 'review')
+      ('KLM228', 49300000, 'low', 'auto_clear')
+      ('KLM071', 49000000, 'low', 'auto_clear')
+      ('KLM246', 48850000, 'low', 'auto_clear')
+      ('KLM190', 47550000, 'low', 'auto_clear')
+      ('KLM041', 47550000, 'low', 'auto_clear')
+      ('KLM091', 46850000, 'low', 'auto_clear')
+      ('KLM129', 46800000, 'high', 'review')
+      ('KLM213', 45450000, 'low', 'auto_clear')
+      ('KLM061', 45450000, 'low', 'auto_clear')
+      ('KLM146', 45100000, 'low', 'auto_clear')
+      ('KLM005', 44750000, 'fraud', 'escalate')
+      ('KLM004', 44750000, 'fraud', 'escalate')
+      ('KLM006', 44750000, 'fraud', 'escalate')
+      ('KLM031', 44000000, 'low', 'auto_clear')
+      ('KLM276', 43950000, 'low', 'auto_clear')
+      ('KLM081', 43300000, 'low', 'auto_clear')
+      ('KLM251', 42500000, 'low', 'auto_clear')
+      ('KLM051', 41850000, 'low', 'auto_clear')
+      ('KLM019', 38000000, 'high', 'review')
+      ('KLM121', 27500000, 'fraud', 'escalate')
+   Rasio biaya: maks/min = 91x
+   Baris biaya < 1.000.000: 29
+
+6e. Baris dengan kolom wajib kosong (Name/Status/Risiko/Skor Fraud/Tanggal/Biaya/Pasien/Dokter/Faskes/Diagnosis/Narasi):
+    (kolom di luar daftar wajib: tidak ada baris kosong di atas berarti lengkap)
+
+6f. Alasan tidak cocok dengan label Risiko:
+     ('KLM031', 'low', '(KOSONG)')
+    total: 1
+
+6g. Kontradiksi Narasi True: 12
+     [('KLM105', 'fraud', 'iur_biaya'), ('KLM108', 'fraud', 'iur_biaya'), ('KLM106', 'fraud', 'iur_biaya'), ('KLM107', 'fraud', 'iur_biaya'), ('KLM005', 'fraud', 'phantom_billing'), ('KLM002', 'fraud', 'upcoding'), ('KLM001', 'fraud', 'upcoding'), ('KLM004', 'fraud', 'phantom_billing'), ('KLM003', 'fraud', 'upcoding'), ('KLM024', 'high', 'upcoding'), ('KLM018', 'high', 'upcoding'), ('KLM006', 'fraud', 'phantom_billing')]
+    klaim 10-simulation: 8 klaim (KLM001-006, KLM018, KLM024)
+    aktual: ['KLM001', 'KLM002', 'KLM003', 'KLM004', 'KLM005', 'KLM006', 'KLM018', 'KLM024', 'KLM105', 'KLM106', 'KLM107', 'KLM108']
+    tidak cocok: ['KLM105', 'KLM106', 'KLM107', 'KLM108'] | hilang: []
+
+6h. Distribusi sentimen aktual (300 baris): {'negatif': 72, 'netral': 58, 'positif': 170}
+    klaim v100: 62 positif / 14 netral / 24 negatif
+
+6i. Skor Sentimen vs kategori Sentimen:
+    negatif: n=72 min=-0.90 maks=-0.30 mean=-0.471
+    netral: n=58 min=0.05 maks=0.15 mean=0.094
+    positif: n=170 min=0.60 maks=0.85 mean=0.739
+    'negatif' dengan skor > 0: 0 ; 'positif' dengan skor < 0: 0
+
+6j. Baris dengan 'undefined' pada kolom Rujukan: 28
+     ('KLM278', 'undefined · RJ-2026-436 · 2026-06-03')
+     ('KLM276', 'undefined · RJ-2026-430 · 2026-06-01')
+     ('KLM282', 'undefined · RJ-2026-428 · 2026-06-09')
+     ('KLM268', 'undefined · RJ-2026-434 · 2026-05-22')
+     ('KLM298', 'undefined · RJ-2026-435 · 2026-06-25')
+     ('KLM297', 'undefined · RJ-2026-431 · 2026-06-25')
+     ('KLM295', 'undefined · RJ-2026-437 · 2026-06-23')
+     ('KLM262', 'undefined · RJ-2026-443 · 2026-05-18')
+     ('KLM283', 'undefined · RJ-2026-438 · 2026-06-09')
+     ('KLM251', 'undefined · RJ-2026-432 · 2026-05-10')
+     ('KLM256', 'undefined · RJ-2026-447 · 2026-05-13')
+     ('KLM235', 'undefined · RJ-2026-425 · 2026-04-25')
+     ('KLM255', 'undefined · RJ-2026-424 · 2026-05-13')
+     ('KLM225', 'undefined · RJ-2026-444 · 2026-04-07')
+     ('KLM188', 'undefined · RJ-2026-420 · 2026-02-19')
+    prefiks rujukan (setelah nama puskesmas): {'RJ-2026-454': 1, 'undefined': 28, 'RJ-2026-474': 1, 'RJ-2026-471': 1, 'kunjungan langsung (tanpa rujukan)': 111, 'RJ-2026-460': 1, 'RJ-2026-511': 1, 'RJ-2026-483': 1}
+
+6k. dx -> obat (klasifikasi correspondance):
+    E11.9    {'M01': 41, 'M02': 34, 'M09': 4}
+    I10      {'M02': 21}
+    I21.9    {'M10': 20, 'M06': 20, 'M07': 8}
+    J18.9    {'M03': 38, 'M05': 38}
+    J45.9    {'M05': 21, 'M08': 21}
+    K29.7    {'M04': 17, 'M08': 17}
+    K35.8    {'M03': 31, 'M08': 31}
+    K40.9    {'M03': 29, 'M08': 29}
+    K80.2    {'M03': 29, 'M04': 29, 'M08': 3}
+    N20.0    {'M08': 9, 'M04': 9}
+    N39.0    {'M03': 14, 'M08': 13}
+    O80      {'M08': 9}
+    S72.0    {'M03': 15, 'M08': 15}
+
+==============================================================================
+RINGKASAN TEMUAN (dipakai untuk tabel severity di laporan)
+==============================================================================
+Severity: {}
+
+[ditulis] 04_audit_results.json di folder scripts/

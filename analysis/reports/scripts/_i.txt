@@ -1,0 +1,90 @@
+43 | ## 2. TABEL UTAMA: Angka-of-Record
+44 | 
+45 | Sumber angka ditulis sebagai `S<nomor>` sesuai tabel di bagian 1.1.
+46 | 
+47 | | Metrik | Nilai terverifikasi | Sumber | Klaim publik | Status | Catatan |
+48 | |--------|---------------------|--------|-------------|--------|---------|
+49 | | Jumlah baris dataset v2.1 | 300 | S1, S2 (`out_compare.json`: `live_nrows`=300, `v21_nrows`=300) | "300 klaim" | TERDUKUNG | S1 dan S2 berisi klaim yang sama |
+50 | | Rentang ID | KLM001 sampai KLM300, tanpa celah | S1, S2 (`out_stats.json`: `v21_id_contiguous`=true) | "300 klaim" | TERDUKUNG | ID duplikat 0, ID tak valid 0 |
+51 | | Total nominal portofolio | Rp 3.526.650.000 | S1, S2 (`out_stats.json`: `v21_total_biaya`=3526650000) | "Rp 3,53 Miliar" | TERDUKUNG | Bulat ke bawah, selisih Rp 3.650.000 |
+52 | | Status auto_clear | 240 (80,00%) | S2 (`v21_status`) | "240 klaim (80,00%)" | TERDUKUNG | Nominal Rp 2.685.550.000 (76,15%) |
+53 | | Status review | 24 (8,00%) | S2 (`v21_status`) | "24 klaim (8,00%)" | TERDUKUNG | Nominal Rp 279.950.000 (7,94%) |
+54 | | Status escalate | 36 (12,00%) | S2 (`v21_status`) | "36 klaim (12,00%)" | TERDUKUNG | Nominal Rp 561.150.000 (15,91%) |
+55 | | Risiko fraud | 36 (12,00%) | S2 (`v21_risiko`) | "36 fraud (12%)" | TERDUKUNG | Risiko fraud = status escalate, baris per baris identik |
+56 | | Rasio normal terhadap fraud | 264 : 36 = 7,3333 | S2 (`v21_is_fraud`) | "rasio 1 : 7,33" | TERDUKUNG | 264 normal, 36 fraud |
+57 | | Jumlah klaim anomali (escalate + review) | 60 | S2 (`escalate_plus_review_n`=60) | "60 klaim anomali" | TERDUKUNG | 36 + 24 |
+58 | | Nominal klaim anomali | Rp 841.100.000 | S2 (`escalate_plus_review_total`=841100000) | "senilai Rp 841,10 Juta" | TERDUKUNG | 561.150.000 + 279.950.000 |
+59 | | Rata-rata nominal per klaim anomali | Rp 14.018.333 | S2 (841.100.000 / 60) | - | BARU | Tidak ada di proposal |
+60 | | Total biaya klaim dalam sindikat | Rp 539.650.000 | S2 (`sindikat_total_biaya`) | "Rp 542.560.000" (draf lama) | BERTENTANGAN | Selisih Rp 2.910.000; claim 542.560.000 tidak ada di CSV |
+61 | | Jumlah sindikat | 9 (SYND-01 sampai SYND-09) | S2 (`n_syndicate`=9) | "9 pola sindikat" | TERDUKUNG | 36 klaim ber-sindikat, semua status escalate |
+62 | | Sebaran sindikat | SYND-01: 3, SYND-02: 3, SYND-03: 6, SYND-04: 2, SYND-05: 2, SYND-06: 4, SYND-07: 4, SYND-08: 6, SYND-09: 6 | S2 (`sindikat_detail`) | "100% mendeteksi 9 pola sindikat" | TERDUKUNG untuk hitungan, TIDAK TERDUKUNG untuk "100%" | Lihat bagian 4: deteksi 100% adalah artefak kebocora
+63 | | Estimasi overcharge total | Tidak dapat direproduksi | Brute force 14 kunci pengelompokan x 3 pool x 4 agregator (`out_brute.json`, `out_ref.json`) | "Rp 507.370.000" | TIDAK TERDUKUNG | Tidak ada formula tunggal yang menghasilkan angka ini |
+64 | | Komponen overcharge escalate | Rp 394.950.000 (rasio 0,703823 terhadap nominal escalate) | S10 tabel 8.2, rasio dihitung | "Rp 394.950.000" | TIDAK TERDUKUNG | Rasio 0,703823 tidak konsisten dengan komponen review |
+65 | | Komponen overcharge review | Rp 112.420.000 (rasio 0,401572 terhadap nominal review) | S10 tabel 8.2, rasio dihitung | "Rp 112.420.000" | TIDAK TERDUKUNG | Dua rasio berbeda, jadi bukan satu formula |
+66 | | Rasio overcharge terhadap nominal anomali | 60,32% | Hitungan: 507.370.000 / 841.100.000 | "60,32%" | TERDUKUNG secara aritmetika | Konsisten karena turun dari dua angka tak terverifikasi |
+67 | | Rata-rata overcharge per kasus | Rp 8.456.166,67 (Rp 8.456.167 dibulatkan) | Hitungan: 507.370.000 / 60 | "Rp 8.456.167 per kasus" | TERDUKUNG secara aritmetika | x60 menghasilkan Rp 507.370.020, bukan 507.370.000 |
+68 | | Overcharge per kasus, hitungan bulat | 36 kasus x Rp 8.456.167 = Rp 304.422.012 | Hitungan | - | BARU | Angka "per kasus fraud" ambigu: 60 kasus anomali atau 36 kasus fraud |
+69 | | Skor fraud mean per status | auto_clear 0,0862; review 0,5908; escalate 0,8689 | S2 (`skor_fraud_mean_by_status`) | "0.086 / 0.591 / 0.869" | TERDUKUNG | Empat desimal |
+70 | | Rentang skor fraud | auto_clear 0,04-0,14; review 0,40-0,79; escalate 0,80-0,95 | S2 (`skor_fraud_range_by_status`) | - | TERDUKUNG | Tidak ada tumpang tindih antar kelas |
+71 | | Pemisahan label (separability) | Sempurna: fraud min 0,80, non-fraud maks 0,79 | S2 (`skor_fraud_overlap`=false) | - | BARU | Prasyarat AUPRC = 1,0000 pada kolom label |
+72 | | Akurasi klasifikasi | 93,00% | - | "93.00% (Tervalidasi)" | TIDAK TERDUKUNG | Tidak ada artefak; angka "93%" di PDF adalah akurasi leksikon sentimen, bukan deteksi fraud |
+73 | | Presisi deteksi | 94,12% | - | "94.12% (Tervalidasi)" | TIDAK TERDUKUNG | Tidak ada artefak |
+74 | | ROC-AUC | 0,9825 | - | "0.9825 (Tervalidasi)" | TIDAK TERDUKUNG | Tidak ada artefak; tidak ada di PDF maupun di repo |
+75 | | AUPRC | 0,9142 | - | "0.9142 (+28,6% vs XGBoost)" | TIDAK TERDUKUNG | Tidak ada artefak; lihat bagian 4 |
+76 | | Baseline XGBoost AUPRC | 0,7100 | - | "0.7100" | TIDAK TERDUKUNG | xgboost tidak terpasang, tidak dapat dihitung ulang |
+77 | | Baseline acak (prevalensi) | 0,12 | Hitungan: 36/300 | - | BARU | AUPRC model acak sama dengan prevalensi |
+78 | | Ketahanan masking | 89,40% pada 40% penyamaran | - | "89.40% (Tervalidasi)" | TIDAK TERDUKUNG | Tidak ada kode masking di repo |
+79 | | False positive rate | 10,60% | - | "10.60%" | TIDAK TERDUKUNG | Tidak ada artefak |
+80 | | Skor terbaik model pada 34 fitur cell-5 | F1 = 0,3448 (biaya_per_hari >= Rp 4.950.000) | `out_circ.json` (`best_threshold_biaya_per_hari`) | - | BARU | Batas atas nyata dari fitur yang tidak bocor |
+81 | | Jumlah edge topologi A_top (algoritma pipeline) | 10.386 | Hitungan ulang (`out_front.json`: `A_top_edges_pipeline_alg`) | "10.386 edge topologi" | TERDUKUNG | Sesuai aturan `pi==pj or di==dj or hi==hj` di `pipeline.py:273` |
+82 | | Jumlah edge topologi A_top (algoritma notebook) | 7.140 | `out_front.json`: `A_top_edges_notebook_alg` | - | BERTENTANGAN | Dua implementasi berbeda untuk label "jumlah edge topologi" |
+83 | | Jumlah edge fitur A_feat pada 300 klaim | 2.192 (theta 0,85, ternormalisasi) / 7.526 (theta 0,50) | `out_feat.json` | - | BARU | 4.563 tidak dapat-direproduksi pada 300 klaim |
+84 | | Jumlah edge fitur A_feat | 4.563 | S5 p01, S6 `kpi.feat_edges` | "4563 edges" | TIDAK TERDUKUNG untuk 300 klaim | Milik eksperimen 100 klaim, bukan dataset v2.1 |
+85 | | Jumlah edge semantik A_sem | 10.318 | `out_feat.json` | - | BARU | |
+86 | | Selisih total tagihan klaim anomali | Rp 841.100.000 (23,85% dari total portofolio) | Hitungan: 841.100.000 / 3.526.650.000 | - | BARU | Ini batas atas nilai yang bisa hilang, bukan Rp 507.370.000 |
+87 | | Kapasitas verifikasi harian | 16.667 berkas (dari 1.000 verifier, 20 menit ke 3 menit) | S5 p01, S6 `kpi.capacity`=6667 | "kapasitas 16.667 berkas" | BERTENTANGAN | Payload menyimpan 6667, PDF menampilkan +6.667 (selisih 10.000). Keduanya 100% artefak simulasi 100 klaim |
+88 | | Peningkatan throughput | 3,2 kali kapasitas harian | S10 (`docx_text.txt:524`) | "3.2x" | TIDAK TERDUKUNG | Tidak ada simulasi beban kerja di repo |
+89 | | Waktu telaah per berkas | 20 menit ke 3 menit | S5 p01, `data.ts:391` | "45% (hemat 5-10 mnt/berkas)" | BERTENTANGAN | PDF: 20 ke 3 (penurunan 85%); DOCX: 10-20 ke 3-5 (penurunan 45%). Angka berbeda |
+90 | | Penghematan tahunan | Rp 14,4 juta per tahun (Rp 1,2 juta per bulan) | `roadmap.tsx:34`, `fraud-ring.tsx:415`, `i18n.tsx:443` | "Rp 14,4 M / tahun" | TIDAK TERDUKUNG | Tidak ada artefak; Rp 1,2 juta per bulan adalah penghematan atas 3 klaim SYND-01, bukan atas portofolio |
+91 | | Penghematan tahunan versi Inggris | Rp 14,4 miliar per tahun (Rp 1,2 miliar per bulan) | `i18n.tsx:791` | "Rp 14.4 B / year" | BERTENTANGAN | Selisih 1000 kali terhadap versi Indonesia pada baris sebelumnya, akibat penerjemahan satuan (B vs M). Salah satu dari keduanya pasti salah |
+92 | | Rasio Cost-to-Impact | 1 : 15 | S10 (`docx_text.txt:529`) | "1 : 15" | TIDAK TERDUKUNG | Tergantung pada 507.370.000 yang tak terverifikasi |
+93 | | SUS | 82,5/100 | S10 (`docx_text.txt:573`) | "SUS 82,5" | TIDAK TERDUKUNG | Tidak ada instrumen uji |
+94 | | Jumlah pasien unik | 40 | S2 (`pasien_uniq`) | "40 pasien" | TERDUKUNG | 7 sampai 12 klaim per pasien |
+95 | | Jumlah dokter unik | 20 | S2 (`dokter_uniq`) | "20 dokter" | TERDUKUNG | |
+96 | | Jumlah faskes unik | 10 | S2 (`faskes_uniq`) | "10 faskes" | TERDUKUNG | |
+97 | | Baris dengan kolom LOS kosong | 0 (semua berisi angka; 109 baris bernilai 0) | S1/S2 | "109 baris LOS hari kosong" (S12 `03-dataset-registry.md:78`) | BERTENTANGAN | NotionBV2.1 menyimpan 0, bukan kosong. Sumber "109 kosong" salah baca angka 0 sebagai sel kosong |
+98 | | Baris dengan kolom Alasan kosong | 1 | S2 (`v21_empty_counts.alasan`=1) | "satu baris" | TERDUKUNG | |
+99 | | Baris dengan kolom Modus kosong | 240 | S2 (`v21_empty_counts.modus`=240) | "240 baris" | TERDUKUNG | |
+100 | | Baris dengan kolom Sindikat kosong | 264 | S1 (`live_empty_counts.Sindikat`=264) | "264 baris" | TERDUKUNG | Di S2 selnya berisi string kosong, bukan "none" |
+101 | | Nilai biaya minimum dan maksimum | Rp 700.000 sampai Rp 63.500.000 | S2 (`biaya_min`, `biaya_max`) | - | BARU | Mean Rp 11.755.500, median Rp 4.475.000 |
+102 | | Rata-rata skor sentimen per kelas | (tidak dihitung ulang di sini) | S2 (`sentimen_counts`: negatif 72, netral 58, positif 170) | - | BARU | 24% negatif; tidak ada klaim dengan sentimen negatif yang tidak ber-fraud |
+103 | 
+104 | ---
+105 | 
+106 | ## 3. Kontradiksi Antar Sumber
+107 | 
+108 | | Topik | Sumber A | Sumber B | Sumber C | Status |
+109 | |-------|----------|----------|----------|--------|
+110 | | Jumlah baris | S1 Notion: 300 | S2 v2.1: 300 | S5 PDF: 100 | BERTENTANGAN (S5 beda eksperimen) |
+111 | | Prevalensi fraud | S1/S2: 12% (36/300) | S5/S6: 14% (14/100) | S10: menyebut "prevalensi 3-7%" sebagai estimasi lapangan | BERTENTANGAN; 3-7% adalah label literatur, bukan hasil hitung |
+112 | | Jumlah edge fitur | S5/S6: 4.563 | Hitungan pada 300 klaim: 2.192 (theta 0,85) | - | BERTENTANGAN |
+113 | | Skor fraud KLM001 | S2: 0,94 | `data.ts:418` riskScore D01: 0,94 | `fraud-ring.tsx` KLM001-003: skor 0,94 | COCOK, tetapi atribusinya keliru (lihat catatan di bawah) |
+114 | | Skor maks fraud | S2: 0,95 pada KLM002 | `data.ts:464`: "Skor 0,95 (fraud)" tanpa nama klaim | `data.ts:451`: "19 klaim" untuk RS_A | TERDUKUNG untuk skor; TIDAK TERDUKUNG untuk 19 klaim (aktual 29) |
+115 | | Klaim RS_A | `data.ts:463`: 19 klaim | S2: RS_A = 29 klaim | S2: 3 klaim escalate di RS_A | BERTENTANGAN |
+116 | | Tagihan per klaim SYND-01 | `data.ts:437`: "Rp 58.000.000" | S2: Rp 52.300.000 (KLM001-003) | - | BERTENTANGAN, selisih Rp 5.700.000 per klaim |
+117 | | Panjang data.ts | `data.ts:437` dan `i18n.tsx:352`: "Rp 58 juta" | S2 biaya maks: Rp 63.500.000 | - | Rp 58 juta ada di data sebagai satu nilai (biaya 00.66), bukan sebagai tagihan SYND-01 |
+118 | | Ambang risiko | S5 p03: 0,35 / 0,60 / 0,80 | `data-uploader.tsx:137`: 0,40 / 0,65 / 0,85 | S12 `03-dataset-registry.md:77`: ambang versi aktif | BERTENTANGAN |
+119 | | Waktu telaah | S5: 20 ke 3 menit | S10: 10-20 ke 3-5 menit, "45%" | `data.ts:391`: "20 mnt" ke "3 mnt" | BERTENTANGAN |
+120 | | Kapasitas verifikasi | S5: 16.667 berkas | S6 `kpi.capacity`: 6667 | `data.ts:392`: "~6.700" | BERTENTANGAN (S6 vs S5) |
+121 | | Satuan penghematan | `i18n.tsx:443` (ID): Rp 1,2 M / bulan, Rp 14,4 M / tahun | `i18n.tsx:791` (EN): Rp 1.2 B / month, Rp 14.4 B / year | `roadmap.tsx:34`: 14,4 M | BERTENTANGAN 1000 kali (juta vs miliar) |
+122 | | Keterangan dataset v2.1 | S5 p01: "KLAIM SINTETIS 100", 20 pasien, 12 dokter, 6 FKRTL | S2: 300 klaim, 40 pasien, 20 dokter, 10 faskes | `data.ts:503-507`: 300/40/20/10 | BERTENTANGAN (S5 memakai set 100) |
+123 | | Identitas dua CSV | S1 `sindikat` = "none" | S2 `sindikat` = "" | - | Selisih kosmetik, bukan data berbeda |
+124 | | `kontradiksi_narasi` | S1: "1"/"0" | S2: "True"/"False" | - | Selisih kosmetik |
+125 | | `dokter_raw` | S1: terpotong di koma | S2: lengkap | - | Selisih kosmetik, 32 baris |
+126 | | Jumlah edge topologi | `pipeline.py` = 10.386 | Notebook sel 7 = 7.140 | S10 mempublikasikan 10.386 | BERTENTANGAN antar implementasi |
+127 | | Overcharge | S10: 507.370.000 | Brute force 14x3x4: nihil | - | TIDAK TERDUKUNG |
+128 | 
+129 | ---
+130 | 
+131 | ## 4. Bukti Circularity: AUPRC dari Kolom Label
+132 | 

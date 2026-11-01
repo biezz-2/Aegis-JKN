@@ -1,0 +1,170 @@
+=== DOC TABLES PARSED ===
+faskes: {'RS_A': (19, 0.95, 'fraud'), 'RS_B': (13, 0.87, 'fraud'), 'RS_C': (10, 0.94, 'fraud'), 'RS_D': (10, 0.68, 'high'), 'RS_E': (22, 0.88, 'fraud'), 'RS_F': (26, 0.79, 'high')}
+dokter: {'D01': (2, 0.94, 'fraud'), 'D02': (8, 0.95, 'fraud'), 'D03': (9, 0.74, 'high'), 'D04': (9, 0.68, 'high'), 'D05': (10, 0.94, 'fraud'), 'D06': (0, 0.0, 'low'), 'D07': (13, 0.87, 'fraud'), 'D08': (18, 0.79, 'high'), 'D09': (14, 0.88, 'fraud'), 'D10': (8, 0.13, 'low'), 'D11': (1, 0.62, 'high'), 'D12': (8, 0.66, 'high')}
+pasien: {'P01': (5, 0.94, 'fraud'), 'P02': (5, 0.95, 'fraud'), 'P03': (5, 0.93, 'fraud'), 'P04': (4, 0.11, 'low'), 'P05': (5, 0.66, 'high'), 'P06': (4, 0.13, 'low'), 'P07': (5, 0.62, 'high'), 'P08': (5, 0.92, 'fraud'), 'P09': (4, 0.94, 'fraud'), 'P10': (5, 0.93, 'fraud'), 'P11': (5, 0.68, 'high'), 'P12': (5, 0.85, 'fraud'), 'P13': (6, 0.86, 'fraud'), 'P14': (6, 0.87, 'fraud'), 'P15': (7, 0.53, 'medium'), 'P16': (5, 0.88, 'fraud'), 'P17': (5, 0.86, 'fraud'), 'P18': (4, 0.74, 'high'), 'P19': (5, 0.78, 'high'), 'P20': (5, 0.79, 'high')}
+dx: {'K29.7': (10, 0.95, 'fraud'), 'K35.8': (11, 0.79, 'high'), 'K40.9': (8, 0.13, 'low'), 'I21.9': (8, 0.13, 'low'), 'J18.9': (9, 0.74, 'high'), 'E11.9': (15, 0.88, 'fraud'), 'N20.0': (8, 0.13, 'low'), 'S72.0': (10, 0.94, 'fraud'), 'O80': (8, 0.66, 'high'), 'K80.2': (13, 0.87, 'fraud')}
+proc: {'00.66': (12, 0.95, 'fraud'), '36.13': (0, 0.0, 'low'), '47.09': (11, 0.79, 'high'), '53.1': (8, 0.13, 'low'), '51.23': (10, 0.87, 'fraud'), '74.1': (1, 0.66, 'high'), '81.52': (10, 0.94, 'fraud'), '96.04': (3, 0.87, 'fraud'), '93.90': (0, 0.0, 'low'), '98.51': (8, 0.13, 'low')}
+sum faskes n: 100
+sum dokter n: 100
+sum pasien n: 100
+sum dx n: 100
+sum proc n: 63
+GT audit: {'low': 76, 'medium': 4, 'high': 6, 'fraud': 14} {'Negatif': 24, 'Netral': 14, 'Positif': 62}
+feat_edges=4563 clone_pair=[('KLM016', 'KLM017', 1.0)] cos(KLM016,KLM017)=1.000
+
+*** AKURASI SENTIMEN (leksikon vs GT) = 93.0%  (186/200)
+*** DETEKSI FRAUD = 14/14 (100%) pada antrian 20 klaim
+    fraud skor min/max = 0.84 / 0.95
+    non-fraud skor max = 0.79
+    p_fused fraud min = 0.856; non-fraud max = 0.802
+*** HIT-RATE SINDIKAT: {'SYND-01': '3/3=100.0%', 'SYND-02': '3/3=100.0%', 'SYND-03': '6/6=100.0%', 'SYND-04': '2/2=100.0%', 'SYND-05': '2/2=100.0%'}
+*** Kontradiksi prioritas: 8/8 | Kriteria: {'integritas': True, 'deteksi': True, 'sindikat': True, 'kontradiksi': True} | SESUAI=True
+*** ROI: 20/3 = 6.667x -> kapasitas 6,667 berkas | prevalensi 14%
+*** f_text aktif pada 17 klaim
+
+*** QUEUE (all 20):
+    KLM003 p_fused=0.955 risk=fraud  modus=Upcoding           synd=SYND-01   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 1.0} KONTRA=True
+    KLM002 p_fused=0.946 risk=fraud  modus=Upcoding           synd=SYND-01   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 1.0} KONTRA=True
+    KLM006 p_fused=0.946 risk=fraud  modus=Phantom Billing    synd=SYND-02   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=True
+    KLM001 p_fused=0.937 risk=fraud  modus=Upcoding           synd=SYND-01   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 1.0} KONTRA=True
+    KLM005 p_fused=0.937 risk=fraud  modus=Phantom Billing    synd=SYND-02   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=True
+    KLM004 p_fused=0.928 risk=fraud  modus=Phantom Billing    synd=SYND-02   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=True
+    KLM014 p_fused=0.892 risk=fraud  modus=Drug Diversion     synd=SYND-04   chan={'fitur': 1.0, 'topologi': 0.8, 'semantik': 0.6} KONTRA=False
+    KLM012 p_fused=0.883 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM010 p_fused=0.874 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM011 p_fused=0.874 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM013 p_fused=0.874 risk=fraud  modus=Drug Diversion     synd=SYND-04   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM008 p_fused=0.865 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM009 p_fused=0.865 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM007 p_fused=0.856 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM016 p_fused=0.802 risk=high   modus=Cloning            synd=SYND-05   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM017 p_fused=0.790 risk=high   modus=Cloning            synd=SYND-05   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM018 p_fused=0.766 risk=high   modus=Prolonged Stay     synd=-         chan={'fitur': 0.0, 'topologi': 1.0, 'semantik': 0.2} KONTRA=True
+    KLM021 p_fused=0.680 risk=high   modus=Anomali            synd=-         chan={'fitur': 0.0, 'topologi': 1.0, 'semantik': 0.2} KONTRA=False
+    KLM020 p_fused=0.660 risk=high   modus=Anomali            synd=-         chan={'fitur': 0.0, 'topologi': 1.0, 'semantik': 0.2} KONTRA=False
+    KLM019 p_fused=0.620 risk=high   modus=Anomali Biaya      synd=-         chan={'fitur': 0.0, 'topologi': 1.0, 'semantik': 0.2} KONTRA=False
+
+*** Top-10 by p_fused (dashboard chart 'Top-10 Skor Fusion'):
+    KLM003 0.955 Upcoding
+    KLM002 0.946 Upcoding
+    KLM006 0.946 Phantom Billing
+    KLM001 0.937 Upcoding
+    KLM005 0.937 Phantom Billing
+    KLM004 0.928 Phantom Billing
+    KLM014 0.892 Drug Diversion
+    KLM012 0.883 Unbundling
+    KLM010 0.874 Unbundling
+    KLM011 0.874 Unbundling
+
+*** LEAKAGE CHECKS
+    risk=fraud  n= 14 skor min=0.84 max=0.95
+    risk=medium n=  4 skor min=0.41 max=0.55
+    risk=high   n=  6 skor min=0.62 max=0.79
+    risk=low    n= 76 skor min=0.05 max=0.33999999999999997
+    sentiment texts are templates keyed on c['gt_sentimen'] -> lexicon label == gt by construction
+    risk_label(skor) == 'fraud' iff skor > 0.8 ; fraud set is a hardcoded skor cut
+    p_fused derives from c['skor'] (hardcoded) + 0.10*f_text; no learned model is involved
+    AUC of p_fused vs fraud label = 1.0 (fraud = top 14 by hardcoded skor)
+    p_lead > 0.85 rule: fraud above = 14/14; non-fraud above = 0
+
+=== v1 (PDF source) faskes === {'RS_A': 17, 'RS_C': 16, 'RS_B': 19, 'RS_E': 16, 'RS_F': 16, 'RS_D': 16}
+=== v1 dokter === {'D01': 8, 'D02': 8, 'D05': 10, 'D07': 12, 'D09': 9, 'D08': 9, 'D03': 9, 'D04': 10, 'D12': 7, 'D06': 6, 'D10': 6, 'D11': 6}
+=== v1 pasien === {'P01': 5, 'P02': 4, 'P03': 4, 'P08': 5, 'P09': 5, 'P10': 5, 'P12': 6, 'P13': 6, 'P14': 6, 'P16': 5, 'P17': 5, 'P15': 5, 'P19': 5, 'P20': 5, 'P18': 6, 'P07': 5, 'P05': 4, 'P11': 5, 'P04': 4, 'P06': 5}
+=== v1 dx === {'K29.7': (0.95, 0.95), 'S72.0': (0.94, 0.94), 'K80.2': (0.87, 0.87), 'E11.9': (0.88, 0.88), 'K35.8': (0.79, 0.79), 'J18.9': (0.74, 0.74), 'I21.9': (0.62, 0.62), 'O80': (0.66, 0.66), 'K40.9': (0.41, 0.41), 'N20.0': (0.47, 0.47)}
+=== v1 proc === {'00.66': 4, '81.52': 3, '51.23': 6, '96.04': 3, '47.09': 5, '74.1': 1, '53.1': 77, '98.51': 1}
+
+=== v2 (300) faskes === {'RS_A': 29, 'RS_C': 16, 'RS_B': 21, 'RS_E': 28, 'RS_F': 32, 'RS_D': 14, 'RS_G': 45, 'RS_H': 37, 'RS_I': 36, 'RS_J': 42}
+=== v2 dokter === {'D01': 5, 'D02': 10, 'D05': 16, 'D07': 19, 'D09': 19, 'D03': 14, 'D08': 23, 'D04': 11, 'D11': 3, 'D12': 9, 'D10': 9, 'D13': 24, 'D14': 33, 'D15': 28, 'D19': 25, 'D18': 8, 'D16': 21, 'D20': 17, 'D17': 4, 'D06': 2}
+=== v2 pasien (first 20) === {'P01': 7, 'P02': 7, 'P03': 7, 'P04': 6, 'P05': 7, 'P06': 6, 'P07': 7, 'P08': 7, 'P09': 6, 'P10': 7, 'P11': 7, 'P12': 7, 'P13': 8, 'P14': 8, 'P15': 9, 'P16': 7, 'P17': 7, 'P18': 6, 'P19': 7, 'P20': 7}
+=== v2 dx === {'K29.7': 17, 'S72.0': 18, 'K80.2': 32, 'E11.9': 41, 'J18.9': 38, 'K35.8': 31, 'O80': 9, 'K40.9': 29, 'I21.9': 20, 'N20.0': 9, 'I10': 21, 'J45.9': 21, 'N39.0': 14}
+=== v2 proc === {'00.66': 24, '81.52': 18, '51.23': 29, '96.04': 3, '—': 156, '47.09': 31, '74.1': 1, '53.1': 29, '98.51': 9}
+
+
+=== COMPARISON: doc vs v1 generator (100 klaim, apples-to-apples) ===
+  RS_A     n_doc= 19 n_v1= 17[N] n_v2= 29[N]  skor_doc=0.95 v1=0.95 MATCH
+  RS_B     n_doc= 13 n_v1= 19[N] n_v2= 21[N]  skor_doc=0.87 v1=0.87 MATCH
+  RS_C     n_doc= 10 n_v1= 16[N] n_v2= 16[N]  skor_doc=0.94 v1=0.94 MATCH
+  RS_D     n_doc= 10 n_v1= 16[N] n_v2= 14[N]  skor_doc=0.68 v1=0.68 MATCH
+  RS_E     n_doc= 22 n_v1= 16[N] n_v2= 28[N]  skor_doc=0.88 v1=0.88 MATCH
+  RS_F     n_doc= 26 n_v1= 16[N] n_v2= 32[N]  skor_doc=0.79 v1=0.79 MATCH
+  -> FASKES: n-mismatch vs v1: 6/6 | vs v2: 6/6 | skor-mismatch vs v1: 0/6 | vs v2: 0/6
+  D01      n_doc=  2 n_v1=  8[N] n_v2=  5[N]
+  D02      n_doc=  8 n_v1=  8[=] n_v2= 10[N]
+  D03      n_doc=  9 n_v1=  9[=] n_v2= 14[N]
+  D04      n_doc=  9 n_v1= 10[N] n_v2= 11[N]
+  D05      n_doc= 10 n_v1= 10[=] n_v2= 16[N]
+  D06      n_doc=  0 n_v1=  6[N] n_v2=  2[N]
+  D07      n_doc= 13 n_v1= 12[N] n_v2= 19[N]
+  D08      n_doc= 18 n_v1=  9[N] n_v2= 23[N]
+  D09      n_doc= 14 n_v1=  9[N] n_v2= 19[N]
+  D10      n_doc=  8 n_v1=  6[N] n_v2=  9[N]
+  D11      n_doc=  1 n_v1=  6[N] n_v2=  3[N]
+  D12      n_doc=  8 n_v1=  7[N] n_v2=  9[N]
+  -> DOKTER: n-mismatch vs v1: 9/12 | vs v2: 12/12 | skor-mismatch vs v1: 0/12 | vs v2: 0/12
+  P01      n_doc=  5 n_v1=  5[=] n_v2=  7[N]  skor_doc=0.94 v1=0.93 MISMATCH
+  P02      n_doc=  5 n_v1=  4[N] n_v2=  7[N]  skor_doc=0.95 v1=0.94 MISMATCH
+  P03      n_doc=  5 n_v1=  4[N] n_v2=  7[N]  skor_doc=0.93 v1=0.95 MISMATCH
+  P04      n_doc=  4 n_v1=  4[=] n_v2=  6[N]  skor_doc=0.11 v1=0.41 MISMATCH
+  P05      n_doc=  5 n_v1=  4[N] n_v2=  7[N]  skor_doc=0.66 v1=0.66 MATCH
+  P06      n_doc=  4 n_v1=  5[N] n_v2=  6[N]  skor_doc=0.13 v1=0.47 MISMATCH
+  P07      n_doc=  5 n_v1=  5[=] n_v2=  7[N]  skor_doc=0.62 v1=0.62 MATCH
+  P08      n_doc=  5 n_v1=  5[=] n_v2=  7[N]  skor_doc=0.92 v1=0.92 MATCH
+  P09      n_doc=  4 n_v1=  5[N] n_v2=  6[N]  skor_doc=0.94 v1=0.93 MISMATCH
+  P10      n_doc=  5 n_v1=  5[=] n_v2=  7[N]  skor_doc=0.93 v1=0.94 MISMATCH
+  P11      n_doc=  5 n_v1=  5[=] n_v2=  7[N]  skor_doc=0.68 v1=0.68 MATCH
+  P12      n_doc=  5 n_v1=  6[N] n_v2=  7[N]  skor_doc=0.85 v1=0.85 MATCH
+  P13      n_doc=  6 n_v1=  6[=] n_v2=  8[N]  skor_doc=0.86 v1=0.86 MATCH
+  P14      n_doc=  6 n_v1=  6[=] n_v2=  8[N]  skor_doc=0.87 v1=0.87 MATCH
+  P15      n_doc=  7 n_v1=  5[N] n_v2=  9[N]  skor_doc=0.53 v1=0.53 MATCH
+  P16      n_doc=  5 n_v1=  5[=] n_v2=  7[N]  skor_doc=0.88 v1=0.86 MISMATCH
+  P17      n_doc=  5 n_v1=  5[=] n_v2=  7[N]  skor_doc=0.86 v1=0.88 MISMATCH
+  P18      n_doc=  4 n_v1=  6[N] n_v2=  6[N]  skor_doc=0.74 v1=0.74 MATCH
+  P19      n_doc=  5 n_v1=  5[=] n_v2=  7[N]  skor_doc=0.78 v1=0.78 MATCH
+  P20      n_doc=  5 n_v1=  5[=] n_v2=  7[N]  skor_doc=0.79 v1=0.79 MATCH
+  -> PASIEN: n-mismatch vs v1: 8/20 | vs v2: 20/20 | skor-mismatch vs v1: 9/20 | vs v2: 0/20
+  E11.9    n_doc= 15 n_v1=  3[N] n_v2= 41[N]  skor_doc=0.88 v1=0.88 MATCH | v2=0.88 MATCH
+  I21.9    n_doc=  8 n_v1=  1[N] n_v2= 20[N]  skor_doc=0.13 v1=0.62 MISMATCH | v2=0.84 MISMATCH
+  J18.9    n_doc=  9 n_v1=  2[N] n_v2= 38[N]  skor_doc=0.74 v1=0.74 MATCH | v2=0.89 MISMATCH
+  K29.7    n_doc= 10 n_v1=  3[N] n_v2= 17[N]  skor_doc=0.95 v1=0.95 MATCH | v2=0.95 MATCH
+  K35.8    n_doc= 11 n_v1=  3[N] n_v2= 31[N]  skor_doc=0.79 v1=0.79 MATCH | v2=0.81 MISMATCH
+  K40.9    n_doc=  8 n_v1= 77[N] n_v2= 29[N]  skor_doc=0.13 v1=0.41 MISMATCH | v2=0.64 MISMATCH
+  K80.2    n_doc= 13 n_v1=  6[N] n_v2= 32[N]  skor_doc=0.87 v1=0.87 MATCH | v2=0.92 MISMATCH
+  N20.0    n_doc=  8 n_v1=  1[N] n_v2=  9[N]  skor_doc=0.13 v1=0.47 MISMATCH | v2=0.13 MATCH
+  O80      n_doc=  8 n_v1=  1[N] n_v2=  9[N]  skor_doc=0.66 v1=0.66 MATCH | v2=0.66 MATCH
+  S72.0    n_doc= 10 n_v1=  3[N] n_v2= 18[N]  skor_doc=0.94 v1=0.94 MATCH | v2=0.94 MATCH
+  -> DIAGNOSIS: n-mismatch vs v1: 10/10 | vs v2: 10/10 | skor-mismatch vs v1: 3/10 | vs v2: 5/10
+  00.66    n_doc= 12 n_v1=  4[N] n_v2= 24[N]
+  36.13    n_doc=  0 n_v1=  0[=] n_v2=  0[=]
+  47.09    n_doc= 11 n_v1=  5[N] n_v2= 31[N]
+  51.23    n_doc= 10 n_v1=  6[N] n_v2= 29[N]
+  53.1     n_doc=  8 n_v1= 77[N] n_v2= 29[N]
+  74.1     n_doc=  1 n_v1=  1[=] n_v2=  1[=]
+  81.52    n_doc= 10 n_v1=  3[N] n_v2= 18[N]
+  93.90    n_doc=  0 n_v1=  0[=] n_v2=  0[=]
+  96.04    n_doc=  3 n_v1=  3[=] n_v2=  3[=]
+  98.51    n_doc=  8 n_v1=  1[N] n_v2=  9[N]
+  -> PROSEDUR: n-mismatch vs v1: 6/10 | vs v2: 6/10 | skor-mismatch vs v1: 0/10 | vs v2: 0/10
+
+=== TARIF: doc vs nominal biaya in the 300 dataset ===
+  00.66    tarif_doc=58,000,000  300 n= 24 min=49,700,000 max=63,500,000 nominal>tarif: 9/24
+  36.13    tarif_doc=78,000,000  300-dataset: no rows
+  47.09    tarif_doc=6,800,000  300 n= 31 min=6,100,000 max=38,000,000 nominal>tarif: 16/31
+  51.23    tarif_doc=14,500,000  300 n= 29 min=13,250,000 max=15,800,000 nominal>tarif: 16/29
+  53.1     tarif_doc=8,200,000  300 n= 29 min=7,450,000 max=21,000,000 nominal>tarif: 16/29
+  74.1     tarif_doc=6,200,000  300 n=  1 min=6,200,000 max=6,200,000 nominal>tarif: 0/1
+  81.52    tarif_doc=46,500,000  300 n= 18 min=41,850,000 max=49,300,000 nominal>tarif: 7/18
+  93.90    tarif_doc=640,000  300-dataset: no rows
+  96.04    tarif_doc=750,000  300 n=  3 min=2,100,000 max=2,100,000 nominal>tarif: 3/3
+  98.51    tarif_doc=5,600,000  300 n=  9 min=5,050,000 max=6,000,000 nominal>tarif: 4/9
+
+=== PROSEDUR: full proc table in FIXX ===
+  00.66    n=4
+  47.09    n=5
+  51.23    n=6
+  53.1     n=77
+  74.1     n=1
+  81.52    n=3
+  96.04    n=3
+  98.51    n=1
+  codes in FIXX not in doc: []
+  codes in doc not in FIXX: ['36.13', '93.90']

@@ -1,0 +1,42 @@
+[0380] Penyusunan Bukti (Evidence)
+
+[0381] Mendekomposisi atribusi SHAP per-kanal dan mengekstrak matriks diskrepansi kode vs fakta.
+
+[0382] Menelaah keabsahan bukti dokumen penunjang klinis asli.
+
+[0383] Keputusan Penolakan / Dispute
+
+[0384] Dilarang memvonis. Sistem hanya memberikan rekomendasi: Normal / Review / Escalate.
+
+[0385] Memiliki hak tunggal mengeksekusi keputusan: Konfirmasi, Dismiss (Override), atau Eskalasi TKMKB.
+
+[0386] Umpan Balik Model (Active Learning)
+
+[0387] Mencatat log keputusan manusia beserta alasan overrides untuk kalibrasi ulang model.
+
+[0388] Memberikan label koreksi klinis yang menjadi bahan retraining model graf.
+
+[0389] 
+
+[0390] 6.4 Alur Interaksi Verifikator & Safe-Mode Fallback Protocol
+
+[0391] Saat menelaah berkas pada antrean merah atau kuning, verifikator disajikan antarmuka split-screen yang menampilkan ringkasan klaim berdampingan dengan matriks diskrepansi dan visualisasi subgraf sindikat. Verifikator memiliki tiga opsi tindakan:
+
+[0392] 1. Konfirmasi Anomali (Confirm): Verifikator menyetujui temuan anomali sistem dan meneruskan berkas ke proses klarifikasi faskes atau penyesuaian kode tarif INA-CBG.
+
+[0393] 2. Batalkan Flag (Override / Dismiss): Verifikator menolak rekomendasi AI karena terdapat justifikasi klinis yang sah dalam rekam medis. Verifikator wajib memilih alasan override (misal: komplikasi tak terduga saat operasi).
+
+[0394] 3. Eskalasi Khusus (Escalate): Jika terindikasi keterlibatan sindikat kolusi multi-faskes, berkas dieskalasi ke Tim Pencegahan Kecurangan (PK-JKN) dan Tim Kendali Mutu dan Kendali Biaya (TKMKB).
+
+[0395] Sebagai mekanisme pengaman kegagalan (fail-safe) tingkat korporat, Aegis-JKN dilengkapi protokol darurat Safe-Mode Fallback Protocol: Jika dalam kurun waktu 24 jam tingkat penolakan rekomendasi (override rate) oleh verifikator melampaui ambang batas 30%, sistem secara otomatis membekukan penyajian skor AI dan kembali ke mode verifikasi standar berbasis aturan deterministik. Kondisi ini otomatis memicu peringatan darurat ke tim teknis untuk melakukan investigasi data drift atau perubahan pedoman klinis baru.
+
+[0396] 6.5 Strategi Komprehensif Mitigasi Alert Fatigue & Halusinasi AI
+
+[0397] Fenomena alert fatigue (kejenuhan kognitif verifikator akibat sistem terlalu sering membunyikan alarm palsu) dimitigasi secara sistemik melalui:
+
+[0398] 1. Ambang Batas Selektif: Antrean merah hanya dipicu jika skor risiko > 0.70 dan delta tarif INA-CBG signifikan, sehingga verifikator tidak dibebani oleh peringatan bernilai rendah.
+
+[0399] 2. Agregasi Klaster Sindikat: Alih-alih menyajikan ribuan klaim satu per satu, sistem mengelompokkan klaim berdasarkan klaster sindikat (bipartite cluster), memungkinkan verifikator menyelesaikan audit atas puluhan klaim terkait dalam satu kali penelaahan.
+
+[0400] 3. Ekstraksi Fakta Deterministik Tanpa Halusinasi: Menolak penggunaan model generatif bebas halusinasi untuk penulisan kesimpulan medis; sistem hanya menyajikan matriks ekstraktif berbasis kode baku ICD-10/ICD-9 dan fakta numerik rekam medis.
+

@@ -1,0 +1,25 @@
+[0108] Tabel 2.1: Matriks Analisis 5-Whys Akar Masalah Kegagalan Deteksi Fraud Sindikat  6
+[0109] Tabel 2.2: Analisis Fishbone 4 Dimensi Kendala Audit Klaim JKN Nasional  8
+[0110] Tabel 3.1: Komparasi Pendekatan Audit Klaim: Manual vs Rule vs XGBoost vs Pure AI vs Aegis-JKN  13
+[0111] Tabel 5.1: Matriks Kepatuhan Prinsip UU PDP No. 27/2022 pada Platform Aegis-JKN  24
+[0112] Tabel 6.1: Matriks Pembagian Peran Kerja AI vs Verifikator Manusia (Human-in-the-Loop)  30
+[0113] Tabel 7.1: Spesifikasi Ruang Lingkup MVP Aegis-JKN (In-Scope vs Out-of-Scope)  40
+[0114] Tabel 7.2: Katalog 9 Pola Sindikat Fraud Ring (SYND-01 s/d SYND-09) pada Dataset v2.1  42
+[0115] Tabel 8.1: Kerangka Key Performance Indicators (KPI) 4 Dimensi Aegis-JKN  44
+[0116] Tabel 8.2: Ringkasan Analisis Finansial Portofolio 300 Klaim (Dataset v2.1 senilai Rp 3,53 Miliar)  47
+[0117] Tabel 9.1: Struktur Organisasi dan Distribusi Kompetensi Tim Inovator  . 54
+[0118] Tabel 10.1: Matriks Manajemen Risiko Komprehensif (12 Risiko Kritis & Rencana Mitigasi)  56
+[0119] Tabel 11.1: Roadmap Implementasi 7 Tahap Berbasis Stage-Gate Framework (12 Bulan)  62
+[0121] Gambar 4.1: Arsitektur Alur Kerja End-to-End Aegis-JKN (Tri-Tier & Dual-Path Pipeline)  16
+[0122] Gambar 4.2: Konstruksi Graf Heterogen Tri-Channel (Topologi, Fitur, Semantik Metapath)  19
+[0123] Gambar 4.3: Mekanisme Fusi Atensi Multi-Channel & Deteksi Topological Camouflage  20
+[0124] Gambar 6.1: Antarmuka Keputusan Verifikator dengan Visualisasi Klaster Bipartite Dokter-Faskes  32
+[0125] Gambar 6.2: Alur Safe-Mode Fallback Protocol Pemutus Rekomendasi Otomatis (Threshold >30%)  34
+[0126] Gambar 7.1: Topologi Simulasi Multi-Agent OASIS (20 Pasien, 12 Dokter, 6 RS)  39
+[0127] Gambar 11.1: Diagram Alir Stage-Gate Progression Roadmap Aegis-JKN  . . . 61
+[0215] Tabel 3.1 menyajikan perbandingan komprehensif antara metode telaah manual, sistem rule-based murni, model Machine Learning tabular (XGBoost), model AI Generatif (LLM Black-Box), dan platform Aegis-JKN.
+[0370] Tabel 6.1 merinci pembagian tanggung jawab fungsional antara sistem Aegis-JKN dan verifikator manusia di lingkungan BPJS Kesehatan.
+[0477] Tabel 7.1 menegaskan batasan ruang lingkup pengembangan Minimum Viable Product (MVP) guna memastikan fokus eksekusi yang tajam dan terukur.
+[0572] Tabel 8.2 menyajikan analisis finansial nyata yang diekstraksi dari database 300 klaim tervalidasi (Dataset v2.1) dengan total nilai portofolio Rp 3.526.650.000. Analisis ini membuktikan potensi dampak ekonomi riil tanpa overclaim spekulatif.
+[0617] Tabel 9.1 memetakan komposisi keahlian Tim Inovator Kandidat 1 yang memiliki keahlian lintas-disiplin dalam arsitektur AI, data klinis, dan strategi kebijakan kesehatan.
+[0636] Tabel 10.1 merangkum matriks manajemen risiko komprehensif beserta tingkat keparahan dan strategi mitigasi preventif serta kontingensinya.

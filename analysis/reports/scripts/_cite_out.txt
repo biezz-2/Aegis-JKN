@@ -1,0 +1,119 @@
+============ 03-architecture.md
+   21 | 1. **Tidak ada satu pun pipeline analitik yang diuji.** Tidak ada rule engine, tidak ada model, tidak ada split, tidak ada evaluator, tidak 
+   23 | 3. **Mekanisme anti-leakage yang ada di arsip dihapus saat revisi, lalu kebocoran justru bocor lewat UI.** Arsip 12:47,66,140-141 Advocate `
+   31 | | KRITIS | 9 | Pipeline analitik nol; angka benchmark hardcode; 4 skala ambang bertentangan; 11/36 fraud di bawah ambang kode; 8 kolom anti-
+   32 | | TINGGI | 11 | Rule engine absen; 10 artefak eksperimen absen; leak konfigurasi `ignoreBuildErrors`; 0 file Python/0 test script; fusion 3 
+   33 | | SEDANG | 10 | θ_feat 0,75 vs 0,85; `camouflageDetected` dikontrak tapi tak diimplementasi; profil drilldown tak punya versi/threshold/over
+   121 | | G-05 | Hiperparameter kanal dipilih dari fold.train | 02-architecture.md:36 | **TIDAK ADA** | `src/data/oasis-data.ts:81` `theta_feat: 0.8
+   134 | | G-18 | Anti-leakage: 8 kolom terlarang bukan fitur | 03-dataset-registry.md:84 | **DEVIASI** | `src/components/dataset/dataset-explorer.ts
+   149 | | G-33 | Build integrity | (reproduksibilitas, 02:11) | **DEVIASI** | `next.config.ts:6` `typescript.ignoreBuildErrors: true`; `tsconfig.jso
+   165 | | Kontrak API | `docs/api/data-contracts.md:211-213` | `θ_feat 0.75`, `τ_high 0.65`, `τ_fraud 0.85` |
+   166 | | Teori MHGSL | `docs/algorithms/mhgsl-theory.md:74` | `θ_feat = 0.75` |
+   167 | | Dokumen sistem | `docs/architecture/system-design.md:106` | `θ_feat = 0.75` |
+   169 | | i18n (ID/EN) | `src/components/mhgsl/i18n.tsx:352,700` | `θ_feat = 0.85` |
+   170 | | Teks UI fraud | `src/components/mhgsl/data.ts:481` | `θ_feat = 0.85` |
+   235 | | θ_feat | 0,75 (`:74`) | 0,75 (`:211`) | 0,75 (`:106`) | kode/UI 0,85 →G-16 |
+   250 | - `:106` θ_feat 0,75 vs `:94-112` Stage-2 naratif yang menyebut nilai berbeda; `:118` ReLU vs `:129-140` shared-GCN stage tanpa aktivasi kon
+   273 | | **`configs/leakage.yaml`** | `:47, 66, 140, 157, 189` | **Hilang** — nol file | Tidak ada blocklist kolom terlarang; 8 kolom justru dieksp
+   274 | | **`tests/test_leakage.py`** | `:47, 141, 174, 180` | **Hilang** — nol file `.py` | Anti-leakage tak teruji otomatis; 03:84 jadi Keynote sa
+   286 | **Catatan**: sebagian penghapusan memang benar (arsip `:108,111,112,116,131,133` memuat klaim berlebihan dan "terbukti" yang berlebihan; `:9
+   301 | 7. **Bangun pipeline evaluasi minimal** (Python atau TS): `leakage.yaml`/`leakage.ts` blocklist 8 kolom + `test_leakage` (arsip `:140-141`),
+   315 | 19. **Kembalikan proteksi yang hilang dari arsip** secara bertahap: `leakage.yaml` + test (P1 #7) → repeat CV ≥10 seed → AUPRC pada prevalen
+   316 | 20. **Tambahkan `npm test` dan matikan `ignoreBuildErrors`** (`next.config.ts:6`), aktifkan `noImplicitAny` (`tsconfig.json:13`). → 02:11 (r
+   337 | -o -name "leakage*" \) -not -path "./node_modules/*" → (kosong)
+   344 | sed -n '74p'  docs/algorithms/mhgsl-theory.md            → θ_feat = 0.75
+   345 | sed -n '106p' docs/architecture/system-design.md         → θ_feat = 0.75
+   346 | sed -n '211,213p' docs/api/data-contracts.md             → θ_feat 0.75 / τ_high 0.65 / τ_fraud 0.85
+   354 | # 6. Anti-leakage di eksportir
+============ 07-generator.md
+   15 | **Dataset 300 klaim ini tidak dapat direproduksi.** Skrip generator yang menghasilkan 300 baris **tidak ada di repositori mana pun** di work
+   17 | Selain itu ditemukan **ground truth yang saling bertentangan dengan data**: narasi rekam medis pada 6 baris SYND-02 justru **mengkonfirmasi*
+   23 | | CRITICAL | 9 | Ground truth phantom-billing dibantah narasi (KLM004–006); episode anomali tidak ada (6 baris); seed/version/timestamp tida
+   40 | | `mechine-learning-deep-learning/backend/src/data/pipeline.py` | satu-satunya `np.random.seed(20260707)` (line ~103) ada di dalam `_generat
+   44 | | `Aegis-JKN/src/data/oasis-data.ts`, `src/components/mhgsl/data.ts` | `seed: 20260707` pada metadata Oasis dan label UI "Dataset v2.1 (300 
+   46 | **Bukti ketidakcocokan v1:** `build_ground_truth()` menetapkan KLM004 = dx `S72.0` / proc `81.52` / biaya 46.500.000 / skor 0.92; CSV corpus
+   48 | **Konsekuensi:** `03-dataset-registry.md` §8 ("Setiap ekspor dataset harus mencantumkan … checksum berkas … seed dan versi kode") **tidak da
+   50 | ### 2.2 Di mana seed / versi / checksum seharusnya hidup (dan tidak ada)
+   54 | | Kolom `seed`, `version`, `timestamp` | `data/raw/claims_300_v2.1.csv` (spec: "+ kolom pasien_id, faskes_id, dokter_id, seed, version, time
+   121 | 1. **Jumlah modus 13 vs 14** — spec v2.1 menyebut "14 modus"; data hanya memuat 13: `anomali_frekuensi, biaya_markup, cloning, drug_diversio
+   134 | | SYND-02 | phantom_billing | KLM004–006 ✓ | RS_C ✓ | D05 ✓ | P08–P10 ✓ | ≥0.92 | 0.92–0.94 ✓ | OK |
+   151 | 5. Yang **sesuai**: 9/9 sindikat berada pada 1 faskes (R25 lulus), tidak ada pasien anggota 2+ sindikat (R26 lulus), dan 5 sindikat v1 (SYND
+   163 | | R2d phantom SYND-02: narasi **tidak** mengkonfirmasi tindakan yang ditagih | CRITICAL | 3/3 | KLM004, KLM005, KLM006 | Narasi berbunyi "Fr
+   170 | | R37 kolom seed / version / timestamp ada di dataset | CRITICAL | — | seed, version, timestamp | Tidak ada satu pun kolom tersebut; seed 20
+   171 | | R38 artefak wajib struktur file v2.1 tersedia di repo | CRITICAL | 9/9 | `claims_300_v2.1.csv`, `edges_v2.1.json`, `text_gt_v2.1.csv`, `le
+   282 | 1. **Buat generator 300 baris yang deterministik dan simpan di repo** (mis. `scripts/generate_claims.py`, `SEED = 20260707`), dengan fungsi 
+   283 | 2. **Perbaiki ground truth yang dibantah data.** (a) SYND-02 phantom: ganti narasi KLM004–006 agar tidak mengklaim hemiarthroplasty dilakuka
+   292 | 8. **Tambahkan kolom `seed`, `version`, `timestamp`** ke CSV hasil generator (spec v2.1 mensyaratkan) dan berkas checksum untuk setiap artef
+============ 13-text-channel.md
+   5 | **Data:** `N:\HEALTHKATHON\analysis\corpus\claims_v2_live.csv` (300 baris, KLM001–KLM300)
+   20 | 2. **`Kontradiksi Narasi` bukan hasil analisis narasi — ia adalah lookup dari kolom `Modus`.** Uji padanan sempurna: `flag == (modus ∈ {upco
+   30 | | S2 | **Kritis** | `Kontradiksi Narasi` = lookup `Modus`, bukan analisis narasi (TP=12/FP=0/FN=0/TN=288) | Modul "deteksi kontradiksi" nol 
+   63 | | ID | Modus | Skor Fraud | Risiko | Sentimen | Skor Sentimen |
+   65 | | KLM001 | upcoding | 0.94 | fraud | negatif | −0.75 |
+   144 | ### 4.1 Temuan utama: flag = lookup `Modus`
+   146 | Uji apakah `Kontradiksi Narasi` bisa direproduksi dari `Modus` tanpa membaca teks:
+   153 | Cross-tab `Modus` × `Kontradiksi Narasi`:
+   155 | | Modus | True | False | Total | Flagged? |
+   172 | **Implikasi:** `Kontradiksi Narasi` **tidak menguji kemampuan deteksi narasi sama sekali**. Ia hanya menandai 3 dari 13 modus. Modus yang se
+   180 | | KLM001 | "Saya hanya periksa lambung, kenapa ada tagihan tindakan jantung?" | prosedur diragukan |
+   197 | | ID | Modus | Skor Fraud | Risiko | Kutipan "Umpan Balik Pasien" | Sinyal | Catatan |
+   221 | **Label sentimen diturunkan dari `Modus`, bukan dari analisis sentimen.** 11 dari 13 modus bersifat monoton (seluruh baris satu modus → satu
+   239 | | ID | Risiko | Modus | Umpan Balik | Label |
+   303 | **Konsensus narasi = monoton dengan `Diagnosis ICD-10`.** 13 diagnosis → 40 narasi, dan setiap diagnosis memetakan ke 1–3 narasi. Narasi **t
+   307 | Sampel KLM001–KLM030 (lihat output skrip §4). Penilaian:
+   388 | | **Bagaimana kontradiksi dideteksi** | ⚠️ Sebagian | `architecture_full.md:175` "pasien menyatakan tindakan tertentu tidak pernah dilakukan
+   396 | | **Label provenance** | ⚠️ Sebagian | `03-dataset-registry.md:69-71` "Skor Sentimen: Skor sentimen sintetis / Definisikan rentang dan polar
+   478 | | R1 | **Perbarui semua angka spec** | Ganti "62 positif · 14 netral · 24 negatif" → **"170 positif · 58 netral · 72 negatif"** di `10-simul
+   490 | | R8 | **Pisahkan label text dari `Modus`** | Karena `Sentimen` 100% diturunkan dari `Modus`, buat label teks **independen**: label manual o
+   498 | | R11 | **Buat `configs/text.yaml` + `configs/leakage.yaml` yang benar-benar ada** | `text.yaml`: `enabled`, `provider`, `model`, `fallback:
+   511 | | R19 | **Hilangkan `Modus` dari fitur text-channel** | Karena `Sentimen` diturunkan dari `Modus`, memasukkan `Modus` ke prompt atau fitur =
+   523 | IDs: KLM001 KLM002 KLM003 KLM004 KLM005 KLM006 KLM018 KLM024
+   531 | flag == modus lookup  TP=12 FP=0 FN=0 TN=288
+============ 17-roadmap.md
+   13 | ### 1.1 Posisi kritis: jendela waktu bukan 14 hari ke depan, melainkan 10 hari ke belakang
+   17 | Konsekuensi: seluruh work item P0 pada Dashboard §6 (00-dashboard.md:58-63) bukan "backlog prioritas" — ia adalah **blokir deliverable 1 Nov
+   21 | **Jalur Submit (22 Okt – 1 Nov 2026, 10 hari kerja) — 17 backlog item (B-01..B-17: 16 item P0 + 1 item P1), menutup 16 gap (15 gap P0 + G-15
+   36 | 4. **Overclaim finansial dan angka salah di layar presentasi (G-03, G-07).** `src/components/mhgsl/fraud-ring.tsx:415` "Rp 1,2 M/bulan (Rp 1
+   48 | | Total work item (backlog) | 31 (B-01..B-17 Jalur Submit, B-18..B-31 Jalur Riset) |
+   67 | | G-03 | Klaim penghematan Rp14,4 M/tahun dan Rp507.370.000 tampil di UI tanpa tarif acuan maupun formula | docs/data | `src/components/mhgs
+   99 | **Total: 27 gap** (10 P0, 13 P1, 4 P2). Backlog §4 menyatukan 27 gap menjadi 25 item yang dimiliki (B-01..B-31).
+   135 | | P0-4 Tambahkan tarif acuan + metode overcharge per klaim | G-03, G-04 | **28 Okt (Hari 7)** | 00-dashboard.md:39 "belum dapat direproduksi
+   155 | | 5 | 26 Okt | Hentikan overclaim di UI (G-02, G-03, G-21, G-22) + rotasi kredensial (G-13) | Patch `data.ts`, `fraud-ring.tsx`, `roadmap.ts
+   172 | | B-01 | G-01| Kunci definisi label + aturan ambang | data/governance | P0 | Juri menolak ground truth; metrik tidak sah | Tim data + review
+   173 | | B-02 | G-05, G-09| Bekukan sumber: manifest, checksum, seed, split | data | P0 | Angka berubah diam-diam saat Notion diperbarui (03-datase
+   175 | | B-04 | G-02, G-03, G-21, G-22| Stop overclaim UI: metrik & finansial | code/docs | P0 | Overclaim di juri (risiko fatal #1) | Frontend + P
+   179 | | B-08 | G-03, G-04| Tarif acuan + overcharge per klaim | data | P0 | Klaim Rp507.370.000 tak terbukti | Tim data + keuangan | M | B-01 | `t
+   183 | | B-12 | G-10| Kunci satu fungsi label untuk training DAN evaluasi | code/model | P0 | Metrik yang dilaporkan tidak mengukur apa yang dilati
+   196 | | B-25 | G-27| Review klinis skenario | governance | P1 | Ground truth tanpa validasi klinis | Reviewer klinis eksternal | M | B-01, B-27 | 
+   213 | | R-04 | Waktu habis: 10 hari untuk 8 P0 + demo | Operasional | **Tinggi** | Sangat tinggi | Kritis | Critical path dibatasi 8 P0 (P0-1..P0-
+   214 | | R-05 | Dataset quality: 109 baris LOS ambigu, 1 baris `Alasan` kosong, label batas 0,80 | Data | Sedang | Tinggi | Tinggi | B-22 + B-01 + 
+   520 | G-01 (ambang 0,80 belum terkunci), G-03 (Rp 14,4 M di UI), G-07 (angka salah di `dataset-explorer.tsx`), G-08 (deadline salah di `notion-dat
+============ 16-red-team.md
+   20 | 1. **Novelty-nya sudah publik dan itu ditulis sendiri di dalam corpus.** "MHGSL" adalah metode dari Hong et al., *Heliyon* 2024, DOI `10.101
+   26 | Di atas itu, **93,0% akurasi berada DI BAWAH baseline sepele** pada prevalensi lapangan yang dipakai proyek sendiri: pada p=3%, model yang *
+   32 | | **KRITIS** (falsifiable, merusak inti klaim) | 5 | #1 Novelty = paper yang sudah publik (Heliyon 2024) - ditulis sendiri di corpus |
+   36 | | | 5 | #5 Akurasi 93,0% < baseline sepele (97,0%) pada prevalensi lapangan 3% |
+   60 | | 1 | **"MHGSL" adalah metode yang sudah dipublikasikan.** Klaim state-of-the-art berasal dari paper yang dipakai sebagai sumber adaptasi. |
+   64 | | 5 | **Akurasi 93,0% di bawah baseline sepele pada prevalensi lapangan yang dipakai proyek sendiri.** | **Sangat tinggi.** Satu kalimat, ta
+   245 | | Hong et al., *Heliyon* 2024 — "Health insurance fraud detection based on multi-channel heterogeneous graph structure learning" | `10.1016/
+   287 | Begitu juri akademis membaca `12-archive-architecture.md:30` - "diadaptasi dari paper Hong et al., Heliyon 2024" - seluruh framing "state-of
+   378 | | #5 | Akurasi 93,0% < baseline sepele 97,0% pada p=3% | KRITIS | skrip §2a-2b; `12-archive-architecture.md:142` |
+   398 | | B1 | Hong et al. (2024). *Health insurance fraud detection based on multi-channel heterogeneous graph structure learning*. Heliyon 10(9):e
+============ 15-code-quality.md
+   16 | **Kelas A — Klaim spesifikasi yang tidak didukung bukti.** Dokumen `10-simulation-dataset.md` baris 154 mengklaim *"Unit test (tests/test_le
+   18 | **Kelas B — Quality gate yang dimatikan.** `next.config.ts` menyetel `typescript.ignoreBuildErrors: true`, sehingga `npm run build` **lolos*
+   24 | | **CRITICAL** | 3 | Klaim `test_leakage.py` palsu; `ignoreBuildErrors` memblokir guard type-level; tidak ada test suite sama sekali (0 unit
+   33 | | Typecheck | `npx tsc --noEmit` | **1** | **GAGAL — 8 error** |
+   35 | | Build | `npm run build` | **0** | LOLOS, tetapi **masking** (`ignoreBuildErrors: true`) |
+   36 | | Test | `npm test` | — | **SKRIP TIDAK ADA** |
+   68 | | `typecheck` / `type-check` | **TIDAK** | — | **TIDAK ADA** (harus manual `npx tsc --noEmit`) |
+   102 | ## 3. Verifikasi `tests/test_leakage.py`
+   110 | | `tests/test_leakage.py` | `10-simulation-dataset.md:154` | **TIDAK ADA** |
+   139 | ### 4.1 `npx tsc --noEmit` → **EXIT CODE 1, 8 ERROR**
+   196 | **Build produksi benar-benar lolos secara teknis, tetapi hanya karena `typescript.ignoreBuildErrors: true` di `next.config.ts`.** Baris `Ski
+   226 | | `ignoreBuildErrors: true` | 1 | `next.config.ts:6` | **CRITICAL** — menutupi type error |
+   446 | | 1 | **P0** | `leakage.test.ts` — fail keras bila kolom terlarang masuk fitur | `tests/` | Kontrak `03-dataset-registry.md` §7. **Membongka
+   449 | | 4 | **P0** | `npm run typecheck` sebagai gate + `ignoreBuildErrors: false` | `package.json`, `next.config.ts` | 8 error typecheck harus hi
+   472 | npx tsc --noEmit          → exit 1, 8 error
+   519 | # Verifikasi test_leakage.py
+   526 | npx tsc --noEmit                             # exit 1, 8 error

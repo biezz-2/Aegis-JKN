@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="dark light" />
+<title>Aegis-JKN — Analisis Mendalam Proyek Healthkathon 2026</title>
+<meta name="description" content="Laporan teknis mendalam ekosistem proyek Healthkathon 2026: Aegis-JKN, Aegis-JKN app, pipeline MHGSL, kepatuhan, dan kesiapan submit." />
+<style>
+:root{
+  --ink:#070A0F; --bg:#0A0E15; --bg2:#0E141D; --panel:#121A25; --panel2:#16202D;
+  --line:#22303F; --line2:#2C3D50;
+  --txt:#E9EFF8; --txt2:#B9C6D8; --muted:#8698AE;
+  --accent:#6EA8FF; --accent2:#4C82D8;
+  --teal:#2BD9B0; --amber:#F5B547; --rose:#FF6B6B; --violet:#A78BFA;
+  --ok:#34D399; --warn:#FBBF24; --bad:#F87171;
+  --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 18px 40px -24px rgba(0,0,0,.9);
+  --r:16px; --r-sm:10px;
+  --mono:ui-monospace,"SFMono-Regular","JetBrains Mono","Cascadia Code",Menlo,monospace;
+  --sans:"Inter var",Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+html[data-theme="light"]{
+  --ink:#FFFFFF; --bg:#F6F8FC; --bg2:#EEF2F8; --panel:#FFFFFF; --panel2:#F8FAFD;
+  --line:#DFE6F1; --line2:#CBD6E6;
+  --txt:#0B1220; --txt2:#26334A; --muted:#5A6B84;
+  --accent:#2F6FE0; --accent2:#1F55B8;
+  --teal:#0E9F7E; --amber:#B4740A; --rose:#D64545; --violet:#7C5CD6;
+  --ok:#128A5F; --warn:#9A6A00; --bad:#C0392B;
+  --shadow:0 1px 0 rgba(255,255,255,.7) inset, 0 14px 34px -22px rgba(16,32,64,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:84px}
+body{
+  margin:0; background:var(--bg); color:var(--txt);
+  font-family:var(--sans); font-size:16px; line-height:1.62;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(1100px 620px at 12% -8%, rgba(110,168,255,.16), transparent 60%),
+    radial-gradient(900px 520px at 92% 4%, rgba(43,217,176,.10), transparent 60%),
+    radial-gradient(700px 500px at 50% 110%, rgba(167,139,250,.10), transparent 60%);
+}
+html[data-theme="light"] body::before{
+  background:
+    radial-gradient(1100px 620px at 12% -8%, rgba(47,111,224,.10), transparent 60%),
+    radial-gradient(900px 520px at 92% 4%, rgba(14,159,126,.08), transparent 60%);
+}
+a{color:var(--accent); text-decoration:none}
+a:hover{text-decoration:underline}
+code,kbd,pre{font-family:var(--mono)}
+code{font-size:.86em; background:var(--panel2); border:1px solid var(--line); border-radius:6px; padding:.08em .38em; color:var(--txt)}
+pre{background:var(--panel2); border:1px solid var(--line); border-radius:12px; padding:14px 16px; overflow:auto; font-size:12.5px; line-height:1.55}
+pre code{background:none; border:0; padding:0}
+::selection{background:rgba(110,168,255,.28)}
+/* ---------- layout ---------- */
+.shell{position:relative; z-index:1; display:grid; grid-template-columns:264px minmax(0,1fr); gap:0; max-width:1500px; margin:0 auto}
+.side{position:sticky; top:0; height:100vh; padding:26px 18px 40px 26px; overflow:auto; border-right:1px solid var(--line)}
+.main{min-width:0; padding:0 clamp(18px,4vw,64px) 96px}
+.wrap{max-width:1080px}
+/* ---------- side nav ---------- */
+.brand{display:flex; align-items:center; gap:10px; margin-bottom:22px}
+.brand .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(145deg,var(--accent),var(--teal));display:grid;place-items:center;color:#04121B;font-weight:800;font-size:15px;letter-spacing:-.02em}
+.brand b{display:block; font-size:14px; letter-spacing:-.01em}
+.brand span{display:block; font-size:11px; color:var(--muted); letter-spacing:.06em; text-transform:uppercase}
+.toc{list-style:none; margin:0; padding:0; display:grid; gap:2px}
+.toc a{display:flex; gap:10px; align-items:baseline; padding:7px 10px; border-radius:8px; color:var(--txt2); font-size:13.5px; border:1px solid transparent}
+.toc a:hover{background:var(--panel); text-decoration:none; color:var(--txt)}
+.toc a.active{background:var(--panel); border-color:var(--line); color:var(--txt)}
+.toc .n{font-family:var(--mono); font-size:10.5px; color:var(--muted); min-width:20px}
+.side-foot{margin-top:22px; padding-top:16px; border-top:1px solid var(--line); font-size:11.5px; color:var(--muted); display:grid; gap:8px}
+/* ---------- top bar ---------- */
+.top{position:sticky; top:0; z-index:40; display:flex; align-items:center; justify-content:space-between; gap:14px;
+  padding:12px 0; margin:0 0 6px; background:linear-gradient(var(--bg) 62%, transparent); backdrop-filter:blur(10px)}
+.top .crumbs{font-size:12px; color:var(--muted); letter-spacing:.04em}
+.top .acts{display:flex; gap:8px; align-items:center}
+.btn{appearance:none; border:1px solid var(--line2); background:var(--panel); color:var(--txt); border-radius:999px;
+  padding:7px 13px; font-size:12.5px; font-weight:600; cursor:pointer; display:inline-flex; gap:7px; align-items:center; font-family:var(--sans)}
+.btn:hover{border-color:var(--accent); color:var(--accent)}
+.progress{position:fixed; top:0; left:0; height:2px; width:0%; background:linear-gradient(90deg,var(--accent),var(--teal)); z-index:80}
+/* ---------- hero ---------- */
+.hero{padding:clamp(28px,5vw,64px) 0 20px}
+.kicker{display:inline-flex; align-items:center; gap:8px; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--teal);
+  border:1px solid color-mix(in srgb, var(--teal) 34%, transparent); background:color-mix(in srgb, var(--teal) 9%, transparent);
+  padding:5px 11px; border-radius:999px; font-weight:700}
+h1{font-size:clamp(34px,5.2vw,62px); line-height:1.02; letter-spacing:-.035em; margin:20px 0 0; font-weight:800}
+h1 .grad{background:linear-gradient(96deg,var(--accent) 0%,var(--teal) 58%,var(--violet) 100%); -webkit-background-clip:text; background-clip:text; color:transparent}
+.lede{font-size:clamp(15px,1.55vw,19px); color:var(--txt2); max-width:72ch; margin:18px 0 0}
+.meta-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:22px}
+.chip{font-size:11.5px; color:var(--txt2); border:1px solid var(--line); background:var(--panel); padding:5px 10px; border-radius:999px; display:inline-flex; gap:6px; align-items:center}
+.chip b{color:var(--txt); font-weight:650}
+/* ---------- stats ---------- */
+.stats{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:32px}
+.stat{background:linear-gradient(180deg,var(--panel),var(--bg2)); border:1px solid var(--line); border-radius:var(--r); padding:16px 16px 14px; box-shadow:var(--shadow); position:relative; overflow:hidden}
+.stat::after{content:""; position:absolute; inset:auto 0 0 0; height:2px; background:linear-gradient(90deg,var(--accent),transparent)}
+.stat .k{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.stat .v{font-size:clamp(24px,3vw,34px); font-weight:800; letter-spacing:-.03em; line-height:1.15; margin-top:6px}
+.stat .s{font-size:11.5px; color:var(--muted); margin-top:4px}
+/* ---------- sections ---------- */
+section{padding:clamp(34px,5vw,64px) 0 6px; border-top:1px solid var(--line); margin-top:clamp(30px,4vw,52px)}
+section:first-of-type{border-top:0}
+.sechead{display:flex; align-items:flex-start; gap:14px; margin-bottom:22px}
+.secnum{font-family:var(--mono); font-size:12px; color:var(--accent); border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);
+  border-radius:8px; padding:3px 8px; margin-top:6px; flex:none}
+h2{font-size:clamp(23px,2.9vw,33px); letter-spacing:-.025em; margin:0; line-height:1.14; font-weight:780}
+h3{font-size:clamp(17px,1.9vw,20px); letter-spacing:-.014em; margin:30px 0 10px; font-weight:700}
+h4{font-size:14px; letter-spacing:.02em; margin:20px 0 8px; font-weight:700; color:var(--txt)}
+.sub{color:var(--muted); font-size:13.5px; margin:7px 0 0; max-width:78ch}
+p{margin:12px 0; color:var(--txt2)}
+p strong, li strong{color:var(--txt)}
+ul,ol{color:var(--txt2); padding-left:20px}
+li{margin:6px 0}
+/* ---------- cards ---------- */
+.grid{display:grid; gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:18px 18px 16px; box-shadow:var(--shadow)}
+.card h4{margin-top:0}
+.card .big{font-size:26px; font-weight:800; letter-spacing:-.03em}
+.card p:last-child{margin-bottom:0}
+.tag{display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; padding:3px 8px; border-radius:6px}
+.t-p0{background:rgba(248,113,113,.14); color:#FF8A8A; border:1px solid rgba(248,113,113,.35)}
+.t-p1{background:rgba(251,191,36,.13); color:#F3BE55; border:1px solid rgba(251,191,36,.32)}
+.t-p2{background:rgba(110,168,255,.13); color:#8FB9FF; border:1px solid rgba(110,168,255,.32)}
+.t-ok{background:rgba(52,211,153,.13); color:#4CE0AC; border:1px solid rgba(52,211,153,.32)}
+.t-no{background:rgba(248,113,113,.13); color:#FF8A8A; border:1px solid rgba(248,113,113,.32)}
+.t-amb{background:rgba(251,191,36,.13); color:#F3BE55; border:1px solid rgba(251,191,36,.32)}
+/* ---------- callout ---------- */
+.callout{border-left:3px solid var(--accent); background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 9%,transparent),transparent 70%);
+  border-radius:0 12px 12px 0; padding:14px 18px; margin:18px 0}
+.callout.warn{border-color:var(--amber); background:linear-gradient(90deg,color-mix(in srgb,var(--amber) 10%,transparent),transparent 70%)}
+.callout.bad{border-color:var(--rose); background:linear-gradient(90deg,color-mix(in srgb,var(--rose) 10%,transparent),transparent 70%)}
+.callout.good{border-color:var(--teal); background:linear-gradient(90deg,color-mix(in srgb,var(--teal) 10%,transparent),transparent 70%)}
+.callout .lbl{font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:800; color:var(--muted); margin-bottom:4px}
+.callout p{margin:4px 0}
+/* ---------- tables ---------- */
+.tblwrap{overflow:auto; border:1px solid var(--line); border-radius:var(--r); background:var(--panel)}
+table{width:100%; border-collapse:collapse; font-size:13px; min-width:560px}
+thead th{position:sticky; top:0; background:var(--panel2); text-align:left; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); padding:11px 13px; border-bottom:1px solid var(--line); white-space:nowrap; z-index:2}
+tbody td{padding:11px 13px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--txt2)}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:color-mix(in srgb,var(--accent) 5%,transparent)}
+td.num,th.num{text-align:right; font-family:var(--mono); font-size:12px; white-space:nowrap}
+td.mono{font-family:var(--mono); font-size:11.5px; color:var(--muted)}
+.rowhead{font-weight:650; color:var(--txt)}
+/* ---------- meters ---------- */
+.meter{height:8px; border-radius:999px; background:var(--panel2); border:1px solid var(--line); overflow:hidden}
+.meter i{display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,var(--accent),var(--teal)); width:0; transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.mrow{display:grid; grid-template-columns:200px 1fr 54px; gap:12px; align-items:center; margin:9px 0; font-size:13px}
+.mrow .lab{color:var(--txt2)}
+.mrow .val{font-family:var(--mono); font-size:12px; text-align:right; color:var(--txt)}
+/* ---------- finding cards ---------- */
+.finding{border:1px solid var(--line); border-radius:14px; background:var(--panel); margin:10px 0; overflow:hidden}
+.finding>summary{cursor:pointer; list-style:none; padding:13px 16px; display:flex; gap:12px; align-items:flex-start; font-size:14px}
+.finding>summary::-webkit-details-marker{display:none}
+.finding>summary:hover{background:color-mix(in srgb,var(--accent) 4%,transparent)}
+.finding .id{font-family:var(--mono); font-size:11px; color:var(--muted); padding-top:2px; flex:none; min-width:44px}
+.finding .ttl{font-weight:650; color:var(--txt); flex:1}
+.finding .body{padding:0 16px 16px 72px; font-size:13.5px; color:var(--txt2)}
+.finding .body p:first-child{margin-top:0}
+.finding[open] summary{border-bottom:1px solid var(--line)}
+/* ---------- chart ---------- */
+.chart{background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:20px}
+.chart .cap{font-size:11.5px; color:var(--muted); margin-top:10px}
+.bars{display:grid; gap:9px; margin-top:6px}
+.bar{display:grid; grid-template-columns:150px 1fr 52px; gap:12px; align-items:center; font-size:12.5px}
+.bar .track{display:block; height:26px; background:var(--panel2); border:1px solid var(--line); border-radius:7px; position:relative; overflow:hidden}
+.bar .fill{display:block; height:100%; border-radius:6px; background:linear-gradient(90deg,var(--accent2),var(--accent)); width:0; transition:width 1s cubic-bezier(.2,.7,.2,1)}
+.bar .fill.hi{background:linear-gradient(90deg,#1E7F63,var(--teal))}
+.bar .fill.bad{background:linear-gradient(90deg,#7A2C2C,var(--rose))}
+.bar .fill.amb{background:linear-gradient(90deg,#8A6112,var(--amber))}
+.bar .t{color:var(--txt2)}
+.bar .v{font-family:var(--mono); font-size:11.5px; text-align:right; color:var(--txt)}
+.donut{display:flex; gap:22px; align-items:center; flex-wrap:wrap}
+.donut svg{flex:none}
+.donut .legend{display:grid; gap:7px; font-size:12.5px}
+.donut .legend div{display:flex; gap:8px; align-items:center; color:var(--txt2)}
+.dot{display:block; width:9px;height:9px;border-radius:3px;flex:none}
+/* ---------- score card ---------- */
+.score{display:flex; gap:26px; align-items:center; flex-wrap:wrap; background:linear-gradient(135deg,var(--panel),var(--bg2)); border:1px solid var(--line); border-radius:20px; padding:24px}
+.score .ring{position:relative; width:150px; height:150px; flex:none}
+.score .ring svg{transform:rotate(-90deg)}
+.score .ring .lv{position:absolute; inset:0; display:grid; place-items:center; text-align:center}
+.score .ring .lv b{display:block; font-size:32px; letter-spacing:-.03em; line-height:1}
+.score .ring .lv span{font-size:10.5px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase}
+/* ---------- timeline ---------- */
+.tl{position:relative; padding-left:26px; margin:18px 0}
+.tl::before{content:""; position:absolute; left:7px; top:4px; bottom:4px; width:2px; background:linear-gradient(var(--accent),var(--teal),transparent)}
+.tl .item{position:relative; margin:0 0 20px}
+.tl .item::before{content:""; position:absolute; left:-23px; top:6px; width:10px; height:10px; border-radius:50%; background:var(--bg); border:2px solid var(--accent)}
+.tl .item.done::before{background:var(--teal); border-color:var(--teal)}
+.tl h4{margin:0 0 4px}
+.tl .when{font-family:var(--mono); font-size:11px; color:var(--muted); letter-spacing:.04em}
+/* ---------- kbd / misc ---------- */
+.split{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.hr{height:1px; background:var(--line); margin:26px 0}
+.small{font-size:12.5px; color:var(--muted)}
+.center{text-align:center}
+.reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1; transform:none}
+footer{border-top:1px solid var(--line); margin-top:60px; padding:30px 0 60px; color:var(--muted); font-size:12.5px}
+.flow{display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-size:12px; color:var(--muted); margin:10px 0}
+.flow .node{border:1px solid var(--line2); background:var(--panel); color:var(--txt2); border-radius:9px; padding:6px 10px; font-family:var(--mono); font-size:11.5px}
+.flow .arw{color:var(--accent)}
+@media (max-width:1080px){
+  .shell{grid-template-columns:1fr}
+  .side{position:relative; height:auto; border-right:0; border-bottom:1px solid var(--line); padding:18px}
+  .toc{display:flex; flex-wrap:wrap; gap:4px}
+  .toc a{padding:5px 9px; font-size:12px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .side-foot{display:none}
+}
+@media (max-width:720px){
+  .g2,.g3,.g4,.split{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .mrow{grid-template-columns:120px 1fr 44px}
+  .bar{grid-template-columns:96px 1fr 44px}
+  .finding .body{padding-left:16px}
+}
+@media print{
+  .side,.top,.progress,footer .no-print{display:none!important}
+  .shell{display:block}
+  body{background:#fff; color:#000}
+  body::before{display:none}
+  .card,.finding,.tblwrap,.chart{break-inside:avoid; box-shadow:none}
+  section{page-break-inside:auto}
+  a{color:#000; text-decoration:underline}
+  .reveal{opacity:1; transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important; transition:none!important}
+  .reveal{opacity:1; transform:none}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="shell">
+<aside class="side">
+  <div class="brand">
+    <div class="mark">A</div>
+    <div><b>Aegis-JKN</b><span>Technical Review</span></div>
+  </div>
+  <nav aria-label="Daftar isi">
+    <ul class="toc" id="toc">
+      <li><a href="#s1"><span class="n">01</span> Ringkasan Eksekutif</a></li>
+      <li><a href="#s2"><span class="n">02</span> Peta Ekosistem</a></li>
+      <li><a href="#s3"><span class="n">03</span> Arsitektur &amp; Inventaris</a></li>
+      <li><a href="#s4"><span class="n">04</span> Blocker &amp; Cacat Kode</a></li>
+      <li><a href="#s5"><span class="n">05</span> Mesin ML (MHGSL)</a></li>
+      <li><a href="#s6"><span class="n">06</span> Angka vs Bukti</a></li>
+      <li><a href="#s7"><span class="n">07</span> Kepatuhan &amp; Keamanan</a></li>
+      <li><a href="#s8"><span class="n">08</span> Skor Kesiapan</a></li>
+      <li><a href="#s9"><span class="n">09</span> Register Temuan</a></li>
+      <li><a href="#s10"><span class="n">10</span> Rencana Aksi</a></li>
+      <li><a href="#s11"><span class="n">11</span> Metodologi &amp; Lampiran</a></li>
+    </ul>
+  </nav>
+  <div class="side-foot">
+    <div>Audit per <b style="color:var(--txt)">24 Oktober 2026</b></div>
+    <div>24 laporan audit internal · 149 berkas aplikasi · 62 modul Python · 9,7 GB data</div>
+    <div><a href="#s11">Baca metodologi &amp; batasan →</a></div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="top">
+    <div class="crumbs">Healthkathon 2026 · BPJS Kesehatan · Due Diligence</div>
+    <div class="acts">
+      <button class="btn" id="themeBtn" type="button" aria-label="Ganti tema">
+        <span id="themeIcon">◐</span><span id="themeTxt">Terang</span>
+      </button>
+      <button class="btn" type="button" onclick="window.print()">Cetak / PDF</button>
+    </div>
+  </div>
+
+  <header class="hero">
+    <span class="kicker">● Laporan Analisis Mendalam</span>
+    <h1>Aegis-JKN<br><span class="grad">Purwarupa deteksi fraud klaim JKN</span></h1>
+    <p class="lede">
+      Analisis menyeluruh atas ekosistem proyek Healthkathon 2026: sepuluh folder kerja, dua generasi aplikasi
+      (<b>Aegis-JKN</b> dan <b>Aegis-JKN app</b>), layer machine learning MHGSL, korpus dokumen, serta
+      kesiapan artefak menghadapi penjurian. Laporan ini memisahkan secara tegas antara
+      <b>yang benar-benar berjalan</b>, <b>yang berupa kerangka</b>, dan <b>yang hanya diklaim</b>.
+    </p>
+    <div class="meta-row">
+      <span class="chip">Scope <b>N:\HEALTHKATHON\</b></span>
+      <span class="chip">Berkas diaudit <b>149 + 62 modul</b></span>
+      <span class="chip">Laporan rujukan <b>24</b></span>
+      <span class="chip">Status <b style="color:var(--amber)">Belum siap submit apa adanya</b></span>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="k">Skor kesiapan</div>
+        <div class="v" style="color:var(--amber)">14<span style="font-size:.55em;color:var(--muted)">/35</span></div>
+        <div class="s">7 dimensi · ambang lulus 21</div>
+      </div>
+      <div class="stat">
+        <div class="k">Angka headline tanpa artefak</div>
+        <div class="v" style="color:var(--rose)">9</div>
+        <div class="s">dari 11 angka utama</div>
+      </div>
+      <div class="stat">
+        <div class="k">Blocker terverifikasi</div>
+        <div class="v" style="color:var(--rose)">17</div>
+        <div class="s">11 build/runtime · 6 model &amp; evaluasi</div>
+      </div>
+      <div class="stat">
+        <div class="k">Sisa waktu submit</div>
+        <div class="v" style="color:var(--teal)">8</div>
+        <div class="s">hari ke 1 Nov 2026</div>
+      </div>
+    </div>
+  </header>
+<section id="s1">
+  <div class="sechead">
+    <span class="secnum">01</span>
+    <div>
+      <h2>Ringkasan Eksekutif</h2>
+      <p class="sub">Satu paragraf jawaban: seberapa jauh proyek ini, dan apa yang harus dilakukan sebelum 1 November 2026.</p>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="lbl">Putusan</div>
+    <p><strong>Aegis-JKN adalah karya arsitektural yang kuat dengan bukti empiris yang lemah.</strong>
+    Nilai jualnya nyata: formulasi graf heterogen tiga kanal, tata kelola PDP yang dirangkai dari UU PDP,
+    dan purwarupa visual yang jauh di atas rata-rata peserta hackathon. Namun fondasi yang dijanjikan ke juri
+    — angka performa, model terlatih, dan pipeline evaluasi — tidak dapat direproduksi dari satu artefak pun
+    yang ada di disk. Folder <code>Aegis-JKN app</code> yang menjadi fokus permintaan ini bahkan
+    <strong>belum bisa di-build maupun dijalankan</strong> dalam kondisinya sekarang.</p>
+  </div>
+
+  <div class="grid g3" style="margin-top:18px">
+    <div class="card">
+      <span class="tag t-ok">Kekuatan</span>
+      <h4 style="margin-top:10px">Arsitektur &amp; domain</h4>
+      <p>Pemisahan tiga kanal (topologi, fitur, semantik) dengan <em>late fusion</em> jelas dan dapat diaudit.
+      Kosakata domain tepat: INA-CBG, FHIR R4, SATUSEHAT, V-Claim, P2PK. Dokumen teori MHGSL
+      (<code>docs/algorithms/mhgsl-theory.md</code>) adalah dokumen terbaik di seluruh repositori.</p>
+    </div>
+    <div class="card">
+      <span class="tag t-ok">Kekuatan</span>
+      <h4 style="margin-top:10px">Kejujuran yang sudah dibangun</h4>
+      <p><code>00-dashboard.md:46-52</code> mendaftarkan sendiri sembilan angka yang <em>belum boleh</em>
+      disebut hasil tervalidasi. Reviewer menilai naskah menurunkan klaimnya secara sadar — jarang terjadi
+      pada peserta lain, dan ini modal yang bisa dipakai saat presentasi.</p>
+    </div>
+    <div class="card">
+      <span class="tag t-ok">Kekuatan</span>
+      <h4 style="margin-top:10px">Aset data &amp; purwarupa</h4>
+      <p>Dataset simulasi 300 klaim konsisten secara struktural (Rp3.526.650.000; 240/24/36;
+      36 fraud; 9 sindikat). Aplikasi v1 berjalan publik di Vercel dengan dataset explorer
+      300 baris yang benar-benar fungsional.</p>
+    </div>
+  </div>
+
+  <h3>Tiga risiko yang paling menentukan</h3>
+  <div class="grid g3">
+    <div class="card" style="border-color:rgba(248,113,113,.32)">
+      <span class="tag t-p0">P0 · Risiko 1</span>
+      <h4 style="margin-top:10px">Angka tanpa artefak</h4>
+      <p>Sembilan angka headline — akurasi 93,0 %, presisi 94,12 %, ROC-AUC 0,9825, AUPRC 0,9142,
+      ketahanan masking 89,4 %, FPR 10,6 %, waktu telaah −45 %, throughput 3,2×, SUS 82,5 —
+      tidak punya satu pun skrip, split, seed, atau file prediksi. Presisi 94,12 % <strong>tidak tercapai
+      pada ambang mana pun</strong> (terdekat 94,7368 % di ambang 0,78).</p>
+    </div>
+    <div class="card" style="border-color:rgba(248,113,113,.32)">
+      <span class="tag t-p0">P0 · Risiko 2</span>
+      <h4 style="margin-top:10px">Ground truth terbuka</h4>
+      <p><code>public/payload-aegis-jkn.json</code> identik dengan payload Colab dan memuat
+      <code>gtSent</code>, <code>sentiment_gt</code>, serta <code>syndHit</code>. Delapan kolom turunan label
+      (<code>Sinyal SHAP</code>, <code>Kontribusi Saluran</code>, <code>Status</code>, <code>Skor Fraud</code>,
+      <code>Sindikat</code>, dst.) ikut terekspor ke peramban — sehingga “deteksi 100 %” adalah
+      konsekuensi definisi, bukan performa.</p>
+    </div>
+    <div class="card" style="border-color:rgba(248,113,113,.32)">
+      <span class="tag t-p0">P0 · Risiko 3</span>
+      <h4 style="margin-top:10px">Aplikasi baru tidak berjalan</h4>
+      <p><code>Aegis-JKN app</code> — yang tampak disiapkan sebagai generasi kedua — memiliki
+      <strong>4 modul UI hilang</strong>, CSS global di path salah, komponen client tanpa
+      <code>"use client"</code>, Tailwind v4 dipasang dengan konfigurasi v3, dan lockfile yang tidak
+      cocok dengan <code>package.json</code>. Backend FastAPI gagal di <em>import</em>, bukan saat runtime.</p>
+    </div>
+  </div>
+
+  <h3>Yang berjalan, yang berupa kerangka, yang hanya diklaim</h3>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:22%">Lapisan</th><th style="width:26%">Status</th><th>Bukti</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="rowhead">Situs naratif v1</td>
+          <td><span class="tag t-ok">Berjalan</span></td>
+          <td>3 rute (<code>/</code>, <code>/simulasi</code>, <code>/dataset</code>), live di <code>aegisjkn.vercel.app</code>, explorer 300 klaim fungsional. Tidak ada auth, DB, atau <em>fetch</em> ke backend.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">Dashboard Colab</td>
+          <td><span class="tag t-ok">Ada artefak</span></td>
+          <td><code>public/dashboard-aegis-jkn.html</code> 150 KB, mandiri. Justru di sini satu-satunya pengakuan jujur muncul: “4 sampel LLM + fallback heuristik lokal”.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">Rule engine Tier-1</td>
+          <td><span class="tag t-amb">Kerangka</span></td>
+          <td><code>rule_engine/</code> 401 LOC, DSL AST dengan <em>allow-list</em>, tetapi hanya 4 aturan yang hidup di dalam file test dan <strong>tidak pernah dipanggil</strong> aplikasi.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">API &amp; backend v1</td>
+          <td><span class="tag t-no">Stub</span></td>
+          <td><code>src/app/api/route.ts</code> mengembalikan <code>{"message":"Hello, world!"}</code>. Prisma hanya scaffold <code>User</code>/<code>Post</code>, nol importer.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">FastAPI v2 (<code>Aegis-JKN app</code>)</td>
+          <td><span class="tag t-no">Gagal impor</span></td>
+          <td>Enam router lengkap secara skema, tetapi seluruh respons adalah mock; <code>services/graph_service.py:4</code> memakai relative import yang salah (<code>...core</code>), <code>core/database.py:5</code> mengimpor simbol <code>settings</code> yang tidak ada.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">Model MHGSL</td>
+          <td><span class="tag t-no">Gagal dibangun</span></td>
+          <td><code>MHGSLModel(...)</code> melempar <code>ValueError</code> pada PyG 2.8.1 (<code>core.py:24</code>); tidak ada kode pelatihan untuk model ini; inferensi memakai tensor acak dan, pada jalur batch, bobot acak.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">Evaluasi &amp; benchmark</td>
+          <td><span class="tag t-no">Tidak ada</span></td>
+          <td>Benchmark <em>in-sample</em>: fit dan predict pada matriks yang sama. Tidak ada split, tidak ada file prediksi, tidak ada metrik tersimpan.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Konsekuensi praktis</div>
+    <p>Deadline submit project akhir <strong>19 Oktober – 1 November 2026</strong> (API resmi), Grand Final
+    <strong>7 November 2026</strong>. Per 24 Oktober tersisa <strong>8 hari</strong> ke penutupan submit dan
+    <strong>14 hari</strong> ke grand final. Waktu itu tidak cukup untuk membangun pipeline analitik penuh
+    <em>dan</em> memvalidasi ground truth klinis <em>dan</em> menyiapkan demo sekaligus. Yang realistis:
+    turunkan klaim, tambahkan satu pipeline evaluasi minimal yang bisa dijalankan ulang, dan rapikan
+    artefak administratif.</p>
+  </div>
+</section>
+
+<section id="s2">
+  <div class="sechead">
+    <span class="secnum">02</span>
+    <div>
+      <h2>Peta Ekosistem: Sepuluh Folder, Satu Ambisi</h2>
+      <p class="sub">Apa isi setiap direktori, mana yang merupakan IP proyek, mana yang <em>vendored</em>, dan di mana duplikasinya.</p>
+    </div>
+  </div>
+
+  <p>Workspace <code>N:\HEALTHKATHON\</code> bukan satu proyek, melainkan sebuah <em>working set</em> yang menumpuk
+  beberapa generasi pekerjaan: dua aplikasi Next.js, satu backend FastAPI, satu lapisan ML Python, korpus Notion,
+  naskah proposal, artefak Colab, dan satu seri audit internal 26 laporan. Total data sampel BPJS yang tersimpan
+  mencapai <strong>9,72 GB</strong> (110 berkas <code>.dta</code>/<code>.xlsx</code>), jauh lebih besar dari
+  seluruh kode programnya.</p>
+
+  <div class="tblwrap" style="margin-top:16px">
+    <table>
+      <thead>
+        <tr><th style="width:17%">Folder</th><th style="width:11%">Jenis</th><th style="width:9%">Ukuran</th><th style="width:13%">Kematangan</th><th>Peran &amp; isi</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rowhead">Aegis-JKN</td><td>Aplikasi v1</td><td class="num">2,7 MB</td>
+          <td><span class="tag t-ok">Live</span></td>
+          <td>Situs naratif Next.js 16 / React 19 dengan 3 rute, 48 komponen UI, dataset explorer 2.292 baris, 11 halaman wiki, dan dashboard Colab 150 KB di <code>public/</code>. Repo git dengan 5 commit; lapisan tes/CI belum ter-commit.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">Aegis-JKN app</td><td>Aplikasi v2 + backend + ML</td><td class="num">9,7 GB</td>
+          <td><span class="tag t-no">Tidak build</span></td>
+          <td>Ditulis ulang dengan Next.js 16 App Router, FastAPI 6 router, Prisma→PostgreSQL, FalkorDB, Qdrant, Helm/ArgoCD, observability OTel. <strong>Fokus audit ini.</strong> 62 modul Python (8.840 LOC) + 29 komponen TSX (2.965 LOC).</td>
+        </tr>
+        <tr>
+          <td class="rowhead">oasis</td><td>Vendored</td><td class="num">≈ 4 MB</td>
+          <td><span class="tag t-p2">Upstream</span></td>
+          <td>Clone bersih <code>camel-ai/oasis</code> (Apache-2.0, 971 commit, HEAD <code>dded86a</code>), <strong>nol modifikasi</strong> — tidak ada string “aegis/jkn/healthkathon”. Ini dependensi pihak ketiga, bukan IP proyek.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">mechine-learning-deep-learning</td><td>Eksperimen</td><td class="num">≈ 6 MB</td>
+          <td><span class="tag t-amb">Eksperimental</span></td>
+          <td>Backend + dashboard + notebook + simulator Windows. Memuat <code>colab/</code> yang <strong>identik byte-per-byte</strong> dengan folder <code>colab/</code> di root (4/4 MD5 sama).</td>
+        </tr>
+        <tr>
+          <td class="rowhead">colab</td><td>Artefak</td><td class="num">4,7 MB</td>
+          <td><span class="tag t-ok">Ada artefak</span></td>
+          <td><code>Aegis_JKN_FIXX.ipynb</code> 720 KB, <code>payload-aegis-jkn.json</code>, <code>dashboard-aegis-jkn.html</code>, PDF hasil simulasi 3,8 MB. Sumber semua angka 100-klaim.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">Notion-docs</td><td>Korpus</td><td class="num">5,3 MB</td>
+          <td><span class="tag t-amb">Corpus</span></td>
+          <td>Ekspor 15 database Notion (arsitektur, simulasi, dataset, klaim) + skrip <code>fetch_*.py</code>. <strong>Token Notion aktif ter-hardcode di 5 skrip.</strong></td>
+        </tr>
+        <tr>
+          <td class="rowhead">dokumen</td><td>Naskah</td><td class="num">1,4 MB</td>
+          <td><span class="tag t-amb">Final-ish</span></td>
+          <td><code>Healthkathon_Kandidat_1.docx</code> (122 KB) + generator <code>section_bab_*.py</code> (Bab 1–12). Dokumen kirim <strong>tidak reproducible</strong> dari skrip ini.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">analysis</td><td>Audit</td><td class="num">≈ 12 MB</td>
+          <td><span class="tag t-ok">Rujukan</span></td>
+          <td>24 laporan audit internal (00–22) + 300+ skrip verifikasi + korpus <code>corpus/</code>. Ini <em>sumber kebenaran</em> terbaik yang dimiliki proyek — dan bukti bahwa tim sudah tahu masalahnya.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">REA CODING · log</td><td>Kosong</td><td class="num">0 B</td>
+          <td><span class="tag t-p2">Kosong</span></td>
+          <td>Kedua direktori tidak berisi apa pun, bahkan dengan <code>-Force</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Alur nilai: dari data mentah ke layar juri</h3>
+  <div class="card" style="padding:18px">
+    <div class="flow">
+      <span class="node">Dataset BPJS 9,7 GB</span><span class="arw">→</span>
+      <span class="node">Notion corpus 15 DB</span><span class="arw">→</span>
+      <span class="node">Colab: generator 100/300 klaim</span><span class="arw">→</span>
+      <span class="node">payload-aegis-jkn.json</span><span class="arw">→</span>
+      <span class="node">Aegis-JKN v1 (data.ts / notion-datasets.ts)</span><span class="arw">→</span>
+      <span class="node">UI + dashboard HTML</span>
+    </div>
+    <div class="flow">
+      <span class="node">dokumen/section_bab_*.py</span><span class="arw">→</span>
+      <span class="node">Healthkathon_Kandidat_1.docx</span><span class="arw">→</span>
+      <span class="node">Juri</span>
+    </div>
+    <div class="flow">
+      <span class="node">Aegis-JKN app</span><span class="arw">→</span>
+      <span class="node" style="border-color:rgba(248,113,113,.5);color:#FF8A8A">dead end: tidak build, backend gagal impor</span>
+    </div>
+    <p class="small" style="margin-bottom:0">Tidak ada panah dari aplikasi mana pun menuju model, database, atau API eksternal.
+    Satu-satunya komputasi imperatif di produk v1 adalah <code>scoreRows()</code> — 70 baris heuristik di
+    <code>data-uploader.tsx</code>.</p>
+  </div>
+
+  <div class="split" style="margin-top:16px">
+    <div class="callout bad" style="margin:0">
+      <div class="lbl">Duplikasi yang membingungkan juri</div>
+      <p><strong>Dua dataset hidup berdampingan:</strong> 100 klaim / 14 fraud (Colab, <code>oasis-data.ts</code>,
+      payload publik) versus 300 klaim / 36 fraud (naskah, <code>notion-datasets.ts</code>, explorer).
+      Halaman <code>/simulasi</code> menganalisis yang pertama, halaman <code>/dataset</code> memamerkan yang kedua,
+      dan landing page mengutip angka yang kedua.</p>
+    </div>
+    <div class="callout bad" style="margin:0">
+      <div class="lbl">Tiga sumber kebenaran untuk metrik yang sama</div>
+      <p><code>data.ts</code> (literals), <code>public/payload-aegis-jkn.json</code> (duplikat nilai),
+      dan <code>public/dashboard-aegis-jkn.html</code> (implementasi dashboard kedua, 1.225 baris).
+      Ketiganya dapat berbeda tanpa ada yang gagal.</p>
+    </div>
+  </div>
+</section>
+<section id="s3">
+  <div class="sechead">
+    <span class="secnum">03</span>
+    <div>
+      <h2>Arsitektur &amp; Inventaris <code style="font-size:.72em">Aegis-JKN app</code></h2>
+      <p class="sub">Generasi kedua yang tampak disiapkan untuk produksi: Next.js di depan, FastAPI di tengah, FalkorDB + Qdrant + PyTorch di belakang — di atas kertas.</p>
+    </div>
+  </div>
+
+  <h3>Tumpukan teknologi yang diklaim vs yang terpasang</h3>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:18%">Lapisan</th><th style="width:27%">Klaim / deklarasi</th><th>Kondisi nyata di disk</th></tr></thead>
+      <tbody>
+        <tr><td class="rowhead">Web</td><td>Next.js 16.4 · React 19.3 · Tailwind 4 · next-intl 4</td><td><code>node_modules</code> hanya berisi <strong>92 entri</strong>; <code>react</code>, <code>typescript</code>, <code>next-intl</code>, <code>@playwright/test</code> <strong>tidak terpasang</strong>. Paket <code>next</code> sendiri ada (16.4.3).</td></tr>
+        <tr><td class="rowhead">CSS</td><td>Tailwind 4</td><td><code>postcss.config.mjs</code> memakai plugin <code>tailwindcss: {}</code> gaya v3; <code>globals.css</code> memakai direktif <code>@tailwind base/components/utilities</code>; <code>@tailwindcss/postcss</code> tidak ada di lockfile.</td></tr>
+        <tr><td class="rowhead">Backend</td><td>FastAPI async · SQLAlchemy 2 · PostgreSQL</td><td>6 router + 5 service + 8 model. <code>greenlet</code> tidak terpasang sehingga <code>create_async_engine</code> gagal; <code>core/database.py</code> mengimpor simbol yang tidak ada.</td></tr>
+        <tr><td class="rowhead">Graf</td><td>FalkorDB (RedisGraph)</td><td><code>graph_service.py</code> hanya membungkus <code>GRAPH.QUERY</code>; seluruh endpoint graf memakai data mock (TODO di baris 69 dan 126).</td></tr>
+        <tr><td class="rowhead">Vektor</td><td>Qdrant 768-d (Clinical-BERT) + 512-d provider</td><td><code>qdrant_service.py</code> lengkap (collection, payload index, pencarian) — ini modul backend paling matang.</td></tr>
+        <tr><td class="rowhead">ML</td><td>PyTorch Geometric · MHGSL · SHAP</td><td><code>torch</code>, <code>torch_geometric</code>, <code>shap</code>, <code>sklearn</code> terpasang. <code>xgboost</code>, <code>ray</code>, <code>transformers</code> <strong>tidak</strong>. Lebih jauh: model utama gagal diinstansiasi dan paket <code>evaluation</code> tidak dapat diimpor — lihat §5.</td></tr>
+        <tr><td class="rowhead">Deployment</td><td>Helm 4 chart · Argo Workflows · ArgoCD · K8s VPA</td><td>File konfigurasi ada dan terbaca; tidak ada satu pun yang pernah di-<code>helm install</code> atau di-<code>kubectl apply</code>.</td></tr>
+        <tr><td class="rowhead">Observability</td><td>OTel · Prometheus · Grafana · Jaeger</td><td><code>docker-compose.observability.yml</code> mendefinisikan 5 service — dengan <strong>bentrok port 4317</strong> antara OTel collector dan Jaeger.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Inventaris kode (di luar dataset &amp; vendor)</h3>
+  <div class="grid g4" style="margin:16px 0">
+    <div class="card"><div class="k small">Total berkas</div><div class="big">149</div><div class="small">tidak termasuk <code>node_modules</code>, <code>venv</code>, <code>__pycache__</code></div></div>
+    <div class="card"><div class="k small">Python</div><div class="big">8.840</div><div class="small">baris · 62 berkas</div></div>
+    <div class="card"><div class="k small">TypeScript / TSX</div><div class="big">3.399</div><div class="small">baris · 42 berkas</div></div>
+    <div class="card"><div class="k small">Infrastruktur</div><div class="big">1.279</div><div class="small">baris YAML + SQL + TPL</div></div>
+  </div>
+
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Ekstensi</th><th class="num">Berkas</th><th class="num">Baris</th><th>Isi utama</th></tr></thead>
+      <tbody>
+        <tr><td><code>.py</code></td><td class="num">62</td><td class="num">8.840</td><td>Backend (6 router, 7 service, 8 model, 5 modul keamanan) + ML (mhgsl, evaluation, xai, synth, distributed)</td></tr>
+        <tr><td><code>.json</code></td><td class="num">7</td><td class="num">4.265</td><td>Spesifikasi Section 11 &amp; 12 (deployment, roadmap, risk register) dalam format blok Notion</td></tr>
+        <tr><td><code>.tsx</code></td><td class="num">29</td><td class="num">2.965</td><td>4 halaman + 3 komponen audit + 3 komponen MHGSL (orphan) + 9 primitif UI + layout</td></tr>
+        <tr><td><code>.yaml/.yml</code></td><td class="num">28</td><td class="num">1.108</td><td>Helm chart (api, web, ml-serving, workers), Argo workflows, Prometheus rules, OTel config, CI</td></tr>
+        <tr><td><code>.ts</code></td><td class="num">13</td><td class="num">434</td><td>Konfigurasi (tailwind, next, playwright), <code>crypto-utils</code>, <code>middleware</code>, <code>i18n</code>, tipe audit</td></tr>
+        <tr><td><code>.sql</code></td><td class="num">1</td><td class="num">72</td><td><code>migrations/init_schema.sql</code> — 5 tabel, 4 indeks, 1 view agregasi overcharge</td></tr>
+        <tr><td><code>.css</code></td><td class="num">1</td><td class="num">11</td><td><code>globals.css</code> — hanya 3 direktif Tailwind + 2 aturan. Tidak ada token tema.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Model data: dua representasi yang tidak saling mengenal</h3>
+  <div class="split">
+    <div class="card">
+      <h4>SQLAlchemy ORM (runtime)</h4>
+      <p><code>Patient</code>, <code>Provider</code>, <code>Claim</code>, <code>AuditLog</code>,
+      <code>User</code>, <code>UserRole</code>, dan satu materialized view <code>ProviderMonthlyOvercharge</code>.
+      Total <strong>7 entitas</strong>; <code>Claim</code> hanya 9 kolom (<code>amount</code> sebagai
+      <code>Float</code>, bukan <code>Numeric</code>), dan <strong>tidak ada</strong> entitas untuk
+      diagnosis, prosedur, INA-CBG group, rule hit, model score, atau explanation.</p>
+      <p class="small">View overcharge dihitung dari <code>amount * risk_score</code> — yaitu memakai skor
+      model sebagai “overcharge riil”, asumsi yang tidak pernah divalidasi.</p>
+    </div>
+    <div class="card">
+      <h4>SQL migration (PostgreSQL)</h4>
+      <p><code>init_schema.sql</code> mendefinisikan 5 tabel dengan tipe yang <em>berbeda</em> dari ORM:
+      <code>amount DECIMAL(15,2)</code> vs <code>Float</code>, plus kolom yang tidak ada di ORM.
+      <strong>Dua skema paralel</strong> untuk domain yang sama; tidak jelas mana yang otoritatif.
+      View <code>view_provider_monthly_overcharge</code> di SQL juga berbeda dari
+      <code>PROVIDER_MONTHLY_OVERCHARGE_VIEW_SQL</code> di <code>models/views.py</code>.</p>
+      <p class="small">Tidak ada Alembic, tidak ada folder <code>versions/</code>, tidak ada riwayat migrasi.</p>
+    </div>
+  </div>
+
+  <h3>Permukaan API: enam router, satu perilaku</h3>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:23%">Endpoint</th><th style="width:12%">Sumber data</th><th>Isi respons</th></tr></thead>
+      <tbody>
+        <tr><td><code>POST /api/graph/analyze</code></td><td><span class="tag t-no">Mock</span></td><td>Membangun <code>torch.randn</code> sebagai fitur graf, menjalankan model tanpa bobot, mengembalikan probabilitas acak + kontribusi kanal.</td></tr>
+        <tr><td><code>GET /api/graph/analyze</code></td><td><span class="tag t-no">Mock</span></td><td>3 node dan 2 edge hardcoded; <code>suspicion_score: 0.75</code>.</td></tr>
+        <tr><td><code>GET /api/graph/nodes</code></td><td><span class="tag t-no">Mock</span></td><td>Satu node <code>"N1"</code>, <code>total_items: 100</code>.</td></tr>
+        <tr><td><code>POST /api/simulation/run</code></td><td><span class="tag t-no">Mock</span></td><td>Loop <code>asyncio.sleep(0.01)</code>, lalu hasil konstan: <code>false_positive_rate 0.08</code>, <code>detection_accuracy 0.92</code>, <code>avg_detection_time_ms 45.5</code>.</td></tr>
+        <tr><td><code>POST /api/report/generate</code></td><td><span class="tag t-no">Mock</span></td><td><code>total_suspicious_claims: 142</code>, <code>estimated_loss: 1.250.000.000</code>, keyakinan 0.88.</td></tr>
+        <tr><td><code>GET /api/metrics/health</code></td><td><span class="tag t-no">Mock</span></td><td>CPU 12.5 %, memori 45.2 %, <code>simulation_engine_status: "online"</code> — angka tetap, tidak diukur.</td></tr>
+        <tr><td><code>POST /api/vector/*</code></td><td><span class="tag t-amb">Nyata</span></td><td>Satu-satunya router yang benar-benar memanggil klien eksternal (Qdrant).</td></tr>
+        <tr><td><code>GET /api/jobs/*</code></td><td><span class="tag t-amb">In-memory</span></td><td>Store dict proses-lokal; hilang saat restart; tidak terhubung ke Argo.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout bad">
+    <div class="lbl">Temuan kunci</div>
+    <p><strong>Lima dari enam router mengembalikan angka yang terlihat seperti pengukuran.</strong>
+    <code>false_positive_rate 0.08</code> dan <code>detection_accuracy 0.92</code> bukan hasil simulasi —
+    keduanya konstanta di <code>api/simulation/router.py:136-138</code>. Bila demo dijalankan apa adanya,
+    layar akan menampilkan 92 % akurasi dan 142 klaim mencurigakan yang tidak pernah dihitung dari data mana pun.</p>
+  </div>
+
+  <h3>Domain logic paling berharga: validasi INA-CBG</h3>
+  <p>Di antara semua modul, lapisan kepatuhan adalah yang paling berisi — dan paling bermasalah, karena
+  <strong>ada dua implementasi yang saling bertentangan</strong> untuk konsep yang sama.</p>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:26%">Aspek</th><th style="width:33%"><code>api/compliance/ina_cbgs.py</code></th><th><code>compliance/validators/ina_cbg_validator.py</code></th></tr></thead>
+      <tbody>
+        <tr><td class="rowhead">Pola kode</td><td><code>^[A-Z]-\d-\d{2}-\d{2}-\d{3}$</code> → <code>J-4-07-02-001</code></td><td><code>^[A-Z]\d{2}[1-4]\d{3}$</code> → <code>A241001</code></td></tr>
+        <tr><td class="rowhead">Kategori</td><td>Huruf = spesialisasi klinis (J, K, B, …)</td><td>Huruf = kategori tarif (A Bedah, K Obat, M Lab, …)</td></tr>
+        <tr><td class="rowhead">Sumber tarif</td><td><code>MOCK_TARIFFS</code> — 6 kode, nilai bulat</td><td><code>BASE_TARIFFS</code> × pengali severity/kelas/LOS</td></tr>
+        <tr><td class="rowhead">Penentuan grup</td><td>Tidak ada (hanya validasi format)</td><td><em>Heuristik</em> dari prefix ICD-10/ICD-9</td></tr>
+        <tr><td class="rowhead">Determinisme</td><td>Deterministik</td><td><strong>Tidak</strong> — memakai <code>hash()</code> bawaan Python untuk sub-kode</td></tr>
+        <tr><td class="rowhead">Dipakai oleh</td><td><code>ComplianceService</code>, <code>SatusehatMockClient</code></td><td>Hanya singleton <code>get_ina_cbg_validator()</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout bad" style="margin-top:14px">
+    <div class="lbl">Cacat yang harus diperbaiki sebelum demo</div>
+    <p><code>ina_cbg_validator.py:386,391</code> memakai <code>hash(context.procedure_codes[0]) % 20</code>.
+    <code>hash()</code> untuk string di-<em>randomize</em> per proses (<code>PYTHONHASHSEED</code>), sehingga
+    <strong>klaim yang sama dapat menghasilkan grup berbeda setelah restart</strong> — fatal untuk sistem
+    yang menjanjikan auditabilitas. Selain itu <code>_calculate_adjusted_tariff</code> selalu memakai
+    ambang LOS kategori <code>KAMAR</code> (<code>:419-421</code>), bukan kategori aktual klaim.</p>
+  </div>
+</section>
+<section id="s4">
+  <div class="sechead">
+    <span class="secnum">04</span>
+    <div>
+      <h2>Blocker &amp; Cacat Kode <code style="font-size:.72em">Aegis-JKN app</code></h2>
+      <p class="sub">Sebelas temuan yang terverifikasi secara statis — semuanya menghalangi build, startup, atau integritas demo. Setiap temuan menyebut lokasi persisnya.</p>
+    </div>
+  </div>
+
+  <div class="callout bad">
+    <div class="lbl">Ringkasan verifikasi</div>
+    <p>Aplikasi ini <strong>tidak dapat di-build</strong> (4 modul impor tidak ada + CSS di path salah + komponen client tanpa direktif),
+    <strong>tidak dapat dijalankan</strong> (backend gagal pada <em>import</em>, bukan pada request), dan
+    <strong>tidak dapat dipasang</strong> (<code>package-lock.json</code> tidak cocok dengan <code>package.json</code>, sehingga
+    <code>npm ci</code> di CI akan berhenti di langkah pertama). Tidak satu pun dari ini bersifat kosmetik.</p>
+  </div>
+
+  <h3>4.1 Blocker build frontend</h3>
+
+  <details class="finding" open>
+    <summary><span class="id">B-01</span><span class="ttl">Empat modul UI yang diimpor tidak ada di disk</span><span class="tag t-p0">Blocker</span></summary>
+    <div class="body">
+      <p>Resolusi seluruh impor <code>@/…</code> menemukan empat modul tanpa berkas:</p>
+      <ul>
+        <li><code>@/components/ui/label</code> — diimpor <code>app/[locale]/simulation/page.tsx:12</code></li>
+        <li><code>@/components/ui/dropdown-menu</code> — diimpor <code>components/theme-toggle.tsx</code> (lalu <code>theme-toggle</code> diimpor <code>navbar.tsx:9</code>, jadi ini merusak semua halaman yang memakai layout)</li>
+        <li><code>@/components/ui/progress</code> dan <code>@/components/ui/table</code> — diimpor <code>components/mhgsl/data-uploader.tsx</code></li>
+      </ul>
+      <p>Direktori <code>src/components/ui/</code> hanya berisi 9 primitif: alert, badge, button, card, input, popover, scroll-area, select, tooltip.
+      <strong>Konsekuensi:</strong> <code>next build</code> gagal pada tahap resolusi modul; tidak ada halaman yang dapat dirender.</p>
+    </div>
+  </details>
+
+  <details class="finding">
+    <summary><span class="id">B-02</span><span class="ttl">CSS global diimpor dari path relatif yang salah</span><span class="tag t-p0">Blocker</span></summary>
+    <div class="body">
+      <p><code>app/[locale]/layout.tsx:5</code> menulis <code>import "./globals.css"</code>, yang mengarah ke
+      <code>app/[locale]/globals.css</code>. Berkas sebenarnya ada di <code>app/globals.css</code> — satu tingkat di atasnya.
+      <strong>Konsekuensi:</strong> resolusi modul CSS gagal, dan seluruh token tema tidak pernah dimuat.</p>
+    </div>
+  </details>
+
+  <details class="finding">
+    <summary><span class="id">B-03</span><span class="ttl">Komponen ber-hook tanpa direktif <code>"use client"</code></span><span class="tag t-p0">Blocker</span></summary>
+    <div class="body">
+      <p><code>context/auth-context.tsx</code> memakai <code>useState</code>, <code>useEffect</code>, dan <code>useRouter</code>
+      tetapi tidak memiliki <code>"use client"</code> di baris pertama. Berkas ini diimpor langsung oleh
+      <code>layout.tsx</code> — yang merupakan Server Component. <strong>Konsekuensi:</strong> Next.js menolak
+      hook di Server Component saat kompilasi rute.</p>
+      <p class="small">Pola yang sama juga muncul di <code>app/[locale]/dashboard/page.tsx</code>, yang menandai dirinya
+      <code>"use client"</code> lalu mengimpor <code>AppLayout</code> (server-style) — bukan error, tapi menandakan
+      batas server/client tidak pernah dirancang.</p>
+    </div>
+  </details>
+
+  <details class="finding">
+    <summary><span class="id">B-04</span><span class="ttl">Tailwind v4 dipasang dengan konfigurasi v3</span><span class="tag t-p0">Blocker</span></summary>
+    <div class="body">
+      <p>Tiga ketidakcocokan sekaligus:</p>
+      <ul>
+        <li><code>package-lock.json</code> mengunci <code>tailwindcss 4.3.3</code>;</li>
+        <li><code>postcss.config.mjs</code> memakai <code>plugins: { tailwindcss: {} }</code> — bentuk plugin v3; v4 memerlukan <code>@tailwindcss/postcss</code>, yang <strong>tidak ada</strong> di lockfile;</li>
+        <li><code>globals.css</code> memakai <code>@tailwind base; @tailwind components; @tailwind utilities;</code> — sintaks v3, bukan <code>@import "tailwindcss"</code>.</li>
+      </ul>
+      <p><strong>Konsekuensi:</strong> pipeline CSS gagal dengan pesan “trying to use tailwindcss directly as a PostCSS plugin”.</p>
+    </div>
+  </details>
+
+  <details class="finding">
+    <summary><span class="id">B-05</span><span class="ttl">Lockfile tidak cocok dengan manifest — <code>npm ci</code> mustahil</span><span class="tag t-p0">Blocker</span></summary>
+    <div class="body">
+      <p>Sebelas <em>specifier</em> berbeda antara <code>package.json</code> dan <code>package-lock.json</code>:</p>
+      <div class="tblwrap" style="margin:10px 0">
+        <table style="min-width:480px">
+          <thead><tr><th>Paket</th><th>package.json</th><th>lockfile</th></tr></thead>
+          <tbody>
+            <tr><td><code>typescript</code></td><td>^5.9.3</td><td>^7.0.2</td></tr>
+            <tr><td><code>lucide-react</code></td><td>^0.545.0</td><td>^1.61.0</td></tr>
+            <tr><td><code>@types/node</code></td><td>^24.10.1</td><td>^26.6.5</td></tr>
+            <tr><td><code>autoprefixer</code></td><td>^10.4.23</td><td>^10.6.1</td></tr>
+            <tr><td><code>postcss</code></td><td>^8.5.23</td><td>^8.5.31</td></tr>
+            <tr><td><code>date-fns</code></td><td>^4.1.0</td><td>^4.4.0</td></tr>
+            <tr><td><code>next</code>, <code>react</code>, <code>react-dom</code>, <code>@types/react-dom</code></td><td>dideklarasikan</td><td><strong>tidak ada</strong> di root <code>packages[""]</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><code>package-lock.json</code> juga mencatat <code>next 16.4.2</code> dan <code>react 19.3.1</code> sebagai terpasang,
+      sedangkan <code>node_modules</code> di disk hanya berisi 92 entri dan <strong>tidak punya <code>react</code> sama sekali</strong>.
+      <strong>Konsekuensi:</strong> <code>npm ci</code> — perintah yang dipakai CI di <code>e2e-tests.yml:19</code> — gagal dengan
+      <code>EUSAGE</code> sebelum satu tes pun berjalan.</p>
+    </div>
+  </details>
+
+  <details class="finding">
+    <summary><span class="id">B-06</span><span class="ttl">Rute dinamis rusak: direktori bernama <code>[claim_id</code> dan <code>]</code></span><span class="tag t-p1">Tinggi</span></summary>
+    <div class="body">
+      <p>Struktur sebenarnya di disk adalah:</p>
+      <pre><code>src/app/[locale]/graph/[claim_id/]/page.tsx
+                     ^^^^^^^^^^  ^
+                     direktori "[claim_id"  +  direktori "]"</code></pre>
+      <p>Bukan <code>graph/[claim_id]/page.tsx</code>. <strong>Konsekuensi:</strong> Next.js tidak mengenali ini sebagai
+      segmen dinamis; URL <code>/graph/CLM-001</code> akan 404, dan <code>params.claim_id</code> tidak pernah terisi.
+      Halaman ini juga mengetik <code>params</code> secara sinkron, padahal Next 15+ memberikannya sebagai Promise.</p>
+    </div>
+  </details>
+
+  <h3>4.2 Blocker backend</h3>
+
+  <details class="finding">
+    <summary><span class="id">B-07</span><span class="ttl">Relative import salah kedalaman — modul service tidak dapat diimpor</span><span class="tag t-p0">Blocker</span></summary>
+    <div class="body">
+      <p><code>app/services/graph_service.py:4</code> menulis <code>from ...core.config import Settings, get_settings</code>.
+      Dari <code>src.backend.app.services.graph_service</code>, tiga titik berarti <code>src.backend</code>, sehingga
+      targetnya <code>src.backend.core.config</code> — tidak ada. Yang benar <code>..core.config</code>.</p>
+      <pre><code>ModuleNotFoundError: No module named 'src.backend.core'</code></pre>
+      <p>Pola yang sama ada di <code>services/qdrant_service.py:5</code> dan <code>services/vector_db_service.py:17</code>.
+      Karena <code>api/graph/router.py:8</code> mengimpor <code>falkor_db</code> dari modul itu, dan <code>main.py:12</code>
+      mengimpor router tersebut, <strong>seluruh aplikasi FastAPI gagal saat impor</strong>.</p>
+    </div>
+  </details>
+
+  <details class="finding">
+    <summary><span class="id">B-08</span><span class="ttl"><code>List</code> tidak diimpor — <code>NameError</code> pada definisi kelas</span><span class="tag t-p0">Blocker</span></summary>
+    <div class="body">
+      <p><code>graph_service.py:47</code>: <code>async def enrich_node_with_semantic_features(self, node_id: str, node_type: str, vector: List[float])</code>.
+      Berkas hanya mengimpor <code>Optional</code> dari <code>typing</code>. Karena anotasi dievaluasi saat definisi fungsi,
+      modul melempar <code>NameError: name 'List' is not defined</code> — bahkan sebelum <code>B-07</code> sempat terjadi.</p>
+    </div>
+  </details>
+
+  <details class="finding">
+    <summary><span class="id">B-09</span><span class="ttl"><code>core/database.py</code> mengimpor simbol yang tidak ada dan memakai nama atribut yang salah</span><span class="tag t-p0">Blocker</span></summary>
+    <div class="body">
+      <p>Tiga cacat bertumpuk pada satu berkas:</p>
+      <ol>
+        <li><code>from src.backend.app.core.config import settings</code> — <code>config.py</code> hanya mengekspor <code>get_settings()</code>, tidak ada variabel tingkat modul bernama <code>settings</code>.</li>
+        <li>Atributnya ditulis kapital: <code>settings.DATABASE_URL</code>, <code>.DATABASE_POOL_SIZE</code>, <code>.DATABASE_MAX_OVERFLOW</code>, <code>.DEBUG</code> — padahal <code>Settings</code> mendefinisikan huruf kecil (<code>database_url</code>, <code>database_pool_size</code>, …).</li>
+        <li><code>greenlet</code> tidak terpasang di venv, sehingga <code>create_async_engine</code> sendiri sudah menolak:</li>
+      </ol>
+      <pre><code>ImportError: The SQLAlchemy asyncio module requires that the Python
+'greenlet' library is installed.</code></pre>
+    </div>
+  </details>
+
+  <details class="finding">
+    <summary><span class="id">B-10</span><span class="ttl">Middleware melempar <code>HTTPException</code> — berubah menjadi 500, bukan 401</span><span class="tag t-p1">Tinggi</span></summary>
+    <div class="body">
+      <p><code>middleware/auth_middleware.py:21</code> dan <code>:38</code> melempar <code>HTTPException</code> di dalam
+      <code>BaseHTTPMiddleware.dispatch</code>. Starlette tidak merutekan pengecualian middleware ke
+      <em>exception handler</em> aplikasi, sehingga klien menerima <strong>500 Internal Server Error</strong>
+      untuk setiap request tanpa token — termasuk health check <code>/</code>.</p>
+      <p>Selain itu daftar pengecualian hanya berisi <code>/api/auth/login</code>, <code>/api/auth/refresh</code>,
+      <code>/docs</code>, dan <code>/openapi.json</code> — <strong>tidak ada</strong> rute <code>/api/auth/*</code> di aplikasi,
+      dan <code>/redoc</code> serta <code>/docs/oauth2-redirect</code> tidak dikecualikan.</p>
+    </div>
+  </details>
+
+  <details class="finding">
+    <summary><span class="id">B-11</span><span class="ttl">Dependensi RBAC membaca <code>token</code> dari query string, bukan header</span><span class="tag t-p2">Sedang</span></summary>
+    <div class="body">
+      <p><code>rbac.py:53</code> mendefinisikan <code>get_current_user(token: str)</code>. Dipakai sebagai
+      <code>Depends(...)</code> di <code>require_permission</code>, FastAPI akan mencari parameter kueri
+      <code>?token=…</code> — bukan header <code>Authorization</code> yang sudah divalidasi middleware.
+      Dua jalur autentikasi yang tidak saling bicara; <code>require_permission</code> juga tidak dipakai
+      oleh satu pun router.</p>
+    </div>
+  </details>
+
+  <h3>4.3 Kontrak frontend ↔ backend: tidak pernah bertemu</h3>
+  <p>Frontend memanggil <code>/api/*</code> pada origin sendiri (Next.js), tetapi <strong>tidak ada
+  <code>src/app/api/</code> sama sekali</strong>. Backend FastAPI berjalan di port 8000 dengan prefix <code>/api</code>
+  yang berbeda bentuk. Berikut pemetaan yang gagal:</p>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:32%">Dipanggil frontend</th><th style="width:30%">Tersedia di backend</th><th>Hasil</th></tr></thead>
+      <tbody>
+        <tr><td><code>GET /api/dashboard/metrics</code> <span class="small">(dashboard-content.tsx:26)</span></td><td>—</td><td>404; dashboard selamanya menampilkan state error</td></tr>
+        <tr><td><code>POST /api/simulation/run</code> <span class="small">(simulation/page.tsx:98)</span></td><td><code>POST /api/simulation/run</code></td><td>Bentuk respons berbeda: frontend mengharapkan <code>{ jobId }</code>, backend mengembalikan <code>{ success, data: { simulation_id } }</code></td></tr>
+        <tr><td><code>GET /api/simulation/status/{jobId}</code></td><td><code>GET /api/simulation/{id}/status</code></td><td>Pola URL berbeda → 404</td></tr>
+        <tr><td><code>GET /api/auth/validate</code> <span class="small">(auth-context.tsx:27)</span></td><td>—</td><td>404 tiap mount → token dihapus → redirect ke <code>/login</code> yang tidak ada</td></tr>
+        <tr><td><code>GET /api/metrics/summary</code> <span class="small">(comparison.tsx:62)</span></td><td><code>GET /api/metrics/health</code></td><td>404; komponen ini juga <em>orphan</em> (tidak diimpor halaman mana pun)</td></tr>
+        <tr><td>—</td><td><code>/api/report/*</code>, <code>/api/vector/*</code>, <code>/api/jobs/*</code></td><td>Tidak pernah dipanggil UI</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">Tidak ada <code>proxy</code>/<code>rewrites</code> di <code>next.config.mjs</code>, tidak ada variabel <code>NEXT_PUBLIC_API_URL</code>
+  di <code>.env.example</code> (berkas itu hanya berisi 101 byte untuk DATABASE_URL dan sejenisnya), dan tidak ada klien API bersama.</p>
+
+  <h3>4.4 Tes &amp; CI: hijau di atas kertas</h3>
+  <div class="split">
+    <div class="card">
+      <h4>5 spec Playwright, 0 yang bisa lolos</h4>
+      <ul class="small">
+        <li>Menargetkan rute yang tidak ada: <code>/login</code>, <code>/graph/claim-123</code>, <code>/dashboard</code> (ada) tetapi dengan selektor <code>.metric-card</code>.</li>
+        <li>Menunggu selektor yang tidak dipakai kode mana pun: <code>.graph-container</code>, <code>.graph-node</code>, <code>.node-details</code>, <code>.simulation-results</code>, <code>.results-summary</code> — pencarian di seluruh <code>src/</code> menghasilkan <strong>nol kemunculan</strong>.</li>
+        <li><code>simulation.spec.ts</code> mengisi <code>input[name="iteration-count"]</code> dan memilih <code>select[name="algorithm"]</code>; halaman aslinya memakai <code>id</code> dan <code>type="range"</code>, tanpa field algoritma.</li>
+        <li><code>playwright.config.ts</code> tidak punya blok <code>webServer</code> — tidak ada yang menyalakan aplikasi sebelum tes.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Workflow CI hanya satu, dan tidak menyentuh build</h4>
+      <ul class="small">
+        <li><code>.github/workflows/e2e-tests.yml</code> menjalankan <code>npm ci</code> → <code>playwright install</code> → <code>playwright test</code>.</li>
+        <li>Tidak ada <code>next build</code>, tidak ada <code>tsc --noEmit</code>, tidak ada lint.</li>
+        <li>Tidak ada job backend/ML sama sekali.</li>
+        <li>Ada direktori nyasar <code>.githubworkflows/</code> (tanpa titik) yang kosong — sisa salah ketik.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>4.5 Deployment &amp; observability: konfigurasi yang belum pernah dijalankan</h3>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:24%">Berkas</th><th style="width:20%">Masalah</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><code>deploy/argo/daily-scoring-pipeline.yaml</code></td><td><span class="tag t-p0">Fatal</span></td><td>Empat task punya <strong>dua kunci <code>arguments:</code></strong> (baris 45+49, 57+61, 69+73). YAML memakai kunci terakhir, sehingga <code>artifacts:</code> hilang dan task kehilangan input dari task sebelumnya.</td></tr>
+        <tr><td><code>deploy/helm/api/values.yaml</code></td><td><span class="tag t-p1">Tinggi</span></td><td><code>targetLatencyP99: 500ms</code> bukan nilai valid untuk HPA (harus angka); <code>tag: "latest"</code>; kredensial DB dan Redis ditulis plaintext di <code>env:</code>.</td></tr>
+        <tr><td><code>docker-compose.observability.yml</code></td><td><span class="tag t-p1">Tinggi</span></td><td><code>otel-collector</code> dan <code>jaeger</code> sama-sama memetakan port host <code>4317</code> → container kedua gagal start. Grafana memakai password <code>admin</code>.</td></tr>
+        <tr><td><code>prometheus.rules.yml</code></td><td><span class="tag t-p2">Sedang</span></td><td>Metrik <code>nvidia_gpu_utilization</code> dan <code>http_requests_total</code> tidak pernah diekspos: aplikasi tidak memasang <code>prometheus_client</code>, dan exporter GPU memakai nama metrik berbeda (<code>nvidia_smi_*</code>).</td></tr>
+        <tr><td><code>main.py:50</code></td><td><span class="tag t-p2">Sedang</span></td><td>Endpoint OTel di-hardcode ke <code>http://otel-collector:4317</code> — hanya resolvable di dalam compose; di mesin lokal akan <em>gagal diam-diam</em> setelah timeout.</td></tr>
+        <tr><td><code>deploy/argocd/apps/prod/</code>, <code>staging/</code></td><td><span class="tag t-p2">Kosong</span></td><td>Hanya <code>dev/</code> berisi 3 Application; environment lain direktori kosong.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>4.6 Kualitas kode: sinyal yang perlu diperhatikan</h3>
+  <div class="grid g2">
+    <div class="card">
+      <h4>Dead code &amp; duplikasi</h4>
+      <ul class="small">
+        <li><strong>4 komponen orphan:</strong> <code>mhgsl/comparison.tsx</code> (16,5 KB), <code>data-uploader.tsx</code> (12,6 KB), <code>fraud-ring.tsx</code> (7,5 KB), <code>auth/permission-gate.tsx</code> — tidak diimpor halaman mana pun. Ini justru komponen dengan kode terbaik.</li>
+        <li><strong>Dua validator INA-CBG</strong> dengan format kode yang saling bertentangan (lihat §3).</li>
+        <li><strong>Tiga jalur audit trail:</strong> <code>core/security/audit.py</code> (HMAC, file), <code>api/compliance/ina_cbgs.py</code> (<em>hash chain</em> SHA-256, DB), dan <code>components/audit/*</code> (Merkle tree, browser) — tiga model integritas yang berbeda.</li>
+        <li><code>models/views.py</code> mengimpor <code>DeclarativeBase</code>, <code>text</code>, <code>func</code> yang tidak dipakai.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Keamanan &amp; integritas</h4>
+      <ul class="small">
+        <li><strong>Injeksi Cypher:</strong> <code>graph_service.py:71</code> dan <code>graph_schema.py</code> menyisipkan ID langsung ke string kueri (<code>f"MATCH (n {{id: '{node_id}'}})"</code>) alih-alih memakai parameter <code>$</code>.</li>
+        <li><strong>Salt pseudonim hardcoded:</strong> <code>"AEGIS-JKN-PSEUDONYM-SALT-2024"</code> dan <code>"default-dev-secret-key"</code> menjadi nilai default di dua implementasi pseudonimisasi.</li>
+        <li><strong>Sidik jari audit palsu:</strong> halaman audit mengisi <code>hash</code> dengan <code>`hash-${i}-${Math.random()}`</code> (<code>audit/page.tsx:39</code>), sehingga <code>verifyHashChain()</code> <strong>selalu</strong> melaporkan rantai rusak dan banner merah muncul di setiap kunjungan.</li>
+        <li><strong>Kelas CSS salah:</strong> <code>text-red-s500</code> (<code>audit/page.tsx:134</code>) — warna tidak pernah diterapkan.</li>
+        <li><strong>Kontradiksi laporan:</strong> <code>audit/page.tsx:140</code> menulis “Signed by Aegis-JKN Authority”, padahal <code>generateDigitalSignature()</code> hanya SHA-256 dari <code>data + 'SECRET_KEY'</code> dengan komentar “Mock digital signature for demo purposes”.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section id="s5">
+  <div class="sechead">
+    <span class="secnum">05</span>
+    <div>
+      <h2>Mesin ML: MHGSL yang Tidak Dapat Dibangun</h2>
+      <p class="sub">Bukan “belum dilatih” — modelnya melempar <code>ValueError</code> saat dibuat. Seluruh paket evaluasi juga tidak dapat diimpor.</p>
+    </div>
+  </div>
+
+  <p><strong>MHGSL</strong> — <em>Multi-channel Heterogeneous Graph Structure Learning</em> — adalah gagasan inti proyek:
+  satu graf heterogen dengan tiga jenis sisi dari tiga sumber sinyal berbeda, lalu difusikan dengan kanal teks.
+  Perlu dicatat bahwa ada <strong>dua implementasi berbeda</strong>: eksperimen notebook 300 klaim (yang menghasilkan angka 0,91) dan lapisan <code>src/ml/</code> di <code>Aegis-JKN app</code>. Keduanya diperiksa terpisah di sini; temuan di bawah berlaku untuk yang kedua, karena itulah yang diklaim sebagai mesin produksi. Sebagai rancangan, gagasan ini masuk akal dan relevan untuk fraud sindikat. Sebagai implementasi, ini adalah
+  <strong>kerangka yang tidak pernah berjalan sekali pun</strong>.</p>
+
+  <div class="callout bad">
+    <div class="lbl">Hasil verifikasi eksekusi</div>
+    <p>Dengan interpreter milik proyek sendiri (<code>src/backend/venv</code>, Python 3.11.15, PyTorch 2.14.1,
+    PyG 2.8.1), tiga hal terbukti secara langsung:</p>
+    <ol>
+      <li><code>MHGSLModel(...)</code> → <strong><code>ValueError</code></strong> di <code>src/ml/mhgsl/core.py:24</code>
+      karena <code>GCNConv(add_self_loops=True)</code> dipakai pada tipe sisi bipartit. Direproduksi dua kali,
+      termasuk setelah tipe sisi diperbaiki menjadi 3-tuple.</li>
+      <li><code>import src.ml.evaluation</code> → <strong><code>ModuleNotFoundError: No module named 'auc'</code></strong>
+      di <code>evaluation/metrics.py:3</code>; bahkan bila diperbaiki, baris berikutnya memanggil
+      <code>np.trapz</code> yang <strong>sudah dihapus di NumPy 2.x</strong> (terverifikasi <code>hasattr(np,'trapz') == False</code>).</li>
+      <li>Di jalur batch, bila berkas bobot tidak ada, <code>ray_cluster.py:79-82</code> tetap membuat model —
+      dengan <strong>bobot acak</strong> — lalu menulis probabilitas dan label risiko seolah-olah nyata.</li>
+    </ol>
+  </div>
+
+  <h3>Formulasi yang dijanjikan vs yang diimplementasikan</h3>
+  <div class="card" style="margin:18px 0">
+    <pre><code># Yang ditulis di dokumen teori
+A(feat)[i,j] = 1  jika  cos(x_i, x_j) ≥ θ_feat
+A(top)[i,j]  = 1  jika  pasien/dokter/faskes sama
+A(sem)[i,j]  = 1  jika  metapath  Dx_ringan → Prosedur_mahal → Faskes
+H(k)        = σ( Â(k) · X · W(k) )        untuk k ∈ {feat, top, sem}
+H(shared,k) = σ( Â(k) · X · W(shared) )
+Z           = AttentionFusion( ... )
+p_fused     = p_graph + γ · f_text · (1 − p_graph),   γ = 0,10</code></pre>
+    <div class="tblwrap" style="margin-top:12px">
+      <table style="min-width:520px">
+        <thead><tr><th style="width:38%">Dijanjikan</th><th>Yang ada di kode</th></tr></thead>
+        <tbody>
+          <tr><td>Tiga adjacency independen</td><td><strong>Satu</strong> <code>edge_index_dict</code> dipakai oleh ketiga konvolusi (<code>core.py:54-60</code>)</td></tr>
+          <tr><td>Tiga operator berbeda</td><td>Topologi = <code>SAGEConv</code>, Fitur = <code>GCNConv</code>, Semantik = <code>SAGEConv</code> — topologi dan semantik memakai operator yang sama</td></tr>
+          <tr><td>Cabang <em>shared-parameter</em> GCN</td><td>Tidak ada; fusi menerima tiga input</td></tr>
+          <tr><td><em>Attention-based</em> fusion</td><td><code>torch.cat</code> + MLP dua lapis (<code>core.py:37-43, 69-72</code>)</td></tr>
+          <tr><td>Lima tipe node</td><td>Tiga: <code>claim</code>, <code>provider</code>, <code>patient</code></td></tr>
+          <tr><td>SHAP per kanal dengan kontribusi negatif</td><td>L2 norm dinormalisasi ke persentase <strong>non-negatif</strong> yang berjumlah 100 (<code>core.py:203-217</code>)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="lbl">Konsekuensi aritmetika</div>
+    <p>Narasi inti proyek bergantung pada kontribusi topologi <strong>−12 %</strong> sebagai “bukti tanda tangan kamuflase”.
+    Fungsi yang ada di kode mengembalikan persentase <em>non-negatif</em>. Artinya angka −12 % <strong>mustahil</strong>
+    dihasilkan oleh implementasi ini; ia adalah konstanta yang ditulis tangan pada formula heuristik frontend
+    (<code>worklog.md:171</code>). Klaim kamuflase topologi — gagasan paling orisinal dalam proposal —
+    kehilangan dasar teknisnya di titik ini.</p>
+  </div>
+
+  <h3>Komponen: ada, tetapi tidak saling tersambung</h3>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:20%">Komponen</th><th style="width:16%">Status</th><th>Kondisi</th></tr></thead>
+      <tbody>
+        <tr><td class="rowhead">Model PyTorch</td><td><span class="tag t-no">Gagal dibangun</span></td><td><code>core.py</code> 219 baris, 3× <code>HeteroConv</code>. Tidak dapat diinstansiasi pada PyG 2.8.1; semua modul hilirnya (tes, Ray, batch inference) mati sejak awal.</td></tr>
+        <tr><td class="rowhead">Training loop</td><td><span class="tag t-no">Tidak ada</span></td><td>Satu-satunya loop pelatihan di seluruh lapisan ML adalah untuk <strong>baseline GCN</strong> (<code>evaluation/baselines.py:172-181</code>). Untuk MHGSL hanya ada dua rutin kalibrasi LBFGS. Tidak ada checkpoint yang pernah disimpan.</td></tr>
+        <tr><td class="rowhead">Bobot model</td><td><span class="tag t-amb">Di repo lain</span></td><td><code>mechine-learning-deep-learning/backend/models/mhgsl_model.pth</code> (161 KB) ada di repo terpisah — tetapi <code>ml_service.load_model()</code> di <code>Aegis-JKN app</code> tidak memuatnya (baris <code>load_state_dict</code> dikomentari).</td></tr>
+        <tr><td class="rowhead">Feature engineering</td><td><span class="tag t-amb">Prototipe</span></td><td><code>engineer.py</code> 289 baris menghasilkan ~40 fitur, tetapi pada skema generator hanya <strong>19</strong> yang bertahan; sisanya gugur diam-diam karena guard <code>if col in df.columns</code>.</td></tr>
+        <tr><td class="rowhead">Kanal topologi</td><td><span class="tag t-p2">Orphan</span></td><td><code>TopologyEngineer</code> (136 baris) tidak diimpor apa pun kecuali tesnya sendiri; ia juga tidak memetakan ulang ID node ke indeks graf (<code>engineer.py:34</code>).</td></tr>
+        <tr><td class="rowhead">Kanal semantik</td><td><span class="tag t-p2">Orphan</span></td><td><code>SemanticChannel</code> 404 baris memerlukan unduhan Bio_ClinicalBERT (110M parameter; <code>transformers</code> tidak terpasang). Proyeksi <code>nn.Linear</code>-nya tidak pernah dilatih, sehingga fitur semantik = rotasi acak dari komponen PCA.</td></tr>
+        <tr><td class="rowhead">Evaluasi</td><td><span class="tag t-no">Tidak bisa impor</span></td><td>Paket <code>evaluation/</code> gagal pada <code>metrics.py:3</code>; direktori <code>reports/evaluation</code> yang seharusnya ditulis <strong>tidak pernah ada</strong> — bukti suite ini tidak pernah selesai dijalankan.</td></tr>
+        <tr><td class="rowhead">XAI</td><td><span class="tag t-amb">Stub</span></td><td>SHAP hanya untuk Tier-2 (XGBoost) dan tidak diimpor apa pun. Ringkasan global yang ditampilkan ke pengguna <strong>hardcoded</strong>: “Model globally prioritizes structural topology and provider history” (<code>explanation_generator.py:84</code>), apa pun nilai importance yang baru dihitung. Field <code>counterfactual</code> ada di skema tetapi tidak pernah diisi.</td></tr>
+        <tr><td class="rowhead">Distributed</td><td><span class="tag t-no">Tidak bisa jalan</span></td><td><code>ray</code> tidak terpasang. <code>ray_cluster.py</code> juga men-<em>stringify</em> kunci edge sebelum transport (<code>:213-214</code>), sehingga kunci tidak akan pernah cocok dengan tipe sisi model.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Batas atas yang terukur: 0,375, bukan 0,91</h3>
+  <div class="chart">
+    <div class="bars">
+      <div class="bar"><span class="t">Diklaim (MHGSL)</span><span class="track"><span class="fill hi" style="width:91%"></span></span><span class="v" style="color:var(--teal)">0,910</span></div>
+      <div class="bar"><span class="t">Diklaim (XGBoost)</span><span class="track"><span class="fill" style="width:71%"></span></span><span class="v">0,710</span></div>
+      <div class="bar"><span class="t">Terukur — GBR</span><span class="track"><span class="fill amb" style="width:37.5%"></span></span><span class="v" style="color:var(--amber)">0,375</span></div>
+      <div class="bar"><span class="t">Terukur — LogReg</span><span class="track"><span class="fill amb" style="width:37.3%"></span></span><span class="v" style="color:var(--amber)">0,373</span></div>
+      <div class="bar"><span class="t">AUPRC acak</span><span class="track"><span class="fill bad" style="width:12%"></span></span><span class="v" style="color:var(--rose)">0,120</span></div>
+    </div>
+    <div class="cap">Dua batang pertama: angka yang tertulis di <code>README.md:31,130,133</code>. Tiga berikutnya: pengukuran
+    sesi ini pada <strong>20.000 baris data generator proyek sendiri</strong>, memakai <code>Tier2FeatureEngineer</code>
+    milik proyek, split temporal 70/15/15, base rate 8,86 %. ROC-AUC GBR 0,645 dan LogReg 0,653;
+    <strong>kolom <code>amount</code> saja sudah memberi ROC-AUC 0,624</strong> — label pada data sintetis
+    praktis merupakan fungsi monoton dari satu kolom.</div>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Mengapa ini penting</div>
+    <p>Angka 0,375 bukan kegagalan usaha — itu <em>batas atas jujur</em> dari data yang tersedia. Jarak 0,91 → 0,375
+    tidak dapat ditutup dengan penjelasan metodologis apa pun, karena tidak ada model terlatih yang menghasilkannya.
+    Sebaliknya, 0,375 masih di atas baseline acak 0,12 dan di atas tebakan modal kelas, sehingga masih layak
+    dilaporkan sebagai hasil purwarupa.</p>
+  </div>
+
+  <h3>Empat cacat metodologis</h3>
+  <div class="grid g2">
+    <div class="card" style="border-color:rgba(248,113,113,.32)">
+      <span class="tag t-p0">M-01</span>
+      <h4 style="margin-top:8px">Benchmark <em>in-sample</em></h4>
+      <p class="small">Fit lalu predict pada matriks yang sama untuk XGBoost, MLP, GCN, dan MHGSL. Adjacency dan scaler dibangun sebelum split. Tidak ada held-out set, tidak ada file prediksi.</p>
+    </div>
+    <div class="card" style="border-color:rgba(248,113,113,.32)">
+      <span class="tag t-p0">M-02</span>
+      <h4 style="margin-top:8px">Label dan fitur dari kolom yang sama</h4>
+      <p class="small"><code>Risiko</code> = ambang <code>Skor Fraud</code>; <code>Status</code> = coarsening <code>Risiko</code>. Delapan kolom turunan label ikut sebagai fitur. Pemisahan kelas sempurna → AUPRC dari kolom label = 1,0000.</p>
+    </div>
+    <div class="card" style="border-color:rgba(248,113,113,.32)">
+      <span class="tag t-p0">M-03</span>
+      <h4 style="margin-top:8px">Graf dibangun dari kolom terlarang</h4>
+      <p class="small"><code>pipeline.py:37-40</code> melarang <code>sindikat</code>, lalu <code>:288-309</code> memakainya untuk membangun <code>A_sem</code> — kanal yang diklaim menyumbang +41 %.</p>
+    </div>
+    <div class="card" style="border-color:rgba(248,113,113,.32)">
+      <span class="tag t-p0">M-04</span>
+      <h4 style="margin-top:8px">Split tidak menjaga grup</h4>
+      <p class="small"><code>gap_days</code> diperlakukan sebagai <em>jumlah baris</em>, bukan durasi (<code>splits.py:41-42</code>); indeks diambil dari <code>reset_index</code> lalu dipakai posisional ke <code>X</code> (<code>benchmark.py:90-101</code>); tidak ada pengelompokan per pasien atau faskes.</p>
+    </div>
+  </div>
+
+  <h3>Jalur inferensi yang dipakai demo</h3>
+  <div class="card">
+    <div class="flow">
+      <span class="node">POST /api/graph/analyze</span><span class="arw">→</span>
+      <span class="node">torch.randn(1,16) / (1,8)</span><span class="arw">→</span>
+      <span class="node">MHGSLModel <span style="color:#FF8A8A">(gagal dibangun)</span></span><span class="arw">→</span>
+      <span class="node">sigmoid</span><span class="arw">→</span>
+      <span class="node">L2 norm per kanal</span><span class="arw">→</span>
+      <span class="node">risk_level 0,8/0,6/0,3</span>
+    </div>
+    <p class="small" style="margin-bottom:0">Kutipan <code>api/graph/router.py:69-82</code>:
+    <code># TODO: Replace with actual Graph DB query</code> / <code># Mock graph data for architecture validation</code>.
+    Di jalur batch, kegagalan model ditelan oleh <code>except Exception</code> dan ditulis sebagai
+    <code>fraud_probability: 0.0</code> dengan <code>risk_level: "ERROR"</code> — <strong>fail-open</strong>:
+    klaim yang gagal dinilai terlihat seperti “bukan fraud”.</p>
+  </div>
+
+  <div class="callout warn">
+    <div class="lbl">Penilaian</div>
+    <p>Ini bukan lapisan ML yang “belum sempat dilatih”. Ini lapisan yang <strong>belum pernah berjalan</strong>:
+    model tidak dapat dibuat, tidak ada kode pelatihan untuk model utama, paket evaluasi tidak dapat diimpor,
+    dan tidak ada satu pun berkas prediksi atau metrik tersimpan. Yang ada adalah tata letak modul yang rapi
+    dan docstring yang jujur — modal yang baik, tetapi bukan bukti.</p>
+    <p style="margin-bottom:0"><strong>Jalan terpendek yang jujur:</strong> perbaiki <code>GCNConv</code> (set
+    <code>add_self_loops=False</code>), tulis satu loop pelatihan dengan split GroupKFold per pasien,
+    perbaiki <code>metrics.py</code> (pakai <code>average_precision_score</code>), lalu laporkan angka apa adanya.
+    Estimasi realistis: AUPRC 0,30–0,45 pada data sintetis ini.</p>
+  </div>
+</section>
+<section id="s6">
+  <div class="sechead">
+    <span class="secnum">06</span>
+    <div>
+      <h2>Angka vs Bukti</h2>
+      <p class="sub">Setiap angka diberi status: TERDUKUNG (bisa dihitung ulang), BERTENTANGAN (ada tapi beda), atau TIDAK TERDUKUNG (tidak ada artefak).</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Cara membaca bagian ini</div>
+    <p>Tiga auditor berbeda — tim internal (<code>analysis/reports/</code>), agen peninjau v1, dan audit kode
+    <code>Aegis-JKN app</code> dalam laporan ini — sampai pada kesimpulan yang sama secara independen:
+    <strong>angka struktural dataset konsisten, angka performa model tidak.</strong> Itu bukan pendapat; itu hasil
+    perhitungan ulang dari file yang sama yang dipakai naskah.</p>
+  </div>
+
+  <h3>Klaim benchmark AUPRC</h3>
+  <div class="chart">
+    <div class="bars">
+      <div class="bar"><span class="t">Rule-based</span><span class="track"><span class="fill" style="width:58%"></span></span><span class="v">0,58</span></div>
+      <div class="bar"><span class="t">Logistic Reg.</span><span class="track"><span class="fill" style="width:62%"></span></span><span class="v">0,62</span></div>
+      <div class="bar"><span class="t">XGBoost</span><span class="track"><span class="fill" style="width:71%"></span></span><span class="v">0,71</span></div>
+      <div class="bar"><span class="t">Homogeneous GCN</span><span class="track"><span class="fill" style="width:78%"></span></span><span class="v">0,78</span></div>
+      <div class="bar"><span class="t">Hybrid GNN+XGB</span><span class="track"><span class="fill" style="width:85%"></span></span><span class="v">0,85</span></div>
+      <div class="bar"><span class="t" style="color:var(--txt);font-weight:650">Aegis-JKN MHGSL</span><span class="track"><span class="fill hi" style="width:91%"></span></span><span class="v" style="color:var(--teal)">0,91</span></div>
+      <div class="bar" style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)"><span class="t">AUPRC acak (prevalensi)</span><span class="track"><span class="fill bad" style="width:12%"></span></span><span class="v" style="color:var(--rose)">0,12</span></div>
+      <div class="bar"><span class="t">F1 terbaik fitur bersih</span><span class="track"><span class="fill amb" style="width:34.5%"></span></span><span class="v" style="color:var(--amber)">0,34</span></div>
+    </div>
+    <div class="cap">Enam batang pertama adalah klaim yang tertulis di <code>README.md:128-133</code>. Dua batang terakhir adalah
+    perhitungan ulang dari data yang sama: garis dasar acak dan batas atas nyata fitur yang tidak bocor
+    (F1, karena AUPRC tidak dapat dihitung tanpa model terlatih). <strong>Jarak 0,91 ke 0,12 adalah jarak antara narasi dan data.</strong></div>
+  </div>
+
+  <h3>Sembilan angka headline: status per artefak</h3>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:24%">Metrik</th><th class="num" style="width:11%">Diklaim</th><th style="width:13%">Status</th><th>Temuan</th></tr></thead>
+      <tbody>
+        <tr><td class="rowhead">Akurasi</td><td class="num">93,00 %</td><td><span class="tag t-no">Tidak terdukung</span></td><td>Angka “93 %” di PDF Colab adalah <strong>akurasi leksikon sentimen</strong> atas 200 posting (186/200), bukan deteksi fraud. Di bawah <em>baseline</em> sepele 97 % pada prevalensi yang dipakai proyek sendiri.</td></tr>
+        <tr><td class="rowhead">Presisi</td><td class="num">94,12 %</td><td><span class="tag t-no">Mustahil</span></td><td>Pemindaian atas 46 nilai <code>skor_fraud</code> unik menghasilkan <strong>nol ambang</strong> dengan presisi 94,12 %. Terdekat 94,7368 % (ambang 0,78) dan 92,3077 % (ambang 0,74).</td></tr>
+        <tr><td class="rowhead">ROC-AUC</td><td class="num">0,9825</td><td><span class="tag t-no">Tidak ada</span></td><td>Tidak muncul di notebook, PDF, maupun repo. Tidak ada file prediksi untuk menghitungnya.</td></tr>
+        <tr><td class="rowhead">AUPRC</td><td class="num">0,9142</td><td><span class="tag t-no">Tidak ada</span></td><td>Tidak ada artefak. Dari kolom label sendiri nilainya <strong>1,0000</strong> (pemisahan kelas sempurna); tanpa kebocoran, batas atas nyata jauh lebih rendah.</td></tr>
+        <tr><td class="rowhead">Baseline XGBoost</td><td class="num">0,7100</td><td><span class="tag t-no">Konstanta</span></td><td><code>xgboost</code> tidak terpasang. Angka 0,71 hidup sebagai <em>literal</em> di <code>simulation.py:317</code>, <code>main.py:388</code>, dan <code>data.ts:261</code>.</td></tr>
+        <tr><td class="rowhead">Masking robustness</td><td class="num">89,40 %</td><td><span class="tag t-no">Tidak ada</span></td><td>Tidak ada kode masking di repo mana pun, sehingga tidak ada yang bisa disamarkan maupun diukur.</td></tr>
+        <tr><td class="rowhead">False positive rate</td><td class="num">10,60 %</td><td><span class="tag t-amb">Terhitung, tapi…</span></td><td>Benar hanya pada ambang <code>skor_fraud ≥ 0,14</code> (28 FP dari 264 negatif = 10,6061 %). Pada ambang itu presisi hanya <strong>56,25 %</strong> — tidak ada satu titik operasi yang memenuhi presisi 94,12 % dan FPR 10,6 % sekaligus.</td></tr>
+        <tr><td class="rowhead">Waktu telaah</td><td class="num">−45 %</td><td><span class="tag t-no">Bertentangan</span></td><td>PDF: 20 → 3 menit (turun 85 %). DOCX: 10–20 → 3–5 menit (turun 45 %). Dua angka berbeda untuk konsep yang sama.</td></tr>
+        <tr><td class="rowhead">Throughput</td><td class="num">3,2×</td><td><span class="tag t-no">Aritmetika salah</span></td><td>Bila 20 → 3 menit benar, kapasitas naik <strong>6,67×</strong>, bukan 3,2×. Tidak ada simulasi beban kerja untuk mendukung keduanya.</td></tr>
+        <tr><td class="rowhead">SUS</td><td class="num">82,5</td><td><span class="tag t-no">Tidak ada</span></td><td>Tidak ada instrumen, responden, atau rekap skor. “Grade A / Excellent” tidak dapat diaudit.</td></tr>
+        <tr><td class="rowhead">Overcharge</td><td class="num">Rp507,37 jt</td><td><span class="tag t-no">Tidak reproducible</span></td><td>Brute force 14 kunci pengelompokan × 3 pool × 4 agregator tidak menghasilkan angka ini. Dari tarif resmi proyek sendiri, overcharge yang dapat diturunkan <strong>Rp31,35 jt</strong> (rasio 16,18×).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Yang justru terdukung: angka struktural dataset</h3>
+  <p>Ini kabar baik dan layak ditonjolkan saat presentasi: semua fakta struktural 300 klaim konsisten byte-per-byte
+  dengan korpus, dan dapat dihitung ulang dari CSV mana pun.</p>
+  <div class="grid g3" style="margin:16px 0">
+    <div class="card"><div class="small">Total portofolio</div><div class="big">Rp3.526.650.000</div><div class="small">300 klaim · rata-rata Rp11.755.500</div></div>
+    <div class="card"><div class="small">Sebaran status</div><div class="big">240 / 24 / 36</div><div class="small">auto-clear / review / escalate</div></div>
+    <div class="card"><div class="small">Anomali</div><div class="big">60 · Rp841,1 jt</div><div class="small">23,85 % dari nilai portofolio</div></div>
+    <div class="card"><div class="small">Prevalensi fraud</div><div class="big">12,0 %</div><div class="small">36 dari 300 · rasio 1 : 7,33</div></div>
+    <div class="card"><div class="small">Sindikat</div><div class="big">9</div><div class="small">3/3/6/2/2/4/4/6/6 · Rp539,65 jt</div></div>
+    <div class="card"><div class="small">Entitas</div><div class="big">40 / 20 / 10</div><div class="small">pasien / dokter / faskes</div></div>
+  </div>
+
+  <div class="callout warn">
+    <div class="lbl">Catatan penting soal 12 %</div>
+    <p>Prevalensi 12 % adalah <strong>hasil <em>oversampling</em> yang disengaja</strong>, bukan kondisi lapangan.
+    Dokumen sendiri menyebut estimasi lapangan 3–7 %. Menyebut “36 fraud dari 300 klaim” tanpa qualifier ini
+    akan langsung dibantah juri yang membaca metodologi — dan qualifier-nya sudah ada di
+    <code>payload.meta.honesty</code>. Cukup ditampilkan.</p>
+  </div>
+
+  <h3>Kontradiksi antar artefak yang paling mudah ditemukan juri</h3>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:20%">Topik</th><th style="width:27%">Versi A</th><th style="width:27%">Versi B</th><th>Dampak</th></tr></thead>
+      <tbody>
+        <tr><td class="rowhead">Ukuran dataset</td><td>300 klaim / 36 fraud (naskah, explorer)</td><td>100 klaim / 14 fraud (Colab, payload, PDF)</td><td>PDF berjudul “300 dataset” tetapi merender 100 klaim</td></tr>
+        <tr><td class="rowhead">Jumlah sindikat</td><td>9 (SYND-01…09)</td><td>5 (metrik notebook &amp; <code>syndHit</code>)</td><td>Klaim “100 % 9 pola” hanya didukung 5 pola</td></tr>
+        <tr><td class="rowhead">Edge topologi</td><td>10.386 (pipeline, naskah ¶195)</td><td>7.140 (algoritma notebook)</td><td>Dua implementasi untuk label yang sama</td></tr>
+        <tr><td class="rowhead">Edge fitur</td><td>4.563</td><td>2.192 pada θ=0,85 untuk 300 klaim</td><td>4.563 milik eksperimen 100 klaim</td></tr>
+        <tr><td class="rowhead">Sentimen</td><td>62 / 14 / 24 (spesifikasi)</td><td>170 / 58 / 72 (data aktual)</td><td>Selisih hampir 3× pada semua kelas</td></tr>
+        <tr><td class="rowhead">Kontradiksi teks</td><td>8 klaim</td><td>12 baris ditandai</td><td>Flag adalah <em>lookup</em> pada kolom <code>Modus</code></td></tr>
+        <tr><td class="rowhead">Penghematan</td><td>Rp1,2 <b>juta</b>/bulan (ID)</td><td>Rp1,2 <b>miliar</b>/bulan (EN)</td><td>Kesalahan satuan 1.000×</td></tr>
+        <tr><td class="rowhead">Ambang risiko</td><td>0,35 / 0,60 / 0,80</td><td>0,40 / 0,65 / 0,85</td><td>Empat skala berbeda hidup bersamaan</td></tr>
+        <tr><td class="rowhead">Putusan audit</td><td><code>22-proposal-docx-audit.md</code>: “LULUS AUDIT, semua SINKRON”</td><td><code>16_redteam_numbers.json</code>: presisi/ROC-AUC/AUPRC = “NO”</td><td>Laporan audit internal saling bertentangan; <code>22</code> adalah <em>outlier</em> yang kedaluwarsa</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout good">
+    <div class="lbl">Jalan keluar yang jujur</div>
+    <p>Hapus semua angka performa dari naskah, deck, dan UI. Ganti dengan tiga hal yang bisa dipertahankan:
+    <strong>(1)</strong> fakta struktural portofolio 300 klaim, <strong>(2)</strong> satu pipeline evaluasi minimal yang
+    bisa dijalankan ulang oleh juri dalam satu perintah, <strong>(3)</strong> hasil apa adanya dari pipeline itu —
+    berapa pun angkanya. Tim yang berani menampilkan AUPRC 0,34 disertai split yang benar akan terlihat
+    lebih kredibel daripada tim yang menampilkan 0,91 tanpa artefak.</p>
+  </div>
+</section>
+<section id="s7">
+  <div class="sechead">
+    <span class="secnum">07</span>
+    <div>
+      <h2>Kepatuhan &amp; Keamanan</h2>
+      <p class="sub">Tata kelola PDP adalah bagian terkuat proyek — dan bagian yang paling berisiko ketika isinya salah kutip.</p>
+    </div>
+  </div>
+
+  <div class="callout bad">
+    <div class="lbl">Temuan paling mendesak</div>
+    <p>Demo publik memuat <strong>ground truth</strong> (<code>gtSent</code>, <code>sentiment_gt</code>, <code>syndHit</code>)
+    dan delapan kolom turunan label. Untuk sistem yang menjual “deteksi”, ini setara menaruh kunci jawaban
+    di samping lembar ujian. Bersamaan dengan itu, <strong>token integrasi Notion aktif ter-hardcode</strong> di lima
+    skrip, dan <strong>9,72 GB data sampel resmi BPJS</strong> tersimpan tanpa proteksi di working directory
+    yang bukan repositori.</p>
+  </div>
+
+  <h3>7.1 Eksposur kredensial &amp; data</h3>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:26%">Temuan</th><th style="width:18%">Tingkat</th><th>Detail &amp; mitigasi</th></tr></thead>
+      <tbody>
+        <tr><td class="rowhead">Token Notion hardcoded</td><td><span class="tag t-p0">P0</span></td><td>Ditulis literal pada baris 4 di <code>Notion-docs/fetch_notion_page.py</code>, <code>fetch_notion_blocks.py</code>, <code>fetch_notion_content.py</code>, <code>fetch_notion_databases.py</code>, <code>test_notion.py</code>. Juga muncul di <code>mechine-learning-deep-learning/backend/.env</code>. <strong>Rotasi token</strong>; tidak perlu menulis ulang history karena audit menyatakan token tidak pernah masuk git.</td></tr>
+        <tr><td class="rowhead">Ground truth di bundle publik</td><td><span class="tag t-p0">P0</span></td><td><code>Aegis-JKN/public/payload-aegis-jkn.json</code> identik dengan payload Colab; memuat label sentimen dan hit sindikat. Kolom <code>skor_fraud</code>, <code>sinyal_shap</code>, <code>modus</code>, <code>sindikat</code> juga terekspor lewat fitur ekspor CSV/JSON di <code>/dataset</code>. Hapus dari bundle sebelum submit.</td></tr>
+        <tr><td class="rowhead">Data sampel BPJS tanpa proteksi</td><td><span class="tag t-p0">P0</span></td><td>110 berkas <code>.dta</code>/<code>.xlsx</code> (9,72 GB) di <code>Aegis-JKN app/Dataset/</code>. <code>N:\HEALTHKATHON</code> tidak punya <code>.gitignore</code> di root, sehingga <code>git add -A</code> akan meng-commit seluruh data. Tambahkan <code>.gitignore</code> dan pindahkan data ke storage terpisah.</td></tr>
+        <tr><td class="rowhead">Salt &amp; kunci default</td><td><span class="tag t-p1">P1</span></td><td><code>"AEGIS-JKN-PSEUDONYM-SALT-2024"</code> (<code>api/compliance/ina_cbgs.py:196</code>) dan <code>"default-dev-secret-key"</code> (<code>middleware/compliance/pseudonymization.py:23</code>). Pseudonimisasi deterministik tanpa kunci rahasia = <em>reversible dictionary attack</em> pada ruang NIK/nama yang kecil.</td></tr>
+        <tr><td class="rowhead">JWT keypair auto-generate</td><td><span class="tag t-p1">P1</span></td><td><code>core/security/auth.py:79-97</code> membuat RSA 2048 saat modul dimuat bila env tidak diisi, sambil mencetak <code>WARNING</code>. Setiap restart membuat <strong>semua token lama tidak valid</strong> dan setiap replika punya kunci berbeda.</td></tr>
+        <tr><td class="rowhead">Kredensial plaintext di Helm</td><td><span class="tag t-p1">P1</span></td><td><code>deploy/helm/api/values.yaml:28-31</code>: <code>DATABASE_URL: "postgresql://user:pass@…"</code>. Ganti dengan <code>existingSecret</code>.</td></tr>
+        <tr><td class="rowhead">Tidak ada header keamanan</td><td><span class="tag t-p2">P2</span></td><td><code>next.config.mjs</code> hanya berisi <code>reactStrictMode</code> dan <code>optimizePackageImports</code> — nol <code>headers()</code>, nol CSP, nol HSTS. <code>vercel.json</code> 86 byte.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>7.2 Referensi hukum: struktur baik, isi perlu koreksi</h3>
+  <p>Kerangka kepatuhan dirangkai dengan ambisi yang tepat — UU PDP 27/2022, UU Kesehatan 17/2023,
+  de-identifikasi 18 identifier, <em>salted pseudonymization</em>, DP-CTGAN, <em>federated learning</em>,
+  RBAC, dan <em>immutable audit trail</em>. Masalahnya bukan keberadaan rujukan, melainkan
+  <strong>ketepatan pasal dan judul</strong> — jenis kesalahan yang paling mudah diperiksa juri dalam hitungan detik.</p>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:30%">Klaim dalam naskah</th><th style="width:30%">Kondisi sebenarnya</th><th>Perbaikan</th></tr></thead>
+      <tbody>
+        <tr><td>Judul Permenkes 16/2019</td><td>Dikutip dengan tambahan “…serta Pengendalian Gratifikasi”</td><td>Gunakan judul resmi tanpa frasa itu</td></tr>
+        <tr><td>Permenkes 24/2022 sebagai dasar HL7 FHIR R4</td><td>Naskah peraturan tersebut <strong>nol kali</strong> menyebut HL7, FHIR, atau SATUSEHAT</td><td>Rujuk regulasi interoperabilitas yang benar, atau hapus klaim dasarnya</td></tr>
+        <tr><td>Sanksi pidana UU PDP</td><td>Disematkan ke Pasal 65 &amp; 66</td><td>Pasal 67 dan 68</td></tr>
+        <tr><td>Kewajiban “3×24 jam”</td><td>Disematkan ke Pasal 4 ayat (2)</td><td>Pasal 46 ayat (1)</td></tr>
+        <tr><td>“Data Pribadi Spesifik”</td><td>Disematkan ke Pasal 4 ayat (3)</td><td>Pasal 4 ayat (2)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>Peraturan wajib yang belum dicantumkan</h4>
+  <div class="grid g2">
+    <div class="card">
+      <ul class="small" style="margin:0">
+        <li><strong>PP 33/2026</strong> — aturan pelaksanaan UU PDP (diundangkan 16 Juli 2026, berlaku 16 Januari 2027 menurut Pasal 225). Ini yang paling krusial karena mengatur justru hal yang diklaim.</li>
+        <li><strong>PP 71/2019</strong> — rezim PSE, relevan karena hosting demo berada di luar negeri (Vercel).</li>
+        <li><strong>PP 28/2024</strong> — pelaksanaan UU Kesehatan.</li>
+        <li><strong>Permenkes 6/2026</strong> dan <strong>Kepmenkes HK.01.07/MENKES/1199/2025</strong> (FORNAS baru, berlaku 1 April 2026).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <ul class="small" style="margin:0">
+        <li><strong>Permenkes 18/2022</strong> dan <strong>Permenkes 3/2023</strong>.</li>
+        <li><strong>UU 13/2022 jo UU 1/2026</strong>.</li>
+        <li><strong>Peraturan BPJS 3/2024</strong>.</li>
+        <li><strong>Pasal 34 UU PDP</strong> tentang penilaian dampak (DPIA) — tidak disebut sama sekali, padahal pemrosesan data kesehatan berskala besar mewajibkannya.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="lbl">Nuansa yang harus dipertahankan</div>
+    <p>Empat dokumen internal sudah menyatakan sendiri bahwa <strong>pseudonimisasi bukan anonimisasi</strong>.
+    Itu sikap yang benar dan jarang. Jangan tergoda menyederhanakannya menjadi “data sudah aman” —
+    justru kalimat “data tetap merupakan data pribadi dan tunduk pada UU PDP” yang akan menaikkan kredibilitas.</p>
+  </div>
+
+  <h3>7.3 Kode medis &amp; tarif: dua kesalahan yang mudah diperiksa</h3>
+  <div class="split">
+    <div class="card">
+      <h4 style="margin-top:0">ICD-9-CM 00.66</h4>
+      <p>Dilabeli “angioplasti koroner <em>plus stent</em>” dengan tarif Rp58 juta. Kenyataannya
+      <strong>00.66 adalah PTCA tanpa stent</strong>; stent memiliki kode sendiri (36.06 / 36.07).
+      Memasukkan stent ke 00.66 adalah contoh <em>upcoding</em> yang justru sedang dibahas — di dalam data acuan sendiri.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">ICD-9-CM 93.90</h4>
+      <p>Dilabeli “terapi oksigen tekanan positif”. Kenyataannya <strong>93.90 adalah ventilasi mekanik non-invasif</strong>
+      (IPPB ada di 93.91). Selain itu versi koding ICD-10 dan ICD-9-CM (Versi 2010) tidak disebutkan —
+      padahal versi wajib dicantumkan agar tarif dapat diverifikasi.</p>
+    </div>
+  </div>
+  <p class="small">Selain itu, tabel tarif tidak menyertakan <strong>kode grup kasus INA-CBG</strong>, sehingga
+  angka tarif tidak dapat ditelusuri ke regulasi mana pun. Untuk sistem yang intinya adalah kepatuhan tarif,
+  ini celah yang paling terlihat.</p>
+
+  <h3>7.4 Provenance pihak ketiga</h3>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:22%">Aset</th><th style="width:16%">Lisensi</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="rowhead"><code>oasis/</code></td><td>Apache-2.0</td><td>Clone bersih <code>camel-ai/oasis</code> (971 commit, HEAD <code>dded86a</code>), <strong>nol modifikasi</strong>. Wajib diatribusikan bila didistribusikan; jangan diklaim sebagai IP proyek.</td></tr>
+        <tr><td class="rowhead"><code>mechine-learning-deep-learning/</code></td><td>Tidak ada LICENSE</td><td>Repo terpisah dengan 3 commit. Memuat <code>mhgsl_model.pth</code> terlatih — satu-satunya bobot model nyata di seluruh ekosistem.</td></tr>
+        <tr><td class="rowhead"><code>Aegis-JKN/</code></td><td>Diklaim MIT</td><td><code>README.md:379</code> menyatakan MIT dan badge menautkan <code>LICENSE</code>, tetapi <strong>berkas LICENSE tidak ada</strong> di tree.</td></tr>
+        <tr><td class="rowhead">Data sampel BPJS</td><td>Terbatas</td><td>Data sampel resmi untuk peserta Healthkathon. Tidak boleh didistribusikan ulang; saat ini tersimpan tanpa kontrol akses di disk lokal.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Kesimpulan bagian ini</div>
+    <p>Satu hari kerja koreksi teks (pasal, judul peraturan, kode ICD) dan satu jam rotasi kredensial menutup
+    mayoritas risiko di bagian ini. Itu investasi dengan rasio dampak-usaha tertinggi di seluruh rencana perbaikan —
+    jauh lebih murah daripada membangun ulang pipeline ML.</p>
+  </div>
+</section>
+<section id="s8">
+  <div class="sechead">
+    <span class="secnum">08</span>
+    <div>
+      <h2>Skor Kesiapan</h2>
+      <p class="sub">Skala 1–5 per dimensi; 5 = siap diserahkan, 1 = belum ada sama sekali. Total maksimum 35.</p>
+    </div>
+  </div>
+
+  <div class="score">
+    <div class="ring">
+      <svg width="150" height="150" viewBox="0 0 150 150" role="img" aria-label="Skor kesiapan 14 dari 35">
+        <circle cx="75" cy="75" r="66" fill="none" stroke="var(--line)" stroke-width="12"></circle>
+        <circle cx="75" cy="75" r="66" fill="none" stroke="url(#g1)" stroke-width="12" stroke-linecap="round"
+                stroke-dasharray="165.9 414.7"></circle>
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#F5B547"></stop>
+            <stop offset="100%" stop-color="#FF6B6B"></stop>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="lv"><div><b style="color:var(--amber)">14</b><span>dari 35</span></div></div>
+    </div>
+    <div style="flex:1; min-width:260px">
+      <h3 style="margin:0 0 6px">40 % — “jalur submit dengan perbaikan teks dan artefak”</h3>
+      <p style="margin:0 0 10px">Bukan “hampir siap”, dan bukan pula “tidak layak”. Posisi ini tepat di tengah:
+      nilai arsitektural dan tata kelola sudah ada, bukti empiris dan reproduksibilitas belum.
+      Dua dimensi bernilai 1 (kepatuhan isi, reproduksibilitas) adalah yang paling menekan skor total.</p>
+      <p class="small" style="margin:0">Pembanding: audit <code>10-competition.md</code> memberi 2,6/5 (56 %) dengan dasar yang sama.
+      Selisihnya soal sudut pandang — apa yang <em>sudah ada</em> versus apa yang <em>bisa dipertanggungjawabkan saat submit</em>.</p>
+    </div>
+  </div>
+
+  <h3>Tujuh dimensi</h3>
+  <div class="card">
+    <div class="mrow"><span class="lab">Proposal &amp; naskah</span><span class="meter"><i style="width:60%"></i></span><span class="val">3 / 5</span></div>
+    <div class="mrow"><span class="lab">Kualitas &amp; tata kelola data</span><span class="meter"><i style="width:40%"></i></span><span class="val">2 / 5</span></div>
+    <div class="mrow"><span class="lab">Metodologi ML &amp; validasi</span><span class="meter"><i style="width:40%"></i></span><span class="val">2 / 5</span></div>
+    <div class="mrow"><span class="lab">Implementasi frontend</span><span class="meter"><i style="width:60%"></i></span><span class="val">3 / 5</span></div>
+    <div class="mrow"><span class="lab">Kepatuhan &amp; bukti hukum</span><span class="meter"><i style="width:20%"></i></span><span class="val">1 / 5</span></div>
+    <div class="mrow"><span class="lab">Reproduksibilitas artefak</span><span class="meter"><i style="width:20%"></i></span><span class="val">1 / 5</span></div>
+    <div class="mrow"><span class="lab">Kesiapan demo-day</span><span class="meter"><i style="width:40%"></i></span><span class="val">2 / 5</span></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h4 style="margin-top:0">Mengapa kepatuhan hanya 1</h4>
+      <p class="small">Struktur UU PDP Pasal 16, matriks 18 identifier, dan Hybrid Safe-Mode tersedia.
+      Tetapi 4 dari 7 pasal yang diperiksa salah kutip, judul satu peraturan salah, HL7 FHIR disandarkan pada
+      naskah yang tidak menyebutnya, 9 peraturan wajib hilang, dan klaim privasi “aman” dibuat tanpa DPIA.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Mengapa reproduksibilitas hanya 1</h4>
+      <p class="small">Tidak ada <code>manifest.json</code>, <code>label_audit.csv</code>, <code>train.py</code>,
+      <code>metrics.json</code>, <code>tests/test_leakage.py</code>, <code>configs/leakage.yaml</code>,
+      <code>edges_v2.1.json</code>, maupun <code>CHECKSUMS.txt</code>. Notebook utama menyimpan <strong>0 output</strong>.
+      Generator 300 klaim tidak ada di repo mana pun.</p>
+    </div>
+  </div>
+
+  <h3>Skor terpisah: <code style="font-size:.72em">Aegis-JKN app</code></h3>
+  <p>Aplikasi generasi kedua dinilai terpisah karena berada pada tahap yang berbeda: strukturnya lebih ambisius,
+  tetapi belum pernah berhasil dijalankan. Skala 0–3.</p>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:26%">Aspek</th><th class="num" style="width:10%">Skor</th><th>Dasar</th></tr></thead>
+      <tbody>
+        <tr><td class="rowhead">Build frontend</td><td class="num" style="color:var(--rose)">0 / 3</td><td>4 modul hilang, CSS salah path, <code>"use client"</code> tidak ada, Tailwind v4/v3 bercampur, lockfile tidak cocok</td></tr>
+        <tr><td class="rowhead">Runtime backend</td><td class="num">1 / 3</td><td>Desain layer rapi (router → service → model), tetapi gagal impor; hanya router <code>/vector</code> yang menyentuh sistem nyata</td></tr>
+        <tr><td class="rowhead">Tes &amp; CI</td><td class="num" style="color:var(--rose)">0 / 3</td><td>5 spec menargetkan selektor yang tidak ada; CI tidak menjalankan build; <code>npm ci</code> gagal di langkah pertama</td></tr>
+        <tr><td class="rowhead">Konfigurasi deploy</td><td class="num">2 / 3</td><td>Permukaan Helm/Argo/monitoring lengkap dan terbaca; 2 cacat fatal (duplikasi <code>arguments</code>, bentrok port) dan belum pernah diterapkan</td></tr>
+        <tr><td class="rowhead">Integrasi ML &amp; data</td><td class="num">1 / 3</td><td>Modul ML lengkap, tetapi bobot tidak dimuat, inferensi memakai tensor acak, tanpa artefak evaluasi</td></tr>
+        <tr><td class="rowhead">Dokumentasi kode</td><td class="num">3 / 3</td><td>Docstring konsisten, tipe Pydantic jelas, pemisahan tanggung jawab terbaca — bagian terbaik dari aplikasi ini</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Garis waktu &amp; tiga skenario</h3>
+  <div class="split">
+    <div class="tl">
+      <div class="item done">
+        <div class="when">5 – 8 Oktober 2026</div>
+        <h4>Pembangunan v1 &amp; audit berjalan</h4>
+        <p class="small">5 commit, lapisan tes/CI belum ter-commit. <code>worklog.md</code> mencatat <em>cron loop</em> agen yang menambah fitur tiap 15 menit.</p>
+      </div>
+      <div class="item done">
+        <div class="when">22 Oktober 2026</div>
+        <h4>Seri audit 26 laporan</h4>
+        <p class="small">Rekonsiliasi angka, red team, audit DOCX, provenance Colab. Skor 14/35 ditetapkan.</p>
+      </div>
+      <div class="item done">
+        <div class="when">23 – 24 Oktober 2026</div>
+        <h4>Aplikasi generasi kedua</h4>
+        <p class="small"><code>Aegis-JKN app</code> ditulis: FastAPI + ML + Helm. Belum pernah di-build.</p>
+      </div>
+      <div class="item">
+        <div class="when">25 Oktober – 1 November 2026</div>
+        <h4>Jendela submit project akhir</h4>
+        <p class="small"><strong>8 hari.</strong> Cukup untuk skenario B, tidak untuk skenario C.</p>
+      </div>
+      <div class="item">
+        <div class="when">7 November 2026</div>
+        <h4>Grand Final</h4>
+        <p class="small"><strong>14 hari.</strong> Demo, deck, video, dan tanya-jawab juri.</p>
+      </div>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Probabilitas gagal per skenario</h4>
+      <div class="bars" style="margin-top:12px">
+        <div class="bar"><span class="t">A · submit apa adanya</span><span class="track"><span class="fill bad" style="width:70%"></span></span><span class="v">70 %</span></div>
+        <div class="bar"><span class="t">B · perbaikan P0 2 hari</span><span class="track"><span class="fill amb" style="width:45%"></span></span><span class="v">45 %</span></div>
+        <div class="bar"><span class="t">C · perbaikan penuh</span><span class="track"><span class="fill hi" style="width:25%"></span></span><span class="v">25 %</span></div>
+      </div>
+      <p class="small" style="margin-top:14px"><strong>Rekomendasi: skenario B.</strong> Dua hari kerja untuk lima butir P0,
+      sisanya paralel. Skenario C (8–12 hari) hanya mungkin bila dikerjakan empat orang secara paralel sejak 22 Oktober —
+      dan itu sudah lewat.</p>
+      <p class="small" style="margin-bottom:0">Skenario B wajib memuat koreksi hukum, karena biayanya rendah
+      (perbaikan teks) dan dampaknya tinggi.</p>
+    </div>
+  </div>
+</section>
+<section id="s9">
+  <div class="sechead">
+    <span class="secnum">09</span>
+    <div>
+      <h2>Register Temuan</h2>
+      <p class="sub">50 temuan gabungan — <code>F-xx</code> dari audit internal, <code>B-xx</code> dari audit kode, <code>M-xx</code> dari audit ML — dapat difilter dan dicari. Register lengkap <code>F-01…F-40</code> ada di <code>analysis/reports/00-EXECUTIVE-SUMMARY.md</code>.</p>
+    </div>
+  </div>
+
+  <div class="card" style="padding:14px 16px; position:sticky; top:64px; z-index:30; margin-bottom:14px; backdrop-filter:blur(8px)">
+    <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center">
+      <button class="btn" data-f="all" type="button" style="border-color:var(--accent); color:var(--accent)">Semua</button>
+      <button class="btn" data-f="p0" type="button">P0 · Kritis</button>
+      <button class="btn" data-f="p1" type="button">P1 · Wajib</button>
+      <button class="btn" data-f="p2" type="button">P2 · Hygiene</button>
+      <input id="q" type="search" placeholder="Cari temuan…" aria-label="Cari temuan"
+             style="flex:1; min-width:180px; background:var(--panel2); border:1px solid var(--line); color:var(--txt); border-radius:999px; padding:7px 14px; font-size:13px; font-family:var(--sans)">
+      <span class="small" id="count" style="min-width:88px; text-align:right"></span>
+    </div>
+  </div>
+
+  <div class="tblwrap">
+    <table id="reg">
+      <thead><tr><th style="width:9%">ID</th><th style="width:11%">Area</th><th>Temuan</th><th style="width:9%">Prioritas</th></tr></thead>
+      <tbody>
+        <tr data-s="p0" data-a="angka"><td class="mono">F-01</td><td>Angka</td><td>Sembilan angka headline (93,0 %, 94,12 %, 0,9825, 0,9142, 89,4 %, 10,6 %, 45 %, 3,2×, SUS 82,5) tidak dapat direproduksi dari artefak mana pun; 10 dari 11 berstatus “NO” pada rekonstruksi.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="angka"><td class="mono">F-02</td><td>Angka</td><td>Baseline XGBoost AUPRC 0,71 tidak punya skrip, split, seed, atau file prediksi — tetapi hidup sebagai konstanta di UI, API, dan notebook.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="angka"><td class="mono">F-03</td><td>Angka</td><td>Klaim finansial tanpa dasar: penghematan Rp507.370.000 tidak punya tarif acuan, formula, atau ledger per klaim; turunan dari tarif proyek sendiri Rp31.350.000.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="privasi"><td class="mono">F-04</td><td>Privasi</td><td>Ground truth dipublikasikan: <code>payload-aegis-jkn.json</code> identik byte-per-byte dengan payload Colab dan memuat <code>gtSent</code>, <code>sentiment_gt</code>, <code>syndHit</code>.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="ml"><td class="mono">F-05</td><td>ML</td><td>Delapan kolom turunan label ikut ke feature set dan ekspor: <code>Sinyal SHAP</code>, <code>Kontribusi Saluran</code>, <code>Alasan</code>, <code>Status</code>, <code>Skor Fraud</code>, <code>Modus</code>, <code>Sindikat</code>, <code>Kontradiksi Narasi</code>.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="ml"><td class="mono">F-06</td><td>ML</td><td>Benchmark sirkular: <code>Risiko</code> adalah ambang <code>Skor Fraud</code>, <code>Status</code> adalah <em>coarsening</em> <code>Risiko</code>. Pemisahan kelas sempurna → AUPRC dari kolom label = 1,0000.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="ml"><td class="mono">F-07</td><td>ML</td><td><code>tests/test_leakage.py</code> dan <code>configs/leakage.yaml</code> dirujuk 13 kali di korpus tetapi tidak ada di disk.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="novelty"><td class="mono">F-08</td><td>Novelty</td><td>MHGSL adalah metode Hong et al., Heliyon 2024 (DOI 10.1016/j.heliyon.2024.e30045); korpus sendiri menyebut “diadaptasi dari” dan belum dapat direproduksi.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="angka"><td class="mono">F-09</td><td>Angka</td><td>“93,0 %” adalah akurasi leksikon sentimen atas 200 posting (186/200), bukan deteksi fraud — dan di bawah <em>baseline</em> sepele 97 % pada prevalensi 3 %.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="angka"><td class="mono">F-10</td><td>Angka</td><td>“100 % deteksi (14/14)” dan “100 % hit-rate sindikat” adalah label <em>by construction</em>: himpunan fraud = ambang skor 0,80 yang dipilih agar pas.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="arsitektur"><td class="mono">F-11</td><td>Arsitektur</td><td>Arsitektur 7-tier minus pipeline analitik: tidak ada rule engine Tier-1 yang terhubung, tidak ada model di repo aplikasi, tidak ada split, evaluator, atau file prediksi.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="konsistensi"><td class="mono">F-12</td><td>Konsistensi</td><td>Empat skala ambang risiko hidup bersamaan (0,35/0,60/0,80; 0,40/0,62/0,80; 0,40/0,65/0,85; 0,35/0,45/0,60/0,75).</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="frontend"><td class="mono">F-13</td><td>Frontend</td><td>UI memuat 24 grup angka <em>hardcoded</em> tanpa kualifikasi; 5 di antaranya melanggar daftar larangan proyek sendiri (<code>00-dashboard.md:46-52</code>).</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="ml"><td class="mono">F-14</td><td>ML</td><td><code>Kontradiksi Narasi</code> bukan analisis narasi, melainkan <em>lookup</em> dari kolom <code>Modus</code> (TP 12, FP 0, FN 0, TN 288).</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="reproduksi"><td class="mono">F-15</td><td>Reproduksi</td><td>Dataset 300 klaim tidak dapat direproduksi: generator tidak ada, tidak ada seed/version/timestamp, tidak ada checksum, 9 dari 9 artefak wajib v2.1 hilang.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="data"><td class="mono">F-16</td><td>Data</td><td>Ground truth bertentangan dengan data: narasi KLM004–KLM006 mengonfirmasi tindakan yang seharusnya ditagih <em>phantom billing</em>; 6 baris anomali frekuensi tanpa episode yang cocok.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="konsistensi"><td class="mono">F-17</td><td>Konsistensi</td><td>Arsip dan index menghidupkan kembali klaim terlarang: metrik disebut “Tervalidasi” dan Rp507.370.000 disebut “Penyelamatan Riil”.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="ml"><td class="mono">F-18</td><td>ML</td><td>Klaim “PyTorch Geometric <code>HeteroData</code>” tidak didukung: <code>mhgsl.py</code> memakai <code>GCNConv</code> homogen, dan <code>HeteroData</code> nol kemunculan di seluruh repo ML.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="ml"><td class="mono">F-19</td><td>ML</td><td>Benchmark <em>in-sample</em>: fit lalu predict pada matriks yang sama; adjacency &amp; scaler dibangun sebelum split; <code>A_sem</code> memakai kolom <code>sindikat</code>; hit-rate dijaga <code>assert</code>.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="ml"><td class="mono">F-20</td><td>ML</td><td>Skala tidak memadai untuk klaim GNN pada eksperimen notebook 300 klaim: model 37.157 parameter (124 per baris data), <code>A_feat</code> 2.192 edge (2,11 % kepadatan), dan 94,4 % kasus fraud berasal dari sindikat <em>unseen</em> pada LOGO.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="ml"><td class="mono">F-21</td><td>ML</td><td>XAI tidak sesuai klaim: “SHAP” diimplementasikan sebagai <code>torch.norm</code> per kanal (tidak aditif); “attention fusion” di naskah sebenarnya <em>concat</em>; <code>W_top = −0,12</code> mustahil dari softmax.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="ml"><td class="mono">M-01</td><td>ML</td><td><code>MHGSLModel(...)</code> melempar <code>ValueError</code> pada PyG 2.8.1: <code>GCNConv(add_self_loops=True)</code> dipakai pada tipe sisi bipartit (<code>core.py:24</code>). Seluruh modul hilir mati.</td><td><span class="tag t-p0">P0</span></td></tr><tr data-s="p0" data-a="ml"><td class="mono">M-02</td><td>ML</td><td>Paket <code>evaluation</code> tidak dapat diimpor: <code>from auc import trapz</code> (<code>metrics.py:3</code>), lalu <code>np.trapz</code> yang sudah dihapus di NumPy 2.x (<code>:8</code>).</td><td><span class="tag t-p0">P0</span></td></tr><tr data-s="p0" data-a="ml"><td class="mono">M-03</td><td>ML</td><td>Tidak ada kode pelatihan untuk MHGSL; satu-satunya loop pelatihan adalah baseline GCN (<code>baselines.py:172-181</code>). Tidak ada checkpoint yang pernah disimpan.</td><td><span class="tag t-p0">P0</span></td></tr><tr data-s="p0" data-a="ml"><td class="mono">M-04</td><td>ML</td><td>Tiga kanal bersifat kosmetik: ketiganya memakai <code>x_dict</code>/<code>edge_index_dict</code> yang sama; topologi dan semantik sama-sama <code>SAGEConv</code>; <code>TopologyEngineer</code> dan <code>SemanticChannel</code> tidak diimpor apa pun.</td><td><span class="tag t-p0">P0</span></td></tr><tr data-s="p0" data-a="ml"><td class="mono">M-05</td><td>ML</td><td>Pada jalur batch, ketiadaan checkpoint ditelan diam-diam: model dibuat dengan bobot acak lalu menulis probabilitas fraud dan label CRITICAL/HIGH (<code>ray_cluster.py:79-82</code>). Fail-open.</td><td><span class="tag t-p0">P0</span></td></tr><tr data-s="p0" data-a="ml"><td class="mono">M-06</td><td>ML</td><td>Angka terukur pada data generator proyek sendiri: AUPRC GBR 0,375 / ROC-AUC 0,645 (base rate 8,86 %); <code>amount</code> saja ROC-AUC 0,624. Klaim 0,91 tidak dapat dicapai oleh data dan fitur ini.</td><td><span class="tag t-p0">P0</span></td></tr><tr data-s="p1" data-a="ml"><td class="mono">F-22</td><td>ML</td><td>Tidak ada bukti multi-kanal lebih baik: nol eksperimen masking, nol ablasi; uji pengayaan <code>A_sem</code> p = 0,138, <code>A_homo</code> p = 0,730 (lebih buruk dari acak).</td><td><span class="tag t-p1">P1</span></td></tr>
+        <tr data-s="p0" data-a="privasi"><td class="mono">F-23</td><td>Privasi</td><td>Klaim “aman menurut Permenkes 24/2022 dan UU PDP” bertentangan dengan empat dokumen sendiri; Pasal 34 (DPIA) tidak disebut; tidak ada kontrol <em>prompt injection</em> atau PII egress untuk kanal LLM.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="hukum"><td class="mono">F-24</td><td>Hukum</td><td>Rujukan salah kutip: judul Permenkes 16/2019, Permenkes 24/2022 sebagai dasar FHIR, sanksi UU PDP (Pasal 65/66 vs 67/68), kewajiban 3×24 jam, dan definisi data pribadi spesifik.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p1" data-a="hukum"><td class="mono">F-25</td><td>Hukum</td><td>Sembilan peraturan wajib tidak dicantumkan, termasuk PP 33/2026 sebagai aturan pelaksanaan UU PDP dan Kepmenkes 1199/2025 (FORNAS baru).</td><td><span class="tag t-p1">P1</span></td></tr>
+        <tr data-s="p0" data-a="dokumen"><td class="mono">F-39</td><td>Dokumen</td><td>DOCX yang dikirim tidak reproducible dari skrip builder: cover CIMAHI vs JAKARTA, Daftar Gambar 7 entri tetapi 0 gambar di <code>word/media/</code>, sedangkan <code>.bak</code> masih menyimpan 3 gambar dan 17 tabel.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="dokumen"><td class="mono">F-40</td><td>Dokumen</td><td>Kernel proposal tidak lengkap: nol abstrak, nol daftar singkatan, nol lampiran, nol anggaran, nol protokol eksperimen, nol sitasi dalam teks untuk 18 rujukan.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="app"><td class="mono">B-01</td><td>App</td><td>Empat modul UI yang diimpor tidak ada: <code>ui/label</code>, <code>ui/dropdown-menu</code>, <code>ui/progress</code>, <code>ui/table</code>.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="app"><td class="mono">B-02</td><td>App</td><td><code>app/[locale]/layout.tsx:5</code> mengimpor <code>./globals.css</code> yang berada satu tingkat di atasnya.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="app"><td class="mono">B-04</td><td>App</td><td>Tailwind v4.3.3 dipasang dengan plugin PostCSS v3, tanpa <code>@tailwindcss/postcss</code>, dan <code>globals.css</code> memakai direktif v3.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="app"><td class="mono">B-05</td><td>App</td><td>Sebelas <em>specifier</em> berbeda antara <code>package.json</code> dan <code>package-lock.json</code>; <code>npm ci</code> gagal sebelum tes berjalan.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="app"><td class="mono">B-07</td><td>App</td><td><code>services/graph_service.py:4</code> memakai <code>...core.config</code> (tiga titik) → <code>ModuleNotFoundError: src.backend.core</code>; pola sama di dua service lain.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="app"><td class="mono">B-08</td><td>App</td><td><code>List</code> tidak diimpor di <code>graph_service.py:47</code> → <code>NameError</code> saat definisi kelas.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p0" data-a="app"><td class="mono">B-09</td><td>App</td><td><code>core/database.py</code> mengimpor <code>settings</code> yang tidak ada, memakai nama atribut kapital, dan <code>greenlet</code> tidak terpasang.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p1" data-a="app"><td class="mono">B-10</td><td>App</td><td>Middleware melempar <code>HTTPException</code> → setiap request tanpa token menjadi 500, bukan 401.</td><td><span class="tag t-p1">P1</span></td></tr>
+        <tr data-s="p1" data-a="app"><td class="mono">B-11</td><td>App</td><td>Dependensi RBAC membaca <code>token</code> dari query string, bukan header <code>Authorization</code>; tidak dipakai router mana pun.</td><td><span class="tag t-p1">P1</span></td></tr>
+        <tr data-s="p0" data-a="app"><td class="mono">B-12</td><td>App</td><td>Dua validator INA-CBG dengan format kode yang saling bertentangan (<code>J-4-07-02-001</code> vs <code>A241001</code>); yang kedua memakai <code>hash()</code> non-deterministik untuk sub-kode.</td><td><span class="tag t-p0">P0</span></td></tr>
+        <tr data-s="p1" data-a="app"><td class="mono">B-13</td><td>App</td><td>Empat task Argo punya kunci <code>arguments:</code> ganda → <code>artifacts:</code> hilang; HPA memakai <code>targetLatencyP99: 500ms</code>; kredensial DB plaintext.</td><td><span class="tag t-p1">P1</span></td></tr>
+        <tr data-s="p1" data-a="app"><td class="mono">B-14</td><td>App</td><td>Kontrak frontend↔backend tidak pernah bertemu: <code>/api/dashboard/metrics</code>, <code>/api/auth/validate</code>, <code>/api/simulation/status/{id}</code> tidak ada di sisi mana pun.</td><td><span class="tag t-p1">P1</span></td></tr>
+        <tr data-s="p1" data-a="keamanan"><td class="mono">F-36</td><td>Keamanan</td><td>Permukaan serang: ekspor 27 kolom tanpa kualifikasi, <code>robots.txt</code> mengizinkan semua crawler, API publik tanpa rate limit/CORS/auth, nol header keamanan, 14 kerentanan npm.</td><td><span class="tag t-p1">P1</span></td></tr>
+        <tr data-s="p1" data-a="repo"><td class="mono">F-37</td><td>Repo</td><td>Working tree tertinggal 122 file; tidak ada <code>.gitignore</code> di root sehingga <code>git add -A</code> akan meng-commit 9,1 GB data BPJS; token Notion ter-hardcode di lima skrip.</td><td><span class="tag t-p1">P1</span></td></tr>
+        <tr data-s="p1" data-a="kompetisi"><td class="mono">F-38</td><td>Kompetisi</td><td>12 dari 20 item checklist submit kosong; Participant Guide tidak terbaca; demo berjalan di 100 klaim sementara proposal 300 klaim.</td><td><span class="tag t-p1">P1</span></td></tr>
+        <tr data-s="p2" data-a="repo"><td class="mono">F-35</td><td>Repo</td><td>Kualitas build v1: <code>npm run build</code> lolos hanya karena <code>ignoreBuildErrors</code>; <code>tsc --noEmit</code> keluar kode 1 dengan 8 error; tidak ada CI di .github.</td><td><span class="tag t-p2">P2</span></td></tr>
+        <tr data-s="p2" data-a="app"><td class="mono">B-15</td><td>App</td><td>Komponen orphan (4) lebih baik dari yang dipakai; tiga jalur audit trail berbeda; injeksi Cypher lewat f-string; salt pseudonim hardcoded.</td><td><span class="tag t-p2">P2</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="small" style="margin-top:12px">Prioritas: <strong>P0</strong> = menghalangi submit atau merusak kredibilitas ·
+  <strong>P1</strong> = wajib diperbaiki agar tidak dibantah juri · <strong>P2</strong> = hygiene dan konsistensi.
+  Register ini menggabungkan temuan audit internal (F-xx) dengan temuan kode <code>Aegis-JKN app</code> (B-xx).</p>
+</section>
+<section id="s10">
+  <div class="sechead">
+    <span class="secnum">10</span>
+    <div>
+      <h2>Rencana Aksi</h2>
+      <p class="sub">Dua hari yang menentukan, lalu dua belas bulan yang masuk akal.</p>
+    </div>
+  </div>
+
+  <h3>10.1 Rencana 48 jam (skenario B)</h3>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:12%">Blok</th><th style="width:26%">Aksi</th><th style="width:10%">Pemilik</th><th>Kriteria selesai</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="rowhead">H-1 pagi</td>
+          <td><strong>Hapus ground truth &amp; kolom terlarang dari bundle publik</strong></td>
+          <td>Frontend</td>
+          <td><code>payload-aegis-jkn.json</code> tidak lagi memuat <code>gtSent</code>, <code>sentiment_gt</code>, <code>syndHit</code>; ekspor CSV/JSON mengecualikan 8 kolom label. Diverifikasi dengan <code>grep</code>.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">H-1 pagi</td>
+          <td><strong>Rotasi token Notion, tambah <code>.gitignore</code> root</strong></td>
+          <td>Semua</td>
+          <td>Token baru di environment; <code>.gitignore</code> mengabaikan <code>Dataset/</code>, <code>node_modules/</code>, <code>venv/</code>, <code>.env</code>. <code>git status</code> tidak lagi menampilkan 9,1 GB.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">H-1 siang</td>
+          <td><strong>Bangun satu pipeline evaluasi minimal</strong></td>
+          <td>ML</td>
+          <td><code>train.py</code> + <code>evaluate.py</code> + <code>metrics.json</code>: GroupKFold per pasien <em>dan</em> LOGO per faskes; adjacency dibangun di dalam fold; seed 20260707; satu file prediksi <em>held-out</em>. Dapat dijalankan ulang dengan satu perintah.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">H-1 sore</td>
+          <td><strong>Kunci definisi label + <code>test_leakage.py</code></strong></td>
+          <td>ML</td>
+          <td>Satu file konfigurasi berisi definisi label, ambang, dan daftar 8 kolom terlarang. Tes menolak build bila kolom itu muncul di feature set.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">H-2 pagi</td>
+          <td><strong>Koreksi teks hukum</strong></td>
+          <td>Penulis</td>
+          <td>5 kesalahan kutipan diperbaiki (F-24); 9 peraturan wajib ditambahkan (F-25); satu paragraf DPIA Pasal 34 ditambahkan.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">H-2 siang</td>
+          <td><strong>Turunkan klaim di UI dan naskah</strong></td>
+          <td>Penulis + frontend</td>
+          <td>Semua angka performa dihapus dari <code>data.ts</code>, <code>i18n.tsx</code>, dan DOCX; diganti fakta struktural + hasil pipeline baru. Panel “batasan” ditambahkan.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">H-2 sore</td>
+          <td><strong>Rebuild DOCX dari skrip + video demo 3–5 menit</strong></td>
+          <td>Penulis</td>
+          <td>Dokumen dihasilkan ulang dari <code>section_bab_*.py</code>, gambar kembali ada (7 entri Daftar Gambar = 7 objek), field PAGE berfungsi. Video merekam alur: ingestion → skor → antrean → penjelasan → audit trail.</td>
+        </tr>
+        <tr>
+          <td class="rowhead">H-2 malam</td>
+          <td><strong>Perbaiki 5 blocker <code>Aegis-JKN app</code></strong> — hanya bila aplikasi itu akan didemokan</td>
+          <td>Backend</td>
+          <td>Tambahkan 4 modul UI, perbaiki path CSS, tambah <code>"use client"</code>, migrasikan PostCSS ke <code>@tailwindcss/postcss</code>, sinkronkan lockfile. Target: <code>npm ci &amp;&amp; npm run build</code> lolos.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout good" style="margin-top:16px">
+    <div class="lbl">Urutan yang saya sarankan</div>
+    <p>Kerjakan <strong>P0 teks dan privasi lebih dulu</strong>, bukan pipeline ML. Alasannya sederhana:
+    menghapus klaim yang tidak terbukti memakan waktu jam dan langsung menutup 70 % risiko,
+    sedangkan pipeline ML memakan 1–2 hari dan hasilnya bisa lebih rendah dari yang diharapkan.
+    Bila waktu tersisa hanya satu hari, buang klaim dan jangan sentuh model.</p>
+  </div>
+
+  <h3>10.2 Roadmap pasca-submit (18 bulan)</h3>
+  <div class="tl">
+    <div class="item">
+      <div class="when">Fase 0 · Bulan 1–3</div>
+      <h4>MVP hardening</h4>
+      <p class="small">TypeScript strict tanpa <code>ignoreBuildErrors</code>; cakupan tes &gt; 80 % pada jalur kritis;
+      CI menjalankan build + typecheck + unit; OpenTelemetry &amp; dashboard Grafana; manajemen secret;
+      OpenAPI spec dan ADR. <em>Ini fase yang seharusnya sudah selesai.</em></p>
+    </div>
+    <div class="item">
+      <div class="when">Fase 1 · Bulan 4–6</div>
+      <h4>Pilot satu region (shadow mode)</h4>
+      <p class="small">Inferensi berjalan paralel dengan telaah manual; kerangka A/B untuk versi model;
+      uji beban 10.000 klaim/hari; uji integrasi SATUSEHAT; audit kepatuhan UU PDP.
+      Gate: presisi &gt; 90 %, p99 &lt; 500 ms, nol kerentanan kritis.</p>
+    </div>
+    <div class="item">
+      <div class="when">Fase 2 · Bulan 7–12</div>
+      <h4>Produksi multi-region</h4>
+      <p class="small">Active-active Jakarta + DR; feature store (Feast) untuk konsistensi latih-layan;
+      retraining otomatis bulanan dengan deteksi drift; klaster FalkorDB HA; integrasi V-Claim &amp; terminology server.
+      Target: 100.000 klaim/hari, ketersediaan 99,9 %.</p>
+    </div>
+    <div class="item">
+      <div class="when">Fase 3 · Bulan 13–18</div>
+      <h4>Platform AI-native</h4>
+      <p class="small">Ringkasan narasi klinis (IndoBERT fine-tune); <em>active learning</em> dari keputusan verifikator;
+      <em>federated learning</em> lintas faskes tanpa berbagi data; streaming Kafka/Flink; ekspansi ke fraud farmasi
+      dan anomali jaringan provider; arsitektur plugin untuk model pihak ketiga.</p>
+    </div>
+  </div>
+
+  <h3>10.3 KPI yang layak dikontrakkan</h3>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:16%">Kategori</th><th style="width:34%">Metrik</th><th style="width:16%">Target</th><th>Catatan kejujuran</th></tr></thead>
+      <tbody>
+        <tr><td class="rowhead">Teknis</td><td>AUPRC pada prevalensi nyata</td><td>&gt; 0,90</td><td>Hanya boleh diklaim dari pipeline yang bisa dijalankan ulang; pada 300 baris, interval kepercayaan akan lebar</td></tr>
+        <tr><td class="rowhead">Teknis</td><td>Latensi p99 end-to-end</td><td>&lt; 500 ms</td><td>Belum pernah diukur; <code>/api/metrics/performance</code> mengembalikan angka hardcoded</td></tr>
+        <tr><td class="rowhead">Teknis</td><td>Ketersediaan</td><td>99,9 %</td><td>Bergantung pada SLO yang belum didefinisikan secara operasional</td></tr>
+        <tr><td class="rowhead">Bisnis</td><td>Kenaikan deteksi fraud</td><td>+30 % vs baseline</td><td>Baseline harus diukur dulu, bukan dikutip dari literatur</td></tr>
+        <tr><td class="rowhead">Bisnis</td><td>Penurunan waktu telaah</td><td>−50 %</td><td>Pilih satu angka: 20→3 menit atau 10–20→3–5 menit, jangan keduanya</td></tr>
+        <tr><td class="rowhead">Bisnis</td><td>Pemulihan overcharge</td><td>&gt; Rp100 M/tahun</td><td>Butuh ledger per klaim dengan tarif acuan INA-CBG dan kode grup kasus</td></tr>
+        <tr><td class="rowhead">Kepatuhan</td><td>Kebocoran data</td><td>Nol</td><td>Ground truth dan PII harus keluar dari bundle publik lebih dulu</td></tr>
+        <tr><td class="rowhead">Kepatuhan</td><td>Kelengkapan audit trail</td><td>100 %</td><td>Pilih satu model integritas (HMAC, hash chain, atau Merkle), bukan tiga</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="s11">
+  <div class="sechead">
+    <span class="secnum">11</span>
+    <div>
+      <h2>Metodologi &amp; Lampiran</h2>
+      <p class="sub">Apa yang dibaca, bagaimana diverifikasi, dan apa batasannya.</p>
+    </div>
+  </div>
+
+  <h3>11.1 Pendekatan</h3>
+  <div class="grid g3">
+    <div class="card"><h4 style="margin-top:0">1 · Inventaris</h4><p class="small">Penelusuran seluruh workspace dengan pengecualian <code>node_modules</code>, <code>venv</code>, <code>__pycache__</code>, dan <code>.git</code>; penghitungan LOC per ekstensi; pemetaan 10 direktori akar.</p></div>
+    <div class="card"><h4 style="margin-top:0">2 · Pembacaan kode</h4><p class="small">Seluruh 62 berkas Python dan 42 berkas TypeScript/TSX di <code>Aegis-JKN app</code> dibaca atau dipindai; resolusi impor dijalankan secara programatik untuk menemukan modul hilang.</p></div>
+    <div class="card"><h4 style="margin-top:0">3 · Verifikasi eksekusi</h4><p class="small">Percobaan impor modul dengan venv proyek, pengecekan ketersediaan paket, pemeriksaan sintaks 62 berkas, dan perbandingan lockfile dengan manifest.</p></div>
+    <div class="card"><h4 style="margin-top:0">4 · Rekonsiliasi angka</h4><p class="small">Setiap angka headline dilacak ke artefak; bila tidak ada, dihitung ulang dari data sumber (CSV 300 baris) atau dinyatakan tidak terdukung.</p></div>
+    <div class="card"><h4 style="margin-top:0">5 · Sintesis dengan audit internal</h4><p class="small">24 laporan audit internal (<code>analysis/reports/</code>, 22 Oktober 2026) dibaca sebagai sumber sejajar, bukan sebagai kebenaran tunggal — termasuk kontradiksi internalnya.</p></div>
+    <div class="card"><h4 style="margin-top:0">6 · Penilaian</h4><p class="small">Skor 7 dimensi dari kerangka audit internal dipertahankan agar dapat dibandingkan; <code>Aegis-JKN app</code> dinilai terpisah dengan skala 0–3.</p></div>
+  </div>
+
+  <h3>11.2 Batasan</h3>
+  <ul>
+    <li><strong>Tidak ada eksekusi penuh.</strong> <code>next build</code> tidak dapat dijalankan karena <code>node_modules</code> tidak lengkap; impor modul PyTorch tidak diselesaikan karena waktu muat pada drive jaringan. Temuan build bersifat <em>statis tapi pasti</em>: resolusi modul dan kecocokan lockfile tidak ambigu.</li>
+    <li><strong>Angka ML tidak dihitung ulang.</strong> Model tidak dilatih dalam sesi ini; angka performa dinilai berdasarkan ada/tidaknya artefak, bukan dengan menjalankan ulang eksperimen.</li>
+    <li><strong>Rekonsiliasi numerik mengandalkan audit internal</strong> yang sudah menghitung ulang CSV dengan skrip sendiri (<code>analysis/reports/scripts/</code>). Angka struktural yang dikutip di laporan ini telah dicocokkan dengan angka tersebut.</li>
+    <li><strong>Satu laporan internal tidak konsisten.</strong> <code>22-proposal-docx-audit.md</code> menyatakan “LULUS AUDIT / semua SINKRON”, bertentangan dengan <code>16_redteam_numbers.json</code> dan <code>21-numbers-of-record.md</code>. Laporan ini mengikuti dua sumber terakhir karena keduanya menyertakan metode dan nilai per ambang.</li>
+    <li><strong>Penilaian subjektif</strong> terbatas pada skor kesiapan dan prioritas; temuan teknis lainnya bersifat falsifiable dan menyebut lokasi persis.</li>
+  </ul>
+
+  <h3>11.3 Sumber utama yang dirujuk</h3>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th style="width:38%">Berkas</th><th style="width:14%">Ukuran</th><th>Peran dalam laporan ini</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">Aegis-JKN/README.md</td><td>23 KB</td><td>Sumber klaim benchmark AUPRC 0,58→0,91 dan narasi produk</td></tr>
+        <tr><td class="mono">Aegis-JKN/docs/algorithms/mhgsl-theory.md</td><td>236 baris</td><td>Formulasi tiga kanal, fusi, SHAP, dan predikat kamuflase</td></tr>
+        <tr><td class="mono">Aegis-JKN/src/components/mhgsl/data.ts</td><td>519 baris</td><td>Satu-satunya sumber angka yang tampil di UI v1</td></tr>
+        <tr><td class="mono">Aegis-JKN app/src/backend/**</td><td>≈ 4.500 baris</td><td>Audit blocker backend, kontrak API, INA-CBG, keamanan</td></tr>
+        <tr><td class="mono">Aegis-JKN app/src/ml/**</td><td>62 modul</td><td>Arsitektur MHGSL, evaluasi, XAI, distributed</td></tr>
+        <tr><td class="mono">Aegis-JKN app/deploy/**</td><td>≈ 1.100 baris</td><td>Helm, Argo, ArgoCD, observability</td></tr>
+        <tr><td class="mono">analysis/reports/00-EXECUTIVE-SUMMARY.md</td><td>78 KB</td><td>Register F-01…F-40 dan skor 14/35</td></tr>
+        <tr><td class="mono">analysis/reports/21-numbers-of-record.md</td><td>36 KB</td><td>Tabel angka-of-record dan status per metrik</td></tr>
+        <tr><td class="mono">analysis/reports/21-colab-dashboard-provenance.md</td><td>44 KB</td><td>Asal-usul angka 93 % dan 14/14</td></tr>
+        <tr><td class="mono">analysis/reports/16_redteam_numbers.json</td><td>1,3 KB</td><td>Status “NO” per angka headline</td></tr>
+        <tr><td class="mono">Notion-docs/architecture_full.md</td><td>30 KB</td><td>Spesifikasi arsitektur v2.1 dan pengakuan “adaptasi literatur”</td></tr>
+        <tr><td class="mono">dokumen/Healthkathon_Kandidat_1.docx</td><td>10.951 kata</td><td>Naskah kirim: 12 bab, 20 tabel, 0 gambar</td></tr>
+        <tr><td class="mono">colab/Aegis_JKN_FIXX.ipynb</td><td>720 KB</td><td>Output simulasi 100 klaim yang menghasilkan semua angka demo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>11.4 Inventaris ekosistem (ringkas)</h3>
+  <div class="grid g4">
+    <div class="card"><div class="small">Aegis-JKN</div><div class="big">149</div><div class="small">berkas · 2,7 MB · 5 commit</div></div>
+    <div class="card"><div class="small">Aegis-JKN app</div><div class="big">149</div><div class="small">berkas kode + 110 berkas data</div></div>
+    <div class="card"><div class="small">analysis</div><div class="big">501</div><div class="small">berkas · 26 laporan</div></div>
+    <div class="card"><div class="small">oasis (vendored)</div><div class="big">453</div><div class="small">berkas · 971 commit upstream</div></div>
+  </div>
+
+  <div class="callout" style="margin-top:20px">
+    <div class="lbl">Cara memverifikasi sendiri</div>
+    <p>Semua temuan teknis di §4 dapat direproduksi dalam hitungan detik: cari modul yang hilang dengan
+    <code>Get-ChildItem -Recurse src/components/ui</code>, bandingkan <code>package.json</code> dengan
+    <code>package-lock.json</code>, lalu jalankan
+    <code>python -c "import src.backend.app.services.graph_service"</code> dari akar
+    <code>Aegis-JKN app</code> dengan <code>PYTHONPATH</code> yang tepat. Klaim angka dapat diverifikasi dari
+    <code>analysis/reports/21-numbers-of-record.md</code> dan CSV 300 baris.</p>
+  </div>
+</section>
+
+<footer>
+  <div style="display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap">
+    <div style="max-width:56ch">
+      <div style="color:var(--txt); font-weight:700; margin-bottom:6px">Aegis-JKN · Analisis Mendalam Proyek Healthkathon 2026</div>
+      <div>Disusun 24 Oktober 2026 · Cakupan <code>N:\HEALTHKATHON\</code> · 10 folder, 2 generasi aplikasi, 24 laporan audit.</div>
+      <div style="margin-top:8px">Dokumen ini menggabungkan audit kode independen dengan rekonsiliasi angka dari korpus audit internal. Tidak ada berkas proyek yang diubah.</div>
+    </div>
+    <div style="display:grid; gap:4px; justify-items:end; align-content:start">
+      <a href="#s1">↑ Kembali ke atas</a>
+      <button class="btn no-print" type="button" onclick="window.print()">Cetak / simpan PDF</button>
+    </div>
+  </div>
+</footer>
+</div>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('themeBtn');
+  var txt = document.getElementById('themeTxt');
+  var icon = document.getElementById('themeIcon');
+
+  function apply(t) {
+    root.setAttribute('data-theme', t);
+    txt.textContent = t === 'dark' ? 'Terang' : 'Gelap';
+    icon.textContent = t === 'dark' ? '◐' : '◑';
+    try { localStorage.setItem('aegis-report-theme', t); } catch (e) {}
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('aegis-report-theme'); } catch (e) {}
+  apply(saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+  btn.addEventListener('click', function () {
+    apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  // scroll progress
+  var bar = document.getElementById('progress');
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // reveal on scroll
+  var reveals = document.querySelectorAll('.card, .chart, .tblwrap, .score, .finding');
+  reveals.forEach(function (el) { el.classList.add('reveal'); });
+  if ('IntersectionObserver' in window) {
+    var ro = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); ro.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    reveals.forEach(function (el) { ro.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // scrollspy
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+  var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  if ('IntersectionObserver' in window) {
+    var so = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          links.forEach(function (a) { a.classList.remove('active'); });
+          var id = '#' + en.target.id;
+          links.forEach(function (a) { if (a.getAttribute('href') === id) a.classList.add('active'); });
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(function (s) { so.observe(s); });
+  }
+
+  // register filter + search
+  var reg = document.getElementById('reg');
+  var rows = reg ? Array.prototype.slice.call(reg.querySelectorAll('tbody tr')) : [];
+  var fBtns = Array.prototype.slice.call(document.querySelectorAll('[data-f]'));
+  var q = document.getElementById('q');
+  var cnt = document.getElementById('count');
+  var active = 'all';
+
+  function refresh() {
+    var term = (q && q.value ? q.value : '').toLowerCase().trim();
+    var shown = 0;
+    rows.forEach(function (r) {
+      var okF = active === 'all' || r.getAttribute('data-s') === active;
+      var okT = !term || r.textContent.toLowerCase().indexOf(term) > -1;
+      var vis = okF && okT;
+      r.style.display = vis ? '' : 'none';
+      if (vis) shown++;
+    });
+    if (cnt) cnt.textContent = shown + ' / ' + rows.length + ' temuan';
+  }
+  fBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      active = b.getAttribute('data-f');
+      fBtns.forEach(function (x) { x.style.borderColor = 'var(--line2)'; x.style.color = 'var(--txt)'; });
+      b.style.borderColor = 'var(--accent)';
+      b.style.color = 'var(--accent)';
+      refresh();
+    });
+  });
+  if (q) q.addEventListener('input', refresh);
+  if (rows.length) refresh();
+})();
+</script>
+</body>
+</html>

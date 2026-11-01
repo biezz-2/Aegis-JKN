@@ -1,0 +1,34 @@
+[0015] [JUDUL KARYA INOVASI] DETECT-JKN: Sistem Clinical Decision Support Berbasis Hybrid Rule-Based & Contextual NLP dengan Pendekatan Human-in-the-Loop untuk Deteksi Dini Anomali dan Upcoding Klaim JKN
+[0109] Tabel 2.1: Matriks Analisis 5-Whys Akar Masalah Verifikasi Klaim Upcoding ........ 6
+[0110] Tabel 2.2: Analisis Fishbone 4 Dimensi Kendala Audit Klaim JKN ................... 8
+[0111] Tabel 3.1: Komparasi Pendekatan Verifikasi: Manual vs Rule-Based vs Pure AI vs DETECT-JKN ... 13
+[0112] Tabel 5.1: Matriks Kepatuhan Prinsip UU PDP No. 27/2022 pada Platform DETECT-JKN ... 24
+[0113] Tabel 6.1: Matriks Pembagian Peran Kerja AI vs Verifikator Manusia (Human-in-the-Loop) ... 30
+[0114] Tabel 7.1: Spesifikasi Ruang Lingkup MVP (In-Scope vs Out-of-Scope) ............. 40
+[0115] Tabel 8.1: Kerangka Key Performance Indicators (KPI) 4 Dimensi DETECT-JKN ....... 44
+[0116] Tabel 9.1: Struktur Organisasi dan Distribusi Peran Tim Inovator ................ 54
+[0117] Tabel 10.1: Matriks Manajemen Risiko Komprehensif (12 Risiko Kritis & Rencana Mitigasi) ... 56
+[0118] Tabel 11.1: Roadmap Implementasi 7 Tahap Berbasis Stage-Gate Framework (12 Bulan) ... 62
+[0120] Gambar 4.1: Arsitektur Alur Kerja End-to-End DETECT-JKN (Pipeline 6 Modul) ...... 16
+[0121] Gambar 4.2: Alur Keputusan Triase Risiko pada Engine Anomali NLP ................ 19
+[0122] Gambar 6.1: Siklus Hidup Penyebab dan Tahapan Munculnya Halusinasi Model AI (Paper Survey) ... 33
+[0123] Gambar 6.2: Taksonomi Metode Deteksi Ketidakpastian dan Anomali pada LLM ........ 34
+[0124] Gambar 6.3: Taksonomi Strategi Mitigasi Halusinasi AI dalam Kerangka Human-in-the-Loop ... 35
+[0125] Gambar 11.1: Diagram Alir Stage-Gate Progression Roadmap DETECT-JKN ............. 61
+[0158] Tabel 2.1: Matriks Analisis 5-Whys Akar Masalah Verifikasi Klaim Upcoding
+[0186] Tabel 2.2: Analisis Fishbone 4 Dimensi Kendala Audit Klaim JKN
+[0218] Tabel 3.1 menyajikan perbandingan komprehensif antara pendekatan yang ada saat ini dengan arsitektur hybrid DETECT-JKN.
+[0219] Tabel 3.1: Komparasi Pendekatan Verifikasi: Manual vs Rule-Based vs Pure AI vs DETECT-JKN
+[0291] Gambar 4.1: Siklus Munculnya Kerentanan dan Anomali pada Pemodelan Bahasa (Sumber: Huang et al., 2024)
+[0313] Tabel 5.1: Matriks Kepatuhan Prinsip UU PDP No. 27/2022 pada Platform DETECT-JKN
+[0362] Tabel 6.1 merinci batas demarkasi yang tegas antara tanggung jawab sistem komputer dengan hak prerogatif verifikator manusia.
+[0363] Tabel 6.1: Matriks Pembagian Peran Kerja AI vs Verifikator Manusia (Human-in-the-Loop)
+[0397] Gambar 6.1: Taksonomi Deteksi dan Penilaian Ketidakpastian Model AI (Sumber: Huang et al., 2024)
+[0399] Gambar 6.2: Taksonomi Strategi Mitigasi Halusinasi AI yang Diadaptasi pada DETECT-JKN (Sumber: Huang et al., 2024)
+[0416] Tabel 7.1 menegaskan batasan fitur yang termasuk dalam purwarupa MVP guna menjaga kelayakan penyelesaian proyek.
+[0417] Tabel 7.1: Spesifikasi Ruang Lingkup MVP (In-Scope vs Out-of-Scope)
+[0450] Tabel 8.1 menyajikan definisi metrik, formula pengukuran, dan target kuantitatif MVP.
+[0451] Tabel 8.1: Kerangka Key Performance Indicators (KPI) 4 Dimensi DETECT-JKN
+[0517] Tabel 9.1: Struktur Organisasi dan Distribusi Peran Tim Inovator
+[0535] Tabel 10.1: Matriks Manajemen Risiko Komprehensif (12 Risiko Kritis & Rencana Mitigasi)
+[0608] Tabel 11.1: Roadmap Implementasi 7 Tahap Berbasis Stage-Gate Framework (12 Bulan)

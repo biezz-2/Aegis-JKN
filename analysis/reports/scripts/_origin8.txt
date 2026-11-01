@@ -1,0 +1,62 @@
+==========================================================================
+## 'pembagian'  (19 unique)
+   'penden. Oleh karena itu, angka tersebut diperlakukan sebagai hasil sementara sampai kode, pembagian data, prediksi, label pembanding, dan laporan eksperimen tersedia. Kontribusi utama yang ditargetkan'
+   '109 baris |\\n| Alasan kosong | 1 baris |\\n| Catatan riset | 33 entri |\\nTotal nominal dan pembagian nominal per status konsisten dengan tabel di naskah sumber. Namun, perhitungan estimasi overcharge R'
+   '0\\t## 6.3 Matriks Pembagian Peran Kerja AI vs Verifikator Manusia\\n271\\tTabel 6.1 merinci pembagian tanggung jawab fungsional antara sistem Aegis-JKN dan verifikator manusia di lingkungan BPJS Kesehat'
+   'nusia.\\n## 6.3 Matriks Pembagian Peran Kerja AI vs Verifikator Manusia\\nTabel 6.1 merinci pembagian tanggung jawab fungsional antara sistem Aegis-JKN dan verifikator manusia di lingkungan BPJS Kesehat'
+   'n37\\t| Alasan kosong | 1 baris |\\n38\\t| Catatan riset | 33 entri |\\n39\\tTotal nominal dan pembagian nominal per status konsisten dengan tabel di naskah sumber. Namun, perhitungan estimasi overcharge R'
+   'n\\", \\"mencerminkan\\", \\"kesenjangan\\", \\"pembuatan\\", \\"pemantulan\\", \\"penyaringan\\", \\"pembagian\\", \\"pencadangan\\", \\"pencarian\\", \\"perubahan\\", \\"pengkajian\\", \\"peny spree\\".\\n\\nThere are some '
+
+==========================================================================
+## 'Dokumen'  (726 unique)
+   'aturan Menteri Kesehatan Republik Indonesia Nomor 24 Tahun 2022 tentang Rekam Medis.\\r\\n- Dokumentasi SATUSEHAT terkait interoperabilitas klaim BPJS: [https://satusehat.kemkes.go.id/platform/docs/id/i'
+   'fi lengkap dan hubungan yang jelas dengan klaim yang didukung.\\r\\n## Catatan editorial\\r\\nDokumen ini merupakan revisi struktur dan metodologi. Ini bukan pengesahan klinis, hukum, atau statistik terha'
+   ' page 4003e603-1ab7-8174-9a55-d4ee8fff3fd2 -->\\r\\n\\r\\n## Aegis-JKN, Revisi 1.0\\r\\nStatus: Dokumentasi kontrol data  \\r\\nTanggal: 21 Oktober 2026  \\r\\nSumber aktif: Database Klaim Aegis-JKN v2, 300 bar'
+   'm serta distribusi label yang sesuai dengan contoh awal. Database aktif memuat 300 baris. Dokumentasi harus menjelaskan bahwa versi 100 klaim adalah versi awal dan tidak boleh digunakan untuk mengklai'
+   '21 Oktober 2026  \\r\\nDatabase sumber: Dataset Riset, Deteksi Fraud JKN\\r\\n## 1. Tujuan\\r\\nDokumen ini mengatur hubungan antara setiap klaim dalam proposal dan sumber yang mendukungnya. Label verifikas'
+   'pat | Jelaskan keterbatasan atribusi dan jangan klaim kausalitas |\\r\\n## 5. Peraturan dan Dokumentasi Resmi\\r\\nSumber awal yang harus dipertahankan sebagai referensi utama:\\r\\n1. Undang-Undang Republi'
+
+==========================================================================
+## 'hal yang sama dengan'  (0 unique)
+
+==========================================================================
+## 'status pemakaian di proposal'  (0 unique)
+
+==========================================================================
+## 'prinsip:'  (0 unique)
+
+==========================================================================
+## 'collecting data'  (0 unique)
+
+==========================================================================
+## 'tanpa persetujuan'  (8 unique)
+   ' dengan kontrol HITL. | Eksekusi otomatis pemotongan tarif klaim atau sanksi hukum faskes tanpa persetujuan manusia. |\\n320\\t## 7.5 Dataset Sintetis v2.1 Tervalidasi (300 Klaim INA-CBG/FHIR R4)\\n321\\t'
+   ' dengan kontrol HITL. | Eksekusi otomatis pemotongan tarif klaim atau sanksi hukum faskes tanpa persetujuan manusia. |\\n## 7.5 Dataset Sintetis v2.1 Tervalidasi (300 Klaim INA-CBG/FHIR R4)\\nPurwarupa '
+   ' dengan kontrol HITL. | Eksekusi otomatis pemotongan tarif klaim atau sanksi hukum faskes tanpa persetujuan manusia. |\\n## 7.5 Dataset Sintetis v2.1 Tervalidasi (300 Klaim INA-CBG/FHIR R4)","is_error"'
+   ' dengan kontrol HITL. | Eksekusi otomatis pemotongan tarif klaim atau sanksi hukum faskes tanpa persetujuan manusia. |\\n## 7.5 Dataset Sintetis v2.1 Tervalidasi (300 Klaim INA-CBG/FHIR R4)","stderr":"'
+   'rangka Eva\\r\\n  * TL. | Eksekusi otomatis pemotongan tarif klaim atau sanksi hukum faskes tanpa persetujuan manusia. | ## 7.5 Dataset Sintetis v2.1 Tervalidasi (300 Klaim INA-CBG/FHIR R4) Purwarupa di'
+   ' dengan kontrol HITL. | Eksekusi otomatis pemotongan tarif klaim atau sanksi hukum faskes tanpa persetujuan manusia. |\\n--- 10 P01-P40 ---\\n118:  - pasien_id (20 pasien → P01-P40)\\n148:- Pasien: P01-P'
+
+==========================================================================
+## 'manifest eksperimen dan skrip hitung'  (1 unique)
+   'ematan finansial belum boleh disebut hasil tervalidasi. Tidak satu pun punyabারือทถูกต้อง manifest eksperimen dan skrip hitung yang ada di disk. **Angka-angka itu tidak boleh ditampilkan sebagai hasil'
+
+==========================================================================
+## 'mengulang pola yang sama tanpa label'  (0 unique)
+
+==========================================================================
+## 'penyebut rasio'  (0 unique)
+
+==========================================================================
+## 'beban kerja di repo'  (1 unique)
+   'asitas harian | S10 (`docx_text.txt:524`) | "3.2x" | TIDAK TERDUKUNG | Tidak ada simulasi beban kerja di repo |\n./analysis/reports/scripts/_i.txt:78:120 | | Kapasitas verifikasi | S5: 16.667 berkas | '
+
+==========================================================================
+## 'tanda petik'  (0 unique)
+
+==========================================================================
+## 'peringkat modus'  (0 unique)
+
+==========================================================================
+## 'Kraft'  (0 unique)
+

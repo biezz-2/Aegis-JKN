@@ -1,0 +1,46 @@
+### ARABIC  x16
+  01-governance.md                 L18    ARABIC SHADDA  | MEDIUM | 10 | Cakupan/pembagianّق tidak jelas, kontrol ada di kertas saja, atau data bertentangan dengan dokumen kendali |
+  01-governance.md                 L122   ARABIC LETTER ALEF  | §7 aturan 4 - bedakan fakta dari rencana | L8 dan L20 menyatakan deskripsi database masih menyebut 100 klaim dan ground truth KLM001–KLM024, padahal
+  01-governance.md                 L284   ARABIC LETTER WAW  - **I-2 (INFO)** - Temuan numerik `07-dataset-v2-catalog.md` (PSTV18 kosong 133.228 pada L35; PNK02 4.939 nilai unik pada L47; rentang tanggal 2014-08
+  11-compliance.md                 L209   ARABIC LETTER DAL  **Catatan perubahan (terverifikasi dari halaman BPK):** UU 13/2022 **diubah dengan UU No. 1 Tahun 2026** (penyesuaian ketentuan Pasal 15 UU 12/2011). 
+  20-repo-artifact-integrity.md    L164   ARABIC LETTER ALEF  Implikasi terhadap audit ini: tenggat yang mengikat adalah **1 November 2026** untuk submit project akhir, bukan tanggal pendaftaran. Arti القسم 3 di
+
+### CJK  x8
+  22-proposal-docx-audit.md        L168   CJK UNIFIED IDEOGRAPH-5BE7  **Kritis. "100% mendeteksi 9 pola sindikat" (L27) adalah artefak label.** Himpunan 36 baris ber-`sindikat` dan himpunan 36 baris `is_fraud=1` hampir i
+  22-proposal-docx-audit.md        L176   CJK UNIFIED IDEOGRAPH-652F  **Tinggi. "3,2x" (L524) dan "45%" (L514, L543) saling bertentangan.** L543 menyebut waktu telaah 10-20 menit menjadi 3-5 menit, yang berarti penurunan
+  22-proposal-docx-audit.md        L262   CJK UNIFIED IDEOGRAPH-4E8C  | Tanda kutip « » dipakai sebagai penanda prinsip | L4, L9, L137, L253, L292, L347, L383, L718 | Gunakan tanda petik二重 Indonesia, atau hapus bila hany
+  22-proposal-docx-audit.md        L298   CJK UNIFIED IDEOGRAPH-5E73  4. Perbaiki Tabel 7.2 dari CSV, lalu hitung ulang nominal sindikat, peringkat modus, dan平均值 overcharge. Hapus "Rp 127,68 Juta" karena tidak ada di dat
+
+### CYRILLIC  x18
+  05-evidence.md                   L275   CYRILLIC SMALL LETTER ES  17. **Catat eksplisit di 04 §2** bahwa label status register adalah label status sumber, bukan статус pemakaian di proposal - untuk mencegah "Terverif
+  11-compliance.md                 L83    CYRILLIC SMALL LETTER O  | V-11 | "Prinsip UU PDP (**Pasal 16**)" | `11-archive-proposal.md:246` | **UU 27/2022 Pasal 16** | ✅ Ya | ✅ Ya | **✓ TEPAT.** Pasal 16 ayat (2) memua
+  22-proposal-docx-audit.md        L174   CYRILLIC CAPITAL LETTER DE  **Tinggi. Rasio Cost-to-Impact 1 : 15 (L27, L144, L529, L586, L709) TIDAK TERVERIFIKASI.** Angka muncul lima kali, tetapi tidak ada satu pun butir bia
+
+### EMDASH  x16
+  04-data-quality.md               L45    —  | SEDANG | 6 | SYND-05 skenario tidak sesuai modus; sentinel "—" pada Prosedur (156 baris); 44 baris biaya di atas pagar IQR; SHAP konstan per modus (
+  04-data-quality.md               L63    —  | Prosedur ICD-9-CM | Ya | Rich text / sentinel `—` | Kode serta konteks tindakan ditinjau | 156 baris memakai sentinel `—`, bukan sel kosong; 8 kode 
+  04-data-quality.md               L64    —  | Obat | Ya | Rich text `M03 x 6 vial; M04 x 7 vial` | Satuan harus konsisten | Satuan terkontrol: vial/tablet/nebules/pen; 3 baris `Obat` = `—` (phan
+  04-data-quality.md               L273   —  | E11.9, I10, J18.9, J45.9, K29.7, N39.0, O80 | `—` (tanpa prosedur) | 134 | terapi medis |
+  04-data-quality.md               L331   —  | Prosedur ICD-9-CM | 8 kode + sentinel `—` | 8 kode + sentinel `—` (`prosedur_code`) | "00.66, 51.23, dll." | ✓ |
+  04-data-quality.md               L381   —  ### 7-10 (SEDANG) Sentinel `—` menggantikan sel kosong - 156 baris
+  04-data-quality.md               L382   —  `Prosedur ICD-9-CM` = `—` pada 156 baris (52%); `Obat` = `—` pada 3 baris (KLM004-006). Selain menutupi perbedaan "tidak ada prosedur" vs "prosedur ti
+  04-data-quality.md               L471   —  6. **Ganti sentinel `—` dengan sel kosong** pada `Prosedur ICD-9-CM` (156 baris) dan `Obat` (3 baris), atau tambahkan kolom status eksplisit bila `—` 
+  04-data-quality.md               L564   —  Pertanyaan yang dijawab di sini: apakah temuan §7-4 (LOS), §7-3 (Kontribusi Saluran), §7-2 (sindikat), §7-5 (Kontradiksi Narasi), §7-7 (`undefined`), 
+  04-data-quality.md               L573   —  | Sentinel `—` pada Prosedur | 156 baris | 156 baris | **Ya** (identik) | Cacat desain generator |
+  04-data-quality.md               L574   —  | Sentinel `—` pada Obat | 3 baris | 3 baris | **Ya** (identik) | Cacat desain generator |
+  07-generator.md                  L46    —  **Bukti ketidakcocokan v1:** `build_ground_truth()` menetapkan KLM004 = dx `S72.0` / proc `81.52` / biaya 46.500.000 / skor 0.92; CSV corpus KLM004 = 
+  13-text-channel.md               L39    —  | S11 | **Rendah** | `Alasan` kosong pada 1 baris; `Obat` = "—" pada 3 baris (phantom) | Missingness tidak seragam | `13_text.py` §4 |
+  13-text-channel.md               L330   —  - `Alasan` kosong pada 1 baris; `Obat` = `"—"` pada 3 baris (phantom_billing, konsisten dengan spec).
+  13-text-channel.md               L377   —  **Rekomendasi data:** untuk 3 baris phantom_billing, `Narasi Rekam Medis` harus kosong / "Resume medis tidak ditemukan di SATUSEHAT" (mengikuti `Catat
+  22-proposal-docx-audit.md        L263   —  | Satu em-dash di header dokumen | `word/header1.xml`: "HEALTHKATHON BPJS KESEHATAN 2026 — PROPOSAL INOVASI AEGIS-JKN" | Body dokumen sendiri 0 em-das
+
+### EMOJI  x5
+  01-governance.md                 L110   ELECTRIC LIGHT BULB  | Kebocoran artefak mentah Notion | L4 `> **{'type': 'emoji', 'emoji': '💡'}** Peringatan privasi: data kepesertaan ...` | Peringatan privasi yang pali
+  01-governance.md                 L162   ELECTRIC LIGHT BULB  - **M-2 (MEDIUM)** - Pola literal Notion `{'type': 'emoji', 'emoji': '💡'}` bocor ke berkas terdokumentasi pada 07 L4, 08 L5, 09, 10, 11, 12, 13, 14. D
+  01-governance.md                 L316   ELECTRIC LIGHT BULB  17. **Perbaiki kebocoran literal Notion** `{'type': 'emoji', 'emoji': '💡'}` di `07` L4, `08` L5, dan berkas arsip (kriteria: 0 kemunculan pola `{'type
+  18-ux.md                         L95    SHIELD  | `/simulasi` | Header | Badge "Protokol v2.1 **SESUAI**" + "🛡️ Dashboard Hasil Simulasi" - **tidak ada badge "SIMULASI"/"DATA SINTETIS"** di chrome. 
+  18-ux.md                         L334   SHIELD  | Badge "🛡️ Dashboard Hasil Simulasi Oasis" | `src/components/oasis/oasis-dashboard.tsx:192-195` | Judul memakai emoji perisai; "Oasis" = nama tool pi
+
+### THAI  x10
+  20-repo-artifact-integrity.md    L164   THAI CHARACTER SARA UEE  Implikasi terhadap audit ini: tenggat yang mengikat adalah **1 November 2026** untuk submit project akhir, bukan tanggal pendaftaran. Arti القسم 3 di
+

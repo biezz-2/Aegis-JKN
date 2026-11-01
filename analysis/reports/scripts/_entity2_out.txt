@@ -1,0 +1,128 @@
+=== (A) 300-claim dataset entity counts ===
+
+faskes: doc vs 300-actual
+   RS_A     doc= 19  actual300= 29  diff
+   RS_B     doc= 13  actual300= 21  diff
+   RS_C     doc= 10  actual300= 16  diff
+   RS_D     doc= 10  actual300= 14  diff
+   RS_E     doc= 22  actual300= 28  diff
+   RS_F     doc= 26  actual300= 32  diff
+
+dx: doc vs 300-actual
+   K29.7    doc= 10  actual300= 17  diff
+   K35.8    doc= 11  actual300= 31  diff
+   K40.9    doc=  8  actual300= 29  diff
+   I21.9    doc=  8  actual300= 20  diff
+   J18.9    doc=  9  actual300= 38  diff
+   E11.9    doc= 15  actual300= 41  diff
+   N20.0    doc=  8  actual300=  9  diff
+   S72.0    doc= 10  actual300= 18  diff
+   O80      doc=  8  actual300=  9  diff
+   K80.2    doc= 13  actual300= 32  diff
+
+proc: doc vs 300-actual
+   00.66    doc= 12  actual300= 24  diff
+   47.09    doc= 11  actual300= 31  diff
+
+dokter counts 300-actual:
+   D01: doc=  2 actual300=  5 diff
+   D02: doc=  8 actual300= 10 diff
+   D03: doc=  9 actual300= 14 diff
+   D04: doc=  9 actual300= 11 diff
+   D05: doc= 10 actual300= 16 diff
+   D06: doc=  0 actual300=  2 diff
+   D07: doc= 13 actual300= 19 diff
+   D08: doc= 18 actual300= 23 diff
+   D09: doc= 14 actual300= 19 diff
+   D10: doc=  8 actual300=  9 diff
+   D11: doc=  1 actual300=  3 diff
+   D12: doc=  8 actual300=  9 diff
+
+pasien counts 300-actual (first 20):
+   doc-vs-300 matches: 0/20
+
+=== (B) root cause of the 14 sentiment failures ===
+   Reddit title (fixed for every post): '[Diskusi] Pengalaman klaim JKN di RS Bahari Medika E'
+   COLLISION: NEG word 'lama' (weight 1) is a SUBSTRING of the title 'Pengalaman' -> scores -1 even for a perfectly neutral post
+   tanh(-1) = -0.7616  (observed failure score -0.762)
+   Netral reddit posts = 14 of 100 (4 anomali + 10 NEUTRAL_NORMAL); ALL 14 fail.
+   Positif/Negatif reddit posts survive because extra POS/NEG words dominate the -1.
+   => 93.0% == (200-14)/200 is a deterministic arithmetic consequence of a
+      fixed-string substring bug, not a measured model quality.
+
+=== (C) feature-channel edge density ===
+   100 claims -> 100*99/2 = 4950 possible pairs
+   feat_edges (cosine >= 0.85) = 4563 -> density 4563/4950 = 92.18%
+   => the 'feature channel' connects 92% of ALL claim pairs; it is near-complete,
+      so it carries almost no discriminative information.
+   synd_density = 1.0 for all 5 syndicates is therefore uninformative:
+GT audit: {'low': 76, 'medium': 4, 'high': 6, 'fraud': 14} {'Negatif': 24, 'Netral': 14, 'Positif': 62}
+feat_edges=4563 clone_pair=[('KLM016', 'KLM017', 1.0)] cos(KLM016,KLM017)=1.000
+
+*** AKURASI SENTIMEN (leksikon vs GT) = 93.0%  (186/200)
+*** DETEKSI FRAUD = 14/14 (100%) pada antrian 20 klaim
+    fraud skor min/max = 0.84 / 0.95
+    non-fraud skor max = 0.79
+    p_fused fraud min = 0.856; non-fraud max = 0.802
+*** HIT-RATE SINDIKAT: {'SYND-01': '3/3=100.0%', 'SYND-02': '3/3=100.0%', 'SYND-03': '6/6=100.0%', 'SYND-04': '2/2=100.0%', 'SYND-05': '2/2=100.0%'}
+*** Kontradiksi prioritas: 8/8 | Kriteria: {'integritas': True, 'deteksi': True, 'sindikat': True, 'kontradiksi': True} | SESUAI=True
+*** ROI: 20/3 = 6.667x -> kapasitas 6,667 berkas | prevalensi 14%
+*** f_text aktif pada 17 klaim
+
+*** QUEUE (all 20):
+    KLM003 p_fused=0.955 risk=fraud  modus=Upcoding           synd=SYND-01   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 1.0} KONTRA=True
+    KLM002 p_fused=0.946 risk=fraud  modus=Upcoding           synd=SYND-01   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 1.0} KONTRA=True
+    KLM006 p_fused=0.946 risk=fraud  modus=Phantom Billing    synd=SYND-02   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=True
+    KLM001 p_fused=0.937 risk=fraud  modus=Upcoding           synd=SYND-01   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 1.0} KONTRA=True
+    KLM005 p_fused=0.937 risk=fraud  modus=Phantom Billing    synd=SYND-02   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=True
+    KLM004 p_fused=0.928 risk=fraud  modus=Phantom Billing    synd=SYND-02   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=True
+    KLM014 p_fused=0.892 risk=fraud  modus=Drug Diversion     synd=SYND-04   chan={'fitur': 1.0, 'topologi': 0.8, 'semantik': 0.6} KONTRA=False
+    KLM012 p_fused=0.883 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM010 p_fused=0.874 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM011 p_fused=0.874 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM013 p_fused=0.874 risk=fraud  modus=Drug Diversion     synd=SYND-04   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM008 p_fused=0.865 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM009 p_fused=0.865 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM007 p_fused=0.856 risk=fraud  modus=Unbundling         synd=SYND-03   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM016 p_fused=0.802 risk=high   modus=Cloning            synd=SYND-05   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM017 p_fused=0.790 risk=high   modus=Cloning            synd=SYND-05   chan={'fitur': 1.0, 'topologi': 1.0, 'semantik': 0.6} KONTRA=False
+    KLM018 p_fused=0.766 risk=high   modus=Prolonged Stay     synd=-         chan={'fitur': 0.0, 'topologi': 1.0, 'semantik': 0.2} KONTRA=True
+    KLM021 p_fused=0.680 risk=high   modus=Anomali            synd=-         chan={'fitur': 0.0, 'topologi': 1.0, 'semantik': 0.2} KONTRA=False
+    KLM020 p_fused=0.660 risk=high   modus=Anomali            synd=-         chan={'fitur': 0.0, 'topologi': 1.0, 'semantik': 0.2} KONTRA=False
+    KLM019 p_fused=0.620 risk=high   modus=Anomali Biaya      synd=-         chan={'fitur': 0.0, 'topologi': 1.0, 'semantik': 0.2} KONTRA=False
+
+*** Top-10 by p_fused (dashboard chart 'Top-10 Skor Fusion'):
+    KLM003 0.955 Upcoding
+    KLM002 0.946 Upcoding
+    KLM006 0.946 Phantom Billing
+    KLM001 0.937 Upcoding
+    KLM005 0.937 Phantom Billing
+    KLM004 0.928 Phantom Billing
+    KLM014 0.892 Drug Diversion
+    KLM012 0.883 Unbundling
+    KLM010 0.874 Unbundling
+    KLM011 0.874 Unbundling
+
+*** LEAKAGE CHECKS
+    risk=fraud  n= 14 skor min=0.84 max=0.95
+    risk=medium n=  4 skor min=0.41 max=0.55
+    risk=high   n=  6 skor min=0.62 max=0.79
+    risk=low    n= 76 skor min=0.05 max=0.33999999999999997
+    sentiment texts are templates keyed on c['gt_sentimen'] -> lexicon label == gt by construction
+    risk_label(skor) == 'fraud' iff skor > 0.8 ; fraud set is a hardcoded skor cut
+    p_fused derives from c['skor'] (hardcoded) + 0.10*f_text; no learned model is involved
+    AUC of p_fused vs fraud label = 1.0 (fraud = top 14 by hardcoded skor)
+    p_lead > 0.85 rule: fraud above = 14/14; non-fraud above = 0
+   global edge density = 0.9218
+   SYND-01: inner 3/3 = 1.00  (global density 0.92)
+   SYND-02: inner 3/3 = 1.00  (global density 0.92)
+   SYND-03: inner 15/15 = 1.00  (global density 0.92)
+   SYND-04: inner 1/1 = 1.00  (global density 0.92)
+   SYND-05: inner 1/1 = 1.00  (global density 0.92)
+
+=== (D) does the graph channel discriminate anything? ===
+   feature vec = [los, log10(biaya), qty].  76 of 100 claims share the identical
+   template (K40.9 / 53.1 / los 2-4 / 5-11M / qty 2-5) -> cos=1.0 among all of them,
+   which is where the 4563 edges come from.
+   => a graph of 92% density over 76 indistinguishable nodes is not a graph model
+      signal; it is a duplicate-detection artifact of the generator's template.

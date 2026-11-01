@@ -1,0 +1,72 @@
+{
+ "upcoding_esc": [
+  [
+   "KLM001",
+   "escalate",
+   52300000
+  ],
+  [
+   "KLM002",
+   "escalate",
+   52300000
+  ],
+  [
+   "KLM003",
+   "escalate",
+   52300000
+  ],
+  [
+   "KLM018",
+   "review",
+   49700000
+  ],
+  [
+   "KLM024",
+   "review",
+   6200000
+  ]
+ ],
+ "review_upcoding_sum": 55900000,
+ "esc_upcoding_sum": 156900000,
+ "upcoding_all_sum": 212800000,
+ "target_upcoding_127680000": 127680000,
+ "upcoding_subset_127680000": null,
+ "formulas_escalate": {
+  "median_layanan": 353975000.0,
+  "median_layanan_floor0": 396355000.0,
+  "median_dx": 172950000.0,
+  "median_dx_floor0": 212550000.0,
+  "global_median": 400050000.0,
+  "global_median_floor0": 429630000.0,
+  "frac70": 392805000.0,
+  "frac7032": 394600680.0,
+  "frac7029": 394432335.0,
+  "total": 561150000,
+  "n": 36
+ },
+ "formulas_review": {
+  "median_layanan": 187000000.0,
+  "median_layanan_floor0": 190125000.0,
+  "median_dx": 116300000.0,
+  "median_dx_floor0": 116825000.0,
+  "global_median": 172550000.0,
+  "global_median_floor0": 212450000.0,
+  "frac70": 195965000.0,
+  "frac7032": 196860840.0,
+  "frac7029": 196776855.0,
+  "total": 279950000,
+  "n": 24
+ },
+ "target_escalate": 394950000,
+ "target_review": 112420000,
+ "ratio_6032_total": 0.603222,
+ "sindikat_36_biaya": 539650000,
+ "proposal_syndikat_542560000": 542560000,
+ "diff_syndikat": 2910000,
+ "36_of_60": 60.0,
+ "36_of_36": 100.0,
+ "8456167x60": 507370020,
+ "8456167x36": 304422012,
+ "507370000_over_841100000": 0.6032219712281536,
+ "upcoding_diff": 29220000
+}

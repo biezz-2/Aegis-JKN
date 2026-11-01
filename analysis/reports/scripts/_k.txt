@@ -1,0 +1,141 @@
+130 | 
+131 | ## 4. Bukti Circularity: AUPRC dari Kolom Label
+132 | 
+133 | ### 4.1 Mekanisme
+134 | 
+135 | `skor_fraud` bukan hasil pengukuran model. Ia adalah kolom yang sudah ada di dalam data, diblokir sebagai fitur oleh kebijakan anti-leakage (`pipeline.py:37-40`; `03-dataset-registry.md:84`): `skor_fraud`, `sinyal_shap`, `kontribu
+136 | 
+137 | Colom `skor_fraud` berada di rentang 0,04 sampai 0,95, dan pemisahan kelasnya **sempurna**: seluruh 36 baris fraud punya skor >= 0,80 dan seluruh 264 baris non-fraud punya skor <= 0,79 (`out_stats.json`: `skor_fraud_overlap` = fal
+138 | 
+139 | | Metrik, dihitung dari `skor_fraud` terhadap `is_fraud` | Nilai | Cara hitung |
+140 | |---|---|---|
+141 | | AUPRC (trapezoid manual, sort descending) | 1,0000 | `out_auprc.json`: `auprc_trap_skor_fraud` |
+142 | | AUPRC (`sklearn.average_precision_score`) | 1,0000 | `out_auprc.json`: `auprc_sklearn_ap_skor_fraud` |
+143 | | ROC-AUC (Mann-Whitney) | 1,0000 | `out_auprc.json`: `roc_auc_skor_fraud` |
+144 | | Akurasi pada ambang 0,80 | 1,0000 (TP 36, FP 0, FN 0, TN 264) | `out_auprc.json`: `thresh_0.8` |
+145 | | Akurasi pada ambang 0,70 | 0,9833 (presisi 0,878049, recall 1,0) | `out_auprc.json`: `thresh_0.7` |
+146 | | Akurasi pada ambang 0,60 | 0,9533 (presisi 0,72, recall 1,0) | `out_auprc.json`: `thresh_0.6` |
+147 | | AUPRC acak (prevalensi) | 0,12 | `out_auprc.json`: `baseline_auprc_prevalence` |
+148 | | AUPRC dari `status == 'escalate'` saja | 1,0000 | `out_auprc.json`: `auprc_status_escalate` |
+149 | 
+150 | ### 4.2 Apakah AUPRC 0,9142 bisa direproduksi dari kolom label?
+151 | 
+152 | **Tidak.** Ini jawaban tegas.
+153 | 
+154 | 1. Kolom label memberi AUPRC **1,0000**, bukan 0,9142. Jadi 0,9142 bukan hasil klasifikasi terhadap label dari data ini.
+155 | 2. 0,9142 juga tidak muncul di mana pun yang bisa dihitung ulang. Grep seluruh repo (di luar `node_modules` dan `venv`) tidak menemukan 0,9142, 0,9825, atau 94,12 di kode aplikasi; yang cocok hanya dokumen (`analysis/corpus/11-arc
+156 | 3. 0,9142 juga tidak ada di PDF Colab (S5) maupun di `dashboard-aegis-jkn.html` (S7). PDF tidak memuat satu pun dari 0,9142 / 0,9825 / 0,71 / 94,12 / 89,4.
+157 | 4. 0,9142 juga tidak bisa berasal dari fitur yang bersih. Dengan 34 fitur mentah sel 5 notebook, F1 terbaik dari ambang tunggal hanya 0,3448 (`biaya_per_hari` >= Rp 4.950.000); fitur terbaik berikutnya `panjang_narasi` 0,3333, `bi
+158 | 5. Karena `torch` dan `xgboost` tidak terpasang, notebook tidak dapat dieksekusi ulang untuk memeriksa apakah 0,9142 berasal dari run yang tidak diarsipkan. Kesimpulan yang dapat dipertanggungjawabkan: **angka 0,9142 tidak memilik
+159 | 
+160 | ### 4.3 Leakage tambahan yang terverifikasi
+161 | 
+162 | Kolom yang forbidden ternyata memisahkan label dengan sempurna juga:
+163 | 
+164 | | Aturan bocor | TP | FP | FN | TN | Akurasi |
+165 | |---|---|---|---|---|---|
+166 | | `kontribusi_saluran` nilai T > 0,08 vs `status != auto_clear` | 60 | 0 | 0 | 240 | 1,0000 |
+167 | | `sinyal_shap` != "tidak ada sinyal dominan" vs `status != auto_clear` | 60 | 0 | 0 | 240 | 1,0000 |
+168 | | `modus` terisi vs `is_fraud` | 36 | 2 | 0 | 262 | 0,9933 |
+169 | 
+170 | Keduanya forbidden oleh `03-dataset-registry.md:84` dan `pipeline.py:37-40`. Artinya, "akurasi 100%" pada data ini bisa dicapai tanpa model sama sekali.
+171 | 
+172 | ### 4.4 Inkonsistensi lain yang ditemukan
+173 | 
+174 | - **Definisi target ganda.** Sel 11 notebook (`nb_main_dump.json`, sel idx 11, baris 6-7) mendefinisikan `y_target = (is_fraud == 1) OR (sindikat != 'none')` sebagai target pelatihan, tetapi mengevaluasi terhadap `y_fraud_gt = is_
+175 | - **Kebocoran pada konstruksi graf.** `pipeline.py:293-309` memakai kolom `sindikat` untuk membangun edge semantik A_sem, padahal `sindikat` masuk daftar `LEAKAGE_COLUMNS` di `pipeline.py:37-40`. Jadi pipeline produksi membuat cha
+176 | - **Konsistensi split.** `GroupKFold(n_splits=5)` berbasis `pasien_id` dan Leave-One-Group-Out berbasis `faskes_id` (sel 11, baris 14 dan 53) adalah pilihan yang tepat, tidak ada kebocoran patient-level. Yang bocor adalah kolom fi
+177 | - **Ketiadaan keluaran.** 22 sel notebook utama, 0 output tersimpan. Tidak ada satu pun angka metrik yang berasal dari eksekusi notebook yang bisa diperiksa.
+178 | - **PDF 100% bocor.** "FRAUD TERDETEKSI 14/14 (100%)" pada S5 p01 adalah pola kebocoran sempurna yang sama, bukan performa model.
+179 | 
+180 | ---
+181 | 
+182 | ## 5. Angka Hardcode Frontend Tanpa Artefak Pendukung
+183 | 
+184 | Semua berikut adalah konstanta yang ditulis langsung di kode, bukan dibaca dari data.
+185 | 
+186 | | Berkas dan baris | Angka | Nature | Artefak pendukung? |
+187 | |---|---|---|---|
+188 | | `data.ts:253` | AUPRC XGBoost 0,71 / GNN 0,78 / Hybrid 0,85 / MHGSL 0,91 | Tabel perbandingan | TIDAK. Tidak ada output eksperimen mana pun |
+189 | | `data.ts:259-264` | Bar chart AUPRC 0,58 / 0,62 / 0,71 / 0,78 / 0,85 / 0,91 | Grafik | TIDAK. Semua nilai karangan |
+190 | | `data.ts:274-289` | Radar 4 model (Precision 0,74-0,92, Recall 0,68-0,90, F1 0,71-0,91, AUPRC 0,71-0,91, Specificity 0,89-0,96) | Grafik | TIDAK |
+191 | | `data.ts:295-300` | Tabel metrik XGBoost/GNN/Hybrid/MHGSL termasuk ROC-AUC 0,83-0,95 | Tabel | TIDAK |
+192 | | `data.ts:20` | "2.000.000+ klaim harian diproses" | Statistik sistem | TIDAK. Tidak ada sumber |
+193 | | `data.ts:21` | "+/-1.000 verifikator manual" | Statistik sistem | TIDAK. Tidak ada sumber |
+194 | | `data.ts:23` dan `i18n.tsx:211,560` | "+20% lonjakan AUPRC arsitektur hibrida" | Klaim performa | TIDAK |
+195 | | `data.ts:101` | RS_A "Kelas B, 412 TT" | Profil faskes | TIDAK. Berisi pada S2 tidak ada |
+196 | | `data.ts:104` | "00.66 INA-CBG Rp 58 jt" | Tarif | TIDAK. Tidak ada tabel tarif |
+197 | | `data.ts:105` | "44.13 INA-CBG Rp 3,2 jt" | Tarif | TIDAK |
+198 | | `data.ts:127-136` | Bobot edge feature 0,92 / 0,88 / 0,85 / 0,79 dan semantic 0,81 / 0,83 / 0,94 / 0,71 | Bobot graf | TIDAK. Dihitung dari fitur cell-5: bobot berbeda |
+199 | | `data.ts:316,318` | "COS 0,92 / 0,88", "Rp 58 juta", "theta_feat = 0,8" (kutip i18n) | Narasi simulasi | TIDAK |
+200 | | `data.ts:332-335` | "probabilitas 0,94", kontribusi "semantik +41% / fitur +38% / topologi -12%" | SHAP naratif | TIDAK. Tidak ada SHAP nyata di repo |
+201 | | `data.ts:391` | "20 mnt" ke "3 mnt" | Operasional | TIDAK |
+202 | | `data.ts:392` | "1.000" ke "~6.700" kapasitas | Operasional | TIDAK |
+203 | | `data.ts:418,438` | riskScore D01 0,94; "Rasio K29.7 ke PCI 100%"; "+4,2sigma"; "4,2x peer" | Profil investigasi | TIDAK. sigma dan 4,2x tidak punya perhitungan |
+204 | | `data.ts:423` | "ina-cbg Rp 58 jt vs tarif gastritis Rp 3,2 jt" | Tarif | TIDAK |
+205 | | `data.ts:435,437` | "2 klaim (SYND-01)" (aktual 3); "Rp 58.000.000" (aktual Rp 52.300.000) | Profil | BERTENTANGAN dengan S2 |
+206 | | `data.ts:448,451,453,455,459,463,466` | RS_A riskScore 0,95; "19 klaim" (aktual 29); "78% tagihan PCI"; "4,2x baseline"; "+137% lonjakan"; "8 klaim/bulan"; "+3,8sigma" | Profil dan linimasa | TIDAK. 19 klaim dan 78% bertentangan
+207 | | `data.ts:481,492,494` | "COS rerata 0,89"; "Rp 58.000.000"; "LOS 3 hari" (aktual LOS 2) | Profil | BERTENTANGAN dengan S2 |
+208 | | `data.ts:502-518` (`DATASET_METRICS`) | featureEdges 4563; fraudClaimsV1 14; groundTruthSyndicates 5; socialPosts 48; syndicateHitRate 100; textContradictions 8 | Blok metrik | 4563, 14, 5, 48, 8 berasal dari eksperimen 100 klai
+209 | | `fraud-ring.tsx:275` | "14 edge berlebih" | Graf | TIDAK. Graf simulasi punya 13 edge fraud-fraud dan 7 edge normal-normal, bukan 14 dan 7 |
+210 | | `fraud-ring.tsx:280` | "7 edge tersebar" | Graf | TIDAK |
+211 | | `fraud-ring.tsx:415` dan `i18n.tsx:443` | "Total penghematan estimasi Rp 1,2 M / bulan (Rp 14,4 M / tahun)" | Finansial | TIDAK. Tidak ada artefak penghematan; "Rp 1,2 juta" adalah pembulatan dari 3 klaim SYND-01 |
+212 | | `i18n.tsx:791` | "Total estimated savings Rp 1.2 B / month (Rp 14.4 B / year)" | Finansial | BERTENTANGAN dengan `i18n.tsx:443`. Satuan B (miliar) vs M (juta), selisih 1000 kali, hanya karena penerjemahan |
+213 | | `roadmap.tsx:34` | `useCountUp(14.4)` sehingga "Rp 14,4 M" | Finansial | TIDAK, sama dengan di atas |
+214 | | `i18n.tsx:211` | "+20%" | Performa | TIDAK |
+215 | | `problem-section.tsx:88,97` | "sekitar1.000" verifikator; "3-7%" prevalensi | Konteks | 3-7% adalah label literatur yang tidak dihitung |
+216 | 
+217 | Angka-angka pada tabel ini sebaiknya diberi label eksplisit "ilustrasi" atau dihapus, bukan dipertahankan sebagai hasil model.
+218 | 
+219 | ---
+220 | 
+221 | ## 6. Angka pada PDF Colab (`Hasil simulasi dari 300 dataset notion.pdf`)
+222 | 
+223 | Semua 16 halaman sudah dirender dan dibaca. Angka di bawah diambil dari halaman yang disebut, diverifikasi ulang terhadap `payload-aegis-jkn.json` (S6) yang sha256-nya identik dengan `Aegis-JKN/public/payload-aegis-jkn.json` (S8):
+224 | 
+225 | | Halaman | Angka PDF | Nilai klaim publik | Status | Catatan |
+226 | |---|---|---|---|---|
+227 | | p01 | 100 klaim, risiko {low 76, medium 4, high 6, fraud 14} | 300 klaim, {low 240, medium 10, high 14, fraud 36} | BEDA | Set eksperimen berbeda |
+228 | | p01 | "KLAIM SINTETIS 100", 20 pasien, 12 dokter, 6 FKRTL | 40 pasien, 20 dokter, 10 faskes | BEDA | Set eksperimen berbeda |
+229 | | p01 | Saluran fitur 4563 edges | 4.563 | COCOK | Tidak dapat direproduksi pada 300 klaim |
+230 | | p01 | Prevalensi 14% (oversampled), estimasi lapangan 3-7% | "3-7%" | COCOK sebagai kutipan | 3-7% adalah label literatur |
+231 | | p01 | Deteksi fraud 14/14 (100%) pada antrean 20% | "100% mendeteksi 9 pola sindikat" | BERTENTANGAN | 14/14 adalah kebocoran sempurna |
+232 | | p01 | Hit rate sindikat SYND-01 3/3, SYND-02 3/3, SYND-03 6/6, SYND-04 2/2, SYND-05 2/2 | "100% mendeteksi 9 pola sindikat" | BERTENTANGAN | Hanya 5 sindikat, bukan 9. S2 punya 9 sindikat dengan hit rate tidak seragam |
+233 | | p01 | Kontradiksi prioritas 8/8 klaim (KLM001-006, KLM018, KLM024) | "8 kontradiksi" | COCOK | S2 punya 12 baris `kontradiksi_narasi`=1 |
+234 | | p01 | Akurasi sentimen simulasi vs GT 93,0% | "Akurasi 93.00% (Tervalidasi)" | BERTENTANGAN | Konversi metrik. PDF: "klasifikasi leksikon vs ground truth (200 uji)". DOCX: metrik deteksi fraud. Dua hal berbeda |
+235 | | p01 | ROI HITL 20 ke 3 menit/berkas, kapasitas 16.667 berkas | "20 mnt ke 3 mnt", "3,2x" | BERTENTANGAN | PDF 16.667, payload 6.667, DOCX "3,2x" |
+236 | | p01 | "PROTOKOL VALIDASI v2.1 SESUAI (4 kriteria terpenuhi)" | - | TIDAK TERDUKUNG | 4 kriteria tidak dirinci, tidak ada artefak |
+237 | | p01 | Model mistral-oasis:24b, 300 langkah, 4 sampel LLM + fallback heuristik | - | TERDUKUNG sebagai deskripsi | S6 `meta.model` = mistral-oasis:24b, `meta.steps` = 300 |
+238 | | p02 | Antrean investigasi 20 (20% klaim) | - | TERDUKUNG | S6 `kpi.queue_size`=20, `queue_rate`=20 |
+239 | | p02 | Efisiensi HITL +6.667 | "3,2x" | BERTENTANGAN | Angka beda dengan "16.667" di p01 |
+240 | | p03 | Skala risiko 0,35 / 0,6 / 0,8 | `data-uploader.tsx:137` 0,40/0,65/0,85 | BERTENTANGAN | Dua ambang aktif berbeda |
+241 | | p03 | Filter `p_fused = p_graph + 0,10 * f_text * (1 - p_graph)`, `0_feat > 0,85` | gamma = 0,10 | COCOK | S6 `meta.gamma_text`=0,1, `theta_feat`=0,85 |
+242 | | p04 | Skor fusion KLM003 0,955, KLM002 0,946, KLM005 0,946, KLM001 0,937, KLM004 0,937, KLM014 0,928, KLM012 0,892, KLM010 0,883, KLM011 0,874, KLM013 0,874, KLM008 0,865, KLM009 0,865, KLM007 0,856, KLM016 0,802, KLM017 0,790, 
+243 | | p05 | KLM021 0,680, KLM020 0,660, KLM019 0,620 | S2 KLM019-021 status review, skor 0,40-0,79 | BEDA | KLM019-021 di PDF bukan fraud, di S2 bukan escalate |
+244 | | p06-p12 | 24 post Twitter, 24 post Reddit, langkah simulasi 1/300 sampai 300/300 | "48 post sosial" | COCOK | 24 + 24 = 48 |
+245 | | p13 | KLM010, KLM011, KLM012 sinyal fraud, 50/57/44 upvote, "sesuai GT" | - | TERDUKUNG sebagai log | |
+246 | | p14 | KLM013, KLM014 sinyal fraud; KLM015 "tidak ada sinyal" | S2 KLM015 status review | COCOK | |
+247 | | p15 | KLM016, KLM017, KLM018 | S2 KLM016-018 review | COCOK | |
+248 | | p16 | KLM019 "tidak ada sinyal" | S2 KLM019 review | COCOK | |
+249 | | p16 | "Kejujuran label: simulasi sintetis, prevalensi oversampled (14%), estimasi Laplacian 3-7%" | - | TERDUKUNG sebagai disclaimer | Sejalan dengan S6 `meta.honesty` |
+250 | | p16 | "Diedkspor: dashboard-aegis-jkn-v2.1.html; payload: dashboard-aegis-jkn-v2.1.json" | - | BERBEDA NAMA | Berkas aktual bernama `dashboard-aegis-jkn.html` dan `payload-aegis-jkn.json` |
+251 | | p16 | Seed 20260707, theta_feat 0,85, gamma 0,10 | gamma = 0,10 | COCOK | S6 `meta` identik |
+252 | | - | 0,9142 / 0,91 | 0,9142 | TIDAK ADA | Tidak muncul di PDF maupun di S7 |
+253 | | - | 0,9825 | ROC-AUC 0,9825 | TIDAK ADA | |
+254 | | - | 0,71 (XGBoost) | Baseline 0,7100 | TIDAK ADA | |
+255 | | - | 94,12% | Presisi 94,12% | TIDAK ADA | |
+256 | | - | 89,4% masking | 89,40% | TIDAK ADA | |
+257 | | - | Rp 507.370.000 | Overcharge | TIDAK ADA | |
+258 | | - | Rp 841.100.000 | 60 klaim anomali | TIDAK ADA | |
+259 | | - | Rp 8.456.167 | Per kasus | TIDAK ADA | |
+260 | | - | Rp 3,53 Miliar | Total portofolio | TIDAK ADA | |
+261 | | - | 10.386 edge topologi | 10.386 | TIDAK ADA | PDF hanya menyebut 4563 edge fitur |
+262 | 
+263 | ---
+264 | 
+265 | ## 7. Rekomendasi
+266 | 
+267 | ### 7.1 Boleh dipublikasikan apa adanya
+268 | 
+269 | | Angka | Bentuk penyajian yang aman |
+270 | |---|---|

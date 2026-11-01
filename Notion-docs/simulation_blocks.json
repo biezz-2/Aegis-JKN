@@ -1,0 +1,5042 @@
+{
+  "object": "list",
+  "results": [
+    {
+      "object": "block",
+      "id": "541aebfe-ffba-4498-b175-33104313b391",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "callout",
+      "callout": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Dataset sintetis untuk uji simulasi MHGSL pada purwarupa Aegis-JKN (",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Dataset sintetis untuk uji simulasi MHGSL pada purwarupa Aegis-JKN (",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "aegisjkn.vercel.app",
+              "link": {
+                "url": "http://aegisjkn.vercel.app/"
+              }
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "aegisjkn.vercel.app",
+            "href": "http://aegisjkn.vercel.app/"
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "). 100 klaim, privacy-by-design \u2014 bukan data peserta riil, aman menurut Permenkes 24/2022 & UU PDP No. 27/2022. Pendamping makalah ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "). 100 klaim, privacy-by-design \u2014 bukan data peserta riil, aman menurut Permenkes 24/2022 & UU PDP No. 27/2022. Pendamping makalah ",
+            "href": null
+          },
+          {
+            "type": "mention",
+            "mention": {
+              "type": "page",
+              "page": {
+                "id": "3ef3e603-1ab7-81d1-962a-f8955843ed0f"
+              }
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Aegis-JKN: Arsitektur dan Strategi Pengembangan Sistem Deteksi Kecurangan Ekosistem JKN \u2014 Analisis Kelayakan, Desain Logika, dan Kerangka Proposal Healthkathon 2026",
+            "href": "https://app.notion.com/p/3ef3e6031ab781d1962af8955843ed0f"
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ".",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ".",
+            "href": null
+          }
+        ],
+        "icon": {
+          "type": "emoji",
+          "emoji": "\ud83d\uddc2\ufe0f"
+        },
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "8124ced6-b7c6-4ee1-942c-9efc787f674f",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Ringkasan & Ground Truth",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Ringkasan & Ground Truth",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "a3f8655c-e168-468b-84d3-894e0372e8a6",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Jumlah klaim: 100 (20 pasien \u00b7 12 dokter \u00b7 6 FKRTL \u00b7 10 diagnosis \u00b7 10 prosedur \u00b7 10 obat).",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Jumlah klaim: 100 (20 pasien \u00b7 12 dokter \u00b7 6 FKRTL \u00b7 10 diagnosis \u00b7 10 prosedur \u00b7 10 obat).",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "54f0f7dd-aca6-490d-860e-d7d0d7090e3e",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Distribusi risiko: 76 low \u00b7 4 medium \u00b7 6 high \u00b7 14 fraud.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Distribusi risiko: 76 low \u00b7 4 medium \u00b7 6 high \u00b7 14 fraud.",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "c1c7d4ba-dd8f-4ee9-815e-272c34d0baa3",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Ground truth: klaim anomali = KLM001\u2013KLM024 (14 fraud sindikat + 10 anomali medium/high); klaim normal = KLM025\u2013KLM100.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Ground truth: klaim anomali = KLM001\u2013KLM024 (14 fraud sindikat + 10 anomali medium/high); klaim normal = KLM025\u2013KLM100.",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "52b61bcf-055e-4fae-89cf-8e430f45b26b",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Skala risiko: skor <0.35 low; 0.35\u20130.6 medium; 0.6\u20130.8 high; lebih dari 0.8 fraud.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Skala risiko: skor <0.35 low; 0.35\u20130.6 medium; 0.6\u20130.8 high; lebih dari 0.8 fraud.",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "f051c9f5-4ec4-4a1c-8213-5e61d4e35e2c",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Catatan prevalensi: fraud di-oversample 14% untuk keperluan demo; estimasi lapangan 3\u20137% (label estimasi literatur).",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Catatan prevalensi: fraud di-oversample 14% untuk keperluan demo; estimasi lapangan 3\u20137% (label estimasi literatur).",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "6346eab0-232c-4743-9da0-2ef867b7b57c",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Mapping FHIR R4: klaim = Claim; pasien = Patient; dokter = Practitioner; faskes = Organization; diagnosis = Condition (ICD-10); prosedur = Procedure (ICD-9-CM); obat = MedicationRequest/Dispense; LOS = Encounter.length; biaya = ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Mapping FHIR R4: klaim = Claim; pasien = Patient; dokter = Practitioner; faskes = Organization; diagnosis = Condition (ICD-10); prosedur = Procedure (ICD-9-CM); obat = MedicationRequest/Dispense; LOS = Encounter.length; biaya = ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Claim.total",
+              "link": {
+                "url": "http://claim.total/"
+              }
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Claim.total",
+            "href": "http://claim.total/"
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "; tanggal = Encounter.period.start.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "; tanggal = Encounter.period.start.",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "db675a16-a8bc-4897-936c-e24639c7fb90",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Saluran MHGSL: topologi = edges kunjungan/afiliasi/layanan/semantik; fitur = cosine similarity (LOS, biaya, qty obat) dengan ambang 0.85; semantik = metapath diagnosis ke prosedur.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Saluran MHGSL: topologi = edges kunjungan/afiliasi/layanan/semantik; fitur = cosine similarity (LOS, biaya, qty obat) dengan ambang 0.85; semantik = metapath diagnosis ke prosedur.",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "4c79dcc9-4a92-4741-82cf-2e52c4cfffd4",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Sindikat Ground Truth",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Sindikat Ground Truth",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "42d5cba7-82d4-4847-9215-559dca77130f",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "table",
+      "table": {
+        "table_width": 8,
+        "has_column_header": true,
+        "has_row_header": false
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "b63058bc-0b0d-4718-b19f-6e826599f949",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Faskes",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Faskes",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "79ef9217-1a21-4823-b679-aa27c0439c82",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "table",
+      "table": {
+        "table_width": 9,
+        "has_column_header": true,
+        "has_row_header": false
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "29c39768-43e8-4f13-a6c6-0e97aa59fd02",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Dokter",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Dokter",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "53ccbd58-c240-4158-a88d-cedb568c57c9",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "table",
+      "table": {
+        "table_width": 7,
+        "has_column_header": true,
+        "has_row_header": false
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "682b3653-af45-41d3-b995-e00856467698",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Pasien",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Pasien",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "4c109eb5-142c-46bd-b677-42a0b0ae971e",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "table",
+      "table": {
+        "table_width": 10,
+        "has_column_header": true,
+        "has_row_header": false
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "eaff847b-86db-492a-acee-2e6ae38b3ddf",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Diagnosis (ICD-10)",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Diagnosis (ICD-10)",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "375e8275-7fdd-4118-b0c7-d6e7b9d0e77d",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "table",
+      "table": {
+        "table_width": 6,
+        "has_column_header": true,
+        "has_row_header": false
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "6a1098ec-3931-4f3e-89cb-03a27028ee1b",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Prosedur (ICD-9-CM)",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Prosedur (ICD-9-CM)",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "1416bdf9-3a91-43bb-9a4e-309b85955fc8",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "table",
+      "table": {
+        "table_width": 7,
+        "has_column_header": true,
+        "has_row_header": false
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "9655bd5e-0a73-4822-855c-b11e51c47038",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Obat (FORNAS)",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Obat (FORNAS)",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "05c7f9fd-c3f8-4ba2-b9fc-4daf8b89bb33",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "table",
+      "table": {
+        "table_width": 4,
+        "has_column_header": true,
+        "has_row_header": false
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "a6896cda-f589-46f0-b79f-5c742772b89e",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:25:00.000Z",
+      "last_edited_time": "2026-10-07T00:25:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Analisis Teks & Sentimen",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Analisis Teks & Sentimen",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "9ec5c834-bd0f-4ef5-b321-7def9d62a22d",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:25:00.000Z",
+      "last_edited_time": "2026-10-07T00:25:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "paragraph",
+      "paragraph": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Perluasan dataset untuk modul NLP/LLM (Gemini) dan analisis sentimen:",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Perluasan dataset untuk modul NLP/LLM (Gemini) dan analisis sentimen:",
+            "href": null
+          }
+        ],
+        "icon": null,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "8a32c796-ddca-43df-b1b8-ef11e9b35091",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:25:00.000Z",
+      "last_edited_time": "2026-10-07T00:25:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Alasan Berobat",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Alasan Berobat",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " \u2014 keluhan utama pasien saat admit (Encounter.reasonCode).",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " \u2014 keluhan utama pasien saat admit (Encounter.reasonCode).",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "d52b9d51-33db-42c5-8a8f-04c76d539cf0",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:25:00.000Z",
+      "last_edited_time": "2026-10-07T00:25:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Rujukan",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Rujukan",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " \u2014 asal FKTP, nomor, dan tanggal rujukan (FKTP ke FKRTL); kunjungan langsung untuk rawat jalan/kontrol.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " \u2014 asal FKTP, nomor, dan tanggal rujukan (FKTP ke FKRTL); kunjungan langsung untuk rawat jalan/kontrol.",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "4e94b47d-5d59-4549-b21d-73d9f704937c",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:25:00.000Z",
+      "last_edited_time": "2026-10-07T00:25:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Narasi Rekam Medis",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Narasi Rekam Medis",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " \u2014 resume medis elektronik (Composition) untuk uji konsistensi narasi vs kode billing.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " \u2014 resume medis elektronik (Composition) untuk uji konsistensi narasi vs kode billing.",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "d78b1232-cdc2-490f-af15-422d51f5c4da",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:25:00.000Z",
+      "last_edited_time": "2026-10-07T00:25:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Umpan Balik Pasien",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Umpan Balik Pasien",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " \u2014 kutipan survei kepuasan layanan sebagai basis analisis sentimen.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " \u2014 kutipan survei kepuasan layanan sebagai basis analisis sentimen.",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "67fa2d2c-fa13-447a-b52a-4bd9e65e0616",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:25:00.000Z",
+      "last_edited_time": "2026-10-07T00:25:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Sentimen & Skor Sentimen",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Sentimen & Skor Sentimen",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " \u2014 ground truth label (positif/netral/negatif) dan skor -1 s.d. 1.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " \u2014 ground truth label (positif/netral/negatif) dan skor -1 s.d. 1.",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "4545799b-6132-4f92-8c32-dcfac3e45085",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:25:00.000Z",
+      "last_edited_time": "2026-10-07T00:25:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Kontradiksi Narasi",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Kontradiksi Narasi",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " \u2014 flag klaim yang narasinya bertentangan dengan penagihan (KLM001, KLM002, KLM003, KLM004, KLM005, KLM006, KLM018, KLM024 = 8 klaim).",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " \u2014 flag klaim yang narasinya bertentangan dengan penagihan (KLM001, KLM002, KLM003, KLM004, KLM005, KLM006, KLM018, KLM024 = 8 klaim).",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "8a220a66-d240-42a7-a16e-ce288e0e78b7",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:25:00.000Z",
+      "last_edited_time": "2026-10-07T00:25:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "paragraph",
+      "paragraph": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Distribusi sentimen: 62 positif \u00b7 14 netral \u00b7 24 negatif. Sinyal sentimen fraud: pengakuan pasien tidak pernah menjalani tindakan yang ditagihkan (phantom billing), keluhan tagihan iur biaya (upcoding/overbilling), keluhan tagihan ganda (unbundling). Sentimen negatif bukan otomatis fraud \u2014 klaim normal dengan keluhan layunan negatif (antrean lama, parkir sempit, kebersihan) disertakan sebagai negative control.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Distribusi sentimen: 62 positif \u00b7 14 netral \u00b7 24 negatif. Sinyal sentimen fraud: pengakuan pasien tidak pernah menjalani tindakan yang ditagihkan (phantom billing), keluhan tagihan iur biaya (upcoding/overbilling), keluhan tagihan ganda (unbundling). Sentimen negatif bukan otomatis fraud \u2014 klaim normal dengan keluhan layunan negatif (antrean lama, parkir sempit, kebersihan) disertakan sebagai negative control.",
+            "href": null
+          }
+        ],
+        "icon": null,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "19339178-b52a-471b-9e6e-8447504119f9",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Database Klaim",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Database Klaim",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "2c80bc9d-40f0-4286-8be8-0aea3c682add",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T00:20:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "paragraph",
+      "paragraph": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Basis data 100 klaim (anak halaman ini) berisi seluruh baris dengan properti terfilter: Pasien, Dokter, Faskes, Diagnosis, Prosedur, Obat, Tanggal, LOS, Biaya, Skor Fraud, Risiko, Modus, Sindikat, Status, Kontribusi Saluran, Sinyal SHAP, dan Catatan. Gunakan filter Risiko = fraud atau Sindikat untuk mengecek deteksi simulasi. Versi JSON lengkap (termasuk 70 edges graf) tersedia di canvas \"Dataset Simulasi Aegis-JKN\".",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Basis data 100 klaim (anak halaman ini) berisi seluruh baris dengan properti terfilter: Pasien, Dokter, Faskes, Diagnosis, Prosedur, Obat, Tanggal, LOS, Biaya, Skor Fraud, Risiko, Modus, Sindikat, Status, Kontribusi Saluran, Sinyal SHAP, dan Catatan. Gunakan filter Risiko = fraud atau Sindikat untuk mengecek deteksi simulasi. Versi JSON lengkap (termasuk 70 edges graf) tersedia di canvas \"Dataset Simulasi Aegis-JKN\".",
+            "href": null
+          }
+        ],
+        "icon": null,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "3a5dc20e-d813-4788-80f6-43888a7f5819",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T04:52:00.000Z",
+      "last_edited_time": "2026-10-07T04:52:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_2",
+      "heading_2": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Ekspansi v2 \u2014 300 Klaim, Kolom Alasan, dan Kesiapan ML/DL",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Ekspansi v2 \u2014 300 Klaim, Kolom Alasan, dan Kesiapan ML/DL",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "6c1fa5b6-ec8f-4bc0-9704-6d9dd47194d4",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T04:52:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "paragraph",
+      "paragraph": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Dataset diperluas dari 100 menjadi ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Dataset diperluas dari 100 menjadi ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "300 klaim",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "300 klaim",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " (seed deterministik 20260707, seluruh baris baru KLM101\u2014KLM300) dan setiap baris kini memiliki properti ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " (seed deterministik 20260707, seluruh baris baru KLM101\u2014KLM300) dan setiap baris kini memiliki properti ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Alasan",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Alasan",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " yang menjelaskan kenapa klaim tersebut fraud, anomali, atau normal.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " yang menjelaskan kenapa klaim tersebut fraud, anomali, atau normal.",
+            "href": null
+          }
+        ],
+        "icon": null,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "38384ae6-e6ad-4ad6-a8bb-e92562186e24",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T04:52:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "paragraph",
+      "paragraph": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Distribusi label:",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Distribusi label:",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " 36 fraud (12%), 14 high, 10 medium, 240 low; label anomali total 60 (20%). Skala risiko tetap: skor di bawah 0.35 low; 0.35\u20140.6 medium; 0.6\u20140.8 high; di atas 0.8 fraud.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " 36 fraud (12%), 14 high, 10 medium, 240 low; label anomali total 60 (20%). Skala risiko tetap: skor di bawah 0.35 low; 0.35\u20140.6 medium; 0.6\u20140.8 high; di atas 0.8 fraud.",
+            "href": null
+          }
+        ],
+        "icon": null,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "ddc5a075-5e4a-431e-91f8-4ed6b8843c9b",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T04:52:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_3",
+      "heading_3": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\u26a0\ufe0f ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\u26a0\ufe0f ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "PEMBERITAHUAN PERBAIKAN DATASET (v2.1 - 2026-10-07)",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "PEMBERITAHUAN PERBAIKAN DATASET (v2.1 - 2026-10-07)",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "d784ec3a-2bb9-4d1f-81a0-391c93e34cad",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T04:52:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "quote",
+      "quote": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Dataset saat ini (v2) BELUM SESUAI untuk validasi platform",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Dataset saat ini (v2) BELUM SESUAI untuk validasi platform",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " karena ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " karena ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "10 kekurangan kritis",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "10 kekurangan kritis",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " yang harus diperbaiki. Versi ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " yang harus diperbaiki. Versi ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "v2.1",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "v2.1",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " akan menambahkan kolom dan fitur berikut untuk memenuhi syarat anti-leakage dan group-aware evaluation:",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " akan menambahkan kolom dan fitur berikut untuk memenuhi syarat anti-leakage dan group-aware evaluation:",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "fedab54f-c9fc-41f8-bc42-3506e9563192",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T04:52:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_4",
+      "heading_4": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\u2705 ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\u2705 ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Perubahan yang Sudah Diimplementasikan di v2.1:",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Perubahan yang Sudah Diimplementasikan di v2.1:",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "dbd013ce-7f44-4583-b6e0-9a6ff3725264",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T04:52:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Kolom Grouping Wajib",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Kolom Grouping Wajib",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " (Untuk Anti-Entity Leakage):",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " (Untuk Anti-Entity Leakage):",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "90dc5c5a-3cea-489b-a4b0-102cc519a4fd",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T04:52:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Metadata Validasi",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Metadata Validasi",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ":",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ":",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "91e32168-f768-444d-8a30-d808c37a0954",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T04:52:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Blokir Kolom Leakage",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Blokir Kolom Leakage",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " (Di ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " (Di ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "configs/leakage.yaml",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": true,
+              "color": "default"
+            },
+            "plain_text": "configs/leakage.yaml",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "):",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "):",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "8f4f0727-d880-4937-a41a-9a58bed75bc1",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T04:52:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Kolom Alasan 3-Tingkat",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Kolom Alasan 3-Tingkat",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " (Sudah ada di v2):",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " (Sudah ada di v2):",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "bae0e783-1870-4c66-8cc7-d6b44a97b041",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T04:52:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_4",
+      "heading_4": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\ud83d\udd27 ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\ud83d\udd27 ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Sindikat yang Diperbarui (9 Sindikat + 2 Fraud Tunggal):",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Sindikat yang Diperbarui (9 Sindikat + 2 Fraud Tunggal):",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "95ccb40f-8c04-4903-b45e-daa9af7a1f83",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "table",
+      "table": {
+        "table_width": 8,
+        "has_column_header": true,
+        "has_row_header": false
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "d5e66aa3-7424-4931-91fe-e750bf7e0e44",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T04:52:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_4",
+      "heading_4": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\ud83d\udcca ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\ud83d\udcca ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Distribusi Entitas v2.1:",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Distribusi Entitas v2.1:",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "fff0c6e7-c63f-4594-ad51-045c49c7b084",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T04:52:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Faskes",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Faskes",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ": RS_A\u2014RS_J (10 FKRTL)",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ": RS_A\u2014RS_J (10 FKRTL)",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "01f0dd21-55c7-4a20-b501-c568cc764beb",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T04:52:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Dokter",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Dokter",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ": D01\u2014D20 (20 dokter)",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ": D01\u2014D20 (20 dokter)",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "7887506c-3aef-41af-80b3-e3e4cb51b4ee",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T04:52:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Pasien",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Pasien",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ": P01\u2014P40 (40 pasien)",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ": P01\u2014P40 (40 pasien)",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "2d2eab8c-b326-49cb-81cb-ff8673be545f",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Diagnosis",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Diagnosis",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ": K29.7, K35.8, I10, J45.9, N39.0, dll.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ": K29.7, K35.8, I10, J45.9, N39.0, dll.",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "960994de-c114-4e96-b752-57e340b95ae5",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Prosedur",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Prosedur",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ": 00.66 (PCI), 51.23 (Kolesistektomi), dll.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ": 00.66 (PCI), 51.23 (Kolesistektomi), dll.",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "4203d986-32a4-4591-a0c7-f1653f26cd71",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_4",
+      "heading_4": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\ud83d\udee0\ufe0f ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\ud83d\udee0\ufe0f ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Kesiapan ML/DL (v2.1):",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Kesiapan ML/DL (v2.1):",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "fbfc4197-4966-4680-9e16-064bc7ae3956",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Anti-Leakage",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Anti-Leakage",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ":",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ":",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "22a6fac8-e918-4b30-bfa6-69822a6d7bef",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Group-Aware Evaluation",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Group-Aware Evaluation",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ":",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ":",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "97b84eea-4a35-4e8f-b2d0-f62007576c88",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Feature Engineering",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Feature Engineering",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ":",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ":",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "058a8b5d-1eee-4a2d-ab9d-446291efc7b1",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Model Baseline",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Model Baseline",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ":",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ":",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "15293dba-86ec-45c2-ad16-7f1500616a5b",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Graf Heterogen (MHGSL)",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Graf Heterogen (MHGSL)",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ":",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ":",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "19a3c74a-ed6d-4ad0-8662-9997027671ab",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "XAI",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "XAI",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ":",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ":",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "0cff6930-77a2-468f-88ad-1090829db8b7",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Text Channel (Opsional)",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Text Channel (Opsional)",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ":",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ":",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "0ea90366-306c-4a0e-8d01-2cf4cb906a12",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Validasi",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Validasi",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ":",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ":",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "eb29bf8a-74b7-4acf-8707-b1aa52d2cc7f",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_4",
+      "heading_4": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\u26a0\ufe0f ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\u26a0\ufe0f ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Catatan Prevalensi:",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Catatan Prevalensi:",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "c6fd4021-78e4-4170-8bcd-ed2c870c0108",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "12% fraud",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "12% fraud",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " (oversampled by design) \u2192 Hanya untuk ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " (oversampled by design) \u2192 Hanya untuk ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "simulasi",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "simulasi",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " dan ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " dan ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "validasi model",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "validasi model",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ".",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ".",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "b0c79a6a-6987-4f5e-87a9-bed21266916c",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Produksi",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Produksi",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ": Gunakan ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ": Gunakan ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "AUPRC pada prevalensi 3\u20147%",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "AUPRC pada prevalensi 3\u20147%",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " (downsampling).",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " (downsampling).",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "368807ed-ef8f-43ee-8307-8b44765aaeef",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "bulleted_list_item",
+      "bulleted_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Semua metrik",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Semua metrik",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "WAJIB",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "WAJIB",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " disertai label: ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " disertai label: ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "\"simulasi sintetis, prevalensi oversampled\".",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": true,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\"simulasi sintetis, prevalensi oversampled\".",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "d00e9ef8-3906-48af-b6ed-333556f37593",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_4",
+      "heading_4": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\ud83d\udcc1 ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\ud83d\udcc1 ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Struktur File v2.1:",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Struktur File v2.1:",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "e5ddf2a4-a270-4fee-bd3c-751a8f621c43",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "code",
+      "code": {
+        "caption": [],
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "aegis-jkn/\n\u251c\u2500\u2500 data/\n\u2502   \u251c\u2500\u2500 raw/\n\u2502   \u2502   \u251c\u2500\u2500 claims_300_v2.1.csv       # + kolom pasien_id, faskes_id, dokter_id, seed, version, timestamp\n\u2502   \u2502   \u251c\u2500\u2500 edges_v2.1.json           # 70+ edges (graf heterogen)\n\u2502   \u2502   \u251c\u2500\u2500 text_gt_v2.1.csv          # Ground truth teks (sentimen, kontradiksi)\n\u2502   \u2502   \u2514\u2500\u2500 leakage_blocklist.yaml    # Kolom terlarang\n\u2502   \u251c\u2500\u2500 processed/\n\u2502   \u2502   \u251c\u2500\u2500 features_300.parquet     # Fitur bersih (tanpa leakage)\n\u2502   \u2502   \u251c\u2500\u2500 graph_hetero.pt           # PyG HeteroData (3 saluran)\n\u2502   \u2502   \u2514\u2500\u2500 metadata.json             # Info dataset",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "aegis-jkn/\n\u251c\u2500\u2500 data/\n\u2502   \u251c\u2500\u2500 raw/\n\u2502   \u2502   \u251c\u2500\u2500 claims_300_v2.1.csv       # + kolom pasien_id, faskes_id, dokter_id, seed, version, timestamp\n\u2502   \u2502   \u251c\u2500\u2500 edges_v2.1.json           # 70+ edges (graf heterogen)\n\u2502   \u2502   \u251c\u2500\u2500 text_gt_v2.1.csv          # Ground truth teks (sentimen, kontradiksi)\n\u2502   \u2502   \u2514\u2500\u2500 leakage_blocklist.yaml    # Kolom terlarang\n\u2502   \u251c\u2500\u2500 processed/\n\u2502   \u2502   \u251c\u2500\u2500 features_300.parquet     # Fitur bersih (tanpa leakage)\n\u2502   \u2502   \u251c\u2500\u2500 graph_hetero.pt           # PyG HeteroData (3 saluran)\n\u2502   \u2502   \u2514\u2500\u2500 metadata.json             # Info dataset",
+            "href": null
+          }
+        ],
+        "language": "javascript"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "c7c2abef-7754-4ac6-adeb-8de0ef7ee561",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_4",
+      "heading_4": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\ud83c\udfaf ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\ud83c\udfaf ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Protokol Keputusan \"SESUAI\" (v2.1):",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Protokol Keputusan \"SESUAI\" (v2.1):",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "11e8f2c3-2908-462d-a3fa-108bbc692fc2",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "paragraph",
+      "paragraph": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Platform dinyatakan ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Platform dinyatakan ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "\u2705 SESUAI",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\u2705 SESUAI",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " jika ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " jika ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "SEMUA",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "SEMUA",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " kriteria terpenuhi:",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " kriteria terpenuhi:",
+            "href": null
+          }
+        ],
+        "icon": null,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "34b5261b-e63a-4093-b7bc-fcf6dbda32cc",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\u2705 ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\u2705 ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Integritas Data",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Integritas Data",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ": 300 baris utuh, 0 kebocoran fitur.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ": 300 baris utuh, 0 kebocoran fitur.",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "974408f3-ead2-4eab-88d3-7b58214cbb91",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\u2705 ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\u2705 ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Deteksi Fraud",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Deteksi Fraud",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ": \u226590% dari 36 klaim fraud terdeteksi di antrian \u226420% (group-aware).",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ": \u226590% dari 36 klaim fraud terdeteksi di antrian \u226420% (group-aware).",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "4002b36a-7b97-4dde-b125-dbbb42ab8c94",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\u2705 ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\u2705 ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Metrik Utama",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Metrik Utama",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ": AUPRC & AUROC MHGSL \u2265 baseline XGBoost/MLP.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ": AUPRC & AUROC MHGSL \u2265 baseline XGBoost/MLP.",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "38665ca5-3510-4554-810e-4b3663dc886b",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\u2705 ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\u2705 ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Per-Sindikat",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Per-Sindikat",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ": Setiap SYND-01\u2014SYND-09 hit-rate > 0.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ": Setiap SYND-01\u2014SYND-09 hit-rate > 0.",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "663546ab-09e5-445c-be5d-653f629e8f3f",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\u2705 ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\u2705 ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Konsistensi XAI",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Konsistensi XAI",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ": SHAP sejalan dengan kolom ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ": SHAP sejalan dengan kolom ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Alasan",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": true,
+              "color": "default"
+            },
+            "plain_text": "Alasan",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ".",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ".",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "e57fe701-8e37-4463-af00-738fc612b69d",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\u2705 ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\u2705 ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Saluran Teks",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Saluran Teks",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ": 8 klaim kontradiksi masuk daftar prioritas.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ": 8 klaim kontradiksi masuk daftar prioritas.",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "f205e633-0b38-4f95-b563-2cbe85846e15",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "numbered_list_item",
+      "numbered_list_item": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\u2705 ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\u2705 ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Kejujuran Label",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Kejujuran Label",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ": Semua metrik disertai catatan: ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ": Semua metrik disertai catatan: ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "\"simulasi sintetis, prevalensi oversampled\".",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": true,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\"simulasi sintetis, prevalensi oversampled\".",
+            "href": null
+          }
+        ],
+        "color": "default",
+        "list_format": "numbers"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "8558d8ab-eba7-4a83-b822-13b5298af232",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "quote",
+      "quote": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Jika kriteria 1\u20142 gagal \u2192 \u274c TIDAK SESUAI",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Jika kriteria 1\u20142 gagal \u2192 \u274c TIDAK SESUAI",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " (perbaiki dataset/generator).",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " (perbaiki dataset/generator).",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "12f69034-309e-479d-9cb4-e36675fca331",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "quote",
+      "quote": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Jika kriteria 3\u20144 gagal \u2192 \u26a0\ufe0f DESAIN BELUM TERBUKTI UNGGUL",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Jika kriteria 3\u20144 gagal \u2192 \u26a0\ufe0f DESAIN BELUM TERBUKTI UNGGUL",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " (fallback ke XGBoost + fitur graf turunan).",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " (fallback ke XGBoost + fitur graf turunan).",
+            "href": null
+          }
+        ],
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "6cd12194-c277-4e78-bfd9-91d5efec42ca",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "heading_4",
+      "heading_4": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "\ud83d\ude80 ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "\ud83d\ude80 ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Rencana Pelaksanaan (8 Minggu):",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Rencana Pelaksanaan (8 Minggu):",
+            "href": null
+          }
+        ],
+        "is_toggleable": false,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "4b65254c-6ddb-45ca-a7a4-1bf73ae17084",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "table",
+      "table": {
+        "table_width": 4,
+        "has_column_header": true,
+        "has_row_header": false
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "c4a0e445-cb57-4393-ad39-b3be30a1f006",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708"
+      },
+      "created_time": "2026-10-07T06:16:00.000Z",
+      "last_edited_time": "2026-10-07T06:16:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "paragraph",
+      "paragraph": {
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Target",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Target",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ": Platform ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ": Platform ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "SESUAI",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "SESUAI",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " siap untuk ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " siap untuk ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "Healthkathon 2026",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Healthkathon 2026",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": " dan ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": " dan ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "pilot 5 FKRTL",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "pilot 5 FKRTL",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ".",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ".",
+            "href": null
+          }
+        ],
+        "icon": null,
+        "color": "default"
+      },
+      "archived": false
+    }
+  ],
+  "next_cursor": null,
+  "has_more": false,
+  "type": "block",
+  "block": {},
+  "request_id": "c86ab87e-a2d3-4ac0-9b58-b957396373fe"
+}

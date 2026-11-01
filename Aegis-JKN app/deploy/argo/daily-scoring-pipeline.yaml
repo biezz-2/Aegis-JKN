@@ -1,0 +1,301 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: daily-fraud-scoring-pipeline
+  namespace: aegis-jkn
+  labels:
+    app: aegis-jkn
+    pipeline: fraud-scoring
+    schedule: daily
+spec:
+  entrypoint: main
+  serviceAccountName: argo-workflow-sa
+  volumes:
+    - name: model-storage
+      persistentVolumeClaim:
+        claimName: aegis-jkn-model-pvc
+    - name: data-storage
+      persistentVolumeClaim:
+        claimName: aegis-jkn-data-pvc
+    - name: config-volume
+      configMap:
+        name: aegis-jkn-config
+  volumeClaimTemplates:
+    - metadata:
+        name: workflow-workspace
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi
+  templates:
+    - name: main
+      dag:
+        tasks:
+          - name: feature-extraction
+            template: feature-extraction
+            arguments:
+              parameters:
+                - name: date
+                  value: "{{workflow.parameters.execution_date}}"
+
+          - name: model-inference
+            template: model-inference
+            dependencies: ["feature-extraction"]
+            arguments:
+              artifacts:
+                - name: features
+                  from: "{{tasks.feature-extraction.outputs.artifacts.features}}"
+            arguments:
+              parameters:
+                - name: model_version
+                  value: "{{workflow.parameters.model_version}}"
+
+          - name: risk-score-update
+            template: risk-score-update
+            dependencies: ["model-inference"]
+            arguments:
+              artifacts:
+                - name: predictions
+                  from: "{{tasks.model-inference.outputs.artifacts.predictions}}"
+            arguments:
+              parameters:
+                - name: date
+                  value: "{{workflow.parameters.execution_date}}"
+
+          - name: delta-lake-sync
+            template: delta-lake-sync
+            dependencies: ["risk-score-update"]
+            arguments:
+              artifacts:
+                - name: risk_scores
+                  from: "{{tasks.risk-score-update.outputs.artifacts.risk_scores}}"
+            arguments:
+              parameters:
+                - name: date
+                  value: "{{workflow.parameters.execution_date}}"
+
+          - name: notification
+            template: notification
+            dependencies: ["delta-lake-sync"]
+            arguments:
+              parameters:
+                - name: status
+                  value: "success"
+                - name: claims_processed
+                  value: "{{tasks.model-inference.outputs.parameters.claims_processed}}"
+
+    - name: feature-extraction
+      inputs:
+        parameters:
+          - name: date
+      outputs:
+        artifacts:
+          - name: features
+            path: /workspace/features
+            archive: {none: {}}
+      container:
+        image: aegis-jkn/feature-extractor:latest
+        command: [python, -m, src.pipelines.feature_extraction]
+        args: ["--date", "{{inputs.parameters.date}}", "--output", "/workspace/features"]
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1000m"
+          limits:
+            memory: "4Gi"
+            cpu: "2000m"
+        volumeMounts:
+          - name: data-storage
+            mountPath: /data
+          - name: config-volume
+            mountPath: /config
+        env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: aegis-jkn-secrets
+                key: database-url
+          - name: REDIS_URL
+            valueFrom:
+              secretKeyRef:
+                name: aegis-jkn-secrets
+                key: redis-url
+
+    - name: model-inference
+      inputs:
+        parameters:
+          - name: model_version
+        artifacts:
+          - name: features
+            path: /workspace/features
+      outputs:
+        artifacts:
+          - name: predictions
+            path: /workspace/predictions
+            archive: {none: {}}
+        parameters:
+          - name: claims_processed
+            valueFrom:
+              path: /workspace/predictions/metadata.json
+              jsonPath: "$.claims_processed"
+      container:
+        image: aegis-jkn/ml-inference:latest
+        command: [python, -m, src.ml.distributed.batch_inference]
+        args: [
+          "--features", "/workspace/features",
+          "--output", "/workspace/predictions",
+          "--model-version", "{{inputs.parameters.model_version}}",
+          "--num-actors", "4"
+        ]
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "2000m"
+            nvidia.com/gpu: "1"
+          limits:
+            memory: "8Gi"
+            cpu: "4000m"
+            nvidia.com/gpu: "1"
+        volumeMounts:
+          - name: model-storage
+            mountPath: /models
+          - name: config-volume
+            mountPath: /config
+        env:
+          - name: RAY_HEAD_IP
+            valueFrom:
+              configMapKeyRef:
+                name: aegis-jkn-config
+                key: ray-head-ip
+          - name: RAY_HEAD_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: aegis-jkn-config
+                key: ray-head-port
+          - name: MODEL_PATH
+            value: "/models/mhgsl_{{inputs.parameters.model_version}}.pt"
+
+    - name: risk-score-update
+      inputs:
+        parameters:
+          - name: date
+        artifacts:
+          - name: predictions
+            path: /workspace/predictions
+      outputs:
+        artifacts:
+          - name: risk_scores
+            path: /workspace/risk_scores
+            archive: {none: {}}
+      container:
+        image: aegis-jkn/risk-updater:latest
+        command: [python, -m, src.pipelines.risk_score_update]
+        args: [
+          "--predictions", "/workspace/predictions",
+          "--output", "/workspace/risk_scores",
+          "--date", "{{inputs.parameters.date}}"
+        ]
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        volumeMounts:
+          - name: config-volume
+            mountPath: /config
+        env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: aegis-jkn-secrets
+                key: database-url
+          - name: DELTA_LAKE_PATH
+            valueFrom:
+              configMapKeyRef:
+                name: aegis-jkn-config
+                key: delta-lake-path
+
+    - name: delta-lake-sync
+      inputs:
+        parameters:
+          - name: date
+        artifacts:
+          - name: risk_scores
+            path: /workspace/risk_scores
+      container:
+        image: aegis-jkn/delta-sync:latest
+        command: [python, -m, src.pipelines.delta_lake_sync]
+        args: [
+          "--risk-scores", "/workspace/risk_scores",
+          "--date", "{{inputs.parameters.date}}",
+          "--mode", "append"
+        ]
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        volumeMounts:
+          - name: config-volume
+            mountPath: /config
+        env:
+          - name: DELTA_LAKE_PATH
+            valueFrom:
+              configMapKeyRef:
+                name: aegis-jkn-config
+                key: delta-lake-path
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: aegis-jkn-secrets
+                key: aws-access-key
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: aegis-jkn-secrets
+                key: aws-secret-key
+
+    - name: notification
+      inputs:
+        parameters:
+          - name: status
+          - name: claims_processed
+      container:
+        image: aegis-jkn/notification:latest
+        command: [python, -m, src.pipelines.notify]
+        args: [
+          "--status", "{{inputs.parameters.status}}",
+          "--claims", "{{inputs.parameters.claims_processed}}",
+          "--pipeline", "daily-fraud-scoring"
+        ]
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        env:
+          - name: SLACK_WEBHOOK_URL
+            valueFrom:
+              secretKeyRef:
+                name: aegis-jkn-secrets
+                key: slack-webhook
+          - name: TEAMS_WEBHOOK_URL
+            valueFrom:
+              secretKeyRef:
+                name: aegis-jkn-secrets
+                key: teams-webhook
+
+  # CronWorkflow will reference this
+  arguments:
+    parameters:
+      - name: execution_date
+        value: "{{workflow.creationTimestamp}}"
+      - name: model_version
+        value: "latest"

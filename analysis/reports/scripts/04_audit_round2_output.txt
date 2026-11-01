@@ -1,0 +1,388 @@
+
+==============================================================================
+A. LOS: KOSONG atau NOL? (CSV vs JSON)
+==============================================================================
+CSV LOS kosong (string ''): 0
+CSV LOS == '0'            : 109
+JSON LOS null             : 0
+JSON LOS == 0 (numerik)   : 109
+-> 109 pada klaim = baris LOS bernilai 0, BUKAN sel kosong.
+LOS=0 menurut Layanan: {'rawat jalan': 106, 'rawat inap': 3}
+LOS>0 pada rawat jalan: [('KLM089', '1'), ('KLM059', '1'), ('KLM074', '1'), ('KLM029', '1'), ('KLM044', '1')]
+LOS=0 pada rawat inap  : [('KLM008', 'K80.2', '96.04'), ('KLM012', 'K80.2', '96.04'), ('KLM010', 'K80.2', '96.04')]
+
+==============================================================================
+B. SINDIKAT x RISIKO / STATUS
+==============================================================================
+   SYND-01    fraud   3
+   SYND-02    fraud   3
+   SYND-03    fraud   6
+   SYND-04    fraud   2
+   SYND-05    high    2
+   SYND-06    fraud   4
+   SYND-07    fraud   4
+   SYND-08    fraud   6
+   SYND-09    fraud   6
+Klaim fraud TANPA Sindikat: [('KLM121', 'biaya_markup', '0.81'), ('KLM122', 'drug_diversion', '0.82')]
+Klaim BER-Sindikat tapi Risiko != fraud: [('KLM016', 'SYND-05', 'high', 'review'), ('KLM017', 'SYND-05', 'high', 'review')]
+Total baris ber-Sindikat: 36
+Total baris Risiko=fraud: 36
+
+==============================================================================
+C. SEBARAN ID KLAIM PER SINDIKAT (vs tabel 10-simulation-dataset.md)
+==============================================================================
+
+SYND-01  doc: KLM001-003 / RS_A / Upcoding
+   aktual ID : ['KLM001', 'KLM002', 'KLM003']
+   aktual fsk: ['RS_A'] (doc RS_A)  dokter: ['D01', 'D02']  pasien: ['P01', 'P02', 'P03']
+   modus     : ['upcoding']   skor: 0.93-0.95
+   label     : {'fraud': 3}
+
+SYND-02  doc: KLM004-006 / RS_C / Phantom Billing
+   aktual ID : ['KLM004', 'KLM005', 'KLM006']
+   aktual fsk: ['RS_C'] (doc RS_C)  dokter: ['D05']  pasien: ['P08', 'P09', 'P10']
+   modus     : ['phantom_billing']   skor: 0.92-0.94
+   label     : {'fraud': 3}
+
+SYND-03  doc: KLM007-012 / RS_B / Unbundling
+   aktual ID : ['KLM007', 'KLM008', 'KLM009', 'KLM010', 'KLM011', 'KLM012']
+   aktual fsk: ['RS_B'] (doc RS_B)  dokter: ['D07']  pasien: ['P12', 'P13', 'P14']
+   modus     : ['unbundling']   skor: 0.85-0.87
+   label     : {'fraud': 6}
+
+SYND-04  doc: KLM013-014 / RS_E / Drug Diversion
+   aktual ID : ['KLM013', 'KLM014']
+   aktual fsk: ['RS_E'] (doc RS_E)  dokter: ['D09']  pasien: ['P16', 'P17']
+   modus     : ['drug_diversion']   skor: 0.86-0.88
+   label     : {'fraud': 2}
+
+SYND-05  doc: KLM016-017 / RS_F / Cloning
+   aktual ID : ['KLM016', 'KLM017']
+   aktual fsk: ['RS_F'] (doc RS_F)  dokter: ['D08']  pasien: ['P19', 'P20']
+   modus     : ['cloning']   skor: 0.78-0.79
+   label     : {'high': 2}
+
+SYND-06  doc: KLM101-104 / RS_G / Repeat Billing
+   aktual ID : ['KLM101', 'KLM102', 'KLM103', 'KLM104']
+   aktual fsk: ['RS_G'] (doc RS_G)  dokter: ['D13']  pasien: ['P21', 'P22']
+   modus     : ['repeat_billing']   skor: 0.89-0.92
+   label     : {'fraud': 4}
+
+SYND-07  doc: KLM105-108 / RS_H / Iur Biaya
+   aktual ID : ['KLM105', 'KLM106', 'KLM107', 'KLM108']
+   aktual fsk: ['RS_H'] (doc RS_H)  dokter: ['D14']  pasien: ['P23', 'P24']
+   modus     : ['iur_biaya']   skor: 0.82-0.85
+   label     : {'fraud': 4}
+
+SYND-08  doc: KLM109-114 / RS_I / Readmission Berulang
+   aktual ID : ['KLM109', 'KLM110', 'KLM111', 'KLM112', 'KLM113', 'KLM114']
+   aktual fsk: ['RS_I'] (doc RS_I)  dokter: ['D15']  pasien: ['P25', 'P26']
+   modus     : ['readmission_berulang']   skor: 0.86-0.89
+   label     : {'fraud': 6}
+
+SYND-09  doc: KLM115-120 / RS_J / Excessive Usage
+   aktual ID : ['KLM115', 'KLM116', 'KLM117', 'KLM118', 'KLM119', 'KLM120']
+   aktual fsk: ['RS_J'] (doc RS_J)  dokter: ['D19']  pasien: ['P27']
+   modus     : ['excessive_usage']   skor: 0.80-0.84
+   label     : {'fraud': 6}
+
+==============================================================================
+D. ISI 'ALASAN' UNTUK BARIS LOS=0 DAN BARIS TANPA PROSEDUR
+==============================================================================
+CONTOH rawat jalan LOS=0 -> KLM263 
+    NORMAL: dx J45.9 ditangani konservatif tanpa prosedur (sesuai guideline); biaya rawat jalan Rp1.000.000 dalam rentang median; terapi obat sesuai standar; narasi rekam medis konsisten dengan penagihan; tidak ada kontradiksi narasi.
+
+CONTOH tanpa prosedur -> KLM280 
+    NORMAL: pneumonia (J18.9) diterapi medis tanpa prosedur invasif — konsisten; biaya Rp4.100.000 dalam rentang; LOS 5 hari = median dx; obat (antibiotik + nebulizer) sesuai; tanpa kontradiksi.
+
+Baris tanpa prosedur: 156
+Alasan pada baris tanpa prosedur mengandung frasa 'ditindaki': 0
+Alasan pada baris LOS=0 mengandung 'LOS 0 hari': 0
+Contoh frasa LOS pada baris LOS=0:
+    KLM263 | (tidak ada frasa LOS)
+    KLM294 | (tidak ada frasa LOS)
+    KLM274 | (tidak ada frasa LOS)
+
+==============================================================================
+E. VERIFIKASI ANGKA DI DALAM 'ALASAN' (rasio biaya, median LOS)
+==============================================================================
+Baris dengan klaim 'rasio X' diverifikasi terhadap tarif acuan: 72
+Rasio tidak cocok (>0,02): 72
+    ('KLM285', '51.23', 103.0, 1.034)
+    ('KLM278', '53.1', 91.0, 0.915)
+    ('KLM264', '53.1', 93.0, 0.933)
+    ('KLM271', '47.09', 101.0, 1.007)
+    ('KLM276', '81.52', 95.0, 0.945)
+    ('KLM267', '47.09', 96.0, 0.963)
+    ('KLM282', '53.1', 107.0, 1.073)
+    ('KLM268', '53.1', 99.0, 0.988)
+    ('KLM298', '47.09', 96.0, 0.956)
+    ('KLM286', '47.09', 101.0, 1.007)
+    ('KLM297', '53.1', 107.0, 1.073)
+    ('KLM295', '53.1', 100.0, 1.0)
+    ('KLM270', '51.23', 109.0, 1.09)
+    ('KLM262', '00.66', 100.0, 1.0)
+    ('KLM283', '53.1', 96.0, 0.963)
+    ('KLM221', '53.1', 93.0, 0.933)
+    ('KLM222', '51.23', 99.0, 0.99)
+    ('KLM243', '51.23', 91.0, 0.914)
+    ('KLM223', '47.09', 90.0, 0.904)
+    ('KLM251', '81.52', 91.0, 0.914)
+
+Median LOS (baris LOS>0) per diagnosis:
+   E11.9: n=4 median=1.0 min=1 max=3
+   I21.9: n=20 median=5.0 min=4 max=9
+   J18.9: n=37 median=5 min=3 max=14
+   K29.7: n=5 median=2 min=1 max=2
+   K35.8: n=31 median=3 min=2 max=4
+   K40.9: n=29 median=3 min=2 max=5
+   K80.2: n=29 median=4 min=3 max=5
+   N20.0: n=9 median=3 min=2 max=4
+   O80: n=9 median=2 min=2 max=3
+   S72.0: n=18 median=6.5 min=1 max=9
+
+Klaim median di Alasan: [('KLM015', 'median pneumonia 5 hari')]
+
+==============================================================================
+F. TANGGAL, RUJUKAN, URUTAN
+==============================================================================
+Tanggal klaim SEBELUM tanggal rujukan: []
+Baris terurut menaik menurut Tanggal? False
+Baris terurut menaik menurut Name?   False
+Contoh urutan tidak menaik: [('KLM285', '2026-06-12', 'KLM278', '2026-06-04'), ('KLM278', '2026-06-04', 'KLM264', '2026-05-21'), ('KLM280', '2026-06-06', 'KLM263', '2026-05-21'), ('KLM281', '2026-06-07', 'KLM271', '2026-05-24'), ('KLM294', '2026-06-24', 'KLM267', '2026-05-22')]
+Tanggal unik: 138 | rentang: 2026-01-01 .. 2026-06-27
+'_last_edited' unik: {'2026-10-07T04:41:00.000Z': 200, '2026-10-07T04:50:00.000Z': 97, '2026-10-07T04:51:00.000Z': 2, '2026-10-07T00:24:00.000Z': 1}
+Nilai Rujukan duplikat: [('kunjungan langsung (tanpa rujukan)', 111), ('Puskesmas Tlogo Sehat, Semarang · RJ-2026-401 · 2026-03-08', 2), ('Puskesmas Tlogo Sehat, Semarang · RJ-2026-402 · 2026-03-09', 2)]
+
+Baris 'undefined' pada Rujukan: 28
+['KLM146', 'KLM147', 'KLM154', 'KLM155', 'KLM156', 'KLM158', 'KLM170', 'KLM173', 'KLM176', 'KLM188', 'KLM199', 'KLM207', 'KLM212', 'KLM213', 'KLM225', 'KLM235', 'KLM251', 'KLM255', 'KLM256', 'KLM262', 'KLM268', 'KLM276', 'KLM278', 'KLM282', 'KLM283', 'KLM295', 'KLM297', 'KLM298']
+Dari 300 baris, 'kunjungan langsung (tanpa rujukan)': 111
+
+==============================================================================
+G. OUTLIER BIAYA DALAM GRUP (dx+prosedur+layanan)
+==============================================================================
+   E11.9   /—        n=40 Q1=1,100,000 Q3=1,250,000 pagar=1,475,000
+        KLM013  Rp9,450,000  risiko=fraud layanan=rawat jalan
+        KLM122  Rp8,900,000  risiko=fraud layanan=rawat jalan
+        KLM014  Rp7,680,000  risiko=fraud layanan=rawat jalan
+        KLM125  Rp4,200,000  risiko=high layanan=rawat jalan
+   J18.9   /—        n=38 Q1=4,087,500 Q3=4,412,500 pagar=4,900,000
+        KLM015  Rp8,900,000  risiko=high layanan=rawat inap
+        KLM124  Rp8,200,000  risiko=high layanan=rawat inap
+   K35.8   /47.09    n=31 Q1=6,500,000 Q3=7,150,000 pagar=8,125,000
+        KLM019  Rp38,000,000  risiko=high layanan=rawat inap
+        KLM121  Rp27,500,000  risiko=fraud layanan=rawat inap
+   K40.9   /53.1     n=29 Q1=7,825,000 Q3=8,750,000 pagar=10,137,500
+        KLM123  Rp21,000,000  risiko=high layanan=rawat inap
+
+==============================================================================
+H. PASANGAN KLINIS UNTUK BARIS TANPA PROSEDUR (dx -> '-')
+==============================================================================
+Diagnosis pada baris tanpa prosedur: {'J18.9': 38, 'J45.9': 21, 'E11.9': 40, 'I10': 21, 'N39.0': 14, 'K29.7': 14, 'O80': 8}
+Layanan: {'rawat inap': 45, 'rawat jalan': 111}
+Alasan pada 3 baris tanpa prosedur:
+    KLM280 | NORMAL: pneumonia (J18.9) diterapi medis tanpa prosedur invasif — konsisten; biaya Rp4.100.000 dalam rentang; LOS 5 hari = median dx; obat (antibiotik + nebulizer) sesuai; tanpa kontradiksi.
+    KLM263 | NORMAL: dx J45.9 ditangani konservatif tanpa prosedur (sesuai guideline); biaya rawat jalan Rp1.000.000 dalam rentang median; terapi obat sesuai standar; narasi rekam medis konsisten dengan penagihan;
+    KLM281 | NORMAL: pneumonia (J18.9) diterapi medis tanpa prosedur invasif — konsisten; biaya Rp4.100.000 dalam rentang; LOS 4 hari = median dx; obat (antibiotik + nebulizer) sesuai; tanpa kontradiksi.
+
+==============================================================================
+I. KLAIM KLONING (SYND-05 = KLM016-017)
+==============================================================================
+   KLM016: tanggal=2026-05-06 pasien=P19 (Umi Kalsum) dokter=D08 (dr. Hendra Maulana, Sp.B) faskes=RS_F dx=K35.8 - Apendisitis akut proc=47.09 - Apendektomi LOS=3 biaya=7450000
+   KLM017: tanggal=2026-05-06 pasien=P20 (Wahyu Nugraha) dokter=D08 (dr. Hendra Maulana, Sp.B) faskes=RS_F dx=K35.8 - Apendisitis akut proc=47.09 - Apendektomi LOS=3 biaya=7450000
+   kolom yang SAMA: ['Tanggal', 'Narasi Rekam Medis', 'Biaya Rp', 'Risiko', 'LOS hari', 'Prosedur ICD-9-CM', 'Dokter', 'Sinyal SHAP', 'Modus', 'Faskes', 'Sindikat', 'Obat', 'Kontradiksi Narasi', 'Alasan Berobat', 'Status', 'Alasan', 'Sentimen', 'Layanan', 'Kontribusi Saluran', 'Diagnosis ICD-10']
+   kolom yang BEDA: ['Skor Sentimen', 'Rujukan', 'Skor Fraud', 'Umpan Balik Pasien', 'Pasien', 'Catatan']
+
+==============================================================================
+J. DETAIL BARIS PROBLEMATIK
+==============================================================================
+
+--- KLM031
+                  Tanggal: 2026-01-13
+            Skor Sentimen: 0.7
+       Narasi Rekam Medis: Fraktur kolum femur; dilakukan hemiarthroplasty. Mobilisasi dengan fisioterapi, pulang dengan alat bantu jalan.
+                 Biaya Rp: 44000000
+                   Risiko: low
+                 LOS hari: 8
+        Prosedur ICD-9-CM: 81.52 - Hemiarthroplasty panggul
+                   Dokter: D05 (dr. Endra Kusuma, Sp.OT)
+              Sinyal SHAP: tidak ada sinyal dominan
+                    Modus: 
+                  Rujukan: Puskesmas Sehat Medan, Medan · RJ-2026-330 · 2026-01-12
+                   Faskes: RS_C
+                 Sindikat: 
+               Skor Fraud: 0.08
+                     Obat: M03 x 12 vial; M08 x 20 tablet
+       Umpan Balik Pasien: Proses administrasi mudah dan ruangan bersih.
+       Kontradiksi Narasi: False
+                   Pasien: P19 (Umi Kalsum)
+           Alasan Berobat: Terjatuh di kamar mandi, tidak dapat berdiri, nyeri hebat pada panggul.
+                   Status: auto_clear
+                   Alasan: 
+                  Catatan: 
+                 Sentimen: positif
+                  Layanan: rawat inap
+       Kontribusi Saluran: T 0.03 · F 0.03 · S 0.02
+         Diagnosis ICD-10: S72.0 - Fraktur kolum femur, tertutup
+                     Name: KLM031
+
+--- KLM115
+                  Tanggal: 2026-02-02
+            Skor Sentimen: 0.1
+       Narasi Rekam Medis: Asma stabil; diberikan nebulizer, pemeriksaan spirometri dan rontgen dada. Edukasi teknik inhaler diberikan.
+                 Biaya Rp: 2150000
+                   Risiko: fraud
+                 LOS hari: 0
+        Prosedur ICD-9-CM: —
+                   Dokter: D19 (dr. Sinta Bella, Sp.P)
+              Sinyal SHAP: kunjungan mingguan terprogram 6 minggu berturut-turut dengan pemeriksaan berulang tanpa perubahan terapi (excessive usage)
+                    Modus: excessive_usage
+                  Rujukan: kunjungan langsung (tanpa rujukan)
+                   Faskes: RS_J
+                 Sindikat: SYND-09
+               Skor Fraud: 0.8
+                     Obat: M05 x 6 nebules; M08 x 10 tablet
+       Umpan Balik Pasien: Pelayanan standar, tidak ada keluhan berarti.
+       Kontradiksi Narasi: False
+                   Pasien: P27 (Zainal Abidin)
+           Alasan Berobat: Sesak napas berulang, batuk malam hari.
+                   Status: escalate
+                   Alasan: FRAUD (Excessive Usage): 6 kunjungan rawat jalan dengan interval presisi 7 hari untuk asma yang tercatat stabil, setiap kunjungan menagih spirometri + rontgen dada + nebulizer (Rp2,15 jt/kunjungan, ~2x median rajal asma)
+                  Catatan: Pemeriksaan & tindakan berulang mingguan tanpa indikasi
+                 Sentimen: netral
+                  Layanan: rawat jalan
+       Kontribusi Saluran: T 0.26 · F 0.30 · S 0.24
+         Diagnosis ICD-10: J45.9 - Asma, tidak spesifik
+                     Name: KLM115
+
+--- KLM121
+                  Tanggal: 2026-05-18
+            Skor Sentimen: -0.55
+       Narasi Rekam Medis: Apendisitis akut; dilakukan apendektomi. Toleransi oral baik, luka operasi bersih, pasien pulang stabil.
+                 Biaya Rp: 27500000
+                   Risiko: fraud
+                 LOS hari: 3
+        Prosedur ICD-9-CM: 47.09 - Apendektomi
+                   Dokter: D13 (dr. Mulyadi Santoso, Sp.B)
+              Sinyal SHAP: biaya 4x tarif paket apendektomi (Rp6,8 jt) tanpa komponen rincian pendukung; markup biaya
+                    Modus: biaya_markup
+                  Rujukan: Puskesmas Tlogo Sehat, Semarang · RJ-2026-411 · 2026-05-17
+                   Faskes: RS_G
+                 Sindikat: 
+               Skor Fraud: 0.81
+                     Obat: M03 x 6 vial; M08 x 12 tablet
+       Umpan Balik Pasien: Tagihan operasi terasa sangat besar, saya minta rincian tidak diberikan.
+       Kontradiksi Narasi: False
+                   Pasien: P29 (Bambang Riyanto)
+           Alasan Berobat: Nyeri perut kanan bawah sejak 2 hari, disertai mual dan demam.
+                   Status: escalate
+                   Alasan: FRAUD (Biaya Markup): apendektomi standar tanpa komplikasi ditagih Rp27,5 jt atau 4x tarif paket (Rp6,8 jt). Tidak ada komponen tambahan yang dijelaskan pada rincian, dan LOS 3 hari sesuai paket — kenaikan biaya murni ma
+                  Catatan: Markup biaya 4x tarif tanpa justifikasi komponen
+                 Sentimen: negatif
+                  Layanan: rawat inap
+       Kontribusi Saluran: T 0.15 · F 0.36 · S 0.30
+         Diagnosis ICD-10: K35.8 - Apendisitis akut
+                     Name: KLM121
+
+--- KLM122
+                  Tanggal: 2026-06-06
+            Skor Sentimen: 0.05
+       Narasi Rekam Medis: Kontrol DM tipe 2; HbA1c 7,4 persen. Terapi metformin dilanjutkan, insulin ditingkatkan.
+                 Biaya Rp: 8900000
+                   Risiko: fraud
+                 LOS hari: 0
+        Prosedur ICD-9-CM: —
+                   Dokter: D14 (dr. Nurul Aini, Sp.PD)
+              Sinyal SHAP: qty insulin 12 pen dalam satu episode (dosis rasional 1-2 pen/bulan); biaya obat rajal outlier
+                    Modus: drug_diversion
+                  Rujukan: kunjungan langsung (tanpa rujukan)
+                   Faskes: RS_H
+                 Sindikat: 
+               Skor Fraud: 0.82
+                     Obat: M09 x 12 pen; M01 x 120 tablet
+       Umpan Balik Pasien: Cukup membantu, tapi proses administrasi bertele-tele.
+       Kontradiksi Narasi: False
+                   Pasien: P30 (Citra Ayu Lestari)
+           Alasan Berobat: Kontrol rutin diabetes; sesekali sering haus dan kesemutan.
+                   Status: escalate
+                   Alasan: FRAUD (Drug Diversion): satu episode rawat jalan menagih 12 pen insulin glargin, padahal kebutuhan rasional pasien DM terkontrol adalah 1-2 pen/bulan. Volume >6x kebutuhan klinis menandakan obat kemungkinan dialihkan (di
+                  Catatan: Pengambilan insulin >6x kebutuhan klinis bulanan
+                 Sentimen: netral
+                  Layanan: rawat jalan
+       Kontribusi Saluran: T 0.22 · F 0.34 · S 0.26
+         Diagnosis ICD-10: E11.9 - Diabetes melitus tipe 2, tanpa komplikasi
+                     Name: KLM122
+
+--- KLM015
+                  Tanggal: 2026-01-22
+            Skor Sentimen: -0.45
+       Narasi Rekam Medis: Pneumonia membaik klinis sejak hari ke-5; perawatan lanjutan hanya observasi tanpa perubahan terapi.
+                 Biaya Rp: 8900000
+                   Risiko: high
+                 LOS hari: 14
+        Prosedur ICD-9-CM: —
+                   Dokter: D03 (dr. Citra Ayuningtyas, Sp.PD)
+              Sinyal SHAP: LOS 14 hari (median pneumonia: 5 hari); biaya/hari meningkat setelah hari ke-6
+                    Modus: prolonged_stay
+                  Rujukan: Puskesmas Sehat Sentosa, Jakarta Selatan · RJ-2026-314 · 2026-01-21
+                   Faskes: RS_A
+                 Sindikat: 
+               Skor Fraud: 0.74
+                     Obat: M03 x 18 vial; M05 x 14 nebules
+       Umpan Balik Pasien: Dirawat lama sekali tanpa penjelasan tambahan dari dokter.
+       Kontradiksi Narasi: False
+                   Pasien: P18 (Tarmizi Karim)
+           Alasan Berobat: Demam dan batuk berdahak 4 hari, sesak napas saat beraktivitas.
+                   Status: review
+                   Alasan: ANOMALI TINGGI (belum tentu fraud): LOS 14 hari vs median pneumonia 5 hari, dengan biaya/hari meningkat setelah hari ke-6. Perpanjangan rawat tanpa indikasi medis terdokumentasi memerlukan telaah verifikator sebelum disi
+                  Catatan: Perpanjangan rawat tanpa indikasi medis terdokumentasi
+                 Sentimen: negatif
+                  Layanan: rawat inap
+       Kontribusi Saluran: T 0.2 · F 0.32 · S 0.22
+         Diagnosis ICD-10: J18.9 - Pneumonia, organisme tidak spesifik
+                     Name: KLM015
+
+==============================================================================
+K. AFILIASI DOKTER-FA SKES & KONSISTENSI NAMA
+==============================================================================
+Dokter yang terakhir di >1 faskes: {}
+Jumlah pasangan (dokter,faskes): 20
+Nama dokter dengan >1 ejaan: {'D13 (dr. Mulyadi Santoso, Sp.B)': 24, 'D07 (dr. Gunawan Halim, Sp.B)': 19, 'D19 (dr. Sinta Bella, Sp.P)': 25, 'D14 (dr. Nurul Aini, Sp.PD)': 33, 'D20 (dr. Teguh Wijaya, Sp.B)': 17, 'D05 (dr. Endra Kusuma, Sp.OT)': 16, 'D03 (dr. Citra Ayuningtyas, Sp.PD)': 14, 'D04 (dr. Danur Wibisono, Sp.JP)': 11, 'D11 (dr. Kartika Sari, Sp.B)': 3, 'D16 (dr. Prasetyo Utomo, Sp.JP)': 21, 'D06 (dr. Fitri Handayani, Sp.A)': 2, 'D08 (dr. Hendra Maulana, Sp.B)': 23, 'D15 (dr. Oskar Lingga, Sp.PD)': 28, 'D01 (dr. Adnan Prakoso, Sp.BTKV)': 5, 'D18 (dr. Rizky Ramadhan, Sp.OT)': 8, 'D09 (dr. Indah Pratiwi, Sp.PD)': 19, 'D02 (dr. Barli Soemarno, Sp.B)': 10, 'D17 (dr. Qori Rahmawati, Sp.A)': 4, 'D12 (dr. Lina Marlina, Sp.OG)': 9, 'D10 (dr. Joko Purnomo, Sp.S)': 9}
+Nama pasien dengan >1 ejaan: {'P21 (Rahmat Fauzi)': 9, 'P12 (Maya Sari)': 7, 'P29 (Bambang Riyanto)': 7, 'P28 (Anisa Fitriani)': 7, 'P24 (Umi Rahayu)': 8, 'P40 (Maya Anggraini)': 8, 'P08 (Maryam Yusuf)': 7, 'P04 (Dewi Anggraeni)': 6, 'P32 (Endang Sulastri)': 7, 'P11 (Lukman Sutrisno)': 7, 'P07 (Gilang Saputra)': 7, 'P22 (Sri Wahyuni)': 8, 'P23 (Tono Sugiarto)': 8, 'P35 (Hasan Basri)': 7, 'P10 (Kartini Ibrahim)': 7, 'P38 (Kirana Maheswari)': 7, 'P34 (Gita Puspita)': 7, 'P30 (Citra Ayu Lestari)': 7, 'P02 (Bunga Lestari)': 7, 'P37 (Jefri Nainggolan)': 7, 'P20 (Wahyu Nugraha)': 7, 'P09 (Idrus Hakim)': 6, 'P25 (Wawan Setiawan)': 9, 'P13 (Nadia Rahmawati)': 8, 'P31 (Dedi Kurniawan)': 9, 'P27 (Zainal Abidin)': 12, 'P26 (Yulia Ningsih)': 10, 'P36 (Ifa Hidayati)': 8, 'P18 (Tarmizi Karim)': 6, 'P39 (Lukman Hakim)': 8, 'P14 (Odi Setiawan)': 8, 'P33 (Fauzi Rahman)': 7, 'P05 (Eka Putri)': 7, 'P16 (Ratna Dewi)': 7, 'P01 (Agus Raharjo)': 7, 'P19 (Umi Kalsum)': 7, 'P17 (Slamet Riyadi)': 7, 'P03 (Candra Wijaya)': 7, 'P15 (Purnama Sidik)': 9, 'P06 (Fajar Nugroho)': 6}
+
+==============================================================================
+L. KONSISTENSI DOKUMEN v100 vs DATA AKTUAL 300
+==============================================================================
+KLM001-100 Risiko: {'fraud': 14, 'high': 6, 'medium': 4, 'low': 76}
+KLM001-100 Sentimen: {'negatif': 24, 'positif': 62, 'netral': 14}
+KLM001-100 Status: {'escalate': 14, 'review': 10, 'auto_clear': 76}
+dok v100: risiko 76 low/4 medium/6 high/14 fraud; sentimen 62 pos/14 net/24 neg
+dok v2: 36 fraud/14 high/10 medium/240 low; sentimen aktual 170 pos/58 net/72 neg
+jumlah klaim KLM001-KLM024 (ground truth anomali v100): 24
+
+==============================================================================
+M. SEBARAN SKOR FRAUD PER MODUS
+==============================================================================
+   anomali_frekuensi      n=12  min=0.40 maks=0.67
+   biaya_markup           n=1   min=0.81 maks=0.81
+   cloning                n=2   min=0.78 maks=0.79
+   drug_diversion         n=3   min=0.82 maks=0.88
+   excessive_usage        n=6   min=0.80 maks=0.84
+   iur_biaya              n=4   min=0.82 maks=0.85
+   overbilling            n=4   min=0.62 maks=0.64
+   phantom_billing        n=3   min=0.92 maks=0.94
+   prolonged_stay         n=4   min=0.68 maks=0.74
+   readmission_berulang   n=6   min=0.86 maks=0.89
+   repeat_billing         n=4   min=0.89 maks=0.92
+   unbundling             n=6   min=0.85 maks=0.87
+   upcoding               n=5   min=0.66 maks=0.95
+
+Korelasi Kontribusi Saluran vs Skor Fraud (per label):
+   low: n=240 T+F+S range=0.04-0.14 skor range=0.04-0.14
+        contoh (T,F,S)->skor: [({'T': 0.03, 'F': 0.03, 'S': 0.04}, 0.1), ({'T': 0.04, 'F': 0.03, 'S': 0.02}, 0.09), ({'T': 0.03, 'F': 0.01, 'S': 0.01}, 0.05)]
+   medium: n=10 T+F+S range=0.32-0.47 skor range=0.40-0.53
+        contoh (T,F,S)->skor: [({'T': 0.12, 'F': 0.11, 'S': 0.09}, 0.44), ({'T': 0.12, 'F': 0.11, 'S': 0.09}, 0.46), ({'T': 0.12, 'F': 0.11, 'S': 0.09}, 0.45)]
+   high: n=14 T+F+S range=0.55-0.78 skor range=0.62-0.79
+        contoh (T,F,S)->skor: [({'T': 0.15, 'F': 0.22, 'S': 0.18}, 0.72), ({'T': 0.15, 'F': 0.22, 'S': 0.18}, 0.64), ({'T': 0.15, 'F': 0.22, 'S': 0.18}, 0.71)]
+   fraud: n=36 T+F+S range=0.80-0.94 skor range=0.80-0.95
+        contoh (T,F,S)->skor: [({'T': 0.28, 'F': 0.32, 'S': 0.26}, 0.86), ({'T': 0.28, 'F': 0.32, 'S': 0.26}, 0.89), ({'T': 0.28, 'F': 0.32, 'S': 0.26}, 0.86)]

@@ -1,0 +1,334 @@
+[
+  {
+    "type": "heading",
+    "heading": {
+      "text": "11. Arsitektur Deployment & Skalabilitas",
+      "level": 2
+    }
+  },
+  {
+    "type": "paragraph",
+    "paragraph": {
+      "text": "Bagian ini mendefinisikan blueprint infrastruktur produksi untuk Aegis-JKN, memastikan sistem mampu menangani beban data klaim masif dengan ketersediaan tinggi (High Availability) dan kepatuhan ketat terhadap regulasi data kesehatan."
+    }
+  },
+  {
+    "type": "heading",
+    "heading": {
+      "text": "11.1 Model Deployment & Orkestrasi",
+      "level": 3
+    }
+  },
+  {
+    "type": "paragraph",
+    "paragraph": {
+      "text": "Aegis-JKN mengadopsi strategi GitOps untuk menjamin konsistensi antara konfigurasi repositori dan state infrastruktur."
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Multi-environment Pipeline: Dev (Feature Branch) → Staging (Main Branch/QA) → Production (Tagged Release).",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Infrastructure: Kubernetes (EKS/GKE/AKS) menggunakan Helm Charts untuk manajemen paket aplikasi.",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Continuous Delivery: ArgoCD untuk sinkronisasi otomatis antara Git repo dan cluster K8s.",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Service Mesh: Istio untuk manajemen traffic (canary deployment), mTLS antar-service, dan observabilitas jaringan.",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "paragraph",
+    "paragraph": {
+      "text": "Diagram Arsitektur High-Level:"
+    }
+  },
+  {
+    "type": "code",
+    "code": {
+      "text": "mermaid\ngraph TD\n    User((Verifier/Auditor)) --> WAF[Cloud WAF/Shield]\n    WAF --> Gateway[API Gateway: Kong/Traefik]\n    \n    subgraph \"K8s Cluster\"\n        Gateway --> Web[Next.js Web Tier]\n        Gateway --> API[FastAPI Backend Tier]\n        API --> ML[ML Serving: Triton/TorchServe]\n        API --> Workers[Batch Workers: Ray/Argo]\n        \n        subgraph \"Persistence Layer\"\n            API --> Postgres[(PostgreSQL Aurora)]\n            API --> GraphDB[(FalkorDB Cluster)]\n            API --> VectorDB[(Qdrant Cluster)]\n            API --> Cache[(Redis Cluster)]\n        end\n    end\n    \n    ML --> GPU[GPU Node Pool]\n    Workers --> S3[S3/MinIO Data Lake]\n    \n    style GPU fill:#f96,stroke:#333\n    style GraphDB fill:#bbf,stroke:#333\n    style VectorDB fill:#bbf,stroke:#333",
+      "language": "mermaid"
+    }
+  },
+  {
+    "type": "heading",
+    "heading": {
+      "text": "11.2 Komputasi & Tiering Aplikasi",
+      "level": 3
+    }
+  },
+  {
+    "type": "table",
+    "table": {
+      "header_row": [
+        { "text": "Komponen" },
+        { "text": "Teknologi" },
+        { "text": "Peran Strategis" },
+        { "text": "Karakteristik Resource" }
+      ],
+      "rows": [
+        [
+          { "text": "API Gateway" },
+          { "text": "Kong / Traefik" },
+          { "text": "Rate limiting, Auth, Routing, SSL Termination" },
+          { "text": "CPU Optimized" }
+        ],
+        [
+          { "text": "Web Tier" },
+          { "text": "Next.js" },
+          { "text": "Edge Rendering (Vercel) atau K8s SSR" },
+          { "text": "Memory Optimized" }
+        ],
+        [
+          { "text": "API Tier" },
+          { "text": "FastAPI (Async)" },
+          { "text": "Business Logic, Graph Querying, Orchestration" },
+          { "text": "General Purpose / HPA" }
+        ],
+        [
+          { "text": "ML Serving" },
+          { "text": "Triton / TorchServe" },
+          { "text": "Real-time GCN Inference & SHAP Attribution" },
+          { "text": "GPU Nodes (A100/H100)" }
+        ],
+        [
+          { "text": "Batch Workers" },
+          { "text": "Ray / Argo" },
+          { "text": "Daily Scoring, Retraining, Data Ingestion" },
+          { "text": "Spot Instances" }
+        ],
+        [
+          { "text": "Message Queue" },
+          { "text": "NATS JetStream" },
+          { "text": "Async Event-driven Communication" },
+          { "text": "Low Latency / Disk I/O" }
+        ]
+      ]
+    }
+  },
+  {
+    "type": "heading",
+    "heading": {
+      "text": "11.3 Strategi Skalabilitas",
+      "level": 3
+    }
+  },
+  {
+    "type": "paragraph",
+    "paragraph": {
+      "text": "Sistem menggunakan kombinasi scaling otomatis untuk menjaga performa di bawah beban puncak."
+    }
+  },
+  {
+    "type": "table",
+    "table": {
+      "header_row": [
+        { "text": "Dimensi" },
+        { "text": "Mekanisme" },
+        { "text": "Trigger / Metrik" },
+        { "text": "Target Komponen" }
+      ],
+      "rows": [
+        [
+          { "text": "Horizontal" },
+          { "text": "HPA (K8s)" },
+          { "text": "CPU > 70%, Queue Depth, Latency p99" },
+          { "text": "FastAPI, ML Serving" }
+        ],
+        [
+          { "text": "Vertical" },
+          { "text": "VPA (K8s)" },
+          { "text": "Memory saturation, Disk I/O Wait" },
+          { "text": "GraphDB, VectorDB" }
+        ],
+        [
+          { "text": "Cluster" },
+          { "text": "Cluster Autoscaler" },
+          { "text": "Pending Pods (Resource Insufficiency)" },
+          { "text": "GPU/CPU Node Groups" }
+        ],
+        [
+          { "text": "ML-Specific" },
+          { "text": "Dynamic Batching" },
+          { "text": "Request Concurrency" },
+          { "text": "Triton Inference Server" }
+        ]
+      ]
+    }
+  },
+  {
+    "type": "heading",
+    "heading": {
+      "text": "11.4 Manajemen Layer Data & Storage",
+      "level": 3
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Primary Store: PostgreSQL (Aurora/RDS) dengan Read Replicas untuk query reporting.",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Feature Store: Feast (Offline: S3 Parquet, Online: Redis) untuk sinkronisasi fitur GCN.",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Model Registry: MLflow terintegrasi dengan S3 artifact store untuk versioning model.",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Data Lake: Delta Lake pada S3 untuk audit trail immutable dan retraining data.",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "heading",
+    "heading": {
+      "text": "11.5 Observabilitas (The Three Pillars)",
+      "level": 3
+    }
+  },
+  {
+    "type": "table",
+    "table": {
+      "header_row": [
+        { "text": "Pillar" },
+        { "text": "Tooling" },
+        { "text": "Key Metrics / Fokus" }
+      ],
+      "rows": [
+        [
+          { "text": "Metrics" },
+          { "text": "Prometheus + Grafana" },
+          { "text": "RED Metrics (Rate, Errors, Duration), GPU Utilization" }
+        ],
+        [
+          { "text": "Logs" },
+          { "text": "Loki / ELK Stack" },
+          { "text": "Structured JSON, trace_id correlation, Audit Logs" }
+        ],
+        [
+          { "text": "Traces" },
+          { "text": "Jaeger / Tempo" },
+          { "text": "OpenTelemetry spans, End-to-end Latency Analysis" }
+        ]
+      ]
+    }
+  },
+  {
+    "type": "paragraph",
+    "paragraph": {
+      "text": "Service Level Objectives (SLOs):"
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Latency: p99 < 500ms untuk scoring real-time.",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Availability: 99.9% uptime per tahun.",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Error Rate: < 0.1% failure rate pada API requests.",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "heading",
+    "heading": {
+      "text": "11.6 Security Hardening & Compliance",
+      "level": 3
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Network: Isolasi Private Subnets, NAT Gateway, dan WAF (Web Application Firewall).",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Secrets: HashiCorp Vault / AWS Secrets Manager untuk enkripsi kunci API & DB.",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Compliance: Pod Security Standards (Restricted) dan Kyverno policies untuk runtime security.",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Supply Chain: Cosign image signing, SBOM (Syft), dan Trivy scanning pada pipeline CI.",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "heading",
+    "heading": {
+      "text": "11.7 Optimasi Biaya (Cost Efficiency)",
+      "level": 3
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Compute: Penggunaan Spot Instances untuk Batch Workers (potensi hemat hingga 70%).",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "GPU: Implementasi NVIDIA MIG (Multi-Instance GPU) untuk sharing resource antar-model.",
+      "bulleted_list_item_rich_text": []
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "text": "Storage: Data tiering (Hot: Redis, Warm: Postgres, Cold: S3 Glacier).",
+      "bulleted_list_item_rich_text": []
+    }
+  }
+]

@@ -58,7 +58,7 @@
   --shadow-xl: 0 2px 4px 0 color-mix(in oklch, var(--foreground) 3%, transparent), 0 12px 24px -4px color-mix(in oklch, var(--foreground) 8%, transparent), 0 24px 48px -8px color-mix(in oklch, var(--foreground) 9%, transparent);
 }
 
-::root {
+:root {
   --radius: 0.75rem;
   /* Surface */
   --background: #f7f8f5;

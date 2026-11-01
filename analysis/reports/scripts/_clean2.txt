@@ -1,0 +1,88 @@
+============================================================================
+## 'ق'  (5 unique)
+   'enggat yang mengikat adalah **1 November 2026** untuk submit project akhir, bukan tanggal pendaftaran. Arti القسم 3 di atas berpindah dari \\"catatan teknis\\" menjadi \\"penghalang deliverable\\". Dashboard Notion §4 menyat'
+   'gar Standar Dokumen §7 atau gerbang publikasi `04-evidence-matrix.md` §9 |\\n| MEDIUM | 10 | Cakupan/pembagianّق tidak jelas, kontrol ada di kertas saja, atau data bertentangan dengan dokumen kendali |\\n| LOW | 4 | Ketida'
+   'g","thinking":"The file was written but I noticed some corrupted/garbled text in my content (e.g. \\"pembagianّق\\", \\"自己要\\", \\"枪 Train melts\\", \\"CaseP\\", \\"NKGA\\", \\"rumahTBS\\", \\"witch\\", \\"AKHIR\\", \\"riteria 1-2 gagal\\'
+   'Standar Dokumen §7 atau gerbang publikasi `04-evidence-matrix.md` §9 |\\n18\\t| MEDIUM | 10 | Cakupan/pembagianّق tidak jelas, kontrol ada di kertas saja, atau data bertentangan dengan dokumen kendali |\\n19\\t| LOW | 4 | Ke'
+   'ترجم شخصي على الهاتف أو الكمبيوتر\\nDescription: تعرَّف على كيفية ترجمة النصوص والكلام والصور والمستندات والمواقع الإلكترونية والمزيد باستخدام \\"ترجمة Google\\".\\nURL: https://translate.google.com/intl/ar/about/\\nRelevance'
+
+============================================================================
+## 'Dokumenاند'  (1 unique)
+   'n ground truth KLM001–KLM024, padahal 22 dari 36 baris `fraud` berada di luar KLM001–KLM024 (hingga KLM122) | Dokumenاند benar untuk/definisikan, tetapi tidak ada butir P0/P1 yang menutup instance konkret; lihat H-14 |\\n'
+
+============================================================================
+## 'ولة'  (2 unique)
+   ' di korpus. Nilai-nilai ini harus diperlakukan sebagai belum terverifikasi sampai sumber unduhan dilampirkan —ولة yang sama dengan `03` L98 (\\"checksum berkas\\") dan `08` L30 (\\"hash SHA-256\\").\\n- **I-3 (INFO)** — Hasil'
+   ' di korpus. Nilai-nilai ini harus diperlakukan sebagai belum terverifikasi sampai sumber unduhan dilampirkan —ولة yang sama dengan `03` L98 (\\"checksum berkas\\") dan `08` L30 (\\"hash SHA-256\\").\\n285\\t- **I-3 (INFO)** — '
+
+============================================================================
+## 'статус'  (1 unique)
+   ' itu sendiri.\\n17. **Catat eksplisit di 04 §2** bahwa label status register adalah label status sumber, bukan статус pemakaian di proposal — untuk mencegah \\"Terverifikasi\\" dibaca sebagai \\"siap dipublikasikan\\".\\n\\n**A'
+
+============================================================================
+## 'ограничен'  (0 unique)
+
+============================================================================
+## 'دون'  (0 unique)
+
+============================================================================
+## 'القسم'  (1 unique)
+   ' tenggat yang mengikat adalah **1 November 2026** untuk submit project akhir, bukan tanggal pendaftaran. Arti القسم 3 di atas berpindah dari \\"catatan teknis\\" menjadi \\"penghalang deliverable\\". Dashboard Notion §4 meny'
+
+============================================================================
+## 'พาบ'  (0 unique)
+
+============================================================================
+## '寧'  (0 unique)
+
+============================================================================
+## 'Ден'  (0 unique)
+
+============================================================================
+## '支持'  (0 unique)
+
+============================================================================
+## '二重'  (0 unique)
+
+============================================================================
+## '平均值'  (0 unique)
+
+============================================================================
+## 'rumahTBS'  (3 unique)
+   "iap berkas arsip punya banner di 5 baris pertama yang menyebut naskah terkendali pengganti).\\n\\nPrioritas P3 (rumahTBS):\\n\\n17. **Perbaiki kebocoran literal Notion** `{'type': 'emoji', 'emoji': '💡'}` di `07` L4, `08` L5,"
+   'orrupted/garbled text in my content (e.g. \\"pembagianّق\\", \\"自己要\\", \\"枪 Train melts\\", \\"CaseP\\", \\"NKGA\\", \\"rumahTBS\\", \\"witch\\", \\"AKHIR\\", \\"riteria 1-2 gagal\\", \\"优\\", \\"优\\", \\"M-13\\", \\"L-2\\", \\"L-3\\", \\"L-4\\", \\"'
+   " arsip punya banner di 5 baris pertama yang menyebut naskah terkendali pengganti).\\n313\\t\\n314\\tPrioritas P3 (rumahTBS):\\n315\\t\\n316\\t17. **Perbaiki kebocoran literal Notion** `{'type': 'emoji', 'emoji': '💡'}` di `07` L4"
+
+============================================================================
+## 'TBS'  (8 unique)
+   '59SCeG0l2k2n4VYZISEShvbx8fH29va6urqDBw8C1Rwbk/a8kJR4+/r6PD09pR5SXFyc+kW25pK/jxfAVlFRQVEAWPofPuKlLbJEgIuLiwEBATTBS+Im3vT0dFrATIEGCBLA6vgszVckU/n5+SB81FvzNRRKI1fhFu3duzc0NJTtIhHE6xrCA7WIMXzL8tGyUIdXvkq8hw8f9vHxsXX+OYcQr39w'
+   '+dc495/j5qeoRJN5XBHmB/tWvfnX37t1HV3ylUjl37tz//M//DMPzreFLvPHx8X19fWE7HAAAAADA2PjMjrS0tLKyMolE8sPHxsjIdOvWrWlalTBSE+8LFwGJ9+fNpQ9z4j0Xm3onO98yaiWPO1HI11n3io59F/szGv+jIPG+ItavX79t27YnvqlSqV577bXe3t7pPnqYEi+Hwzl06FBjY+P0PSo'
+   'ivGrBhbmaP91rJJFq1pV5tMY7QIyXpLUTMd5liPHSAqqjiYkJOG1KSgpkDIaG14yMjNbW1pqaGihoe3v76OgovToxNTUlFAozMzMTEhKoiElJSTBSuBkitrS0DA0N0TulsFwuR8ScnBwqItQXEREOxSwsLKysrBweHqb3x0+pVAqdLigoSE1NRVC4Ljby8vIQCyecxkBK4GZisbizsxN+C8FGGXF'
+   'rDsokoVFRXANvAhfiVuBHk0MjKCS+A65H3Z8oG3yD7GwSBSmEKxzDMFaMQgclkC5/F48Mfc3Bz5unnzpsgI4sgUoBFk2NPTs7QRjMJRp8iUbPGTBSMwe+PGDUBvaWnpspmanaueOE0kdfGTBVMoN3jb2tq6dMngLIBs3dzcUA7zThacIf84AKEp8XJIq5Z40SvjYk5ISBgdHQXfimZPjI2N4Yjof'
+   "erkas arsip punya banner di 5 baris pertama yang menyebut naskah terkendali pengganti).\\n\\nPrioritas P3 (rumahTBS):\\n\\n17. **Perbaiki kebocoran literal Notion** `{'type': 'emoji', 'emoji': '💡'}` di `07` L4, `08` L5, dan "
+   'ted/garbled text in my content (e.g. \\"pembagianّق\\", \\"自己要\\", \\"枪 Train melts\\", \\"CaseP\\", \\"NKGA\\", \\"rumahTBS\\", \\"witch\\", \\"AKHIR\\", \\"riteria 1-2 gagal\\", \\"优\\", \\"优\\", \\"M-13\\", \\"L-2\\", \\"L-3\\", \\"L-4\\", \\"I-3\\"'
+   "p punya banner di 5 baris pertama yang menyebut naskah terkendali pengganti).\\n313\\t\\n314\\tPrioritas P3 (rumahTBS):\\n315\\t\\n316\\t17. **Perbaiki kebocoran literal Notion** `{'type': 'emoji', 'emoji': '💡'}` di `07` L4, `08"
+   'isasi-covid/)\\n      * [Kematian Maternal dan Perinatal](../mpdn/)\\n      * [Manajemen Terpadu Balita Sakit (MTBS)](../mtbs-prio/)\\n      * [Neonatus](../neonatus/)\\n      * [Pelayanan Kesehatan Peduli Remaja (PKPR) Luar'
+
+============================================================================
+## 'Closure criteria'  (10 unique)
+   'okumen dengan metadata yang hilang/tidak konsisten.\\n4. Periksa apakah P0 item di dashboard benar-benar punya Closure criteria yang terukur, dan apakah ada item yang statusnya klaim selesai padahal bukti tidak ada.\\n5. P'
+   ' no artifact, no threshold. All 13 unchecked. Let me evaluate:\\n- P0 items: 5 items, all \\"- [ ]\\" unchecked. Closure criteria? None have explicit measurable criteria. Compare with 01-proposal §10 \\"Rencana Kerja\\" table'
+   'ed. Consistent — good, no false claim.\\n\\nNow item 4: \\"Periksa apakah P0 item di dashboard benar-benar punya Closure criteria yang terukur, dan apakah ada item yang statusnya klaim selesai padahal bukti tidak ada.\\"\\n\\n'
+   'are checkboxes \\"- [ ]\\" — all unchecked. Question 4: \\"Periksa apakah P0 item di dashboard benar-benar punya Closure criteria yang terukur, dan apakah ada item yang statusnya klaim selesai padahal bukti tidak ada.\\"\\n\\n'
+   ' Alasan rows. 34 rows with rasio>1 produce Rp30,645,723, nowhere near Rp507.370.000. No tarif acuan recorded. Closure criteria: no target value/precision.\\n5. \\"Samakan angka operasional yang berbeda di proposal dan data'
+   'ebagai versi aktif\\" — partially done (banner in 10-simulation-dataset.md line 4 and 09-draft-hub.md line 5). Closure criteria: both banners exist. Actually done but unchecked.\\nP0-3 \\"Lampirkan manifest eksperimen dan s'
+   'dashboard.md` L57–L73, judul bagian \\"Papan Kerja dan Gerbang Kualitas\\".\\n\\n| ID | Item (kutipan) | Lokasi | Closure criteria terukur? | Bukti kekosongan |\\n|---|---|---|---|---|\\n| P0-1 | `Tetapkan definisi label fraud'
+   'tensi凯 contradiction.\\n\\n## 7. Rekomendasi Terurut\\n\\nPrioritas P0 (harus selesai sebelum dokumen diserahkan; Closure criteria，示意 dalam kurung):\\n\\n1. **Perbaiki baris LOS di `00-dashboard.md` L36 dan `03-dataset-registr'
+
+============================================================================
+## 'volumePlaceholder'  (8 unique)
+   '?\\n3. Deteksi POLA SEO/LOW-QUALITY: cari pola seperti jurnal generik, tahun 2026 (tahun yang belum逝 selesai / volumePlaceholder), DOI yang tidak resolve, judul artikel yang terlalu umum, atau sumber yang柔性 hanya sebagai '
+   ' since current date is Oct 2026. OK.\\n\\nWait — but the task hints at \\"tahun 2026 (tahun yang belum selesai / volumePlaceholder)\\". Today is 2026-10-22 so 2026 is current year, fine.\\n\\nLet me check the zenodo record 217'
+   'ar correct?\\n3. Detect **SEO/low-quality patterns**: generic journals, year 2026 (a year not yet fully past / volumePlaceholder), DOIs that don\'t resolve, overly generic article titles, sources used only as \\"referensi p'
+   '` — segmen ekstra \\"18212\\" memberi 404; path asli hanya `/download/4767/3750`. |\\n\\n### 5.2 Tahun 2026 dan \\"volumePlaceholder\\"\\n\\n- **2026 bukan placeholder pada dua sumber yang diperiksa**: AI Review 59(4) (terbit 17'
+   ' dari penelusuran literatur. Rekomendasi: **hapus dari register** sampai ada DOI/DOI-terverifikasi.\\n- Pola \\"volumePlaceholder\\" juga muncul pada baris 10: nama dataset paper \\"Medical-A/Medical-B\\" disebut \\"Medical-1/'
+   'SO 37001 | Baris 19 (sustain.id) —水分 tinggi, level C/D; dipakai untuk modus Kritis. |\\r\\n171 \'代理人\' | - Pola \\"volumePlaceholder\\" juga muncul pada baris 10: nama dataset paper \\"Medical-A/Medical-B\\" disebut \\"Medical-1/'
+   'ud / ISO 37001 | Baris 19 (sustain.id) —水分 tinggi, level C/D; dipakai untuk modus Kritis. |\'\\r\\n171 \'- Pola \\"volumePlaceholder\\" juga muncul pada baris 10: nama dataset paper \\"Medical-A/Medical-B\\" disebut \\"Medical-1/'
+   'ungan URL\\r\\n## 5. Indikasi Sumber Berisiko\\r\\n### 5.1 Pola SEO / kualitas rendah\\r\\n### 5.2 Tahun 2026 dan \\"volumePlaceholder\\"\\r\\n### 5.3 DOI yang tidak resolve\\r\\n### 5.4 Judul artikel yang terlalu generik / penanda '
+

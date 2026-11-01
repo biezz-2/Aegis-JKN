@@ -1,0 +1,34 @@
+Umpan Balik Pasien       nonempty= 300 unique=  36 dup= 264 maxlen=  87 minlen= 32
+Narasi Rekam Medis       nonempty= 300 unique=  40 dup= 260 maxlen= 147 minlen= 60
+Alasan Berobat           nonempty= 300 unique=  18 dup= 282 maxlen=  73 minlen= 32
+Rujukan                  nonempty= 300 unique= 188 dup= 112 maxlen=  67 minlen= 34
+Catatan                  nonempty=  60 unique=  36 dup=  24 maxlen=  78 minlen= 30
+Alasan                   nonempty= 299 unique= 210 dup=  89 maxlen= 367 minlen=156
+Sinyal SHAP              nonempty= 300 unique=  33 dup= 267 maxlen= 131 minlen= 24
+Kontribusi Saluran       nonempty= 300 unique=  90 dup= 210 maxlen=  24 minlen= 23
+Diagnosis ICD-10         nonempty= 300 unique=  13 dup= 287 maxlen=  49 minlen= 23
+
+Rujukan contains 'undefined': 28
+Rujukan == kunjungan langsung: 111
+Sinyal SHAP == 'tidak ada sinyal dominan': 240
+Alasan kosong: ['KLM031']
+Obat == '—': ['KLM005', 'KLM004', 'KLM006']
+Catatan kosong count: 240
+
+narasi deviating rows: [('KLM002', 'upcoding'), ('KLM001', 'upcoding'), ('KLM003', 'upcoding'), ('KLM024', 'upcoding'), ('KLM018', 'upcoding')]
+
+modus: 13
+  anomali_frekuensi        ['netral']  MONOTON
+  biaya_markup             ['negatif']  MONOTON
+  cloning                  ['positif']  MONOTON
+  drug_diversion           ['negatif', 'netral']  MULTI
+  excessive_usage          ['netral']  MONOTON
+  iur_biaya                ['negatif']  MONOTON
+  overbilling              ['negatif', 'netral']  MULTI
+  phantom_billing          ['negatif']  MONOTON
+  prolonged_stay           ['negatif', 'positif']  MULTI
+  readmission_berulang     ['netral']  MONOTON
+  repeat_billing           ['negatif']  MONOTON
+  unbundling               ['negatif']  MONOTON
+  upcoding                 ['negatif']  MONOTON
+monoton: 10 dari 13

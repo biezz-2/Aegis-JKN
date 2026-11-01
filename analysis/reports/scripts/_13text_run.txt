@@ -1,0 +1,844 @@
+
+==============================================================================
+1. VERIFIKASI DISTRIBUSI SENTIMEN / KONTRADIKSI
+==============================================================================
+Total baris CSV: 300
+
+Distribusi 'Sentimen' aktual vs spec (spec = dataset v1, 100 klaim):
+Label       Diklaim   Aktual  Selisih  % aktual
+positif          62      170     +108     56.7%
+netral           14       58      +44     19.3%
+negatif          24       72      +48     24.0%
+TOTAL           100      300     +200
+
+'Kontradiksi Narasi' = True : 12 baris (spec klaim: 8, ID KLM001-006, KLM018, KLM024)
+Seluruh ID dengan flag=True:
+  KLM001  modus=upcoding           skor_fraud=0.94   sentimen=negatif 
+  KLM002  modus=upcoding           skor_fraud=0.95   sentimen=negatif 
+  KLM003  modus=upcoding           skor_fraud=0.93   sentimen=negatif 
+  KLM004  modus=phantom_billing    skor_fraud=0.92   sentimen=negatif 
+  KLM005  modus=phantom_billing    skor_fraud=0.94   sentimen=negatif 
+  KLM006  modus=phantom_billing    skor_fraud=0.93   sentimen=negatif 
+  KLM018  modus=upcoding           skor_fraud=0.68   sentimen=negatif 
+  KLM024  modus=upcoding           skor_fraud=0.66   sentimen=negatif 
+  KLM105  modus=iur_biaya          skor_fraud=0.84   sentimen=negatif 
+  KLM106  modus=iur_biaya          skor_fraud=0.82   sentimen=negatif 
+  KLM107  modus=iur_biaya          skor_fraud=0.85   sentimen=negatif 
+  KLM108  modus=iur_biaya          skor_fraud=0.83   sentimen=negatif 
+
+Nilai mentah kolom: {'False': 288, 'True': 12}
+
+'Skor Sentimen': terbaca 300/300  min=-0.90 max=+0.85 mean=+0.3239 median=+0.65  nilai_unik=60
+
+==============================================================================
+2. KONSISTENSI SKOR SENTIMEN <-> LABEL SENTIMEN
+==============================================================================
+Rentang skor per label:
+  negatif   n= 72 min=-0.90 max=-0.30 mean=-0.4708
+  netral    n= 58 min=+0.05 max=+0.15 mean=+0.0938
+  positif   n=170 min=+0.60 max=+0.85 mean=+0.7391
+
+Uji separabilitas ambang tunggal:
+  negatif vs netral    batas_a=-0.30 batas_b=+0.05  SEPARABLE
+  netral vs positif    batas_a=+0.15 batas_b=+0.60  SEPARABLE
+  negatif vs positif   batas_a=-0.30 batas_b=+0.60  SEPARABLE
+  => ketiga label dipisahkan oleh ambang |skor|: YA
+
+Sweep ambang t (netral bila |skor| < t):
+     t   pos   net   neg   akurasi  konflik
+  0.05   228     0    72    0.8067       58
+  0.10   208    20    72    0.8733       38
+  0.15   174    54    72    0.9867        4
+  0.20   170    58    72    1.0000        0
+  0.25   170    58    72    1.0000        0
+  0.30   170    58    72    1.0000        0
+  0.35   170    72    58    0.9533       14
+  0.40   170    87    43    0.9033       29
+  0.45   170   104    26    0.8467       46
+  0.50   170   106    24    0.8400       48
+  0.55   170   109    21    0.8300       51
+  0.60   170   113    17    0.8167       55
+  0.65   151   137    12    0.7367       79
+  0.70   122   167    11    0.6367      109
+  0.75    90   201     9    0.5233      143
+  0.80    53   241     6    0.3900      183
+  0.85    15   282     3    0.2533      224
+  0.90     0   299     1    0.1967      241
+  0.95     0   300     0    0.1933      242
+  => t optimal = 0.16 dengan akurasi 1.0000
+  => semua t dengan akurasi 100%: 0.16 .. 0.30
+
+Baris menyimpang pada t=0.16: 0
+
+'[Skor Sentimen]==0 dengan label non-netral': 0 (label netral: 0)
+  -> tidak ada baris Skor=0 sama sekali; netral mulai dari +0.05 (skor 0 tidak pernah dipakai)
+Sign mismatch (tanda skor bertentangan dengan label): 0
+Nilai mentah kolom 'Sentimen': {'negatif': 72, 'netral': 58, 'positif': 170}
+
+==============================================================================
+3. KONSISTENSI UMPAN BALIK <-> KONTRADIKSI <-> SKOR FRAUD
+==============================================================================
+Baris flag=True: 12
+
+ID       modus               skorF sinyal umpan balik                       verdict
+----------------------------------------------------------------------------------------------------
+KLM001   upcoding             0.94 ['prosedur_diragukan']                   ADA SINYAL
+KLM002   upcoding             0.95 ['prosedur_diragukan']                   ADA SINYAL
+KLM003   upcoding             0.93 ['prosedur_diragukan']                   ADA SINYAL
+KLM004   phantom_billing      0.92 ['phantom_billing']                      ADA SINYAL
+KLM005   phantom_billing      0.94 ['phantom_billing']                      ADA SINYAL
+KLM006   phantom_billing      0.93 ['phantom_billing']                      ADA SINYAL
+KLM018   upcoding             0.68 ['prosedur_diragukan']                   ADA SINYAL
+KLM024   upcoding             0.66 ['prosedur_diragukan']                   ADA SINYAL
+KLM105   iur_biaya            0.84 ['iur_biaya']                            ADA SINYAL
+KLM106   iur_biaya            0.82 ['iur_biaya']                            ADA SINYAL
+KLM107   iur_biaya            0.85 ['iur_biaya']                            ADA SINYAL
+KLM108   iur_biaya            0.83 ['iur_biaya']                            ADA SINYAL
+
+FALSE FLAG (flag=True tapi umpan balik tanpa sinyal penagihan): 0
+
+--- Kutipan FALSE FLAG (kalau ada) ---
+
+
+MISSED (umpan balik bersinyal penagihan tapi flag=False): 12
+ID       modus                 skorF risiko  sinyal                                      
+KLM007   unbundling             0.85 fraud   ['prosedur_diragukan', 'tagihan_ganda']     
+KLM008   unbundling             0.85 fraud   ['prosedur_diragukan', 'tagihan_ganda']     
+KLM009   unbundling             0.86 fraud   ['prosedur_diragukan', 'tagihan_ganda']     
+KLM010   unbundling             0.86 fraud   ['prosedur_diragukan', 'tagihan_ganda']     
+KLM011   unbundling             0.87 fraud   ['prosedur_diragukan', 'tagihan_ganda']     
+KLM012   unbundling             0.87 fraud   ['prosedur_diragukan', 'tagihan_ganda']     
+KLM019   overbilling            0.62 high    ['iur_biaya']                               
+KLM101   repeat_billing         0.92 fraud   ['tagihan_ganda']                           
+KLM102   repeat_billing         0.91 fraud   ['tagihan_ganda']                           
+KLM103   repeat_billing          0.9 fraud   ['tagihan_ganda']                           
+KLM104   repeat_billing         0.89 fraud   ['tagihan_ganda']                           
+KLM121   biaya_markup           0.81 fraud   ['iur_biaya']                               
+
+--- Kutipan MISSED ---
+
+[KLM007] modus='unbundling' skor='0.85' risiko='fraud' sinyal=['prosedur_diragukan', 'tagihan_ganda']
+  Umpan : 'Kenapa ada dua tagihan untuk satu operasi yang sama?'
+  Narasi: 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleransi oral baik, pasien pulang dengan kontrol poliklinik.'
+  Catat : 'Intubasi (96.04) ditagih terpisah dari paket bedah'
+
+[KLM008] modus='unbundling' skor='0.85' risiko='fraud' sinyal=['prosedur_diragukan', 'tagihan_ganda']
+  Umpan : 'Muncul tagihan kedua untuk tindakan yang tidak saya ketahui.'
+  Narasi: 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleransi oral baik, pasien pulang dengan kontrol poliklinik.'
+  Catat : 'Klaim pecahan intubasi dari paket kolesistektomi'
+
+[KLM009] modus='unbundling' skor='0.86' risiko='fraud' sinyal=['prosedur_diragukan', 'tagihan_ganda']
+  Umpan : 'Kenapa ada dua tagihan untuk satu operasi yang sama?'
+  Narasi: 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleransi oral baik, pasien pulang dengan kontrol poliklinik.'
+  Catat : 'Intubasi (96.04) ditagih terpisah dari paket bedah'
+
+[KLM010] modus='unbundling' skor='0.86' risiko='fraud' sinyal=['prosedur_diragukan', 'tagihan_ganda']
+  Umpan : 'Muncul tagihan kedua untuk tindakan yang tidak saya ketahui.'
+  Narasi: 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleransi oral baik, pasien pulang dengan kontrol poliklinik.'
+  Catat : 'Klaim pecahan intubasi dari paket kolesistektomi'
+
+[KLM011] modus='unbundling' skor='0.87' risiko='fraud' sinyal=['prosedur_diragukan', 'tagihan_ganda']
+  Umpan : 'Kenapa ada dua tagihan untuk satu operasi yang sama?'
+  Narasi: 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleransi oral baik, pasien pulang dengan kontrol poliklinik.'
+  Catat : 'Intubasi (96.04) ditagih terpisah dari paket bedah'
+
+[KLM012] modus='unbundling' skor='0.87' risiko='fraud' sinyal=['prosedur_diragukan', 'tagihan_ganda']
+  Umpan : 'Muncul tagihan kedua untuk tindakan yang tidak saya ketahui.'
+  Narasi: 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleransi oral baik, pasien pulang dengan kontrol poliklinik.'
+  Catat : 'Klaim pecahan intubasi dari paket kolesistektomi'
+
+[KLM019] modus='overbilling' skor='0.62' risiko='high' sinyal=['iur_biaya']
+  Umpan : 'Ada biaya tambahan yang sangat besar untuk operasi kecil.'
+  Narasi: 'Apendisitis akut; dilakukan apendektomi. Toleransi oral baik, luka operasi bersih, pasien pulang stabil.'
+  Catat : 'Biaya outlier vs median faskes sejenis'
+
+[KLM101] modus='repeat_billing' skor='0.92' risiko='fraud' sinyal=['tagihan_ganda']
+  Umpan : 'Saya bingung, tagihan operasi saya muncul dua kali dengan nilai sama.'
+  Narasi: 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleransi oral baik, pasien pulang dengan kontrol poliklinik.'
+  Catat : 'Klaim kembar dari episode kolesistektomi yang sama'
+
+[KLM102] modus='repeat_billing' skor='0.91' risiko='fraud' sinyal=['tagihan_ganda']
+  Umpan : 'Saya bingung, tagihan operasi saya muncul dua kali dengan nilai sama.'
+  Narasi: 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleransi oral baik, pasien pulang dengan kontrol poliklinik.'
+  Catat : 'Klaim kembar dari episode kolesistektomi yang sama'
+
+[KLM103] modus='repeat_billing' skor='0.9' risiko='fraud' sinyal=['tagihan_ganda']
+  Umpan : 'Saya bingung, tagihan operasi saya muncul dua kali dengan nilai sama.'
+  Narasi: 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleransi oral baik, pasien pulang dengan kontrol poliklinik.'
+  Catat : 'Klaim kembar dari episode kolesistektomi yang sama'
+
+[KLM104] modus='repeat_billing' skor='0.89' risiko='fraud' sinyal=['tagihan_ganda']
+  Umpan : 'Saya bingung, tagihan operasi saya muncul dua kali dengan nilai sama.'
+  Narasi: 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleransi oral baik, pasien pulang dengan kontrol poliklinik.'
+  Catat : 'Klaim kembar dari episode kolesistektomi yang sama'
+
+[KLM121] modus='biaya_markup' skor='0.81' risiko='fraud' sinyal=['iur_biaya']
+  Umpan : 'Tagihan operasi terasa sangat besar, saya minta rincian tidak diberikan.'
+  Narasi: 'Apendisitis akut; dilakukan apendektomi. Toleransi oral baik, luka operasi bersih, pasien pulang stabil.'
+  Catat : 'Markup biaya 4x tarif tanpa justifikasi komponen'
+
+
+Uji: flag == (modus in {upcoding, phantom_billing, iur_biaya})
+  TP=12 FP=0 FN=0 TN=288  -> IDENTIK (flag = lookup modus, BUKAN analisis narasi)
+
+Cross-tab Modus x Kontradiksi Narasi:
+modus                      True   False  total
+(kosong)                      0     240    240
+anomali_frekuensi             0      12     12
+excessive_usage               0       6      6
+readmission_berulang          0       6      6
+unbundling                    0       6      6
+upcoding                      5       0      5
+iur_biaya                     4       0      4
+overbilling                   0       4      4
+prolonged_stay                0       4      4
+repeat_billing                0       4      4
+drug_diversion                0       3      3
+phantom_billing               3       0      3
+cloning                       0       2      2
+biaya_markup                  0       1      1
+
+Sentimen x Risiko:
+sentimen        low   medium     high    fraud   total
+positif         166        0        4        0     170
+netral           32       10        3       13      58
+negatif          42        0        7       23      72
+
+Negative control: negatif & skor_fraud<0.35 = 42 baris, dari itu 42 keluhan layanan murni
+  KLM030 modus=                   skor=0.11   [LAYANAN] 'Kebersihan kamar mandi kurang terjaga.'
+  KLM043 modus=                   skor=0.07   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM056 modus=                   skor=0.13   [LAYANAN] 'Kebersihan kamar mandi kurang terjaga.'
+  KLM069 modus=                   skor=0.09   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM082 modus=                   skor=0.05   [LAYANAN] 'Kebersihan kamar mandi kurang terjaga.'
+  KLM095 modus=                   skor=0.11   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM142 modus=                   skor=0.09   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM145 modus=                   skor=0.07   [LAYANAN] 'Antrean poli sangat panjang, menunggu hampir dua jam.'
+  KLM147 modus=                   skor=0.07   [LAYANAN] 'Kebersihan kamar mandi kurang terjaga.'
+  KLM153 modus=                   skor=0.09   [LAYANAN] 'Kebersihan kamar mandi kurang terjaga.'
+  KLM158 modus=                   skor=0.07   [LAYANAN] 'Makanan RS kurang variatif dan sering datang dingin.'
+  KLM178 modus=                   skor=0.09   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM179 modus=                   skor=0.13   [LAYANAN] 'Antrean poli sangat panjang, menunggu hampir dua jam.'
+  KLM181 modus=                   skor=0.09   [LAYANAN] 'Kebersihan kamar mandi kurang terjaga.'
+  KLM186 modus=                   skor=0.08   [LAYANAN] 'Antrean poli sangat panjang, menunggu hampir dua jam.'
+  KLM189 modus=                   skor=0.11   [LAYANAN] 'Makanan RS kurang variatif dan sering datang dingin.'
+  KLM190 modus=                   skor=0.08   [LAYANAN] 'Kebersihan kamar mandi kurang terjaga.'
+  KLM195 modus=                   skor=0.1    [LAYANAN] 'Antrean poli sangat panjang, menunggu hampir dua jam.'
+  KLM199 modus=                   skor=0.09   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM202 modus=                   skor=0.07   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM209 modus=                   skor=0.07   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM216 modus=                   skor=0.07   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM217 modus=                   skor=0.11   [LAYANAN] 'Makanan RS kurang variatif dan sering datang dingin.'
+  KLM219 modus=                   skor=0.09   [LAYANAN] 'Kebersihan kamar mandi kurang terjaga.'
+  KLM225 modus=                   skor=0.09   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM226 modus=                   skor=0.09   [LAYANAN] 'Antrean poli sangat panjang, menunggu hampir dua jam.'
+  KLM238 modus=                   skor=0.11   [LAYANAN] 'Kebersihan kamar mandi kurang terjaga.'
+  KLM239 modus=                   skor=0.08   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM241 modus=                   skor=0.08   [LAYANAN] 'Antrean poli sangat panjang, menunggu hampir dua jam.'
+  KLM243 modus=                   skor=0.11   [LAYANAN] 'Antrean poli sangat panjang, menunggu hampir dua jam.'
+  KLM244 modus=                   skor=0.06   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM245 modus=                   skor=0.06   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM248 modus=                   skor=0.05   [LAYANAN] 'Antrean poli sangat panjang, menunggu hampir dua jam.'
+  KLM249 modus=                   skor=0.1    [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM251 modus=                   skor=0.09   [LAYANAN] 'Kebersihan kamar mandi kurang terjaga.'
+  KLM256 modus=                   skor=0.1    [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM259 modus=                   skor=0.1    [LAYANAN] 'Antrean poli sangat panjang, menunggu hampir dua jam.'
+  KLM260 modus=                   skor=0.07   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM264 modus=                   skor=0.05   [LAYANAN] 'Kebersihan kamar mandi kurang terjaga.'
+  KLM285 modus=                   skor=0.1    [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM286 modus=                   skor=0.06   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+  KLM291 modus=                   skor=0.12   [LAYANAN] 'Antrean sangat lama dan tempat parkir sempit.'
+
+Uji konsistensi label: string umpan balik identik -> label sama?
+  36 string unik, 0 dengan lebih dari 1 label -> label 100% deterministik dari teks
+
+Label sentimen per modus:
+  (normal)               {'negatif': 42, 'netral': 32, 'positif': 166}
+  anomali_frekuensi      {'netral': 12}
+  biaya_markup           {'negatif': 1}
+  cloning                {'positif': 2}
+  drug_diversion         {'netral': 1, 'negatif': 2}
+  excessive_usage        {'netral': 6}
+  iur_biaya              {'negatif': 4}
+  overbilling            {'negatif': 3, 'netral': 1}
+  phantom_billing        {'negatif': 3}
+  prolonged_stay         {'positif': 2, 'negatif': 2}
+  readmission_berulang   {'netral': 6}
+  repeat_billing         {'negatif': 4}
+  unbundling             {'negatif': 6}
+  upcoding               {'negatif': 5}
+
+==============================================================================
+4. KUALITAS & TEMPLAT TEKS
+==============================================================================
+Total baris: 300
+
+kolom                      non-kosong  unique   unik%  maxLen  minLen
+----------------------------------------------------------------------
+Tanggal                           300     138   46.0%      10      10
+Skor Sentimen                     300      60   20.0%       5       3
+Narasi Rekam Medis                300      40   13.3%     147      60
+Biaya Rp                          300     140   46.7%       8       6
+Risiko                            300       4    1.3%       6       3
+LOS hari                          300      12    4.0%       2       1
+Prosedur ICD-9-CM                 300       9    3.0%      46       1
+Dokter                            300      20    6.7%      34      27
+Sinyal SHAP                       300      33   11.0%     131      24
+Modus                              60      13   21.7%      20       7
+Rujukan                           300     188   62.7%      67      34
+Faskes                            300      10    3.3%       4       4
+Sindikat                           36       9   25.0%       7       7
+Skor Fraud                        300      46   15.3%       4       3
+Obat                              300      28    9.3%      49       1
+Umpan Balik Pasien                300      36   12.0%      87      32
+Kontradiksi Narasi                300       2    0.7%       5       4
+Pasien                            300      40   13.3%      23      15
+Alasan Berobat                    300      18    6.0%      73      32
+Status                            300       3    1.0%      10       6
+Alasan                            299     210   70.2%     367     156
+Catatan                            60      36   60.0%      78      30
+Sentimen                          300       3    1.0%       7       6
+Layanan                           300       2    0.7%      11      10
+Kontribusi Saluran                300      90   30.0%      24      23
+Diagnosis ICD-10                  300      13    4.3%      49      23
+Name                              300     300  100.0%       6       6
+_notion_page_id                   300     300  100.0%      36      36
+_last_edited                      300       4    1.3%      24      24
+
+Duplikasi exact pada kolom teks utama:
+
+  [Umpan Balik Pasien] 17 string duplikat, 264 baris redundan
+    x 39  'Proses administrasi mudah dan ruangan bersih.'
+    x 37  'Pelayanan cepat, dokter dan perawat sangat ramah.'
+    x 37  'Saya pulang dengan kondisi membaik, terima kasih atas perawatannya.'
+    x 29  'Pelayanan baik, penjelasan dokter jelas dan mudah dipahami.'
+    x 26  'Nyaman dirawat di sini, fasilitas lengkap.'
+    x 22  'Cukup membantu, tapi proses administrasi bertele-tele.'
+    x 20  'Antrean sangat lama dan tempat parkir sempit.'
+    x 20  'Pelayanan standar, tidak ada keluhan berarti.'
+    x 13  'Kebersihan kamar mandi kurang terjaga.'
+    x  9  'Antrean poli sangat panjang, menunggu hampir dua jam.'
+
+  [Narasi Rekam Medis] 21 string duplikat, 260 baris redundan
+    x 33  'Kontrol DM tipe 2; HbA1c 7,1 persen. Terapi metformin dilanjutkan, edukasi diet dan aktivitas fisik diberikan.'
+    x 32  'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleransi oral baik, pasien pulang dengan kontrol polikli'
+    x 29  'Apendisitis akut; dilakukan apendektomi. Toleransi oral baik, luka operasi bersih, pasien pulang stabil.'
+    x 28  'Pneumonia komunitas; antibiotik intravena dan nebulizer. Perbaikan klinis bertahap, pulang setelah perbaikan r'
+    x 21  'Reparasi hernia inguinalis dengan mesh. Perawatan post-operatif tanpa komplikasi.'
+    x 19  'Kontrol hipertensi; tekanan darah 138/84 mmHg. Terapi amlodipin dilanjutkan, edukasi garam diberikan.'
+    x 14  'Fraktur kolum femur; dilakukan hemiarthroplasty. Mobilisasi dengan fisioterapi, pulang dengan alat bantu jalan'
+    x 13  'Asma stabil; diberikan nebulizer dan edukasi teknik inhaler. Kontrol berkala berikutnya.'
+    x 13  'Infeksi saluran kemih; antibiotik dan anjuran minum banyak. Perbaikan gejala dalam 3 hari.'
+    x 13  'Gastritis tanpa perdarahan; diberikan terapi PPI. Pasien dianjurkan menghindari kopi dan makanan pedas.'
+
+  [Alasan Berobat] 14 string duplikat, 282 baris redundan
+    x 41  'Kontrol rutin diabetes; sesekali sering haus dan kesemutan.'
+    x 32  'Nyeri perut kanan atas berulang, terasa setelah makan berlemak.'
+    x 31  'Nyeri perut kanan bawah sejak 2 hari, disertai mual dan demam.'
+    x 30  'Demam dan batuk berdahak 4 hari, sesak napas saat beraktivitas.'
+    x 29  'Benjolan di lipatan paha yang membesar saat berdiri dan mengangkat beban.'
+    x 21  'Sesak napas berulang, batuk malam hari.'
+    x 21  'Kontrol rutin tekanan darah tinggi.'
+    x 20  'Nyeri dada menjalar ke lengan kiri selama 30 menit, keringat dingin.'
+    x 18  'Terjatuh di kamar mandi, tidak dapat berdiri, nyeri hebat pada panggul.'
+    x 16  'Nyeri ulu hati sejak 3 hari, terasa setelah makan dan minum kopi.'
+
+  [Rujukan] 3 string duplikat, 112 baris redundan
+    x111  'kunjungan langsung (tanpa rujukan)'
+    x  2  'Puskesmas Tlogo Sehat, Semarang · RJ-2026-401 · 2026-03-08'
+    x  2  'Puskesmas Tlogo Sehat, Semarang · RJ-2026-402 · 2026-03-09'
+
+  [Catatan] 9 string duplikat, 263 baris redundan
+    x240  ''
+    x  6  'Episode pneumonia sama diklaim ulang 3x dalam 30 hari'
+    x  6  'Pemeriksaan & tindakan berulang mingguan tanpa indikasi'
+    x  4  'Klaim kembar dari episode kolesistektomi yang sama'
+    x  4  'Pola kunjungan terprogram; perlu verifikasi kepatuhan kontrol'
+    x  3  'Tidak ada encounter farmasi; resume medis tidak ditemukan di SATUSEHAT'
+    x  3  'Dx primer gastritis namun ditagih PCI stent; tanpa obat kardio pada dispensing'
+    x  3  'Intubasi (96.04) ditagih terpisah dari paket bedah'
+    x  3  'Klaim pecahan intubasi dari paket kolesistektomi'
+
+  [Alasan] 39 string duplikat, 89 baris redundan
+    x  8  'NORMAL: dx E11.9 ditangani konservatif tanpa prosedur (sesuai guideline); biaya rawat jalan Rp1.100.000 dalam '
+    x  8  'NORMAL: dx I10 ditangani konservatif tanpa prosedur (sesuai guideline); biaya rawat jalan Rp1.000.000 dalam re'
+    x  6  'NORMAL: dx I10 ditangani konservatif tanpa prosedur (sesuai guideline); biaya rawat jalan Rp950.000 dalam rent'
+    x  6  'NORMAL: dx N39.0 ditangani konservatif tanpa prosedur (sesuai guideline); biaya rawat jalan Rp1.050.000 dalam '
+    x  6  'FRAUD (Readmission Berulang): pasien yang sama dirawat inap 3 kali dengan diagnosis identik dalam 30 hari deng'
+    x  6  'FRAUD (Excessive Usage): 6 kunjungan rawat jalan dengan interval presisi 7 hari untuk asma yang tercatat stabi'
+    x  4  'NORMAL: dx J45.9 ditangani konservatif tanpa prosedur (sesuai guideline); biaya rawat jalan Rp1.000.000 dalam '
+    x  4  'NORMAL: dx E11.9 ditangani konservatif tanpa prosedur (sesuai guideline); biaya rawat jalan Rp1.250.000 dalam '
+    x  4  'FRAUD (Repeat Billing): satu episode operasi kolesistektomi ditagih dua kali dengan baris klaim identik sempur'
+    x  4  'FRAUD (Iur Biaya): pasien melaporkan diminta membayar di luar JKN untuk layanan yang seharusnya dicakup paket,'
+
+  [Sinyal SHAP] 11 string duplikat, 267 baris redundan
+    x240  'tidak ada sinyal dominan'
+    x  6  '3 episode rawat inap dx sama dalam 30 hari dengan interval presisi 7-8 hari; readmisi berulang tanpa eskalasi '
+    x  6  'kunjungan mingguan terprogram 6 minggu berturut-turut dengan pemeriksaan berulang tanpa perubahan terapi (exce'
+    x  4  'dua klaim identik sempurna (tanggal, dx, prosedur, biaya) untuk pasien sama dalam satu episode — duplikasi tag'
+    x  4  'umpan balik pasien mengindikasikan pungutan di luar JKN (iur biaya) pada episode yang tetap diklaim penuh ke B'
+    x  4  '4 episode rawat jalan dalam 26 hari dengan dx sama; interval kunjungan presisi 7 hari'
+    x  3  '3 klaim tanggal & biaya identik; LOS 1 hari untuk hemiarthroplasty mayor; tanpa MedicationDispense (layanan ta'
+    x  3  'inkonsistensi diagnosis-prosedur (K29.7 gastritis -> 00.66 PCI); biaya & LOS identik antar-pasien; subgraf pad'
+    x  3  'paket kolesistektomi dipecah menjadi 2 klaim tanggal sama; total biaya > paket INA-CBG; pola identik pada 3 pa'
+    x  3  'klaim pecahan dari paket operasi (unbundling); LOS 0 padat kunjungan bedah mayor'
+
+  [Kontribusi Saluran] 57 string duplikat, 210 baris redundan
+    x 16  'T 0.03 · F 0.02 · S 0.02'
+    x 16  'T 0.04 · F 0.04 · S 0.03'
+    x 12  'T 0.04 · F 0.03 · S 0.02'
+    x 12  'T 0.02 · F 0.02 · S 0.02'
+    x 10  'T 0.03 · F 0.03 · S 0.02'
+    x  9  'T 0.05 · F 0.05 · S 0.03'
+    x  9  'T 0.04 · F 0.03 · S 0.03'
+    x  8  'T 0.02 · F 0.01 · S 0.01'
+    x  8  'T 0.02 · F 0.02 · S 0.01'
+    x  8  'T 0.15 · F 0.22 · S 0.18'
+
+Templat 'Umpan Balik Pasien' (prefix 5 kata):
+    39  'Proses administrasi mudah dan ruangan'
+    37  'Pelayanan cepat, dokter dan perawat'
+    37  'Saya pulang dengan kondisi membaik,'
+    29  'Pelayanan baik, penjelasan dokter jelas'
+    26  'Nyaman dirawat di sini, fasilitas'
+    22  'Cukup membantu, tapi proses administrasi'
+    20  'Antrean sangat lama dan tempat'
+    20  'Pelayanan standar, tidak ada keluhan'
+    13  'Kebersihan kamar mandi kurang terjaga.'
+     9  'Antrean poli sangat panjang, menunggu'
+     7  'Lumayan, walaupun antrean cukup panjang.'
+     5  'Pelayanan standar, antrean cukup panjang.'
+
+Templat 'Narasi Rekam Medis' (prefix 5 kata):
+    38  'Kontrol DM tipe 2; HbA1c'
+    36  'Pneumonia komunitas; antibiotik intravena dan'
+    32  'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleransi'
+    31  'Apendisitis akut; dilakukan apendektomi. Toleransi'
+    29  'Reparasi hernia inguinalis dengan mesh.'
+    20  'Infark miokard; dilakukan PCI dengan'
+    19  'Kontrol hipertensi; tekanan darah 138/84'
+    18  'Fraktur kolum femur; dilakukan hemiarthroplasty.'
+    14  'Asma stabil; diberikan nebulizer dan'
+    14  'Gastritis tanpa perdarahan; diberikan terapi'
+    13  'Infeksi saluran kemih; antibiotik dan'
+     9  'Kolik renal karena kalkulus 8'
+
+Pola kalimat (semua 36 umpan balik unik, sorted by freq):
+  x 39 [positif ] 'Proses administrasi mudah dan ruangan bersih.'
+  x 37 [positif ] 'Pelayanan cepat, dokter dan perawat sangat ramah.'
+  x 37 [positif ] 'Saya pulang dengan kondisi membaik, terima kasih atas perawatannya.'
+  x 29 [positif ] 'Pelayanan baik, penjelasan dokter jelas dan mudah dipahami.'
+  x 26 [positif ] 'Nyaman dirawat di sini, fasilitas lengkap.'
+  x 22 [netral  ] 'Cukup membantu, tapi proses administrasi bertele-tele.'
+  x 20 [negatif ] 'Antrean sangat lama dan tempat parkir sempit.'
+  x 20 [netral  ] 'Pelayanan standar, tidak ada keluhan berarti.'
+  x 13 [negatif ] 'Kebersihan kamar mandi kurang terjaga.'
+  x  9 [negatif ] 'Antrean poli sangat panjang, menunggu hampir dua jam.'
+  x  7 [netral  ] 'Lumayan, walaupun antrean cukup panjang.'
+  x  5 [netral  ] 'Pelayanan standar, antrean cukup panjang.'
+  x  4 [negatif ] 'Saya bingung, tagihan operasi saya muncul dua kali dengan nilai sama.'
+  x  4 [netral  ] 'Pelayanan cukup; kontrol tiap minggu sesuai anjuran dokter.'
+  x  3 [negatif ] 'Makanan RS kurang variatif dan sering datang dingin.'
+  x  3 [negatif ] 'Kenapa ada dua tagihan untuk satu operasi yang sama?'
+  x  3 [negatif ] 'Muncul tagihan kedua untuk tindakan yang tidak saya ketahui.'
+  x  1 [negatif ] 'Dokter dan perawat baik, tetapi saya diminta membayar Rp3 juta tambahan di luar BPJS.'
+  x  1 [negatif ] 'Tagihan operasi terasa sangat besar, saya minta rincian tidak diberikan.'
+  x  1 [negatif ] 'Saya bayar tambahan untuk cek lab, kata petugas biaya tidak masuk klaim.'
+  x  1 [negatif ] 'Diminta membayar obat yang katanya tidak dicakup, padahal klaim BPJS tetap diajukan.'
+  x  1 [negatif ] 'Saya dipungut biaya kasa dan perawatan tambahan di luar JKN.'
+  x  1 [negatif ] 'Tidak ada operasi yang pernah saya jalani bulan Maret ini.'
+  x  1 [negatif ] 'Katanya hanya endoskopi, tapi muncul tindakan kateter jantung di tagihan.'
+  x  1 [positif ] 'Pelayanan baik, cepat ditangani.'
+  x  1 [negatif ] 'Saya hanya periksa lambung, kenapa ada tagihan tindakan jantung?'
+  x  1 [negatif ] 'Setiap kontrol selalu diminta mengambil obat dalam jumlah banyak.'
+  x  1 [negatif ] 'Saya tidak pernah menjalani operasi apa pun di rumah sakit ini.'
+  x  1 [negatif ] 'Saya tidak pernah sakit dada, kok dibilang dipasang stent?'
+  x  1 [negatif ] 'Obat diberikan sekaligus sangat banyak, padahal biasanya cukup untuk satu bulan.'
+  x  1 [negatif ] 'Saya melahirkan normal, kenapa ditagih operasi caesar?'
+  x  1 [negatif ] 'Dirawat lama sekali tanpa penjelasan tambahan dari dokter.'
+  x  1 [negatif ] 'Saya kontrol diabetes, tidak pernah sakit dada. Kenapa ada tindakan jantung di tagihan?'
+  x  1 [negatif ] 'Ada biaya tambahan yang sangat besar untuk operasi kecil.'
+  x  1 [positif ] 'Cepat ditangani dan hasil operasi memuaskan.'
+  x  1 [negatif ] 'Saya hanya kontrol nyeri pinggang, tidak pernah dioperasi.'
+
+Nilai sentinel/anomali pada kolom teks:
+  baris dengan 'undefined' pada kolom Rujukan: 28
+    KLM278  'undefined · RJ-2026-436 · 2026-06-03'
+    KLM276  'undefined · RJ-2026-430 · 2026-06-01'
+    KLM282  'undefined · RJ-2026-428 · 2026-06-09'
+    KLM268  'undefined · RJ-2026-434 · 2026-05-22'
+    KLM298  'undefined · RJ-2026-435 · 2026-06-25'
+
+Sampel 30 baris (ID | sentimen | skor | feedback | narasi) untuk penilaian kualitatif:
+  KLM001 | negatif  |  -0.75 | Saya hanya periksa lambung, kenapa ada tagihan tinda | 'Pasien nyeri epigastrium; hasil endoskopi gastritis superf'
+  KLM002 | negatif  |   -0.8 | Katanya hanya endoskopi, tapi muncul tindakan katete | 'Pasien nyeri epigastrium; hasil endoskopi gastritis superf'
+  KLM003 | negatif  |  -0.78 | Saya tidak pernah sakit dada, kok dibilang dipasang  | 'Pasien nyeri epigastrium; hasil endoskopi gastritis superf'
+  KLM004 | negatif  |   -0.9 | Saya tidak pernah menjalani operasi apa pun di rumah | 'Fraktur kolum femur; dilakukan hemiarthroplasty. Toleransi'
+  KLM005 | negatif  |  -0.85 | Tidak ada operasi yang pernah saya jalani bulan Mare | 'Fraktur kolum femur; dilakukan hemiarthroplasty. Toleransi'
+  KLM006 | negatif  |  -0.88 | Saya hanya kontrol nyeri pinggang, tidak pernah diop | 'Fraktur kolum femur; dilakukan hemiarthroplasty. Toleransi'
+  KLM007 | negatif  |   -0.5 | Kenapa ada dua tagihan untuk satu operasi yang sama? | 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toler'
+  KLM008 | negatif  |  -0.55 | Muncul tagihan kedua untuk tindakan yang tidak saya  | 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toler'
+  KLM009 | negatif  |   -0.5 | Kenapa ada dua tagihan untuk satu operasi yang sama? | 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toler'
+  KLM010 | negatif  |  -0.55 | Muncul tagihan kedua untuk tindakan yang tidak saya  | 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toler'
+  KLM011 | negatif  |   -0.5 | Kenapa ada dua tagihan untuk satu operasi yang sama? | 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toler'
+  KLM012 | negatif  |  -0.55 | Muncul tagihan kedua untuk tindakan yang tidak saya  | 'Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toler'
+  KLM013 | negatif  |   -0.3 | Obat diberikan sekaligus sangat banyak, padahal bias | 'Kontrol DM; diberikan insulin glargin dalam jumlah besar k'
+  KLM014 | negatif  |  -0.35 | Setiap kontrol selalu diminta mengambil obat dalam j | 'Kontrol DM; diberikan insulin glargin dalam jumlah besar k'
+  KLM015 | negatif  |  -0.45 | Dirawat lama sekali tanpa penjelasan tambahan dari d | 'Pneumonia membaik klinis sejak hari ke-5; perawatan lanjut'
+  KLM016 | positif  |    0.7 | Pelayanan baik, cepat ditangani.                     | 'Apendisitis akut; dilakukan apendektomi. Toleransi oral ba'
+  KLM017 | positif  |   0.72 | Cepat ditangani dan hasil operasi memuaskan.         | 'Apendisitis akut; dilakukan apendektomi. Toleransi oral ba'
+  KLM018 | negatif  |   -0.7 | Saya kontrol diabetes, tidak pernah sakit dada. Kena | 'Kontrol DM tanpa keluhan dada; EKG rutin dalam batas norma'
+  KLM019 | negatif  |   -0.6 | Ada biaya tambahan yang sangat besar untuk operasi k | 'Apendisitis akut; dilakukan apendektomi. Toleransi oral ba'
+  KLM020 | netral   |   0.15 | Pelayanan cukup; kontrol tiap minggu sesuai anjuran  | 'Kontrol DM tipe 2; HbA1c 7,1 persen. Terapi metformin dila'
+  KLM021 | netral   |   0.15 | Pelayanan cukup; kontrol tiap minggu sesuai anjuran  | 'Kontrol DM tipe 2; HbA1c 7,1 persen. Terapi metformin dila'
+  KLM022 | netral   |   0.15 | Pelayanan cukup; kontrol tiap minggu sesuai anjuran  | 'Kontrol DM tipe 2; HbA1c 7,1 persen. Terapi metformin dila'
+  KLM023 | netral   |   0.15 | Pelayanan cukup; kontrol tiap minggu sesuai anjuran  | 'Kontrol DM tipe 2; HbA1c 7,1 persen. Terapi metformin dila'
+  KLM024 | negatif  |   -0.8 | Saya melahirkan normal, kenapa ditagih operasi caesa | 'Persalinan spontan pervaginam berjalan normal; bayi lahir '
+  KLM025 | positif  |    0.8 | Pelayanan cepat, dokter dan perawat sangat ramah.    | 'Apendisitis akut; dilakukan apendektomi. Toleransi oral ba'
+  KLM026 | positif  |    0.7 | Proses administrasi mudah dan ruangan bersih.        | 'Reparasi hernia inguinalis dengan mesh. Perawatan post-ope'
+  KLM027 | positif  |   0.85 | Saya pulang dengan kondisi membaik, terima kasih ata | 'Infark miokard; dilakukan PCI dengan 1 stent DES. Pasien p'
+  KLM028 | netral   |   0.05 | Cukup membantu, tapi proses administrasi bertele-tel | 'Pneumonia komunitas; antibiotik intravena dan nebulizer. P'
+  KLM029 | positif  |   0.65 | Nyaman dirawat di sini, fasilitas lengkap.           | 'Kontrol DM tipe 2; HbA1c 7,1 persen. Terapi metformin dila'
+  KLM030 | negatif  |  -0.35 | Kebersihan kamar mandi kurang terjaga.               | 'Kolik renal karena kalkulus 8 mm; dilakukan ESWL. Pasien d'
+
+==============================================================================
+5. NARASI REKAM MEDIS PADA KASUS phantom_billing
+==============================================================================
+Baris Modus='phantom_billing': 3
+
+[KLM004] faskes=RS_C  dokter=D05 (dr. Endra Kusuma, Sp.OT pasien=P08 (Maryam Yusuf)
+   dx='S72.0 - Fraktur kolum femur, tertutup'
+   prosedur='81.52 - Hemiarthroplasty panggul'   obat='—'
+   NARASI : 'Fraktur kolum femur; dilakukan hemiarthroplasty. Toleransi oral baik, pasien pulang dalam kondisi stabil.'
+   UMPAN  : 'Saya tidak pernah menjalani operasi apa pun di rumah sakit ini.'
+   skor=0.92 flag=True catatan='Tidak ada encounter farmasi; resume medis tidak ditemukan di SATUSEHAT'
+   -> narasi menyebut prosedur ditagih? ['hemiarthroplasty'] (kata kunci prosedur: ['hemiarthroplasty', 'panggul'])
+   -> narasi mengindikasikan pasien TIDAK datang? TIDAK ADA INDIKASI
+
+[KLM005] faskes=RS_C  dokter=D05 (dr. Endra Kusuma, Sp.OT pasien=P09 (Idrus Hakim)
+   dx='S72.0 - Fraktur kolum femur, tertutup'
+   prosedur='81.52 - Hemiarthroplasty panggul'   obat='—'
+   NARASI : 'Fraktur kolum femur; dilakukan hemiarthroplasty. Toleransi oral baik, pasien pulang dalam kondisi stabil.'
+   UMPAN  : 'Tidak ada operasi yang pernah saya jalani bulan Maret ini.'
+   skor=0.94 flag=True catatan='Tidak ada encounter farmasi; resume medis tidak ditemukan di SATUSEHAT'
+   -> narasi menyebut prosedur ditagih? ['hemiarthroplasty'] (kata kunci prosedur: ['hemiarthroplasty', 'panggul'])
+   -> narasi mengindikasikan pasien TIDAK datang? TIDAK ADA INDIKASI
+
+[KLM006] faskes=RS_C  dokter=D05 (dr. Endra Kusuma, Sp.OT pasien=P10 (Kartini Ibrahim)
+   dx='S72.0 - Fraktur kolum femur, tertutup'
+   prosedur='81.52 - Hemiarthroplasty panggul'   obat='—'
+   NARASI : 'Fraktur kolum femur; dilakukan hemiarthroplasty. Toleransi oral baik, pasien pulang dalam kondisi stabil.'
+   UMPAN  : 'Saya hanya kontrol nyeri pinggang, tidak pernah dioperasi.'
+   skor=0.93 flag=True catatan='Tidak ada encounter farmasi; resume medis tidak ditemukan di SATUSEHAT'
+   -> narasi menyebut prosedur ditagih? ['hemiarthroplasty'] (kata kunci prosedur: ['hemiarthroplasty', 'panggul'])
+   -> narasi mengindikasikan pasien TIDAK datang? TIDAK ADA INDIKASI
+
+Kesimpulan phantom_billing:
+  - Narasi KLM004-006 IDENTIK satu sama lain ('Fraktur kolum femur; dilakukan hemiarthroplasty...')
+  - Narasi AFFIRMATIF: menyatakan prosedur hemiarthroplasty DALAM BENTUK DILAKUKAN
+  - Tidak ada jejak 'pasien tidak datang' / 'resume tidak ditemukan'
+  - Ground truth phantom (pasien tidak pernah menjalani tindakan) HANYA ada di umpan balik, TIDAK di narasi
+  - Field 'Catatan' menyebut 'resume medis tidak ditemukan di SATUSEHAT' -> itu(metadata), bukan narasi
+  - Konsekuensi: narasi TIDAK dapat dipakai mendeteksi phantom_billing; hanya Umpan Balik yang bisa
+
+==============================================================================
+6. KONSISTENSI CLAIM SENTIMEN SEBAGAI GROUND TRUTH
+==============================================================================
+Distribusi sentimen per diagnosis (top 12):
+diagnosis                                      pos   net   neg  total
+E11.9 - Diabetes melitus tipe 2, tanpa kompl    20    12     9     41
+J18.9 - Pneumonia, organisme tidak spesifik     19    12     7     38
+K80.2 - Kolelitiasis, tanpa kolesistitis        15     2    15     32
+K35.8 - Apendisitis akut                        20     4     7     31
+K40.9 - Hernia inguinalis, tanpa obstruksi      19     4     6     29
+J45.9 - Asma, tidak spesifik                     8     9     4     21
+I10 - Hipertensi esensial                       15     3     3     21
+I21.9 - Infark miokard akut, tidak spesifik     13     3     4     20
+S72.0 - Fraktur kolum femur, tertutup           12     1     5     18
+K29.7 - Gastritis, tanpa perdarahan              9     3     5     17
+N39.0 - Infeksi saluran kemih                    8     3     3     14
+O80 - Persalinan tunggal spontan                 6     1     2      9
+
+Label sentimen x modus (apakah label diturunkan dari modus?):
+  (normal)               {'negatif': 42, 'netral': 32, 'positif': 166}
+  anomali_frekuensi      {'netral': 12}
+  biaya_markup           {'negatif': 1}
+  cloning                {'positif': 2}
+  drug_diversion         {'netral': 1, 'negatif': 2}
+  excessive_usage        {'netral': 6}
+  iur_biaya              {'negatif': 4}
+  overbilling            {'negatif': 3, 'netral': 1}
+  phantom_billing        {'negatif': 3}
+  prolonged_stay         {'positif': 2, 'negatif': 2}
+  readmission_berulang   {'netral': 6}
+  repeat_billing         {'negatif': 4}
+  unbundling             {'negatif': 6}
+  upcoding               {'negatif': 5}
+
+Skor sentimen: repertoar nilai
+  nilai unik: 60; baris memakai nilai yang dipakai baris lain: 290
+  top: [(0.1, 22), (0.8, 19), (0.75, 18), (0.7, 16), (0.65, 16), (0.85, 15), (0.05, 15), (-0.35, 10)]
+
+Sentimen x Status:
+  positif   {'auto_clear': 166, 'review': 4, 'escalate': 0}
+  netral    {'auto_clear': 32, 'review': 13, 'escalate': 13}
+  negatif   {'auto_clear': 42, 'review': 7, 'escalate': 23}
+
+Label 'positif' pada klaim risiko tinggi/fraud (false negative text):
+  KLM016 high   modus=cloning            fb='Pelayanan baik, cepat ditangani.'
+  KLM017 high   modus=cloning            fb='Cepat ditangani dan hasil operasi memuaskan.'
+  KLM127 high   modus=prolonged_stay     fb='Saya pulang dengan kondisi membaik, terima kasih atas perawatannya'
+  KLM129 high   modus=prolonged_stay     fb='Proses administrasi mudah dan ruangan bersih.'
+
+Label 'netral'/'positif' pada klaim fraud (text tidak alarmed):
+  13 dari 36 klaim fraud tidak punya sinyal teks negatif
+
+==============================================================================
+7. KONSISTENSI SPESIFIKASI DENGAN KODEBASE (Aegis-JKN)
+==============================================================================
+Nilai hardcoded di src/data/oasis-data.ts (versus CSV v2 300 baris):
+  meta.version            = 'v2.1'
+  kpi.total_claims        = 100     <-- CSV = 300
+  kpi.kontra_ok           = 8       <-- CSV flag=True = 12
+  kpi.kontra_total        = 8       <-- CSV = 12
+  gtSent                  = [62, 14, 24]  <-- CSV = [170, 58, 72]
+  twSent                  = [62, 14, 24]  (sama persis dgn GT -> sia-sia)
+  rdSent                  = [62, 0, 38]
+  kpi.accuracy            = 93%  ('leksikon vs GT (200 sampel)')
+  -> UI 'Sentimen GT (Target)' menampilkan angka v1 (100 klaim), bukan v2
+
+Sumber feed teks: 48/48 entri twFeed+rdFeed ber-source 'heuristik-lokal'
+  -> TIDAK ada satupun entri bersumber Gemini; tidak ada SDK Gemini di package.json
+  -> 'heuristik-lokal' = leksikon statis di dalam file TS, bukan kode
+  -> tag f_text = 0/1 biner (bukan skor sentimen -1..1 dari CSV)
+  -> queue: 20 item, kontra:true = 7, kontra:false = 13
+  -> tidak ada file configs/text.yaml; tidak ada configs/leakage.yaml
+  -> tidak ada tests/test_leakage.py
+
+==============================================================================
+RINGKASAN MESIN (JSON)
+==============================================================================
+{
+  "n_rows": 300,
+  "sentimen_aktual": {
+    "negatif": 72,
+    "netral": 58,
+    "positif": 170
+  },
+  "sentimen_spec": {
+    "positif": 62,
+    "netral": 14,
+    "negatif": 24
+  },
+  "kontradiksi_aktual": 12,
+  "kontradiksi_ids": [
+    "KLM001",
+    "KLM002",
+    "KLM003",
+    "KLM004",
+    "KLM005",
+    "KLM006",
+    "KLM018",
+    "KLM024",
+    "KLM105",
+    "KLM106",
+    "KLM107",
+    "KLM108"
+  ],
+  "ambang_optimal_t": 0.16,
+  "ambang_akurasi": 1.0,
+  "baris_menyimpang_skor_label": 0,
+  "skor_0_non_netral": 0,
+  "false_flag_count": 0,
+  "false_flag_ids": [],
+  "missed_count": 12,
+  "missed_ids": [
+    "KLM007",
+    "KLM008",
+    "KLM009",
+    "KLM010",
+    "KLM011",
+    "KLM012",
+    "KLM019",
+    "KLM101",
+    "KLM102",
+    "KLM103",
+    "KLM104",
+    "KLM121"
+  ],
+  "flag_equals_modus_lookup": "upcoding|phantom_billing|iur_biaya",
+  "unique_text_cols": {
+    "Umpan Balik Pasien": 36,
+    "Narasi Rekam Medis": 40,
+    "Alasan Berobat": 18,
+    "Rujukan": 188,
+    "Catatan": 36,
+    "Alasan": 210,
+    "Sinyal SHAP": 33,
+    "Kontribusi Saluran": 90
+  },
+  "text_col_stats": {
+    "Tanggal": {
+      "non_kosong": 300,
+      "unique": 138,
+      "unik_pct": 46.0
+    },
+    "Skor Sentimen": {
+      "non_kosong": 300,
+      "unique": 60,
+      "unik_pct": 20.0
+    },
+    "Narasi Rekam Medis": {
+      "non_kosong": 300,
+      "unique": 40,
+      "unik_pct": 13.3
+    },
+    "Biaya Rp": {
+      "non_kosong": 300,
+      "unique": 140,
+      "unik_pct": 46.7
+    },
+    "Risiko": {
+      "non_kosong": 300,
+      "unique": 4,
+      "unik_pct": 1.3
+    },
+    "LOS hari": {
+      "non_kosong": 300,
+      "unique": 12,
+      "unik_pct": 4.0
+    },
+    "Prosedur ICD-9-CM": {
+      "non_kosong": 300,
+      "unique": 9,
+      "unik_pct": 3.0
+    },
+    "Dokter": {
+      "non_kosong": 300,
+      "unique": 20,
+      "unik_pct": 6.7
+    },
+    "Sinyal SHAP": {
+      "non_kosong": 300,
+      "unique": 33,
+      "unik_pct": 11.0
+    },
+    "Modus": {
+      "non_kosong": 60,
+      "unique": 13,
+      "unik_pct": 21.7
+    },
+    "Rujukan": {
+      "non_kosong": 300,
+      "unique": 188,
+      "unik_pct": 62.7
+    },
+    "Faskes": {
+      "non_kosong": 300,
+      "unique": 10,
+      "unik_pct": 3.3
+    },
+    "Sindikat": {
+      "non_kosong": 36,
+      "unique": 9,
+      "unik_pct": 25.0
+    },
+    "Skor Fraud": {
+      "non_kosong": 300,
+      "unique": 46,
+      "unik_pct": 15.3
+    },
+    "Obat": {
+      "non_kosong": 300,
+      "unique": 28,
+      "unik_pct": 9.3
+    },
+    "Umpan Balik Pasien": {
+      "non_kosong": 300,
+      "unique": 36,
+      "unik_pct": 12.0
+    },
+    "Kontradiksi Narasi": {
+      "non_kosong": 300,
+      "unique": 2,
+      "unik_pct": 0.7
+    },
+    "Pasien": {
+      "non_kosong": 300,
+      "unique": 40,
+      "unik_pct": 13.3
+    },
+    "Alasan Berobat": {
+      "non_kosong": 300,
+      "unique": 18,
+      "unik_pct": 6.0
+    },
+    "Status": {
+      "non_kosong": 300,
+      "unique": 3,
+      "unik_pct": 1.0
+    },
+    "Alasan": {
+      "non_kosong": 299,
+      "unique": 210,
+      "unik_pct": 70.2
+    },
+    "Catatan": {
+      "non_kosong": 60,
+      "unique": 36,
+      "unik_pct": 60.0
+    },
+    "Sentimen": {
+      "non_kosong": 300,
+      "unique": 3,
+      "unik_pct": 1.0
+    },
+    "Layanan": {
+      "non_kosong": 300,
+      "unique": 2,
+      "unik_pct": 0.7
+    },
+    "Kontribusi Saluran": {
+      "non_kosong": 300,
+      "unique": 90,
+      "unik_pct": 30.0
+    },
+    "Diagnosis ICD-10": {
+      "non_kosong": 300,
+      "unique": 13,
+      "unik_pct": 4.3
+    },
+    "Name": {
+      "non_kosong": 300,
+      "unique": 300,
+      "unik_pct": 100.0
+    },
+    "_notion_page_id": {
+      "non_kosong": 300,
+      "unique": 300,
+      "unik_pct": 100.0
+    },
+    "_last_edited": {
+      "non_kosong": 300,
+      "unique": 4,
+      "unik_pct": 1.3
+    }
+  },
+  "phantom_rows": 3,
+  "app_hardcoded": {
+    "kpi_total_claims": 100,
+    "kontra_ok": 8,
+    "kontra_total": 8,
+    "gtSent": [
+      62,
+      14,
+      24
+    ],
+    "csv_actual": [
+      170,
+      58,
+      72
+    ]
+  }
+}
+
+[disimpan] N:\HEALTHKATHON\analysis\reports\13_text_summary.json

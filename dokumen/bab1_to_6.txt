@@ -1,0 +1,274 @@
+BAB I: PENDAHULUAN
+1.1 Latar Belakang & Urgensi Nasional
+Penyelenggaraan Program Jaminan Kesehatan Nasional (JKN) oleh Badan Penyelenggara Jaminan Sosial (BPJS) Kesehatan merupakan manifestasi nyata mandat konstitusi Republik Indonesia dalam mewujudkan jaminan sosial di bidang kesehatan bagi seluruh rakyat. Hingga tahun 2026, kepesertaan JKN telah mencakup lebih dari 270 juta penduduk dengan jaringan kemitraan ribuan Fasilitas Kesehatan Rujukan Tingkat Lanjutan (FKRTL) di seluruh nusantara. Skala operasional yang sangat masif ini mengalirkan ratusan juta berkas klaim pelayanan rawat jalan dan rawat inap setiap tahunnya, yang dibayarkan menggunakan skema prospektif Indonesian Case-Based Groups (INA-CBG).
+Skema pembayaran INA-CBG menetapkan besaran tarif penggantian biaya medis berdasarkan pengelompokan diagnosis penyakit (menggunakan kode International Classification of Diseases 10th Revision / ICD-10) serta prosedur tindakan medis (menggunakan kode ICD-9-CM). Besaran tarif paket klaim sangat dipengaruhi oleh tingkat keparahan penyakit atau Severity Level (tingkat 1: tanpa komplikasi/komorbiditas, tingkat 2: komplikasi/komorbiditas sedang, dan tingkat 3: komplikasi/komorbiditas berat). Semakin tinggi tingkat keparahan yang dikodekan, semakin besar nominal penggantian klaim yang ditagihkan fasilitas kesehatan kepada BPJS Kesehatan.
+Dalam realitas operasional di lapangan, sistem pembayaran prospektif tersebut memunculkan risiko moral hazard berupa ketidaksesuaian klaim, di antaranya fenomena upcoding (pencantuman kode diagnosis yang lebih parah atau penambahan komorbiditas berat tanpa didukung bukti klinis memadai pada resume medis) dan unbundling (pemecahan penagihan prosedur tindakan yang seharusnya menjadi satu kesatuan paket). Ketidaksesuaian ini tidak selalu berakar pada kesengajaan fraud, namun juga sering kali dipicu oleh perbedaan persepsi koding, keterbatasan pemahaman dokter dalam dokumentasi resume medis, atau kompleksitas regulasi klaim. Meskipun demikian, akumulasi ketidaksesuaian koding klaim ini berpotensi menggerus integritas Dana Jaminan Sosial (DJS) Kesehatan yang merupakan dana amanah publik.
+1.2 Identifikasi Permasalahan Utama (Upcoding & Unbundling)
+Proses audit dan verifikasi klaim BPJS Kesehatan saat ini bertumpu pada peran vital Verifikator Klaim. Namun, verifikator menghadapi dilema operasional yang sangat menantang:
+a. Ketimpangan Rasio Volume dan Waktu Pemeriksaan: Setiap verifikator dituntut memproses puluhan hingga ratusan berkas klaim per hari guna memenuhi Service Level Agreement (SLA) pembayaran klaim faskes dalam jangka waktu 15 hari kalender sebagaimana diatur undang-undang. Keterbatasan waktu ini membuat pemeriksaan mendalam terhadap keselarasan narasi klinis EMR untuk 100% berkas klaim menjadi mustahil secara fisik.
+b. Heterogenitas dan Kompleksitas Narasi Klinis: Sebagian besar bukti pendukung keabsahan diagnosis tertuang dalam bentuk teks bebas (unstructured narrative) pada resume medis dokter—seperti riwayat penyakit sekarang (anamnesis), temuan pemeriksaan fisik, hasil laboratorium, pembacaan EKG/radiologi, dan catatan instruksi terapi. Membandingkan data tidak terstruktur ini dengan kode ICD-10 membutuhkan keahlian klinis spesifik dan konsentrasi tinggi.
+c. Kelemahan Sistem Aturan Statis (Deterministic Rules): Sistem verifikasi berbasis aturan kaku yang ada saat ini (rule-based validation) hanya mampu mendeteksi pelanggaran administratif sederhana (seperti batasan usia, ketidaksesuaian gender, atau duplikasi klaim). Sistem aturan statis tidak berdaya dalam memahami konteks semantik dari narasi klinis dokter untuk menilai apakah derajat keparahan klaim benar-benar terjustifikasi.
+d. Kelelahan Kognitif dan Fenomena Alert Fatigue: Jika sistem verifikasi menghasilkan terlalu banyak peringatan palsu (false positives), verifikator akan mengalami kelelahan mental, yang pada akhirnya berisiko mengabaikan indikasi anomali yang sebenarnya berisiko tinggi (false negatives).
+1.3 Rumusan Masalah Inovasi
+Berdasarkan identifikasi masalah di atas, pertanyaan kunci yang menjadi fokus perancangan solusi ini dirumuskan sebagai berikut:
+[RUMUSAN MASALAH UTAMA] « Bagaimana merancang suatu sistem Clinical Decision Support yang mampu mengidentifikasi dan memprioritaskan indikasi ketidaksesuaian antara dokumentasi klinis EMR dan kode diagnosis klaim (upcoding) secara akurat, transparan, dan efisien, dengan tetap mempertahankan verifikator manusia sebagai pemegang kendali keputusan akhir serta mematuhi regulasi pelindungan data medis? »
+
+1.4 Tujuan dan Sasaran Inovasi
+Tujuan umum dari inovasi DETECT-JKN adalah membangun platform asisten verifikasi cerdas yang mampu mengoptimalkan efisiensi dan ketepatan proses verifikasi klaim faskes rujukan BPJS Kesehatan tanpa menggantikan peran manusia. Secara khusus, sasaran yang ingin dicapai meliputi:
+1. Membangun lapisan pra-penyaringan berbasis aturan deterministik untuk memvalidasi kelengkapan berkas dan menyaring anomali administratif secara instan.
+2. Mengembangkan mesin Clinical NLP (Natural Language Processing) untuk mengekstraksi entitas klinis (gejala, tanda vital, hasil penunjang, terapi) dari resume medis dan membandingkannya secara semantik dengan severity level kode diagnosis klaim.
+3. Menghasilkan skor risiko anomali (Risk Score) dan antrean prioritas triase (Smart Prioritization Queue) guna mengarahkan fokus verifikator pada berkas yang paling membutuhkan pendalaman.
+4. Menyediakan antarmuka penjelasan transparan (Explainability Layer) yang menyajikan cuplikan bukti klinis (evidence span) sehingga verifikator dapat menelaah dasar indikasi dalam hitungan detik.
+5. Menjamin kedaulatan data dan kepatuhan hukum melalui penerapan arsitektur private on-premise cloud serta pengujian bertahap menggunakan synthetic data yang terdeidentifikasi.
+1.5 Ruang Lingkup dan Batasan Sistem
+Untuk memastikan rancangan solusi memiliki kedalaman teknis yang teruji dan realistis untuk diimplementasikan, ruang lingkup dan batasan proyek ditetapkan secara tegas:
+a. Scope Klinis: Fokus Klinis MVP: Tahap awal purwarupa difokuskan pada spesialisasi Kardiologi (Penyakit Jantung Koroner, Infark Miokard Akut, Gagal Jantung) dan Neurologi (Stroke Iskemik dan Hemoragik), yang secara historis merupakan kelompok penyakit katastropik dengan serapan anggaran terbesar dan variasi tingkat keparahan koding yang luas.
+b. Batasan Fungsional: Decision Support, Bukan Automated Judge: DETECT-JKN membatasi fungsinya sebagai pemberi sinyal (flag) dan bukti pendukung. Sistem TIDAK berwenang memvonis faskes melakukan kecurangan (fraud), TIDAK menolak klaim secara otomatis, dan TIDAK menentukan nilai pemotongan pembayaran.
+c. Batasan Data: Pemisahan Data Pengembangan: Pengembangan MVP memanfaatkan dataset klaim sintetis realistis yang dirancang menyerupai struktur standar E-Klaim dan SatuSehat HL7 FHIR. Sistem tidak berasumsi memiliki akses langsung ke pangkalan data produksi BPJS Kesehatan sebelum perizinan resmi diterbitkan.
+
+BAB II: ANALISIS AKAR MASALAH (ROOT CAUSE ANALYSIS)
+2.1 Metodologi Analisis 5-Whys
+Untuk menggali akar permasalahan struktural mengapa potensi upcoding klaim sulit dideteksi secara dini tanpa membebani verifikator, tim melakukan analisis kausalitas mendalam menggunakan kerangka kerja 5-Whys Analysis sebagaimana disajikan pada Tabel 2.1.
+Tabel 2.1: Matriks Analisis 5-Whys Akar Masalah Verifikasi Klaim Upcoding
+Tingkat
+Pertanyaan Kausalitas
+Fakta / Kondisi Nyata Lapangan
+Implikasi Sistemik
+Why 1
+Mengapa indikasi upcoding sulit ditemukan secara cepat?
+Verifikator harus menyandingkan narasi resume medis EMR dengan kode diagnosis klaim satu per satu secara manual.
+Pemeriksaan manual membutuhkan waktu 10-20 menit per berkas berisiko.
+Why 2
+Mengapa perbandingan tersebut tidak bisa diselesaikan secara otomatis dengan aturan biasa?
+Dokumentasi klinis berupa narasi bebas yang variatif, menggunakan singkatan medis lokal, dan tidak terstruktur.
+Rule-based regex sederhana gagal menangkap konteks klinis secara utuh.
+Why 3
+Mengapa kesesuaian diagnosis membutuhkan pemahaman konteks klinis mendalam?
+Severity level kode INA-CBG bergantung pada temuan klinis spesifik (misal: ada/tidaknya syok, gagal napas, hasil lab kritis).
+Ketiadaan korelasi bukti fisik dengan kode klaim adalah indikator utama upcoding.
+Why 4
+Mengapa verifikator tidak bisa memeriksa seluruh berkas secara mendalam?
+Volume jutaan klaim per bulan berbanding tidak seimbang dengan jumlah personel verifikator.
+Hanya berkas ber-flag atau sampling acak yang sempat ditinjau mendalam.
+Why 5
+Mengapa sistem yang ada belum mampu memberikan prioritas yang tepat?
+Belum ada lapisan kognitif (NLP) yang mampu mengekstrak bukti klinis dan menghitung probabilitas anomali secara transparan.
+Dibutuhkan sistem cerdas pendukung keputusan (CDSS) berbasis Human-in-the-Loop.
+
+2.2 Analisis Fishbone 4 Dimensi Permasalahan
+Analisis sebab-akibat kemudian dipetakan ke dalam Diagram Tulang Ikan (Fishbone Analysis) yang mencakup 4 dimensi utama: Manusia, Proses/Workflow, Data/Teknologi, dan Skala/Volume.
+Tabel 2.2: Analisis Fishbone 4 Dimensi Kendala Audit Klaim JKN
+Dimensi Masalah
+Komponen Akar Penyebab
+Dampak pada Operasional Klaim JKN
+1. Faktor Manusia (Human Factor)
+• Kelelahan mental verifikator (alert fatigue) akibat volume berkas.• Variasi subjektivitas dan pemahaman klinis antar-verifikator.• Tekanan target SLA penyelesaian klaim 15 hari.• Resistensi terhadap teknologi black-box yang tidak transparan.
+Risiko inkonsistensi penetapan status klaim dan terlewatnya berkas anomali yang bernilai finansial besar.
+2. Faktor Proses (Workflow Factor)
+• Alur verifikasi berbasis sampling acak yang tidak terarah.• Dispute klaim faskes memerlukan proses klarifikasi panjang.• Belum ada mekanisme triase risiko sebelum berkas masuk ke meja verifikator.• Waktu penelaahan berkas anomali sangat terbatas.
+Inefisiensi waktu verifikasi dan penumpukan antrean berkas klaim pada akhir periode penagihan bulanan.
+3. Faktor Data & Teknologi
+• 80% data klinis tersimpan dalam teks naratif tidak terstruktur.• Inkonsistensi terminologi medis dan singkatan dokter faskes.• Rule-based engine eksisting kaku dan rentan false positive/negative.• Risiko halusinasi jika menggunakan model AI generatif tanpa kontrol.
+Ketiadaan jembatan cerdas antara narasi klinis EMR dengan sistem kodifikasi tarif INA-CBG.
+4. Faktor Skala & Volume
+• Ratusan juta klaim per tahun dari ribuan fasilitas kesehatan.• Asimetri informasi yang tajam antara manajemen faskes dan BPJS.• Variabilitas pola koding antar-wilayah dan tipe rumah sakit (Kelas A, B, C, D).
+Pengawasan manual menjadi mustahil mengimbangi laju pertumbuhan berkas klaim faskes.
+
+2.3 Sintesis Akar Masalah Utama
+Dari analisis di atas, dapat ditarik kesimpulan fundamental: Kegagalan dalam mendeteksi upcoding secara efisien bukan disebabkan oleh ketiadaan data klaim atau kelalaian personel verifikator, melainkan ketiadaan instrumen kognitif (cognitive bridge) yang mampu menerjemahkan narasi klinis tidak terstruktur ke dalam parameter penilaian risiko objektif secara seketika (real-time).
+Oleh karena itu, peluang inovasi terletak pada penyediaan Intelligent Pre-screening Layer yang mampu menyaring data secara deterministik, mengekstrak konteks klinis melalui NLP, mengurutkan prioritas antrean berbasis risiko, dan menyajikan bukti pendukung secara transparan kepada verifikator manusia.
+
+BAB III: DESKRIPSI & VALUE PROPOSITION SOLUSI DETECT-JKN
+3.1 Gambaran Umum Platform DETECT-JKN
+DETECT-JKN (Detect Anomalies. Support Better Decisions) adalah platform Clinical Decision Support System (CDSS) terintegrasi yang dirancang untuk membantu verifikator klaim BPJS Kesehatan dalam mengidentifikasi, memvalidasi, dan memprioritaskan indikasi upcoding dan ketidaksesuaian diagnosis pada klaim rawat inap dan rawat jalan FKRTL.
+DETECT-JKN bekerja dengan prinsip kolaborasi simbiotik antara kecerdasan mesin dan kepakaran manusia. Sistem memadukan efisiensi aturan deterministik (untuk validasi administratif) dengan ketajaman Natural Language Processing kontekstual (untuk menelaah teks klinis resume medis EMR), menghasilkan sistem triase cerdas yang memisahkan klaim wajar dari klaim yang memiliki diskrepansi klinis.
+3.2 Value Proposition & Differensiasi Strategis
+DETECT-JKN menghadirkan proposisi nilai yang unik dan berdampak nyata bagi seluruh pemangku kepentingan dalam ekosistem JKN:
+1. Bagi Verifikator Klaim: Penyusutan Waktu Telaah dan Beban Kognitif: Verifikator tidak perlu membaca puluhan lembar berkas EMR baris demi baris. Sistem langsung menyorot bagian teks klinis yang tidak sinkron dengan kode klaim.
+2. Bagi BPJS Kesehatan: Perlindungan Dana Jaminan Sosial (DJS): Mencegah potensi kebocoran dana akibat upcoding sistemik melalui pengawasan berbasis data yang akurat dan dapat dipertanggungjawabkan.
+3. Bagi Fasilitas Kesehatan: Transparansi dan Edukasi Koding: Hasil telaah yang jelas dan berbasis bukti klinis mengurangi sengketa (dispute klaim) berkepanjangan dan mendorong faskes meningkatkan standar dokumentasi rekam medis.
+4. Bagi Peserta JKN: Keberlanjutan Pelayanan Kesehatan: Menjaga stabilitas likuiditas DJS Kesehatan agar pelayanan kesehatan bagi seluruh peserta tetap optimal, berkesinambungan, dan berkualitas.
+3.3 Analisis Komparatif Pendekatan Solusi
+Tabel 3.1 menyajikan perbandingan komprehensif antara pendekatan yang ada saat ini dengan arsitektur hybrid DETECT-JKN.
+Tabel 3.1: Komparasi Pendekatan Verifikasi: Manual vs Rule-Based vs Pure AI vs DETECT-JKN
+Parameter Komparasi
+Pemeriksaan Manual
+Sistem Rule-Based Murni
+Pure AI / Black-Box ML
+DETECT-JKN (Hybrid HITL)
+Kecepatan Telaah
+Sangat lambat (10-20 mnt/berkas)
+Sangat cepat (<1 detik)
+Cepat (1-3 detik)
+Optimal (Deteksi <2 dtk, Review 2-3 mnt)
+Cakupan Teks EMR
+Tinggi (bisa baca narasi dokter)
+Nol (hanya periksa field tabel)
+Tinggi (membaca seluruh teks)
+Tinggi (ekstraksi entitas klinis spesifik)
+Ketepatan Konteks
+Tinggi (berdasar naluri klinis)
+Sangat rendah (kaku & rigid)
+Sedang (rentan halusinasi/bias)
+Sangat tinggi (NLP terpandu guideline resmi)
+Transparansi / Explainability
+Bergantung catatan verifikator
+Jelas (aturan logika IF-THEN)
+Sangat rendah (skor probabilitas gelap)
+Sangat tinggi (kutipan teks asli + rujukan aturan)
+Tingkat False Positive
+Rendah (validasi langsung)
+Sangat tinggi (banyak false alert)
+Sedang-Tinggi (bila data bergeser)
+Rendah terkontrol (filtering berlapis)
+Otonomi Keputusan
+100% Manusia
+Sistem tolak otomatis kaku
+Berisiko mendikte keputusan
+100% Manusia (Decision Support Fail-Safe)
+Kepatuhan UU PDP
+Risiko kebocoran kertas berkas
+Aman (skrip lokal)
+Rentan jika kirim ke cloud publik
+Aman (Private On-Premise & De-identifikasi)
+
+3.4 Prinsip Right-Sized Technology (Teknologi Tepat Guna)
+Prinsip rekayasa utama yang dipegang teguh dalam pengembangan DETECT-JKN adalah «Right-Sized Technology». Kami menolak pemborosan komputasi yang semata-mata mengejar tren teknologi AI yang berlebihan:
+[PRINSIP RIGHT-SIZED TECHNOLOGY] « Jangan pernah menggunakan model AI generatif atau deep learning yang mahal dan rentan halusinasi untuk menyelesaikan masalah yang dapat dipecahkan secara sempurna oleh aturan logika deterministik sederhana. AI hanya diaktifkan pada titik di mana keahlian semantiknya benar-benar memberikan nilai tambah nyata. »
+
+Dengan menerapkan prinsip ini, validasi format, batasan umur, kecocokan gender terhadap diagnosis, serta kombinasi koding yang mutlak dilarang (unbundling rule) diselesaikan 100% pada lapisan deterministik pertama. Model NLP hanya dipanggil untuk melakukan penalaran semantik terhadap narasi resume medis pada berkas yang telah lolos saringan administratif awal, sehingga menghemat biaya komputasi server hingga lebih dari 70%.
+
+BAB IV: ARSITEKTUR & MEKANISME CARA KERJA SISTEM
+4.1 End-to-End Workflow Pipeline
+Arsitektur DETECT-JKN dibangun dengan pendekatan modular berorientasi pipa pemrosesan data (data pipeline) yang terdiri dari 6 modul berurutan sebagaimana diilustrasikan secara konseptual pada Gambar 4.1.
+Langkah 1: Modul 1: Ingestion Data & Validasi Integritas — Menerima data klaim, memvalidasi struktur skema, dan melakukan de-identifikasi data pribadi.
+Langkah 2: Modul 2: Deterministic Rule-Based Pre-Filter — Menjalankan aturan verifikasi administratif dan logika koding baku INA-CBG.
+Langkah 3: Modul 3: Contextual Clinical NLP Anomaly Engine — Menganalisis narasi resume medis EMR dan membandingkannya dengan severity level klaim.
+Langkah 4: Modul 4: Risk Scoring & Dynamic Prioritization Queue — Menghitung skor komposit anomali dan mengelompokkan berkas ke dalam antrean triase prioritas.
+Langkah 5: Modul 5: Explainability Layer & Evidence Span Highlighting — Menyusun ringkasan bukti klinis dan menandai kutipan kalimat penentu.
+Langkah 6: Modul 6: Interactive Verifier Decision Interface — Menyajikan antarmuka visual pendukung keputusan bagi verifikator manusia.
+4.2 Modul 1: Ingestion Data & Validasi Integritas
+Modul Ingestion bertugas menerima payload data klaim elektronik dari sistem E-Klaim FKRTL atau platform bridging SatuSehat berbasis standar HL7 FHIR (Fast Healthcare Interoperability Resources). Sebelum diproses ke mesin analitik, modul ini menjalankan fungsi sanitasi ketat:
+a. Sanitasi Data: Penghapusan (striping) dan enkripsi pseudonim terhadap elemen data pribadi sensitif (Nomor Kartu BPJS, NIK pasien, Nama lengkap, Alamat domisili, dan Nama dokter pemeriksa).
+b. Kelengkapan Berkas: Validasi kelengkapan dokumen minimum: memastikan ketersediaan field diagnosis primer (ICD-10), diagnosis sekunder/komorbiditas, prosedur (ICD-9-CM), dan teks resume medis klinis.
+4.3 Modul 2: Deterministic Rule-Based Pre-Filter
+Modul ini mengimplementasikan katalog aturan baku yang bersumber dari Peraturan Menteri Kesehatan tentang Standar Tarif Pelayanan JKN serta Petunjuk Teknis Koding INA-CBG. Filter ini memeriksa:
+a. Aturan Kompatibilitas Demografis: Verifikasi kesesuaian diagnosis dengan jenis kelamin (misal: diagnosis kebidanan O80 hanya untuk perempuan) dan batasan umur pasien.
+b. Katalog Pasangan Koding Terlarang (Unbundling Pairs): Pendeteksian otomatis prosedur pembedahan yang ditagihkan secara terpisah padahal secara klinis merupakan bagian tak terpisahkan dari prosedur utama.
+c. Validasi Logika Masa Rawat (Length of Stay / LOS): Pemeriksaan batas wajar hari rawat untuk mencegah klaim yang tidak rasional sebelum dialihkan ke modul NLP.
+4.4 Modul 3: Contextual Clinical NLP Anomaly Detection Engine
+Ini merupakan inti inovasi kognitif DETECT-JKN. Pada modul ini, teks resume medis dokter yang tidak terstruktur diproses menggunakan pemodelan bahasa klinis (Clinical NLP) melalui tahapan:
+1. Clinical Named Entity Recognition (NER): Mengekstraksi entitas kunci seperti tanda vital (tekanan darah, frekuensi napas, saturasi oksigen), hasil penunjang laboratorium (enzim jantung troponin, kadar kreatinin, gula darah sewaktu), pembacaan penunjang radiologi/EKG, dan nama obat inotropik/resusitasi.
+2. Severity Assertion & Concept Mapping: Memetakan entitas klinis ke dalam terminologi terstandar (SNOMED-CT / ICD-10) dan menentukan derajat keparahan objektif pasien berdasarkan skor klinis baku (seperti Killip Class pada Infark Miokard atau NIHSS pada Stroke).
+3. Cross-Consistency Evaluation: Membandingkan severity level hasil ekstraksi EMR dengan kode diagnosis klaim yang diajukan faskes. Apabila faskes menagihkan kode komplikasi berat (Severity Level 3), namun pada teks resume medis tidak ditemukan catatan penurunan kesadaran, nilai laboratorium normal, dan tanda vital stabil tanpa terapi intensif, maka sistem mencatat diskrepansi semantik (Upcoding Discrepancy).
+
+Gambar 4.1: Siklus Munculnya Kerentanan dan Anomali pada Pemodelan Bahasa (Sumber: Huang et al., 2024)
+4.5 Modul 4: Risk Scoring & Dynamic Prioritization Queue
+Hasil dari modul 2 dan 3 kemudian diagregasikan ke dalam formula pembobotan komposit untuk menghitung Anomaly Risk Score (rentang 0.0 s.d. 1.0). Skor ini memperhitungkan tiga variabel bobot utama:
+[FORMULA SKORING RISIKO ANOMALI] Risk Score = (w1 × Bobot Diskrepansi Klinis) + (w2 × Delta Finansial Tarif INA-CBG) + (w3 × Indeks Riwayat Faskes)
+
+Di mana delta finansial mengukur selisih nominal tarif klaim antara diagnosis yang diajukan faskes dengan estimasi diagnosis yang terkonfirmasi bukti klinis. Berkas klaim selanjutnya dialokasikan ke dalam antrean triase bergradasi warna:
+• Antrean Merah: Merah (High Risk - Skor > 0.70): Berkas memiliki diskrepansi klinis signifikan dan selisih tarif tinggi; wajib menjadi prioritas telaah mendalam verifikator.
+• Antrean Kuning: Kuning (Medium Risk - Skor 0.40 - 0.70): Berkas memiliki ketidaklengkapan dokumen atau diskrepansi minor; dimasukkan ke dalam antrean review sampling terarah.
+• Antrean Hijau: Hijau (Low Risk - Skor < 0.40): Berkas konsisten secara klinis dan administratif; diarahkan untuk jalur verifikasi cepat (fast-track).
+4.6 Modul 5: Explainability Layer & Evidence Span Highlighting
+Salah satu faktor penentu keberhasilan adopsi sistem kecerdasan buatan oleh tenaga profesional adalah Explainability (kemampuan sistem menjelaskan alasan di balik rekomendasinya). DETECT-JKN tidak pernah menyajikan skor probabilitas mentah tanpa konteks. Modul 5 menyajikan:
+a. Evidence Span Highlighting: Menampilkan cuplikan kalimat asli dari resume medis dokter dengan penyorotan warna visual.
+b. Discrepancy Justification: Menampilkan matriks perbandingan: Kode Diajukan Faskes vs Temuan Resume Medis vs Pedoman Koding Resmi.
+c. Financial Impact Estimation: Menampilkan perkiraan selisih pembayaran klaim yang dapat diselamatkan jika klaim dikoreksi sesuai fakta klinis.
+4.7 Modul 6: Interactive Verifier Decision Support Interface
+Antarmuka pengguna (UI/UX) dirancang secara ergonomis dan terintegrasi mulus dengan kebiasaan kerja verifikator:
+a. Layar Terbelah (Split-Screen View): Sisi kiri menampilkan dokumen resume medis EMR lengkap dengan penanda bukti; sisi kanan menampilkan kartu rekomendasi sistem, rujukan pedoman koding, dan panel aksi keputusan.
+b. Panel Aksi Tiga Tombol (Three-Action Control): Verifikator memiliki tiga opsi tindakan instan: (1) Terima Flag & Konfirmasi Koreksi ke Faskes, (2) Tolak Flag (Dismiss) dengan memasukkan alasan klinis verifikator, atau (3) Eskalasi ke Tim Kendali Mutu dan Kendali Biaya (TKMKB) untuk kasus sengketa rumit.
+
+BAB V: TATA KELOLA DATA, KEAMANAN, DAN PRIVASI
+5.1 Kepatuhan Terhadap UU PDP No. 27/2022 & UU Kesehatan No. 17/2023
+Data medis rekam medis dan data kepesertaan jaminan kesehatan diklasifikasikan sebagai Data Pribadi Spesifik (bersifat sensitif) berdasarkan Pasal 4 ayat (3) Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP). Pelanggaran terhadap kerahasiaan data ini memiliki konsekuensi hukum pidana, perdata, dan sanksi administratif yang sangat berat. DETECT-JKN mengadopsi prinsip Privacy by Design dan Security by Default sejak baris kode pertama dirancang.
+Tabel 5.1: Matriks Kepatuhan Prinsip UU PDP No. 27/2022 pada Platform DETECT-JKN
+Prinsip UU PDP (Pasal 16)
+Implementasi Konkret pada DETECT-JKN
+Instrumen Verifikasi
+Tujuan Terbatas & Spesifik
+Pemrosesan data terbatas semata-mata untuk verifikasi keabsahan koding klaim JKN, tidak digunakan untuk profil komersial.
+Kontrak pemrosesan data & audit kepatuhan internal.
+Data Minimization
+Hanya menyerap field klinis relevan (diagnosa, tindakan, resume klinis); data finansial pribadi dan keluarga pasien dipangkas.
+Modul sanitasi payload pra-ingestion.
+Akurasi & Integritas
+Data klinis diproses dalam format kriptografis hashing (SHA-256) untuk menjamin tidak ada manipulasi data selama transit.
+Digital signature berkas klaim elektronik.
+Pembatasan Akses
+Akses berbasis peran ketat (RBAC) dengan autentikasi multifaktor (MFA) bagi seluruh operator verifikator.
+OIDC / SAML SSO integration BPJS.
+Akuntabilitas & Audit Trail
+Setiap akses pembacaan berkas dan tindakan keputusan verifikator dicatat dalam immutable append-only log.
+WORM (Write Once Read Many) audit log.
+
+5.2 Strategi De-identifikasi & Pseudonimisasi Data Medis
+Sebelum berkas klaim masuk ke dalam mesin analisis NLP, sistem menjalankan algoritma de-identifikasi otomatis yang mengacu pada standar internasional Safe Harbor Method yang diselaraskan dengan regulasi nasional:
+1. Penghilangan 18 Atribut Pengenal Langsung: NIK, Nama Pasien, Nomor Rekam Medis Rumah Sakit, Nomor Kartu BPJS, Nomor Kontak, Alamat, Tanggal Lahir (dikonversi menjadi kelompok usia/tahun), dan Nama Dokter Penanggung Jawab Pelayanan (DPJP).
+2. Pseudonimisasi Kriptografis Bergaram (Salted Hashing): Penggantian nomor berkas klaim menggunakan identifier anonim acak (UUIDv4 bertanda garam) yang kuncinya disimpan terpisah di Key Management System (KMS) terenkripsi FIPS 140-2 Level 3.
+5.3 Arsitektur Penyimpanan & Keamanan Jaringan (Private On-Premise Cloud)
+Untuk menjamin kedaulatan data nasional, DETECT-JKN dirancang dengan arsitektur Zero Egress:
+• Sistem beroperasi 100% di dalam perimeter jaringan tertutup (on-premise data center BPJS Kesehatan atau Government Private Cloud).
+• TIDAK ADA data medis, teks resume dokter, atau metadata pasien yang dikirimkan ke Application Programming Interface (API) model bahasa komersial publik pihak ketiga (seperti OpenAI, Anthropic, atau Google publik) melalui jaringan internet terbuka.
+• Model NLP dan embedding medis di-deploy secara lokal menggunakan container mandiri (Docker/Kubernetes) dengan isolasi jaringan (air-gapped network compliance).
+5.4 Manajemen Akses (RBAC) & Immutable Audit Trail
+Pengendalian hak akses diatur melalui Role-Based Access Control (RBAC) berjenjang:
+• Verifikator Lapangan: Akses read-only ke data klaim anonim dan wewenang memberikan aksi keputusan verifikasi.
+• Supervisor / Kepala Kantor Cabang: Wewenang meninjau eskalasi sengketa, melihat agregat analitik, dan memvalidasi koreksi tarif.
+• Auditor / Tim Anti-Fraud: Akses audit trail forensik terhadap pola faskes berulang.
+• Administrator Sistem: Pengelolaan infrastruktur tanpa hak membuka konten data rekam medis pasien.
+5.5 Tata Kelola Data Pengujian (Synthetic Data & Validated Open Data)
+Dalam fase riset, perancangan purwarupa, dan demonstrasi kompetisi Healthkathon 2026, tim secara tegas berkomitmen tidak menggunakan data rekam medis pasien JKN asli tanpa izin resmi dari BPJS Kesehatan dan Kementerian Kesehatan. Sebagai gantinya, pengujian dilakukan menggunakan:
+1. Dataset Klinis Sintetis Terstruktur: Dibuat berdasarkan parameter klinis baku pedoman INA-CBG dan konsensus dokter spesialis kardiologi/neurologi, mencakup skenario klaim normal, upcoding jelas, dan kasus batas (borderline).
+2. Open Health Research Dataset Terdeidentifikasi: Mengadaptasi subset data penelitian terbuka yang telah diaudit keamanannya (seperti MIMIC-IV Clinical Database) yang diselaraskan dengan tata nama diagnosis ICD-10 Indonesia.
+
+BAB VI: KERANGKA HUMAN-IN-THE-LOOP & HUMAN AUTONOMY
+6.1 Filosofi Human-Centered AI dalam Pelayanan Kesehatan
+Penerapan kecerdasan buatan pada domain pelayanan kesehatan memiliki konsekuensi etis, legal, dan finansial yang jauh lebih besar dibandingkan domain e-commerce atau hiburan umum. Sebuah kesalahan klasifikasi AI pada sistem klaim dapat mencederai hubungan kemitraan dengan faskes, memicu sengketa medikolegal, atau merugikan keuangan jaminan sosial. Oleh karena itu, DETECT-JKN menganut filosofi Human-Centered AI: menempatkan manusia sebagai pusat kendali intelektual, sedangkan kecerdasan buatan bertindak sebagai instrumen penguat kemampuan (intelligence augmentation).
+6.2 Prinsip Utama: Fail-Safe AI & Human Autonomy
+Prinsip integritas perancangan DETECT-JKN dirangkum dalam satu asas fundamental:
+[PRINSIP FAIL-SAFE AI] « AI diperbolehkan membuat kekeliruan dalam memberikan indikasi atau rekomendasi awal, namun AI TIDAK PERNAH diizinkan menjadi pihak tunggal yang menetapkan keputusan akhir terhadap klaim faskes. »
+
+Dengan asas fail-safe ini, setiap potensi kesalahan inferensi (seperti false positive atau misinterpretasi narasi dokter) akan tersaring dan dihentikan di meja kerja verifikator manusia sebelum berdampak pada status pembayaran klaim resmi.
+6.3 Matriks Pembagian Peran AI vs Verifikator Manusia
+Tabel 6.1 merinci batas demarkasi yang tegas antara tanggung jawab sistem komputer dengan hak prerogatif verifikator manusia.
+Tabel 6.1: Matriks Pembagian Peran Kerja AI vs Verifikator Manusia (Human-in-the-Loop)
+Dimensi Tugas
+Fungsi Sistem (AI / Rule Engine)
+Wewenang Verifikator Manusia
+Pemrosesan Berkas
+Menyaring ribuan berkas klaim secara simultan dalam hitungan detik.
+Memvalidasi hasil penyaringan pada berkas prioritas tinggi.
+Deteksi Diskrepansi
+Mencari inkonsistensi antara kode klaim dengan teks EMR.
+Menilai kewajaran klinis berdasarkan konteks lokal pasien.
+Skoring & Triase
+Menghitung Anomaly Risk Score dan mengurutkan antrean prioritas.
+Menentukan apakah antrean prioritas perlu disesuaikan.
+Penyajian Bukti
+Menampilkan evidence span dan pasal pedoman koding terkait.
+Membaca bukti dan mempertimbangkan riwayat pengobatan pasien.
+Pengambilan Keputusan
+DILARANG menetapkan status persetujuan atau penolakan klaim.
+MEMILIKI HAK TUNGGAL menyetujui, mengoreksi, atau menolak klaim.
+Klarifikasi Faskes
+Menyusun draf catatan diskrepansi klinis secara otomatis.
+Menghubungi koder/dokter faskes untuk mediasi klinis.
+
+6.4 Alur Interaksi Verifikator & Mekanisme Decision Override
+Alur interaksi verifikator dengan sistem dirancang transparan melalui protokol 3 tahap:
+1. Tahap Telaah Bukti: Review Indikasi & Bukti: Verifikator membuka berkas antrean prioritas merah; sistem menyajikan ringkasan anomali, kode ICD-10 yang ditagihkan faskes, serta penanda kutipan rekam medis yang bertentangan.
+2. Tahap Keputusan: Validasi Manusia (Human Decision): Verifikator menimbang apakah diskrepansi tersebut sahih. Jika faskes terbukti salah koding, verifikator memilih opsi 'Konfirmasi Koreksi Klaim'. Jika verifikator menemukan bukti pembenaran lain pada berkas fisik penunjang, verifikator memilih opsi 'Override / Dismiss Flag'.
+3. Tahap Feedback: Continuous Feedback Loop: Setiap aksi override dicatat bersama alasan profesional verifikator. Data umpan balik ini disimpan sebagai bahan evaluasi berkala untuk melakukan fine-tuning dan kalibrasi ambang batas (threshold) model NLP secara berkelanjutan.
+6.5 Strategi Komprehensif Mitigasi Halusinasi AI & Alert Fatigue
+Berdasarkan survei ilmiah terkini mengenai fenomena halusinasi pada model bahasa besar (sebagaimana dipaparkan oleh Huang et al., 2024), halusinasi klinis terbagi menjadi Intrinsic Hallucination (keluaran bertentangan dengan fakta teks masukan) dan Extrinsic Hallucination (keluaran menambahkan informasi yang tidak dapat diverifikasi). DETECT-JKN menerapkan arsitektur mitigasi multi-lapis:
+1. Grounded Boundary: Grounded Retrieval-Augmented Generation (RAG): Model NLP tidak dibiarkan berimajinasi bebas. Model dibatasi hanya mengekstrak fakta yang secara eksplisit tertulis di resume medis dan mencocokkannya ke database pengetahuan resmi INA-CBG dan ICD-10.
+2. Extractive Span: Deterministic Extraction Matching: Alih-alih menghasilkan teks bebas baru, sistem menggunakan pendekatan Extractive Highlighting (menandai kata dan frasa aktual dari dokumen sumber).
+3. Adaptive Filtering: Threshold Calibration Menghadapi Alert Fatigue: Mengatur ambang batas pemicu flag pada tingkat keyakinan (confidence level) tinggi (>80%) agar verifikator tidak dibanjiri peringatan palsu yang tidak perlu.
+
+Gambar 6.1: Taksonomi Deteksi dan Penilaian Ketidakpastian Model AI (Sumber: Huang et al., 2024)
+
+Gambar 6.2: Taksonomi Strategi Mitigasi Halusinasi AI yang Diadaptasi pada DETECT-JKN (Sumber: Huang et al., 2024)
+

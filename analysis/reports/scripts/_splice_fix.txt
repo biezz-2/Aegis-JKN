@@ -1,0 +1,69 @@
+  MISS: N:\HEALTHKATHON\analysis\reports\00-EXECUTIVE-SUMMARY.md | 'Where laporan...'
+  fixed: N:\HEALTHKATHON\analysis\reports\01-governance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\01-governance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\01-governance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\01-governance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\01-governance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\01-governance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\01-governance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\01-governance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\01-governance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\01-governance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\01-governance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\01-governance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\03-architecture.md
+  fixed: N:\HEALTHKATHON\analysis\reports\03-architecture.md
+  fixed: N:\HEALTHKATHON\analysis\reports\03-architecture.md
+  fixed: N:\HEALTHKATHON\analysis\reports\05-evidence.md
+  fixed: N:\HEALTHKATHON\analysis\reports\05-evidence.md
+  fixed: N:\HEALTHKATHON\analysis\reports\05-evidence.md
+  fixed: N:\HEALTHKATHON\analysis\reports\05-evidence.md
+  fixed: N:\HEALTHKATHON\analysis\reports\05-evidence.md
+  fixed: N:\HEALTHKATHON\analysis\reports\05-evidence.md
+  fixed: N:\HEALTHKATHON\analysis\reports\05-evidence.md
+  fixed: N:\HEALTHKATHON\analysis\reports\06-graph-mhgsl.md
+  fixed: N:\HEALTHKATHON\analysis\reports\06-graph-mhgsl.md
+  fixed: N:\HEALTHKATHON\analysis\reports\07-generator.md
+  fixed: N:\HEALTHKATHON\analysis\reports\08-frontend.md
+  fixed: N:\HEALTHKATHON\analysis\reports\09-security.md
+  fixed: N:\HEALTHKATHON\analysis\reports\09-security.md
+  fixed: N:\HEALTHKATHON\analysis\reports\10-competition.md
+  fixed: N:\HEALTHKATHON\analysis\reports\11-compliance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\11-compliance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\11-compliance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\11-compliance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\11-compliance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\11-compliance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\11-compliance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\11-compliance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\11-compliance.md
+  fixed: N:\HEALTHKATHON\analysis\reports\13-text-channel.md
+  fixed: N:\HEALTHKATHON\analysis\reports\14-language.md
+  fixed: N:\HEALTHKATHON\analysis\reports\14-language.md
+  fixed: N:\HEALTHKATHON\analysis\reports\15-code-quality.md
+  fixed: N:\HEALTHKATHON\analysis\reports\15-code-quality.md
+  fixed: N:\HEALTHKATHON\analysis\reports\15-code-quality.md
+  fixed: N:\HEALTHKATHON\analysis\reports\15-code-quality.md
+  fixed: N:\HEALTHKATHON\analysis\reports\17-roadmap.md
+  fixed: N:\HEALTHKATHON\analysis\reports\17-roadmap.md
+  fixed: N:\HEALTHKATHON\analysis\reports\17-roadmap.md
+  fixed: N:\HEALTHKATHON\analysis\reports\17-roadmap.md
+  fixed: N:\HEALTHKATHON\analysis\reports\17-roadmap.md
+  fixed: N:\HEALTHKATHON\analysis\reports\20-repo-artifact-integrity.md
+  fixed: N:\HEALTHKATHON\analysis\reports\20-repo-artifact-integrity.md
+  fixed: N:\HEALTHKATHON\analysis\reports\20-repo-artifact-integrity.md
+  MISS: N:\HEALTHKATHON\analysis\reports\20-repo-artifact-integrity.md | 'Tidak satu pun punyabارء تلكتحقق manifest eksperimen...'
+  MISS: N:\HEALTHKATHON\analysis\reports\22-proposal-docx-audit.md | 'kelengkapan kernelDAY proposal...'
+  MISS: N:\HEALTHKATHON\analysis\reports\22-proposal-docx-audit.md | 'sudahala...'
+  MISS: N:\HEALTHKATHON\analysis\reports\22-proposal-docx-audit.md | 'dokumen ini寧gly mengulang...'
+  MISS: N:\HEALTHKATHON\analysis\reports\22-proposal-docx-audit.md | 'Денominator...'
+  MISS: N:\HEALTHKATHON\analysis\reports\22-proposal-docx-audit.md | 'yang支持 salah satu pun...'
+  MISS: N:\HEALTHKATHON\analysis\reports\22-proposal-docx-audit.md | 'yaituInitializer squarely triliunan...'
+  MISS: N:\HEALTHKATHON\analysis\reports\22-proposal-docx-audit.md | 'tanda petik二重 Indonesia...'
+  MISS: N:\HEALTHKATHON\analysis\reports\22-proposal-docx-audit.md | 'SkalaSaving nasional...'
+  MISS: N:\HEALTHKATHON\analysis\reports\22-proposal-docx-audit.md | 'dan平均值 overcharge...'
+
+=== Summary ===
+Fixed: 53
+Missed: 11
+Total repairs: 64

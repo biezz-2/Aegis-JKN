@@ -1,0 +1,12 @@
+
+### claims_300_v2.1.csv (notebook payload)
+   auto_clear   n=240 mean=0.0862 median=0.0800 min=0.04 max=0.14
+   escalate     n= 36 mean=0.8689 median=0.8600 min=0.80 max=0.95
+   review       n= 24 mean=0.5908 median=0.6200 min=0.40 max=0.79
+   proposal claims: auto_clear 0.086 | review 0.591 | escalate 0.869
+
+### corpus claims_v2_live.csv
+   auto_clear   n=240 mean=0.0862 median=0.0800 min=0.04 max=0.14
+   escalate     n= 36 mean=0.8689 median=0.8600 min=0.80 max=0.95
+   review       n= 24 mean=0.5908 median=0.6200 min=0.40 max=0.79
+   proposal claims: auto_clear 0.086 | review 0.591 | escalate 0.869

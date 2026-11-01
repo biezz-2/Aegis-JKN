@@ -1,0 +1,81 @@
+import type { AuditLogEntry } from "$lib/types";
+
+export const SAMPLE_LEAF_HASHES = [
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
+  "3e23e8160039594a33894f6564e1b1348bbd7a0088d42c4acb73eeaed59c009d",
+  "2e7d2c03a9507ae265ecf5b5356885a53393a2029d24139499726b4259fb79c0",
+  "18ac3e7343f016890c510e93f935261169d9e3f565436429830faf0934f4f8e4",
+  "3f79bb7b435b05321651daefd374cdc681dc06faa65e374e38337b88ca046dea",
+];
+
+export const MERKLE_ROOT_HASH = "8f3b2075a1d77cb398939c8942b0ee39d2cbb54d72e6c52864149021a084c8a5";
+
+export const INITIAL_AUDIT_LOGS: AuditLogEntry[] = [
+  {
+    id: "LOG-001",
+    timestamp: "2026-10-24 08:15:22",
+    actor: "system.ingest.fhir",
+    action: "INGEST_BATCH",
+    targetClaimId: "BATCH-2026-10-01",
+    prevHash: "0000000000000000000000000000000000000000000000000000000000000000",
+    hash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    signature: "sig_ed25519_9a8fbc...77d",
+    verified: true,
+  },
+  {
+    id: "LOG-002",
+    timestamp: "2026-10-24 08:15:30",
+    actor: "agent.mhgsl.screening",
+    action: "DETECT_ANOMALY",
+    targetClaimId: "KLM016",
+    prevHash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    hash: "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
+    signature: "sig_ed25519_4b1ecd...09a",
+    verified: true,
+  },
+  {
+    id: "LOG-003",
+    timestamp: "2026-10-24 08:15:31",
+    actor: "agent.mhgsl.screening",
+    action: "FLAG_CLONED_CLAIM",
+    targetClaimId: "KLM017",
+    prevHash: "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
+    hash: "3e23e8160039594a33894f6564e1b1348bbd7a0088d42c4acb73eeaed59c009d",
+    signature: "sig_ed25519_2f87a3...c55",
+    verified: true,
+  },
+  {
+    id: "LOG-004",
+    timestamp: "2026-10-24 08:16:04",
+    actor: "oasis.simulation.eval",
+    action: "CORRELATE_FEED",
+    targetClaimId: "SYND-01",
+    prevHash: "3e23e8160039594a33894f6564e1b1348bbd7a0088d42c4acb73eeaed59c009d",
+    hash: "2e7d2c03a9507ae265ecf5b5356885a53393a2029d24139499726b4259fb79c0",
+    signature: "sig_ed25519_d10034...fe2",
+    verified: true,
+  },
+  {
+    id: "LOG-005",
+    timestamp: "2026-10-24 08:17:15",
+    actor: "auditor.bpjs.verifikator01",
+    action: "ESCALATE_INVESTIGATION",
+    targetClaimId: "KLM016",
+    prevHash: "2e7d2c03a9507ae265ecf5b5356885a53393a2029d24139499726b4259fb79c0",
+    hash: "18ac3e7343f016890c510e93f935261169d9e3f565436429830faf0934f4f8e4",
+    signature: "sig_ed25519_88a44c...12b",
+    verified: true,
+  },
+  {
+    id: "LOG-006",
+    timestamp: "2026-10-24 08:20:00",
+    actor: "system.merkle.anchor",
+    action: "COMMIT_BLOCK",
+    targetClaimId: "MERKLE_ROOT",
+    prevHash: "18ac3e7343f016890c510e93f935261169d9e3f565436429830faf0934f4f8e4",
+    hash: "3f79bb7b435b05321651daefd374cdc681dc06faa65e374e38337b88ca046dea",
+    signature: "sig_ed25519_fa913b...667",
+    verified: true,
+  },
+];

@@ -1,0 +1,13 @@
+import pandas as pd, numpy as np
+df = pd.read_csv("N:/HEALTHKATHON/analysis/reports/work22/claims_300_nb.csv")
+print("rows", len(df))
+print("is_fraud sum", int(df['is_fraud'].sum()), "rate", round(df['is_fraud'].mean()*100,2))
+print("status:\n", df['status'].value_counts())
+print("risiko:\n", df['risiko'].value_counts())
+print("sindikat:\n", df['sindikat'].value_counts())
+print("modus:\n", df['modus'].value_counts())
+print("total biaya", df['biaya_rp'].sum())
+print("skor_fraud describe:\n", df['skor_fraud'].describe())
+print("sentimen:\n", df['sentiment'].value_counts())
+print("kontradiksi_narasi:", df['kontradiksi_narasi'].sum())
+print("is_fraud vs sindikat:\n", pd.crosstab(df['sindikat'], df['is_fraud']))

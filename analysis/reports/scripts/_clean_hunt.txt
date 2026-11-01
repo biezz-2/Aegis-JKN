@@ -1,0 +1,33 @@
+'rumah tangga'                                -- none --
+'ditulis dalam kurung'                        -- none --
+'closure criteria ditulis'                    -- none --
+'Di mana laporan'                             -- none --
+'tetapi belum harmonis'                       -- none --
+'komponen teknis'                             [('a55ad04e74', 2), ('a784049af2', 2), ('a7cf2498a9', 2), ('ac31c607e0', 10), ('ae82349eaa', 2)]
+'titik data sintetis'                         -- none --
+'rencana on-prem'                             -- none --
+'harus bertahan selama masa transisi'         -- none --
+'administrasi internal BPJS'                  -- none --
+'label kanal teks berada di hilir'            -- none --
+'sudah seharusnya'                            -- none --
+'definisi asli hanya di'                      -- none --
+'tidak lagi diperlukan'                       -- none --
+'bergaya Wizard-of-Oz'                        -- none --
+'devDependency'                               -- none --
+'Stretch'                                     -- none --
+'lembar instrumen SUS'                        -- none --
+'klaim AUPRC'                                 -- none --
+'saat demo'                                   -- none --
+'notebook yang memakainya'                    -- none --
+'pembangkitan deterministik'                  -- none --
+'inti proposal'                               [('a55ad04e74', 4), ('af0873cb18', 13)]
+'sudah ada'                                   [('a4b9f27196', 64), ('a55ad04e74', 2), ('a784049af2', 2), ('a7cf2498a9', 53), ('aab5c3b68f', 11), ('abef7738a0', 66), ('ac31c607e0', 11), ('ae82349eaa', 10), ('af0873cb18', 8), ('af743ae9fc', 10)]
+'Skala penghematan'                           -- none --
+'menyelamatkan ratusan miliar'                [('a4b9f27196', 8), ('a55ad04e74', 8), ('a7cf2498a9', 2), ('aab5c3b68f', 12), ('ae82349eaa', 16)]
+'pengumpulan sumber'                          -- none --
+'gagal masuk ke pola'                         -- none --
+'menentukan "netral"'                         -- none --
+'mempresentasikan diri'                       -- none --
+'saya tidak melaporkannya'                    -- none --
+'di mana laporan'                             -- none --
+'jumlah skenario minimum'                     -- none --

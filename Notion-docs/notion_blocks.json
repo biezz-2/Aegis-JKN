@@ -1,0 +1,164 @@
+{
+  "object": "list",
+  "results": [
+    {
+      "object": "block",
+      "id": "3f23e603-1ab7-8084-862d-cb9343046719",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-808d-b2cb-fe92cd62391d"
+      },
+      "created_time": "2026-10-07T05:14:00.000Z",
+      "last_edited_time": "2026-10-07T05:14:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "paragraph",
+      "paragraph": {
+        "rich_text": [],
+        "icon": null,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "3f23e603-1ab7-80e1-9237-e32ba7745803",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-808d-b2cb-fe92cd62391d"
+      },
+      "created_time": "2026-10-07T05:14:00.000Z",
+      "last_edited_time": "2026-10-07T05:14:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "paragraph",
+      "paragraph": {
+        "rich_text": [],
+        "icon": null,
+        "color": "default"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "3ef3e603-1ab7-81d1-962a-f8955843ed0f",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-808d-b2cb-fe92cd62391d"
+      },
+      "created_time": "2026-10-04T02:28:00.000Z",
+      "last_edited_time": "2026-10-07T06:18:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "3cd3e603-1ab7-81e6-8f79-002794b87324"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "child_page",
+      "child_page": {
+        "title": "Aegis-JKN: Arsitektur dan Strategi Pengembangan Sistem Deteksi Kecurangan Ekosistem JKN \u2014 Analisis Kelayakan, Desain Logika, dan Kerangka Proposal Healthkathon 2026"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "310b35a5-9346-42df-af47-df9897cdcda1",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-808d-b2cb-fe92cd62391d"
+      },
+      "created_time": "2026-10-07T00:08:00.000Z",
+      "last_edited_time": "2026-10-07T05:15:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "child_database",
+      "child_database": {
+        "title": "Dataset Riset \u2014 Deteksi Fraud JKN (Aegis-JKN \u00d7 Healthkathon 2026)"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "3f23e603-1ab7-81bf-99a7-d3f1768f1708",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-808d-b2cb-fe92cd62391d"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T06:29:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": true,
+      "in_trash": false,
+      "type": "child_page",
+      "child_page": {
+        "title": "Dataset Simulasi Aegis-JKN \u2014 100 Klaim Sintetis"
+      },
+      "archived": false
+    },
+    {
+      "object": "block",
+      "id": "c783afb3-d0d4-4582-9545-6180b7b7756b",
+      "parent": {
+        "type": "page_id",
+        "page_id": "3f23e603-1ab7-808d-b2cb-fe92cd62391d"
+      },
+      "created_time": "2026-10-07T00:20:00.000Z",
+      "last_edited_time": "2026-10-07T11:36:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "325d872b-594c-81ee-a3e4-0002bd457db6"
+      },
+      "has_children": false,
+      "in_trash": false,
+      "type": "child_database",
+      "child_database": {
+        "title": "Klaim Aegis-JKN v2 (300 Baris)"
+      },
+      "archived": false
+    }
+  ],
+  "next_cursor": null,
+  "has_more": false,
+  "type": "block",
+  "block": {},
+  "request_id": "3773d522-a540-4870-8ae1-e0166875637f"
+}

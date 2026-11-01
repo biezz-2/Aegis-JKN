@@ -1,0 +1,79 @@
+
+==============================================================================
+1. KOLOM 03 §5 vs CSV
+==============================================================================
+properti di kamus §5: 24
+kolom bisnis di CSV : 27
+ADA di kamus tapi TIDAK di CSV: []
+ADA di CSV tapi TIDAK di kamus: ['Alasan Berobat', 'Layanan', 'Rujukan']
+kolom metadata Notion: ['_notion_page_id', '_last_edited']
+
+==============================================================================
+2. _last_edited: PETELAJAN
+==============================================================================
+   2026-10-07T00:24:00.000Z: n=1 -> ['KLM031']
+   2026-10-07T04:41:00.000Z: n=200 -> ['KLM285', 'KLM278', 'KLM264', 'KLM280', 'KLM263', 'KLM281', 'KLM271', 'KLM276']...
+   2026-10-07T04:50:00.000Z: n=97 -> ['KLM080', 'KLM079', 'KLM078', 'KLM093', 'KLM097', 'KLM099', 'KLM094', 'KLM084']...
+   2026-10-07T04:51:00.000Z: n=2 -> ['KLM053', 'KLM043']
+
+==============================================================================
+3. KLM031
+==============================================================================
+   _last_edited: 2026-10-07T00:24:00.000Z | Alasan kosong: True
+   risiko/status: low auto_clear
+
+==============================================================================
+4. ANOMALI LOS vs LAYANAN
+==============================================================================
+rawat inap LOS=0 : [('KLM008', 'K80.2', '96.04', 'SYND-03', 'fraud'), ('KLM012', 'K80.2', '96.04', 'SYND-03', 'fraud'), ('KLM010', 'K80.2', '96.04', 'SYND-03', 'fraud')]
+rawat jalan LOS=1: [('KLM089', 'E11.9', 'low', '1150000'), ('KLM059', 'E11.9', 'low', '1100000'), ('KLM074', 'K29.7', 'low', '750000'), ('KLM029', 'E11.9', 'low', '1050000'), ('KLM044', 'K29.7', 'low', '700000')]
+
+==============================================================================
+5. KLAIM §6: LABEL RISIKO vs RENTANG SKOR (dua interpretasi ambang)
+==============================================================================
+interpretasi '>= batas masuk kelas atas' (konsisten dengan data): 0 mismatch
+interpretasi '> batas masuk kelas atas' (konsisten dengan 10-sim §v2): 1 mismatch [('KLM115', '0.8', 'fraud')]
+
+==============================================================================
+6. COVERAGE 'RASIO' DI DALAM ALASAN
+==============================================================================
+baris dengan prosedur ber-acuan: 144 | yang menyebut 'rasio': 72
+
+==============================================================================
+7. MATRIKS STATUS x RISIKO (final)
+==============================================================================
+   auto_clear  low     240
+   escalate    fraud   36
+   review      high    14
+   review      medium  10
+review = medium+high: 24 | escalate = fraud: 36
+auto_clear = low: 240
+
+==============================================================================
+8. HITUNGAN SINDIKAT
+==============================================================================
+fraud DENGAN sindikat : 34  -> ['SYND-01', 'SYND-02', 'SYND-03', 'SYND-04', 'SYND-06', 'SYND-07', 'SYND-08', 'SYND-09']
+high DENGAN sindikat   : 2 -> ['SYND-05'] ['KLM016', 'KLM017']
+fraud TANPA sindikat  : 2 -> ['KLM121', 'KLM122']
+Total baris ber-sindikat: 36
+
+==============================================================================
+9. ENTITAS PASIEN: ID -> NAMA
+==============================================================================
+pasien dengan >1 nama: {}
+dokter dengan >1 nama: {}
+cek ID rawam (tanpa nama) unik? 40
+
+==============================================================================
+10. UMPAN BALIK PASIEN: TEMPLATE
+==============================================================================
+jumlah unik: 36
+distribusi: {20: 2, 22: 1, 13: 1, 7: 1, 37: 2, 29: 1, 39: 1, 26: 1, 9: 1, 3: 3, 4: 2, 1: 19, 5: 1}
+
+==============================================================================
+11. SKOR SENTIMEN: hub dengan label
+==============================================================================
+   negatif  n=72 min=-0.90 maks=-0.30 nilai unik=26 gap_ke_kelas_berikut=n/a
+   netral   n=58 min=0.05 maks=0.15 nilai unik=9 gap_ke_kelas_berikut=
+   positif  n=170 min=0.60 maks=0.85 nilai unik=25 gap_ke_kelas_berikut=-
+cek: rentang negatif < 0 < netral 0..0.2 < positif >0.5 -> konsisten, TIDAK ada baris netral dengan skor di luar [0,0.2]: 0

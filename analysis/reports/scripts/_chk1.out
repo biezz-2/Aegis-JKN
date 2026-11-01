@@ -1,0 +1,27 @@
+KLM001 | dx: K29.7 - Gastritis, tanpa perdarahan
+   nar: Pasien nyeri epigastrium; hasil endoskopi gastritis superfisialis. Selama rawat dicatat tindakan kateterisasi jantung dan pemasangan stent koroner.
+   fb : Saya hanya periksa lambung, kenapa ada tagihan tindakan jantung?
+KLM002 | dx: K29.7 - Gastritis, tanpa perdarahan
+   nar: Pasien nyeri epigastrium; hasil endoskopi gastritis superfisialis. Selama rawat dicatat tindakan kateterisasi jantung dan pemasangan stent koroner.
+   fb : Katanya hanya endoskopi, tapi muncul tindakan kateter jantung di tagihan.
+KLM003 | dx: K29.7 - Gastritis, tanpa perdarahan
+   nar: Pasien nyeri epigastrium; hasil endoskopi gastritis superfisialis. Selama rawat dicatat tindakan kateterisasi jantung dan pemasangan stent koroner.
+   fb : Saya tidak pernah sakit dada, kok dibilang dipasang stent?
+KLM018 | dx: E11.9 - Diabetes melitus tipe 2, tanpa komplikasi
+   nar: Kontrol DM tanpa keluhan dada; EKG rutin dalam batas normal. Tercatat tindakan PCI dengan pemasangan stent.
+   fb : Saya kontrol diabetes, tidak pernah sakit dada. Kenapa ada tindakan jantung di tagihan?
+KLM024 | dx: O80 - Persalinan tunggal spontan
+   nar: Persalinan spontan pervaginam berjalan normal; bayi lahir cukup bulan, APGAR 9/10. Tercatat tindakan seksio sesarea atas indikasi fetal distress.
+   fb : Saya melahirkan normal, kenapa ditagih operasi caesar?
+KLM012 | dx: K80.2 - Kolelitiasis, tanpa kolesistitis
+   nar: Kolelitiasis; dilakukan kolesistektomi laparoskopik. Toleransi oral baik, pasien pulang dengan kontrol poliklinik.
+   fb : Muncul tagihan kedua untuk tindakan yang tidak saya ketahui.
+
+--- rows containing 'Tercatat tindakan' ---
+KLM024 | upcoding | Persalinan spontan pervaginam berjalan normal; bayi lahir cukup bulan, APGAR 9/10. Tercatat tindakan seksio sesarea atas indikasi fetal distress.
+KLM018 | upcoding | Kontrol DM tanpa keluhan dada; EKG rutin dalam batas normal. Tercatat tindakan PCI dengan pemasangan stent.
+
+--- K29.7 narratives ---
+   'Gastritis tanpa perdarahan; diberikan terapi PPI. Pasien dianjurkan menghindari kopi dan makanan pedas.'
+   'Gastritis tanpa perdarahan; diberikan terapi PPI. Pasien dianjurkan menghindari kopi.'
+   'Pasien nyeri epigastrium; hasil endoskopi gastritis superfisialis. Selama rawat dicatat tindakan kateterisasi jantung dan pemasangan stent koroner.'

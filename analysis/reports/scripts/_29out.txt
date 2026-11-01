@@ -1,0 +1,14 @@
+fraud n=36 min=0.80 max=0.95
+nonfraud n=264 min=0.04 max=0.79
+overlap: False
+T+F+S tol 0.0005 -> match 258 / 300 (mismatch 42)
+T+F+S tol 0.0050 -> match 258 / 300 (mismatch 42)
+T+F+S tol 0.0110 -> match 271 / 300 (mismatch 29)
+T+F+S tol 0.0200 -> match 275 / 300 (mismatch 25)
+T+F+S tol 0.0500 -> match 285 / 300 (mismatch 15)
+risiko not derivable from T+F+S at 0.35/0.60/0.80: 14 [('KLM123', 0.55, '0.64', 'high'), ('KLM124', 0.55, '0.71', 'high'), ('KLM125', 0.55, '0.67', 'high'), ('KLM126', 0.55, '0.62', 'high'), ('KLM127', 0.55, '0.68', 'high'), ('KLM128', 0.55, '0.63', 'high'), ('KLM129', 0.55, '0.72', 'high'), ('KLM130', 0.55, '0.62', 'high')]
+status/risiko mismatches: 0
+
+payload top keys: ['meta', 'kpi', 'gtSent', 'twSent', 'rdSent', 'riskDist', 'syndHit', 'queue', 'twFeed', 'rdFeed']
+meta: {"version": "v2.1", "seed": 20260707, "theta_feat": 0.85, "gamma_text": 0.1, "honesty": "simulasi sintetis, prevalensi oversampled (14%) — estimasi lapangan 3-7% (label estimasi literatur)", "model": "mistral-oasis:24b", "steps": 300}
+kpi: {"total_claims": 100, "fraud_total": 14, "fraud_detected": 14, "det_rate": 100, "queue_size": 20, "queue_rate": 20, "status": "SESUAI", "ok": true, "accuracy": 93, "feat_edges": 4563, "synd_density": {"SYND-01": 1, "SYND-02": 1, "SYND-03": 1, "SYND-04": 1, "SYND-05": 1}, "kontra_ok": 8, "kontra_total": 8, "capacity": 6667, "prevalensi": 14}

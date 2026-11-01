@@ -1,0 +1,33 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - "prometheus.rules.yml"
+
+scrape_configs:
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Aegis-JKN FastAPI application (OTel metrics endpoint)
+  - job_name: 'aegis-jkn-api'
+    static_configs:
+      - targets: ['host.docker.internal:8000']  # Adjust based on your network setup
+    metrics_path: '/metrics'
+
+  # OTel Collector metrics
+  - job_name: 'otel-collector'
+    static_configs:
+      - targets: ['otel-collector:8888']
+
+  # GPU Exporter
+  - job_name: 'nvidia-gpu-exporter'
+    static_configs:
+      - targets: ['nvidia-gpu-exporter:9400']
+
+  # Jaeger (for tracing metrics)
+  - job_name: 'jaeger'
+    static_configs:
+      - targets: ['jaeger:16686']

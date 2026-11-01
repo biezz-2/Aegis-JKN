@@ -1,0 +1,25 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "graph": "Graph",
+    "simulation": "Simulation",
+    "audit": "Audit",
+    "settings": "Settings"
+  },
+  "common": {
+    "claim": "Claim",
+    "health_facility": "Health Facility",
+    "fraud_detection": "Fraud Detection",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "no_data": "No data found"
+  },
+  "dashboard": {
+    "title": "Fraud Intelligence Overview",
+    "subtitle": "Real-time monitoring of JKN claim anomalies",
+    "trend": "Fraud Trend",
+    "recent_alerts": "Recent Alerts",
+    "no_alerts": "No recent alerts found.",
+    "chart_placeholder": "Chart implementation coming soon (via dataviz skill)"
+  }
+}

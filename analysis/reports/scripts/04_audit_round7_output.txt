@@ -1,0 +1,103 @@
+
+==============================================================================
+1. PEMETAAN SINDIKAT (parsing ID diperbaiki)
+==============================================================================
+
+SYND-01: SEMUA COCOK
+   ID    doc=['KLM001', 'KLM002', 'KLM003']
+          akt=['KLM001', 'KLM002', 'KLM003']
+   faskes doc=RS_A akt=['RS_A'] | dokter doc=['D01', 'D02'] akt=['D01', 'D02']
+   pasien doc=['P01', 'P02', 'P03'] akt=['P01', 'P02', 'P03']
+   modus doc=upcoding akt=['upcoding'] | skor doc=[0.93,1.0] akt=0.93-0.95
+
+SYND-02: SEMUA COCOK
+   ID    doc=['KLM004', 'KLM005', 'KLM006']
+          akt=['KLM004', 'KLM005', 'KLM006']
+   faskes doc=RS_C akt=['RS_C'] | dokter doc=['D05'] akt=['D05']
+   pasien doc=['P08', 'P09', 'P10'] akt=['P08', 'P09', 'P10']
+   modus doc=phantom_billing akt=['phantom_billing'] | skor doc=[0.92,1.0] akt=0.92-0.94
+
+SYND-03: SEMUA COCOK
+   ID    doc=['KLM007', 'KLM008', 'KLM009', 'KLM010', 'KLM011', 'KLM012']
+          akt=['KLM007', 'KLM008', 'KLM009', 'KLM010', 'KLM011', 'KLM012']
+   faskes doc=RS_B akt=['RS_B'] | dokter doc=['D07'] akt=['D07']
+   pasien doc=['P12', 'P13', 'P14'] akt=['P12', 'P13', 'P14']
+   modus doc=unbundling akt=['unbundling'] | skor doc=[0.84,0.87] akt=0.85-0.87
+
+SYND-04: SEMUA COCOK
+   ID    doc=['KLM013', 'KLM014']
+          akt=['KLM013', 'KLM014']
+   faskes doc=RS_E akt=['RS_E'] | dokter doc=['D09'] akt=['D09']
+   pasien doc=['P16', 'P17'] akt=['P16', 'P17']
+   modus doc=drug_diversion akt=['drug_diversion'] | skor doc=[0.86,0.88] akt=0.86-0.88
+
+SYND-05: SEMUA COCOK
+   ID    doc=['KLM016', 'KLM017']
+          akt=['KLM016', 'KLM017']
+   faskes doc=RS_F akt=['RS_F'] | dokter doc=['D08'] akt=['D08']
+   pasien doc=['P19', 'P20'] akt=['P19', 'P20']
+   modus doc=cloning akt=['cloning'] | skor doc=[0.78,0.79] akt=0.78-0.79
+
+SYND-06: GAGAL -> ['pasien', 'skor']
+   ID    doc=['KLM101', 'KLM102', 'KLM103', 'KLM104']
+          akt=['KLM101', 'KLM102', 'KLM103', 'KLM104']
+   faskes doc=RS_G akt=['RS_G'] | dokter doc=['D13'] akt=['D13']
+   pasien doc=['P21', 'P22', 'P23', 'P24'] akt=['P21', 'P22']
+   modus doc=repeat_billing akt=['repeat_billing'] | skor doc=[0.85,0.9] akt=0.89-0.92
+
+SYND-07: GAGAL -> ['pasien']
+   ID    doc=['KLM105', 'KLM106', 'KLM107', 'KLM108']
+          akt=['KLM105', 'KLM106', 'KLM107', 'KLM108']
+   faskes doc=RS_H akt=['RS_H'] | dokter doc=['D14'] akt=['D14']
+   pasien doc=['P25', 'P26', 'P27', 'P28'] akt=['P23', 'P24']
+   modus doc=iur_biaya akt=['iur_biaya'] | skor doc=[0.82,0.87] akt=0.82-0.85
+
+SYND-08: GAGAL -> ['pasien', 'skor']
+   ID    doc=['KLM109', 'KLM110', 'KLM111', 'KLM112', 'KLM113', 'KLM114']
+          akt=['KLM109', 'KLM110', 'KLM111', 'KLM112', 'KLM113', 'KLM114']
+   faskes doc=RS_I akt=['RS_I'] | dokter doc=['D15'] akt=['D15']
+   pasien doc=['P29', 'P30', 'P31', 'P32', 'P33', 'P34'] akt=['P25', 'P26']
+   modus doc=readmission_berulang akt=['readmission_berulang'] | skor doc=[0.75,0.8] akt=0.86-0.89
+
+SYND-09: GAGAL -> ['dokter', 'pasien', 'skor']
+   ID    doc=['KLM115', 'KLM116', 'KLM117', 'KLM118', 'KLM119', 'KLM120']
+          akt=['KLM115', 'KLM116', 'KLM117', 'KLM118', 'KLM119', 'KLM120']
+   faskes doc=RS_J akt=['RS_J'] | dokter doc=['D16'] akt=['D19']
+   pasien doc=['P35', 'P36', 'P37', 'P38', 'P39', 'P40'] akt=['P27']
+   modus doc=excessive_usage akt=['excessive_usage'] | skor doc=[0.78,0.83] akt=0.80-0.84
+
+SIND. dengan kegagalan pemetaan: 4
+    SYND-06 ['pasien', 'skor']
+    SYND-07 ['pasien']
+    SYND-08 ['pasien', 'skor']
+    SYND-09 ['dokter', 'pasien', 'skor']
+
+==============================================================================
+2. RINGKASAN PEMETAAN: DOKUMEN v2.1 KLAIM vs DATA
+==============================================================================
+
+==============================================================================
+3. PASIEN YANG DOKUMENTASI v2.1 (P01-P40) vs PEMAKAIAN NYATA
+==============================================================================
+   SYND-01: ['P01', 'P02', 'P03']
+   SYND-02: ['P08', 'P09', 'P10']
+   SYND-03: ['P12', 'P13', 'P14']
+   SYND-04: ['P16', 'P17']
+   SYND-05: ['P19', 'P20']
+   SYND-06: ['P21', 'P22']
+   SYND-07: ['P23', 'P24']
+   SYND-08: ['P25', 'P26']
+   SYND-09: ['P27']
+
+Pasien P01-P20 (dari tabel v100) tidak dipakai sindikat mana pun?
+   P01-P20 yang muncul di sindikat: ['P01', 'P02', 'P03', 'P08', 'P09', 'P10', 'P12', 'P13', 'P14', 'P16', 'P17', 'P19', 'P20']
+   P21-P40 yang muncul di sindikat: ['P21', 'P22', 'P23', 'P24', 'P25', 'P26', 'P27']
+
+==============================================================================
+4. VERIFIKASI ULANG: SEMUA BARIS UNIK, TOTAL, TOTAL BIAYA
+==============================================================================
+baris: 300 | ID unik: 300
+total biaya: 3526650000
+checksum SHA256 file:
+   claims_v2_live.csv: d6fb95b9fbfb6bf47e9a99bcf57df0e38b00a13758b6d3ac14779e64a6121119
+   claims_v2_live.json: 837687edbf283b8bfd7fe4c46f564f200043699fa9bb20c317c52974ee1f23e2
