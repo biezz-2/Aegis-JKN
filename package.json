@@ -91,5 +91,9 @@
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.5",
     "typescript": "^5"
+  },
+  "overrides": {
+    "minimatch": "^11.0.1",
+    "deepmerge-ts": "^8.0.0"
   }
 }
